@@ -2,7 +2,7 @@
 
 import { admin } from "@/actions/auth/admin";
 import RoleGate from "@/app/_components/auth/role-gate";
-import { FormSuccess } from "@/app/_components/ui/form/form-success";
+import { FormSuccess } from "@/app/_components/form/form-success";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useCurrentRole } from "@/hooks/use-current-role";

@@ -15,9 +15,9 @@ import { RegisterSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { CardWrapper } from "../ui/card-wrapper";
-import { FormError } from "../ui/form/form-error";
-import { FormSuccess } from "../ui/form/form-success";
+import { CardWrapper } from "../layout/card-wrapper";
+import { FormError } from "../form/form-error";
+import { FormSuccess } from "../form/form-success";
 
 export const CredentialsRegisterForm = () => {
   const [error, setError] = useState("");

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCurrentRole } from "@/hooks/use-current-role";
-import { FormError } from "../ui/form/form-error";
+import { FormError } from "../form/form-error";
 
 const RoleGate = ({ children, allowedRole }) => {
   const role = useCurrentRole();

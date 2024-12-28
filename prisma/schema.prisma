@@ -28,6 +28,7 @@ model User {
   password                String?
   createdAt               DateTime               @default(now())
   updatedAt               DateTime               @updatedAt
+  page                    Page[]
   isTwoFactorEnabled      Boolean                @default(false)
   twoFactorConfirmation   twoFactorConfirmation?
   role                    UserRole               @default(USER)
@@ -99,4 +100,15 @@ model OtpToken {
   expires     DateTime
 
   @@unique([phoneNumber, token])
+}
+
+model Page {
+  uri       String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  owner     String?
+  content   String   @db.LongText
+  visits    Int      @default(0)
+
+  User User? @relation(fields: [owner], references: [id])
 }
