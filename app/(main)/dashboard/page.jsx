@@ -8,10 +8,39 @@ const page = async () => {
 
   return (
     <main className="">
-      <div>
-        <DashboardNavbar />
-      </div>
       <DashboardSidebar />
+      <section className="flex sm:mr-20 flex-col gap-4 px-4 ">
+        <p>This is a content 1</p>
+        <p>This is a content 2</p>
+        <p>This is a content 3</p>
+        <p>This is a content 4</p>
+        <p>This is a content 5</p>
+        <p>This is a content 1</p>
+        <p>This is a content 2</p>
+        <p>This is a content 3</p>
+        <p>This is a content 4</p>
+        <p>This is a content 5</p>
+        <p>This is a content 1</p>
+        <p>This is a content 2</p>
+        <p>This is a content 3</p>
+        <p>This is a content 4</p>
+        <p>This is a content 5</p>
+        <p>This is a content 1</p>
+        <p>This is a content 2</p>
+        <p>This is a content 3</p>
+        <p>This is a content 4</p>
+        <p>This is a content 5</p>
+        <p>This is a content 1</p>
+        <p>This is a content 2</p>
+        <p>This is a content 3</p>
+        <p>This is a content 4</p>
+        <p>This is a content 5</p>
+        <p>This is a content 1</p>
+        <p>This is a content 2</p>
+        <p>This is a content 3</p>
+        <p>This is a content 4</p>
+        <p>This is a content 5</p>
+      </section>
     </main>
   );
 };

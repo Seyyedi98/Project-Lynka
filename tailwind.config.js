@@ -22,6 +22,11 @@ module.exports = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          gradient_from: "hsl(var(--primary-gradient-from))",
+          gradient_to: "hsl(var(--primary-gradient-to))",
+        },
+        link: {
+          hover: "hsl(var(--link-hover))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
