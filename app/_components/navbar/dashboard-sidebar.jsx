@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import { cn } from "@/lib/utils";
@@ -18,6 +17,7 @@ import { useState } from "react";
 import SidebarLink from "../common/button/sidebar-link";
 import Devider from "../common/ui/devider";
 import HumbergerMenuBtn from "../common/ui/humberger-menu";
+import UserButton from "../auth/user-button";
 
 const DashboardSidebar = () => {
   const user = useCurrentUser();
@@ -31,8 +31,8 @@ const DashboardSidebar = () => {
         className={cn(
           `w-full group sm:fixed xl:w-56 h-12 bg-gradient-to-b from-primary-gradient_from
            to-primary-gradient_to overflow-hidden transition-translate pt-6 
-           pb-12 px-2 duration-300 right-0 sm:w-20 sm:h-full`,
-          isSidebarOpen ? "sm:w-56 h-dvh" : "top-0",
+           pb-12 sm:pb-4 px-2 duration-200 right-0 sm:w-20 sm:h-full`,
+          isSidebarOpen ? "sm:w-56 h-dvh pb-4" : "top-0",
           !isSidebarOpen && "sm:hover:w-56"
         )}
       >
@@ -96,23 +96,13 @@ const DashboardSidebar = () => {
               >
                 <MessageCircleQuestion />
               </SidebarLink>
-              {user ? (
-                <SidebarLink
-                  isExpanded={isSidebarOpen}
-                  title="user"
-                  path="/user"
-                >
-                  <CircleUser />
-                </SidebarLink>
-              ) : (
-                <SidebarLink
-                  isExpanded={isSidebarOpen}
-                  title="ورود"
-                  path="/auth/login"
-                >
-                  <LogIn />
-                </SidebarLink>
-              )}
+              <UserButton
+                isExpanded={isSidebarOpen}
+                title={user?.name || "پروفایل"}
+                path="/user"
+              >
+                <CircleUser />
+              </UserButton>
             </div>
           </div>
         </div>

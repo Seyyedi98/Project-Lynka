@@ -1,10 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { HomeIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 
 const SidebarLink = ({ children, isExpanded, title, path }) => {
   const pathname = usePathname();

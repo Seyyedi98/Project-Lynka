@@ -5,7 +5,7 @@ const page = async () => {
 
   return (
     <main className="">
-      <div className="flex sm:mr-20 flex-col gap-4 px-4 sm:h-full h-[91dvh]">
+      <div className="flex sm:mr-20 xl:mr-56 flex-col gap-4 px-4 sm:h-full h-[91dvh]">
         <section className="overflow-scroll sm:overflow-visible h-full">
           <p>This is a content 1</p>
           <p>This is a content 2</p>
