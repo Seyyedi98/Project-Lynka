@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useCurrentUser } from "@/hooks/use-current-user";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import { cn } from "@/lib/utils";
 import {
@@ -13,35 +14,15 @@ import {
   Newspaper,
   ShoppingCart,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SidebarLink from "../common/button/sidebar-link";
-import HumbergerMenuBtn from "../common/ui/humberger-menu";
 import Devider from "../common/ui/devider";
-import { useCurrentUser } from "@/hooks/use-current-user";
-import ScrollDetector from "@/hooks/use-scroll-top";
+import HumbergerMenuBtn from "../common/ui/humberger-menu";
 
 const DashboardSidebar = () => {
   const user = useCurrentUser();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const ref = useOutsideClick(() => setIsSidebarOpen(false), true);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 200) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup on component unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <>
@@ -51,8 +32,7 @@ const DashboardSidebar = () => {
           `w-full sm:fixed xl:w-56 h-12 bg-gradient-to-b from-primary-gradient_from
            to-primary-gradient_to overflow-hidden transition-translate pt-6 
            pb-12 px-2 duration-300 right-0 sm:w-20 sm:h-full`,
-          isSidebarOpen ? "sm:w-56 h-dvh" : "top-0",
-          isScrolled && !isSidebarOpen && "fixed top-0"
+          isSidebarOpen ? "sm:w-56 h-dvh" : "top-0"
         )}
       >
         <div className="flex flex-col sm:gap-4 justify-start relative sm:justify-between h-full">

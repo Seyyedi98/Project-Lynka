@@ -13,7 +13,7 @@ const SidebarLink = ({ children, isFull, title, path }) => {
     <Link href={path} className="w-full group cursor-pointer">
       <div
         className={cn(
-          `absolute z-0 h-14 w-full sm:w-14 rounded-md duration-200`,
+          `absolute z-0 h-14 w-full xl:w-[200px] sm:w-14 rounded-md duration-200`,
           isFull && "sm:w-[200px]",
           pathname === path
             ? "bg-link-hover/40"
@@ -23,18 +23,14 @@ const SidebarLink = ({ children, isFull, title, path }) => {
       <div
         className={cn(
           `flex z-10 items-center justify-start gap-4 text-primary-foreground
-          px-4 sm:px-0 h-14 w-full py-4 duration-500 rounded-sm `,
-          isFull && ""
+          px-4 sm:px-0 h-14 w-full py-4 duration-500 rounded-sm `
         )}
       >
-        <span className="z-10 sm:mr-4">
-          {children}
-          {/* <HomeIcon className="w-6 h-6 " /> */}
-        </span>
+        <span className="z-10 sm:mr-4">{children}</span>
         <span
           className={cn(
-            `sm:opacity-0 text-nowrap z-10 duration-500 sm:-translate-x-20`,
-            isFull && " sm:translate-x-0 sm:opacity-100"
+            `sm:opacity-0 text-nowrap z-10 duration-500 xl:translate-x-0 xl:opacity-100 sm:-translate-x-20`,
+            isFull && "sm:translate-x-0 sm:opacity-100"
           )}
         >
           {title}
