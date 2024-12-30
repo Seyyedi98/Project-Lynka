@@ -29,10 +29,11 @@ const DashboardSidebar = () => {
       <nav
         ref={ref}
         className={cn(
-          `w-full sm:fixed xl:w-56 h-12 bg-gradient-to-b from-primary-gradient_from
+          `w-full group sm:fixed xl:w-56 h-12 bg-gradient-to-b from-primary-gradient_from
            to-primary-gradient_to overflow-hidden transition-translate pt-6 
            pb-12 px-2 duration-300 right-0 sm:w-20 sm:h-full`,
-          isSidebarOpen ? "sm:w-56 h-dvh" : "top-0"
+          isSidebarOpen ? "sm:w-56 h-dvh" : "top-0",
+          !isSidebarOpen && "sm:hover:w-56"
         )}
       >
         <div className="flex flex-col sm:gap-4 justify-start relative sm:justify-between h-full">
@@ -48,17 +49,21 @@ const DashboardSidebar = () => {
           <div className="flex flex-col justify-between h-full">
             <div className="flex flex-col mr-[2px] gap-3 mt-6 sm:mt-2">
               <SidebarLink
-                isFull={isSidebarOpen}
+                isExpanded={isSidebarOpen}
                 title="پنل کاربری"
                 path="/dashboard"
               >
                 <LucideHome className="w-6 h-6" />
               </SidebarLink>
-              <SidebarLink isFull={isSidebarOpen} title="فروشگاه" path="/shop">
+              <SidebarLink
+                isExpanded={isSidebarOpen}
+                title="فروشگاه"
+                path="/shop"
+              >
                 <ShoppingCart />
               </SidebarLink>
               <SidebarLink
-                isFull={isSidebarOpen}
+                isExpanded={isSidebarOpen}
                 title="آمار"
                 path="/analytics"
               >
@@ -71,29 +76,37 @@ const DashboardSidebar = () => {
                 <Devider />
               </div>
               <SidebarLink
-                isFull={isSidebarOpen}
+                isExpanded={isSidebarOpen}
                 title="پیام ها"
                 path="/notifications"
               >
                 <BellDot />
               </SidebarLink>
               <SidebarLink
-                isFull={isSidebarOpen}
+                isExpanded={isSidebarOpen}
                 title="تازه ها"
                 path="/whats-new"
               >
                 <Newspaper />
               </SidebarLink>
-              <SidebarLink isFull={isSidebarOpen} title="راهنما" path="/help">
+              <SidebarLink
+                isExpanded={isSidebarOpen}
+                title="راهنما"
+                path="/help"
+              >
                 <MessageCircleQuestion />
               </SidebarLink>
               {user ? (
-                <SidebarLink isFull={isSidebarOpen} title="user" path="/user">
+                <SidebarLink
+                  isExpanded={isSidebarOpen}
+                  title="user"
+                  path="/user"
+                >
                   <CircleUser />
                 </SidebarLink>
               ) : (
                 <SidebarLink
-                  isFull={isSidebarOpen}
+                  isExpanded={isSidebarOpen}
                   title="ورود"
                   path="/auth/login"
                 >
@@ -102,18 +115,6 @@ const DashboardSidebar = () => {
               )}
             </div>
           </div>
-        </div>
-
-        {/* Collapse Button */}
-        <div className=" z-50">
-          <Button
-            className="hidden sm:block xl:hidden mt-auto"
-            onClick={(e) => {
-              setIsSidebarOpen(!isSidebarOpen);
-            }}
-          >
-            {isSidebarOpen ? "<" : ">"}
-          </Button>
         </div>
       </nav>
     </>

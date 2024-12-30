@@ -14,43 +14,6 @@ const page = async () => {
           <p>This is a content 5</p>
           <p>This is a content 1</p>
           <p>This is a content 2</p>
-          <p>This is a content 3</p>
-          <p>This is a content 4</p>
-          <p>This is a content 5</p>
-          <p>This is a content 1</p>
-          <p>This is a content 2</p>
-          <p>This is a content 3</p>
-          <p>This is a content 4</p>
-          <p>This is a content 5</p>
-          <p>This is a content 1</p>
-          <p>This is a content 2</p>
-          <p>This is a content 3</p>
-          <p>This is a content 4</p>
-          <p>This is a content 5</p>
-          <p>This is a content 1</p>
-          <p>This is a content 2</p>
-          <p>This is a content 3</p>
-          <p>This is a content 4</p>
-          <p>This is a content 5</p>
-          <p>This is a content 1</p>
-          <p>This is a content 2</p>
-          <p>This is a content 3</p>
-          <p>This is a content 4</p>
-          <p>This is a content 1</p>
-          <p>This is a content 2</p>
-          <p>This is a content 3</p>
-          <p>This is a content 4</p>
-          <p>This is a content 5</p>
-          <p>This is a content 1</p>
-          <p>This is a content 2</p>
-          <p>This is a content 3</p>
-          <p>This is a content 4</p>
-          <p>This is a content 5</p>
-          <p>This is a content 1</p>
-          <p>This is a content 2</p>
-          <p>This is a content 3</p>
-          <p>This is a content 4</p>
-          <p>This is a content 5</p>{" "}
         </section>
       </div>
     </main>

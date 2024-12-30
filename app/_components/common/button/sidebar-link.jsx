@@ -6,18 +6,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-const SidebarLink = ({ children, isFull, title, path }) => {
+const SidebarLink = ({ children, isExpanded, title, path }) => {
   const pathname = usePathname();
 
   return (
-    <Link href={path} className="w-full group cursor-pointer">
+    <Link href={path} className="w-full group/color cursor-pointer">
       <div
         className={cn(
           `absolute z-0 h-14 w-full xl:w-[200px] sm:w-14 rounded-md duration-200`,
-          isFull && "sm:w-[200px]",
+          isExpanded && "sm:w-[200px]",
+          !isExpanded && "sm:group-hover:w-[200px]",
           pathname === path
             ? "bg-link-hover/40"
-            : "group-hover:bg-link-hover/20"
+            : "group-hover/color:bg-link-hover/20"
         )}
       />
       <div
@@ -30,7 +31,9 @@ const SidebarLink = ({ children, isFull, title, path }) => {
         <span
           className={cn(
             `sm:opacity-0 text-nowrap z-10 duration-500 xl:translate-x-0 xl:opacity-100 sm:-translate-x-20`,
-            isFull && "sm:translate-x-0 sm:opacity-100"
+            isExpanded && "sm:translate-x-0 sm:opacity-100",
+            !isExpanded &&
+              "sm:group-hover:translate-x-0 sm:group-hover:opacity-100"
           )}
         >
           {title}
