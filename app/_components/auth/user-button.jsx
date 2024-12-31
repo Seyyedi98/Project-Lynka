@@ -44,7 +44,7 @@ const UserButton = ({ children, isExpanded, title, path }) => {
 
       <div
         className={cn(
-          `sm:absolute sm:-translate-x-[70px] duration-200 text-white mr-auto p-3 ml-4 sm:ml-2 cursor-pointer sm:group-hover:block hover:bg-link-hover/40 z-[12] rounded-full`
+          `sm:absolute sm:-translate-x-[70px] duration-200 text-white mr-auto p-3 ml-4 sm:ml-2 cursor-pointer sm:group-hover:block hover:bg-link-hover/40 z-[12] rounded-lg`
         )}
         onClick={(e) => {
           e.stopPropagation();

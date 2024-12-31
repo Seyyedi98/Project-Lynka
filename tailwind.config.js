@@ -9,50 +9,132 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+        background: "rgb(255, 255, 255)", // hsl(0, 0%, 100%)
+        foreground: "rgb(10, 10, 10)", // hsl(240, 10%, 3.9%)
+        neutral: {
+          50: "rgb(246, 246, 246)",
+          100: "rgb(223, 223, 223)",
+          200: "rgb(198, 198, 198)",
+          300: "rgb(168, 168, 168)",
+          400: "rgb(142, 142, 142)",
+          500: "rgb(111, 111, 111)",
+          600: "rgb(82, 82, 82)",
+          700: "rgb(57, 57, 57)",
+          800: "rgb(38, 38, 38)",
+          900: "rgb(21, 21, 21)",
         },
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-          gradient_from: "hsl(var(--primary-gradient-from))",
-          gradient_to: "hsl(var(--primary-gradient-to))",
+          50: "rgb(245, 242, 255)",
+          100: "rgb(229, 218, 255)",
+          200: "rgb(208, 188, 255)",
+          300: "rgb(185, 150, 255)",
+          400: "rgb(165, 113, 255)",
+          500: "rgb(145, 56, 254)",
+          600: "rgb(115, 2, 213)",
+          700: "rgb(81, 1, 154)",
+          800: "rgb(55, 0, 108)",
+          900: "rgb(34, 0, 70)",
+          DEFAULT: "rgb(23, 23, 26)", // hsl(240, 5.9%, 10%)
+          foreground: "rgb(250, 250, 250)", // hsl(0, 0%, 98%)
+          gradient_from: "rgb(142, 84, 192)", // hsl(287, 53%, 58%)
+          gradient_to: "rgb(99, 79, 145)", // hsl(259, 47%, 53%)
+        },
+        brand: {
+          50: "rgb(252, 240, 254)",
+          100: "rgb(241, 215, 247)",
+          200: "rgb(230, 182, 241)",
+          300: "rgb(218, 139, 233)",
+          400: "rgb(207, 95, 226)",
+          500: "rgb(170, 66, 187)",
+          600: "rgb(127, 47, 140)",
+          700: "rgb(90, 31, 100)",
+          800: "rgb(62, 19, 69)",
+          900: "rgb(38, 9, 43)",
+        },
+        info: {
+          50: "rgb(222, 248, 255)",
+          100: "rgb(150, 238, 252)",
+          200: "rgb(89, 216, 234)",
+          300: "rgb(0, 186, 204)",
+          400: "rgb(0, 157, 172)",
+          500: "rgb(0, 123, 136)",
+          600: "rgb(0, 91, 101)",
+          700: "rgb(0, 64, 71)",
+          800: "rgb(0, 43, 48)",
+          900: "rgb(0, 25, 28)",
+        },
+        success: {
+          50: "rgb(225, 252, 202)",
+          100: "rgb(189, 239, 132)",
+          200: "rgb(162, 214, 102)",
+          300: "rgb(135, 183, 74)",
+          400: "rgb(111, 155, 49)",
+          500: "rgb(89, 121, 49)",
+          600: "rgb(65, 90, 35)",
+          700: "rgb(44, 63, 22)",
+          800: "rgb(28, 42, 12)",
+          900: "rgb(15, 24, 5)",
+        },
+        warning: {
+          50: "rgb(255, 246, 174)",
+          100: "rgb(250, 223, 107)",
+          200: "rgb(242, 191, 70)",
+          300: "rgb(215, 158, 58)",
+          400: "rgb(197, 127, 0)",
+          500: "rgb(170, 91, 0)",
+          600: "rgb(124, 69, 0)",
+          700: "rgb(78, 52, 0)",
+          800: "rgb(57, 33, 0)",
+          900: "rgb(30, 20, 0)",
+        },
+        danger: {
+          50: "rgb(254, 240, 240)",
+          100: "rgb(253, 214, 213)",
+          200: "rgb(252, 181, 177)",
+          300: "rgb(240, 141, 136)",
+          400: "rgb(255, 78, 61)",
+          500: "rgb(200, 63, 50)",
+          600: "rgb(150, 45, 35)",
+          700: "rgb(107, 29, 22)",
+          800: "rgb(74, 18, 12)",
+          900: "rgb(47, 8, 5)",
+        },
+        card: {
+          DEFAULT: "rgb(255, 255, 255)", // hsl(0, 0%, 100%)
+          foreground: "rgb(10, 10, 10)", // hsl(240, 10%, 3.9%)
+        },
+        popover: {
+          DEFAULT: "rgb(255, 255, 255)", // hsl(0, 0%, 100%)
+          foreground: "rgb(10, 10, 10)", // hsl(240, 10%, 3.9%)
         },
         link: {
-          hover: "hsl(var(--link-hover))",
+          hover: "rgb(68, 0, 214)", // hsl(272, 100%, 40%)
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "rgb(245, 245, 245)", // hsl(240, 4.8%, 95.9%)
+          foreground: "rgb(23, 23, 26)", // hsl(240, 5.9%, 10%)
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "rgb(245, 245, 245)", // hsl(240, 4.8%, 95.9%)
+          foreground: "rgb(118, 118, 118)", // hsl(240, 3.8%, 46.1%)
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "rgb(245, 245, 245)", // hsl(240, 4.8%, 95.9%)
+          foreground: "rgb(23, 23, 26)", // hsl(240, 5.9%, 10%)
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "rgb(224, 45, 45)", // hsl(0, 84.2%, 60.2%)
+          foreground: "rgb(250, 250, 250)", // hsl(0, 0%, 98%)
         },
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
+        border: "rgb(230, 230, 230)", // hsl(240, 5.9%, 90%)
+        input: "rgb(230, 230, 230)", // hsl(240, 5.9%, 90%)
+        ring: "rgb(10, 10, 10)", // hsl(240, 10%, 3.9%)
         chart: {
-          1: "hsl(var(--chart-1))",
-          2: "hsl(var(--chart-2))",
-          3: "hsl(var(--chart-3))",
-          4: "hsl(var(--chart-4))",
-          5: "hsl(var(--chart-5))",
+          1: "rgb(247, 125, 63)", // hsl(12, 76%, 61%)
+          2: "rgb(37, 148, 133)", // hsl(173, 58%, 39%)
+          3: "rgb(61, 96, 122)", // hsl(197, 37%, 24%)
+          4: "rgb(205, 219, 95)", // hsl(43, 74%, 66%)
+          5: "rgb(221, 224, 71)", // hsl(27, 87%, 67%)
         },
       },
       borderRadius: {

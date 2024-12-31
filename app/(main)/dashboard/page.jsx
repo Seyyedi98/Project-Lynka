@@ -1,19 +1,32 @@
+import CreatePageBtn from "@/app/_components/common/button/create-page-btn";
+import NewPageCard from "@/app/_components/common/card/new-page-card";
+import Devider from "@/app/_components/common/ui/devider";
+import GridLayout from "@/app/_components/layout/grid-layout";
+import DashboardHeading from "@/app/_components/navbar/dashboard-heading";
 import { auth } from "@/auth";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Plus } from "lucide-react";
 
 const page = async () => {
   const session = await auth();
 
   return (
     <main className="">
-      <div className="flex sm:mr-20 xl:mr-56 flex-col gap-4 px-4 sm:h-full h-[91dvh]">
-        <section className="overflow-scroll sm:overflow-visible h-full">
-          <p>This is a content 1</p>
-          <p>This is a content 2</p>
-          <p>This is a content 3</p>
-          <p>This is a content 4</p>
-          <p>This is a content 5</p>
-          <p>This is a content 1</p>
-          <p>This is a content 2</p>
+      <DashboardHeading>
+        <CreatePageBtn />
+      </DashboardHeading>
+      <Separator />
+      <div className="no-scollbar flex h-[84.5dvh] flex-col gap-4 px-4 sm:mr-20 sm:h-full xl:mr-56">
+        <section className="h-full w-full overflow-scroll pt-8 sm:overflow-visible">
+          <GridLayout className="">
+            <NewPageCard />
+            <NewPageCard />
+            <NewPageCard />
+            <NewPageCard />
+            <NewPageCard />
+            <NewPageCard />
+          </GridLayout>
         </section>
       </div>
     </main>
