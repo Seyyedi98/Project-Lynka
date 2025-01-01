@@ -29,15 +29,13 @@ const DashboardSidebar = () => {
       <nav
         ref={ref}
         className={cn(
-          `w-full group sm:fixed xl:w-56 h-12 bg-gradient-to-b from-primary-gradient_from
-           to-primary-gradient_to overflow-hidden transition-translate pt-6 
-           pb-12 sm:pb-4 px-2 duration-200 right-0 sm:w-20 sm:h-full`,
-          isSidebarOpen ? "sm:w-56 h-dvh pb-4" : "top-0",
-          !isSidebarOpen && "sm:hover:w-56"
+          `transition-translate group right-0 z-10 h-12 w-full overflow-hidden bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to px-2 pb-12 pt-6 duration-200 sm:fixed sm:h-full sm:w-20 sm:pb-4 xl:w-56`,
+          isSidebarOpen ? "h-dvh pb-4 sm:w-56" : "top-0",
+          !isSidebarOpen && "sm:hover:w-56",
         )}
       >
-        <div className="flex flex-col sm:gap-4 justify-start relative sm:justify-between h-full">
-          <div className="flex sm:mr-4 justify-between px-4 sm:px-0 text-white">
+        <div className="relative flex h-full flex-col justify-start sm:justify-between sm:gap-4">
+          <div className="flex justify-between px-4 text-white sm:mr-4 sm:px-0">
             <HumbergerMenuBtn
               isSidebarOpen={isSidebarOpen}
               setIsSidebarOpen={setIsSidebarOpen}
@@ -46,14 +44,14 @@ const DashboardSidebar = () => {
           </div>
 
           {/* NavLinks */}
-          <div className="flex flex-col justify-between h-full">
-            <div className="flex flex-col mr-[2px] gap-3 mt-6 sm:mt-2">
+          <div className="flex h-full flex-col justify-between">
+            <div className="mr-[2px] mt-6 flex flex-col gap-3 sm:mt-2">
               <SidebarLink
                 isExpanded={isSidebarOpen}
                 title="پنل کاربری"
                 path="/dashboard"
               >
-                <LucideHome className="w-6 h-6" />
+                <LucideHome className="h-6 w-6" />
               </SidebarLink>
               <SidebarLink
                 isExpanded={isSidebarOpen}
@@ -71,7 +69,7 @@ const DashboardSidebar = () => {
               </SidebarLink>
             </div>
 
-            <div className="flex flex-col mr-[2px] gap-3 mt-6 sm:mt-0">
+            <div className="mr-[2px] mt-6 flex flex-col gap-3 sm:mt-0">
               <div className="mx-3">
                 <Devider />
               </div>

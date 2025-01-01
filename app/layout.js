@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { auth } from "@/auth";
 import { SessionProvider } from "next-auth/react";
+import EditorContextProvider from "@/context/editor-context";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,7 +35,7 @@ export default async function RootLayout({ children }) {
         <body
           className={`${yekan.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          {children}
+          <EditorContextProvider>{children}</EditorContextProvider>
         </body>
       </html>
     </SessionProvider>
