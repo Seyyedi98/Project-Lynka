@@ -34,6 +34,10 @@ export default function EditorContextProvider({ children }) {
   return (
     <EditorContext.Provider
       value={{
+        elements,
+        setElements,
+        selectedElement,
+        setSelectedElement,
         addElement,
         updateElement,
         removeElement,
