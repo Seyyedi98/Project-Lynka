@@ -22,7 +22,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import { useCurrentUser } from "@/hooks/use-current-user";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { SettingsSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserRole } from "@prisma/client";
@@ -73,7 +73,7 @@ const SettingsPage = () => {
     <div>
       <Card>
         <CardHeader className="w-[600px]">
-          <p className="text-2xl font-semibold text-center">⚙️ Settings</p>
+          <p className="text-center text-2xl font-semibold">⚙️ Settings</p>
         </CardHeader>
         <CardContent>
           <Form {...form}>

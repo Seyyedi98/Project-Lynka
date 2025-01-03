@@ -1,7 +1,7 @@
 "use client";
 
-import { useCurrentUser } from "@/hooks/use-current-user";
-import { useOutsideClick } from "@/hooks/use-outside-click";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { cn } from "@/lib/utils";
 import {
   BellDot,
@@ -14,9 +14,9 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import { useState } from "react";
-import SidebarLink from "../common/button/sidebar-link";
-import Devider from "../common/ui/devider";
-import HumbergerMenuBtn from "../common/ui/humberger-menu";
+import SidebarLink from "../common/button/NavigationButton/sidebar-link";
+import Devider from "../common/shared/devider";
+import HumbergerMenuBtn from "../common/button/PrimaryButton/humberger-menu";
 import UserButton from "../auth/user-button";
 
 const DashboardSidebar = () => {
@@ -56,14 +56,14 @@ const DashboardSidebar = () => {
               <SidebarLink
                 isExpanded={isSidebarOpen}
                 title="فروشگاه"
-                path="/shop"
+                path="/dashboard/shop"
               >
                 <ShoppingCart />
               </SidebarLink>
               <SidebarLink
                 isExpanded={isSidebarOpen}
                 title="آمار"
-                path="/analytics"
+                path="/dashboard/analytics"
               >
                 <ChartLine />
               </SidebarLink>
@@ -76,28 +76,28 @@ const DashboardSidebar = () => {
               <SidebarLink
                 isExpanded={isSidebarOpen}
                 title="پیام ها"
-                path="/notifications"
+                path="/dashboard/notifications"
               >
                 <BellDot />
               </SidebarLink>
               <SidebarLink
                 isExpanded={isSidebarOpen}
                 title="تازه ها"
-                path="/whats-new"
+                path="/dashboard/whats-new"
               >
                 <Newspaper />
               </SidebarLink>
               <SidebarLink
                 isExpanded={isSidebarOpen}
                 title="راهنما"
-                path="/help"
+                path="/dashboard/help"
               >
                 <MessageCircleQuestion />
               </SidebarLink>
               <UserButton
                 isExpanded={isSidebarOpen}
                 title={user?.name || "پروفایل"}
-                path="/user"
+                path="/dashboard/user"
               >
                 <CircleUser />
               </UserButton>

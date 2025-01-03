@@ -1,4 +1,4 @@
-import CreatePageBtn from "@/app/_components/common/button/create-page-btn";
+import CreatePageBtn from "@/app/_components/common/button/PrimaryButton/create-page-btn";
 import NewPageCard from "@/app/_components/common/card/new-page-card";
 import GridLayout from "@/app/_components/layout/grid-layout";
 import DashboardHeading from "@/app/_components/navbar/dashboard-heading";

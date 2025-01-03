@@ -1,7 +1,7 @@
 "use client";
 
 import { UserInfo } from "@/app/_components/profile/user-info";
-import { useCurrentUser } from "@/hooks/use-current-user";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 
 const ClientPage = () => {
   const user = useCurrentUser();
