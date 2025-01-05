@@ -8,6 +8,11 @@ const ElementAdderButton = ({ pageElement }) => {
   // former sidebar-button-element
   const { label, icon: Icon } = pageElement.ElementAdderBtn;
 
+  const addItem = (e) => {
+    console.log(e.target);
+    // const newElement = PageElements[type].construct(idGenerator());
+  };
+
   const draggable = useDraggable({
     id: `adder-btn-${pageElement.type}`,
     data: {
@@ -20,7 +25,7 @@ const ElementAdderButton = ({ pageElement }) => {
     <Button
       ref={draggable.setNodeRef}
       className={cn(
-        `bg-secondaryBg flex w-full cursor-grab gap-2 rounded-md transition-all duration-300`,
+        `flex w-full cursor-grab gap-2 rounded-md bg-secondary transition-all duration-300`,
         draggable.isDragging && "ring-2 ring-primary",
       )}
       variant="outline"
@@ -34,7 +39,7 @@ const ElementAdderButton = ({ pageElement }) => {
 };
 
 export const AdderBtnDragOverly = ({ formElement }) => {
-  const { label, icon: Icon } = formElement.CanvasBtnElement;
+  const { label, icon: Icon } = formElement.ElementAdderBtn;
 
   return (
     <Button
