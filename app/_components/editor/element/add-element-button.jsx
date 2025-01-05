@@ -1,10 +1,10 @@
 import { useDraggable } from "@dnd-kit/core";
 import React from "react";
-import { PageElements } from "./page-elements";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { PageElements } from "./page-elements";
 
-const ElementAdderButton = ({ pageElement }) => {
+const AddElementButton = ({ pageElement }) => {
   // former sidebar-button-element
   const { label, icon: Icon } = pageElement.ElementAdderBtn;
 
@@ -52,4 +52,4 @@ export const AdderBtnDragOverly = ({ formElement }) => {
   );
 };
 
-export default ElementAdderButton;
+export default AddElementButton;

@@ -46,7 +46,7 @@ function AdderComponent({ elementInstance }) {
 function PageComponent({ elementInstance }) {
   const element = elementInstance;
   const { title } = element.extraAttributes;
-  return <p className="text-2xl">{title}</p>;
+  return <p className="bg-sky-400 p-12 text-2xl">{title}</p>;
 }
 
 function propertiesComponent({ elementInstance }) {

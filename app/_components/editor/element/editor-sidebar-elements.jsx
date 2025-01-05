@@ -1,4 +1,4 @@
-import ElementAdderButton from "./element-adder-button";
+import AddElementButton from "./add-element-button";
 import { PageElements } from "./page-elements";
 
 const EditorSidebarElements = () => {
@@ -9,7 +9,7 @@ const EditorSidebarElements = () => {
           فیلد ها
         </p>
 
-        <ElementAdderButton pageElement={PageElements.TitleField} />
+        <AddElementButton pageElement={PageElements.TitleField} />
       </div>
     </div>
   );

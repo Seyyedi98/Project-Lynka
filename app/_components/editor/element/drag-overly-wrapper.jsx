@@ -1,8 +1,8 @@
 import useEditor from "@/hooks/useCanvas";
 import React, { useState } from "react";
-import { AdderBtnDragOverly } from "./element-adder-button";
-import { PageElements } from "./page-elements";
 import { DragOverlay, useDndMonitor } from "@dnd-kit/core";
+import { AdderBtnDragOverly } from "./add-element-button";
+import { PageElements } from "./page-elements";
 
 const DragOverlyWrapper = () => {
   const { elements } = useEditor();

@@ -1,5 +1,5 @@
 import React from "react";
-import EditorSidebarElements from "../editor/editor-sidebar-elements";
+import EditorSidebarElements from "../editor/element/editor-sidebar-elements";
 import { EditorDialog } from "../common/shared/editor-dialog";
 import { Button } from "@/components/ui/button";
 import { useMediaQuery } from "@/hooks/useMediaQuery";

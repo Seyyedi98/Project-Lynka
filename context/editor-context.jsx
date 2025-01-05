@@ -10,8 +10,8 @@ export default function EditorContextProvider({ children }) {
 
   const addElement = (index, element) => {
     setElements((prev) => {
-      const prevElements = [...prev];
-      const newElements = prevElements.splice(index, 0, element);
+      const newElements = [...prev];
+      newElements.splice(index, 0, element);
 
       return newElements;
     });

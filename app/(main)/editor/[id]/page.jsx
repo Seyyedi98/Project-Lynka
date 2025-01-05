@@ -2,7 +2,7 @@
 
 // TODO: Replace this page with [id] => page
 
-import PageBuilder from "@/app/_components/editor/page-builder";
+import PageBuilder from "@/app/_components/editor/builder/page-builder";
 import useEditor from "@/hooks/useCanvas";
 
 const EditorPage = () => {

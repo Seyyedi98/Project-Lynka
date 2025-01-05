@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Editor from "./editor";
+import BuilderWorkspace from "./builder-workspace";
 import {
   DndContext,
   MouseSensor,
@@ -10,17 +10,18 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import useEditor from "@/hooks/useCanvas";
-import DragOverlyWrapper from "./drag-overly-wrapper";
+import DragOverlyWrapper from "../element/drag-overly-wrapper";
 
+// Former editor-canvas
 const PageBuilder = () => {
   const { setElements, setSelectedElements } = useEditor();
   const [isReady, setIsReady] = useState(false);
   // const shareUrl = `${window.location.origin}/${page.shareUrl}`
 
   const mouseSensor = useSensor(MouseSensor, {
-    // Require the mouse to move by 10 pixels before activating
+    // Require the mouse to move by 12 pixels before activating
     activationConstraint: {
-      distance: 10,
+      distance: 12,
     },
   });
 
@@ -35,7 +36,7 @@ const PageBuilder = () => {
 
   return (
     <DndContext sensors={sensors}>
-      <Editor />
+      <BuilderWorkspace />
       <DragOverlyWrapper />
     </DndContext>
   );
