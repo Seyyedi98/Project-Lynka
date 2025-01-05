@@ -23,22 +23,21 @@ import {
 } from "@/components/ui/drawer";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
-export function EditorDialog({ children }) {
+export function EditorDialog({ children, title, trigger }) {
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>{children}</DialogTrigger>
-        <DialogContent className="sm:max-w-[625px]">
+        <DialogTrigger asChild>{trigger}</DialogTrigger>
+        <DialogContent className="text-right sm:max-w-[625px]">
           <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when youre done.
-            </DialogDescription>
+            <DialogTitle>{title}</DialogTitle>
+            <DialogDescription>Hi</DialogDescription>
+            {children}
           </DialogHeader>
-          <ProfileForm />
+          {/* <ProfileForm /> */}
         </DialogContent>
       </Dialog>
     );
@@ -46,18 +45,17 @@ export function EditorDialog({ children }) {
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>{children}</DrawerTrigger>
+      <DrawerTrigger asChild>{trigger}</DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="text-left">
-          <DrawerTitle>Edit profile</DrawerTitle>
-          <DrawerDescription>
-            Make changes to your profile here. Click save when youre done.
-          </DrawerDescription>
+        <DrawerHeader className="text-right">
+          <DrawerTitle>{title}</DrawerTitle>
+          <DrawerDescription>Hi</DrawerDescription>
+          {children}
         </DrawerHeader>
-        <ProfileForm className="px-4" />
+        {/* <ProfileForm className="px-4" /> */}
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline">بستن</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

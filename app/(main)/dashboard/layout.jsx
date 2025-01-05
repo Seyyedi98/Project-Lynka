@@ -4,7 +4,7 @@ import React from "react";
 const EditorLayout = ({ children }) => {
   return (
     <div>
-      <div className="h-12 w-full" />
+      <div />
       <DashboardSidebar />
       {children}
     </div>
