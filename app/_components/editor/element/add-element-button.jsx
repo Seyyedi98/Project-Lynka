@@ -2,16 +2,10 @@ import { useDraggable } from "@dnd-kit/core";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { PageElements } from "./page-elements";
 
 const AddElementButton = ({ pageElement }) => {
   // former sidebar-button-element
   const { label, icon: Icon } = pageElement.ElementAdderBtn;
-
-  const addItem = (e) => {
-    console.log(e.target);
-    // const newElement = PageElements[type].construct(idGenerator());
-  };
 
   const draggable = useDraggable({
     id: `adder-btn-${pageElement.type}`,
@@ -38,8 +32,8 @@ const AddElementButton = ({ pageElement }) => {
   );
 };
 
-export const AdderBtnDragOverly = ({ formElement }) => {
-  const { label, icon: Icon } = formElement.ElementAdderBtn;
+export const AdderBtnDragOverly = ({ pageElement }) => {
+  const { label, icon: Icon } = pageElement.ElementAdderBtn;
 
   return (
     <Button

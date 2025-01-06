@@ -25,13 +25,15 @@ const DragOverlyWrapper = () => {
   let node = <div>No drag overly</div>;
   const isSidebarBtnElement = draggedItem.data?.current?.isAdderBtnElement;
 
+  // Overlay when drag sidebar adder button to workspace
   if (isSidebarBtnElement) {
     const type = draggedItem.data?.current?.type;
-    node = <AdderBtnDragOverly formElement={PageElements[type]} />;
+    node = <AdderBtnDragOverly pageElement={PageElements[type]} />;
   }
 
   const isEditorElement = draggedItem.data?.current.isEditorElement;
 
+  // Overlay when drag elements inside workspace
   if (isEditorElement) {
     const elementId = draggedItem.data?.current.elementId;
     const element = elements.find((el) => el.id === elementId);

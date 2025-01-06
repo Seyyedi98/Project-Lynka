@@ -56,6 +56,9 @@ export const otpLogin = async (values) => {
       if (!otpToken) return { error: "کد وارد شده اشتباه است" };
 
       if (otpToken.token !== code) {
+        await prisma.otpToken.delete({
+          where: { id: otpToken.id },
+        });
         return { error: "کد وارد شده اشتباه است" };
       }
 
@@ -69,7 +72,7 @@ export const otpLogin = async (values) => {
       });
 
       const existingConfirmation = await getTwoFactorConfirmationByUserId(
-        existingUser.id
+        existingUser.id,
       );
 
       if (existingConfirmation) {
@@ -85,7 +88,7 @@ export const otpLogin = async (values) => {
       });
     } else {
       const previousOtpToken = await getOtpTokenByPhoneNumber(
-        existingUser.phoneNumber
+        existingUser.phoneNumber,
       );
       if (!previousOtpToken) {
         const otpToken = await generateOtpToken(existingUser.phoneNumber);
@@ -107,7 +110,7 @@ export const otpLogin = async (values) => {
           // await sendTwoFactorTokenEmail(otpToken.phoneNumber, otpToken.token);
           await sendTwoFactorTokenEmail(
             "seyyedi98@outlook.com",
-            otpToken.token
+            otpToken.token,
           );
           return {
             showOtpInput: true, // Change login page

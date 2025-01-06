@@ -40,7 +40,7 @@ const BuilderWorkspace = () => {
       //   isDroppingOverEditorElementBottomHalf;
 
       ////////////////////////////////////////////////////////////////////////////////////
-      //      1. When drop new element on canvas, It will be added as a last item
+      //      1. When drop new element on canvas, It will be added as a last item       //
       ////////////////////////////////////////////////////////////////////////////////////
       if (isAdderBtn && isDroppingOverEditorArea) {
         const type = active.data?.current?.type;
