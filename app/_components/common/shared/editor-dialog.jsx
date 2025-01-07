@@ -21,15 +21,17 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import useModal from "@/hooks/useModal";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export function EditorDialog({ children, title, trigger }) {
-  const [open, setOpen] = React.useState(false);
+  const { isWorkspaceMenuOpen, setIsWorkspaceMenuOpen } = useModal();
+
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   if (isDesktop) {
     return (
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={isWorkspaceMenuOpen} onOpenChange={setIsWorkspaceMenuOpen}>
         <DialogTrigger asChild>{trigger}</DialogTrigger>
         <DialogContent className="text-right sm:max-w-[625px]">
           <DialogHeader>
@@ -44,7 +46,7 @@ export function EditorDialog({ children, title, trigger }) {
   }
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer open={isWorkspaceMenuOpen} onOpenChange={setIsWorkspaceMenuOpen}>
       <DrawerTrigger asChild>{trigger}</DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-right">

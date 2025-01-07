@@ -23,29 +23,26 @@ export const TitleFieldFormElement = {
     label: "عنوان",
   },
 
-  AdderComponent: AdderComponent,
+  WorkspaceComponent: WorkspaceComponent,
   PageComponent: PageComponent,
   propertiesComponent: propertiesComponent,
 };
 
-function AdderComponent({ elementInstance }) {
+function WorkspaceComponent({ elementInstance }) {
   const element = elementInstance;
   const { title } = element.ExtraAttributes;
 
   return (
-    <div className="flex w-full flex-col gap-2">
-      <Label>{title}</Label>
-      <Input readOnly disabled placeholder={placeHolder} />
-      {helperText && (
-        <p className="text-[0.8rem] text-muted-foreground">{helperText}</p>
-      )}
+    <div className="flex w-full flex-col gap-2 bg-pink-500">
+      <p>{title}</p>
+      {/* <Input readOnly disabled /> */}
     </div>
   );
 }
 
 function PageComponent({ elementInstance }) {
   const element = elementInstance;
-  const { title } = element.extraAttributes;
+  const { title } = element.ExtraAttributes;
   return <p className="bg-sky-400 p-12 text-2xl">{title}</p>;
 }
 

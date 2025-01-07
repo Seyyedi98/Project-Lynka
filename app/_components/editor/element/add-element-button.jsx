@@ -2,21 +2,26 @@ import { useDraggable } from "@dnd-kit/core";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import useModal from "@/hooks/useModal";
 
 const AddElementButton = ({ pageElement }) => {
   // former sidebar-button-element
   const { label, icon: Icon } = pageElement.ElementAdderBtn;
+  const { setIsWorkspaceMenuOpen } = useModal();
 
   const draggable = useDraggable({
     id: `adder-btn-${pageElement.type}`,
     data: {
       type: pageElement.type,
-      isAdderBtnElement: true,
+      isAdderBtn: true,
     },
   });
 
   return (
     <Button
+      onClick={() => {
+        setIsWorkspaceMenuOpen(false);
+      }}
       ref={draggable.setNodeRef}
       className={cn(
         `flex w-full cursor-grab gap-2 rounded-md bg-secondary transition-all duration-300`,

@@ -1,9 +1,10 @@
-import useEditor from "@/hooks/useCanvas";
+import useEditor from "@/hooks/useEditor";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import React from "react";
 import EditorSidebar from "../../navbar/editor-sidebar";
 import { idGenerator } from "@/lib/is-generator";
 import { PageElements } from "../element/page-elements";
+import WorkspaceElementWrapper from "../element/workspace-element-wrapper";
 
 // Former canvas
 const BuilderWorkspace = () => {
@@ -18,7 +19,7 @@ const BuilderWorkspace = () => {
   const droppable = useDroppable({
     id: "editor-drop-area",
     data: {
-      isEditorDropArea: true,
+      isWorkspaceDropArea: true,
     },
   });
 
@@ -27,22 +28,23 @@ const BuilderWorkspace = () => {
       const { active, over } = event;
       if (!active || !over) return;
 
-      const isAdderBtn = active.data?.current?.isAdderBtnElement;
-      const isDroppingOverEditorArea = over.data?.current?.isEditorDropArea;
+      const isAdderBtn = active.data?.current?.isAdderBtn;
+      const isDroppingOverWorkspaceArea =
+        over.data?.current?.isWorkspaceDropArea;
 
-      // const isDroppingOverEditorElementTopHalf =
-      //   over.data?.current?.isTopHalfEditorElement;
-      // const isDroppingOverEditorElementBottomHalf =
-      //   over.data?.current?.isBottomHalfEditorElement;
+      // const isDroppingOverWorkspaceElementTopHalf =
+      //   over.data?.current?.isTopHalfWorkspaceElement;
+      // const isDroppingOverWorkspaceElementBottomHalf =
+      //   over.data?.current?.isBottomHalfWorkspaceElement;
 
-      // const droppingOverEditorElement =
-      //   isDroppingOverEditorElementTopHalf ||
-      //   isDroppingOverEditorElementBottomHalf;
+      // const droppingOverWorkspaceElement =
+      //   isDroppingOverWorkspaceElementTopHalf ||
+      //   isDroppingOverWorkspaceElementBottomHalf;
 
       ////////////////////////////////////////////////////////////////////////////////////
-      //      1. When drop new element on canvas, It will be added as a last item       //
+      //     1. When drop new element on workspace, It will be added as a last item     //
       ////////////////////////////////////////////////////////////////////////////////////
-      if (isAdderBtn && isDroppingOverEditorArea) {
+      if (isAdderBtn && isDroppingOverWorkspaceArea) {
         const type = active.data?.current?.type;
         const newElement = PageElements[type].contruct(idGenerator());
 
@@ -54,7 +56,7 @@ const BuilderWorkspace = () => {
   });
 
   return (
-    <div className="flex h-full w-full pt-3 md:pt-20">
+    <div className="flex h-full w-full pt-3 md:pt-[70px]">
       <EditorSidebar />
       <div className="flex w-full flex-col items-center justify-center">
         <div
@@ -63,7 +65,9 @@ const BuilderWorkspace = () => {
           className="w-3/4 rounded-lg bg-neutral-100 md:w-5/6"
         >
           {elements.map((element) => {
-            return <p key={element.id}>{element.ExtraAttributes.title}</p>;
+            return (
+              <WorkspaceElementWrapper key={element.id} element={element} />
+            );
           })}
         </div>
       </div>

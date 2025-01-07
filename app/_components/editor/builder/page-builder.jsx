@@ -9,7 +9,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import useEditor from "@/hooks/useCanvas";
+import useEditor from "@/hooks/useEditor";
 import DragOverlyWrapper from "../element/drag-overly-wrapper";
 
 // Former editor-canvas
