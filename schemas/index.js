@@ -1,4 +1,3 @@
-import { newPassword } from "@/actions/auth/new-password";
 import { UserRole } from "@prisma/client";
 import * as z from "zod";
 
@@ -47,7 +46,7 @@ export const NewPasswordSchema = z.object({
 export const SettingsSchema = z
   .object({
     name: z.optional(
-      z.string().min(3, { message: "نام کاربری باید حداثل ۳ حرف باشد" })
+      z.string().min(3, { message: "نام کاربری باید حداثل ۳ حرف باشد" }),
     ),
     isTwoFactorEnabled: z.optional(z.boolean()),
     role: z.enum([UserRole.ADMIN, UserRole.USER]),
@@ -60,12 +59,22 @@ export const SettingsSchema = z
       if (data.password && !data.newPassword) return false;
       return true;
     },
-    { message: "New password is requider!", path: ["newPassword"] }
+    { message: "New password is requider!", path: ["newPassword"] },
   )
   .refine(
     (data) => {
       if (!data.password && data.newPassword) return false;
       return true;
     },
-    { message: "Password is requider!", path: ["password"] }
+    { message: "Password is requider!", path: ["password"] },
   );
+
+export const PageUriSchema = z.object({
+  uri: z
+    .string()
+    .min(3, { message: "نام کاربری باید حداقل ۳ حرف باشد" })
+    .max(20, { message: "نام کاربری باید حداکثر ۲۰ حرف باشد" })
+    .regex(/^[a-zA-Z0-9]+$/, {
+      message: "نام کاربری فقط باید شامل حروف انگلیسی و اعداد بدون فاصله باشد",
+    }),
+});
