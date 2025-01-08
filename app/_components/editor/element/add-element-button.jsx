@@ -3,11 +3,15 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useModal from "@/hooks/useModal";
+import { PageElements } from "./page-elements";
+import { idGenerator } from "@/lib/is-generator";
+import useEditor from "@/hooks/useEditor";
 
 const AddElementButton = ({ pageElement }) => {
   // former sidebar-button-element
   const { label, icon: Icon } = pageElement.ElementAdderBtn;
   const { setIsWorkspaceMenuOpen } = useModal();
+  const { addElement, elements } = useEditor();
 
   const draggable = useDraggable({
     id: `adder-btn-${pageElement.type}`,
@@ -21,6 +25,9 @@ const AddElementButton = ({ pageElement }) => {
     <Button
       onClick={() => {
         setIsWorkspaceMenuOpen(false);
+        const type = pageElement.type;
+        const newElement = PageElements[type].contruct(idGenerator());
+        addElement(elements.length, newElement);
       }}
       ref={draggable.setNodeRef}
       className={cn(

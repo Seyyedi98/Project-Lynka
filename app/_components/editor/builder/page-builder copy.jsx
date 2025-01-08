@@ -16,7 +16,6 @@ import DragOverlyWrapper from "../element/drag-overly-wrapper";
 const PageBuilder = () => {
   const { setElements, setSelectedElements } = useEditor();
   const [isReady, setIsReady] = useState(false);
-
   // const shareUrl = `${window.location.origin}/${page.shareUrl}`
 
   const mouseSensor = useSensor(MouseSensor, {

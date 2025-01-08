@@ -97,6 +97,7 @@ const WorkspaceElementWrapper = ({ element }) => {
       {topHalf.isOver && (
         <div className="absolute top-0 h-[7px] w-full rounded-md rounded-b-none bg-primary" />
       )}
+
       <div
         className={cn(
           "pointer-events-none flex w-full items-center rounded-md bg-accent/40 px-4 py-2 opacity-100 transition-all duration-200",
@@ -105,6 +106,7 @@ const WorkspaceElementWrapper = ({ element }) => {
       >
         <PageElement elementInstance={element} />
       </div>
+
       {bottomHalf.isOver && (
         <div className="absolute bottom-0 h-[7px] w-full rounded-md rounded-t-none bg-primary" />
       )}

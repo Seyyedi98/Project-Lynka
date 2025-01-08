@@ -1,10 +1,13 @@
 import useEditor from "@/hooks/useEditor";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
-import React from "react";
+import React, { useState } from "react";
 import EditorSidebar from "../../navbar/editor-sidebar";
 import { idGenerator } from "@/lib/is-generator";
 import { PageElements } from "../element/page-elements";
 import WorkspaceElementWrapper from "../element/workspace-element-wrapper";
+import useModal from "@/hooks/useModal";
+import { cn } from "@/lib/utils";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 // Former canvas
 const BuilderWorkspace = () => {
@@ -16,6 +19,10 @@ const BuilderWorkspace = () => {
     setSelectedElement,
   } = useEditor();
 
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+
+  const { setIsWorkspaceMenuOpen } = useModal();
+
   const droppable = useDroppable({
     id: "editor-drop-area",
     data: {
@@ -24,6 +31,10 @@ const BuilderWorkspace = () => {
   });
 
   useDndMonitor({
+    onDragStart: () => {
+      setIsWorkspaceMenuOpen(false);
+    },
+
     onDragEnd: (event) => {
       const { active, over } = event;
       if (!active || !over) return;
@@ -62,7 +73,7 @@ const BuilderWorkspace = () => {
         <div
           ref={droppable.setNodeRef}
           style={{ height: "calc(100dvh - 180px)" }}
-          className="w-3/4 rounded-lg bg-neutral-100 md:w-5/6"
+          className={cn(`w-3/4 rounded-lg bg-neutral-100 md:w-5/6`)}
         >
           {elements.map((element) => {
             return (

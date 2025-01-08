@@ -1,6 +1,6 @@
 import useEditor from "@/hooks/useEditor";
-import React, { useState } from "react";
 import { DragOverlay, useDndMonitor } from "@dnd-kit/core";
+import { useState } from "react";
 import { AdderBtnDragOverly } from "./add-element-button";
 import { PageElements } from "./page-elements";
 

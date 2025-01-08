@@ -15,7 +15,7 @@ const EditorSidebar = () => {
   // Mobile Device
   if (!isDesktop) {
     return (
-      <div className="fixed bottom-0 h-16 w-full bg-neutral-100">
+      <div className="fixed bottom-0 h-16 w-full bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to text-white">
         <ul className="flex h-full items-center justify-between px-5">
           <li>Settings</li>
           <EditorDialog
@@ -34,7 +34,7 @@ const EditorSidebar = () => {
   // Desktop
   if (isDesktop) {
     return (
-      <div className="flex w-64 flex-col items-center justify-between bg-neutral-100 py-8">
+      <div className="flex w-64 flex-col items-center justify-between bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to py-8 text-white">
         <EditorSidebarElements />
         <ul className="flex items-center justify-between px-5">
           <li>Settings</li>

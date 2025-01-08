@@ -48,7 +48,7 @@ export function EditorDialog({ children, title, trigger }) {
   return (
     <Drawer open={isWorkspaceMenuOpen} onOpenChange={setIsWorkspaceMenuOpen}>
       <DrawerTrigger asChild>{trigger}</DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="m-2 mb-0 bg-white">
         <DrawerHeader className="text-right">
           <DrawerTitle>{title}</DrawerTitle>
           <DrawerDescription>Hi</DrawerDescription>
