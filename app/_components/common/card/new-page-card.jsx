@@ -17,7 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { checkPageAvailable, newPageCreator } from "@/lib/page";
+import { checkPageAvailable, newPageCreator } from "@/lib/page/pages";
 import { PageUriSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoaderIcon, PlusCircleIcon } from "lucide-react";

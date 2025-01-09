@@ -6,7 +6,7 @@ import { getOtpTokenByPhoneNumber } from "@/data/two-factor-token";
 import { getUserByPhoneNumber } from "@/data/user";
 import prisma from "@/lib/client";
 import { sendTwoFactorTokenEmail } from "@/lib/mail";
-import { generateOtpToken } from "@/lib/tokens";
+import { generateOtpToken } from "@/lib/auth/tokens";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { OtpLoginSchema } from "@/schemas";
 import bcrypt from "bcryptjs";

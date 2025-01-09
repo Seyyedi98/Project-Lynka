@@ -40,6 +40,8 @@ export const CredentialsLoginForm = () => {
     },
   });
 
+  const isCodeEntered = form.watch("code");
+
   const onSubmit = (values) => {
     setError("");
     setSuccess("");
@@ -158,7 +160,11 @@ export const CredentialsLoginForm = () => {
           </div>
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button disabled={isPending} type="submit" className="w-full">
+          <Button
+            disabled={isPending || !isCodeEntered}
+            type="submit"
+            className="w-full"
+          >
             {showTwoFactor ? "ارسال" : "ورود"}
           </Button>
         </form>

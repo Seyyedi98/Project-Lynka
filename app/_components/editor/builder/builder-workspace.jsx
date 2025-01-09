@@ -2,7 +2,7 @@ import useEditor from "@/hooks/useEditor";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import React, { useState } from "react";
 import EditorSidebar from "../../navbar/editor-sidebar";
-import { idGenerator } from "@/lib/is-generator";
+import { idGenerator } from "@/lib/id-generator";
 import { PageElements } from "../element/page-elements";
 import WorkspaceElementWrapper from "../element/workspace-element-wrapper";
 import useModal from "@/hooks/useModal";

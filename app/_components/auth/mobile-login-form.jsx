@@ -44,6 +44,8 @@ export const MobileLoginForm = () => {
     },
   });
 
+  const isCodeEntered = form.watch("code");
+
   const onSubmit = (values) => {
     setError("");
     setSuccess("");
@@ -140,7 +142,11 @@ export const MobileLoginForm = () => {
 
           {/* Enter OTP Code */}
           {showOtpInput && !error && (
-            <Button disabled={isPending} type="submit" className="w-full">
+            <Button
+              disabled={isPending || !isCodeEntered}
+              type="submit"
+              className="w-full"
+            >
               ورود
             </Button>
           )}

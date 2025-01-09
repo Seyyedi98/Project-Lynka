@@ -1,5 +1,6 @@
 import CreatePageBtn from "@/app/_components/common/button/PrimaryButton/create-page-btn";
 import NewPageCard from "@/app/_components/common/card/new-page-card";
+import PageViewCard from "@/app/_components/common/card/page-view-card";
 import GridLayout from "@/app/_components/layout/grid-layout";
 import DashboardHeading from "@/app/_components/navbar/dashboard-heading";
 import {
@@ -9,8 +10,20 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
+import { getUserPages } from "@/lib/page/pages";
 
 const Dashboard = async () => {
+  const allPages = await getUserPages();
+
+  const cardData = {
+    title: "Card Title",
+    description: "This is a description of the card.",
+    content:
+      "This is the detailed content of the card that will be displayed in the modal.",
+    ctaText: "Learn More",
+    ctaLink: "https://example.com",
+  };
+
   return (
     <main className="">
       <DashboardHeading>
@@ -28,6 +41,10 @@ const Dashboard = async () => {
                   <NewPageCard />
 
                   {/* TODO: Show list of user created pages */}
+                  {allPages.map((page) => {
+                    return <PageViewCard page={page} key={page.uri} />;
+                  })}
+                  {/* <PageViewCard page={cardData} /> */}
                 </GridLayout>
               </AccordionContent>
             </AccordionItem>

@@ -4,17 +4,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import CloseIcon from "@/app/_components/common/button/close-button";
 import { cn } from "@/lib/utils";
-import { EllipsisVertical } from "lucide-react";
 
-export default function PagePreviewCard({ page }) {
+export default function ExpandableCard({ card }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const id = useId();
   const ref = useOutsideClick(() => setIsModalOpen(false), true);
-
-  page.content = "sdddddddd";
-  page.description = "sdddddddd";
-  page.ctaLink = "sdddddddd";
-  page.ctaText = "sdddddddd";
 
   useEffect(() => {
     function onKeyDown(event) {
@@ -33,7 +27,7 @@ export default function PagePreviewCard({ page }) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [isModalOpen]);
 
-  if (!page) {
+  if (!card) {
     return null; // If no card is passed, render nothing
   }
 
@@ -63,11 +57,11 @@ export default function PagePreviewCard({ page }) {
               <CloseIcon />
             </motion.button>
             <motion.div
-              layoutId={`page-${page.uri}-${id}`}
+              layoutId={`card-${card.title}-${id}`}
               ref={ref}
               className="flex h-full w-full max-w-[500px] flex-col overflow-hidden bg-white dark:bg-neutral-900 sm:rounded-3xl md:h-fit md:max-h-[90%]"
             >
-              <motion.div layoutId={`image-${page.uri}-${id}`}>
+              <motion.div layoutId={`image-${card.title}-${id}`}>
                 {/* Add Image component here if needed */}
               </motion.div>
 
@@ -75,16 +69,16 @@ export default function PagePreviewCard({ page }) {
                 <div className="flex items-start justify-between p-4">
                   <div>
                     <motion.h3
-                      layoutId={`title-${page.uri}-${id}`}
+                      layoutId={`title-${card.title}-${id}`}
                       className="text-base font-medium text-neutral-700 dark:text-neutral-200"
                     >
-                      {page.uri}
+                      {card.title}
                     </motion.h3>
                     <motion.p
-                      layoutId={`description-${page.description}-${id}`}
+                      layoutId={`description-${card.description}-${id}`}
                       className="text-base text-neutral-600 dark:text-neutral-400"
                     >
-                      {page.description}
+                      {card.description}
                     </motion.p>
                   </div>
 
@@ -93,11 +87,11 @@ export default function PagePreviewCard({ page }) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    href={page.ctaLink}
+                    href={card.ctaLink}
                     target="_blank"
                     className="rounded-full bg-green-500 px-4 py-3 text-sm font-bold text-white"
                   >
-                    {page.ctaText}
+                    {card.ctaText}
                   </motion.a>
                 </div>
                 <div className="relative px-4 pt-4">
@@ -108,9 +102,9 @@ export default function PagePreviewCard({ page }) {
                     exit={{ opacity: 0 }}
                     className="flex h-40 flex-col items-start gap-4 overflow-auto pb-10 text-xs text-neutral-600 [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] dark:text-neutral-400 md:h-fit md:text-sm lg:text-base"
                   >
-                    {typeof page.content === "function"
-                      ? page.content()
-                      : page.content}
+                    {typeof card.content === "function"
+                      ? card.content()
+                      : card.content}
                   </motion.div>
                 </div>
               </div>
@@ -120,20 +114,25 @@ export default function PagePreviewCard({ page }) {
       </AnimatePresence>
 
       <motion.div
-        layoutId={`page-${page.uri}-${id}`}
+        layoutId={`card-${card.title}-${id}`}
         onClick={() => setIsModalOpen(true)}
         className={cn(
-          `h-[450px] w-[300px] cursor-pointer rounded-xl border bg-card shadow-md hover:scale-105 hover:shadow-lg md:h-[500px] md:w-[320px]`,
+          `h-[450px] w-[300px] cursor-pointer rounded-xl border bg-card shadow-md duration-200 hover:scale-105 hover:shadow-lg md:h-[500px] md:w-[320px]`,
         )}
       >
-        <div className="flex h-full flex-col items-center justify-center">
+        <div className={cn(`flex h-full flex-col items-center justify-center`)}>
           <div className="h-4/5 w-full rounded-t-xl border-b-2"></div>
-          <div className="grid h-1/5 w-full grid-rows-2 rounded-b-xl text-neutral-400/80">
+          <div className="grid h-1/5 w-full grid-cols-2 grid-rows-2 rounded-b-xl text-neutral-400/80">
+            <div className="mr-2 flex items-center justify-start">
+              <span className="duration-200 hover:text-black">
+                {/* Add icon component here */}
+              </span>
+            </div>
             <div className="flex items-center justify-end">
               <span className="ml-4 rounded-sm border-2 px-4 py-1">plan</span>
             </div>
-            <div className="m-2 ml-4 text-left capitalize text-stone-900">
-              {page.uri}
+            <div className="col-span-2 m-2 ml-4 text-left capitalize text-stone-900">
+              {card.title}
             </div>
           </div>
         </div>

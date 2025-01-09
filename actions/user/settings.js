@@ -1,9 +1,9 @@
 "use server";
 import { getUserByEmail, getUserById } from "@/data/user";
 import prisma from "@/lib/client";
-import { currentUser } from "@/lib/get-user";
+import { currentUser } from "@/lib/auth/get-user";
 import { sendVerificationEmail } from "@/lib/mail";
-import { generateVerificationToken } from "@/lib/tokens";
+import { generateVerificationToken } from "@/lib/auth/tokens";
 import bcrypt from "bcryptjs";
 export const settings = async (values) => {
   const user = await currentUser();
@@ -40,7 +40,7 @@ export const settings = async (values) => {
   if (values.password && values.newPassword && dbUser.password) {
     const passwrdsMatch = await bcrypt.compare(
       values.password,
-      dbUser.password
+      dbUser.password,
     );
 
     if (!passwrdsMatch) {

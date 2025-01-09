@@ -1,6 +1,6 @@
 import { UserInfo } from "@/app/_components/profile/user-info";
 import { auth } from "@/auth";
-import { currentUser } from "@/lib/get-user";
+import { currentUser } from "@/lib/auth/get-user";
 import React from "react";
 
 const ServerPage = async () => {

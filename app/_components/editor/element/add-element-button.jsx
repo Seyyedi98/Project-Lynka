@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useModal from "@/hooks/useModal";
 import { PageElements } from "./page-elements";
-import { idGenerator } from "@/lib/is-generator";
+import { idGenerator } from "@/lib/id-generator";
 import useEditor from "@/hooks/useEditor";
 
 const AddElementButton = ({ pageElement }) => {

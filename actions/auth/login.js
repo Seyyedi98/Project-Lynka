@@ -8,7 +8,7 @@ import { sendTwoFactorTokenEmail, sendVerificationEmail } from "@/lib/mail";
 import {
   generateTwoFactorToken,
   generateVerificationToken,
-} from "@/lib/tokens";
+} from "@/lib/auth/tokens";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { LoginSchema } from "@/schemas";
 import { AuthError } from "next-auth";
@@ -34,12 +34,12 @@ export const login = async (values) => {
 
   if (!existingUser.emailVerified) {
     const verificationToken = await generateVerificationToken(
-      existingUser.email
+      existingUser.email,
     );
 
     await sendVerificationEmail(
       verificationToken.email,
-      verificationToken.token
+      verificationToken.token,
     );
 
     return { success: "لینک فعالسازی به ایمیل شما ارسال شد" };
@@ -65,7 +65,7 @@ export const login = async (values) => {
       });
 
       const existingConfirmation = await getTwoFactorConfirmationByUserId(
-        existingUser.id
+        existingUser.id,
       );
 
       if (existingConfirmation) {
@@ -82,14 +82,14 @@ export const login = async (values) => {
     } else {
       // Enter 2FA code menu
       const previousTwoFactorToken = await getTwoFactorTokenByEmail(
-        existingUser.email
+        existingUser.email,
       );
       // Send 2FA code for first time
       if (!previousTwoFactorToken) {
         const twoFactorToken = await generateTwoFactorToken(existingUser.email);
         await sendTwoFactorTokenEmail(
           twoFactorToken.email,
-          twoFactorToken.token
+          twoFactorToken.token,
         );
         return { twoFactor: true }; // Change login page
       } else {
@@ -103,11 +103,11 @@ export const login = async (values) => {
         } else {
           // send new code
           const twoFactorToken = await generateTwoFactorToken(
-            existingUser.email
+            existingUser.email,
           );
           await sendTwoFactorTokenEmail(
             twoFactorToken.email,
-            twoFactorToken.token
+            twoFactorToken.token,
           );
           return {
             twoFactor: true, // Change login page

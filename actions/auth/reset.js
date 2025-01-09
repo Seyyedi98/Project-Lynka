@@ -2,7 +2,7 @@
 
 import { getUserByEmail } from "@/data/user";
 import { sendPasswordResetEmail } from "@/lib/mail";
-import { generatePasswordResetToken } from "@/lib/tokens";
+import { generatePasswordResetToken } from "@/lib/auth/tokens";
 import { ResetSchema } from "@/schemas";
 
 export const reset = async (values) => {
@@ -22,7 +22,7 @@ export const reset = async (values) => {
   const passwordResetToken = await generatePasswordResetToken(email);
   await sendPasswordResetEmail(
     passwordResetToken.email,
-    passwordResetToken.token
+    passwordResetToken.token,
   );
 
   return { success: "Reset email sent!" };
