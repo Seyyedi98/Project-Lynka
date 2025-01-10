@@ -118,6 +118,26 @@ const BuilderWorkspace = () => {
 
         addElement(indexForNewElement, activeElement);
       }
+
+      ////////////////////////////////////////////////////////////////////////////////////
+      //         4. When drag workspace elements and drop on the workspace area         //
+      ////////////////////////////////////////////////////////////////////////////////////
+      if (isDraggingWorkspaceElement && isDroppingOverWorkspaceArea) {
+        const activeId = active.data?.current.elementId;
+
+        const activeElementIndex = elements.findIndex(
+          (el) => el.id === activeId,
+        );
+
+        if (activeElementIndex === -1) {
+          throw new Error("Element not found");
+        }
+
+        const activeElement = { ...elements[activeElementIndex] }; // Copy active element
+        removeElement(activeId);
+
+        addElement(elements.length, activeElement);
+      }
     },
   });
 
