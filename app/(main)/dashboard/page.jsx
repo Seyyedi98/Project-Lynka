@@ -10,7 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
-import { getUserPages } from "@/lib/page/pages";
+import { getUserPages } from "@/lib/page/page";
 
 const Dashboard = async () => {
   const allPages = await getUserPages();

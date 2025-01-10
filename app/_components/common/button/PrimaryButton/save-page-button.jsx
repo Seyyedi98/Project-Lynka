@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import useEditor from "@/hooks/useEditor";
-import { UpdatePageContent } from "@/lib/page/page-data";
+import { UpdatePageContent } from "@/lib/page/page";
 import { Loader2Icon } from "lucide-react";
 import { useTransition } from "react";
 
