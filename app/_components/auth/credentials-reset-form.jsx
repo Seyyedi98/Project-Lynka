@@ -22,7 +22,7 @@ import { CardWrapper } from "../layout/card-wrapper";
 export const CredentialsResetForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [isPanding, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm({
     resolver: zodResolver(ResetSchema),
@@ -61,7 +61,7 @@ export const CredentialsResetForm = () => {
                   <FormControl>
                     <Input
                       {...field}
-                      disabled={isPanding}
+                      disabled={isPending}
                       placeholder="email@mail.com"
                       type="email"
                     />
@@ -73,7 +73,7 @@ export const CredentialsResetForm = () => {
           </div>
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button disabled={isPanding} type="submit" className="w-full">
+          <Button disabled={isPending} type="submit" className="w-full">
             بازنشانی رمز عبور
           </Button>
         </form>

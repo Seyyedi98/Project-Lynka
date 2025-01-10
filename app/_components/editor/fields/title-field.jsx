@@ -33,7 +33,7 @@ function WorkspaceComponent({ elementInstance }) {
   const { title } = element.ExtraAttributes;
 
   return (
-    <div className="flex w-full flex-col gap-2 bg-pink-500">
+    <div className="flex h-24 w-full flex-col gap-2 bg-pink-500">
       <p>
         {title} {elementInstance.id}
       </p>

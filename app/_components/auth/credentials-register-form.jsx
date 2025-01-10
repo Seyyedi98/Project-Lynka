@@ -22,7 +22,7 @@ import { FormSuccess } from "../form/form-success";
 export const CredentialsRegisterForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [isPanding, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm({
     resolver: zodResolver(RegisterSchema),
@@ -61,7 +61,7 @@ export const CredentialsRegisterForm = () => {
                   <FormControl>
                     <Input
                       {...field}
-                      disabled={isPanding}
+                      disabled={isPending}
                       placeholder="نام خود را اینجا بنویسید"
                     />
                   </FormControl>
@@ -80,7 +80,7 @@ export const CredentialsRegisterForm = () => {
                   <FormControl>
                     <Input
                       {...field}
-                      disabled={isPanding}
+                      disabled={isPending}
                       placeholder="email@mail.com"
                       type="email"
                     />
@@ -100,7 +100,7 @@ export const CredentialsRegisterForm = () => {
                   <FormControl>
                     <Input
                       {...field}
-                      disabled={isPanding}
+                      disabled={isPending}
                       placeholder="********"
                       type="password"
                     />
@@ -112,7 +112,7 @@ export const CredentialsRegisterForm = () => {
           </div>
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button disabled={isPanding} type="submit" className="w-full">
+          <Button disabled={isPending} type="submit" className="w-full">
             عضویت
           </Button>
         </form>

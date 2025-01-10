@@ -3,6 +3,7 @@ import "./globals.css";
 import { auth } from "@/auth";
 import { SessionProvider } from "next-auth/react";
 import EditorContextProvider from "@/context/editor-context";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,6 +37,7 @@ export default async function RootLayout({ children }) {
           className={`${yekan.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <EditorContextProvider>{children}</EditorContextProvider>
+          <Toaster />
         </body>
       </html>
     </SessionProvider>

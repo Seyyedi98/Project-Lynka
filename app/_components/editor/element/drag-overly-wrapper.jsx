@@ -3,6 +3,7 @@ import { DragOverlay, useDndMonitor } from "@dnd-kit/core";
 import { useState } from "react";
 import { AdderBtnDragOverly } from "./add-element-button";
 import { PageElements } from "./page-elements";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
 const DragOverlyWrapper = () => {
   const { elements } = useEditor();
@@ -51,7 +52,10 @@ const DragOverlyWrapper = () => {
     }
   }
 
-  return <DragOverlay>{node}</DragOverlay>;
+  // Dynamically determine modifiers based on the group
+  const modifiers = isSidebarBtnElement ? [] : [restrictToVerticalAxis];
+
+  return <DragOverlay modifiers={modifiers}>{node}</DragOverlay>;
 };
 
 export default DragOverlyWrapper;

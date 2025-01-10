@@ -3,13 +3,15 @@ import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { useState } from "react";
 import { PageElements } from "./page-elements";
 import { Button } from "@/components/ui/button";
-import { TrashIcon } from "lucide-react";
+import { GripVertical, TrashIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Pencil1Icon } from "@radix-ui/react-icons";
 
 const WorkspaceElementWrapper = ({ element }) => {
   const [mouseIsOver, setMouseIsOver] = useState(false);
-  const { removeElement, selectedElement, setSelectedElement } = useEditor();
+  const { removeElement, setSelectedElement } = useEditor();
 
+  // Draggable setup
   const draggable = useDraggable({
     id: element.id + "-drag-handler",
     data: {
@@ -19,9 +21,7 @@ const WorkspaceElementWrapper = ({ element }) => {
     },
   });
 
-  // return adder element component associated with page element
-  const PageElement = PageElements[element.type].WorkspaceComponent;
-
+  // Droppable setup
   const topHalf = useDroppable({
     id: element.id + "-top",
     data: {
@@ -32,7 +32,7 @@ const WorkspaceElementWrapper = ({ element }) => {
   });
 
   const bottomHalf = useDroppable({
-    id: element.id + "--bottom",
+    id: element.id + "-bottom",
     data: {
       type: element.type,
       elementId: element.id,
@@ -40,7 +40,10 @@ const WorkspaceElementWrapper = ({ element }) => {
     },
   });
 
-  // Hide currently draggind item in workspace
+  // Return the associated page element
+  const PageElement = PageElements[element.type].WorkspaceComponent;
+
+  // Hide the element when dragging
   if (draggable.isDragging) {
     return null;
   }
@@ -51,12 +54,8 @@ const WorkspaceElementWrapper = ({ element }) => {
       {...draggable.listeners}
       {...draggable.attributes}
       className="bg-secondaryBg relative flex flex-col rounded-2xl text-foreground ring-1 ring-inset ring-accent hover:cursor-pointer"
-      onMouseEnter={() => {
-        setMouseIsOver(true);
-      }}
-      onMouseLeave={() => {
-        setMouseIsOver(false);
-      }}
+      onMouseEnter={() => setMouseIsOver(true)}
+      onMouseLeave={() => setMouseIsOver(false)}
       onClick={(e) => {
         e.stopPropagation();
         setSelectedElement(element);
@@ -74,37 +73,35 @@ const WorkspaceElementWrapper = ({ element }) => {
         className="absolute bottom-0 h-1/2 w-full rounded-b-md"
       />
 
-      {mouseIsOver && (
-        <>
-          {/* Remove element btn */}
-          <div className="absolute left-0 h-full">
-            <Button
-              className="h-full justify-center rounded-md rounded-r-none border bg-red-500"
-              variant="outline"
-              onClick={(e) => {
-                e.stopPropagation();
-                removeElement(element.id);
-              }}
-            >
-              <TrashIcon className="h-6 w-6" />
-            </Button>
-          </div>
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse">
-            <p className="text-sm text-muted-foreground">کلیک کنید یا بکشید</p>
-          </div>
-        </>
-      )}
       {topHalf.isOver && (
         <div className="absolute top-0 h-[7px] w-full rounded-md rounded-b-none bg-primary" />
       )}
 
+      {/* Content Section */}
       <div
         className={cn(
-          "pointer-events-none flex w-full items-center rounded-md bg-accent/40 px-4 py-2 opacity-100 transition-all duration-200",
-          mouseIsOver && "opacity-30",
+          "pointer-events-none relative flex w-full items-center rounded-md bg-accent/40 px-4 py-2 opacity-100 transition-all duration-200",
+          mouseIsOver && "opacity-90",
         )}
       >
         <PageElement elementInstance={element} />
+
+        {/* Drag Handles */}
+        <div
+          ref={draggable.setNodeRef}
+          className="pointer-events-auto absolute -left-12 flex"
+        >
+          <button
+            {...draggable.listeners}
+            {...draggable.attributes}
+            className="mr-2 cursor-grab rounded-md bg-gray-200 px-2 py-1 text-gray-800"
+          >
+            <GripVertical />
+          </button>
+        </div>
+        <div className="absolute -right-12 rounded-md bg-gray-200 px-2 py-2">
+          <Pencil1Icon className="h-4 w-4" />
+        </div>
       </div>
 
       {bottomHalf.isOver && (
@@ -115,3 +112,26 @@ const WorkspaceElementWrapper = ({ element }) => {
 };
 
 export default WorkspaceElementWrapper;
+
+{
+  /* Remove element btn */
+}
+{
+  /* <div className="absolute left-0 h-full">
+      <Button
+        className="h-full justify-center rounded-md rounded-r-none border bg-red-500"
+        variant="outline"
+        onClick={(e) => {
+          e.stopPropagation();
+          removeElement(element.id);
+        }}
+      >
+        <TrashIcon className="h-6 w-6" />
+      </Button>
+    </div> */
+}
+{
+  /* <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse">
+      <p className="text-sm text-muted-foreground">کلیک کنید یا بکشید</p>
+    </div> */
+}

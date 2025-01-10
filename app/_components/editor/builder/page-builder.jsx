@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-import BuilderWorkspace from "./builder-workspace";
+import useEditor from "@/hooks/useEditor";
 import {
   DndContext,
   MouseSensor,
@@ -9,8 +8,9 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import useEditor from "@/hooks/useEditor";
+import { useState } from "react";
 import DragOverlyWrapper from "../element/drag-overly-wrapper";
+import BuilderWorkspace from "./builder-workspace";
 
 // Former editor-canvas
 const PageBuilder = () => {

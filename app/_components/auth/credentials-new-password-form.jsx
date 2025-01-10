@@ -23,7 +23,7 @@ import { FormSuccess } from "../form/form-success";
 export const CredentialsNewPasswordForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [isPanding, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
 
   const token = searchParams.get("token");
@@ -65,7 +65,7 @@ export const CredentialsNewPasswordForm = () => {
                   <FormControl>
                     <Input
                       {...field}
-                      disabled={isPanding}
+                      disabled={isPending}
                       placeholder="رمز عبور"
                       type="password"
                     />
@@ -77,7 +77,7 @@ export const CredentialsNewPasswordForm = () => {
           </div>
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button disabled={isPanding} type="submit" className="w-full">
+          <Button disabled={isPending} type="submit" className="w-full">
             تغییر رمز عبور
           </Button>
         </form>
