@@ -40,11 +40,9 @@ const Dashboard = async () => {
                 <GridLayout>
                   <NewPageCard />
 
-                  {/* TODO: Show list of user created pages */}
                   {allPages.map((page) => {
                     return <PageViewCard page={page} key={page.uri} />;
                   })}
-                  {/* <PageViewCard page={cardData} /> */}
                 </GridLayout>
               </AccordionContent>
             </AccordionItem>

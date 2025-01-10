@@ -103,12 +103,14 @@ model OtpToken {
 }
 
 model Page {
-  uri       String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  owner     String?
-  content   String   @db.LongText
-  visits    Int      @default(0)
+  uri         String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  owner       String?
+  description String?  @db.LongText
+  content     String   @db.LongText
+  visits      Int      @default(0)
+  isPremium   Boolean  @default(false)
 
   User User? @relation(fields: [owner], references: [id])
 }

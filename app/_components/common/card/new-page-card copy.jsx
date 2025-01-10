@@ -115,7 +115,7 @@ const NewPageCard = () => {
                           className="-ml-2 mt-[6px] rounded-l-none rounded-r-sm border-none ring-0"
                         />
                       </FormControl>
-                      {/* <FormMess dir="rtl" className="" /> */}
+                      {/* <FormMessage dir="rtl" className="" /> */}
                     </FormItem>
                   )}
                 />
