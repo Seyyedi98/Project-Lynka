@@ -49,7 +49,7 @@ export default function PagePreviewCard({ page }) {
       </AnimatePresence>
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-[100] grid place-items-center overflow-y-scroll">
+          <div className="fixed inset-0 z-[100] grid place-items-center overflow-y-scroll [scrollbar-width:none]">
             <motion.button
               layout
               initial={{ opacity: 0 }}
@@ -134,7 +134,7 @@ export default function PagePreviewCard({ page }) {
         className="h-[450px] w-[300px] cursor-pointer rounded-xl border bg-card shadow-md transition-shadow duration-200 hover:shadow-xl md:h-[500px] md:w-[320px]"
       >
         <div className="flex h-full flex-col items-center justify-center">
-          <div className="relative h-4/5 w-full rounded-t-xl border-b-2">
+          <div className="relative h-5/6 w-full overflow-hidden rounded-t-xl border-b-2">
             <Image
               fill
               // src={active.src}
@@ -143,7 +143,10 @@ export default function PagePreviewCard({ page }) {
               className="object-cover object-center sm:rounded-tl-lg sm:rounded-tr-lg lg:h-80"
             />
           </div>
-          <div className="mt-2 grid h-1/5 w-full grid-rows-2 rounded-b-xl text-neutral-400/80">
+          <div className="flex h-1/6 w-full items-center justify-between rounded-b-xl text-neutral-400/80">
+            <div className="ml-4 mr-4 text-left capitalize text-stone-900">
+              {page.uri}
+            </div>
             <div className="flex items-center justify-end">
               <span
                 className={cn(
@@ -153,9 +156,6 @@ export default function PagePreviewCard({ page }) {
               >
                 {isPremium}
               </span>
-            </div>
-            <div className="m-2 ml-4 text-left capitalize text-stone-900">
-              {page.uri}
             </div>
           </div>
         </div>

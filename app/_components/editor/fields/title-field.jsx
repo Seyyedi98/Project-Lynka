@@ -34,7 +34,9 @@ function WorkspaceComponent({ elementInstance }) {
 
   return (
     <div className="flex w-full flex-col gap-2 bg-pink-500">
-      <p>{title}</p>
+      <p>
+        {title} {elementInstance.id}
+      </p>
       {/* <Input readOnly disabled /> */}
     </div>
   );
