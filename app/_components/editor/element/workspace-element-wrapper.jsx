@@ -1,15 +1,19 @@
 import useEditor from "@/hooks/useEditor";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import useModal from "@/hooks/useModal";
+import { cn } from "@/lib/utils";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
+import { Pencil1Icon } from "@radix-ui/react-icons";
+import { GripVertical, XIcon } from "lucide-react";
 import { useState } from "react";
 import { PageElements } from "./page-elements";
-import { Button } from "@/components/ui/button";
-import { GripVertical, TrashIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Pencil1Icon } from "@radix-ui/react-icons";
 
 const WorkspaceElementWrapper = ({ element }) => {
   const [mouseIsOver, setMouseIsOver] = useState(false);
-  const { removeElement, setSelectedElement } = useEditor();
+  const { selectedElement, setSelectedElement } = useEditor();
+  const { isWorkspaceMenuOpen, setIsWorkspaceMenuOpen } = useModal();
+
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   // Draggable setup
   const draggable = useDraggable({
@@ -59,8 +63,35 @@ const WorkspaceElementWrapper = ({ element }) => {
       onClick={(e) => {
         e.stopPropagation();
         setSelectedElement(element);
+        if (!isDesktop) {
+          setIsWorkspaceMenuOpen(true);
+          setSelectedElement(element);
+        }
       }}
     >
+      {/* Edit button */}
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+
+          if (element === selectedElement) {
+            setSelectedElement(null);
+          } else if (!isDesktop) {
+            setIsWorkspaceMenuOpen(true);
+            setSelectedElement(element);
+          } else {
+            setSelectedElement(element);
+          }
+        }}
+        className="absolute -right-10 top-1/2 -translate-y-1/2 cursor-pointer rounded-md bg-gray-200 px-2 py-2"
+      >
+        {element === selectedElement ? (
+          <XIcon className="h-4 w-4" />
+        ) : (
+          <Pencil1Icon className="h-4 w-4" />
+        )}
+      </div>
+
       {/* Top droppable half */}
       <div
         ref={topHalf.setNodeRef}
@@ -98,9 +129,6 @@ const WorkspaceElementWrapper = ({ element }) => {
           >
             <GripVertical />
           </button>
-        </div>
-        <div className="absolute -right-12 rounded-md bg-gray-200 px-2 py-2">
-          <Pencil1Icon className="h-4 w-4" />
         </div>
       </div>
 

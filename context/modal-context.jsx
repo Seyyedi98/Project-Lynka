@@ -13,7 +13,10 @@ export default function ModalContextProvider({ children }) {
 
   return (
     <DiologContext.Provider
-      value={{ isWorkspaceMenuOpen, setIsWorkspaceMenuOpen }}
+      value={{
+        isWorkspaceMenuOpen,
+        setIsWorkspaceMenuOpen,
+      }}
     >
       {children}
     </DiologContext.Provider>
