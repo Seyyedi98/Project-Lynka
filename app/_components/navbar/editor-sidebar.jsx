@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import useEditor from "@/hooks/useEditor";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { EditorDialog } from "../common/shared/editor-dialog";
+import { WorkspaceDrawer } from "../common/shared/workspace-drawer";
 import EditorSidebarElements from "../editor/element/editor-sidebar-elements";
 import { cn } from "@/lib/utils";
 
@@ -20,13 +20,13 @@ const EditorSidebar = () => {
       <div className="fixed bottom-0 h-16 w-full bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to text-white">
         <ul className="flex h-full items-center justify-between px-5">
           <li>Settings</li>
-          <EditorDialog
+          <WorkspaceDrawer
             className=""
             trigger={<Button variant="outline">Add</Button>}
             title="لیست بلوک ها"
           >
             <EditorSidebarElements />
-          </EditorDialog>
+          </WorkspaceDrawer>
           <li>Preview</li>
         </ul>
       </div>
@@ -38,9 +38,9 @@ const EditorSidebar = () => {
       <div className="fixed bottom-0 h-16 w-full bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to text-white">
         <ul className="flex h-full items-center justify-between px-5">
           <li>Settings</li>
-          <EditorDialog className="" title="لیست بلوک ها">
+          <WorkspaceDrawer className="" title="لیست بلوک ها">
             {selectedElement.id}
-          </EditorDialog>
+          </WorkspaceDrawer>
           <li>Preview</li>
         </ul>
       </div>
@@ -52,14 +52,17 @@ const EditorSidebar = () => {
     return (
       <>
         <div className="flex w-64 flex-col items-center justify-between bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to py-8 text-white">
-          <div
+          {/* <div
             className={cn(
               `absolute right-0 top-0 z-10 flex h-full w-[206px] translate-x-full flex-col items-center justify-between bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to py-8 pt-24 text-white duration-300`,
               selectedElement && "translate-x-0",
             )}
           >
             {selectedElement?.id || "XXX"}
-          </div>
+          </div> */}
+          <WorkspaceDrawer className="" title="لیست بلوک ها">
+            {selectedElement?.id}
+          </WorkspaceDrawer>
           <EditorSidebarElements />
           <ul className="flex items-center justify-between px-5">
             <li>Settings</li>

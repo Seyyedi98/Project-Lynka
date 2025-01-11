@@ -63,10 +63,7 @@ const WorkspaceElementWrapper = ({ element }) => {
       onClick={(e) => {
         e.stopPropagation();
         setSelectedElement(element);
-        if (!isDesktop) {
-          setIsWorkspaceMenuOpen(true);
-          setSelectedElement(element);
-        }
+        setIsWorkspaceMenuOpen(true);
       }}
     >
       {/* Edit button */}
@@ -76,10 +73,8 @@ const WorkspaceElementWrapper = ({ element }) => {
 
           if (element === selectedElement) {
             setSelectedElement(null);
-          } else if (!isDesktop) {
-            setIsWorkspaceMenuOpen(true);
-            setSelectedElement(element);
           } else {
+            setIsWorkspaceMenuOpen(true);
             setSelectedElement(element);
           }
         }}

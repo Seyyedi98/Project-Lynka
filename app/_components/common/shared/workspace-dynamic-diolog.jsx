@@ -1,6 +1,5 @@
 "use client";
 
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -24,7 +23,7 @@ import useEditor from "@/hooks/useEditor";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import useModal from "@/hooks/useModal";
 
-export function EditorDialog({ children, title, trigger }) {
+export function WorkspaceDynamicDiolog({ children, title, trigger }) {
   const { isWorkspaceMenuOpen, setIsWorkspaceMenuOpen } = useModal();
   const { selectedElement, setSelectedElement } = useEditor();
 
@@ -61,7 +60,7 @@ export function EditorDialog({ children, title, trigger }) {
         <DrawerTrigger asChild>{trigger}</DrawerTrigger>
       )}
 
-      <DrawerContent className="m-2 mb-0 bg-white">
+      <DrawerContent className="m-2 mb-0 bg-white md:mx-auto md:max-w-3xl">
         <DrawerHeader className="text-right">
           <DrawerTitle>{title}</DrawerTitle>
           <DrawerDescription></DrawerDescription>
