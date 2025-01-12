@@ -144,11 +144,11 @@ const BuilderWorkspace = () => {
   return (
     <div className="flex h-full w-full gap-12 pt-3 md:pt-[70px]">
       <EditorSidebar />
-      <div className="mx-2 flex w-full flex-col items-center justify-center overflow-y-scroll [scrollbar-width:none] sm:mx-0">
+      <div className="mx-2 mb-20 mt-12 flex w-full flex-col items-center justify-center overflow-y-scroll [scrollbar-width:none] sm:mx-0">
         <div
           ref={droppable.setNodeRef}
-          style={{ maxHeight: "calc(100dvh - 250px)" }}
-          className="h-full w-3/4 max-w-[700px] rounded-lg bg-neutral-100 md:w-3/6 lg:w-5/6"
+          // style={{ maxHeight: "calc(100dvh - 250px)" }}
+          className="h-full w-3/4 max-w-[400px] overflow-x-visible rounded-lg md:w-3/6 lg:w-5/6"
         >
           {/* Empty workspace */}
           {!droppable.isOver && elements.length === 0 && (

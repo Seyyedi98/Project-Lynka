@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import useEditor from "@/hooks/useEditor";
 import { UpdatePageContent } from "@/lib/page/page";
-import { Loader2Icon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Loader, Loader2Icon } from "lucide-react";
 import { useTransition } from "react";
 
-const SavePageBtn = ({ uri }) => {
+const SavePageBtn = ({ uri, children }) => {
   const { elements } = useEditor();
   const [isPending, startTransition] = useTransition();
 
@@ -31,15 +32,15 @@ const SavePageBtn = ({ uri }) => {
   };
 
   return (
-    <Button
-      variant="outline"
-      className="gap-2"
-      disabled={isPending}
-      onClick={handleSave}
+    <div
+      onClick={() => {
+        handleSave();
+      }}
+      className={cn(``, isPending && "pointer-events-none cursor-not-allowed")}
     >
-      ذخیره
-      {isPending && <Loader2Icon className="animate-spin" />}
-    </Button>
+      {isPending && <Loader className="animate-spin" />}
+      {!isPending && children}
+    </div>
   );
 };
 
