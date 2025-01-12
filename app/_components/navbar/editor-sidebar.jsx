@@ -3,6 +3,7 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { WorkspaceDynamicModal } from "../common/shared/workspace-dynamic-modal";
 import EditorSidebarElements from "../editor/element/editor-sidebar-elements";
 import WorkspaceBottomBar from "./workspace-bottom-bar";
+import ElementProperties from "../editor/element/element-properties";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -25,7 +26,7 @@ const EditorSidebar = () => {
         {/* Sidebar */}
         <div className="fixed right-[7%] top-1/2 z-30 my-auto flex h-fit w-24 -translate-y-1/2 flex-col items-center justify-between rounded-2xl bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to px-3 pb-6 text-white duration-300 hover:w-56 lg:right-[2%] xl:right-[3%] xl:w-56 2xl:right-[8%]">
           <WorkspaceDynamicModal mode="allDrawer" title="تنظیمات" delay="400">
-            {selectedElement?.id}
+            <ElementProperties element={selectedElement} />
           </WorkspaceDynamicModal>
           <EditorSidebarElements />
         </div>
@@ -41,12 +42,8 @@ const EditorSidebar = () => {
     return (
       <div className="fixed bottom-0 right-0 h-[72px] w-full">
         <div className="mx-4 flex h-full items-center justify-center gap-3 rounded-t-3xl bg-white px-8 shadow-lg">
-          <WorkspaceDynamicModal
-            mode="allDrawer"
-            title="لیست بلوک ها"
-            delay="400"
-          >
-            {selectedElement.id}
+          <WorkspaceDynamicModal mode="allDrawer" title="تنظیمات" delay="400">
+            <ElementProperties element={selectedElement} />
           </WorkspaceDynamicModal>
         </div>
       </div>

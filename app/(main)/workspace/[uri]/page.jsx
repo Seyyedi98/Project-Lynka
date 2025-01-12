@@ -8,7 +8,7 @@ const EditorPage = async ({ params }) => {
 
   return (
     <>
-      <EditorNavbar uri={uri} />
+      {/* <EditorNavbar uri={uri} /> */}
       <PageBuilder page={page} />;
     </>
   );

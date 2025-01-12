@@ -55,8 +55,8 @@ const WorkspaceElementWrapper = ({ element }) => {
   return (
     <div
       ref={draggable.setNodeRef}
-      {...draggable.listeners}
-      {...draggable.attributes}
+      // {...draggable.listeners}
+      // {...draggable.attributes}
       className="bg-secondaryBg relative flex flex-col rounded-2xl text-foreground ring-1 ring-inset ring-accent hover:cursor-pointer"
       onMouseEnter={() => setMouseIsOver(true)}
       onMouseLeave={() => setMouseIsOver(false)}

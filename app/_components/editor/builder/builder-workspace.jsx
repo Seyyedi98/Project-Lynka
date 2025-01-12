@@ -1,25 +1,14 @@
 import useEditor from "@/hooks/useEditor";
-import { useDndMonitor, useDroppable } from "@dnd-kit/core";
-import React, { useState } from "react";
-import EditorSidebar from "../../navbar/editor-sidebar";
+import useModal from "@/hooks/useModal";
 import { idGenerator } from "@/lib/id-generator";
+import { useDndMonitor, useDroppable } from "@dnd-kit/core";
+import EditorSidebar from "../../navbar/editor-sidebar";
 import { PageElements } from "../element/page-elements";
 import WorkspaceElementWrapper from "../element/workspace-element-wrapper";
-import useModal from "@/hooks/useModal";
-import { cn } from "@/lib/utils";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 // Former canvas
 const BuilderWorkspace = () => {
-  const {
-    elements,
-    addElement,
-    removeElement,
-    selectedElement,
-    setSelectedElement,
-  } = useEditor();
-
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const { elements, addElement, removeElement } = useEditor();
 
   const { setIsWorkspaceMenuOpen } = useModal();
 
@@ -144,7 +133,7 @@ const BuilderWorkspace = () => {
   return (
     <div className="flex h-full w-full gap-12 pt-3 md:pt-[70px]">
       <EditorSidebar />
-      <div className="mx-2 mb-20 mt-12 flex w-full flex-col items-center justify-center overflow-y-scroll [scrollbar-width:none] sm:mx-0">
+      <div className="mx-4 mb-20 mt-12 flex w-full flex-col items-center justify-center overflow-y-scroll [scrollbar-width:none] sm:mx-0">
         <div
           ref={droppable.setNodeRef}
           // style={{ maxHeight: "calc(100dvh - 250px)" }}

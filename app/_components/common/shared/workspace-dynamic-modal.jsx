@@ -127,44 +127,6 @@ export function WorkspaceDynamicModal({
       </DiologComponent>
     );
   }
-
-  // if (isDesktop) {
-  //   return (
-  //     <Dialog open={isWorkspaceMenuOpen} onOpenChange={handleOpenChange}>
-  //       <DialogTrigger asChild>{trigger}</DialogTrigger>
-  //       <DialogContent className="text-right sm:max-w-[625px]">
-  //         <DialogHeader>
-  //           <DialogTitle>{title}</DialogTitle>
-  //           <DialogDescription></DialogDescription>
-  //           {children}
-  //         </DialogHeader>
-  //       </DialogContent>
-  //     </Dialog>
-  //   );
-  // }
-
-  // return (
-  //   <Drawer open={isWorkspaceMenuOpen} onOpenChange={handleOpenChange}>
-  //     {typeof trigger === "function" ? (
-  //       trigger()
-  //     ) : (
-  //       <DrawerTrigger asChild>{trigger}</DrawerTrigger>
-  //     )}
-
-  //     <DrawerContent className="m-2 mb-0 bg-white text-right md:mx-auto md:max-w-3xl">
-  //       <DrawerHeader className="text-right">
-  //         <DrawerTitle>{title}</DrawerTitle>
-  //         <DrawerDescription></DrawerDescription>
-  //         {children}
-  //       </DrawerHeader>
-  //       <DrawerFooter className="pt-2">
-  //         <DrawerClose asChild>
-  //           <Button variant="outline">بستن</Button>
-  //         </DrawerClose>
-  //       </DrawerFooter>
-  //     </DrawerContent>
-  //   </Drawer>
-  // );
 }
 
 const DiologComponent = function ({
@@ -203,8 +165,8 @@ const DrawerComponent = function ({
       )}
 
       <DrawerContent className="m-4 mb-0 bg-white text-right md:m-2 md:mx-auto md:max-w-[700px]">
-        <DrawerHeader className="text-right">
-          <DrawerTitle>{title}</DrawerTitle>
+        <DrawerHeader className="mt-2 text-right md:mt-4">
+          <DrawerTitle className="text-center">{title}</DrawerTitle>
           <DrawerDescription></DrawerDescription>
           {children}
         </DrawerHeader>

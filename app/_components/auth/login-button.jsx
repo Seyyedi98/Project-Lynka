@@ -20,7 +20,7 @@ export const LoginButton = ({ children, mode = "redirect", asChild }) => {
     return (
       <Dialog>
         <DialogTrigger asChild>{children}</DialogTrigger>
-        <DialogContent className="p-0 w-auto bg-transparent">
+        <DialogContent className="w-auto bg-transparent p-0">
           <DialogTitle className="hidden"></DialogTitle>
           <MobileLoginForm />
         </DialogContent>
