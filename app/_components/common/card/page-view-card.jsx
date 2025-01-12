@@ -1,9 +1,8 @@
 "use client";
-import CloseIcon from "@/app/_components/common/button/close-button";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { XCircleIcon, XIcon } from "lucide-react";
+import { XIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useId, useState } from "react";
 
@@ -63,7 +62,7 @@ export default function PagePreviewCard({ page }) {
             <motion.div
               layoutId={`page-${page.uri}-${id}`}
               ref={ref}
-              className="flex h-full w-full max-w-[500px] flex-col overflow-hidden bg-white dark:bg-neutral-900 sm:rounded-xl md:h-fit md:max-h-[90%]"
+              className="flex h-full w-full max-w-[500px] flex-col overflow-hidden bg-white [scrollbar-width:none] dark:bg-neutral-900 sm:rounded-xl md:h-fit md:max-h-[90%] md:max-w-[400px] md:overflow-auto"
             >
               <motion.div
                 layoutId={`image-${page.uri}-${id}`}
@@ -97,7 +96,7 @@ export default function PagePreviewCard({ page }) {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     className={cn(
-                      `rounded-md border-2 border-brand-400 px-4 py-2 text-base font-bold text-brand-500`,
+                      `rounded-md border-2 border-brand-400 px-2 py-1 text-xs font-bold text-brand-500`,
                       page.isPremium && "bg-brand-500 text-white",
                     )}
                   >
@@ -150,7 +149,7 @@ export default function PagePreviewCard({ page }) {
             <div className="flex items-center justify-end">
               <span
                 className={cn(
-                  `ml-4 rounded-md border-2 border-brand-400 px-3 py-2 text-brand-500`,
+                  `ml-4 rounded-md border-2 border-brand-400 px-2 py-1 text-xs text-brand-500`,
                   page.isPremium && "bg-brand-400 text-white",
                 )}
               >

@@ -15,14 +15,20 @@ import { getUserPages } from "@/lib/page/page";
 const Dashboard = async () => {
   const allPages = await getUserPages();
 
-  const cardData = {
-    title: "Card Title",
-    description: "This is a description of the card.",
-    content:
-      "This is the detailed content of the card that will be displayed in the modal.",
-    ctaText: "Learn More",
-    ctaLink: "https://example.com",
-  };
+  // console.log([] == 0);
+
+  // console.log(true + true);
+  // console.log(true === 1);
+
+  // console.log(9 + 5);
+  // console.log("9" + 5);
+  // console.log("9" - 5);
+  // console.log("5" + 5);
+  // console.log("5" - 5);
+  // console.log("5" === 5);
+
+  // console.log(0.1 + 0.1 == 0.2);
+  // console.log(0.1 + 0.2 == 0.3);
 
   return (
     <main className="">

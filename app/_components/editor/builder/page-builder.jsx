@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import DragOverlyWrapper from "../element/drag-overly-wrapper";
 import BuilderWorkspace from "./builder-workspace";
+import { notFound } from "next/navigation";
 
 // Former editor-canvas
 const PageBuilder = ({ page }) => {
@@ -37,6 +38,7 @@ const PageBuilder = ({ page }) => {
 
   // Get page elements, then empty elements list (if there is a data from other pages) and set current form elements
   useEffect(() => {
+    if (!page.content) return notFound();
     const elements = JSON.parse(page.content);
     setSelectedElement(null);
     setElements(elements);

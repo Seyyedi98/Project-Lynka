@@ -114,6 +114,7 @@ const WorkspaceElementWrapper = ({ element }) => {
 
         {/* Drag Handles */}
         <div
+          onClick={(e) => e.stopPropagation()}
           ref={draggable.setNodeRef}
           className="pointer-events-auto absolute -left-12 flex"
         >

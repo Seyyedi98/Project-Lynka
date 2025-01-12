@@ -3,7 +3,7 @@ import SavePageBtn from "../common/button/PrimaryButton/save-page-button";
 
 const EditorNavbar = ({ uri }) => {
   return (
-    <nav className="transition-translate group fixed top-0 z-10 z-20 h-[70px] w-full overflow-hidden bg-white px-5 shadow-md duration-200">
+    <nav className="transition-translate group fixed top-0 z-10 h-[70px] w-full overflow-hidden bg-white px-5 shadow-md duration-200">
       <div className="flex items-center justify-between pt-4">
         <div className="flex items-center justify-center gap-1">
           <SavePageBtn uri={uri} />
