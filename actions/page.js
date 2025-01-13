@@ -31,11 +31,11 @@ export const newPageCreator = async (uri) => {
     });
     return page;
   }
-  return { message: "You poor sucker " };
+  return { message: "error " };
 };
 
 export const getUserPages = async () => {
-  const user = currentUser();
+  const user = await currentUser();
   if (!user) return;
 
   const userId = user.id;
@@ -58,7 +58,7 @@ export const getPageDataByUri = async (uri) => {
   });
 
   if (!page) return { error: "Page not found!" };
-  // if (page.owner !== user.id) return { error: "Unauthorized access" };
+  if (page.owner !== user.id) return { error: "Unauthorized access" };
 
   return page;
 };
@@ -66,7 +66,7 @@ export const getPageDataByUri = async (uri) => {
 export async function UpdatePageContent(uri, jsonContent) {
   const user = await currentUser();
   if (!user) {
-    return { error: "User not found" };
+    return { error: "You need to signed in to create Page" };
   }
 
   const page = await prisma.page.findUnique({
@@ -74,8 +74,7 @@ export async function UpdatePageContent(uri, jsonContent) {
       uri,
     },
   });
-  if (page.owner !== user.id)
-    return { error: "You need to signed in to create Page" };
+  if (page.owner !== user.id) return { error: "Unauthorized access" };
 
   await prisma.page.update({
     where: {

@@ -1,6 +1,6 @@
 import PageBuilder from "@/app/_components/editor/builder/page-builder";
 import EditorNavbar from "@/app/_components/navbar/editor-navbar";
-import { getPageDataByUri } from "@/lib/page/page";
+import { getPageDataByUri } from "@/actions/page";
 
 const EditorPage = async ({ params }) => {
   const { uri } = await params;
