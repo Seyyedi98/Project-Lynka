@@ -1,17 +1,16 @@
 import useEditor from "@/hooks/useEditor";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import useModal from "@/hooks/useModal";
 import { cn } from "@/lib/utils";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { Pencil1Icon } from "@radix-ui/react-icons";
 import { GripVertical, XIcon } from "lucide-react";
 import { useState } from "react";
-import { PageElements } from "./page-elements";
+import { PageElements } from "../../controller/page-elements";
 
 const WorkspaceElementWrapper = ({ element }) => {
   const [mouseIsOver, setMouseIsOver] = useState(false);
   const { selectedElement, setSelectedElement } = useEditor();
-  const { setIsWorkspaceMenuOpen } = useModal();
+  const { openMenu } = useModal();
 
   // Draggable setup
   const draggable = useDraggable({
@@ -61,7 +60,7 @@ const WorkspaceElementWrapper = ({ element }) => {
       onClick={(e) => {
         e.stopPropagation();
         setSelectedElement(element);
-        setIsWorkspaceMenuOpen(true);
+        openMenu();
       }}
     >
       {/* Edit button */}
@@ -72,7 +71,7 @@ const WorkspaceElementWrapper = ({ element }) => {
           if (element === selectedElement) {
             setSelectedElement(null);
           } else {
-            setIsWorkspaceMenuOpen(true);
+            openMenu();
             setSelectedElement(element);
           }
         }}

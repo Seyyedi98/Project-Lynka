@@ -3,14 +3,14 @@ import useModal from "@/hooks/useModal";
 import { idGenerator } from "@/lib/id-generator";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import EditorSidebar from "../../navbar/editor-sidebar";
-import { PageElements } from "../element/page-elements";
 import WorkspaceElementWrapper from "../element/workspace-element-wrapper";
+import { PageElements } from "../../controller/page-elements";
 
 // Former canvas
 const BuilderWorkspace = () => {
   const { elements, addElement, removeElement } = useEditor();
 
-  const { setIsWorkspaceMenuOpen } = useModal();
+  const { closeMenu } = useModal();
 
   const droppable = useDroppable({
     id: "editor-drop-area",
@@ -21,7 +21,7 @@ const BuilderWorkspace = () => {
 
   useDndMonitor({
     onDragStart: () => {
-      setIsWorkspaceMenuOpen(false);
+      closeMenu();
     },
 
     onDragEnd: (event) => {
@@ -49,7 +49,7 @@ const BuilderWorkspace = () => {
       ////////////////////////////////////////////////////////////////////////////////////
       if (isAdderBtn && isDroppingOverWorkspaceArea) {
         const type = active.data?.current?.type;
-        const newElement = PageElements[type].contruct(idGenerator());
+        const newElement = PageElements[type].construct(idGenerator());
 
         addElement(elements.length, newElement);
 
@@ -61,7 +61,7 @@ const BuilderWorkspace = () => {
       ////////////////////////////////////////////////////////////////////////////////////
       if (isAdderBtn && droppingOverWorkspaceElement) {
         const type = active.data?.current?.type;
-        const newElement = PageElements[type].contruct(idGenerator());
+        const newElement = PageElements[type].construct(idGenerator());
 
         const overId = over.data?.current?.elementId;
 

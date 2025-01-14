@@ -11,17 +11,20 @@ import {
 import { Input } from "@/components/ui/input";
 import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
+import { ButtonIcon } from "@radix-ui/react-icons";
 import { Check, Heading } from "lucide-react";
+import Link from "next/link";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-const type = "TitleField";
+const type = "ButtonField";
 
 const extraAttributes = {
   title: "عنوان",
+  href: " ",
 };
 
-export const TitleFieldFormElement = {
+export const ButtonFieldFormElement = {
   type,
   construct: (id) => ({
     id,
@@ -30,8 +33,8 @@ export const TitleFieldFormElement = {
   }),
 
   ElementAdderBtn: {
-    icon: Heading,
-    label: "عنوان",
+    icon: ButtonIcon,
+    label: "لینک",
   },
 
   WorkspaceComponent: WorkspaceComponent,
@@ -46,18 +49,22 @@ function WorkspaceComponent({ elementInstance }) {
   return (
     <div className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-md border-2 border-slate-800 bg-card p-2">
       <p>{title}</p>
-      {/* <Input readOnly disabled /> */}
     </div>
   );
 }
 
 function PageComponent({ elementInstance }) {
   const element = elementInstance;
-  const { title } = element.extraAttributes;
+  const { title, href } = element.extraAttributes;
+
   return (
-    <div className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-md border-2 border-slate-800 bg-card p-2">
+    <Link
+      href={href}
+      target="_blank" // ask open in new page??
+      className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-md border-2 border-slate-800 bg-card p-2"
+    >
       <p>{title}</p>
-    </div>
+    </Link>
   );
 }
 
@@ -70,6 +77,7 @@ function PropertiesComponent({ elementInstance }) {
     // resolver: zodResolver(),
     defaultValues: {
       title: element.extraAttributes.title || "",
+      href: element.extraAttributes.href || "",
     },
   });
 
@@ -78,12 +86,13 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { title } = values;
+    const { title, href } = values;
 
     updateElement(element.id, {
       ...element,
       extraAttributes: {
         title,
+        href,
       },
     });
 
@@ -119,6 +128,28 @@ function PropertiesComponent({ elementInstance }) {
               </FormItem>
             )}
           />
+
+          <FormField
+            control={form.control}
+            name="href"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>آدرس</FormLabel>
+                <FormControl>
+                  <Input
+                    dir="ltr"
+                    {...field}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.currentTarget.blur();
+                      }
+                    }}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <button
             type="submit"
             className="absolute right-3 top-3 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600"
@@ -131,8 +162,8 @@ function PropertiesComponent({ elementInstance }) {
   );
 }
 
-const TitleField = () => {
-  return <div>TitleField</div>;
+const ButtonField = () => {
+  return <div>ButtonField</div>;
 };
 
-export default TitleField;
+export default ButtonField;

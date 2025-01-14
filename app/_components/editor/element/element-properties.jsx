@@ -1,6 +1,6 @@
 import { Check, TrashIcon } from "lucide-react";
 import DeleteElementBtn from "../../common/button/delete-element-button";
-import { PageElements } from "./page-elements";
+import { PageElements } from "../../controller/page-elements";
 import useEditor from "@/hooks/useEditor";
 
 const ElementProperties = ({ element }) => {
@@ -15,10 +15,6 @@ const ElementProperties = ({ element }) => {
           <TrashIcon className="h-4 w-4 text-white" />
         </div>
       </DeleteElementBtn>
-
-      {/* <div className="absolute right-3 top-3 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600">
-        <Check className="h-4 w-4 text-white" />
-      </div> */}
 
       {selectedElement && <PropertiesForm elementInstance={selectedElement} />}
     </div>

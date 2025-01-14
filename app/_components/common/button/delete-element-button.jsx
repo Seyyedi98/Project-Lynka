@@ -16,14 +16,15 @@ import {
 
 const DeleteElementBtn = ({ id, children }) => {
   const { removeElement, setSelectedElement } = useEditor();
-  const { setIsWorkspaceMenuOpen } = useModal();
+  const { closeMenu } = useModal();
   const [isPending, startTransition] = useTransition();
 
   const onDelete = (id) => {
     startTransition(() => {
       removeElement(id);
-      setIsWorkspaceMenuOpen(false);
-      setTimeout(() => setSelectedElement(null), [300]);
+
+      closeMenu();
+      setTimeout(() => setSelectedElement(null), 200);
     });
   };
   return (

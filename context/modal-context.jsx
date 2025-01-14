@@ -7,8 +7,16 @@ export const DiologContext = createContext();
 export default function ModalContextProvider({ children }) {
   const [isWorkspaceMenuOpen, setIsWorkspaceMenuOpen] = useState(false);
 
-  const openWorkspaceMenu = () => {
+  const toggleMenu = () => {
     setIsWorkspaceMenuOpen(!isWorkspaceMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsWorkspaceMenuOpen(false);
+  };
+
+  const openMenu = () => {
+    setIsWorkspaceMenuOpen(true);
   };
 
   return (
@@ -16,6 +24,9 @@ export default function ModalContextProvider({ children }) {
       value={{
         isWorkspaceMenuOpen,
         setIsWorkspaceMenuOpen,
+        toggleMenu,
+        closeMenu,
+        openMenu,
       }}
     >
       {children}

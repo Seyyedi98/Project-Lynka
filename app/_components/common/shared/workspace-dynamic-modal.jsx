@@ -40,7 +40,6 @@ export function WorkspaceDynamicModal({
   const handleOpenChange = (isOpen) => {
     setIsWorkspaceMenuOpen(isOpen);
     if (!isOpen) {
-      // TODO: replace 400 with delay prop
       setTimeout(() => setSelectedElement(null), delay); // Remove selected element when the menu closes
       //  Added 400ms timeout, prevent immediate change from properties to adder menu shifting
     }

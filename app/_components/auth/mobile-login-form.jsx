@@ -107,7 +107,6 @@ export const MobileLoginForm = () => {
                     <FormLabel>کد یکبار مصرف</FormLabel>
                     <FormControl>
                       <InputOTP
-                        type="number"
                         {...field}
                         maxLength={6}
                         disabled={isPending}

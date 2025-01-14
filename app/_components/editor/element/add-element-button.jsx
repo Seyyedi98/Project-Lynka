@@ -3,14 +3,14 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import useModal from "@/hooks/useModal";
-import { PageElements } from "./page-elements";
+import { PageElements } from "../../controller/page-elements";
 import { idGenerator } from "@/lib/id-generator";
 import useEditor from "@/hooks/useEditor";
 
 const AddElementButton = ({ pageElement }) => {
   // former sidebar-button-element
   const { label, icon: Icon } = pageElement.ElementAdderBtn;
-  const { setIsWorkspaceMenuOpen } = useModal();
+  const { closeMenu } = useModal();
   const { addElement, elements } = useEditor();
 
   const draggable = useDraggable({
@@ -24,9 +24,9 @@ const AddElementButton = ({ pageElement }) => {
   return (
     <Button
       onClick={() => {
-        setIsWorkspaceMenuOpen(false);
+        closeMenu();
         const type = pageElement.type;
-        const newElement = PageElements[type].contruct(idGenerator());
+        const newElement = PageElements[type].construct(idGenerator());
         addElement(elements.length, newElement);
       }}
       ref={draggable.setNodeRef}

@@ -1,5 +1,5 @@
 import AddElementButton from "./add-element-button";
-import { PageElements } from "./page-elements";
+import { PageElements } from "../../controller/page-elements";
 
 const EditorSidebarElements = () => {
   return (
@@ -8,6 +8,7 @@ const EditorSidebarElements = () => {
         <p className="my-2 mt-4 place-self-start text-sm text-white">فیلد ها</p>
 
         <AddElementButton pageElement={PageElements.TitleField} />
+        <AddElementButton pageElement={PageElements.ButtonField} />
       </div>
     </div>
   );

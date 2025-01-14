@@ -34,6 +34,7 @@ const SavePageBtn = ({ uri, children }) => {
   return (
     <div
       onClick={(e) => {
+        handleSave();
         e.stopPropagation();
       }}
       className={cn(``, isPending && "pointer-events-none cursor-not-allowed")}
