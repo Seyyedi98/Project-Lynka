@@ -84,6 +84,8 @@ export const MobileLoginForm = () => {
                     <FormLabel>شماره موبایل</FormLabel>
                     <FormControl>
                       <Input
+                        type="number"
+                        pattern="\d*"
                         {...field}
                         disabled={isPending}
                         placeholder="09123456789"
@@ -105,6 +107,7 @@ export const MobileLoginForm = () => {
                     <FormLabel>کد یکبار مصرف</FormLabel>
                     <FormControl>
                       <InputOTP
+                        type="number"
                         {...field}
                         maxLength={6}
                         disabled={isPending}

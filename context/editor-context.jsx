@@ -19,9 +19,9 @@ export default function EditorContextProvider({ children }) {
 
   const updateElement = (id, element) => {
     setElements((prev) => {
-      const prevElements = [...prev];
-      const index = prevElements.findIndex((el) => el.id === id);
-      const newElements = (prevElements[index] = element);
+      const newElements = [...prev];
+      const index = newElements.findIndex((el) => el.id === id);
+      newElements[index] = element;
 
       return newElements;
     });

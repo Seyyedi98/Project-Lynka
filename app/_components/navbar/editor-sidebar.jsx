@@ -41,11 +41,9 @@ const EditorSidebar = () => {
   if (!isDesktop && selectedElement) {
     return (
       <div className="fixed bottom-0 right-0 h-[72px] w-full">
-        <div className="mx-4 flex h-full items-center justify-center gap-3 rounded-t-3xl bg-white px-8 shadow-lg">
-          <WorkspaceDynamicModal mode="allDrawer" title="تنظیمات" delay="400">
-            <ElementProperties element={selectedElement} />
-          </WorkspaceDynamicModal>
-        </div>
+        <WorkspaceDynamicModal mode="allDrawer" title="تنظیمات" delay="400">
+          <ElementProperties element={selectedElement} />
+        </WorkspaceDynamicModal>
       </div>
     );
   }

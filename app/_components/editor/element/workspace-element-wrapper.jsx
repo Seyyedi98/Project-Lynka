@@ -11,9 +11,7 @@ import { PageElements } from "./page-elements";
 const WorkspaceElementWrapper = ({ element }) => {
   const [mouseIsOver, setMouseIsOver] = useState(false);
   const { selectedElement, setSelectedElement } = useEditor();
-  const { isWorkspaceMenuOpen, setIsWorkspaceMenuOpen } = useModal();
-
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const { setIsWorkspaceMenuOpen } = useModal();
 
   // Draggable setup
   const draggable = useDraggable({
@@ -78,7 +76,7 @@ const WorkspaceElementWrapper = ({ element }) => {
             setSelectedElement(element);
           }
         }}
-        className="absolute -right-10 top-1/2 -translate-y-1/2 cursor-pointer rounded-md bg-gray-200 px-2 py-2"
+        className="absolute -right-8 top-1/2 -translate-y-1/2 cursor-pointer rounded-md bg-gray-200 px-2 py-2"
       >
         {element === selectedElement ? (
           <XIcon className="h-4 w-4" />
@@ -116,7 +114,7 @@ const WorkspaceElementWrapper = ({ element }) => {
         <div
           onClick={(e) => e.stopPropagation()}
           ref={draggable.setNodeRef}
-          className="pointer-events-auto absolute -left-12 flex"
+          className="pointer-events-auto absolute -left-10 flex"
         >
           <button
             {...draggable.listeners}
@@ -136,26 +134,3 @@ const WorkspaceElementWrapper = ({ element }) => {
 };
 
 export default WorkspaceElementWrapper;
-
-{
-  /* Remove element btn */
-}
-{
-  /* <div className="absolute left-0 h-full">
-      <Button
-        className="h-full justify-center rounded-md rounded-r-none border bg-red-500"
-        variant="outline"
-        onClick={(e) => {
-          e.stopPropagation();
-          removeElement(element.id);
-        }}
-      >
-        <TrashIcon className="h-6 w-6" />
-      </Button>
-    </div> */
-}
-{
-  /* <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse">
-      <p className="text-sm text-muted-foreground">کلیک کنید یا بکشید</p>
-    </div> */
-}

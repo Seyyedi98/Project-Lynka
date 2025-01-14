@@ -1,8 +1,8 @@
 "use server";
 
+import { currentUser } from "@/lib/auth/get-user";
+import prisma from "@/lib/client";
 import { PageUriSchema } from "@/schemas";
-import { currentUser } from "../auth/get-user";
-import prisma from "../client";
 
 export const checkPageAvailable = async (uri) => {
   const page = await prisma.page.findFirst({
