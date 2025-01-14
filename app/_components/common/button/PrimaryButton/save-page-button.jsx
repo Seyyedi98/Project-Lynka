@@ -33,8 +33,8 @@ const SavePageBtn = ({ uri, children }) => {
 
   return (
     <div
-      onClick={() => {
-        handleSave();
+      onClick={(e) => {
+        e.stopPropagation();
       }}
       className={cn(``, isPending && "pointer-events-none cursor-not-allowed")}
     >
