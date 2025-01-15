@@ -24,7 +24,7 @@ const EditorSidebar = () => {
     return (
       <>
         {/* Sidebar */}
-        <div className="fixed right-[7%] top-1/2 z-30 my-auto flex h-fit w-24 -translate-y-1/2 flex-col items-center justify-between rounded-2xl bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to px-3 pb-6 text-white duration-300 hover:w-56 lg:right-[2%] xl:right-[3%] xl:w-56 2xl:right-[8%]">
+        <div className="group fixed right-5 top-1/2 z-30 my-auto flex h-fit w-24 -translate-y-1/2 flex-col items-center justify-between rounded-2xl bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to px-3 pb-6 text-white duration-300 hover:w-56 lg:w-56">
           <WorkspaceDynamicModal mode="allDrawer" title="تنظیمات" delay="400">
             <ElementProperties element={selectedElement} />
           </WorkspaceDynamicModal>
