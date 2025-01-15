@@ -1,8 +1,8 @@
 "use client";
 
 import { settings } from "@/actions/user/settings";
-import { FormError } from "@/app/_components/form/form-error";
-import { FormSuccess } from "@/app/_components/form/form-success";
+import { FormError } from "@/app/_components/common/message/form-error";
+import { FormSuccess } from "@/app/_components/common/message/form-success";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {

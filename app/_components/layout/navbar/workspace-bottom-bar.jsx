@@ -6,11 +6,11 @@ import {
   SaveIcon,
 } from "lucide-react";
 import React from "react";
-import { WorkspaceDynamicModal } from "../common/shared/workspace-dynamic-modal";
-import EditorSidebarElements from "../editor/element/editor-sidebar-elements";
+import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
+import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
 import { useParams } from "next/navigation";
 import { cn } from "@/lib/utils";
-import SavePageBtn from "../common/button/PrimaryButton/save-page-button";
+import SavePageBtn from "../../common/button/PrimaryButton/save-page-button";
 import Link from "next/link";
 
 const WorkspaceBottomBar = ({ isDesktop }) => {
@@ -36,7 +36,8 @@ const WorkspaceBottomBar = ({ isDesktop }) => {
           className="flex h-10 w-full items-center gap-2 rounded-full border-[1px] border-slate-200 px-5"
         >
           <Link
-            href={`${websiteUrl}${params.uri}`}
+            href={`localhost:3000/${params.uri}`}
+            // href={`${websiteUrl}${params.uri}`}
             target="_blank"
             className="truncate text-nowrap font-medium text-brand-600 hover:underline hover:underline-offset-4"
           >

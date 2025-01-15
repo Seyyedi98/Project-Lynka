@@ -2,7 +2,7 @@ import CreatePageBtn from "@/app/_components/common/button/PrimaryButton/create-
 import NewPageCard from "@/app/_components/common/card/new-page-card";
 import PageViewCard from "@/app/_components/common/card/page-view-card";
 import GridLayout from "@/app/_components/layout/grid-layout";
-import DashboardHeading from "@/app/_components/navbar/dashboard-heading";
+import DashboardHeading from "@/app/_components/layout/navbar/dashboard-heading";
 import {
   Accordion,
   AccordionContent,

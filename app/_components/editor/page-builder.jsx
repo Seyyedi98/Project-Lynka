@@ -9,7 +9,7 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { useEffect, useState } from "react";
-import DragOverlyWrapper from "../element/drag-overly-wrapper";
+import DragOverlyWrapper from "./element/drag-overly-wrapper";
 import BuilderWorkspace from "./builder-workspace";
 import { notFound } from "next/navigation";
 

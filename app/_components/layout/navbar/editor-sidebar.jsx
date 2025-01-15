@@ -1,9 +1,9 @@
 import useEditor from "@/hooks/useEditor";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { WorkspaceDynamicModal } from "../common/shared/workspace-dynamic-modal";
-import EditorSidebarElements from "../editor/element/editor-sidebar-elements";
+import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
+import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
 import WorkspaceBottomBar from "./workspace-bottom-bar";
-import ElementProperties from "../editor/element/element-properties";
+import ElementProperties from "../../editor/element/element-properties";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");

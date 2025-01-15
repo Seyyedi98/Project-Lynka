@@ -24,8 +24,8 @@ import { LoaderIcon, PlusCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { FormError } from "../../form/form-error";
-import { FormSuccess } from "../../form/form-success";
+import { FormError } from "../message/form-error";
+import { FormSuccess } from "../message/form-success";
 
 const NewPageCard = () => {
   const router = useRouter();

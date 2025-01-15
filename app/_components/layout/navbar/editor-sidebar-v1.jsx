@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import useEditor from "@/hooks/useEditor";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { WorkspaceDynamicModal } from "../common/shared/workspace-dynamic-modal";
-import EditorSidebarElements from "../editor/element/editor-sidebar-elements";
+import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
+import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
 import { cn } from "@/lib/utils";
 
 const EditorSidebar = () => {

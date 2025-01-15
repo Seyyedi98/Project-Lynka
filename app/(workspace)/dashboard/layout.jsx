@@ -1,4 +1,4 @@
-import DashboardSidebar from "@/app/_components/navbar/dashboard-sidebar";
+import DashboardSidebar from "@/app/_components/layout/navbar/dashboard-sidebar";
 import React from "react";
 
 const EditorLayout = ({ children }) => {

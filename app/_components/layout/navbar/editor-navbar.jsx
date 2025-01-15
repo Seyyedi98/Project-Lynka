@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import SavePageBtn from "../common/button/PrimaryButton/save-page-button";
+import SavePageBtn from "../../common/button/PrimaryButton/save-page-button";
 
 const EditorNavbar = ({ uri }) => {
   return (

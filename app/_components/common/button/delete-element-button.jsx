@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../shared/diolog";
+} from "../modal/diolog";
 
 const DeleteElementBtn = ({ id, children }) => {
   const { removeElement, setSelectedElement } = useEditor();

@@ -15,8 +15,8 @@ import { ResetSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { FormError } from "../form/form-error";
-import { FormSuccess } from "../form/form-success";
+import { FormError } from "../common/message/form-error";
+import { FormSuccess } from "../common/message/form-success";
 import { CardWrapper } from "../layout/card-wrapper";
 
 export const CredentialsResetForm = () => {

@@ -17,8 +17,8 @@ import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { CardWrapper } from "../layout/card-wrapper";
-import { FormError } from "../form/form-error";
-import { FormSuccess } from "../form/form-success";
+import { FormError } from "../common/message/form-error";
+import { FormSuccess } from "../common/message/form-success";
 
 export const CredentialsNewPasswordForm = () => {
   const [error, setError] = useState("");

@@ -2,9 +2,9 @@ import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import { idGenerator } from "@/lib/id-generator";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
-import EditorSidebar from "../../navbar/editor-sidebar";
-import WorkspaceElementWrapper from "../element/workspace-element-wrapper";
-import { PageElements } from "../../controller/page-elements";
+import EditorSidebar from "../layout/navbar/editor-sidebar";
+import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
+import { PageElements } from "../controller/page-elements";
 
 // Former canvas
 const BuilderWorkspace = () => {

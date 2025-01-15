@@ -1,5 +1,5 @@
-import { ButtonFieldFormElement } from "../editor/fields/button-field";
-import { TitleFieldFormElement } from "../editor/fields/title-field";
+import { ButtonFieldFormElement } from "../elements/button-field";
+import { TitleFieldFormElement } from "../elements/title-field";
 
 export const PageElements = {
   TitleField: TitleFieldFormElement,

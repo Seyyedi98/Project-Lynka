@@ -23,8 +23,8 @@ import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { FormError } from "../form/form-error";
-import { FormSuccess } from "../form/form-success";
+import { FormError } from "../common/message/form-error";
+import { FormSuccess } from "../common/message/form-success";
 import { CardWrapper } from "../layout/card-wrapper";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 

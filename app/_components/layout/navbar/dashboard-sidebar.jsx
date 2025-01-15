@@ -14,10 +14,10 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import { useState } from "react";
-import SidebarLink from "../common/button/NavigationButton/sidebar-link";
-import Devider from "../common/shared/devider";
-import HumbergerMenuBtn from "../common/button/PrimaryButton/humberger-menu";
-import UserButton from "../auth/user-button";
+import SidebarLink from "../../common/button/NavigationButton/sidebar-link";
+import Devider from "../../common/shared/devider";
+import HumbergerMenuBtn from "../../common/button/PrimaryButton/humberger-menu";
+import UserButton from "../../auth/user-button";
 
 const DashboardSidebar = () => {
   const user = useCurrentUser();

@@ -47,7 +47,7 @@ export const getUserPages = async () => {
   return pages;
 };
 
-export const getPageDataByUri = async (uri) => {
+export const getUserPageDataByUri = async (uri) => {
   const user = await currentUser();
   if (!user) return;
 
@@ -59,6 +59,18 @@ export const getPageDataByUri = async (uri) => {
 
   if (!page) return { error: "Page not found!" };
   if (page.owner !== user.id) return { error: "Unauthorized access" };
+
+  return page;
+};
+
+export const getPreviewPageDataByUri = async (uri) => {
+  const page = await prisma.page.findUnique({
+    where: {
+      uri,
+    },
+  });
+
+  if (!page) return { error: "Page not found!" };
 
   return page;
 };
