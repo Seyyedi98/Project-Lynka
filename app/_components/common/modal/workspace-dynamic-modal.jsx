@@ -18,7 +18,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer";
+} from "@/app/_components/common/modal/drawer";
 import useEditor from "@/hooks/useEditor";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import useModal from "@/hooks/useModal";

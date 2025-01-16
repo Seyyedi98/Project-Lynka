@@ -2,7 +2,7 @@
 
 import { PageElements } from "../controller/page-elements";
 
-const PreviewPageElements = ({ content }) => {
+const LivePageElements = ({ content }) => {
   return (
     <>
       {content.map((element) => {
@@ -20,4 +20,4 @@ const PreviewPageElements = ({ content }) => {
   );
 };
 
-export default PreviewPageElements;
+export default LivePageElements;

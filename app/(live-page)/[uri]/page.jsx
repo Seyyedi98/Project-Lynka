@@ -1,9 +1,9 @@
 import { getPreviewPageDataByUri } from "@/actions/page";
-import PreviewPageElements from "@/app/_components/live-page/preview-elements-rendere";
+import LivePageElements from "@/app/_components/live-page/live-page-elements-rendere";
 import getPageContent from "@/lib/page/get-page-content";
 import { notFound } from "next/navigation";
 
-const PreviewPage = async ({ params }) => {
+const LivePage = async ({ params }) => {
   const { uri } = await params;
 
   const page = await getPreviewPageDataByUri(uri);
@@ -14,10 +14,10 @@ const PreviewPage = async ({ params }) => {
   return (
     <div className="flex h-full w-full items-center justify-center">
       <section className="flex h-full w-3/4 max-w-[400px] flex-col items-center justify-center gap-4">
-        <PreviewPageElements content={content} />
+        <LivePageElements content={content} />
       </section>
     </div>
   );
 };
 
-export default PreviewPage;
+export default LivePage;
