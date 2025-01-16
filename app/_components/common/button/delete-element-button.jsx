@@ -36,7 +36,7 @@ const DeleteElementBtn = ({ id, children }) => {
             <DialogTitle>حذف </DialogTitle>
             <DialogDescription className="leading-6">
               با حذف این آیتم، تمامی اطلاعات مرتبط با آن نیز حذف خواهد شد. آیا
-              اطمینان دارین؟
+              اطمینان دارید؟
             </DialogDescription>
           </DialogHeader>
 

@@ -12,10 +12,13 @@ import { useParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import SavePageBtn from "../../common/button/PrimaryButton/save-page-button";
 import Link from "next/link";
+import useTruncate from "@/hooks/useTruncate";
 
 const WorkspaceBottomBar = ({ isDesktop }) => {
   const websiteUrl = process.env.NEXT_PUBLIC_WEBSITE_URL;
   const params = useParams();
+
+  const pageUri = useTruncate(params.uri, 12);
 
   return (
     <div className="fixed bottom-0 right-0 z-50 h-[72px] w-full animate-fade-up duration-200">
@@ -42,14 +45,16 @@ const WorkspaceBottomBar = ({ isDesktop }) => {
             className="truncate text-nowrap font-medium text-brand-600 hover:underline hover:underline-offset-4"
           >
             link.ir/
-            <span className="truncate text-nowrap">{params.uri}</span>
+            <span className="truncate text-nowrap">{pageUri}</span>
           </Link>
-          <span>
-            <CopyIcon className="h-4 w-4 duration-100 hover:text-blue-800" />
-          </span>
-          <span>
-            <QrCodeIcon className="h-4 w-4 cursor-pointer duration-100 hover:text-blue-800" />
-          </span>
+          <div className="ml-auto flex gap-1">
+            <span>
+              <CopyIcon className="h-4 w-4 duration-100 hover:text-blue-800" />
+            </span>
+            <span>
+              <QrCodeIcon className="h-4 w-4 cursor-pointer duration-100 hover:text-blue-800" />
+            </span>
+          </div>
         </div>
         {!isDesktop && (
           <div className="cursor-pointer rounded-full bg-primary-600 p-2 text-white duration-200 hover:bg-primary-700">

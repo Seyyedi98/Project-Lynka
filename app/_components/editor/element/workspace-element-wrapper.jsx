@@ -76,7 +76,7 @@ const WorkspaceElementWrapper = ({ element }) => {
       />
 
       {topHalf.isOver && (
-        <div className="absolute top-0 h-[7px] w-full rounded-md rounded-b-none bg-primary" />
+        <div className="absolute top-0 h-[3px] w-full rounded-md rounded-b-none bg-primary-600" />
       )}
 
       {/* Content Section */}
@@ -102,7 +102,7 @@ const WorkspaceElementWrapper = ({ element }) => {
           className="cursor-pointer rounded-md md:block"
         >
           {element === selectedElement ? (
-            <XIcon className="h-4 w-4" />
+            <XIcon className="h-5 w-5" />
           ) : (
             <Pencil1Icon className="h-5 w-5" />
           )}
@@ -128,7 +128,7 @@ const WorkspaceElementWrapper = ({ element }) => {
       </div>
 
       {bottomHalf.isOver && (
-        <div className="absolute bottom-0 h-[7px] w-full rounded-md rounded-t-none bg-primary" />
+        <div className="absolute bottom-0 h-[2px] w-full rounded-t-none bg-primary-600" />
       )}
     </div>
   );

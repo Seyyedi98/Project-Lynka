@@ -5,11 +5,15 @@ import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import EditorSidebar from "../layout/navbar/editor-sidebar";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
 import { PageElements } from "../controller/page-elements";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import WorkspaceHeader from "../layout/navbar/workspace-header";
 
 // Former canvas
 const BuilderWorkspace = () => {
   const { elements, addElement, removeElement } = useEditor();
-
+  const params = useParams();
   const { closeMenu } = useModal();
 
   const droppable = useDroppable({
@@ -131,38 +135,39 @@ const BuilderWorkspace = () => {
   });
 
   return (
-    <div className="flex h-full w-full gap-6 p-4">
-      {/* <div className="w-1/3 rounded-lg bg-gray-100 p-4 shadow-md"> */}
-      <EditorSidebar />
-      {/* </div> */}
+    <>
+      <WorkspaceHeader />
+      <div className="flex h-full w-full gap-6 p-4">
+        <EditorSidebar />
 
-      <div
-        className="relative flex flex-grow flex-col items-center overflow-y-auto rounded-xl bg-white pt-4 shadow-lg md:pt-12"
-        ref={droppable.setNodeRef}
-      >
-        {!droppable.isOver && elements.length === 0 && (
-          <p className="flex h-full items-center justify-center text-xl font-medium text-gray-500">
-            Add some blocks to start!
-          </p>
-        )}
+        <div
+          className="relative flex flex-grow flex-col items-center overflow-y-auto rounded-xl bg-white pt-2 shadow-lg md:pt-10"
+          ref={droppable.setNodeRef}
+        >
+          {!droppable.isOver && elements.length === 0 && (
+            <p className="flex h-full items-center justify-center text-xl font-medium text-gray-500">
+              Add some blocks to start!
+            </p>
+          )}
 
-        {droppable.isOver && elements.length === 0 && (
-          <div className="w-full p-4">
-            <div className="h-32 rounded-lg bg-blue-100"></div>
-          </div>
-        )}
+          {droppable.isOver && elements.length === 0 && (
+            <div className="w-full p-4">
+              <div className="h-32 rounded-lg bg-blue-100"></div>
+            </div>
+          )}
 
-        {elements.length > 0 &&
-          elements.map((element) => (
-            <WorkspaceElementWrapper key={element.id} element={element} />
-          ))}
-        <div className="mt-auto pb-16">
-          {/* <footer className="mt-4 w-full rounded-lg bg-gray-100 p-4 shadow-md">
+          {elements.length > 0 &&
+            elements.map((element) => (
+              <WorkspaceElementWrapper key={element.id} element={element} />
+            ))}
+          <div className="mt-auto pb-16">
+            {/* <footer className="mt-4 w-full rounded-lg bg-gray-100 p-4 shadow-md">
             &copy; {new Date().getFullYear()} All rights reserved.
-          </footer> */}
+            </footer> */}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

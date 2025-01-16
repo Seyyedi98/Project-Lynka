@@ -1,5 +1,6 @@
 import { getPreviewPageDataByUri } from "@/actions/page";
-import PreviewPageElements from "@/app/_components/preview/preview-elements-rendere";
+import PreviewPageElements from "@/app/_components/live-page/preview-elements-rendere";
+import getPageContent from "@/lib/page/get-page-content";
 import { notFound } from "next/navigation";
 
 const PreviewPage = async ({ params }) => {
@@ -8,7 +9,7 @@ const PreviewPage = async ({ params }) => {
   const page = await getPreviewPageDataByUri(uri);
   if (page.error) return notFound();
 
-  const content = JSON.parse(page.content);
+  const content = getPageContent(page);
 
   return (
     <div className="flex h-full w-full items-center justify-center">
