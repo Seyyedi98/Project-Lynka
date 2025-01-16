@@ -10,12 +10,15 @@ import { useTransition } from "react";
 
 const SavePageBtn = ({ uri, children }) => {
   const { elements } = useEditor();
+  const header = { type: "full" };
   const [isPending, startTransition] = useTransition();
+
+  const fullContent = [[header], elements];
 
   const handleSave = () => {
     startTransition(async () => {
       try {
-        const JSONElement = JSON.stringify(elements);
+        const JSONElement = JSON.stringify(fullContent);
         await UpdatePageContent(uri, JSONElement); // Call the server action
         toast({
           title: "عملیات موفقیت آمیز",

@@ -18,7 +18,7 @@ const WorkspaceBottomBar = ({ isDesktop }) => {
   const params = useParams();
 
   return (
-    <div className="fixed bottom-0 right-0 z-10 h-[72px] w-full animate-fade-up duration-200">
+    <div className="fixed bottom-0 right-0 z-50 h-[72px] w-full animate-fade-up duration-200">
       <div
         className={cn(
           `flex h-full items-center justify-center gap-3 rounded-t-3xl bg-white px-3 shadow-lg md:px-6`,

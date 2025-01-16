@@ -137,7 +137,7 @@ const BuilderWorkspace = () => {
       {/* </div> */}
 
       <div
-        className="relative flex flex-grow flex-col items-center overflow-y-auto rounded-xl bg-white pt-4 shadow-lg md:pt-12"
+        className="relative flex flex-grow flex-col items-center overflow-y-auto rounded-xl bg-white shadow-lg"
         ref={droppable.setNodeRef}
       >
         {!droppable.isOver && elements.length === 0 && (
@@ -157,9 +157,9 @@ const BuilderWorkspace = () => {
             <WorkspaceElementWrapper key={element.id} element={element} />
           ))}
         <div className="mt-auto pb-16">
-          {/* <footer className="mt-4 w-full rounded-lg bg-gray-100 p-4 shadow-md">
+          <footer className="mt-4 w-full rounded-lg bg-gray-100 p-4 shadow-md">
             &copy; {new Date().getFullYear()} All rights reserved.
-          </footer> */}
+          </footer>
         </div>
       </div>
     </div>

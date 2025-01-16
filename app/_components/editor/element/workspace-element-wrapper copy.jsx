@@ -54,7 +54,7 @@ const WorkspaceElementWrapper = ({ element }) => {
       ref={draggable.setNodeRef}
       // {...draggable.listeners}
       // {...draggable.attributes}
-      className="relative flex w-full max-w-[380px] flex-col rounded-2xl text-foreground hover:cursor-pointer"
+      className="relative mx-auto flex w-[92%] flex-col rounded-2xl text-foreground hover:cursor-pointer"
       onMouseEnter={() => setMouseIsOver(true)}
       onMouseLeave={() => setMouseIsOver(false)}
       onClick={(e) => {
@@ -63,6 +63,27 @@ const WorkspaceElementWrapper = ({ element }) => {
         openMenu();
       }}
     >
+      {/* Edit button */}
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+
+          if (element === selectedElement) {
+            setSelectedElement(null);
+          } else {
+            openMenu();
+            setSelectedElement(element);
+          }
+        }}
+        className="absolute -right-12 top-1/2 hidden -translate-y-1/2 cursor-pointer rounded-md bg-gray-200 px-2 py-2 md:block"
+      >
+        {element === selectedElement ? (
+          <XIcon className="h-4 w-4" />
+        ) : (
+          <Pencil1Icon className="h-4 w-4" />
+        )}
+      </div>
+
       {/* Top droppable half */}
       <div
         ref={topHalf.setNodeRef}
@@ -82,45 +103,22 @@ const WorkspaceElementWrapper = ({ element }) => {
       {/* Content Section */}
       <div
         className={cn(
-          "pointer-events-none relative flex w-full items-center justify-center gap-2 rounded-md py-2 opacity-100 transition-all duration-200",
+          "pointer-events-none relative flex w-full items-center rounded-md px-2 py-2 opacity-100 transition-all duration-200",
           mouseIsOver && "opacity-90",
         )}
       >
-        {/* Edit button */}
-        <div
-          onClick={(e) => {
-            e.stopPropagation();
-
-            if (element === selectedElement) {
-              setSelectedElement(null);
-            } else {
-              openMenu();
-              setSelectedElement(element);
-            }
-          }}
-          // className="absolute -right-12 top-1/2 hidden -translate-y-1/2 cursor-pointer rounded-md bg-gray-200 px-2 py-2 md:block"
-          className="cursor-pointer rounded-md md:block"
-        >
-          {element === selectedElement ? (
-            <XIcon className="h-4 w-4" />
-          ) : (
-            <Pencil1Icon className="h-5 w-5" />
-          )}
-        </div>
-
         <PageElement elementInstance={element} />
 
         {/* Drag Handles */}
         <div
           onClick={(e) => e.stopPropagation()}
           ref={draggable.setNodeRef}
-          // className="pointer-events-auto absolute -left-14 flex"
-          className="pointer-events-auto"
+          className="pointer-events-auto absolute -left-14 flex"
         >
           <button
             {...draggable.listeners}
             {...draggable.attributes}
-            className="cursor-grab rounded-md text-gray-800"
+            className="mr-2 cursor-grab rounded-md px-2 py-1 text-gray-800"
           >
             <GripHorizontal />
           </button>
