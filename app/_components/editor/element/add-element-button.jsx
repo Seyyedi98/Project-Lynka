@@ -31,14 +31,14 @@ const AddElementButton = ({ pageElement }) => {
       }}
       ref={draggable.setNodeRef}
       className={cn(
-        `relative flex h-14 w-14 cursor-grab items-center justify-start gap-2 overflow-hidden rounded-md bg-secondary pr-[18px] text-black transition-all duration-300 group-hover:w-full lg:h-10 lg:w-full`,
+        `relative flex h-14 w-full cursor-grab items-center justify-center gap-2 overflow-hidden rounded-md border border-black bg-white pr-[18px] text-black transition-all duration-300 group-hover:w-full md:w-14 md:justify-start md:border-none lg:h-10 lg:w-full`,
         draggable.isDragging && "ring-2 ring-primary",
       )}
       {...draggable.listeners}
       {...draggable.attributes}
     >
-      <Icon className="text-iconLight h-5 w-5 cursor-grab text-3xl duration-200 group-hover:mr-12" />
-      <p className="group-hover:animate-fade-right absolute right-24 hidden text-xs duration-200 group-hover:block">
+      <Icon className="text-iconLight h-5 w-5 cursor-grab text-3xl duration-200 group-hover:mr-12 lg:mr-12" />
+      <p className="text-xs duration-200 group-hover:block md:absolute md:right-24 md:hidden md:group-hover:animate-fade-right lg:block lg:group-hover:animate-none">
         {label}
       </p>
     </button>
@@ -50,7 +50,7 @@ export const AdderBtnDragOverly = ({ pageElement }) => {
 
   return (
     <Button
-      className="bg-secondaryBg flex w-full cursor-grab gap-2 rounded-md transition-all duration-300"
+      className="bg-secondaryBg flex h-14 w-4/5 cursor-grab gap-2 rounded-md border border-dashed border-black transition-all duration-300 md:w-full"
       variant="outline"
     >
       <Icon className="h-8 w-8 cursor-grab text-primary" />
