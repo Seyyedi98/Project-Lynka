@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Eye } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
 import {
   Dialog,
   DialogClose,
@@ -12,29 +11,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../common/modal/diolog";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "../../common/modal/drawer";
 import PreviewPageElements from "../../preview/preview-elements-rendere";
 
 const WorkspaceHeader = () => {
-  const params = useParams();
-
   return (
     <header className="flex h-14 items-center justify-between bg-primary-500 px-4">
-      {/* <Button variant="secondary" className="px-2 duration-200" asChild>
-        <Link href={`/preview/${params.uri}`} target="_blank">
-          پیش نمایش
-        </Link>
-      </Button> */}
-
       <Dialog>
         <DialogTrigger asChild>
           <Button variant="secondary" className="px-2 duration-200" asChild>

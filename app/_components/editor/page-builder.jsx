@@ -41,7 +41,6 @@ const PageBuilder = ({ page }) => {
   useEffect(() => {
     if (!page.content) return notFound();
     const elements = getPageContent(page);
-    // const elements = JSON.parse(page.content);
     setSelectedElement(null);
     setElements(elements);
     setIsReady(true);

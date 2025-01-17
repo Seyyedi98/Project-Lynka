@@ -2,18 +2,15 @@ import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import { idGenerator } from "@/lib/id-generator";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
-import EditorSidebar from "../layout/navbar/editor-sidebar";
-import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
 import { PageElements } from "../controller/page-elements";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { useParams } from "next/navigation";
+import EditorSidebar from "../layout/navbar/editor-sidebar";
 import WorkspaceHeader from "../layout/navbar/workspace-header";
+import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
 
 // Former canvas
 const BuilderWorkspace = () => {
   const { elements, addElement, removeElement } = useEditor();
-  const params = useParams();
+
   const { closeMenu } = useModal();
 
   const droppable = useDroppable({

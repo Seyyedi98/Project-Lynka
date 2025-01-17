@@ -1,7 +1,6 @@
-import CreatePageBtn from "@/app/_components/common/button/PrimaryButton/create-page-btn";
-import NewPageCard from "@/app/_components/common/card/new-page-card";
-import PageViewCard from "@/app/_components/common/card/page-view-card";
-import GridLayout from "@/app/_components/layout/grid-layout";
+import { getUserPages } from "@/actions/page";
+import ExpandableRowCard from "@/app/_components/common/card/expandable-row-card";
+import CreatePageButton from "@/app/_components/common/card/new-page-card";
 import DashboardHeading from "@/app/_components/layout/navbar/dashboard-heading";
 import {
   Accordion,
@@ -10,30 +9,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
-import { getUserPages } from "@/actions/page";
 
 const Dashboard = async () => {
   const allPages = await getUserPages();
 
-  // console.log([] == 0);
-
-  // console.log(true + true);
-  // console.log(true === 1);
-
-  // console.log(9 + 5);
-  // console.log("9" + 5);
-  // console.log("9" - 5);
-  // console.log("5" + 5);
-  // console.log("5" - 5);
-  // console.log("5" === 5);
-
-  // console.log(0.1 + 0.1 == 0.2);
-  // console.log(0.1 + 0.2 == 0.3);
-
   return (
     <main className="">
       <DashboardHeading>
-        <CreatePageBtn />
+        <CreatePageButton />
       </DashboardHeading>
       <Separator />
 
@@ -43,13 +26,12 @@ const Dashboard = async () => {
             <AccordionItem value="pages">
               <AccordionTrigger>صفحه های شما</AccordionTrigger>
               <AccordionContent>
-                <GridLayout>
-                  <NewPageCard />
+                {/* <GridLayout> */}
 
-                  {allPages.map((page) => {
-                    return <PageViewCard page={page} key={page.uri} />;
-                  })}
-                </GridLayout>
+                {allPages.map((page) => {
+                  return <ExpandableRowCard page={page} key={page.uri} />;
+                })}
+                {/* </GridLayout> */}
               </AccordionContent>
             </AccordionItem>
 

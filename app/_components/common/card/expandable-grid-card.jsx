@@ -1,4 +1,5 @@
 "use client";
+
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
@@ -6,7 +7,7 @@ import { XIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useId, useState } from "react";
 
-export default function PagePreviewCard({ page }) {
+export default function ExpandableGridCard({ page }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const id = useId();
   const ref = useOutsideClick(() => setIsModalOpen(false), true);

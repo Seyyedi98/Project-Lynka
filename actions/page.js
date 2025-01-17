@@ -24,9 +24,9 @@ export const newPageCreator = async (uri) => {
   if (validationResult) {
     const page = await prisma.page.create({
       data: {
-        uri,
+        uri: uri.toLowerCase(),
         owner: (await user).id,
-        content: "[]",
+        content: "[[],[]]", // Create two empty arrays. First one for page content, second one for page header
       },
     });
     return page;

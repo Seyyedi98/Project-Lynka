@@ -8,6 +8,7 @@ export default function EditorContextProvider({ children }) {
   const [elements, setElements] = useState([]);
   const [selectedElement, setSelectedElement] = useState(null);
 
+
   const addElement = (index, element) => {
     setElements((prev) => {
       const newElements = [...prev];

@@ -20,14 +20,14 @@ import { Input } from "@/components/ui/input";
 import { checkPageAvailable, newPageCreator } from "@/actions/page";
 import { PageUriSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoaderIcon, PlusCircleIcon } from "lucide-react";
+import { LoaderIcon, Plus, PlusCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { FormError } from "../message/form-error";
 import { FormSuccess } from "../message/form-success";
 
-const NewPageCard = () => {
+const CreatePageButton = () => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState("");
@@ -84,13 +84,17 @@ const NewPageCard = () => {
   return (
     <Dialog>
       <DialogTrigger>
-        <div className="h-[450px] w-[300px] cursor-pointer rounded-xl border bg-card p-4 shadow-md duration-200 hover:scale-105 hover:shadow-lg md:h-[500px] md:w-[320px]">
+        {/* <div className="h-[450px] w-[300px] cursor-pointer rounded-xl border bg-card p-4 shadow-md duration-200 hover:scale-105 hover:shadow-lg md:h-[500px] md:w-[320px]">
           <div className="flex h-full w-full items-center justify-center rounded-lg border-2 border-dashed p-2">
             <div className="mt-8 flex flex-col items-center gap-4">
               <PlusCircleIcon className="h-10 w-10 text-neutral-400/80" />
               <span className="text-neutral-400/80">ساخت صفحه ی جدید</span>
             </div>
           </div>
+        </div> */}
+        <div className="flex h-8 items-center justify-center rounded-sm bg-brand-600/90 px-3 text-xs text-white hover:bg-brand-600">
+          افزودن صفحه جدید
+          <Plus />
         </div>
       </DialogTrigger>
       <DialogContent className="h-54">
@@ -112,7 +116,7 @@ const NewPageCard = () => {
                         <Input
                           {...field}
                           disabled={isPending}
-                          className="-ml-2 mt-[6px] rounded-l-none rounded-r-sm border-none ring-0"
+                          className="-ml-2 mt-[6px] rounded-l-none rounded-r-sm border-none shadow-none ring-0 focus:outline-none focus:ring-transparent"
                         />
                       </FormControl>
                       {/* <FormMess dir="rtl" className="" /> */}
@@ -138,4 +142,4 @@ const NewPageCard = () => {
   );
 };
 
-export default NewPageCard;
+export default CreatePageButton;
