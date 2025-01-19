@@ -1,14 +1,5 @@
-import DashboardSidebar from "@/app/_components/layout/navbar/dashboard-sidebar";
-import React from "react";
-
 const EditorLayout = ({ children }) => {
-  return (
-    <div>
-      <div />
-      <DashboardSidebar />
-      {children}
-    </div>
-  );
+  return <div className="h-full w-full">{children}</div>;
 };
 
 export default EditorLayout;
