@@ -126,3 +126,14 @@ export async function UpdatePageTheme(uri, theme) {
 
   return { success: "Page theme has been updated" };
 }
+
+export async function getPageTheme(uri) {
+  const page = await prisma.page.findUnique({
+    where: {
+      uri,
+    },
+  });
+  if (!page) return { error: "Page not found!" };
+
+  return page.theme;
+}

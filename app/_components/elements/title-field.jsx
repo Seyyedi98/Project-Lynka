@@ -19,6 +19,7 @@ const type = "TitleField";
 
 const extraAttributes = {
   title: "عنوان",
+  theme: "",
 };
 
 export const TitleFieldFormElement = {
@@ -41,11 +42,13 @@ export const TitleFieldFormElement = {
 
 function WorkspaceComponent({ elementInstance }) {
   const element = elementInstance;
-  const { title } = element.extraAttributes;
+  const { title, theme } = element.extraAttributes;
 
   return (
     <div className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-md border-2 border-slate-800 bg-card p-2">
-      <p>{title}</p>
+      <p>
+        {title} {theme}
+      </p>
       {/* <Input readOnly disabled /> */}
     </div>
   );
@@ -67,9 +70,11 @@ function PropertiesComponent({ elementInstance }) {
   const { closeMenu } = useModal();
 
   const form = useForm({
+    // TODO: Create zod schema
     // resolver: zodResolver(),
     defaultValues: {
       title: element.extraAttributes.title || "",
+      theme: element.extraAttributes.theme,
     },
   });
 
@@ -78,12 +83,13 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { title } = values;
+    const { title, theme } = values;
 
     updateElement(element.id, {
       ...element,
       extraAttributes: {
         title,
+        theme,
       },
     });
 
@@ -105,6 +111,27 @@ function PropertiesComponent({ elementInstance }) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>عنوان</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.currentTarget.blur();
+                      }
+                    }}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="theme"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>تم</FormLabel>
                 <FormControl>
                   <Input
                     {...field}

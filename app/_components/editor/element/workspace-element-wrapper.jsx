@@ -7,7 +7,7 @@ import { GripHorizontal, XIcon } from "lucide-react";
 import { useState } from "react";
 import { PageElements } from "../../controller/page-elements";
 
-const WorkspaceElementWrapper = ({ element }) => {
+const WorkspaceElementWrapper = ({ pageTheme, element }) => {
   const [mouseIsOver, setMouseIsOver] = useState(false);
   const { selectedElement, setSelectedElement } = useEditor();
   const { openMenu } = useModal();

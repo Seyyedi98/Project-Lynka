@@ -9,7 +9,7 @@ import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
 
 // Former canvas
 const BuilderWorkspace = () => {
-  const { elements, addElement, removeElement } = useEditor();
+  const { elements, addElement, removeElement, theme } = useEditor();
 
   const { closeMenu } = useModal();
 
@@ -153,9 +153,17 @@ const BuilderWorkspace = () => {
             </div>
           )}
 
+          {/* Page header */}
+          <div className="bg-red-500">header</div>
+
+          {/* Page content */}
           {elements.length > 0 &&
             elements.map((element) => (
-              <WorkspaceElementWrapper key={element.id} element={element} />
+              <WorkspaceElementWrapper
+                pageTheme={theme}
+                key={element.id}
+                element={element}
+              />
             ))}
           <div className="mt-auto pb-16">
             {/* <footer className="mt-4 w-full rounded-lg bg-gray-100 p-4 shadow-md">
