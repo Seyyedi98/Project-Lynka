@@ -79,7 +79,7 @@ const CreateNewPage = () => {
     <AuroraBackground>
       <div
         dir="ltr"
-        className="z-50 flex h-[50px] w-[380px] items-center justify-between rounded-full border border-black lg:h-[100px] lg:w-[650px]"
+        className="z-50 flex h-[50px] w-[380px] animate-fade-right items-center justify-between rounded-full border border-black lg:h-[100px] lg:w-[650px]"
       >
         <div className="ml-4 flex w-full items-center justify-between gap-4 lg:ml-8">
           <Form {...form}>
