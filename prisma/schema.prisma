@@ -111,6 +111,7 @@ model Page {
   content     String   @db.LongText
   visits      Int      @default(0)
   isPremium   Boolean  @default(false)
+  theme       String?
 
   User User? @relation(fields: [owner], references: [id])
 }

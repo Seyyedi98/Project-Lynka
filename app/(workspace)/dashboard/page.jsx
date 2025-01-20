@@ -1,5 +1,5 @@
 import { getUserPages } from "@/actions/page";
-import ExpandableRowCard from "@/app/_components/common/card/expandable-row-card";
+import ExpandableRowCard from "@/app/_components/common/card/expandable-row-card-page";
 import CreatePageButton from "@/app/_components/common/button/new-page-btn";
 import CreateNewPage from "@/app/_components/common/form/create-new-page";
 import DashboardHeading from "@/app/_components/layout/navbar/dashboard-heading";
