@@ -10,31 +10,30 @@ const UserButton = ({ children, isExpanded, title, path }) => {
   const pathname = usePathname();
 
   return (
-    <div className="flex justify-center items-center">
-      <Link href={path} className="w-full group/color cursor-pointer">
+    <div className="flex items-center justify-center">
+      <Link href={path} className="group/color w-full cursor-pointer">
         <div
           className={cn(
-            `absolute z-0 h-14 w-full xl:w-[200px] sm:w-14 rounded-md duration-200`,
+            `absolute z-0 h-14 w-full rounded-md duration-200 sm:w-14 xl:w-[200px]`,
             isExpanded && "sm:w-[200px]",
             !isExpanded && "sm:group-hover:w-[200px]",
             pathname === path
               ? "bg-link-hover/40"
-              : "group-hover/color:bg-link-hover/20"
+              : "group-hover/color:bg-link-hover/20",
           )}
         />
         <div
           className={cn(
-            `flex z-10 items-center justify-start gap-4 text-primary-foreground
-          px-4 sm:px-0 h-14 w-full py-4 duration-500 rounded-sm `
+            `z-10 flex h-14 w-full items-center justify-start gap-4 rounded-sm px-4 py-4 text-primary-foreground duration-500 sm:px-0`,
           )}
         >
           <span className="z-10 sm:mr-4">{children}</span>
           <span
             className={cn(
-              `sm:opacity-0 mb-1 text-nowrap z-10 duration-500 xl:translate-x-0 xl:opacity-100 sm:-translate-x-20`,
+              `z-10 mb-1 text-nowrap duration-500 sm:-translate-x-20 sm:opacity-0 xl:translate-x-0 xl:opacity-100`,
               isExpanded && "sm:translate-x-0 sm:opacity-100",
               !isExpanded &&
-                "sm:group-hover:translate-x-0 sm:group-hover:opacity-100"
+                "sm:group-hover:translate-x-0 sm:group-hover:opacity-100",
             )}
           >
             {title}
@@ -44,7 +43,8 @@ const UserButton = ({ children, isExpanded, title, path }) => {
 
       <div
         className={cn(
-          `sm:absolute sm:-translate-x-[70px] duration-200 text-white mr-auto p-3 ml-4 sm:ml-2 cursor-pointer sm:group-hover:block hover:bg-link-hover/40 z-[12] rounded-lg`
+          `z-[12] ml-4 mr-auto cursor-pointer rounded-lg p-3 text-white duration-200 hover:bg-link-hover/40 sm:absolute sm:ml-2 sm:-translate-x-[70px] sm:group-hover:block`,
+          !isExpanded && "hidden sm:block",
         )}
         onClick={(e) => {
           e.stopPropagation();

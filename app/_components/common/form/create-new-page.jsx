@@ -2,24 +2,16 @@
 
 import { checkPageAvailable, newPageCreator } from "@/actions/page";
 import { AuroraBackground } from "@/app/_components/common/shared/aurora-background";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import { PageUriSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChevronRight, LoaderIcon, Slash } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { FormSuccess } from "../message/form-success";
-import { FormError } from "../message/form-error";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 
 const CreateNewPage = () => {
   const router = useRouter();
@@ -113,10 +105,6 @@ const CreateNewPage = () => {
                             className="-ml-2 mb-1.5 mt-[6px] rounded-l-none rounded-r-sm border-none text-xl shadow-none ring-0 focus:outline-none focus:ring-transparent sm:text-xl md:text-2xl"
                           />
                         </FormControl>
-                        <FormMessage
-                          dir="rtl"
-                          className="absolute -bottom-12 -left-20 text-nowrap lg:-bottom-16 lg:-right-20"
-                        />
                       </FormItem>
                     )}
                   />
@@ -136,6 +124,9 @@ const CreateNewPage = () => {
             </form>
           </Form>
         </div>
+      </div>
+      <div dir="rtl" className="z-20 mt-4 text-right text-destructive">
+        {error}
       </div>
     </AuroraBackground>
   );

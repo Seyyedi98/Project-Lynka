@@ -102,7 +102,7 @@ function PropertiesComponent({ elementInstance }) {
       <Form {...form}>
         <form
           // onBlur={form.handleSubmit(applyChanges)}
-
+          className="mx-2 flex flex-col gap-2"
           onSubmit={form.handleSubmit(applyChanges)}
         >
           <FormField

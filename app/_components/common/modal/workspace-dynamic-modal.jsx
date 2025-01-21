@@ -140,7 +140,7 @@ const DiologComponent = function ({
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="text-right sm:max-w-[625px]">
         <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
+          {/* <DialogTitle>{title}</DialogTitle> */}
           <DialogDescription></DialogDescription>
           {children}
         </DialogHeader>
@@ -163,17 +163,23 @@ const DrawerComponent = function ({
         <DrawerTrigger asChild>{trigger}</DrawerTrigger>
       )}
 
-      <DrawerContent className="m-4 mb-0 bg-white text-right md:m-2 md:mx-auto md:max-w-[700px]">
-        <DrawerHeader className="mt-2 text-right md:mt-4">
-          <DrawerTitle className="text-center">{title}</DrawerTitle>
-          <DrawerDescription></DrawerDescription>
-          {children}
-        </DrawerHeader>
-        <DrawerFooter className="pt-2">
-          <DrawerClose asChild>
-            <Button variant="outline">بستن</Button>
-          </DrawerClose>
-        </DrawerFooter>
+      <DrawerContent className="mb-0 bg-white text-right md:m-2 md:mx-auto md:w-full">
+        <div className="mx-auto w-full max-w-sm">
+          <DrawerHeader>
+            <DrawerTitle className="mt-4 text-center">{title}</DrawerTitle>
+            <DrawerDescription></DrawerDescription>
+          </DrawerHeader>
+          <div className="p-2 pb-0">
+            <div width="100%" height="100%">
+              {children}
+            </div>
+          </div>
+          <DrawerFooter className="mt-4">
+            <DrawerClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </div>
       </DrawerContent>
     </Drawer>
   );
