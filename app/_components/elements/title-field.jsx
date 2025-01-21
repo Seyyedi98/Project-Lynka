@@ -148,7 +148,7 @@ function PropertiesComponent({ elementInstance }) {
           />
           <button
             type="submit"
-            className="absolute right-3 top-3 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600"
+            className="absolute -top-20 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600"
           >
             <Check className="h-4 w-4 text-white" />
           </button>

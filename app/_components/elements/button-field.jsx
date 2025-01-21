@@ -75,6 +75,7 @@ function PropertiesComponent({ elementInstance }) {
   const { closeMenu } = useModal();
 
   const form = useForm({
+    // TODO: Create zod schema
     // resolver: zodResolver(),
     defaultValues: {
       title: element.extraAttributes.title || "",
@@ -106,7 +107,7 @@ function PropertiesComponent({ elementInstance }) {
       <Form {...form}>
         <form
           // onBlur={form.handleSubmit(applyChanges)}
-          className="flex flex-col gap-4"
+          className="mx-2 flex flex-col gap-2"
           onSubmit={form.handleSubmit(applyChanges)}
         >
           <FormField
@@ -130,7 +131,7 @@ function PropertiesComponent({ elementInstance }) {
             )}
           />
 
-          <div className="flex gap-1">
+          <div className="relative flex gap-1">
             <div className="w-full">
               <FormField
                 control={form.control}
@@ -165,7 +166,7 @@ function PropertiesComponent({ elementInstance }) {
           </div>
           <button
             type="submit"
-            className="absolute right-3 top-3 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600"
+            className="absolute -top-20 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600"
           >
             <Check className="h-4 w-4 text-white" />
           </button>
