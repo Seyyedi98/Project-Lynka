@@ -7,7 +7,11 @@ const SelectThemePage = async ({ params }) => {
   const page = await getUserPageDataByUri(uri);
   if (page.theme) redirect(`/workspace/${uri}`);
 
-  return <ThemeSelector uri={uri} />;
+  return (
+    <div className="bg-card">
+      <ThemeSelector uri={uri} />;
+    </div>
+  );
 };
 
 export default SelectThemePage;

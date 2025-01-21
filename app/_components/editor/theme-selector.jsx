@@ -1,11 +1,13 @@
 "use client";
 
 import { UpdatePageTheme } from "@/actions/page";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 import ExpandableThemeGridCard from "../common/card/expandable-grid-card-theme";
 import GridLayout from "../layout/grid-layout";
-import { useTransition } from "react";
-import { redirect } from "next/dist/server/api-utils";
-import { useRouter } from "next/navigation";
+import { ThemeController } from "../controller/theme-controller";
+
+const themes2 = ThemeController;
 
 const themes = [
   { name: "sun" },

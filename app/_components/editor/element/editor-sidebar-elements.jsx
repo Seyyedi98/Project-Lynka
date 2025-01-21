@@ -4,7 +4,7 @@ import { PageElements } from "../../controller/page-elements";
 const EditorSidebarElements = () => {
   return (
     <div className="w-full">
-      <p className="mb-6 place-self-center text-sm text-muted-foreground md:place-self-start">
+      <p className="mb-6 place-self-center text-sm text-muted-foreground md:place-self-start md:p-4 md:text-white">
         فیلد ها
       </p>
       <div className="mx-2 grid max-h-[70dvh] grid-cols-1 place-items-start gap-y-4">
