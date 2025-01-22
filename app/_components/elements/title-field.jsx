@@ -14,6 +14,7 @@ import useModal from "@/hooks/useModal";
 import { Check, Heading } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { ThemeController } from "../controller/theme-controller";
 
 const type = "TitleField";
 
@@ -44,24 +45,18 @@ function WorkspaceComponent({ elementInstance }) {
   const element = elementInstance;
   const { title, theme } = element.extraAttributes;
 
-  return (
-    <div className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-md border-2 border-slate-800 bg-card p-2">
-      <p>
-        {title} {theme}
-      </p>
-      {/* <Input readOnly disabled /> */}
-    </div>
-  );
+  const RenderedElement = ThemeController[element.type][theme];
+
+  return <RenderedElement title={title} theme={theme} />;
 }
 
 function PageComponent({ elementInstance }) {
   const element = elementInstance;
-  const { title } = element.extraAttributes;
-  return (
-    <div className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-md border-2 border-slate-800 bg-card p-2">
-      <p>{title}</p>
-    </div>
-  );
+  const { title, theme } = element.extraAttributes;
+
+  const RenderedElement = ThemeController[element.type][theme];
+
+  return <RenderedElement title={title} theme={theme} />;
 }
 
 function PropertiesComponent({ elementInstance }) {
