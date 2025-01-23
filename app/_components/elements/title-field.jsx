@@ -15,16 +15,6 @@ import { Check, Heading } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ThemeController } from "../controller/theme-controller";
-import { Button } from "@/components/ui/button";
-import { UpdatePageTheme } from "@/actions/page";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../common/modal/diolog";
 
 const type = "TitleField";
 
@@ -71,7 +61,7 @@ function LivePageComponent({ elementInstance }) {
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
-  const { updateElement, setSelectedElement, selectedElement } = useEditor();
+  const { updateElement, setSelectedElement } = useEditor();
   const { closeMenu } = useModal();
 
   const form = useForm({
@@ -139,76 +129,6 @@ function PropertiesComponent({ elementInstance }) {
           </button>
         </form>
       </Form>
-
-      <Button
-        onClick={() => {
-          updateElement(element.id, {
-            ...element,
-            extraAttributes: {
-              ...element.extraAttributes,
-              theme: "sunny",
-            },
-          });
-          closeMenu();
-        }}
-      >
-        Sunny
-      </Button>
-      <Button
-        onClick={() => {
-          updateElement(element.id, {
-            ...element,
-            extraAttributes: {
-              ...element.extraAttributes,
-              theme: "nature",
-            },
-          });
-          closeMenu();
-        }}
-      >
-        Nature
-      </Button>
-
-      <Dialog>
-        <DialogTrigger>تغییر تم</DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>تم مورد نظر خود را انتخاب کنید</DialogTitle>
-            <DialogDescription>
-              تم مورد نظر خود را انتخاب کنید
-            </DialogDescription>
-
-            <Button
-              onClick={() => {
-                updateElement(element.id, {
-                  ...element,
-                  extraAttributes: {
-                    ...element.extraAttributes,
-                    theme: "sunny",
-                  },
-                });
-                closeMenu();
-              }}
-            >
-              Sunny
-            </Button>
-            <Button
-              onClick={() => {
-                updateElement(element.id, {
-                  ...element,
-                  extraAttributes: {
-                    ...element.extraAttributes,
-                    theme: "nature",
-                  },
-                });
-                closeMenu();
-              }}
-            >
-              Nature
-            </Button>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
     </>
   );
 }

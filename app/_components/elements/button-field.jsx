@@ -13,10 +13,11 @@ import { Input } from "@/components/ui/input";
 import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import { ButtonIcon } from "@radix-ui/react-icons";
-import { Check, Heading } from "lucide-react";
+import { Check } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { ThemeController } from "../controller/theme-controller";
 
 const type = "ButtonField";
 
@@ -45,27 +46,20 @@ export const ButtonFieldFormElement = {
 
 function WorkspaceComponent({ elementInstance }) {
   const element = elementInstance;
-  const { title } = element.extraAttributes;
+  const { title, theme } = element.extraAttributes;
 
-  return (
-    <div className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-md border-2 border-slate-800 bg-card p-2">
-      <p>{title}</p>
-    </div>
-  );
+  const RenderedElement = ThemeController[element.type][theme];
+
+  return <RenderedElement title={title} theme={theme} />;
 }
 
 function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
-  const { title, href } = element.extraAttributes;
+  const { title, href, theme } = element.extraAttributes;
 
+  const RenderedElement = ThemeController[element.type][theme];
   return (
-    <Link
-      href={`http://${href}`}
-      target="_blank" // ask open in new page??
-      className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-md border-2 border-slate-800 bg-card p-2"
-    >
-      <p>{title}</p>
-    </Link>
+    <RenderedElement title={title} theme={theme} href={href} isLive={true} />
   );
 }
 
@@ -93,6 +87,7 @@ function PropertiesComponent({ elementInstance }) {
     updateElement(element.id, {
       ...element,
       extraAttributes: {
+        ...element.extraAttributes,
         title,
         href,
       },
@@ -175,9 +170,3 @@ function PropertiesComponent({ elementInstance }) {
     </>
   );
 }
-
-const ButtonField = () => {
-  return <div>ButtonField</div>;
-};
-
-export default ButtonField;
