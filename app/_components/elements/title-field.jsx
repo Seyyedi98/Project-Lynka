@@ -15,6 +15,16 @@ import { Check, Heading } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ThemeController } from "../controller/theme-controller";
+import { Button } from "@/components/ui/button";
+import { UpdatePageTheme } from "@/actions/page";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../common/modal/diolog";
 
 const type = "TitleField";
 
@@ -37,7 +47,7 @@ export const TitleFieldFormElement = {
   },
 
   WorkspaceComponent: WorkspaceComponent,
-  PageComponent: PageComponent,
+  LivePageComponent: LivePageComponent,
   PropertiesComponent: PropertiesComponent,
 };
 
@@ -50,7 +60,7 @@ function WorkspaceComponent({ elementInstance }) {
   return <RenderedElement title={title} theme={theme} />;
 }
 
-function PageComponent({ elementInstance }) {
+function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
   const { title, theme } = element.extraAttributes;
 
@@ -61,7 +71,7 @@ function PageComponent({ elementInstance }) {
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
-  const { updateElement, setSelectedElement } = useEditor();
+  const { updateElement, setSelectedElement, selectedElement } = useEditor();
   const { closeMenu } = useModal();
 
   const form = useForm({
@@ -78,13 +88,13 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { title, theme } = values;
+    const { title } = values;
 
     updateElement(element.id, {
       ...element,
       extraAttributes: {
+        ...element.extraAttributes,
         title,
-        theme,
       },
     });
 
@@ -121,26 +131,6 @@ function PropertiesComponent({ elementInstance }) {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="theme"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>تم</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.currentTarget.blur();
-                      }
-                    }}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <button
             type="submit"
             className="absolute -top-20 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600"
@@ -149,12 +139,76 @@ function PropertiesComponent({ elementInstance }) {
           </button>
         </form>
       </Form>
+
+      <Button
+        onClick={() => {
+          updateElement(element.id, {
+            ...element,
+            extraAttributes: {
+              ...element.extraAttributes,
+              theme: "sunny",
+            },
+          });
+          closeMenu();
+        }}
+      >
+        Sunny
+      </Button>
+      <Button
+        onClick={() => {
+          updateElement(element.id, {
+            ...element,
+            extraAttributes: {
+              ...element.extraAttributes,
+              theme: "nature",
+            },
+          });
+          closeMenu();
+        }}
+      >
+        Nature
+      </Button>
+
+      <Dialog>
+        <DialogTrigger>تغییر تم</DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>تم مورد نظر خود را انتخاب کنید</DialogTitle>
+            <DialogDescription>
+              تم مورد نظر خود را انتخاب کنید
+            </DialogDescription>
+
+            <Button
+              onClick={() => {
+                updateElement(element.id, {
+                  ...element,
+                  extraAttributes: {
+                    ...element.extraAttributes,
+                    theme: "sunny",
+                  },
+                });
+                closeMenu();
+              }}
+            >
+              Sunny
+            </Button>
+            <Button
+              onClick={() => {
+                updateElement(element.id, {
+                  ...element,
+                  extraAttributes: {
+                    ...element.extraAttributes,
+                    theme: "nature",
+                  },
+                });
+                closeMenu();
+              }}
+            >
+              Nature
+            </Button>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
-
-const TitleField = () => {
-  return <div>TitleField</div>;
-};
-
-export default TitleField;

@@ -39,7 +39,7 @@ export const ButtonFieldFormElement = {
   },
 
   WorkspaceComponent: WorkspaceComponent,
-  PageComponent: PageComponent,
+  LivePageComponent: LivePageComponent,
   PropertiesComponent: PropertiesComponent,
 };
 
@@ -54,7 +54,7 @@ function WorkspaceComponent({ elementInstance }) {
   );
 }
 
-function PageComponent({ elementInstance }) {
+function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
   const { title, href } = element.extraAttributes;
 

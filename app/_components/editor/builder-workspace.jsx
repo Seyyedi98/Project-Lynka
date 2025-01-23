@@ -133,52 +133,56 @@ const BuilderWorkspace = () => {
   });
 
   return (
-    <div
-      className={cn(
-        `h-full w-full bg-neutral-50 duration-500`,
-        isWorkspaceMenuOpen && "scale-95",
-      )}
-    >
+    <>
       <WorkspaceHeader />
-      <div className="flex h-full w-full gap-6 p-4">
-        <EditorSidebar />
+      <div
+        className={cn(
+          `h-full w-full bg-neutral-50 pt-14 duration-500`,
+          isWorkspaceMenuOpen && "scale-95",
+        )}
+      >
+        <div className="flex h-full w-full gap-6 p-4">
+          <EditorSidebar />
 
-        <div
-          className="relative flex flex-grow flex-col items-center overflow-y-auto rounded-xl bg-white pt-2 shadow-lg md:pt-10"
-          ref={droppable.setNodeRef}
-        >
-          {/* Page header */}
-          <div className="bg-red-500">header</div>
+          <div
+            className="relative flex h-full flex-grow flex-col items-center overflow-y-auto rounded-xl bg-white pt-2 shadow-lg md:pt-10"
+            ref={droppable.setNodeRef}
+          >
+            {/* Page header */}
+            <div className="bg-red-500">header</div>
 
-          {!droppable.isOver && elements.length === 0 && (
-            <p className="flex h-full items-center justify-center text-xl font-medium text-gray-500">
-              Add some blocks to start!
-            </p>
-          )}
+            {!droppable.isOver && elements.length === 0 && (
+              <p className="flex items-center justify-center text-xl font-medium text-gray-500">
+                Add some blocks to start!
+              </p>
+            )}
 
-          {droppable.isOver && elements.length === 0 && (
-            <div className="w-full p-4">
-              <div className="h-32 rounded-lg bg-blue-100"></div>
-            </div>
-          )}
+            {droppable.isOver && elements.length === 0 && (
+              <div className="w-full p-4">
+                <div className="h-32 rounded-lg bg-blue-100">
+                  اینجا رها کنید
+                </div>
+              </div>
+            )}
 
-          {/* Page content */}
-          {elements.length > 0 &&
-            elements.map((element) => (
-              <WorkspaceElementWrapper
-                pageTheme={theme}
-                key={element.id}
-                element={element}
-              />
-            ))}
-          <div className="mt-auto pb-32">
-            {/* <footer className="mt-4 w-full rounded-lg bg-gray-100 p-4 shadow-md">
+            {/* Page content */}
+            {elements.length > 0 &&
+              elements.map((element) => (
+                <WorkspaceElementWrapper
+                  pageTheme={theme}
+                  key={element.id}
+                  element={element}
+                />
+              ))}
+            <div className="mt-auto pb-24">
+              {/* <footer className="mt-4 w-full rounded-lg bg-gray-100 p-4 shadow-md">
             &copy; {new Date().getFullYear()} All rights reserved.
             </footer> */}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

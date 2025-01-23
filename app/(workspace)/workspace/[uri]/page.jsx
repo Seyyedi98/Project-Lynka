@@ -9,7 +9,7 @@ const EditorPage = async ({ params }) => {
   if (page.theme) {
     return (
       <>
-        <PageBuilder page={page} />;
+        <PageBuilder page={page} />
       </>
     );
   }

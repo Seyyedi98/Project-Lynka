@@ -115,7 +115,7 @@ const WorkspaceElementWrapper = ({ pageTheme, element }) => {
           onClick={(e) => e.stopPropagation()}
           ref={draggable.setNodeRef}
           // className="pointer-events-auto absolute -left-14 flex"
-          className="pointer-events-auto"
+          className="pointer-events-auto translate-y-1"
         >
           <button
             {...draggable.listeners}

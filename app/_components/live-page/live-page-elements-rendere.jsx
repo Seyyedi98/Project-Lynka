@@ -6,7 +6,7 @@ const LivePageElements = ({ content }) => {
   return (
     <>
       {content.map((element) => {
-        const PageElement = PageElements[element?.type]?.PageComponent;
+        const PageElement = PageElements[element?.type]?.LivePageComponent;
 
         return (
           <PageElement

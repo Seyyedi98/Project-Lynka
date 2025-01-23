@@ -13,7 +13,7 @@ import PageSettings from "../../editor/page-settings";
 
 const WorkspaceHeader = () => {
   return (
-    <header className="flex h-14 items-center justify-between bg-primary-500 px-4">
+    <header className="fixed right-0 top-0 z-20 flex h-14 w-full items-center justify-between bg-primary-500 px-4">
       <div className="flex gap-2">
         <Dialog>
           <DialogTrigger asChild>
