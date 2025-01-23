@@ -14,7 +14,6 @@ import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import { ButtonIcon } from "@radix-ui/react-icons";
 import { Check } from "lucide-react";
-import Link from "next/link";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ThemeController } from "../controller/theme-controller";
@@ -50,7 +49,7 @@ function WorkspaceComponent({ elementInstance }) {
 
   const RenderedElement = ThemeController[element.type][theme];
 
-  return <RenderedElement title={title} theme={theme} />;
+  return <RenderedElement title={title} />;
 }
 
 function LivePageComponent({ elementInstance }) {
@@ -58,9 +57,7 @@ function LivePageComponent({ elementInstance }) {
   const { title, href, theme } = element.extraAttributes;
 
   const RenderedElement = ThemeController[element.type][theme];
-  return (
-    <RenderedElement title={title} theme={theme} href={href} isLive={true} />
-  );
+  return <RenderedElement title={title} href={href} isLive={true} />;
 }
 
 function PropertiesComponent({ elementInstance }) {

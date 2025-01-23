@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const ButtonFieldNature = ({ title, href, theme, isLive }) => {
+const ButtonFieldNature = ({ title, href, isLive }) => {
   return (
     <>
       {isLive && (
@@ -15,9 +15,7 @@ const ButtonFieldNature = ({ title, href, theme, isLive }) => {
 
       {!isLive && (
         <div className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-md border-2 border-slate-800 bg-green-500 p-2">
-          <p>
-            {title} {theme}
-          </p>
+          <p>{title}</p>
         </div>
       )}
     </>

@@ -174,9 +174,9 @@ const DrawerComponent = function ({
               {children}
             </div>
           </div>
-          <DrawerFooter className="mt-4">
+          <DrawerFooter className="">
             <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">لفو تغییرات</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

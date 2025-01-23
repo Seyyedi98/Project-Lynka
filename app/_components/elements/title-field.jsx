@@ -47,7 +47,7 @@ function WorkspaceComponent({ elementInstance }) {
 
   const RenderedElement = ThemeController[element.type][theme];
 
-  return <RenderedElement title={title} theme={theme} />;
+  return <RenderedElement title={title} />;
 }
 
 function LivePageComponent({ elementInstance }) {
@@ -56,7 +56,7 @@ function LivePageComponent({ elementInstance }) {
 
   const RenderedElement = ThemeController[element.type][theme];
 
-  return <RenderedElement title={title} theme={theme} />;
+  return <RenderedElement title={title} />;
 }
 
 function PropertiesComponent({ elementInstance }) {

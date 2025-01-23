@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import useEditor from "@/hooks/useEditor";
 import { TrashIcon } from "lucide-react";
 import DeleteElementBtn from "../../common/button/delete-element-button";
 import {
@@ -11,12 +10,9 @@ import {
   DialogTrigger,
 } from "../../common/modal/diolog";
 import { PageElements } from "../../controller/page-elements";
-import useModal from "@/hooks/useModal";
 import ElementThemeSelector from "../../theme/element-theme-selector";
 
 const ElementProperties = ({ element }) => {
-  const { updateElement } = useEditor();
-  const { closeMenu } = useModal();
   const PropertiesForm = PageElements[element?.type]?.PropertiesComponent;
 
   return (
@@ -30,43 +26,15 @@ const ElementProperties = ({ element }) => {
       {element && <PropertiesForm elementInstance={element} />}
 
       <Dialog>
-        <DialogTrigger>تغییر تم</DialogTrigger>
-        <DialogContent>
+        <DialogTrigger asChild>
+          <Button className="mr-2 mt-4 w-[96%]">انتخاب تم</Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-3xl">
           <DialogHeader>
             <DialogTitle>تم مورد نظر خود را انتخاب کنید</DialogTitle>
-            <DialogDescription>
-              تم مورد نظر خود را انتخاب کنید
-            </DialogDescription>
+            <DialogDescription></DialogDescription>
 
             <ElementThemeSelector elementInstance={element} />
-            {/* <Button
-              onClick={() => {
-                updateElement(element.id, {
-                  ...element,
-                  extraAttributes: {
-                    ...element.extraAttributes,
-                    theme: "sunny",
-                  },
-                });
-                closeMenu();
-              }}
-            >
-              Sunny
-            </Button>
-            <Button
-              onClick={() => {
-                updateElement(element.id, {
-                  ...element,
-                  extraAttributes: {
-                    ...element.extraAttributes,
-                    theme: "nature",
-                  },
-                });
-                closeMenu();
-              }}
-            >
-              Nature
-            </Button> */}
           </DialogHeader>
         </DialogContent>
       </Dialog>
