@@ -9,8 +9,10 @@ export default function EditorContextProvider({ children }) {
   const [theme, setTheme] = useState("");
   const [selectedElement, setSelectedElement] = useState(null);
 
-  const addElement = (index, element) => {
-    element.extraAttributes.theme = theme; // Apply page current theme to new created  element
+  const addElement = (index, element, applyPageTheme) => {
+    if (applyPageTheme) {
+      element.extraAttributes.theme = theme; // Apply page current theme to new created element
+    }
     setElements((prev) => {
       const newElements = [...prev];
       newElements.splice(index, 0, element);

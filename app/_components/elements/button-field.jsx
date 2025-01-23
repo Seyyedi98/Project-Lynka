@@ -22,6 +22,7 @@ const type = "ButtonField";
 
 const extraAttributes = {
   title: "عنوان",
+  theme: "",
   href: " ",
 };
 

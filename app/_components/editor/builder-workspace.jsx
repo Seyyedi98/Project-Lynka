@@ -49,11 +49,13 @@ const BuilderWorkspace = () => {
       ////////////////////////////////////////////////////////////////////////////////////
       //     1. When drop new element on workspace, It will be added as a last item     //
       ////////////////////////////////////////////////////////////////////////////////////
+
       if (isAdderBtn && isDroppingOverWorkspaceArea) {
         const type = active.data?.current?.type;
         const newElement = PageElements[type].construct(idGenerator());
 
-        addElement(elements.length, newElement);
+        const applyPageTheme = true;
+        addElement(elements.length, newElement, applyPageTheme);
 
         return;
       }
@@ -61,6 +63,7 @@ const BuilderWorkspace = () => {
       ////////////////////////////////////////////////////////////////////////////////////
       //        2. When Drop new element on top or bottom half on canvas element        //
       ////////////////////////////////////////////////////////////////////////////////////
+
       if (isAdderBtn && droppingOverWorkspaceElement) {
         const type = active.data?.current?.type;
         const newElement = PageElements[type].construct(idGenerator());
@@ -75,7 +78,8 @@ const BuilderWorkspace = () => {
           indexForNewElement = indexForNewElement + 1;
         }
 
-        addElement(indexForNewElement, newElement);
+        const applyPageTheme = true;
+        addElement(indexForNewElement, newElement, applyPageTheme);
       }
 
       ////////////////////////////////////////////////////////////////////////////////////
@@ -113,6 +117,7 @@ const BuilderWorkspace = () => {
       ////////////////////////////////////////////////////////////////////////////////////
       //         4. When drag workspace elements and drop on the workspace area         //
       ////////////////////////////////////////////////////////////////////////////////////
+
       if (isDraggingWorkspaceElement && isDroppingOverWorkspaceArea) {
         const activeId = active.data?.current.elementId;
 

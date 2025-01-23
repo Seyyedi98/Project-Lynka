@@ -27,7 +27,8 @@ const AddElementButton = ({ pageElement }) => {
         closeMenu();
         const type = pageElement.type;
         const newElement = PageElements[type].construct(idGenerator());
-        addElement(elements.length, newElement);
+        const applyPageTheme = true;
+        addElement(elements.length, newElement, applyPageTheme);
       }}
       ref={draggable.setNodeRef}
       className={cn(
