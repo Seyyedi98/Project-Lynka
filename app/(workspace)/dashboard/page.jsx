@@ -3,7 +3,6 @@ import CreatePageButton from "@/app/_components/common/button/new-page-btn";
 import ExpandableRowCard from "@/app/_components/common/card/expandable-row-card-page";
 import CreateNewPage from "@/app/_components/common/form/create-new-page";
 import DashboardHeading from "@/app/_components/layout/navbar/dashboard-heading";
-import DashboardSidebar from "@/app/_components/layout/navbar/dashboard-sidebar";
 import {
   Accordion,
   AccordionContent,

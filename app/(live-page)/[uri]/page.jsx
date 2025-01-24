@@ -7,6 +7,7 @@ const LivePage = async ({ params }) => {
   const { uri } = await params;
 
   const page = await getPreviewPageDataByUri(uri);
+  // if (!page) return <p className="bg-red-500">loading...</p>;
   if (page.error) return notFound();
 
   const content = getPageContent(page);

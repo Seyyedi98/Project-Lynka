@@ -9,6 +9,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
   const elementType = elementInstance?.type;
 
   const Themes = ThemeController[elementType];
+  if (!Themes) throw new Error("Cannot load element themes");
   const themesList = Object.keys(Themes);
 
   return (

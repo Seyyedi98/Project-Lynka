@@ -12,6 +12,7 @@ import {
 import { PageElements } from "../../controller/page-elements";
 import { PageHeroElement } from "../../elements/hero/page-hero-element";
 import ElementThemeSelector from "../../theme/element-theme-selector";
+import HeroThemeSelector from "../../theme/hero-theme-selector";
 
 const ElementProperties = ({ element }) => {
   let PropertiesForm;
@@ -39,7 +40,7 @@ const ElementProperties = ({ element }) => {
             <DialogDescription></DialogDescription>
 
             {element?.type == "HeroElement" ? (
-              ""
+              <HeroThemeSelector />
             ) : (
               <ElementThemeSelector elementInstance={element} />
             )}

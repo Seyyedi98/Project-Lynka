@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import SavePageBtn from "../../common/button/PrimaryButton/save-page-button";
 import Link from "next/link";
 import useTruncate from "@/hooks/useTruncate";
+import Upload from "../../common/input/LiaraUpload";
 
 const WorkspaceBottomBar = ({ isDesktop }) => {
   const websiteUrl = process.env.NEXT_PUBLIC_WEBSITE_URL;
@@ -28,6 +29,7 @@ const WorkspaceBottomBar = ({ isDesktop }) => {
           isDesktop ? "mx-auto max-w-[700px]" : "mx-2",
         )}
       >
+        <Upload />
         <SavePageBtn uri={params.uri}>
           <div className="cursor-pointer rounded-full bg-primary-600 p-2 text-white duration-200 hover:bg-primary-700">
             <SaveIcon className="h-6 w-6" />

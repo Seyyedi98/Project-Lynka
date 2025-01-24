@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import BuilderWorkspace from "./builder-workspace";
 import DragOverlyWrapper from "./element/drag-overly-wrapper";
 import getPageHero from "@/lib/page/get-page-header";
+import { Loader2Icon } from "lucide-react";
 
 // Former editor-canvas
 const PageBuilder = ({ page }) => {
@@ -49,6 +50,14 @@ const PageBuilder = ({ page }) => {
     setHero(hero);
     setIsReady(true);
   }, [page, setElements, setSelectedElement, setHero, setTheme]);
+
+  // workspace loading
+  if (!isReady)
+    return (
+      <div className="grid h-full w-full place-content-center bg-primary-foreground">
+        <Loader2Icon className="animate-spin" />
+      </div>
+    );
 
   return (
     <DndContext sensors={sensors}>
