@@ -1,12 +1,15 @@
 // import { savePageSettings } from "@/actions/page/page-data";
 import { Button } from "@/components/ui/button";
+import { FileUpload } from "@/components/ui/file-upload";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
+import useEditor from "@/hooks/useEditor";
+import useModal from "@/hooks/useModal";
 import uploadFile from "@/lib/uploadFile";
 import { S3 } from "aws-sdk";
 import { useEffect, useState } from "react";
 
-const Upload = ({ uri }) => {
+const HeroWorkspaceUploader = ({ uri }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -15,6 +18,9 @@ const Upload = ({ uri }) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [allFiles, setAllFiles] = useState([]);
   const [buckets, setBuckets] = useState([]);
+
+  const { updateHero, hero } = useEditor();
+  const { closeMenu } = useModal();
 
   const ACCESSKEY = process.env.NEXT_PUBLIC_LIARA_ACCESS_KEY;
   const SECRETKEY = process.env.NEXT_PUBLIC_LIARA_SECRET_KEY;
@@ -68,18 +74,24 @@ const Upload = ({ uri }) => {
     const formValues = { bgImage: res };
     // Add image url to database
 
-    // await savePageSettings(uri, formValues).then((data) => {
-    //   if (data.success) {
-    //     toast({
-    //       description: data.success,
-    //     });
-    //   }
-    //   if (data.error) {
-    //     toast({
-    //       description: data.error,
-    //     });
-    //   }
-    // });
+    try {
+      updateHero({
+        ...hero,
+        extraAttributes: {
+          ...hero.extraAttributes,
+          primaryImage: res,
+        },
+      });
+      closeMenu();
+      toast({
+        description: "succeed",
+      });
+    } catch (error) {
+      toast({
+        description: "error",
+      });
+    }
+
     setIsUploading(false);
   };
 
@@ -125,4 +137,4 @@ const Upload = ({ uri }) => {
   );
 };
 
-export default Upload;
+export default HeroWorkspaceUploader;

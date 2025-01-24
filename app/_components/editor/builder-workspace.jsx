@@ -8,7 +8,6 @@ import EditorSidebar from "../layout/navbar/editor-sidebar";
 import WorkspaceHeader from "../layout/navbar/workspace-header";
 import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
-import { Suspense } from "react";
 
 // Former canvas
 const BuilderWorkspace = () => {

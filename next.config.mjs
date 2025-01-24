@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    domains: ["arklight.storage.c2.liara.space"],
+  },
+};
 
 export default nextConfig;

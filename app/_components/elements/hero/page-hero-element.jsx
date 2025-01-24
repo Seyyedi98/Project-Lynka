@@ -15,6 +15,7 @@ import { Check, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { HeroController } from "../../controller/hero-controller";
 import { useEffect } from "react";
+import HeroWorkspaceUploader from "../../common/input/workspace-hero-uploader";
 
 const type = "HeroElement";
 
@@ -43,21 +44,32 @@ function WorkspaceComponent({ elementInstance }) {
   const element = elementInstance;
   if (element.length == 0) return;
 
-  const { style, title, subtitle } = element?.extraAttributes;
-
+  const { style, title, subtitle, primaryImage } = element?.extraAttributes;
   const RenderedElement = HeroController[style];
 
-  return <RenderedElement title={title} subtitle={subtitle} />;
+  return (
+    <RenderedElement
+      title={title}
+      subtitle={subtitle}
+      primaryImage={primaryImage}
+    />
+  );
 }
 
 function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
-  const { style, title, subtitle } = element.extraAttributes;
+  const { style, title, subtitle, primaryImage } = element.extraAttributes;
 
   if (!style) return <Loader2 className="animate-spin" />;
   const RenderedElement = HeroController[style];
 
-  return <RenderedElement title={title} subtitle={subtitle} />;
+  return (
+    <RenderedElement
+      title={title}
+      subtitle={subtitle}
+      primaryImage={primaryImage}
+    />
+  );
 }
 
 function PropertiesComponent({ elementInstance }) {
@@ -149,6 +161,9 @@ function PropertiesComponent({ elementInstance }) {
           >
             <Check className="h-4 w-4 text-white" />
           </button>
+          <div className="mt-2">
+            <HeroWorkspaceUploader />
+          </div>
         </form>
       </Form>
     </>
