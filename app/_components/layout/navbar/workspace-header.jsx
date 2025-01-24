@@ -8,12 +8,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../common/modal/diolog";
-import PreviewPageElements from "../../preview/preview-elements-rendere";
+import PreviewPageElements from "../../preview/preview-elements-renderer";
 import PageSettings from "../../editor/page-settings";
+import PreviewPageHero from "../../preview/preview-hero-renderer";
 
 const WorkspaceHeader = () => {
   return (
-    <header className="fixed right-0 top-0 z-20 flex h-14 w-full items-center justify-between bg-primary-500 px-4">
+    <header className="absolute right-0 top-0 z-20 flex h-14 w-full items-center justify-between bg-primary-500 px-4">
       <div className="flex gap-2">
         <Dialog>
           <DialogTrigger asChild>
@@ -21,11 +22,12 @@ const WorkspaceHeader = () => {
               <p>پیش نمایش</p>
             </Button>
           </DialogTrigger>
-          <DialogContent className="flex h-screen max-h-screen w-screen max-w-full flex-grow flex-col gap-0 p-0 px-4">
-            <DialogTitle>پیش نمایش</DialogTitle>
-            <DialogDescription></DialogDescription>
-            <div className="flex h-full w-full items-center justify-center">
-              <section className="flex h-full w-3/4 max-w-[400px] flex-col items-center justify-center gap-4">
+          <DialogContent className="flex h-screen max-h-screen w-screen max-w-full flex-grow flex-col gap-0 p-0">
+            <DialogTitle className="hidden"></DialogTitle>
+            <DialogDescription className="hidden"></DialogDescription>
+            <div className="flex h-full w-full flex-col items-center justify-center">
+              <PreviewPageHero />
+              <section className="mt-6 flex h-full w-3/4 max-w-[400px] flex-col items-center justify-start gap-4">
                 <PreviewPageElements />
               </section>
             </div>

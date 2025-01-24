@@ -11,7 +11,7 @@ const EditorSidebar = () => {
 
   // TODO: Replace with skeleton
   if (isDesktop === null) {
-    return <div>Loading...</div>; // Or keep this hidden initially.
+    return; // Or keep this hidden initially.
   }
 
   // Mobile Device

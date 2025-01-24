@@ -6,6 +6,7 @@ export const EditorContext = createContext(null);
 
 export default function EditorContextProvider({ children }) {
   const [elements, setElements] = useState([]);
+  const [hero, setHero] = useState([]);
   const [theme, setTheme] = useState("");
   const [selectedElement, setSelectedElement] = useState(null);
 
@@ -35,9 +36,18 @@ export default function EditorContextProvider({ children }) {
     setElements((prev) => prev.filter((elements) => elements.id !== id));
   };
 
+  const updateHero = (element) => {
+    setHero((prev) => {
+      const newElements = element;
+      return newElements;
+    });
+  };
+
   return (
     <EditorContext.Provider
       value={{
+        hero,
+        setHero,
         elements,
         setElements,
         theme,
@@ -47,6 +57,7 @@ export default function EditorContextProvider({ children }) {
         addElement,
         updateElement,
         removeElement,
+        updateHero,
       }}
     >
       {children}

@@ -10,10 +10,14 @@ import {
   DialogTrigger,
 } from "../../common/modal/diolog";
 import { PageElements } from "../../controller/page-elements";
+import { PageHeroElement } from "../../elements/hero/page-hero-element";
 import ElementThemeSelector from "../../theme/element-theme-selector";
 
 const ElementProperties = ({ element }) => {
-  const PropertiesForm = PageElements[element?.type]?.PropertiesComponent;
+  let PropertiesForm;
+  PropertiesForm = PageElements[element?.type]?.PropertiesComponent;
+
+  if (!PropertiesForm) PropertiesForm = PageHeroElement?.PropertiesComponent;
 
   return (
     <div className="relative">
@@ -34,7 +38,11 @@ const ElementProperties = ({ element }) => {
             <DialogTitle>تم مورد نظر خود را انتخاب کنید</DialogTitle>
             <DialogDescription></DialogDescription>
 
-            <ElementThemeSelector elementInstance={element} />
+            {element?.type == "HeroElement" ? (
+              ""
+            ) : (
+              <ElementThemeSelector elementInstance={element} />
+            )}
           </DialogHeader>
         </DialogContent>
       </Dialog>

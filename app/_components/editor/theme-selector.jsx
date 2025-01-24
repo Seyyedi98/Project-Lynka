@@ -1,19 +1,18 @@
 "use client";
 
-import { UpdatePageTheme } from "@/actions/page";
+import { UpdatePageContent, UpdatePageTheme } from "@/actions/page";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import ExpandableThemeGridCard from "../common/card/expandable-grid-card-theme";
 import GridLayout from "../layout/grid-layout";
-import { ThemeController } from "../controller/theme-controller";
-
-const themes2 = ThemeController;
+import { PageHeroElement } from "../elements/hero/page-hero-element";
+import { idGenerator } from "@/lib/id-generator";
 
 const themes = [
-  { name: "sun" },
-  { name: "aurora" },
-  { name: "nature" },
-  { name: "wooden" },
+  { name: "sunny", hero: "basic" },
+  { name: "aurora", hero: "basic" },
+  { name: "nature", hero: "normal" },
+  { name: "wooden", hero: "normal" },
 ];
 
 const ThemeSelector = ({ uri }) => {
@@ -21,11 +20,27 @@ const ThemeSelector = ({ uri }) => {
   const router = useRouter();
 
   const onSelect = async (theme) => {
-    startTransition(() =>
-      UpdatePageTheme(uri, theme.name).then((data) => {
-        if (data.success) router.refresh();
-      }),
-    );
+    const heroElement = PageHeroElement.construct(idGenerator());
+    const StyledHeroElemeent = [
+      {
+        ...heroElement,
+        extraAttributes: {
+          ...heroElement.extraAttributes,
+          style: theme.hero,
+        },
+      },
+    ];
+
+    const fullContent = [StyledHeroElemeent, []];
+    const JSONElement = JSON.stringify(fullContent);
+
+    startTransition(() => {
+      UpdatePageTheme(uri, theme.name).then(
+        UpdatePageContent(uri, JSONElement).then((data) => {
+          if (data.success) router.refresh();
+        }),
+      );
+    });
   };
 
   return (

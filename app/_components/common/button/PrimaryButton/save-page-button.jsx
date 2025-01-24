@@ -5,15 +5,14 @@ import { toast } from "@/hooks/use-toast";
 import useEditor from "@/hooks/useEditor";
 import { UpdatePageContent } from "@/actions/page";
 import { cn } from "@/lib/utils";
-import { Loader, Loader2Icon } from "lucide-react";
+import { Loader } from "lucide-react";
 import { useTransition } from "react";
 
 const SavePageBtn = ({ uri, children }) => {
-  const { elements } = useEditor();
-  const header = { type: "full" };
+  const { elements, hero } = useEditor();
   const [isPending, startTransition] = useTransition();
 
-  const fullContent = [[header], elements];
+  const fullContent = [[hero], elements]; // Elements are already in array, hero need to wrapped in [] in order to convert to array
 
   const handleSave = () => {
     startTransition(async () => {

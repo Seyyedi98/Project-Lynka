@@ -1,6 +1,7 @@
-const getPageHeader = (page) => {
-  const header = JSON.parse(page.content);
-  return header[0];
+const getPageHero = (page) => {
+  const hero = JSON.parse(page.content);
+
+  return hero[0][0];
 };
 
-export default getPageHeader;
+export default getPageHero;

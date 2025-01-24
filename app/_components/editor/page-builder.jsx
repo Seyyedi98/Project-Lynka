@@ -1,6 +1,7 @@
 "use client";
 
 import useEditor from "@/hooks/useEditor";
+import getPageContent from "@/lib/page/get-page-content";
 import {
   DndContext,
   MouseSensor,
@@ -8,16 +9,15 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { useEffect, useState } from "react";
-import DragOverlyWrapper from "./element/drag-overly-wrapper";
-import BuilderWorkspace from "./builder-workspace";
 import { notFound } from "next/navigation";
-import getPageContent from "@/lib/page/get-page-content";
-import { getPageTheme } from "@/actions/page";
+import { useEffect, useState } from "react";
+import BuilderWorkspace from "./builder-workspace";
+import DragOverlyWrapper from "./element/drag-overly-wrapper";
+import getPageHero from "@/lib/page/get-page-header";
 
 // Former editor-canvas
 const PageBuilder = ({ page }) => {
-  const { setElements, setSelectedElement, setTheme } = useEditor();
+  const { setElements, setSelectedElement, setTheme, setHero } = useEditor();
   const [isReady, setIsReady] = useState(false);
 
   // const shareUrl = `${window.location.origin}/${page.shareUrl}`
@@ -42,11 +42,13 @@ const PageBuilder = ({ page }) => {
   useEffect(() => {
     if (!page.content) return notFound();
     const elements = getPageContent(page);
+    const hero = getPageHero(page);
     setTheme(page.theme);
     setSelectedElement(null);
     setElements(elements);
+    setHero(hero);
     setIsReady(true);
-  }, [page, setElements, setSelectedElement, setTheme]);
+  }, [page, setElements, setSelectedElement, setHero, setTheme]);
 
   return (
     <DndContext sensors={sensors}>

@@ -25,7 +25,7 @@ const Dashboard = async () => {
   if (allPages.length > 0)
     return (
       <main className="h-full">
-        <DashboardSidebar />
+        {/* <DashboardSidebar /> */}
 
         <DashboardHeading>
           <CreatePageButton />

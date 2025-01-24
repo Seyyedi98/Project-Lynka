@@ -1,7 +1,7 @@
 import React from "react";
 
 const ShopPanel = () => {
-  return <div>ShopPanel</div>;
+  return <div className="grid place-items-center">ShopPanel</div>;
 };
 
 export default ShopPanel;
