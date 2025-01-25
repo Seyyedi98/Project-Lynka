@@ -16,7 +16,7 @@ const LivePage = async ({ params }) => {
   const content = getPageContent(page);
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-4">
+    <div className="flex h-full w-full flex-col items-center justify-start gap-4">
       <LivePageHero hero={hero} />
 
       <section className="flex h-full w-3/4 max-w-[400px] flex-col items-center justify-start gap-4">

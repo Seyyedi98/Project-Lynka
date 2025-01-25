@@ -8,6 +8,7 @@ import EditorSidebar from "../layout/navbar/editor-sidebar";
 import WorkspaceHeader from "../layout/navbar/workspace-header";
 import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
+import { Input } from "@/components/ui/input";
 
 // Former canvas
 const BuilderWorkspace = () => {

@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
-import uploadFile from "@/lib/uploadFile";
+import uploadFile from "@/lib/upload/uploadFile";
 import { S3 } from "aws-sdk";
 import { useEffect, useState } from "react";
 
