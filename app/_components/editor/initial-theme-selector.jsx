@@ -9,13 +9,33 @@ import { PageHeroElement } from "../elements/hero/page-hero-element";
 import { idGenerator } from "@/lib/id-generator";
 
 const themes = [
-  { name: "sunny", hero: "basic" },
-  { name: "aurora", hero: "basic" },
-  { name: "nature", hero: "normal" },
-  { name: "wooden", hero: "normal" },
+  {
+    name: "sunny",
+    hero: "basic",
+    backgroundType: "color",
+    backgroundValue: "#fffd7e",
+  },
+  {
+    name: "aurora",
+    hero: "basic",
+    backgroundType: "image",
+    backgroundValue: "#fffd7e",
+  },
+  {
+    name: "nature",
+    hero: "normal",
+    backgroundType: "color",
+    backgroundValue: "#77cf7e",
+  },
+  {
+    name: "wooden",
+    hero: "normal",
+    backgroundType: "image",
+    backgroundValue: "#77cf7e",
+  },
 ];
 
-const ThemeSelector = ({ uri }) => {
+const InitialThemeSelector = ({ uri }) => {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
@@ -27,15 +47,17 @@ const ThemeSelector = ({ uri }) => {
         extraAttributes: {
           ...heroElement.extraAttributes,
           style: theme.hero,
+          backgroundType,
         },
       },
     ];
 
     const fullContent = [StyledHeroElemeent, []];
     const JSONElement = JSON.stringify(fullContent);
+    const JSONTheme = JSON.stringify(theme);
 
     startTransition(() => {
-      UpdatePageTheme(uri, theme.name).then(
+      UpdatePageTheme(uri, JSONTheme).then(
         UpdatePageContent(uri, JSONElement).then((data) => {
           if (data.success) router.refresh();
         }),
@@ -59,4 +81,4 @@ const ThemeSelector = ({ uri }) => {
   );
 };
 
-export default ThemeSelector;
+export default InitialThemeSelector;

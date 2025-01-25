@@ -12,7 +12,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
 
   const Themes = ThemeController[elementType];
 
-  if (!Themes) throw new Error("Cannot load element themes");
+  if (!Themes) return;
   const themesList = Object.keys(Themes);
 
   return (

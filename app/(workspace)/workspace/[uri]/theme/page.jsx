@@ -1,5 +1,5 @@
 import { getUserPageDataByUri } from "@/actions/page";
-import ThemeSelector from "@/app/_components/editor/theme-selector";
+import InitialThemeSelector from "@/app/_components/editor/initial-theme-selector";
 import { redirect } from "next/navigation";
 
 const SelectThemePage = async ({ params }) => {
@@ -9,7 +9,7 @@ const SelectThemePage = async ({ params }) => {
 
   return (
     <div className="bg-card">
-      <ThemeSelector uri={uri} />;
+      <InitialThemeSelector uri={uri} />;
     </div>
   );
 };

@@ -1,13 +1,15 @@
 "use clinet";
 
 import { cn } from "@/lib/utils";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 
 const PageSettings = () => {
   const [selectedTab, setSelectedTab] = useState("content");
 
+  const params = useParams();
+
   const TabItems = ["content", "style", "Theme", "analytics"];
-  const itemBorder = TabItems.indexOf(selectedTab) * 48;
 
   return (
     <div className="pt-1">
