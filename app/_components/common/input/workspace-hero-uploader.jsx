@@ -7,6 +7,7 @@ import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import uploadFile from "@/lib/uploadFile";
 import { S3 } from "aws-sdk";
+import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const HeroWorkspaceUploader = ({ uri }) => {
@@ -115,6 +116,7 @@ const HeroWorkspaceUploader = ({ uri }) => {
     <div className="upload-container">
       <div className="file-upload flex gap-2">
         <Input
+          disabled={isUploading}
           type="file"
           onChange={handleFileChange}
           className="file-input mb-2 rounded-md"
@@ -124,7 +126,7 @@ const HeroWorkspaceUploader = ({ uri }) => {
           disabled={!file || isUploading}
           className="upload-button rounded-md"
         >
-          {!isUploading ? "Upload" : " Uploading..."}
+          {!isUploading ? "بارگزاری" : <Loader2 className="animate-spin" />}
         </Button>
       </div>
 

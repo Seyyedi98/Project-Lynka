@@ -13,8 +13,11 @@ import { PageElements } from "../../controller/page-elements";
 import { PageHeroElement } from "../../elements/hero/page-hero-element";
 import ElementThemeSelector from "../../theme/element-theme-selector";
 import HeroThemeSelector from "../../theme/hero-theme-selector";
+import { useState } from "react";
 
 const ElementProperties = ({ element }) => {
+  const [isThemeSelectPage, setIsThemeSelectPage] = useState(false);
+
   let PropertiesForm;
   PropertiesForm = PageElements[element?.type]?.PropertiesComponent;
 
@@ -22,31 +25,50 @@ const ElementProperties = ({ element }) => {
 
   return (
     <div className="relative">
-      <DeleteElementBtn id={element?.id}>
-        <div className="absolute -top-20 left-2 flex cursor-pointer items-center justify-center rounded-full bg-red-500 p-2 duration-200 hover:bg-red-600">
-          <TrashIcon className="h-4 w-4 text-white" />
-        </div>
-      </DeleteElementBtn>
+      {element?.type !== "HeroElement" && (
+        <DeleteElementBtn id={element?.id}>
+          <div className="absolute -top-20 left-2 flex cursor-pointer items-center justify-center rounded-full bg-red-500 p-2 duration-200 hover:bg-red-600 sm:left-0">
+            <TrashIcon className="h-4 w-4 text-white" />
+          </div>
+        </DeleteElementBtn>
+      )}
 
-      {element && <PropertiesForm elementInstance={element} />}
+      {element && !isThemeSelectPage && (
+        <PropertiesForm elementInstance={element} />
+      )}
 
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button className="mr-2 mt-4 w-[96%]">انتخاب تم</Button>
-        </DialogTrigger>
-        <DialogContent className="max-w-3xl">
-          <DialogHeader>
-            <DialogTitle>تم مورد نظر خود را انتخاب کنید</DialogTitle>
-            <DialogDescription></DialogDescription>
+      {
+        isThemeSelectPage &&
+          (element?.type == "HeroElement" ? (
+            <HeroThemeSelector />
+          ) : (
+            <ElementThemeSelector elementInstance={element} />
+          ))
+        // <Dialog>
+        //   <DialogTrigger asChild>
+        //     <Button className="mr-2 mt-4">انتخاب تم</Button>
+        //   </DialogTrigger>
+        //   <DialogContent className="max-w-3xl">
+        //     <DialogHeader>
+        //       <DialogTitle>تم مورد نظر خود را انتخاب کنید</DialogTitle>
+        //       <DialogDescription></DialogDescription>
 
-            {element?.type == "HeroElement" ? (
-              <HeroThemeSelector />
-            ) : (
-              <ElementThemeSelector elementInstance={element} />
-            )}
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+        //       {element?.type == "HeroElement" ? (
+        //         <HeroThemeSelector />
+        //       ) : (
+        //         <ElementThemeSelector elementInstance={element} />
+        //       )}
+        //     </DialogHeader>
+        //   </DialogContent>
+        // </Dialog>
+      }
+
+      <Button
+        className="mt-4 w-full"
+        onClick={() => setIsThemeSelectPage(!isThemeSelectPage)}
+      >
+        {isThemeSelectPage ? "بازگشت" : "تغییر تم"}
+      </Button>
     </div>
   );
 };

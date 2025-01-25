@@ -97,7 +97,7 @@ function PropertiesComponent({ elementInstance }) {
       <Form {...form}>
         <form
           // onBlur={form.handleSubmit(applyChanges)}
-          className="mx-2 flex flex-col gap-2"
+          className="flex flex-col gap-2"
           onSubmit={form.handleSubmit(applyChanges)}
         >
           <FormField
@@ -123,7 +123,7 @@ function PropertiesComponent({ elementInstance }) {
 
           <button
             type="submit"
-            className="absolute -top-20 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600"
+            className="absolute -top-20 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0"
           >
             <Check className="h-4 w-4 text-white" />
           </button>

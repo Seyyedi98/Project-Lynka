@@ -170,13 +170,11 @@ const DrawerComponent = function ({
             <DrawerDescription></DrawerDescription>
           </DrawerHeader>
           <div className="p-2 pb-0">
-            <div width="100%" height="100%">
-              {children}
-            </div>
+            <div className="h-full w-full">{children}</div>
           </div>
           <DrawerFooter className="">
             <DrawerClose asChild>
-              <Button variant="outline">لفو تغییرات</Button>
+              <Button variant="outline w-full">لفو تغییرات</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>
