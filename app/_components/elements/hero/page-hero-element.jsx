@@ -23,8 +23,6 @@ const extraAttributes = {
   style: "",
   title: "",
   subtitle: "",
-  heroType: "",
-  heroValue: "",
   primaryImage: "",
   secondaryImage: "",
 };

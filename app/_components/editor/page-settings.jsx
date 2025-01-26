@@ -2,20 +2,16 @@
 
 import useEditor from "@/hooks/useEditor";
 import { cn } from "@/lib/utils";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 
 const PageSettings = () => {
   const { theme, setTheme } = useEditor();
 
   const [selectedTab, setSelectedTab] = useState("content");
-  const TabItems = ["content", "style", "Theme", "analytics"];
 
-  const setPageBackground = function (velue) {
-    setTheme({
-      ...theme,
-      backgroundValue: velue,
-    });
-  };
+  const TabItems = ["content", "style", "Theme", "analytics"];
+  const itemBorder = TabItems.indexOf(selectedTab) * 48;
 
   return (
     <div className="pt-1">
