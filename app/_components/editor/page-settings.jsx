@@ -2,6 +2,7 @@
 
 import useEditor from "@/hooks/useEditor";
 import { cn } from "@/lib/utils";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 
 const PageSettings = () => {
