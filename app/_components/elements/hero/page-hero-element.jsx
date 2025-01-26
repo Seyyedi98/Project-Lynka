@@ -23,6 +23,8 @@ const extraAttributes = {
   style: "",
   title: "",
   subtitle: "",
+  heroType: "",
+  heroValue: "",
   primaryImage: "",
   secondaryImage: "",
 };
@@ -44,32 +46,20 @@ function WorkspaceComponent({ elementInstance }) {
   const element = elementInstance;
   if (element.length == 0) return;
 
-  const { style, title, subtitle, primaryImage } = element?.extraAttributes;
-  const RenderedElement = HeroController[style];
+  const data = element?.extraAttributes;
+  const RenderedElement = HeroController[data.style];
 
-  return (
-    <RenderedElement
-      title={title}
-      subtitle={subtitle}
-      primaryImage={primaryImage}
-    />
-  );
+  return <RenderedElement {...data} />;
 }
 
 function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
-  const { style, title, subtitle, primaryImage } = element.extraAttributes;
+  const data = element?.extraAttributes;
 
-  if (!style) return <Loader2 className="animate-spin" />;
-  const RenderedElement = HeroController[style];
+  if (!data) return <Loader2 className="animate-spin" />;
+  const RenderedElement = HeroController[data.style];
 
-  return (
-    <RenderedElement
-      title={title}
-      subtitle={subtitle}
-      primaryImage={primaryImage}
-    />
-  );
+  return <RenderedElement {...data} />;
 }
 
 function PropertiesComponent({ elementInstance }) {

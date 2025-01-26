@@ -1,13 +1,21 @@
 "use clinet";
 
+import useEditor from "@/hooks/useEditor";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 const PageSettings = () => {
-  const [selectedTab, setSelectedTab] = useState("content");
+  const { theme, setTheme } = useEditor();
 
+  const [selectedTab, setSelectedTab] = useState("content");
   const TabItems = ["content", "style", "Theme", "analytics"];
-  const itemBorder = TabItems.indexOf(selectedTab) * 48;
+
+  const setPageBackground = function (velue) {
+    setTheme({
+      ...theme,
+      backgroundValue: velue,
+    });
+  };
 
   return (
     <div className="pt-1">
@@ -34,7 +42,15 @@ const PageSettings = () => {
 
       <div className="mt-4 text-right">
         {selectedTab === TabItems[0] && <div>content</div>}
-        {selectedTab === TabItems[1] && <div>style</div>}
+        {selectedTab === TabItems[1] && (
+          <div>
+            <div onClick={() => setPageBackground("#FFF")}>white</div>
+            <div onClick={() => setPageBackground("rgb(122, 186, 255)")}>
+              blue
+            </div>
+            <div onClick={() => setPageBackground("#e5ff95")}>yellow</div>
+          </div>
+        )}
         {selectedTab === TabItems[2] && <div>theme</div>}
         {selectedTab === TabItems[3] && <div>anal</div>}
       </div>

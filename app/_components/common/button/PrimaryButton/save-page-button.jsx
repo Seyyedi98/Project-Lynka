@@ -1,15 +1,14 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { UpdatePageContent, UpdatePageTheme } from "@/actions/page";
 import { toast } from "@/hooks/use-toast";
 import useEditor from "@/hooks/useEditor";
-import { UpdatePageContent } from "@/actions/page";
 import { cn } from "@/lib/utils";
 import { Loader } from "lucide-react";
 import { useTransition } from "react";
 
 const SavePageBtn = ({ uri, children }) => {
-  const { elements, hero } = useEditor();
+  const { elements, hero, theme } = useEditor();
   const [isPending, startTransition] = useTransition();
 
   const fullContent = [[hero], elements]; // Elements are already in array, hero need to wrapped in [] in order to convert to array
@@ -18,7 +17,9 @@ const SavePageBtn = ({ uri, children }) => {
     startTransition(async () => {
       try {
         const JSONElement = JSON.stringify(fullContent);
+        const JSONTheme = JSON.stringify(theme);
         await UpdatePageContent(uri, JSONElement); // Call the server action
+        await UpdatePageTheme(uri, JSONTheme);
         toast({
           title: "عملیات موفقیت آمیز",
           description: "فرم با موفقت ذخیره شد",

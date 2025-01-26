@@ -40,13 +40,15 @@ const HeroWorkspaceUploader = ({ uri }) => {
     const { permanentSignedUrl, response } = await uploadFile(file);
 
     try {
-      deleteFile({
-        file: previousImage,
-        BUCKET,
-        ACCESSKEY,
-        SECRETKEY,
-        ENDPOINT,
-      });
+      if (previousImage) {
+        deleteFile({
+          file: previousImage,
+          BUCKET,
+          ACCESSKEY,
+          SECRETKEY,
+          ENDPOINT,
+        });
+      }
       updateHero({
         ...hero,
         extraAttributes: {
