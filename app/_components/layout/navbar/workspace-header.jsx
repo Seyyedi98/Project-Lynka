@@ -11,6 +11,7 @@ import {
 import PreviewPageElements from "../../preview/preview-elements-renderer";
 import PageSettings from "../../editor/page-settings";
 import PreviewPageHero from "../../preview/preview-hero-renderer";
+import PreviewPageContainer from "../../preview/preview-page-container";
 
 const WorkspaceHeader = () => {
   return (
@@ -25,12 +26,7 @@ const WorkspaceHeader = () => {
           <DialogContent className="flex h-screen max-h-screen w-screen max-w-full flex-grow flex-col gap-0 p-0">
             <DialogTitle className="hidden"></DialogTitle>
             <DialogDescription className="hidden"></DialogDescription>
-            <div className="flex h-full w-full flex-col items-center justify-center">
-              <PreviewPageHero />
-              <section className="mt-6 flex h-full w-3/4 max-w-[400px] flex-col items-center justify-start gap-4">
-                <PreviewPageElements />
-              </section>
-            </div>
+            <PreviewPageContainer />
           </DialogContent>
         </Dialog>
 

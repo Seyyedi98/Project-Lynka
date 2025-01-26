@@ -12,7 +12,7 @@ export default function EditorContextProvider({ children }) {
 
   const addElement = (index, element, applyPageTheme) => {
     if (applyPageTheme) {
-      element.extraAttributes.theme = theme; // Apply page current theme to new created element
+      element.extraAttributes.theme = theme.name; // Apply page current theme to new created element
     }
     setElements((prev) => {
       const newElements = [...prev];

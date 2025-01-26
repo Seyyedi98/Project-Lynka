@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import useEditor from "@/hooks/useEditor";
@@ -20,6 +21,7 @@ import { Loader2Icon } from "lucide-react";
 const PageBuilder = ({ page }) => {
   const { setElements, setSelectedElement, setTheme, setHero } = useEditor();
   const [isReady, setIsReady] = useState(false);
+  const pageTheme = JSON.parse(page.theme);
 
   // const shareUrl = `${window.location.origin}/${page.shareUrl}`
 
@@ -44,7 +46,7 @@ const PageBuilder = ({ page }) => {
     if (!page.content) return notFound();
     const elements = getPageContent(page);
     const hero = getPageHero(page);
-    setTheme(page.theme);
+    setTheme(pageTheme);
     setSelectedElement(null);
     setElements(elements);
     setHero(hero);

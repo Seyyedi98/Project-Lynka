@@ -8,12 +8,16 @@ import EditorSidebar from "../layout/navbar/editor-sidebar";
 import WorkspaceHeader from "../layout/navbar/workspace-header";
 import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
-import { Input } from "@/components/ui/input";
 
 // Former canvas
 const BuilderWorkspace = () => {
   const { elements, addElement, removeElement, hero, theme } = useEditor();
   const { closeMenu, isWorkspaceMenuOpen } = useModal();
+  const { name, backgroundType, backgroundValue } = theme;
+
+  const bgStyle = {
+    backgroundColor: backgroundType === "image" ? "" : backgroundValue,
+  };
 
   const droppable = useDroppable({
     id: "editor-drop-area",
@@ -153,8 +157,12 @@ const BuilderWorkspace = () => {
         <div className="flex h-full w-full gap-6 p-4">
           <EditorSidebar />
 
+          {/* Change bg  here */}
           <div
-            className="relative flex h-full flex-grow flex-col items-center overflow-y-auto rounded-xl bg-white shadow-lg"
+            style={bgStyle}
+            className={cn(
+              `relative flex h-full flex-grow flex-col items-center overflow-y-auto rounded-xl shadow-lg`,
+            )}
             ref={droppable.setNodeRef}
           >
             {/* Page header */}
@@ -179,11 +187,7 @@ const BuilderWorkspace = () => {
             {/* Page content */}
             {elements.length > 0 &&
               elements.map((element) => (
-                <WorkspaceElementWrapper
-                  pageTheme={theme}
-                  key={element.id}
-                  element={element}
-                />
+                <WorkspaceElementWrapper key={element.id} element={element} />
               ))}
             <div className="mt-auto pb-24">
               {/* <footer className="mt-4 w-full rounded-lg bg-gray-100 p-4 shadow-md">

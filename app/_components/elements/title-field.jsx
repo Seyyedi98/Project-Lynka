@@ -44,7 +44,6 @@ export const TitleFieldFormElement = {
 function WorkspaceComponent({ elementInstance }) {
   const element = elementInstance;
   const { title, theme } = element.extraAttributes;
-
   const RenderedElement = ThemeController[element.type][theme];
 
   return <RenderedElement title={title} />;

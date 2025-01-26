@@ -15,8 +15,17 @@ const LivePage = async ({ params }) => {
   const hero = getPageHero(page);
   const content = getPageContent(page);
 
+  const theme = await JSON.parse(page.theme);
+
+  const style = {
+    backgroundColor: theme.backgroundValue,
+  };
+
   return (
-    <div className="flex h-full w-full flex-col items-center justify-start gap-4">
+    <div
+      style={style}
+      className="flex h-full w-full flex-col items-center justify-start gap-4"
+    >
       <LivePageHero hero={hero} />
 
       <section className="flex h-full w-3/4 max-w-[400px] flex-col items-center justify-start gap-4">
