@@ -32,7 +32,7 @@ const WorkspaceBottomBar = ({ isDesktop }) => {
           className="flex h-10 w-full items-center gap-2 rounded-full border-[1px] border-slate-200 px-5"
         >
           <Link
-            href={`localhost:3000/${params.uri}`}
+            href={`websiteUrl${params.uri}`}
             // href={`${websiteUrl}${params.uri}`}
             target="_blank"
             className="truncate text-nowrap font-medium text-brand-600 hover:underline hover:underline-offset-4"

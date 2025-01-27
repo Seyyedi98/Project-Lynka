@@ -13,7 +13,7 @@ import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
 const BuilderWorkspace = () => {
   const { elements, addElement, removeElement, hero, theme } = useEditor();
   const { closeMenu, isWorkspaceMenuOpen } = useModal();
-  const { name, backgroundType, backgroundValue } = theme;
+  const { backgroundType, backgroundValue } = theme;
 
   const bgStyle = {
     backgroundColor: backgroundType === "image" ? "" : backgroundValue,

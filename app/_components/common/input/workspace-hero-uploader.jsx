@@ -53,7 +53,7 @@ const HeroWorkspaceUploader = ({ uri }) => {
         ...hero,
         extraAttributes: {
           ...hero.extraAttributes,
-          primaryImage: { url: permanentSignedUrl, key: response.key },
+          primaryImage: { url: permanentSignedUrl, key: response.Key },
         },
       });
       closeMenu();

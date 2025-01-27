@@ -17,6 +17,14 @@ export default auth((req) => {
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
+  const isDynamicRoute =
+    /^\/[a-zA-Z0-9_-]+$/.test(nextUrl.pathname) &&
+    nextUrl.pathname !== "/dashboard";
+
+  if (isDynamicRoute) {
+    return null;
+  }
+
   if (isApiAuthRoute) {
     return null;
   }
