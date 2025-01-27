@@ -4,12 +4,13 @@ import useEditor from "@/hooks/useEditor";
 import { cn } from "@/lib/utils";
 import { useParams } from "next/navigation";
 import { useState } from "react";
+import PageBackgroundSettings from "../section/workspace/page-background";
 
 const PageSettings = () => {
   const { theme, setTheme } = useEditor();
 
   const [selectedTab, setSelectedTab] = useState("content");
-  const TabItems = ["content", "style", "Theme", "analytics"];
+  const TabItems = ["content", "پس زمینه", "Theme", "analytics"];
 
   const setPageBackground = function (velue) {
     setTheme({
@@ -41,19 +42,13 @@ const PageSettings = () => {
         />
       </ul>
 
-      <div className="mt-4 text-right">
+      <div className="mt-4 text-right transition-all duration-200">
         {selectedTab === TabItems[0] && <div>content</div>}
         {selectedTab === TabItems[1] && (
-          <div>
-            <div onClick={() => setPageBackground("#FFF")}>white</div>
-            <div onClick={() => setPageBackground("rgb(122, 186, 255)")}>
-              blue
-            </div>
-            <div onClick={() => setPageBackground("#e5ff95")}>yellow</div>
-          </div>
+          <PageBackgroundSettings setPageBackground={setPageBackground} />
         )}
         {selectedTab === TabItems[2] && <div>theme</div>}
-        {selectedTab === TabItems[3] && <div>anal</div>}
+        {selectedTab === TabItems[3] && <div>analytics</div>}
       </div>
     </div>
   );

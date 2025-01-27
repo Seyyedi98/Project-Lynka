@@ -2,6 +2,9 @@ import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import { HeroController } from "../controller/hero-controller";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
+import useFilterTheme from "@/hooks/useFilterTheme";
+import SquareButton from "../common/button/square-button";
 
 const HeroThemeSelector = () => {
   const { hero, updateHero, setSelectedElement } = useEditor();
@@ -10,39 +13,44 @@ const HeroThemeSelector = () => {
 
   const Themes = HeroController;
   if (!Themes) throw new Error("Cannot load hero themes");
-  const themesList = Object.keys(Themes);
+
+  const filteredThemesList = useFilterTheme(Themes, themeCategory);
 
   return (
     <>
-      <div className="mb-4 flex w-full items-center justify-between gap-2">
-        <div
-          onClick={() => setThemeCategory("color")}
-          className="grid h-20 w-20 place-items-center rounded-md border bg-primary-foreground"
+      <div className="mb-4 flex w-full flex-grow items-center justify-between gap-2">
+        <SquareButton
+          action={setThemeCategory}
+          state={themeCategory}
+          rule="color"
         >
           رنگ
-        </div>
-        <div
-          onClick={() => setThemeCategory("pattern")}
-          className="grid h-20 w-20 place-items-center rounded-md border bg-primary-foreground"
+        </SquareButton>
+        <SquareButton
+          action={setThemeCategory}
+          state={themeCategory}
+          rule="pattern"
         >
           الگو
-        </div>
-        <div
-          onClick={() => setThemeCategory("gradient")}
-          className="grid h-20 w-20 place-items-center rounded-md border bg-primary-foreground"
+        </SquareButton>
+        <SquareButton
+          action={setThemeCategory}
+          state={themeCategory}
+          rule="gradient"
         >
           گرادیانت
-        </div>
-        <div
-          onClick={() => setThemeCategory("image")}
-          className="grid h-20 w-20 place-items-center rounded-md border bg-primary-foreground"
+        </SquareButton>
+        <SquareButton
+          action={setThemeCategory}
+          state={themeCategory}
+          rule="image"
         >
           تصویر
-        </div>
+        </SquareButton>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2">
-        {themesList.map((theme, index) => {
+        {filteredThemesList.map((theme, index) => {
           return (
             <div
               key={(index, theme)}
@@ -51,13 +59,13 @@ const HeroThemeSelector = () => {
                   ...hero,
                   extraAttributes: {
                     ...hero.extraAttributes,
-                    style: theme,
+                    style: theme[0],
                   },
                 });
                 closeMenu();
               }}
             >
-              {theme}
+              {theme[0]}
             </div>
           );
         })}

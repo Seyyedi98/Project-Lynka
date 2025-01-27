@@ -19,6 +19,7 @@ const LivePage = async ({ params }) => {
 
   const style = {
     backgroundColor: theme.backgroundValue,
+    background: theme.backgroundValue,
   };
 
   return (

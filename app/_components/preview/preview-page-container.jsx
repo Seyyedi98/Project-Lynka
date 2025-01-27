@@ -5,7 +5,10 @@ import useEditor from "@/hooks/useEditor";
 
 const PreviewPageContainer = () => {
   const { theme } = useEditor();
-  const style = { backgroundColor: theme.backgroundValue };
+  const style = {
+    backgroundColor: theme.backgroundValue,
+    background: theme.backgroundValue,
+  };
 
   return (
     <div
@@ -13,7 +16,7 @@ const PreviewPageContainer = () => {
       className="flex h-full w-full flex-col items-center justify-center"
     >
       <PreviewPageHero />
-      <section className="mt-6 flex h-full w-3/4 max-w-[400px] flex-col items-center justify-start gap-4">
+      <section className="mt-6 flex h-full w-full max-w-[400px] flex-col items-center justify-start gap-4">
         <PreviewPageElements />
       </section>
     </div>

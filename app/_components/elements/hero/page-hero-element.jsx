@@ -47,7 +47,7 @@ function WorkspaceComponent({ elementInstance }) {
   if (element.length == 0) return;
 
   const data = element?.extraAttributes;
-  const RenderedElement = HeroController[data.style];
+  const RenderedElement = HeroController[data.style][0];
 
   return <RenderedElement {...data} />;
 }
@@ -57,7 +57,7 @@ function LivePageComponent({ elementInstance }) {
   const data = element?.extraAttributes;
 
   if (!data) return <Loader2 className="animate-spin" />;
-  const RenderedElement = HeroController[data.style];
+  const RenderedElement = HeroController[data.style][0];
 
   return <RenderedElement {...data} />;
 }

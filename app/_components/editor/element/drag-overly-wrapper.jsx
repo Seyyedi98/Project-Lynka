@@ -45,7 +45,7 @@ const DragOverlyWrapper = () => {
       const WorkspaceElementComponent =
         PageElements[element.type].WorkspaceComponent;
       node = (
-        <div className="border-rounded-xl pointer-events-none flex w-full bg-accent px-4 py-2 opacity-80">
+        <div className="border-rounded-xl pointer-events-none flex w-full bg-transparent px-4 py-2 opacity-80">
           <WorkspaceElementComponent elementInstance={element} />
         </div>
       );

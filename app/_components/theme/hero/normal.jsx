@@ -1,5 +1,3 @@
-import useEditor from "@/hooks/useEditor";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 const NormalHero = ({ ...data }) => {

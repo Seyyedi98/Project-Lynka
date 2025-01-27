@@ -2,6 +2,7 @@ import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import { ThemeController } from "../controller/theme-controller";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 const ElementThemeSelector = ({ elementInstance }) => {
   const { updateElement, setSelectedElement } = useEditor();
@@ -17,31 +18,35 @@ const ElementThemeSelector = ({ elementInstance }) => {
 
   return (
     <>
-      <div className="mb-4 flex w-full items-center justify-between gap-2">
-        <div
-          onClick={() => setThemeCategory("color")}
-          className="grid h-20 w-20 place-items-center rounded-md border bg-primary-foreground"
+      <div className="mb-4 flex w-full flex-grow items-center justify-between gap-2">
+        <CategoryButton
+          setThemeCategory={setThemeCategory}
+          themeCategory={themeCategory}
+          category="color"
         >
           رنگ
-        </div>
-        <div
-          onClick={() => setThemeCategory("pattern")}
-          className="grid h-20 w-20 place-items-center rounded-md border bg-primary-foreground"
+        </CategoryButton>
+        <CategoryButton
+          setThemeCategory={setThemeCategory}
+          themeCategory={themeCategory}
+          category="pattern"
         >
           الگو
-        </div>
-        <div
-          onClick={() => setThemeCategory("gradient")}
-          className="grid h-20 w-20 place-items-center rounded-md border bg-primary-foreground"
+        </CategoryButton>
+        <CategoryButton
+          setThemeCategory={setThemeCategory}
+          themeCategory={themeCategory}
+          category="gradient"
         >
           گرادیانت
-        </div>
-        <div
-          onClick={() => setThemeCategory("image")}
-          className="grid h-20 w-20 place-items-center rounded-md border bg-primary-foreground"
+        </CategoryButton>
+        <CategoryButton
+          setThemeCategory={setThemeCategory}
+          themeCategory={themeCategory}
+          category="image"
         >
           تصویر
-        </div>
+        </CategoryButton>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2">
@@ -60,6 +65,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
                   },
                 });
                 closeMenu();
+                setTimeout(() => setSelectedElement(null), 200);
               }}
             >
               <RenderedElement title={theme} />
@@ -72,3 +78,22 @@ const ElementThemeSelector = ({ elementInstance }) => {
 };
 
 export default ElementThemeSelector;
+
+const CategoryButton = ({
+  themeCategory,
+  setThemeCategory,
+  category,
+  children,
+}) => {
+  return (
+    <div
+      onClick={() => setThemeCategory(category)}
+      className={cn(
+        `grid h-10 w-20 min-w-20 cursor-pointer place-items-center rounded-md border bg-primary-foreground transition-colors duration-200`,
+        themeCategory === category && "bg-primary text-primary-foreground",
+      )}
+    >
+      {children}
+    </div>
+  );
+};

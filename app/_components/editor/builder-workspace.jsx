@@ -17,6 +17,7 @@ const BuilderWorkspace = () => {
 
   const bgStyle = {
     backgroundColor: backgroundType === "image" ? "" : backgroundValue,
+    background: backgroundValue,
   };
 
   const droppable = useDroppable({

@@ -1,7 +1,9 @@
-import BasicHero from "../theme/Header/basic";
-import NormalHero from "../theme/Header/normal";
+import BasicHero from "../theme/hero/basic";
+import NormalHero from "../theme/hero/normal";
+import TransparentHero from "../theme/hero/transparent";
 
 export const HeroController = {
-  normal: NormalHero,
-  basic: BasicHero,
+  transparent: [TransparentHero, { type: "color" }],
+  normal: [NormalHero, { type: "color" }],
+  basic: [BasicHero, { type: "color" }],
 };
