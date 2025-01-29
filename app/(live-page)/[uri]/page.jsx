@@ -35,7 +35,7 @@ const LivePage = async ({ params }) => {
   const page = await fetchWithRetry(uri);
 
   // Handle different states
-  if (page)
+  if (!page)
     return (
       <div className="grid h-screen w-screen place-items-center">
         <p className="text-red-500">

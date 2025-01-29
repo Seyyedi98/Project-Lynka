@@ -10,6 +10,7 @@ export default function EditorContextProvider({ children }) {
   const [theme, setTheme] = useState("");
   const [selectedElement, setSelectedElement] = useState(null);
 
+
   const addElement = (index, element, applyPageTheme) => {
     setElements((prev) => {
       const newElements = [...prev];

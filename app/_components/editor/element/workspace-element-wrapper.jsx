@@ -12,6 +12,7 @@ const WorkspaceElementWrapper = ({ element }) => {
   const { selectedElement, setSelectedElement } = useEditor();
   const { openMenu } = useModal();
 
+
   // Draggable setup
   const draggable = useDraggable({
     id: element.id + "-drag-handler",

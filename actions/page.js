@@ -11,8 +11,7 @@ export const checkPageAvailable = async (uri) => {
     },
   });
 
-  if (page) return false;
-  return true;
+  return !page;
 };
 
 export const newPageCreator = async (uri) => {
@@ -38,10 +37,8 @@ export const getUserPages = async () => {
   const user = await currentUser();
   if (!user) return;
 
-  const userId = user.id;
-
   const pages = await prisma.page.findMany({
-    where: { owner: userId },
+    where: { owner: user.id },
   });
 
   return pages;
@@ -49,7 +46,7 @@ export const getUserPages = async () => {
 
 export const getUserPageDataByUri = async (uri) => {
   const user = await currentUser();
-  if (!user) return;
+  if (!user) return { error: "Unauthorized access" };
 
   const page = await prisma.page.findUnique({
     where: {
@@ -63,6 +60,7 @@ export const getUserPageDataByUri = async (uri) => {
   return page;
 };
 
+// Get preview page data by URI (without user validation)
 export const getPreviewPageDataByUri = async (uri) => {
   const page = await prisma.page.findUnique({
     where: {
@@ -112,13 +110,10 @@ export async function UpdatePageTheme(uri, theme) {
       uri,
     },
   });
-  if (page.owner !== user.id) return { error: "Unauthorized access" };
+  if (page?.owner !== user.id) return { error: "Unauthorized access" };
 
   await prisma.page.update({
-    where: {
-      owner: user.id,
-      uri,
-    },
+    where: { uri },
     data: {
       theme,
     },

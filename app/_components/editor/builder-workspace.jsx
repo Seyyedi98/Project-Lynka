@@ -11,7 +11,7 @@ import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
 
 // Former canvas
 const BuilderWorkspace = () => {
-  const { elements, addElement, removeElement, hero, theme } = useEditor();
+  const { elements = [], addElement, removeElement, hero, theme } = useEditor(); // Default empty array for elements
   const { closeMenu, isWorkspaceMenuOpen } = useModal();
   const { backgroundType, backgroundValue } = theme;
 
@@ -37,17 +37,14 @@ const BuilderWorkspace = () => {
       if (!active || !over) return;
 
       const isAdderBtn = active.data?.current?.isAdderBtn;
-
       const isDroppingOverWorkspaceArea =
         over.data?.current?.isWorkspaceDropArea;
       const isDraggingWorkspaceElement =
         active.data?.current?.isWorkspaceElement;
-
       const isDroppingOverWorkspaceElementTopHalf =
         over.data?.current?.isTopHalfWorkspaceElement;
       const isDroppingOverWorkspaceElementBottomHalf =
         over.data?.current?.isBottomHalfWorkspaceElement;
-
       const droppingOverWorkspaceElement =
         isDroppingOverWorkspaceElementTopHalf ||
         isDroppingOverWorkspaceElementBottomHalf;
@@ -59,10 +56,8 @@ const BuilderWorkspace = () => {
       if (isAdderBtn && isDroppingOverWorkspaceArea) {
         const type = active.data?.current?.type;
         const newElement = PageElements[type].construct(idGenerator());
-
         const applyPageTheme = true;
         addElement(elements.length, newElement, applyPageTheme);
-
         return;
       }
 
@@ -73,9 +68,7 @@ const BuilderWorkspace = () => {
       if (isAdderBtn && droppingOverWorkspaceElement) {
         const type = active.data?.current?.type;
         const newElement = PageElements[type].construct(idGenerator());
-
         const overId = over.data?.current?.elementId;
-
         const overElementIndex = elements.findIndex((el) => el.id === overId);
         if (overElementIndex === -1) throw new Error("Element not found");
 
@@ -95,11 +88,9 @@ const BuilderWorkspace = () => {
       const repositionWorkspaceElement =
         droppingOverWorkspaceElement && isDraggingWorkspaceElement;
 
-      // Find index of active element and move it after or before of over element
       if (repositionWorkspaceElement) {
         const activeId = active.data?.current.elementId;
         const overId = over.data?.current.elementId;
-
         const activeElementIndex = elements.findIndex(
           (el) => el.id === activeId,
         );
@@ -126,7 +117,6 @@ const BuilderWorkspace = () => {
 
       if (isDraggingWorkspaceElement && isDroppingOverWorkspaceArea) {
         const activeId = active.data?.current.elementId;
-
         const activeElementIndex = elements.findIndex(
           (el) => el.id === activeId,
         );
@@ -143,9 +133,6 @@ const BuilderWorkspace = () => {
     },
   });
 
-  // const ElementHeader = PageHeaderElement.WorkspaceComponent;
-  // if (elements.length === 0) return <p>loading.</p>;
-
   return (
     <>
       <div
@@ -157,8 +144,6 @@ const BuilderWorkspace = () => {
         <WorkspaceHeader />
         <div className="flex h-full w-full gap-6 p-4">
           <EditorSidebar />
-
-          {/* Change bg  here */}
           <div
             style={bgStyle}
             className={cn(
@@ -166,18 +151,17 @@ const BuilderWorkspace = () => {
             )}
             ref={droppable.setNodeRef}
           >
-            {/* Page header */}
             <div className="w-full">
               <WorkspaceHeroWrapper element={hero} />
             </div>
 
-            {!droppable.isOver && elements.length === 0 && (
+            {!droppable.isOver && elements?.length === 0 && (
               <p className="flex items-center justify-center text-xl font-medium text-gray-500">
                 Add some blocks to start!
               </p>
             )}
 
-            {droppable.isOver && elements.length === 0 && (
+            {droppable.isOver && elements?.length === 0 && (
               <div className="w-full p-4">
                 <div className="h-32 rounded-lg bg-blue-100">
                   اینجا رها کنید
@@ -185,16 +169,11 @@ const BuilderWorkspace = () => {
               </div>
             )}
 
-            {/* Page content */}
-            {elements.length > 0 &&
+            {elements?.length > 0 &&
               elements.map((element) => (
                 <WorkspaceElementWrapper key={element.id} element={element} />
               ))}
-            <div className="mt-auto pb-24">
-              {/* <footer className="mt-4 w-full rounded-lg bg-gray-100 p-4 shadow-md">
-            &copy; {new Date().getFullYear()} All rights reserved.
-            </footer> */}
-            </div>
+            <div className="mt-auto pb-24"></div>
           </div>
         </div>
       </div>

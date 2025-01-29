@@ -44,7 +44,14 @@ export const PageHeroElement = {
 
 function WorkspaceComponent({ elementInstance }) {
   const element = elementInstance;
-  if (element.length == 0) return;
+
+  // Ensure element is defined and has a valid 'extraAttributes' property before checking length
+  if (
+    !element ||
+    !element.extraAttributes ||
+    Object.keys(element.extraAttributes).length === 0
+  )
+    return;
 
   const data = element?.extraAttributes;
   const RenderedElement = HeroController[data.style][0];
