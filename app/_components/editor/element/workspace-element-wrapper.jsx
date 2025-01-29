@@ -4,14 +4,11 @@ import { cn } from "@/lib/utils";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { Pencil1Icon } from "@radix-ui/react-icons";
 import { GripHorizontal, XIcon } from "lucide-react";
-import { useState } from "react";
 import { PageElements } from "../../controller/page-elements";
 
 const WorkspaceElementWrapper = ({ element }) => {
-  const [mouseIsOver, setMouseIsOver] = useState(false);
   const { selectedElement, setSelectedElement } = useEditor();
   const { openMenu } = useModal();
-
 
   // Draggable setup
   const draggable = useDraggable({
@@ -56,8 +53,6 @@ const WorkspaceElementWrapper = ({ element }) => {
       // {...draggable.listeners}
       // {...draggable.attributes}
       className="relative flex w-full max-w-[380px] flex-col rounded-2xl text-foreground hover:cursor-pointer"
-      onMouseEnter={() => setMouseIsOver(true)}
-      onMouseLeave={() => setMouseIsOver(false)}
       onClick={(e) => {
         e.stopPropagation();
         setSelectedElement(element);
@@ -84,7 +79,6 @@ const WorkspaceElementWrapper = ({ element }) => {
       <div
         className={cn(
           "pointer-events-none relative flex w-full items-center justify-center gap-2 rounded-md py-2 opacity-100 transition-all duration-200",
-          mouseIsOver && "opacity-90",
         )}
       >
         {/* Edit button */}

@@ -62,7 +62,7 @@ const PageBuilder = ({ page }) => {
     };
 
     fetchData();
-  }, [page, setElements, setSelectedElement, setHero, setTheme]);
+  }, [page]);
 
   // workspace loading
   if (!isReady)
