@@ -9,7 +9,6 @@ const DragOverlyWrapper = () => {
   const { elements } = useEditor();
   const [draggedItem, setDraggedItem] = useState();
 
-
   useDndMonitor({
     onDragStart: (event) => {
       setDraggedItem(event.active);

@@ -1,4 +1,4 @@
-import useTruncate from "@/hooks/useTruncate";
+import useTruncate from "@/utils/truncateText";
 import { cn } from "@/lib/utils";
 import { CopyIcon, PlusIcon, QrCodeIcon, SaveIcon } from "lucide-react";
 import Link from "next/link";

@@ -4,7 +4,8 @@ import useEditor from "@/hooks/useEditor";
 import { cn } from "@/lib/utils";
 import { useParams } from "next/navigation";
 import { useState } from "react";
-import PageBackgroundSettings from "../section/workspace/page-background";
+import PageBackgroundSettings from "../section/workspace/page-background-settings";
+import PageDataSettings from "../section/workspace/page-data-settings";
 
 const PageSettings = () => {
   const { theme, setTheme } = useEditor();
@@ -43,7 +44,7 @@ const PageSettings = () => {
       </ul>
 
       <div className="mt-4 text-right transition-all duration-200">
-        {selectedTab === TabItems[0] && <div>content</div>}
+        {selectedTab === TabItems[0] && <PageDataSettings />}
         {selectedTab === TabItems[1] && (
           <PageBackgroundSettings setPageBackground={setPageBackground} />
         )}

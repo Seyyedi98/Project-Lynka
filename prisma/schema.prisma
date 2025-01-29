@@ -107,6 +107,8 @@ model Page {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   owner       String?
+  title       String?
+  favicon     String?
   description String?  @db.LongText
   content     String   @db.LongText
   visits      Int      @default(0)

@@ -28,10 +28,6 @@ const HeroWorkspaceUploader = ({ uri }) => {
   const ENDPOINT = process.env.NEXT_PUBLIC_LIARA_ENDPOINT;
   const BUCKET = process.env.NEXT_PUBLIC_LIARA_BUCKET_NAME;
 
-  if (!ACCESSKEY || !SECRETKEY || !ENDPOINT || !BUCKET) {
-    console.log("Cannot conect to bucket global env");
-  }
-
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
     setError(null);
