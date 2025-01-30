@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import useModal from "@/hooks/useModal";
 import { ButtonIcon } from "@radix-ui/react-icons";
 import { Check } from "lucide-react";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ThemeController } from "../controller/theme-controller";
 import { useDispatch } from "react-redux";
@@ -26,33 +26,15 @@ const extraAttributes = {
   href: " ",
 };
 
-export const ButtonFieldFormElement = {
-  type,
-  construct: (id) => ({
-    id,
-    type,
-    extraAttributes,
-  }),
-
-  ElementAdderBtn: {
-    icon: ButtonIcon,
-    label: "لینک",
-  },
-
-  WorkspaceComponent: WorkspaceComponent,
-  LivePageComponent: LivePageComponent,
-  PropertiesComponent: PropertiesComponent,
-};
-
-function WorkspaceComponent({ elementInstance }) {
-  // console.log("field render");
-
+const WorkspaceComponent = memo(function WorkspaceComponent({
+  elementInstance,
+}) {
   const element = elementInstance;
   const { title, theme } = element.extraAttributes;
   const RenderedElement = ThemeController[element.type][theme];
 
   return <RenderedElement title={title} />;
-}
+});
 
 function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
@@ -176,3 +158,21 @@ function PropertiesComponent({ elementInstance }) {
     </>
   );
 }
+
+export const ButtonFieldFormElement = {
+  type,
+  construct: (id) => ({
+    id,
+    type,
+    extraAttributes,
+  }),
+
+  ElementAdderBtn: {
+    icon: ButtonIcon,
+    label: "لینک",
+  },
+
+  WorkspaceComponent: WorkspaceComponent,
+  LivePageComponent: LivePageComponent,
+  PropertiesComponent: PropertiesComponent,
+};

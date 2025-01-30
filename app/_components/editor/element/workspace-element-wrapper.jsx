@@ -3,14 +3,15 @@ import { cn } from "@/lib/utils";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { Pencil1Icon } from "@radix-ui/react-icons";
 import { GripHorizontal, XIcon } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { PageElements } from "../../controller/page-elements";
 
 const WorkspaceElementWrapper = ({ element }) => {
-  console.log("element wrapper render");
-
   const dispatch = useDispatch();
-  const selectedElement = useSelector((store) => store.page.selectedELement);
+  const selectedElement = useSelector(
+    (store) => store.page.selectedELement,
+    shallowEqual,
+  );
   const { openMenu } = useModal();
 
   // Draggable setup

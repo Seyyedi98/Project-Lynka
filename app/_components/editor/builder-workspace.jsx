@@ -13,7 +13,6 @@ import { memo, useCallback, useMemo } from "react";
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 
 const BuilderWorkspace = () => {
-  // console.log("bulider workspace render");
   const { closeMenu, isWorkspaceMenuOpen } = useModal();
 
   const dispatch = useDispatch();
@@ -99,7 +98,7 @@ const BuilderWorkspace = () => {
           }
 
           const payload = {
-            index: elements.length,
+            index: indexForNewElement,
             element: newElement,
             applyPageTheme: true,
           };

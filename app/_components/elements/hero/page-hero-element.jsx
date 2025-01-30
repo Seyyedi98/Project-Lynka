@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import useModal from "@/hooks/useModal";
 import { Check, Loader2 } from "lucide-react";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import HeroWorkspaceUploader from "../../common/input/workspace-hero-uploader";
@@ -29,22 +29,11 @@ const extraAttributes = {
   secondaryImage: "",
 };
 
-export const PageHeroElement = {
-  type,
-  construct: (id) => ({
-    id,
-    type,
-    extraAttributes,
-  }),
-
-  WorkspaceComponent: WorkspaceComponent,
-  LivePageComponent: LivePageComponent,
-  PropertiesComponent: PropertiesComponent,
-};
-
-function WorkspaceComponent({ elementInstance }) {
+const WorkspaceComponent = memo(function WorkspaceComponent({
+  elementInstance,
+}) {
+  console.log("hero reload");
   const element = elementInstance;
-
   // Ensure element is defined and has a valid 'extraAttributes' property before checking length
   if (
     !element ||
@@ -57,7 +46,7 @@ function WorkspaceComponent({ elementInstance }) {
   const RenderedElement = HeroController[data.style][0];
 
   return <RenderedElement {...data} />;
-}
+});
 
 function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
@@ -173,3 +162,16 @@ function PropertiesComponent({ elementInstance }) {
     </>
   );
 }
+
+export const PageHeroElement = {
+  type,
+  construct: (id) => ({
+    id,
+    type,
+    extraAttributes,
+  }),
+
+  WorkspaceComponent: WorkspaceComponent,
+  LivePageComponent: LivePageComponent,
+  PropertiesComponent: PropertiesComponent,
+};

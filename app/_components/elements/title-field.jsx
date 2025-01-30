@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import useModal from "@/hooks/useModal";
 import { Check, Heading } from "lucide-react";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { ThemeController } from "../controller/theme-controller";
@@ -23,31 +23,15 @@ const extraAttributes = {
   theme: "",
 };
 
-export const TitleFieldFormElement = {
-  type,
-  construct: (id) => ({
-    id,
-    type,
-    extraAttributes,
-  }),
-
-  ElementAdderBtn: {
-    icon: Heading,
-    label: "عنوان",
-  },
-
-  WorkspaceComponent: WorkspaceComponent,
-  LivePageComponent: LivePageComponent,
-  PropertiesComponent: PropertiesComponent,
-};
-
-function WorkspaceComponent({ elementInstance }) {
+const WorkspaceComponent = memo(function WorkspaceComponent({
+  elementInstance,
+}) {
   const element = elementInstance;
   const { title, theme } = element.extraAttributes;
   const RenderedElement = ThemeController[element.type][theme];
 
   return <RenderedElement title={title} />;
-}
+});
 
 function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
@@ -139,3 +123,21 @@ function PropertiesComponent({ elementInstance }) {
     </>
   );
 }
+
+export const TitleFieldFormElement = {
+  type,
+  construct: (id) => ({
+    id,
+    type,
+    extraAttributes,
+  }),
+
+  ElementAdderBtn: {
+    icon: Heading,
+    label: "عنوان",
+  },
+
+  WorkspaceComponent: WorkspaceComponent,
+  LivePageComponent: LivePageComponent,
+  PropertiesComponent: PropertiesComponent,
+};
