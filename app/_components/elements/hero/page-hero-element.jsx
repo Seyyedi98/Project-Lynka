@@ -9,13 +9,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import { Check, Loader2 } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { HeroController } from "../../controller/hero-controller";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import HeroWorkspaceUploader from "../../common/input/workspace-hero-uploader";
+import { HeroController } from "../../controller/hero-controller";
 
 const type = "HeroElement";
 
@@ -71,7 +71,8 @@ function LivePageComponent({ elementInstance }) {
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
-  const { updateHero, setSelectedElement } = useEditor();
+  const dispatch = useDispatch();
+
   const { closeMenu } = useModal();
 
   const form = useForm({
@@ -90,17 +91,23 @@ function PropertiesComponent({ elementInstance }) {
   function applyChanges(values) {
     const { title, subtitle } = values;
 
-    updateHero({
-      ...element,
-      extraAttributes: {
-        ...element.extraAttributes,
-        title,
-        subtitle,
+    dispatch({
+      type: "page/setHero",
+      payload: {
+        ...element,
+        extraAttributes: {
+          ...element.extraAttributes,
+          title,
+          subtitle,
+        },
       },
     });
 
     closeMenu();
-    setTimeout(() => setSelectedElement(null), 200);
+    setTimeout(
+      dispatch({ type: "page/setSelectedElement", payload: null }),
+      200,
+    );
   }
 
   return (

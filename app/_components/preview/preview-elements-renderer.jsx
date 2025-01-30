@@ -1,10 +1,10 @@
 "use client";
 
-import useEditor from "@/hooks/useEditor";
+import { useSelector } from "react-redux";
 import { PageElements } from "../controller/page-elements";
 
 const PreviewPageElements = () => {
-  const { elements } = useEditor();
+  const elements = useSelector((state) => state.page.elements);
 
   return (
     <>

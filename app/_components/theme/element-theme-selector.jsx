@@ -1,11 +1,11 @@
-import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import { ThemeController } from "../controller/theme-controller";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useDispatch } from "react-redux";
 
 const ElementThemeSelector = ({ elementInstance }) => {
-  const { updateElement, setSelectedElement } = useEditor();
+  const dispatch = useDispatch();
   const [themeCategory, setThemeCategory] = useState("color"); // color || pattern || gradient || image
   const { closeMenu } = useModal();
   const element = elementInstance;
@@ -57,15 +57,23 @@ const ElementThemeSelector = ({ elementInstance }) => {
               key={(index, theme)}
               className="scale-[0.85] cursor-pointer transition-all duration-200 hover:scale-[0.87] hover:shadow-xl"
               onClick={() => {
-                updateElement(element.id, {
-                  ...element,
-                  extraAttributes: {
-                    ...element.extraAttributes,
-                    theme,
+                const payload = {
+                  id: element.id,
+                  updatedElement: {
+                    ...element,
+                    extraAttributes: {
+                      ...element.extraAttributes,
+                      theme,
+                    },
                   },
-                });
+                };
+                dispatch({ type: "page/updateElement", payload });
+
                 closeMenu();
-                setTimeout(() => setSelectedElement(null), 200);
+                setTimeout(
+                  dispatch({ type: "page/setSelectedElement", payload: null }),
+                  200,
+                );
               }}
             >
               <RenderedElement title={theme} />

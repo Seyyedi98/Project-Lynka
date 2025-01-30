@@ -1,13 +1,12 @@
 import { Button } from "@/components/ui/button";
-import useEditor from "@/hooks/useEditor";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useSelector } from "react-redux";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
 import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
-import { cn } from "@/lib/utils";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
-  const { selectedElement } = useEditor();
+  const selectedElement = useSelector((state) => state.page.selectedElement);
 
   // TODO: Replace with skeleton
   if (isDesktop === null) {

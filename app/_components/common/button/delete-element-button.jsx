@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import { Loader2Icon } from "lucide-react";
 import { useTransition } from "react";
+import { useDispatch } from "react-redux";
 import {
   Dialog,
   DialogClose,
@@ -15,16 +15,19 @@ import {
 } from "../modal/diolog";
 
 const DeleteElementBtn = ({ id, children }) => {
-  const { removeElement, setSelectedElement } = useEditor();
+  const dispatch = useDispatch();
   const { closeMenu } = useModal();
   const [isPending, startTransition] = useTransition();
 
   const onDelete = (id) => {
     startTransition(() => {
-      removeElement(id);
-
+      dispatch({ type: "page/removeElement", payload: id });
       closeMenu();
-      setTimeout(() => setSelectedElement(null), 200);
+
+      setTimeout(
+        dispatch({ type: "page/setSelectedElement", payload: null }),
+        200,
+      );
     });
   };
   return (

@@ -1,17 +1,18 @@
-import { useDraggable } from "@dnd-kit/core";
-import React from "react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import useModal from "@/hooks/useModal";
-import { PageElements } from "../../controller/page-elements";
 import { idGenerator } from "@/lib/id-generator";
-import useEditor from "@/hooks/useEditor";
+import { cn } from "@/lib/utils";
+import { useDraggable } from "@dnd-kit/core";
+import { useDispatch, useSelector } from "react-redux";
+import { PageElements } from "../../controller/page-elements";
 
 const AddElementButton = ({ pageElement }) => {
   // former sidebar-button-element
   const { label, icon: Icon } = pageElement.ElementAdderBtn;
   const { closeMenu } = useModal();
-  const { addElement, elements } = useEditor();
+
+  const dispatch = useDispatch();
+  const elements = useSelector((state) => state.page.elements);
 
   const draggable = useDraggable({
     id: `adder-btn-${pageElement.type}`,
@@ -28,7 +29,13 @@ const AddElementButton = ({ pageElement }) => {
         const type = pageElement.type;
         const newElement = PageElements[type].construct(idGenerator());
         const applyPageTheme = true;
-        addElement(elements.length, newElement, applyPageTheme);
+
+        const payload = {
+          index: elements.length,
+          element: newElement,
+          applyPageTheme,
+        };
+        dispatch({ type: "page/addElement", payload });
       }}
       ref={draggable.setNodeRef}
       className={cn(

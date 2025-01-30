@@ -1,10 +1,10 @@
-import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import { cn } from "@/lib/utils";
+import { useDispatch } from "react-redux";
 import { PageHeroElement } from "../../elements/hero/page-hero-element";
 
 const WorkspaceHeroWrapper = ({ pageTheme, element }) => {
-  const { setSelectedElement } = useEditor();
+  const dispatch = useDispatch();
   const { openMenu } = useModal();
 
   // Return the associated page element
@@ -15,7 +15,7 @@ const WorkspaceHeroWrapper = ({ pageTheme, element }) => {
       className="relative flex h-full w-full flex-col rounded-2xl text-foreground hover:cursor-pointer"
       onClick={(e) => {
         e.stopPropagation();
-        setSelectedElement(element);
+        dispatch({ type: "page/setSelectedElement", payload: element });
         openMenu();
       }}
     >

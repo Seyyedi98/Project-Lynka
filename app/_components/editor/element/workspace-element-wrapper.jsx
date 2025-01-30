@@ -1,13 +1,16 @@
-import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import { cn } from "@/lib/utils";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { Pencil1Icon } from "@radix-ui/react-icons";
 import { GripHorizontal, XIcon } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
 import { PageElements } from "../../controller/page-elements";
 
 const WorkspaceElementWrapper = ({ element }) => {
-  const { selectedElement, setSelectedElement } = useEditor();
+  console.log("element wrapper render");
+
+  const dispatch = useDispatch();
+  const selectedElement = useSelector((store) => store.page.selectedELement);
   const { openMenu } = useModal();
 
   // Draggable setup
@@ -55,7 +58,7 @@ const WorkspaceElementWrapper = ({ element }) => {
       className="relative flex w-full max-w-[380px] flex-col rounded-2xl text-foreground hover:cursor-pointer"
       onClick={(e) => {
         e.stopPropagation();
-        setSelectedElement(element);
+        dispatch({ type: "page/setSelectedElement", payload: element });
         openMenu();
       }}
     >
@@ -87,10 +90,10 @@ const WorkspaceElementWrapper = ({ element }) => {
             e.stopPropagation();
 
             if (element === selectedElement) {
-              setSelectedElement(null);
+              dispatch({ type: "page/setSelectedElement", payload: null });
             } else {
               openMenu();
-              setSelectedElement(element);
+              dispatch({ type: "page/setSelectedElement", payload: element });
             }
           }}
           // className="absolute -right-12 top-1/2 hidden -translate-y-1/2 cursor-pointer rounded-md bg-gray-200 px-2 py-2 md:block"

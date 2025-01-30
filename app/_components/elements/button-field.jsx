@@ -10,13 +10,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import { ButtonIcon } from "@radix-ui/react-icons";
 import { Check } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ThemeController } from "../controller/theme-controller";
+import { useDispatch } from "react-redux";
 
 const type = "ButtonField";
 
@@ -45,6 +45,8 @@ export const ButtonFieldFormElement = {
 };
 
 function WorkspaceComponent({ elementInstance }) {
+  // console.log("field render");
+
   const element = elementInstance;
   const { title, theme } = element.extraAttributes;
   const RenderedElement = ThemeController[element.type][theme];
@@ -62,7 +64,7 @@ function LivePageComponent({ elementInstance }) {
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
-  const { updateElement, setSelectedElement } = useEditor();
+  const dispatch = useDispatch();
   const { closeMenu } = useModal();
 
   const form = useForm({
@@ -81,17 +83,24 @@ function PropertiesComponent({ elementInstance }) {
   function applyChanges(values) {
     const { title, href } = values;
 
-    updateElement(element.id, {
-      ...element,
-      extraAttributes: {
-        ...element.extraAttributes,
-        title,
-        href,
+    const payload = {
+      id: element.id,
+      updatedElement: {
+        ...element,
+        extraAttributes: {
+          ...element.extraAttributes,
+          title,
+          href,
+        },
       },
-    });
+    };
+    dispatch({ type: "page/updateElement", payload });
 
     closeMenu();
-    setTimeout(() => setSelectedElement(null), 200);
+    setTimeout(
+      dispatch({ type: "page/setSelectedElement", payload: null }),
+      200,
+    );
   }
 
   return (

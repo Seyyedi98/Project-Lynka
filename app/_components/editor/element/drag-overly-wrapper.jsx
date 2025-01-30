@@ -1,12 +1,12 @@
-import useEditor from "@/hooks/useEditor";
 import { DragOverlay, useDndMonitor } from "@dnd-kit/core";
-import { useState } from "react";
-import { AdderBtnDragOverly } from "./add-element-button";
-import { PageElements } from "../../controller/page-elements";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { PageElements } from "../../controller/page-elements";
+import { AdderBtnDragOverly } from "./add-element-button";
 
 const DragOverlyWrapper = () => {
-  const { elements } = useEditor();
+  const elements = useSelector((state) => state.page.elements);
   const [draggedItem, setDraggedItem] = useState();
 
   useDndMonitor({

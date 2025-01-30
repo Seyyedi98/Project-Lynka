@@ -1,10 +1,10 @@
 "use client";
 
-import useEditor from "@/hooks/useEditor";
+import { useSelector } from "react-redux";
 import { PageHeroElement } from "../elements/hero/page-hero-element";
 
 const PreviewPageHero = () => {
-  const { hero } = useEditor();
+  const hero = useSelector((state) => state.page.hero);
   const HeroElement = PageHeroElement.LivePageComponent;
 
   return (

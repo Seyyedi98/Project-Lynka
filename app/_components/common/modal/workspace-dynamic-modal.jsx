@@ -1,14 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import {
   Drawer,
   DrawerClose,
@@ -19,9 +10,17 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/app/_components/common/modal/drawer";
-import useEditor from "@/hooks/useEditor";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import useModal from "@/hooks/useModal";
+import { useDispatch } from "react-redux";
 
 export function WorkspaceDynamicModal({
   children,
@@ -31,7 +30,7 @@ export function WorkspaceDynamicModal({
   delay = 0,
 }) {
   const { isWorkspaceMenuOpen, setIsWorkspaceMenuOpen } = useModal();
-  const { setSelectedElement } = useEditor();
+  const dispatch = useDispatch();
 
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -40,7 +39,10 @@ export function WorkspaceDynamicModal({
   const handleOpenChange = (isOpen) => {
     setIsWorkspaceMenuOpen(isOpen);
     if (!isOpen) {
-      setTimeout(() => setSelectedElement(null), delay); // Remove selected element when the menu closes
+      setTimeout(
+        () => dispatch({ type: "page/setSelectedElement", payload: null }),
+        delay,
+      ); // Remove selected element when the menu closes
       //  Added 400ms timeout, prevent immediate change from properties to adder menu shifting
     }
   };

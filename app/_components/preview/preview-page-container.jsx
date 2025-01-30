@@ -1,10 +1,9 @@
-import React from "react";
+import { useSelector } from "react-redux";
 import PreviewPageElements from "./preview-elements-renderer";
 import PreviewPageHero from "./preview-hero-renderer";
-import useEditor from "@/hooks/useEditor";
 
 const PreviewPageContainer = () => {
-  const { theme } = useEditor();
+  const theme = useSelector((state) => state.page.theme);
   const style = {
     backgroundColor: theme.backgroundValue,
     background: theme.backgroundValue,

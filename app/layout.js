@@ -1,9 +1,9 @@
+import { auth } from "@/auth";
+import { Toaster } from "@/components/ui/toaster";
+import { StoreProvider } from "@/store/StoreProvider";
+import { SessionProvider } from "next-auth/react";
 import localFont from "next/font/local";
 import "./globals.css";
-import { auth } from "@/auth";
-import { SessionProvider } from "next-auth/react";
-import EditorContextProvider from "@/context/editor-context";
-import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,14 +32,16 @@ export default async function RootLayout({ children }) {
 
   return (
     <SessionProvider session={session}>
-      <html lang="fa" dir="rtl">
-        <body
-          className={`${yekan.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <EditorContextProvider>{children}</EditorContextProvider>
-          <Toaster />
-        </body>
-      </html>
+      <StoreProvider>
+        <html lang="fa" dir="rtl">
+          <body
+            className={`${yekan.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
+            {children}
+            <Toaster />
+          </body>
+        </html>
+      </StoreProvider>
     </SessionProvider>
   );
 }

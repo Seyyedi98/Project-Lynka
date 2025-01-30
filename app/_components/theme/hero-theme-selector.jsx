@@ -1,13 +1,14 @@
-import useEditor from "@/hooks/useEditor";
-import useModal from "@/hooks/useModal";
-import { HeroController } from "../controller/hero-controller";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
 import useFilterTheme from "@/hooks/useFilterTheme";
+import useModal from "@/hooks/useModal";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import SquareButton from "../common/button/square-button";
+import { HeroController } from "../controller/hero-controller";
 
 const HeroThemeSelector = () => {
-  const { hero, updateHero, setSelectedElement } = useEditor();
+  const dispatch = useDispatch();
+  const hero = useSelector((state) => state.page.hero);
+
   const [themeCategory, setThemeCategory] = useState("color"); // color || pattern || gradient || image
   const { closeMenu } = useModal();
 
@@ -55,11 +56,14 @@ const HeroThemeSelector = () => {
             <div
               key={(index, theme)}
               onClick={() => {
-                updateHero({
-                  ...hero,
-                  extraAttributes: {
-                    ...hero.extraAttributes,
-                    style: theme[0],
+                dispatch({
+                  type: "page/setHero",
+                  payload: {
+                    ...hero,
+                    extraAttributes: {
+                      ...hero.extraAttributes,
+                      style: theme[0],
+                    },
                   },
                 });
                 closeMenu();

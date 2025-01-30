@@ -1,15 +1,14 @@
 // import { savePageSettings } from "@/actions/page/page-data";
 import { Button } from "@/components/ui/button";
-import { FileUpload } from "@/components/ui/file-upload";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import useEditor from "@/hooks/useEditor";
 import useModal from "@/hooks/useModal";
 import deleteFile from "@/lib/upload/deleteFile";
 import uploadFile from "@/lib/upload/uploadFile";
 import { Loader2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const HeroWorkspaceUploader = ({ uri }) => {
   const [file, setFile] = useState(null);
@@ -18,7 +17,8 @@ const HeroWorkspaceUploader = ({ uri }) => {
   const [uploadLink, setUploadLink] = useState(null);
   const [permanentLink, setPermanentLink] = useState(null);
 
-  const { updateHero, hero } = useEditor();
+  const dispatch = useDispatch();
+  const hero = useSelector((store) => store.page.hero);
   const { closeMenu } = useModal();
 
   const previousImage = hero?.extraAttributes?.primaryImage;
@@ -49,13 +49,16 @@ const HeroWorkspaceUploader = ({ uri }) => {
           ENDPOINT,
         });
       }
-      updateHero({
+
+      const payload = {
         ...hero,
         extraAttributes: {
           ...hero.extraAttributes,
           primaryImage: { url: permanentSignedUrl, key: response.Key },
         },
-      });
+      };
+      dispatch({ type: "page/setHero", payload });
+
       closeMenu();
       toast({
         description: "تصویر با موفقیت تغییر یافت",

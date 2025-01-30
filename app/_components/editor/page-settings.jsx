@@ -1,23 +1,21 @@
 "use clinet";
 
-import useEditor from "@/hooks/useEditor";
 import { cn } from "@/lib/utils";
-import { useParams } from "next/navigation";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import PageBackgroundSettings from "../section/workspace/page-background-settings";
 import PageDataSettings from "../section/workspace/page-data-settings";
 
 const PageSettings = () => {
-  const { theme, setTheme } = useEditor();
+  const dispatch = useDispatch();
+  const theme = useSelector((store) => store.page.theme);
 
   const [selectedTab, setSelectedTab] = useState("content");
   const TabItems = ["content", "پس زمینه", "Theme", "analytics"];
 
   const setPageBackground = function (velue) {
-    setTheme({
-      ...theme,
-      backgroundValue: velue,
-    });
+    const payload = { ...theme, backgroundValue: velue };
+    dispatch({ type: "page/setTheme", payload });
   };
 
   return (
