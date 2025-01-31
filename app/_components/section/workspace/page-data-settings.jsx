@@ -14,7 +14,6 @@ const PageDataSettings = () => {
   const [category, setCategory] = useState("metaTitle");
   const { uri } = useParams();
 
-
   return (
     <>
       <div>
@@ -48,7 +47,9 @@ const PageDataSettings = () => {
           />
         ) : null}
 
-        {category === "metaImage" ? <MetaImageForm uri={uri} /> : null}
+        {category === "metaImage" ? (
+          <MetaImageForm image={metadata.metaImage} uri={uri} />
+        ) : null}
 
         {category === "favicon" ? (
           <MetaFaviconForm favicon={metadata.favicon} uri={uri} />

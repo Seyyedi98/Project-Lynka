@@ -206,7 +206,6 @@ export async function UpdatePageMetaDescription(uri, content) {
 }
 
 export async function UpdatePageFavicon(uri, content) {
-  console.log(uri);
   const user = await currentUser();
   if (!user) {
     return { error: "You need to signed in to create Page" };
@@ -230,4 +229,30 @@ export async function UpdatePageFavicon(uri, content) {
   });
 
   return { success: "Page meta title has been updated" };
+}
+
+export async function UpdatePageImage(uri, content) {
+  const user = await currentUser();
+  if (!user) {
+    return { error: "You need to signed in" };
+  }
+
+  const page = await prisma.page.findUnique({
+    where: {
+      uri,
+    },
+  });
+  if (page.owner !== user.id) return { error: "Unauthorized access" };
+
+  await prisma.page.update({
+    where: {
+      owner: user.id,
+      uri,
+    },
+    data: {
+      metaImage: content,
+    },
+  });
+
+  return { success: "Page meta image has been updated" };
 }

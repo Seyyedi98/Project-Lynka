@@ -112,7 +112,7 @@ model Page {
   metaTitle       String?
   metaDescription String?
   favicon         String?  @db.LongText
-  metaImage       String?
+  metaImage       String?  @db.LongText
   content         String   @db.LongText
   visits          Int      @default(0)
   isPremium       Boolean  @default(false)

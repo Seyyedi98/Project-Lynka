@@ -13,7 +13,7 @@ export async function generateMetadata({ params }) {
   try {
     const metadata = await getPageMetadata(uri);
     if (!metadata) throw new Error("metadata not found");
-    const favicon = await JSON.parse(metadata.favicon).url;
+    const favicon = await JSON.parse(metadata?.favicon).url;
     return {
       title: metadata.metaTitle || "My Page",
       description: metadata.metaDescription || "Welcome!",
