@@ -75,6 +75,7 @@ export const getPreviewPageDataByUri = async (uri) => {
 };
 
 export const getPageMetadata = async (uri) => {
+  if (!uri) return { error: "Cannot get page data" };
   const metaData = await prisma.page.findUnique({
     where: {
       uri,
