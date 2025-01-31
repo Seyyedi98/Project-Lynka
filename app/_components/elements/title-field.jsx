@@ -78,7 +78,7 @@ function PropertiesComponent({ elementInstance }) {
 
     closeMenu();
     setTimeout(
-      dispatch({ type: "page/setSelectedElement", payload: null }),
+      () => dispatch({ type: "page/setSelectedElement", payload: null }),
       200,
     );
   }

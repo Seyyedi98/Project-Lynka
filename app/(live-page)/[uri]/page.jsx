@@ -1,4 +1,4 @@
-import { getPreviewPageDataByUri } from "@/actions/page";
+import { getPageMetadata } from "@/actions/page";
 import LivePageElements from "@/app/_components/live-page/live-page-elements-rendere";
 import LivePageHero from "@/app/_components/live-page/live-page-hero-rendere";
 import getPageContent from "@/lib/page/get-page-content";
@@ -11,12 +11,13 @@ export async function generateMetadata({ params }) {
   const { uri } = await params;
 
   try {
-    const page = await getPreviewPageDataByUri(uri);
-    if (!page) throw new Error("Page not found");
-
+    const metadata = await getPageMetadata(uri);
+    if (!metadata) throw new Error("metadata not found");
+    const favicon = await JSON.parse(metadata.favicon).url;
     return {
-      title: page.title || "My Page",
-      description: page.description || "Welcome!",
+      title: metadata.metaTitle || "My Page",
+      description: metadata.metaDescription || "Welcome!",
+      icons: [{ rel: "icon", url: favicon }],
     };
   } catch (error) {
     console.error("Metadata fetch failed:", error);
@@ -68,8 +69,7 @@ const LivePage = async ({ params }) => {
       className="flex h-full w-full flex-col items-center justify-start gap-4"
     >
       <LivePageHero hero={hero} />
-
-      <section className="flex h-full w-3/4 max-w-[400px] flex-col items-center justify-start gap-4">
+      <section className="flex h-full w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
         <LivePageElements content={content} />
       </section>
     </div>

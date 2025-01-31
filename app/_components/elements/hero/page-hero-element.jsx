@@ -32,7 +32,6 @@ const extraAttributes = {
 const WorkspaceComponent = memo(function WorkspaceComponent({
   elementInstance,
 }) {
-  console.log("hero reload");
   const element = elementInstance;
   // Ensure element is defined and has a valid 'extraAttributes' property before checking length
   if (
@@ -94,7 +93,7 @@ function PropertiesComponent({ elementInstance }) {
 
     closeMenu();
     setTimeout(
-      dispatch({ type: "page/setSelectedElement", payload: null }),
+      () => dispatch({ type: "page/setSelectedElement", payload: null }),
       200,
     );
   }

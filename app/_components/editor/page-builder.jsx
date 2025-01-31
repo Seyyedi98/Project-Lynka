@@ -19,8 +19,6 @@ import BuilderWorkspace from "./builder-workspace";
 import DragOverlyWrapper from "./element/drag-overly-wrapper";
 
 const PageBuilder = ({ page }) => {
-  // console.log("page builder re render");
-
   const dispatch = useDispatch();
   const [isReady, setIsReady] = useState(false);
   const pageTheme = JSON.parse(page.theme);
@@ -64,6 +62,12 @@ const PageBuilder = ({ page }) => {
         hero: hero,
         theme: pageTheme,
         selectedElement: null,
+        metadata: {
+          metaTitle: page.metaTitle,
+          metaDescription: page.metaDescription,
+          metaImage: page.metaImage,
+          favicon: page.favicon,
+        },
       };
 
       dispatch({ type: "page/setInitialState", payload: newState });

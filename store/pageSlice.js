@@ -6,6 +6,7 @@ const initialState = {
   hero: null,
   theme: "",
   selectedElement: null,
+  metadata: "",
 };
 
 const pageSlice = createSlice({
@@ -20,6 +21,9 @@ const pageSlice = createSlice({
     },
     setSelectedElement: (state, action) => {
       state.selectedElement = action.payload;
+    },
+    setMetadata: (state, action) => {
+      state.metadata = action.payload;
     },
     addElement: (state, action) => {
       const { index, element, applyPageTheme } = action.payload;
@@ -50,6 +54,7 @@ const pageSlice = createSlice({
 
 export const {
   setHero,
+  setMetadata,
   setTheme,
   setSelectedElement,
   addElement,

@@ -44,6 +44,7 @@ export const getUserPages = async () => {
   return pages;
 };
 
+// TODO: remove this
 export const getUserPageDataByUri = async (uri) => {
   const user = await currentUser();
   if (!user) return { error: "Unauthorized access" };
@@ -71,6 +72,24 @@ export const getPreviewPageDataByUri = async (uri) => {
   if (!page) return { error: "Page not found!" };
 
   return page;
+};
+
+export const getPageMetadata = async (uri) => {
+  const metaData = await prisma.page.findUnique({
+    where: {
+      uri,
+    },
+    select: {
+      metaTitle: true,
+      metaDescription: true,
+      favicon: true,
+      metaImage: true,
+    },
+  });
+
+  if (!metaData) return { error: "Page not found!" };
+
+  return metaData;
 };
 
 export async function UpdatePageContent(uri, jsonContent) {
@@ -131,4 +150,83 @@ export async function getPageTheme(uri) {
   if (!page) return { error: "Page not found!" };
 
   return page.theme;
+}
+
+export async function UpdatePageMetaTitle(uri, content) {
+  const user = await currentUser();
+  if (!user) {
+    return { error: "You need to signed in to create Page" };
+  }
+
+  const page = await prisma.page.findUnique({
+    where: {
+      uri,
+    },
+  });
+  if (page.owner !== user.id) return { error: "Unauthorized access" };
+
+  await prisma.page.update({
+    where: {
+      owner: user.id,
+      uri,
+    },
+    data: {
+      metaTitle: content.title,
+    },
+  });
+
+  return { success: "Page meta title has been updated" };
+}
+
+export async function UpdatePageMetaDescription(uri, content) {
+  const user = await currentUser();
+  if (!user) {
+    return { error: "You need to signed in to create Page" };
+  }
+
+  const page = await prisma.page.findUnique({
+    where: {
+      uri,
+    },
+  });
+  if (page.owner !== user.id) return { error: "Unauthorized access" };
+
+  await prisma.page.update({
+    where: {
+      owner: user.id,
+      uri,
+    },
+    data: {
+      metaDescription: content.metaDescription,
+    },
+  });
+
+  return { success: "Page meta title has been updated" };
+}
+
+export async function UpdatePageFavicon(uri, content) {
+  console.log(uri);
+  const user = await currentUser();
+  if (!user) {
+    return { error: "You need to signed in to create Page" };
+  }
+
+  const page = await prisma.page.findUnique({
+    where: {
+      uri,
+    },
+  });
+  if (page.owner !== user.id) return { error: "Unauthorized access" };
+
+  await prisma.page.update({
+    where: {
+      owner: user.id,
+      uri,
+    },
+    data: {
+      favicon: content,
+    },
+  });
+
+  return { success: "Page meta title has been updated" };
 }

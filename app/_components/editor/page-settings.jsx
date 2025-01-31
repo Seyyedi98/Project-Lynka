@@ -10,8 +10,8 @@ const PageSettings = () => {
   const dispatch = useDispatch();
   const theme = useSelector((store) => store.page.theme);
 
-  const [selectedTab, setSelectedTab] = useState("content");
-  const TabItems = ["content", "پس زمینه", "Theme", "analytics"];
+  const [selectedTab, setSelectedTab] = useState("مرورگر");
+  const TabItems = ["مرورگر", "پس زمینه", "Theme", "analytics"];
 
   const setPageBackground = function (velue) {
     const payload = { ...theme, backgroundValue: velue };
@@ -34,7 +34,7 @@ const PageSettings = () => {
           className={cn(
             `absolute bottom-0 border border-primary-500 transition-all duration-300`,
             selectedTab === TabItems[0] && "right-[3px] w-14",
-            selectedTab === TabItems[1] && "right-[87px] w-12",
+            selectedTab === TabItems[1] && "right-[75px] w-[72px]",
             selectedTab === TabItems[2] && "right-[160px] w-[60px]",
             selectedTab === TabItems[3] && "right-[236px] w-[70px]",
           )}

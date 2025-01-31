@@ -1,4 +1,4 @@
-// import { savePageSettings } from "@/actions/page/page-data";
+import { UpdatePageFavicon } from "@/actions/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,7 +10,7 @@ import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const HeroWorkspaceUploader = ({ uri }) => {
+const FaviconUploader = ({ uri, favicon }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -18,10 +18,10 @@ const HeroWorkspaceUploader = ({ uri }) => {
   const [permanentLink, setPermanentLink] = useState(null);
 
   const dispatch = useDispatch();
-  const hero = useSelector((store) => store.page.hero);
+  const metadata = useSelector((store) => store.page.metadata);
   const { closeMenu } = useModal();
 
-  const previousImage = hero?.extraAttributes?.primaryImage;
+  const previousImage = favicon?.key;
 
   const ACCESSKEY = process.env.NEXT_PUBLIC_LIARA_ACCESS_KEY;
   const SECRETKEY = process.env.NEXT_PUBLIC_LIARA_SECRET_KEY;
@@ -37,19 +37,23 @@ const HeroWorkspaceUploader = ({ uri }) => {
 
   const handleUploadButton = async () => {
     const options = {
-      maxSizeMB: 2, // Compress to be <= 2MB
-      maxWidthOrHeight: 1920, // Optional: Resize image to 1920px width/height if it's larger
+      maxSizeMB: 0.2, // Compress to be <= 2MB
+      maxWidthOrHeight: 32, // Optional: Resize image to 1920px width/height if it's larger
       initialQuality: 1, // Start with 100% quality and adjust as needed
       useWebWorker: true, // Enable web workers for faster processing
     };
 
     setIsUploading(true);
     const { permanentSignedUrl, response } = await uploadFile(file, options);
+    const JSONFaviconData = JSON.stringify({
+      url: permanentSignedUrl,
+      key: response.Key,
+    });
 
     try {
       if (previousImage) {
         deleteFile({
-          file: previousImage,
+          file: favicon,
           BUCKET,
           ACCESSKEY,
           SECRETKEY,
@@ -57,14 +61,14 @@ const HeroWorkspaceUploader = ({ uri }) => {
         });
       }
 
+      await UpdatePageFavicon(uri, JSONFaviconData);
+
       const payload = {
-        ...hero,
-        extraAttributes: {
-          ...hero.extraAttributes,
-          primaryImage: { url: permanentSignedUrl, key: response.Key },
-        },
+        ...metadata,
+        favicon: JSONFaviconData,
       };
-      dispatch({ type: "page/setHero", payload });
+
+      dispatch({ type: "page/setMetadata", payload });
 
       closeMenu();
       toast({
@@ -74,6 +78,7 @@ const HeroWorkspaceUploader = ({ uri }) => {
       toast({
         description: "خطایی رخ داد. لطفا مجددا سعی کنید",
       });
+      console.log(error);
     }
 
     setIsUploading(false);
@@ -111,4 +116,4 @@ const HeroWorkspaceUploader = ({ uri }) => {
   );
 };
 
-export default HeroWorkspaceUploader;
+export default FaviconUploader;
