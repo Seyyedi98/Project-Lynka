@@ -1,8 +1,11 @@
 import { getPageMetadata } from "@/actions/page";
+import LoadingSpinner from "@/app/_components/common/shared/loadingSpinner";
+import { LoadingController } from "@/app/_components/controller/loading-controller";
 import LivePageElements from "@/app/_components/live-page/live-page-elements-rendere";
 import LivePageHero from "@/app/_components/live-page/live-page-hero-rendere";
 import getPageContent from "@/lib/page/get-page-content";
 import getPageHero from "@/lib/page/get-page-header";
+import { cn } from "@/lib/utils";
 import fetchWithRetry from "@/utils/fetchWithRetry";
 import { notFound } from "next/navigation";
 
@@ -66,8 +69,16 @@ const LivePage = async ({ params }) => {
   return (
     <div
       style={style}
-      className="flex h-full w-full flex-col items-center justify-start gap-4"
+      className="relative flex h-full w-full flex-col items-center justify-start gap-4"
     >
+      <div
+        className={cn(
+          `absolute z-50 grid h-dvh w-dvw place-items-center bg-white opacity-100 transition-opacity duration-300 animate-out`,
+          page && "pointer-events-none opacity-0",
+        )}
+      >
+        <LoadingSpinner elementInstances={page.loadingIcon} />
+      </div>
       <LivePageHero hero={hero} />
       <section className="flex h-full w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
         <LivePageElements content={content} />

@@ -108,7 +108,7 @@ model Page {
   updatedAt       DateTime @updatedAt
   owner           String?
   title           String?
-  description     String?
+  loadingIcon     String?
   metaTitle       String?
   metaDescription String?
   favicon         String?  @db.LongText
@@ -119,4 +119,24 @@ model Page {
   theme           String?
 
   User User? @relation(fields: [owner], references: [id])
+
+  @@index([title])
 }
+// model Page {
+//   uri             String   @unique
+//   createdAt       DateTime @default(now())
+//   updatedAt       DateTime @updatedAt
+//   owner           String?
+//   title           String?
+//   description     String?
+//   metaTitle       String?
+//   metaDescription String?
+//   favicon         String?  @db.LongText
+//   metaImage       String?  @db.LongText
+//   content         String   @db.LongText
+//   visits          Int      @default(0)
+//   isPremium       Boolean  @default(false)
+//   theme           String?
+
+//   User User? @relation(fields: [owner], references: [id])
+// }

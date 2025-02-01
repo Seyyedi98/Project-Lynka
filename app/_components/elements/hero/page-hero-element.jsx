@@ -53,7 +53,6 @@ function LivePageComponent({ elementInstance }) {
 
   if (!data) return <Loader2 className="animate-spin" />;
   const RenderedElement = HeroController[data.style][0];
-
   return <RenderedElement {...data} />;
 }
 

@@ -1,4 +1,4 @@
-import { UpdatePageFavicon, UpdatePageImage } from "@/actions/page";
+import { UpdatePageImage } from "@/actions/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";

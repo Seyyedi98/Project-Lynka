@@ -52,6 +52,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2">
         {themesList.map((theme, index) => {
           const RenderedElement = ThemeController[element.type][theme];
+
           return (
             <div
               key={(index, theme)}

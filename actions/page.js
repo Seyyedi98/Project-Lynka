@@ -142,6 +142,29 @@ export async function UpdatePageTheme(uri, theme) {
   return { success: "Page theme has been updated" };
 }
 
+export async function UpdatePageLoadingIcon(uri, loadingIcon) {
+  const user = await currentUser();
+  if (!user) {
+    return { error: "You need to signed in to create Page" };
+  }
+
+  const page = await prisma.page.findUnique({
+    where: {
+      uri,
+    },
+  });
+  if (page?.owner !== user.id) return { error: "Unauthorized access" };
+
+  await prisma.page.update({
+    where: { uri },
+    data: {
+      loadingIcon,
+    },
+  });
+
+  return { success: "Page theme has been updated" };
+}
+
 export async function getPageTheme(uri) {
   const page = await prisma.page.findUnique({
     where: {
