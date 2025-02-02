@@ -1,10 +1,10 @@
-import { getPreviewPageDataByUri } from "@/actions/page";
+import { getPageDataByUri } from "@/actions/page";
 
 // ✅ Helper function to retry fetching if database connection fails
 export default async function fetchWithRetry(uri, retries = 3, delay = 1000) {
   for (let attempt = 0; attempt < retries; attempt++) {
     try {
-      const page = await getPreviewPageDataByUri(uri);
+      const page = await getPageDataByUri(uri);
       if (page) return page;
     } catch (error) {
       console.error(`Database fetch failed (attempt ${attempt + 1}):`, error);

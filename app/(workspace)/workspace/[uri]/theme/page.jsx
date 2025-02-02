@@ -1,10 +1,10 @@
-import { getUserPageDataByUri } from "@/actions/page";
+import { getPageDataByUri } from "@/actions/page";
 import InitialThemeSelector from "@/app/_components/editor/initial-theme-selector";
 import { redirect } from "next/navigation";
 
 const SelectThemePage = async ({ params }) => {
   const { uri } = await params;
-  const page = await getUserPageDataByUri(uri);
+  const page = await getPageDataByUri(uri);
   if (page.theme) redirect(`/workspace/${uri}`);
 
   return (

@@ -44,25 +44,8 @@ export const getUserPages = async () => {
   return pages;
 };
 
-// TODO: remove this
-export const getUserPageDataByUri = async (uri) => {
-  const user = await currentUser();
-  if (!user) return { error: "Unauthorized access" };
-
-  const page = await prisma.page.findUnique({
-    where: {
-      uri,
-    },
-  });
-
-  if (!page) return { error: "Page not found!" };
-  if (page.owner !== user.id) return { error: "Unauthorized access" };
-
-  return page;
-};
-
 // Get preview page data by URI (without user validation)
-export const getPreviewPageDataByUri = async (uri) => {
+export const getPageDataByUri = async (uri) => {
   const page = await prisma.page.findUnique({
     where: {
       uri,

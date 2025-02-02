@@ -2,25 +2,18 @@ import { auth } from "@/auth";
 import { Toaster } from "@/components/ui/toaster";
 import { StoreProvider } from "@/store/StoreProvider";
 import { SessionProvider } from "next-auth/react";
-import localFont from "next/font/local";
+import {
+  geistMono,
+  geistSans,
+  parastoo,
+  sahel,
+  samim,
+  shabnam,
+  tanha,
+  vazir,
+  yekan,
+} from "./fonts/Fonts";
 import "./globals.css";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
-const yekan = localFont({
-  src: "./fonts/Yekan.woff",
-  variable: "--font-Yekan",
-  weight: "100 200 400 500 900",
-});
 
 export const metadata = {
   title: "Create Next App",
@@ -36,7 +29,7 @@ export default async function RootLayout({ children }) {
       <StoreProvider>
         <html lang="fa" dir="rtl">
           <body
-            className={`${yekan.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+            className={`${yekan.variable} ${vazir.variable} ${tanha.variable} ${shabnam.variable} ${samim.variable} ${sahel.variable} ${parastoo.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
           >
             {children}
             <Toaster />

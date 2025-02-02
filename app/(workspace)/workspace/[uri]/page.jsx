@@ -1,11 +1,10 @@
-import { getUserPageDataByUri } from "@/actions/page";
+import { getPageDataByUri } from "@/actions/page";
 import PageBuilder from "@/app/_components/editor/page-builder";
 import { redirect } from "next/navigation";
 
 const EditorPage = async ({ params }) => {
   const { uri } = await params;
-  const page = await getUserPageDataByUri(uri);
-
+  const page = await getPageDataByUri(uri);
 
   if (page.theme) {
     return (
