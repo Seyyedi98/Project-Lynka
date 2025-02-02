@@ -1,5 +1,16 @@
 import localFont from "next/font/local";
 
+export const fontsList = [
+  { fontName: "یکان", fontValue: "yekan" },
+  { fontName: "پرستو", fontValue: "parastoo" },
+  { fontName: "ساحل", fontValue: "sahel" },
+  { fontName: "صمیم", fontValue: "samim" },
+  { fontName: "شبنم", fontValue: "shabnam" },
+  { fontName: "تنها", fontValue: "tanha" },
+  { fontName: "وزیر", fontValue: "vazir" },
+
+];
+
 export const geistSans = localFont({
   src: "./GeistVF.woff",
   variable: "--font-geist-sans",

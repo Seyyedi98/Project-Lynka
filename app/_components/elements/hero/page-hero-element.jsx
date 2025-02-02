@@ -11,11 +11,19 @@ import {
 import { Input } from "@/components/ui/input";
 import useModal from "@/hooks/useModal";
 import { Check, Loader2 } from "lucide-react";
-import { memo, useEffect } from "react";
+import { memo, Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import HeroWorkspaceUploader from "../../common/input/workspace-hero-uploader";
 import { HeroController } from "../../controller/hero-controller";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { fontsList } from "@/app/fonts/Fonts";
 
 const type = "HeroElement";
 
@@ -23,6 +31,8 @@ const extraAttributes = {
   style: "",
   title: "",
   subtitle: "",
+  titleFont: "",
+  subTitleFont: "",
   heroType: "",
   heroValue: "",
   primaryImage: "",
@@ -68,6 +78,8 @@ function PropertiesComponent({ elementInstance }) {
     defaultValues: {
       title: element.title || "",
       subtitle: element.subtitle || "",
+      titleFont: element.titleFont || "",
+      subTitleFont: element.subTitleFont || "",
     },
   });
 
@@ -76,7 +88,7 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { title, subtitle } = values;
+    const { title, subtitle, titleFont, subTitleFont } = values;
 
     dispatch({
       type: "page/setHero",
@@ -86,6 +98,8 @@ function PropertiesComponent({ elementInstance }) {
           ...element.extraAttributes,
           title,
           subtitle,
+          titleFont,
+          subTitleFont,
         },
       },
     });
@@ -140,6 +154,84 @@ function PropertiesComponent({ elementInstance }) {
                       }
                     }}
                   />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="titleFont"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>فونت عنوان اصلی</FormLabel>
+                <FormControl>
+                  <Select
+                    {...field}
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    dir="rtl"
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="فونت" />
+                    </SelectTrigger>
+
+                    <SelectContent>
+                      <Suspense fallback={<p>در حال بارگزاری...</p>}>
+                        {fontsList.map(({ fontName, fontValue }, index) => (
+                          <SelectItem
+                            className="hover:cursor-pointer"
+                            key={`${index}-${fontName}`}
+                            value={fontValue}
+                          >
+                            <p style={{ fontFamily: fontValue }}>
+                              {fontName} - {element.extraAttributes.title}
+                            </p>
+                          </SelectItem>
+                        ))}
+                      </Suspense>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="subTitleFont"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>فونت عنوان دوم</FormLabel>
+                <FormControl>
+                  <Select
+                    {...field}
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    dir="rtl"
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="فونت" />
+                    </SelectTrigger>
+
+                    <SelectContent>
+                      <Suspense fallback={<p>در حال بارگزاری...</p>}>
+                        {fontsList.map(({ fontName, fontValue }, index) => (
+                          <SelectItem
+                            className="hover:cursor-pointer"
+                            key={`${index}-${fontName}`}
+                            value={fontValue}
+                          >
+                            <p style={{ fontFamily: fontValue }}>
+                              {fontName} - {element.extraAttributes.subtitle}
+                            </p>
+                          </SelectItem>
+                        ))}
+                      </Suspense>
+                    </SelectContent>
+                  </Select>
                 </FormControl>
                 <FormMessage />
               </FormItem>

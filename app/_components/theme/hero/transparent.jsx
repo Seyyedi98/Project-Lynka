@@ -1,14 +1,29 @@
 import Image from "next/image";
 
 const TransparentHero = ({ ...data }) => {
-  const { title, subtitle, primaryImage, heroType, heroValue } = data;
+  const {
+    title,
+    subtitle,
+    primaryImage,
+    titleFont,
+    subTitleFont,
+    heroType,
+    heroValue,
+  } = data;
   const primaryBgImage = primaryImage.url;
 
   return (
     <div className="relative mb-24 h-52 w-full bg-transparent sm:h-52">
       <div className="absolute -bottom-20 z-10 flex h-full w-full flex-1 flex-col items-center justify-end">
-        <h2 className="text-3xl text-white">{title}</h2>
-        <h4 className="text-lg font-thin text-white">{subtitle}</h4>
+        <h2 style={{ fontFamily: titleFont }} className="text-3xl text-white">
+          {title}
+        </h2>
+        <h4
+          style={{ fontFamily: subTitleFont }}
+          className="text-lg font-thin text-white"
+        >
+          {subtitle}
+        </h4>
       </div>
 
       {primaryBgImage && (

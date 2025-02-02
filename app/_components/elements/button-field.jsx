@@ -17,12 +17,22 @@ import { memo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ThemeController } from "../controller/theme-controller";
 import { useDispatch } from "react-redux";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { fontsList } from "@/app/fonts/Fonts";
+import { cn } from "@/lib/utils";
 
 const type = "ButtonField";
 
 const extraAttributes = {
   title: "عنوان",
   theme: "",
+  font: "",
   href: " ",
 };
 
@@ -30,18 +40,20 @@ const WorkspaceComponent = memo(function WorkspaceComponent({
   elementInstance,
 }) {
   const element = elementInstance;
-  const { title, theme } = element.extraAttributes;
+  const { title, theme, font } = element.extraAttributes;
   const RenderedElement = ThemeController[element.type][theme];
 
-  return <RenderedElement title={title} />;
+  return <RenderedElement title={title} font={font} />;
 });
 
 function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
-  const { title, href, theme } = element.extraAttributes;
+  const { title, href, theme, font } = element.extraAttributes;
 
   const RenderedElement = ThemeController[element.type][theme];
-  return <RenderedElement title={title} href={href} isLive={true} />;
+  return (
+    <RenderedElement title={title} href={href} isLive={true} font={font} />
+  );
 }
 
 function PropertiesComponent({ elementInstance }) {
@@ -55,6 +67,7 @@ function PropertiesComponent({ elementInstance }) {
     defaultValues: {
       title: element.extraAttributes.title || "",
       href: element.extraAttributes.href || "",
+      font: element.extraAttributes.font || "",
     },
   });
 
@@ -63,7 +76,7 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { title, href } = values;
+    const { title, href, font } = values;
 
     const payload = {
       id: element.id,
@@ -73,6 +86,7 @@ function PropertiesComponent({ elementInstance }) {
           ...element.extraAttributes,
           title,
           href,
+          font,
         },
       },
     };
@@ -147,6 +161,42 @@ function PropertiesComponent({ elementInstance }) {
               http://
             </div>
           </div>
+
+          <FormField
+            control={form.control}
+            name="font"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>فونت</FormLabel>
+                <FormControl>
+                  <Select
+                    {...field}
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    dir="rtl"
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="فونت" />
+                    </SelectTrigger>
+
+                    <SelectContent>
+                      {fontsList.map(({ fontName, fontValue }, index) => (
+                        <SelectItem
+                          className="hover:cursor-pointer"
+                          key={`${index}-${fontName}`}
+                          value={fontValue}
+                        >
+                          <p style={{ fontFamily: fontValue }}>{fontName}</p>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <button
             type="submit"
             className="absolute -top-20 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0"
