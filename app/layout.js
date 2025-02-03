@@ -12,7 +12,7 @@ import {
   tanha,
   vazir,
   yekan,
-} from "./fonts/Fonts";
+} from "./fonts/fonts";
 import "./globals.css";
 
 export const metadata = {

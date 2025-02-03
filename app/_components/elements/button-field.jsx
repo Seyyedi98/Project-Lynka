@@ -24,7 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { fontsList } from "@/app/fonts/Fonts";
+import { fontsList } from "@/app/fonts/fonts";
 import { cn } from "@/lib/utils";
 
 const type = "ButtonField";

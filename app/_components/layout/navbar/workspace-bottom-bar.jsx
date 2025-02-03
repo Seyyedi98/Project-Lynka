@@ -37,7 +37,7 @@ const WorkspaceBottomBar = ({ isDesktop }) => {
             target="_blank"
             className="truncate text-nowrap font-medium text-brand-600 hover:underline hover:underline-offset-4"
           >
-            link.ir/
+            {websiteUrl}
             <span className="truncate text-nowrap">{pageUri}</span>
           </Link>
           <div className="ml-auto flex gap-1">

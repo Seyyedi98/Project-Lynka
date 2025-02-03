@@ -21,6 +21,27 @@ export async function generateMetadata({ params }) {
       title: metadata.metaTitle || "My Page",
       description: metadata.metaDescription || "Welcome!",
       icons: [{ rel: "icon", url: favicon }],
+
+      openGraph: {
+        title: metadata.metaTitle || "My Page",
+        description: metadata.metaDescription || "Welcome!",
+        // url: `https://example.com/${uri}`, // Dynamically construct URL
+        siteName: "My Site",
+        images: [{ url: metadata.metaImage }], // Open Graph Image
+        type: "website",
+      },
+
+      robots: {
+        index: true,
+        follow: true,
+        nocache: false,
+        googleBot: {
+          index: true,
+          follow: true,
+        },
+      },
+
+      themeColor: "#ffffff", // set to page bg color
     };
   } catch (error) {
     console.error("Metadata fetch failed:", error);
