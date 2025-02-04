@@ -1,5 +1,7 @@
 "use client";
 
+import { useDispatch } from "react-redux";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import {
   Drawer,
   DrawerClose,
@@ -18,9 +20,8 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { DialogTitle } from "@radix-ui/react-dialog";
 import useModal from "@/hooks/useModal";
-import { useDispatch } from "react-redux";
 
 export function WorkspaceDynamicModal({
   children,
@@ -28,31 +29,28 @@ export function WorkspaceDynamicModal({
   trigger,
   mode,
   delay = 0,
+  modalId, // Unique identifier for this modal
 }) {
-  const { isWorkspaceMenuOpen, setIsWorkspaceMenuOpen } = useModal();
+  const { isSpecificModalOpen, setMenuOpen } = useModal();
   const dispatch = useDispatch();
-
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
-  // mode: desktopDrawer, mobileDrawer, allDrawer, allDiolog
-
   const handleOpenChange = (isOpen) => {
-    setIsWorkspaceMenuOpen(isOpen);
+    setMenuOpen(modalId, isOpen);
     if (!isOpen) {
       setTimeout(
         () => dispatch({ type: "page/setSelectedElement", payload: null }),
         delay,
-      ); // Remove selected element when the menu closes
-      //  Added 400ms timeout, prevent immediate change from properties to adder menu shifting
+      );
     }
   };
 
-  // desktopDrawer
+  // Render the appropriate component based on the mode
   if (mode === "desktopDrawer") {
     if (isDesktop) {
       return (
         <DrawerComponent
-          open={isWorkspaceMenuOpen}
+          open={isSpecificModalOpen(modalId)}
           onOpenChange={handleOpenChange}
           trigger={trigger}
           title={title}
@@ -63,7 +61,7 @@ export function WorkspaceDynamicModal({
     } else {
       return (
         <DiologComponent
-          open={isWorkspaceMenuOpen}
+          open={isSpecificModalOpen(modalId)}
           onOpenChange={handleOpenChange}
           trigger={trigger}
           title={title}
@@ -74,12 +72,11 @@ export function WorkspaceDynamicModal({
     }
   }
 
-  // mobileDrawer
   if (mode === "mobileDrawer") {
     if (!isDesktop) {
       return (
         <DrawerComponent
-          open={isWorkspaceMenuOpen}
+          open={isSpecificModalOpen(modalId)}
           onOpenChange={handleOpenChange}
           trigger={trigger}
           title={title}
@@ -90,7 +87,7 @@ export function WorkspaceDynamicModal({
     } else {
       return (
         <DiologComponent
-          open={isWorkspaceMenuOpen}
+          open={isSpecificModalOpen(modalId)}
           onOpenChange={handleOpenChange}
           trigger={trigger}
           title={title}
@@ -101,11 +98,10 @@ export function WorkspaceDynamicModal({
     }
   }
 
-  // allDrawer
   if (mode === "allDrawer") {
     return (
       <DrawerComponent
-        open={isWorkspaceMenuOpen}
+        open={isSpecificModalOpen(modalId)}
         onOpenChange={handleOpenChange}
         trigger={trigger}
         title={title}
@@ -115,11 +111,10 @@ export function WorkspaceDynamicModal({
     );
   }
 
-  // allDiolog
   if (mode === "allDiolog") {
     return (
       <DiologComponent
-        open={isWorkspaceMenuOpen}
+        open={isSpecificModalOpen(modalId)}
         onOpenChange={handleOpenChange}
         trigger={trigger}
         title={title}
@@ -142,7 +137,7 @@ const DiologComponent = function ({
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="text-right sm:max-w-[625px]">
         <DialogHeader>
-          {/* <DialogTitle>{title}</DialogTitle> */}
+          <DialogTitle>{title}</DialogTitle>
           <DialogDescription></DialogDescription>
           {children}
         </DialogHeader>
@@ -150,6 +145,7 @@ const DiologComponent = function ({
     </Dialog>
   );
 };
+
 const DrawerComponent = function ({
   children,
   title,
@@ -176,7 +172,7 @@ const DrawerComponent = function ({
           </div>
           <DrawerFooter className="">
             <DrawerClose asChild>
-              <Button variant="outline w-full">لفو تغییرات</Button>
+              <Button variant="outline w-full">لغو تغییرات</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

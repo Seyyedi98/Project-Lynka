@@ -13,7 +13,8 @@ import { memo, useCallback, useMemo } from "react";
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 
 const BuilderWorkspace = () => {
-  const { closeMenu, isWorkspaceMenuOpen } = useModal();
+  const { closeMenu, isAnyMenuOpen } = useModal();
+  const anyMenuOpen = isAnyMenuOpen();
 
   const dispatch = useDispatch();
   const { hero, theme, elements } = useSelector(
@@ -175,7 +176,7 @@ const BuilderWorkspace = () => {
       <div
         className={cn(
           `h-full w-full bg-neutral-50 pt-14 duration-500`,
-          isWorkspaceMenuOpen && "scale-95",
+          anyMenuOpen && "scale-95",
         )}
       >
         <WorkspaceHeader />
