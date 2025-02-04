@@ -1,6 +1,5 @@
 import { getPageMetadata } from "@/actions/page";
 import LoadingSpinner from "@/app/_components/common/shared/loadingSpinner";
-import { LoadingController } from "@/app/_components/controller/loading-controller";
 import LivePageElements from "@/app/_components/live-page/live-page-elements-rendere";
 import LivePageHero from "@/app/_components/live-page/live-page-hero-rendere";
 import getPageContent from "@/lib/page/get-page-content";
@@ -12,15 +11,26 @@ import { notFound } from "next/navigation";
 // ✅ Dynamic Metadata Fetching with Error Handling
 export async function generateMetadata({ params }) {
   const { uri } = await params;
+  // let favicon;
 
   try {
     const metadata = await getPageMetadata(uri);
     if (!metadata) throw new Error("metadata not found");
-    const favicon = await JSON.parse(metadata?.favicon).url;
+    const favicon = metadata?.favicon
+      ? JSON.parse(metadata?.favicon)?.url
+      : null;
+
     return {
       title: metadata.metaTitle || "My Page",
       description: metadata.metaDescription || "Welcome!",
-      icons: [{ rel: "icon", url: favicon }],
+      icons: [
+        {
+          rel: "icon",
+          url:
+            favicon ||
+            "https://arklight.storage.c2.liara.space/files/arcane.ico",
+        },
+      ],
 
       openGraph: {
         title: metadata.metaTitle || "My Page",
@@ -41,7 +51,7 @@ export async function generateMetadata({ params }) {
         },
       },
 
-      themeColor: "#ffffff", // set to page bg color
+      // themeColor: "#ffffff", // set to page bg color
     };
   } catch (error) {
     console.error("Metadata fetch failed:", error);
@@ -92,14 +102,16 @@ const LivePage = async ({ params }) => {
       style={style}
       className="relative flex h-full w-full flex-col items-center justify-start gap-4"
     >
-      <div
-        className={cn(
-          `absolute z-50 grid h-dvh w-dvw place-items-center bg-white opacity-100 transition-opacity duration-300 animate-out`,
-          page && "pointer-events-none opacity-0",
-        )}
-      >
-        <LoadingSpinner elementInstances={page.loadingIcon} />
-      </div>
+      {page.loadingIcon && (
+        <div
+          className={cn(
+            `absolute z-50 grid h-dvh w-dvw place-items-center bg-white opacity-100 transition-opacity duration-300 animate-out`,
+            page && "pointer-events-none opacity-0",
+          )}
+        >
+          <LoadingSpinner elementInstances={page.loadingIcon} />
+        </div>
+      )}
       <LivePageHero hero={hero} />
       <section className="flex h-full w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
         <LivePageElements content={content} />

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import MetaImageUploader from "../input/meta-image-uploader";
 
 const MetaImageForm = ({ uri, image }) => {
@@ -7,6 +8,14 @@ const MetaImageForm = ({ uri, image }) => {
   return (
     <div className="mt-8">
       <div className="flex flex-col items-center justify-center gap-2">
+        {metaImage && (
+          <Image
+            width={280}
+            height={280}
+            alt="meta image preview"
+            src={metaImage.url}
+          />
+        )}
         <h1 className="text-xl font-medium">Image</h1>
         <h2 className="text-base text-muted-foreground">
           Customise the icon shown in the browser bar

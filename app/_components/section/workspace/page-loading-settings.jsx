@@ -24,6 +24,15 @@ const PageLoadingSettings = () => {
   isPending;
   return (
     <div className="grid h-full w-full grid-cols-auto-fit-100">
+      <div
+        onClick={() => changeLoadingIcon(uri, null)}
+        className={cn(
+          `h-fit w-fit cursor-pointer`,
+          isPending && "pointer-events-none cursor-wait",
+        )}
+      >
+        <p className="grid h-full w-full place-items-center">بدون لودینگ</p>
+      </div>
       {loadersList.map((loadingEl) => {
         return (
           <div

@@ -19,7 +19,7 @@ const MetaTitleForm = ({ uri, title }) => {
   const form = useForm({
     // resolver:zodResolver(),
     defaultValues: {
-      title: title,
+      title: title || "",
     },
   });
 

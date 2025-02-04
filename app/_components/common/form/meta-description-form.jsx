@@ -19,7 +19,7 @@ const MetaDescriptionForm = ({ uri, description }) => {
   const form = useForm({
     // resolver:zodResolver(),
     defaultValues: {
-      metaDescription: description,
+      metaDescription: description || "",
     },
   });
 
