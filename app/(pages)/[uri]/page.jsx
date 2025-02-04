@@ -13,6 +13,8 @@ export async function generateMetadata({ params }) {
   const { uri } = await params;
   // let favicon;
 
+  console.log("Live page render!!!!");
+
   try {
     const metadata = await getPageMetadata(uri);
     if (!metadata) throw new Error("metadata not found");

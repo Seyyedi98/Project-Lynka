@@ -29,8 +29,8 @@ const TransparentHero = ({ ...data }) => {
       {primaryBgImage && (
         <Image
           priority
-          width={500}
-          height={500}
+          width={300}
+          height={300}
           src={primaryBgImage}
           alt={title}
           className="absolute -bottom-8 right-1/2 h-36 w-36 translate-x-1/2 rounded-full bg-white object-cover"

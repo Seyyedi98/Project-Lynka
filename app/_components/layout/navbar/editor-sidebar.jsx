@@ -4,6 +4,7 @@ import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-moda
 import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
 import ElementProperties from "../../editor/element/element-properties";
 import WorkspaceBottomBar from "./workspace-bottom-bar";
+import WorkspaceSidebarMobile from "./workspace-sidebar-mobile";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -16,7 +17,8 @@ const EditorSidebar = () => {
 
   // Mobile Device
   if (!isDesktop && !selectedElement) {
-    return <WorkspaceBottomBar isDesktop={isDesktop} />;
+    return <WorkspaceSidebarMobile />;
+    // return <WorkspaceBottomBar isDesktop={isDesktop} />;
   }
 
   // Desktop

@@ -186,18 +186,6 @@ module.exports = {
             transform: "translateX(0rem)",
           },
         },
-
-        "menu-item": {
-          "0%": {
-            opacity: 0,
-            transform: "translateX(-4rem)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateX(0rem)",
-          },
-        },
-
         "accordion-down": {
           from: {
             height: "0",
@@ -245,10 +233,9 @@ module.exports = {
       },
       animation: {
         aurora: "aurora 60s linear infinite",
-        "menu-item": "menu-item .7s 2s ease-in-out",
         "fade-left": "fade-left .7s ease",
         "fade-right": "fade-right .7s ease",
-        "fade-up": "fade-up .7s ease",
+        "fade-up": "fade-up 0.5s ease-out forwards",
         "caret-blink": "caret-blink 1.25s ease-out infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",

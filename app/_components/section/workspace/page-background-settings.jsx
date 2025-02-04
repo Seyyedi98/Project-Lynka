@@ -1,5 +1,7 @@
 import { useState } from "react";
 import SquareButton from "../../common/button/square-button";
+import { useDispatch, useSelector } from "react-redux";
+import { cn } from "@/lib/utils";
 
 const colors = [
   "#FFFFFF",
@@ -58,22 +60,56 @@ const gradient = [
   "linear-gradient(135deg, #F2D50F, #DA0641)",
 ];
 
-const PageBackgroundSettings = ({ setPageBackground }) => {
+const PageBackgroundSettings = () => {
   const [category, setCategory] = useState("color");
+  const theme = useSelector((store) => store.page.theme);
+
+  const dispatch = useDispatch();
+
+  const setPageBackground = function (velue) {
+    const payload = { ...theme, backgroundValue: velue };
+    dispatch({ type: "page/setTheme", payload });
+  };
 
   return (
     <>
       <div className="mb-4 flex items-center justify-center gap-4 border-b-2 pb-4">
-        <SquareButton state={category} action={setCategory} rule="color">
+        <SquareButton
+          state={category}
+          action={setCategory}
+          rule="color"
+          className={cn(``, theme.backgroundType === "color" && "bg-slate-300")}
+        >
           رنگ
         </SquareButton>
-        <SquareButton state={category} action={setCategory} rule="gradient">
+        <SquareButton
+          state={category}
+          action={setCategory}
+          rule="gradient"
+          className={cn(
+            ``,
+            theme.backgroundType === "gradient" && "bg-slate-300",
+          )}
+        >
           طبف رنگی
         </SquareButton>
-        <SquareButton state={category} action={setCategory} rule="pattern">
+        <SquareButton
+          state={category}
+          action={setCategory}
+          rule="pattern"
+          className={cn(
+            ``,
+            theme.backgroundType === "pattern" && "bg-slate-300",
+          )}
+        >
           الگو
         </SquareButton>
-        <SquareButton state={category} action={setCategory} rule="image">
+        <SquareButton
+          state={category}
+          action={setCategory}
+          rule="image"
+          className={cn(``, theme.backgroundType === "image" && "bg-slate-300")}
+        >
           تصویر
         </SquareButton>
       </div>
@@ -85,7 +121,10 @@ const PageBackgroundSettings = ({ setPageBackground }) => {
                 key={color}
                 style={{ backgroundColor: color }}
                 onClick={() => setPageBackground(color)}
-                className="h-20 w-20 cursor-pointer rounded-md border-2 border-black duration-200 hover:shadow-xl"
+                className={cn(
+                  `h-20 w-20 cursor-pointer rounded-md border-2 border-black duration-200 hover:shadow-xl`,
+                  theme.backgroundValue === color && "border-4",
+                )}
               ></div>
             );
           })}
@@ -97,7 +136,10 @@ const PageBackgroundSettings = ({ setPageBackground }) => {
                 key={color}
                 style={{ background: color }}
                 onClick={() => setPageBackground(color)}
-                className="h-20 w-20 cursor-pointer rounded-md border-2 border-black duration-200 hover:shadow-xl"
+                className={cn(
+                  `h-20 w-20 cursor-pointer rounded-md border-2 border-black duration-200 hover:shadow-xl`,
+                  theme.backgroundValue === color && "border-4",
+                )}
               ></div>
             );
           })}
