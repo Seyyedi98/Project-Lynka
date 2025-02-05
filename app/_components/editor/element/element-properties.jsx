@@ -1,19 +1,13 @@
 import { Button } from "@/components/ui/button";
+import { motion } from "motion/react";
 import { TrashIcon } from "lucide-react";
+import { useState } from "react";
 import DeleteElementBtn from "../../common/button/delete-element-button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../../common/modal/diolog";
 import { PageElements } from "../../controller/page-elements";
 import { PageHeroElement } from "../../elements/hero/page-hero-element";
 import ElementThemeSelector from "../../theme/element-theme-selector";
 import HeroThemeSelector from "../../theme/hero-theme-selector";
-import { useState } from "react";
+import { fadeSlideLeft } from "@/utils/animation/animation";
 
 const ElementProperties = ({ element }) => {
   const [isThemeSelectPage, setIsThemeSelectPage] = useState(false);
@@ -24,51 +18,40 @@ const ElementProperties = ({ element }) => {
   if (!PropertiesForm) PropertiesForm = PageHeroElement?.PropertiesComponent;
 
   return (
-    <div className="relative">
-      {element?.type !== "HeroElement" && (
-        <DeleteElementBtn id={element?.id}>
-          <div className="absolute -top-20 left-2 flex cursor-pointer items-center justify-center rounded-full bg-red-500 p-2 duration-200 hover:bg-red-600 sm:left-0">
-            <TrashIcon className="h-4 w-4 text-white" />
-          </div>
-        </DeleteElementBtn>
-      )}
-
+    <div className="relative flex h-full flex-col justify-between md:mt-20">
       {element && !isThemeSelectPage && (
         <PropertiesForm elementInstance={element} />
       )}
 
-      {
-        isThemeSelectPage &&
-          (element?.type == "HeroElement" ? (
-            <HeroThemeSelector />
-          ) : (
-            <ElementThemeSelector elementInstance={element} />
-          ))
-        // <Dialog>
-        //   <DialogTrigger asChild>
-        //     <Button className="mr-2 mt-4">انتخاب تم</Button>
-        //   </DialogTrigger>
-        //   <DialogContent className="max-w-3xl">
-        //     <DialogHeader>
-        //       <DialogTitle>تم مورد نظر خود را انتخاب کنید</DialogTitle>
-        //       <DialogDescription></DialogDescription>
+      {isThemeSelectPage &&
+        (element?.type == "HeroElement" ? (
+          <HeroThemeSelector />
+        ) : (
+          <ElementThemeSelector elementInstance={element} />
+        ))}
 
-        //       {element?.type == "HeroElement" ? (
-        //         <HeroThemeSelector />
-        //       ) : (
-        //         <ElementThemeSelector elementInstance={element} />
-        //       )}
-        //     </DialogHeader>
-        //   </DialogContent>
-        // </Dialog>
-      }
-
-      <Button
-        className="mt-4 w-full"
-        onClick={() => setIsThemeSelectPage(!isThemeSelectPage)}
-      >
-        {isThemeSelectPage ? "بازگشت" : "تغییر تم"}
-      </Button>
+      <div>
+        <Button
+          className="mt-4 w-full"
+          onClick={() => setIsThemeSelectPage(!isThemeSelectPage)}
+        >
+          {isThemeSelectPage ? "بازگشت" : "تغییر تم"}
+        </Button>
+        {element?.type !== "HeroElement" && (
+          <DeleteElementBtn id={element?.id}>
+            <Button
+              asChild
+              variant="destructive"
+              className="mt-2 flex w-full cursor-pointer items-center justify-center p-2 duration-200"
+            >
+              <span>
+                حذف بلوک
+                <TrashIcon className="h-4 w-4 text-white" />
+              </span>
+            </Button>
+          </DeleteElementBtn>
+        )}
+      </div>
     </div>
   );
 };

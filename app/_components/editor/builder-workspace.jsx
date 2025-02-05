@@ -16,7 +16,7 @@ const BuilderWorkspace = () => {
   const dispatch = useDispatch();
 
   const isAnyMenuOpen = useSelector(selectIsAnyMenuOpen);
-  const { hero, theme, elements, modalStates } = useSelector(
+  const { hero, theme, elements } = useSelector(
     (state) => ({
       hero: state.page.hero,
       theme: state.page.theme,
@@ -178,18 +178,22 @@ const BuilderWorkspace = () => {
     <>
       <div
         className={cn(
-          `h-full w-full bg-neutral-50 pt-14 duration-500`,
-          isAnyMenuOpen && "scale-95",
+          `h-full w-full bg-neutral-50 duration-500`,
+          isAnyMenuOpen && "scale-95 md:scale-100",
         )}
       >
-        <WorkspaceHeader />
+        {/* <WorkspaceHeader /> */}
         <div className="flex h-full w-full gap-6 p-4">
           <EditorSidebar />
           <div
             style={bgStyle}
             className={cn(
-              `relative flex h-full flex-grow flex-col items-center overflow-y-auto rounded-xl shadow-lg`,
+              `relative flex h-full w-full flex-grow flex-col items-center overflow-y-auto rounded-xl shadow-lg`,
             )}
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch({ type: "page/setSelectedElement", payload: null });
+            }}
             ref={droppable.setNodeRef}
           >
             <div className="w-full">

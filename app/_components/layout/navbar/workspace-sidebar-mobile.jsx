@@ -5,7 +5,7 @@ import PageBackgroundSettings from "../../section/workspace/page-background-sett
 
 const WorkspaceSidebarMobile = () => {
   return (
-    <div className="fixed bottom-0 right-0 z-20 h-16 w-full bg-primary-foreground ring-0">
+    <div className="fixed bottom-0 right-0 z-50 h-16 w-full bg-primary-foreground ring-0">
       <div className="grid h-full w-full place-items-center px-8">
         <ul className="flex w-full items-center justify-between text-slate-700">
           <li className="translate-y-8 animate-fade-up opacity-0 duration-300">

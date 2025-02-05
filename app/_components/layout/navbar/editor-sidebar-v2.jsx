@@ -5,8 +5,6 @@ import EditorSidebarElements from "../../editor/element/editor-sidebar-elements"
 import ElementProperties from "../../editor/element/element-properties";
 import WorkspaceBottomBar from "./workspace-bottom-bar";
 import WorkspaceSidebarMobile from "./workspace-sidebar-mobile";
-import { AnimatePresence, motion } from "framer-motion";
-import { fade, fadeSlideLeft } from "@/utils/animation/animation";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -26,32 +24,16 @@ const EditorSidebar = () => {
   if (isDesktop) {
     return (
       <>
-        <div className="group z-30 my-auto hidden h-full w-full flex-col items-center justify-between rounded-2xl bg-primary-foreground bg-gradient-to-b px-3 pb-6 text-primary duration-300 md:flex">
-          <AnimatePresence mode="wait">
-            {selectedElement ? (
-              <motion.div
-                key="element-properties"
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                variants={fadeSlideLeft}
-              >
-                <ElementProperties element={selectedElement} />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="editor-sidebar"
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                variants={fade}
-                className="w-full"
-              >
-                <EditorSidebarElements />
-              </motion.div>
-            )}
-          </AnimatePresence>
+        {/* Sidebar */}
+        <div className="group fixed right-5 top-1/2 z-30 my-auto flex h-fit w-24 -translate-y-1/2 flex-col items-center justify-between rounded-2xl bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to px-3 pb-6 text-white duration-300 hover:w-56 lg:w-56">
+          <WorkspaceDynamicModal mode="allDrawer" title="تنظیمات" delay="400">
+            <ElementProperties element={selectedElement} />
+          </WorkspaceDynamicModal>
+          <EditorSidebarElements />
         </div>
+
+        {/* Bottom Bar */}
+        <WorkspaceBottomBar isDesktop={isDesktop} />
       </>
     );
   }

@@ -169,7 +169,7 @@ module.exports = {
         "fade-left": {
           "0%": {
             opacity: "0",
-            transform: "translateX(2rem)",
+            transform: "translateX(4rem)",
           },
           "100%": {
             opacity: "1",
@@ -179,7 +179,7 @@ module.exports = {
         "fade-right": {
           "0%": {
             opacity: "0",
-            transform: "translateX(-2rem)",
+            transform: "translateX(-4rem)",
           },
           "100%": {
             opacity: "1",
