@@ -11,9 +11,9 @@ import { notFound } from "next/navigation";
 // ✅ Dynamic Metadata Fetching with Error Handling
 export async function generateMetadata({ params }) {
   const { uri } = await params;
-  // let favicon;
-
-  console.log("Live page render!!!!");
+  if (["dashboard", "workspace"].includes(uri)) {
+    return;
+  }
 
   try {
     const metadata = await getPageMetadata(uri);
@@ -67,6 +67,11 @@ export async function generateMetadata({ params }) {
 // ✅ Live Page Component
 const LivePage = async ({ params }) => {
   const { uri } = await params;
+  if (["dashboard", "workspace"].includes(uri)) {
+    return;
+  }
+
+  console.log("live server render!!!");
 
   // Try fetching page data with retry mechanism
   const page = await fetchWithRetry(uri);

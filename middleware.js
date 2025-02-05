@@ -17,12 +17,17 @@ export default auth((req) => {
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
+  // Define routes that should exclude (page)/[uri]
+  const isExcludedRoute =
+    nextUrl.pathname.startsWith("/dashboard") ||
+    nextUrl.pathname.startsWith("/workspace");
+
+  // Ensure (page)/[uri] only renders when no other specific routes match
   const isDynamicRoute =
-    /^\/[a-zA-Z0-9_-]+$/.test(nextUrl.pathname) &&
-    nextUrl.pathname !== "/dashboard";
+    /^\/[a-zA-Z0-9_-]+$/.test(nextUrl.pathname) && !isExcludedRoute; // Prevent matching for /dashboard & /workspace
 
   if (isDynamicRoute) {
-    return null;
+    return null; // Allow (page)/[uri] when it's the only match
   }
 
   if (isApiAuthRoute) {
