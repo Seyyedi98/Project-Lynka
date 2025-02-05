@@ -1,5 +1,6 @@
 "use client";
 
+import { fontsList } from "@/app/fonts/fonts";
 import {
   Form,
   FormControl,
@@ -10,13 +11,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import useModal from "@/hooks/useModal";
-import { ButtonIcon } from "@radix-ui/react-icons";
-import { Check } from "lucide-react";
-import { memo, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { ThemeController } from "../controller/theme-controller";
-import { useDispatch } from "react-redux";
 import {
   Select,
   SelectContent,
@@ -24,8 +18,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { fontsList } from "@/app/fonts/fonts";
-import { cn } from "@/lib/utils";
+import { ButtonIcon } from "@radix-ui/react-icons";
+import { Check } from "lucide-react";
+import { memo, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { ThemeController } from "../controller/theme-controller";
 
 const type = "ButtonField";
 
@@ -59,7 +57,6 @@ function LivePageComponent({ elementInstance }) {
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
   const dispatch = useDispatch();
-  const { closeMenu } = useModal();
 
   const form = useForm({
     // TODO: Create zod schema
@@ -92,7 +89,7 @@ function PropertiesComponent({ elementInstance }) {
     };
     dispatch({ type: "page/updateElement", payload });
 
-    closeMenu();
+    dispatch({ type: "modal/closeMenu" });
     setTimeout(
       () => dispatch({ type: "page/setSelectedElement", payload: null }),
       200,

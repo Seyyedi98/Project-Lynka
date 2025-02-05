@@ -1,27 +1,27 @@
-import useModal from "@/hooks/useModal";
 import { idGenerator } from "@/lib/id-generator";
 import { cn } from "@/lib/utils";
+import { selectIsAnyMenuOpen } from "@/store/modalSlice";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
+import { memo, useCallback, useMemo } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { PageElements } from "../controller/page-elements";
 import EditorSidebar from "../layout/navbar/editor-sidebar";
 import WorkspaceHeader from "../layout/navbar/workspace-header";
 import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
-import { memo, useCallback, useMemo } from "react";
 
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 
 const BuilderWorkspace = () => {
-  const { closeMenu, isAnyMenuOpen } = useModal();
-  const anyMenuOpen = isAnyMenuOpen();
-
   const dispatch = useDispatch();
-  const { hero, theme, elements } = useSelector(
+
+  const isAnyMenuOpen = useSelector(selectIsAnyMenuOpen);
+  const { hero, theme, elements, modalStates } = useSelector(
     (state) => ({
       hero: state.page.hero,
       theme: state.page.theme,
       elements: state.page.elements,
+      modalStates: state.modal.modalStates,
     }),
     shallowEqual,
   );
@@ -43,7 +43,10 @@ const BuilderWorkspace = () => {
   });
 
   useDndMonitor({
-    onDragStart: useCallback(() => closeMenu(), [closeMenu]),
+    onDragStart: useCallback(
+      () => dispatch({ type: "modal/closeMenu" }),
+      [dispatch],
+    ),
 
     onDragEnd: useCallback(
       (event) => {
@@ -176,7 +179,7 @@ const BuilderWorkspace = () => {
       <div
         className={cn(
           `h-full w-full bg-neutral-50 pt-14 duration-500`,
-          anyMenuOpen && "scale-95",
+          isAnyMenuOpen && "scale-95",
         )}
       >
         <WorkspaceHeader />

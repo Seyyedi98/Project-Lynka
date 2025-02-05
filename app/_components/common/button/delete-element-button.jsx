@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import useModal from "@/hooks/useModal";
 import { Loader2Icon } from "lucide-react";
 import { useTransition } from "react";
 import { useDispatch } from "react-redux";
@@ -16,13 +15,12 @@ import {
 
 const DeleteElementBtn = ({ id, children }) => {
   const dispatch = useDispatch();
-  const { closeMenu } = useModal();
   const [isPending, startTransition] = useTransition();
 
   const onDelete = (id) => {
     startTransition(() => {
       dispatch({ type: "page/removeElement", payload: id });
-      closeMenu();
+      dispatch({ type: "modal/closeMenu", payload: id });
 
       setTimeout(
         () => dispatch({ type: "page/setSelectedElement", payload: null }),

@@ -9,7 +9,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import useModal from "@/hooks/useModal";
 import { Check, Heading } from "lucide-react";
 import { memo, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -46,8 +45,6 @@ function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
   const dispatch = useDispatch();
 
-  const { closeMenu } = useModal();
-
   const form = useForm({
     // TODO: Create zod schema
     // resolver: zodResolver(),
@@ -76,7 +73,7 @@ function PropertiesComponent({ elementInstance }) {
     };
     dispatch({ type: "page/updateElement", payload });
 
-    closeMenu();
+    dispatch({ type: "modal/closeMenu" });
     setTimeout(
       () => dispatch({ type: "page/setSelectedElement", payload: null }),
       200,

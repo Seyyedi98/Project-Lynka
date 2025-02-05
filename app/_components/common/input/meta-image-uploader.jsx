@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import useModal from "@/hooks/useModal";
 import deleteFile from "@/lib/upload/deleteFile";
 import uploadFile from "@/lib/upload/uploadFile";
 import { Loader2 } from "lucide-react";
@@ -19,7 +18,6 @@ const MetaImageUploader = ({ uri, metaImage }) => {
 
   const dispatch = useDispatch();
   const metadata = useSelector((store) => store.page.metadata);
-  const { closeMenu } = useModal();
 
   const previousImage = metaImage?.key;
 
@@ -70,7 +68,7 @@ const MetaImageUploader = ({ uri, metaImage }) => {
 
       dispatch({ type: "page/setMetadata", payload });
 
-      closeMenu();
+      dispatch({ type: "modal/closeMenu" });
       toast({
         description: "تصویر با موفقیت تغییر یافت",
       });

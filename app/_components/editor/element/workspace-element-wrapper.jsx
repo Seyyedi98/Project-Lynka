@@ -1,4 +1,3 @@
-import useModal from "@/hooks/useModal";
 import { cn } from "@/lib/utils";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { Pencil1Icon } from "@radix-ui/react-icons";
@@ -12,7 +11,6 @@ const WorkspaceElementWrapper = ({ element }) => {
     (store) => store.page.selectedELement,
     shallowEqual,
   );
-  const { openMenu } = useModal();
 
   // Draggable setup
   const draggable = useDraggable({
@@ -60,7 +58,10 @@ const WorkspaceElementWrapper = ({ element }) => {
       onClick={(e) => {
         e.stopPropagation();
         dispatch({ type: "page/setSelectedElement", payload: element });
-        openMenu();
+        dispatch({
+          type: "modal/setMenuOpen",
+          payload: { modalId: "workspaceElement", isOpen: true },
+        });
       }}
     >
       {/* Top droppable half */}
@@ -87,16 +88,6 @@ const WorkspaceElementWrapper = ({ element }) => {
       >
         {/* Edit button */}
         <div
-          onClick={(e) => {
-            e.stopPropagation();
-
-            if (element === selectedElement) {
-              dispatch({ type: "page/setSelectedElement", payload: null });
-            } else {
-              openMenu();
-              dispatch({ type: "page/setSelectedElement", payload: element });
-            }
-          }}
           // className="absolute -right-12 top-1/2 hidden -translate-y-1/2 cursor-pointer rounded-md bg-gray-200 px-2 py-2 md:block"
           className="cursor-pointer rounded-md md:block"
         >

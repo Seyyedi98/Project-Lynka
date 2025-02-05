@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import useModal from "@/hooks/useModal";
 import { idGenerator } from "@/lib/id-generator";
 import { cn } from "@/lib/utils";
 import { useDraggable } from "@dnd-kit/core";
@@ -9,7 +8,6 @@ import { PageElements } from "../../controller/page-elements";
 const AddElementButton = ({ pageElement }) => {
   // former sidebar-button-element
   const { label, icon: Icon } = pageElement.ElementAdderBtn;
-  const { closeMenu } = useModal();
 
   const dispatch = useDispatch();
   const elements = useSelector((state) => state.page.elements);
@@ -25,7 +23,7 @@ const AddElementButton = ({ pageElement }) => {
   return (
     <button
       onClick={() => {
-        closeMenu();
+        dispatch({ type: "modal/closeMenu" });
         const type = pageElement.type;
         const newElement = PageElements[type].construct(idGenerator());
         const applyPageTheme = true;

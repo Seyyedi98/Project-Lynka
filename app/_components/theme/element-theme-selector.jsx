@@ -1,13 +1,11 @@
-import useModal from "@/hooks/useModal";
-import { ThemeController } from "../controller/theme-controller";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { ThemeController } from "../controller/theme-controller";
 
 const ElementThemeSelector = ({ elementInstance }) => {
   const dispatch = useDispatch();
   const [themeCategory, setThemeCategory] = useState("color"); // color || pattern || gradient || image
-  const { closeMenu } = useModal();
   const element = elementInstance;
   const elementType = elementInstance?.type;
 
@@ -70,9 +68,14 @@ const ElementThemeSelector = ({ elementInstance }) => {
                 };
                 dispatch({ type: "page/updateElement", payload });
 
-                closeMenu();
+                dispatch({ type: "modal/closeMenu" });
+
                 setTimeout(
-                  dispatch({ type: "page/setSelectedElement", payload: null }),
+                  () =>
+                    dispatch({
+                      type: "page/setSelectedElement",
+                      payload: null,
+                    }),
                   200,
                 );
               }}

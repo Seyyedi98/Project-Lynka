@@ -18,7 +18,6 @@ const EditorSidebar = () => {
   // Mobile Device
   if (!isDesktop && !selectedElement) {
     return <WorkspaceSidebarMobile />;
-    // return <WorkspaceBottomBar isDesktop={isDesktop} />;
   }
 
   // Desktop
@@ -43,7 +42,12 @@ const EditorSidebar = () => {
   if (!isDesktop && selectedElement) {
     return (
       <div className="fixed bottom-0 right-0 h-[72px] w-full">
-        <WorkspaceDynamicModal mode="allDrawer" title="تنظیمات" delay="400">
+        <WorkspaceDynamicModal
+          mode="allDrawer"
+          title="تنظیمات"
+          delay="400"
+          modalId="workspaceElement"
+        >
           <ElementProperties element={selectedElement} />
         </WorkspaceDynamicModal>
       </div>

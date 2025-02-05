@@ -1,7 +1,5 @@
 "use client";
 
-import { useDispatch } from "react-redux";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import {
   Drawer,
   DrawerClose,
@@ -20,8 +18,10 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { isSpecificModalOpen } from "@/store/modalSlice";
 import { DialogTitle } from "@radix-ui/react-dialog";
-import useModal from "@/hooks/useModal";
+import { useDispatch, useSelector } from "react-redux";
 
 export function WorkspaceDynamicModal({
   children,
@@ -31,12 +31,13 @@ export function WorkspaceDynamicModal({
   delay = 0,
   modalId, // Unique identifier for this modal
 }) {
-  const { isSpecificModalOpen, setMenuOpen } = useModal();
   const dispatch = useDispatch();
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
+  const isModalOpen = useSelector(isSpecificModalOpen(modalId));
+
   const handleOpenChange = (isOpen) => {
-    setMenuOpen(modalId, isOpen);
+    dispatch({ type: "modal/setMenuOpen", payload: { modalId, isOpen } });
     if (!isOpen) {
       setTimeout(
         () => dispatch({ type: "page/setSelectedElement", payload: null }),
@@ -50,7 +51,7 @@ export function WorkspaceDynamicModal({
     if (isDesktop) {
       return (
         <DrawerComponent
-          open={isSpecificModalOpen(modalId)}
+          open={isModalOpen}
           onOpenChange={handleOpenChange}
           trigger={trigger}
           title={title}
@@ -61,7 +62,7 @@ export function WorkspaceDynamicModal({
     } else {
       return (
         <DiologComponent
-          open={isSpecificModalOpen(modalId)}
+          open={isModalOpen}
           onOpenChange={handleOpenChange}
           trigger={trigger}
           title={title}
@@ -76,7 +77,7 @@ export function WorkspaceDynamicModal({
     if (!isDesktop) {
       return (
         <DrawerComponent
-          open={isSpecificModalOpen(modalId)}
+          open={isModalOpen}
           onOpenChange={handleOpenChange}
           trigger={trigger}
           title={title}
@@ -87,7 +88,7 @@ export function WorkspaceDynamicModal({
     } else {
       return (
         <DiologComponent
-          open={isSpecificModalOpen(modalId)}
+          open={isModalOpen}
           onOpenChange={handleOpenChange}
           trigger={trigger}
           title={title}
@@ -101,7 +102,7 @@ export function WorkspaceDynamicModal({
   if (mode === "allDrawer") {
     return (
       <DrawerComponent
-        open={isSpecificModalOpen(modalId)}
+        open={isModalOpen}
         onOpenChange={handleOpenChange}
         trigger={trigger}
         title={title}
@@ -114,7 +115,7 @@ export function WorkspaceDynamicModal({
   if (mode === "allDiolog") {
     return (
       <DiologComponent
-        open={isSpecificModalOpen(modalId)}
+        open={isModalOpen}
         onOpenChange={handleOpenChange}
         trigger={trigger}
         title={title}

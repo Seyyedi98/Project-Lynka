@@ -1,11 +1,9 @@
-import useModal from "@/hooks/useModal";
 import { cn } from "@/lib/utils";
 import { useDispatch } from "react-redux";
 import { PageHeroElement } from "../../elements/hero/page-hero-element";
 
 const WorkspaceHeroWrapper = ({ pageTheme, element }) => {
   const dispatch = useDispatch();
-  const { openMenu } = useModal();
 
   // Return the associated page element
   const HeroElement = PageHeroElement.WorkspaceComponent;
@@ -16,7 +14,10 @@ const WorkspaceHeroWrapper = ({ pageTheme, element }) => {
       onClick={(e) => {
         e.stopPropagation();
         dispatch({ type: "page/setSelectedElement", payload: element });
-        openMenu();
+        dispatch({
+          type: "modal/setMenuOpen",
+          payload: { modalId: "workspaceElement", isOpen: true },
+        });
       }}
     >
       {/* Content Section */}

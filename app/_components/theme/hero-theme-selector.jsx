@@ -1,5 +1,4 @@
 import useFilterTheme from "@/hooks/useFilterTheme";
-import useModal from "@/hooks/useModal";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SquareButton from "../common/button/square-button";
@@ -10,7 +9,6 @@ const HeroThemeSelector = () => {
   const hero = useSelector((state) => state.page.hero);
 
   const [themeCategory, setThemeCategory] = useState("color"); // color || pattern || gradient || image
-  const { closeMenu } = useModal();
 
   const Themes = HeroController;
   if (!Themes) throw new Error("Cannot load hero themes");
@@ -66,7 +64,7 @@ const HeroThemeSelector = () => {
                     },
                   },
                 });
-                closeMenu();
+                dispatch({ type: "modal/closeMenu" });
               }}
             >
               {theme[0]}

@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import useModal from "@/hooks/useModal";
 import deleteFile from "@/lib/upload/deleteFile";
 import uploadFile from "@/lib/upload/uploadFile";
 import { Loader2 } from "lucide-react";
@@ -19,7 +18,6 @@ const HeroWorkspaceUploader = ({ uri }) => {
 
   const dispatch = useDispatch();
   const hero = useSelector((store) => store.page.hero);
-  const { closeMenu } = useModal();
 
   const previousImage = hero?.extraAttributes?.primaryImage;
 
@@ -66,7 +64,7 @@ const HeroWorkspaceUploader = ({ uri }) => {
       };
       dispatch({ type: "page/setHero", payload });
 
-      closeMenu();
+      dispatch({ type: "modal/closeMenu" });
       toast({
         description: "تصویر با موفقیت تغییر یافت",
       });
