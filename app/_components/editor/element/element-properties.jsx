@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
-import { TrashIcon } from "lucide-react";
+import { ChevronLeft, TrashIcon } from "lucide-react";
 import { useState } from "react";
 import DeleteElementBtn from "../../common/button/delete-element-button";
 import { PageElements } from "../../controller/page-elements";
@@ -32,11 +32,16 @@ const ElementProperties = ({ element }) => {
 
       <div>
         <Button
-          className="mt-4 w-full"
+          className="mt-4 h-14 w-full bg-button hover:bg-card-light"
+          size="lg"
           onClick={() => setIsThemeSelectPage(!isThemeSelectPage)}
         >
-          {isThemeSelectPage ? "بازگشت" : "تغییر تم"}
+          <span className="s flex w-full items-center justify-between text-primary">
+            {isThemeSelectPage ? "بازگشت" : "تغییر تم"}
+            <ChevronLeft />
+          </span>
         </Button>
+
         {element?.type !== "HeroElement" && (
           <DeleteElementBtn id={element?.id}>
             <Button

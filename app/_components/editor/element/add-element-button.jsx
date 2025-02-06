@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { useDraggable } from "@dnd-kit/core";
 import { useDispatch, useSelector } from "react-redux";
 import { PageElements } from "../../controller/page-elements";
+import { ArrowLeft, ChevronLeft, PlusIcon } from "lucide-react";
 
 const AddElementButton = ({ pageElement }) => {
   // former sidebar-button-element
@@ -37,14 +38,19 @@ const AddElementButton = ({ pageElement }) => {
       }}
       ref={draggable.setNodeRef}
       className={cn(
-        `relative flex h-14 w-full max-w-xs cursor-grab items-center justify-center gap-2 overflow-hidden rounded-md border border-black bg-white text-black transition-all duration-300`,
+        `bg-button relative flex h-14 w-full max-w-xs cursor-grab items-center justify-between gap-2 overflow-hidden rounded-lg px-4 text-foreground shadow-md transition-all duration-300 hover:scale-105`,
         draggable.isDragging && "ring-2 ring-primary",
       )}
       {...draggable.listeners}
       {...draggable.attributes}
     >
-      <Icon className="text-iconLight h-5 w-5 cursor-grab text-3xl duration-200" />
-      <p className="text-xs duration-200">{label}</p>
+      <div className="flex items-center justify-center gap-2">
+        <Icon className="h-5 w-5 cursor-grab text-3xl text-iconLight duration-200" />
+        <p className="text-xs duration-200">{label}</p>
+      </div>
+      <span>
+        <PlusIcon className="" />
+      </span>
     </button>
   );
 };
@@ -54,7 +60,7 @@ export const AdderBtnDragOverly = ({ pageElement }) => {
 
   return (
     <Button
-      className="bg-secondaryBg flex h-14 w-4/5 cursor-grab gap-2 rounded-md border border-dashed border-black transition-all duration-300"
+      className="flex h-14 w-4/5 cursor-grab gap-2 rounded-md border border-dashed border-black bg-secondaryBg transition-all duration-300"
       variant="outline"
     >
       <Icon className="h-8 w-8 cursor-grab text-primary" />

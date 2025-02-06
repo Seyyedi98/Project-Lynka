@@ -162,7 +162,7 @@ const DrawerComponent = function ({
         <DrawerTrigger asChild>{trigger}</DrawerTrigger>
       )}
 
-      <DrawerContent className="mb-0 bg-white text-right md:m-2 md:mx-auto md:w-full">
+      <DrawerContent className="mb-0 bg-background text-right md:m-2 md:mx-auto md:w-full">
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
             <DrawerTitle className="mt-4 text-center">{title}</DrawerTitle>

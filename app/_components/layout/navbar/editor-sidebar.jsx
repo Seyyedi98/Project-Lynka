@@ -7,6 +7,7 @@ import WorkspaceBottomBar from "./workspace-bottom-bar";
 import WorkspaceSidebarMobile from "./workspace-sidebar-mobile";
 import { AnimatePresence, motion } from "framer-motion";
 import { fade, fadeSlideLeft } from "@/utils/animation/animation";
+import ThemeSwitcher from "../../common/button/ThemeSwitcher";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -26,7 +27,10 @@ const EditorSidebar = () => {
   if (isDesktop) {
     return (
       <>
-        <div className="group z-30 my-auto hidden h-full w-full flex-col items-center justify-between rounded-2xl bg-primary-foreground bg-gradient-to-b px-3 pb-6 text-primary duration-300 md:flex">
+        <div className="absolute right-0 top-0 z-50">
+          <ThemeSwitcher />
+        </div>
+        <div className="group z-30 my-auto hidden h-full w-full flex-col items-center justify-between bg-secondaryBg px-3 pb-6 text-primary shadow-2xl duration-300 md:flex">
           <AnimatePresence mode="wait">
             {selectedElement ? (
               <motion.div
@@ -35,6 +39,7 @@ const EditorSidebar = () => {
                 animate="animate"
                 exit="exit"
                 variants={fadeSlideLeft}
+                className="w-full max-w-xs"
               >
                 <ElementProperties element={selectedElement} />
               </motion.div>
@@ -45,7 +50,7 @@ const EditorSidebar = () => {
                 animate="animate"
                 exit="exit"
                 variants={fade}
-                className="w-full"
+                className="w-full max-w-xs"
               >
                 <EditorSidebarElements />
               </motion.div>

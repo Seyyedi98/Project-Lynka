@@ -8,16 +8,15 @@ export const fontsList = [
   { fontName: "شبنم", fontValue: "shabnam" },
   { fontName: "تنها", fontValue: "tanha" },
   { fontName: "وزیر", fontValue: "vazir" },
-
 ];
 
 export const geistSans = localFont({
-  src: "./GeistVF.woff",
+  src: "./GeistVF.ttf",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 export const geistMono = localFont({
-  src: "./GeistMonoVF.woff",
+  src: "./GeistVF.ttf",
   variable: "--font-geist-mono",
   weight: "100 900",
 });

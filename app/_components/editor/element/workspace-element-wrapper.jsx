@@ -77,7 +77,7 @@ const WorkspaceElementWrapper = ({ element }) => {
       />
 
       {topHalf.isOver && (
-        <div className="absolute top-0 h-[3px] w-full rounded-md rounded-b-none bg-primary-600" />
+        <div className="bg-primary-600 absolute top-0 h-[3px] w-full rounded-md rounded-b-none" />
       )}
 
       {/* Content Section */}
@@ -89,7 +89,7 @@ const WorkspaceElementWrapper = ({ element }) => {
         {/* Edit button */}
         <div
           // className="absolute -right-12 top-1/2 hidden -translate-y-1/2 cursor-pointer rounded-md bg-gray-200 px-2 py-2 md:block"
-          className="cursor-pointer rounded-md md:block"
+          className="cursor-pointer rounded-md text-primary md:block"
         >
           {element === selectedElement ? (
             <XIcon className="h-5 w-5" />
@@ -110,7 +110,7 @@ const WorkspaceElementWrapper = ({ element }) => {
           <button
             {...draggable.listeners}
             {...draggable.attributes}
-            className="cursor-grab rounded-md text-gray-800"
+            className="cursor-grab rounded-md text-primary"
           >
             <GripHorizontal />
           </button>
@@ -118,7 +118,7 @@ const WorkspaceElementWrapper = ({ element }) => {
       </div>
 
       {bottomHalf.isOver && (
-        <div className="absolute bottom-0 h-[2px] w-full rounded-t-none bg-primary-600" />
+        <div className="bg-primary-600 absolute bottom-0 h-[2px] w-full rounded-t-none" />
       )}
     </div>
   );

@@ -11,8 +11,12 @@ import { notFound } from "next/navigation";
 // ✅ Dynamic Metadata Fetching with Error Handling
 export async function generateMetadata({ params }) {
   const { uri } = await params;
-  if (["dashboard", "workspace"].includes(uri)) {
-    return;
+  if (
+    uri === "dashboard" ||
+    uri.startsWith("workspace") ||
+    uri === "favicon.ico"
+  ) {
+    return null;
   }
 
   try {
@@ -67,8 +71,12 @@ export async function generateMetadata({ params }) {
 // ✅ Live Page Component
 const LivePage = async ({ params }) => {
   const { uri } = await params;
-  if (["dashboard", "workspace"].includes(uri)) {
-    return;
+  if (
+    uri === "dashboard" ||
+    uri.startsWith("workspace") ||
+    uri === "favicon.ico"
+  ) {
+    return null;
   }
 
   console.log("live server render!!!");

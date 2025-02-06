@@ -14,6 +14,7 @@ import {
   yekan,
 } from "./fonts/fonts";
 import "./globals.css";
+import { ThemeProvider } from "@/context/theme-provider";
 
 export const metadata = {
   title: "Create Next App",
@@ -31,7 +32,14 @@ export default async function RootLayout({ children }) {
           <body
             className={`${yekan.variable} ${vazir.variable} ${tanha.variable} ${shabnam.variable} ${samim.variable} ${sahel.variable} ${parastoo.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
           >
-            {children}
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="light"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
             <Toaster />
           </body>
         </html>

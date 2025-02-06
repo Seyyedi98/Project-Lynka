@@ -9,6 +9,18 @@ import EditorSidebar from "../layout/navbar/editor-sidebar";
 import WorkspaceHeader from "../layout/navbar/workspace-header";
 import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
+import PageUrl from "../common/button/page-url";
+import SavePageBtn from "../common/button/PrimaryButton/save-page-button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "../common/modal/diolog";
+import { Button } from "@/components/ui/button";
+import PreviewPageContainer from "../preview/preview-page-container";
+import { Eye } from "lucide-react";
 
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 
@@ -24,6 +36,21 @@ const BuilderWorkspace = () => {
       modalStates: state.modal.modalStates,
     }),
     shallowEqual,
+  );
+
+  const workspaceBg = useMemo(
+    () => ({
+      backgroundImage: `url(${hero.extraAttributes.primaryImage.url})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundColor: hero.extraAttributes.primaryImage.url
+        ? ""
+        : hero.extraAttributes.heroValue,
+      filter: "blur(50px) opacity(90%)",
+      transform: "scale(1.4)",
+    }),
+    [hero.extraAttributes.primaryImage.url, hero.extraAttributes.heroValue],
   );
 
   const bgStyle = useMemo(
@@ -178,49 +205,82 @@ const BuilderWorkspace = () => {
     <>
       <div
         className={cn(
-          `h-full w-full bg-neutral-50 duration-500`,
+          `h-dvh w-full bg-background duration-500`,
           isAnyMenuOpen && "scale-95 md:scale-100",
         )}
       >
-        {/* <WorkspaceHeader /> */}
-        <div className="flex h-full w-full gap-6 p-4">
+        <div className="flex h-full w-full">
           <EditorSidebar />
+
           <div
-            style={bgStyle}
-            className={cn(
-              `relative flex h-full w-full flex-grow flex-col items-center overflow-y-auto rounded-xl shadow-lg`,
-            )}
+            className="relative h-full w-full overflow-hidden md:grid md:place-content-center"
             onClick={(e) => {
               e.stopPropagation();
               dispatch({ type: "page/setSelectedElement", payload: null });
             }}
-            ref={droppable.setNodeRef}
           >
-            <div className="w-full">
-              <WorkspaceHeroWrapper element={hero} />
+            {/* 🌆 Blurry Background Layer */}
+            <div
+              style={workspaceBg}
+              className="absolute left-0 top-0 hidden h-full w-full md:block"
+            />
+
+            <div className="absolute right-4 top-4 z-20 flex gap-2">
+              <div className="flex h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-4 text-sm">
+                <SavePageBtn>ذخیره</SavePageBtn>
+              </div>
+              <div className="flex h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-2 text-sm">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Eye />
+                  </DialogTrigger>
+                  <DialogContent className="flex h-screen max-h-screen w-screen max-w-full flex-grow flex-col gap-0 p-0">
+                    <DialogTitle className="hidden"></DialogTitle>
+                    <DialogDescription className="hidden"></DialogDescription>
+                    <PreviewPageContainer />
+                  </DialogContent>
+                </Dialog>
+              </div>
+            </div>
+            <div className="absolute left-4 top-4 z-20">
+              <PageUrl />
             </div>
 
-            {!droppable.isOver && elements?.length === 0 && (
-              <p className="flex items-center justify-center text-xl font-medium text-gray-500">
-                Add some blocks to start!
-              </p>
-            )}
-
-            {droppable.isOver && elements?.length === 0 && (
-              <div className="w-full p-4">
-                <div className="h-32 rounded-lg bg-blue-100">
-                  اینجا رها کنید
-                </div>
+            <div
+              style={bgStyle}
+              className={cn(
+                `relative flex h-dvh w-full flex-grow flex-col items-center overflow-y-auto rounded-xl shadow-lg [scrollbar-width:none] md:h-[720px] md:w-[360px]`,
+              )}
+              ref={droppable.setNodeRef}
+            >
+              <div className="w-full">
+                <WorkspaceHeroWrapper element={hero} />
               </div>
-            )}
 
-            {elements?.map((element) => (
-              <MemoizedWorkspaceElementWrapper
-                key={element.id}
-                element={element}
-              />
-            ))}
-            <div className="mt-auto pb-24"></div>
+              {!droppable.isOver && elements?.length === 0 && (
+                <p className="flex items-center justify-center text-xl font-medium text-gray-500">
+                  Add some blocks to start!
+                </p>
+              )}
+
+              {droppable.isOver && elements?.length === 0 && (
+                <div className="w-full p-4">
+                  <div className="h-32 rounded-lg bg-blue-100">
+                    اینجا رها کنید
+                  </div>
+                </div>
+              )}
+
+              {elements?.map((element) => (
+                <div
+                  key={element.id}
+                  className="flex w-full justify-center md:px-2"
+                >
+                  <MemoizedWorkspaceElementWrapper element={element} />
+                </div>
+              ))}
+              <div className="mt-auto pb-24"></div>
+            </div>
           </div>
         </div>
       </div>

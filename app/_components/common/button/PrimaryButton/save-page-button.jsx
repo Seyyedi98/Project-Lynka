@@ -4,14 +4,17 @@ import { UpdatePageContent, UpdatePageTheme } from "@/actions/page";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { Loader } from "lucide-react";
+import { useParams } from "next/navigation";
 import { useTransition } from "react";
 import { useSelector } from "react-redux";
 
-const SavePageBtn = ({ uri, children }) => {
+const SavePageBtn = ({ children }) => {
   const elements = useSelector((store) => store.page.elements);
   const hero = useSelector((store) => store.page.hero);
   const theme = useSelector((store) => store.page.theme);
   const [isPending, startTransition] = useTransition();
+
+  const { uri } = useParams();
 
   const fullContent = [[hero], elements]; // Elements are already in array, hero need to wrapped in [] in order to convert to array
 
