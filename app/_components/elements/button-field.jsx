@@ -89,18 +89,18 @@ function PropertiesComponent({ elementInstance }) {
     };
     dispatch({ type: "page/updateElement", payload });
 
-    dispatch({ type: "modal/closeMenu" });
-    setTimeout(
-      () => dispatch({ type: "page/setSelectedElement", payload: null }),
-      200,
-    );
+    // dispatch({ type: "modal/closeMenu" });
+    // setTimeout(
+    //   () => dispatch({ type: "page/setSelectedElement", payload: null }),
+    //   200,
+    // );
   }
 
   return (
     <>
       <Form {...form}>
         <form
-          // onBlur={form.handleSubmit(applyChanges)}
+          onBlur={form.handleSubmit(applyChanges)}
           className="flex flex-col gap-2 text-primary"
           onSubmit={form.handleSubmit(applyChanges)}
         >

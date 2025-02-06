@@ -2,13 +2,9 @@ import { idGenerator } from "@/lib/id-generator";
 import { cn } from "@/lib/utils";
 import { selectIsAnyMenuOpen } from "@/store/modalSlice";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
+import { Eye } from "lucide-react";
 import { memo, useCallback, useMemo } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { PageElements } from "../controller/page-elements";
-import EditorSidebar from "../layout/navbar/editor-sidebar";
-import WorkspaceHeader from "../layout/navbar/workspace-header";
-import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
-import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
 import PageUrl from "../common/button/page-url";
 import SavePageBtn from "../common/button/PrimaryButton/save-page-button";
 import {
@@ -18,9 +14,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../common/modal/diolog";
-import { Button } from "@/components/ui/button";
+import { PageElements } from "../controller/page-elements";
+import EditorSidebar from "../layout/navbar/editor-sidebar";
 import PreviewPageContainer from "../preview/preview-page-container";
-import { Eye } from "lucide-react";
+import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
+import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
 
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 

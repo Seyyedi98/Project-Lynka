@@ -1,5 +1,5 @@
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
 import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
 import ElementProperties from "../../editor/element/element-properties";
@@ -8,10 +8,22 @@ import WorkspaceSidebarMobile from "./workspace-sidebar-mobile";
 import { AnimatePresence, motion } from "framer-motion";
 import { fade, fadeSlideLeft } from "@/utils/animation/animation";
 import ThemeSwitcher from "../../common/button/ThemeSwitcher";
+import WorkspaceSidebatDesktop from "./workspace-sidebar-desktop";
+import { useState } from "react";
+import PageBackgroundSettings from "../../section/workspace/page-background-settings";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  const dispatch = useDispatch();
   const selectedElement = useSelector((state) => state.page.selectedElement);
+  const theme = useSelector((store) => store.page.theme);
+
+  const [selectedMenu, setSelectedMenu] = useState("elements");
+
+  const setPageBackground = function (velue) {
+    const payload = { ...theme, backgroundValue: velue };
+    dispatch({ type: "page/setTheme", payload });
+  };
 
   // TODO: Replace with skeleton
   if (isDesktop === null) {
@@ -30,32 +42,42 @@ const EditorSidebar = () => {
         <div className="absolute right-0 top-0 z-50">
           <ThemeSwitcher />
         </div>
+        <WorkspaceSidebatDesktop
+          selectedMenu={selectedMenu}
+          setSelectedMenu={setSelectedMenu}
+        />
         <div className="group z-30 my-auto hidden h-full w-full flex-col items-center justify-between bg-secondaryBg px-3 pb-6 text-primary shadow-2xl duration-300 md:flex">
-          <AnimatePresence mode="wait">
-            {selectedElement ? (
-              <motion.div
-                key="element-properties"
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                variants={fadeSlideLeft}
-                className="w-full max-w-xs"
-              >
-                <ElementProperties element={selectedElement} />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="editor-sidebar"
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                variants={fade}
-                className="w-full max-w-xs"
-              >
-                <EditorSidebarElements />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {selectedMenu === "elements" && (
+            <AnimatePresence mode="wait">
+              {selectedElement ? (
+                <motion.div
+                  key="element-properties"
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  variants={fadeSlideLeft}
+                  className="w-full max-w-xs"
+                >
+                  <ElementProperties element={selectedElement} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="editor-sidebar"
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  variants={fade}
+                  className="w-full max-w-xs"
+                >
+                  <EditorSidebarElements />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          )}
+
+          {selectedMenu === "browser" && (
+            <PageBackgroundSettings setPageBackground={setPageBackground} />
+          )}
         </div>
       </>
     );

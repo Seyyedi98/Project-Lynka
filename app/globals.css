@@ -42,7 +42,7 @@ body {
     }
     .dark {
       --background: 0 0% 11%;
-      --iconLight: 229 34% 74%;
+      --iconLight: 0 0% 30%;
       --textLight: 0 0% 42%;
       --secondaryBg: 0 0 15%;
       --foreground: 248 0% 100%;
