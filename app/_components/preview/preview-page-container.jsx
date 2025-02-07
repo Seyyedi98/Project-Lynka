@@ -12,7 +12,7 @@ const PreviewPageContainer = () => {
   return (
     <div
       style={style}
-      className="flex h-full w-full flex-col items-center justify-center"
+      className="flex h-svh w-full flex-col items-center justify-center"
     >
       <PreviewPageHero />
       <section className="mt-6 flex h-full w-full max-w-[400px] flex-col items-center justify-start gap-4">
