@@ -203,7 +203,7 @@ const BuilderWorkspace = () => {
     <>
       <div
         className={cn(
-          `h-dvh w-full bg-background duration-500`,
+          `h-svh w-full bg-background duration-500`,
           isAnyMenuOpen && "scale-95 md:scale-100",
         )}
       >
@@ -249,7 +249,7 @@ const BuilderWorkspace = () => {
             <div
               style={bgStyle}
               className={cn(
-                `relative flex h-dvh w-full flex-grow flex-col items-center overflow-y-auto rounded-xl shadow-lg [scrollbar-width:none] md:h-[720px] md:w-[360px]`,
+                `relative flex h-svh w-full flex-grow flex-col items-center overflow-y-auto rounded-xl shadow-lg [scrollbar-width:none] md:h-[720px] md:w-[360px]`,
               )}
               ref={droppable.setNodeRef}
             >

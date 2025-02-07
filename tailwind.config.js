@@ -93,6 +93,14 @@ module.exports = {
             opacity: "0",
           },
         },
+        "fade-out": {
+          "0%": {
+            opacity: "1",
+          },
+          "100%": {
+            opacity: "",
+          },
+        },
         "fade-up": {
           "0%": {
             opacity: "0",
@@ -171,6 +179,7 @@ module.exports = {
       animation: {
         aurora: "aurora 60s linear infinite",
         "fade-left": "fade-left .7s ease",
+        "fade-out": "fade-oue .7s ease",
         "fade-right": "fade-right .7s ease",
         "fade-up": "fade-up 0.5s ease-out forwards",
         "caret-blink": "caret-blink 1.25s ease-out infinite",

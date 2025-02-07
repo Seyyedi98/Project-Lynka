@@ -3,7 +3,7 @@ import React from "react";
 
 const notFound = () => {
   return (
-    <div className="w-full h-dvh flex flex-col gap-4 items-center justify-center">
+    <div className="flex h-svh w-full flex-col items-center justify-center gap-4">
       <p className="text-4xl">صفحه پیدا نشد!</p>
       <Link href="../">برگشت به صفحه اصلی</Link>
     </div>

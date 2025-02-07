@@ -73,7 +73,7 @@ const PageBackgroundSettings = () => {
 
   return (
     <>
-      <div className="mb-4 flex items-center justify-center gap-4 border-b-2 pb-4 md:mt-10">
+      <div className="mb-4 flex items-center justify-center gap-4 border-b-2 pb-4">
         <SquareButton state={category} action={setCategory} rule="color">
           رنگ
         </SquareButton>
@@ -87,7 +87,7 @@ const PageBackgroundSettings = () => {
           تصویر
         </SquareButton>
       </div>
-      <div className="grid h-[75dvh] w-full max-w-sm grid-cols-[repeat(auto-fit,minmax(80px,1fr))] gap-4 overflow-y-scroll [scrollbar-width:none] md:max-h-full">
+      <div className="grid h-[60svh] w-full max-w-sm grid-cols-[repeat(auto-fit,minmax(80px,1fr))] gap-4 overflow-y-scroll [scrollbar-width:none] md:max-h-full">
         {category === "color" &&
           colors.map((color) => {
             return (

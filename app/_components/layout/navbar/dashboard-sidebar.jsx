@@ -28,8 +28,8 @@ const DashboardSidebar = () => {
       <nav
         ref={ref}
         className={cn(
-          `transition-translate group right-0 z-10 h-12 w-full overflow-hidden bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to px-2 pb-12 pt-6 duration-200 sm:fixed sm:h-full sm:w-20 sm:pb-4 xl:w-56`,
-          isSidebarOpen ? "h-dvh pb-4 sm:w-56" : "top-0",
+          `transition-translate from-primary-gradient_from to-primary-gradient_to group right-0 z-10 h-12 w-full overflow-hidden bg-gradient-to-b px-2 pb-12 pt-6 duration-200 sm:fixed sm:h-full sm:w-20 sm:pb-4 xl:w-56`,
+          isSidebarOpen ? "h-svh pb-4 sm:w-56" : "top-0",
           !isSidebarOpen && "sm:hover:w-56",
         )}
       >

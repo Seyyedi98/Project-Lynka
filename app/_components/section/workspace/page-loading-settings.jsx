@@ -21,9 +21,9 @@ const PageLoadingSettings = () => {
       );
     });
   };
-  isPending;
+
   return (
-    <div className="grid h-full w-full grid-cols-auto-fit-100">
+    <div className="grid w-full grid-cols-[repeat(auto-fit,minmax(25px,1fr))]">
       <div
         onClick={() => changeLoadingIcon(uri, null)}
         className={cn(

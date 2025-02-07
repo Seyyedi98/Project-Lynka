@@ -68,7 +68,7 @@ const EditorSidebar = () => {
                 animate="animate"
                 exit="exit"
                 variants={fadeSlideUp}
-                className="w-full max-w-xs"
+                className="w-full max-w-xs md:mt-10"
               >
                 {selectedMenu === "elements" && <EditorSidebarElements />}
                 {selectedMenu === "theme" && (

@@ -7,11 +7,12 @@ import getPageHero from "@/lib/page/get-page-header";
 import { cn } from "@/lib/utils";
 import fetchWithRetry from "@/utils/fetchWithRetry";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 
 // ✅ Dynamic Metadata Fetching with Error Handling
 export async function generateMetadata({ params }) {
   const { uri } = await params;
+
+  // Handle excluded URIs
   if (
     uri === "dashboard" ||
     uri.startsWith("workspace") ||
@@ -21,8 +22,11 @@ export async function generateMetadata({ params }) {
   }
 
   try {
+    // Fetch the page metadata
     const metadata = await getPageMetadata(uri);
-    if (!metadata) throw new Error("metadata not found");
+    if (!metadata) throw new Error("Metadata not found");
+
+    // Parse metadata for favicon and meta image
     const favicon = metadata?.favicon
       ? JSON.parse(metadata?.favicon)?.url
       : null;
@@ -42,16 +46,13 @@ export async function generateMetadata({ params }) {
             "https://arklight.storage.c2.liara.space/files/arcane.ico",
         },
       ],
-
       openGraph: {
         title: metadata.metaTitle || "My Page",
         description: metadata.metaDescription || "Welcome!",
-        // url: `https://example.com/${uri}`, // Dynamically construct URL
         siteName: "My Site",
         images: [{ url: metaImage }], // Open Graph Image
         type: "website",
       },
-
       robots: {
         index: true,
         follow: true,
@@ -61,8 +62,6 @@ export async function generateMetadata({ params }) {
           follow: true,
         },
       },
-
-      // themeColor: "#ffffff", // set to page bg color
     };
   } catch (error) {
     console.error("Metadata fetch failed:", error);
@@ -76,6 +75,8 @@ export async function generateMetadata({ params }) {
 // ✅ Live Page Component
 const LivePage = async ({ params }) => {
   const { uri } = await params;
+
+  // Handle excluded URIs
   if (
     uri === "dashboard" ||
     uri.startsWith("workspace") ||
@@ -88,7 +89,7 @@ const LivePage = async ({ params }) => {
   const page = await fetchWithRetry(uri);
 
   // Handle different states
-  if (!page)
+  if (!page) {
     return (
       <div className="grid h-screen w-screen place-items-center">
         <p className="text-red-500">
@@ -96,12 +97,17 @@ const LivePage = async ({ params }) => {
         </p>
       </div>
     );
-  if (page.error) return notFound();
+  }
 
-  // Extract data
+  if (page.error) {
+    return notFound(); // Return 404 if there is an error
+  }
+
+  // Extract data from the page
   const hero = getPageHero(page);
   const content = getPageContent(page);
 
+  // Handle theme parsing with fallback
   let theme;
   try {
     theme = JSON.parse(page.theme);
@@ -116,27 +122,32 @@ const LivePage = async ({ params }) => {
   };
 
   return (
-    // <Suspense fallback={<LoadingSpinner elementInstances={page.loadingIcon} />}>
-    <div
-      style={style}
-      className="relative flex h-full w-full flex-col items-center justify-start gap-4"
-    >
+    <>
+      {/* Loading Spinner */}
       {page.loadingIcon && (
         <div
           className={cn(
-            `absolute z-[50] grid h-dvh w-dvw place-items-center bg-background opacity-100 transition-opacity duration-300 animate-out`,
+            `absolute z-[50] grid h-svh w-dvw place-items-center bg-background opacity-100 transition-opacity duration-300 animate-out`,
             page && "pointer-events-none opacity-0",
           )}
         >
           <LoadingSpinner elementInstances={page.loadingIcon} />
         </div>
       )}
-      <LivePageHero hero={hero} />
-      <section className="flex h-full w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
-        <LivePageElements content={content} />
-      </section>
-    </div>
-    // </Suspense>
+
+      <div
+        style={style}
+        className="relative flex h-full w-full flex-col items-center justify-start gap-4"
+      >
+        {/* Hero Section */}
+        <LivePageHero hero={hero} />
+
+        {/* Content Section */}
+        <section className="flex h-full w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
+          <LivePageElements content={content} />
+        </section>
+      </div>
+    </>
   );
 };
 

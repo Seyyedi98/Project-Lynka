@@ -17,7 +17,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
 
   return (
     <div>
-      <div className="mb-4 mt-0 flex w-full items-center justify-between gap-2 md:mt-10">
+      <div className="mb-4 mt-0 flex w-full items-center justify-between gap-2">
         <SquareButton
           action={setThemeCategory}
           state={themeCategory}
