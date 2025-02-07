@@ -12,6 +12,7 @@ import WorkspaceSidebatDesktop from "./workspace-sidebar-desktop";
 import { useState } from "react";
 import PageBackgroundSettings from "../../section/workspace/page-background-settings";
 import PageDataSettings from "../../section/workspace/page-data-settings";
+import PageLoadingSettings from "../../section/workspace/page-loading-settings";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -75,7 +76,12 @@ const EditorSidebar = () => {
                     setPageBackground={setPageBackground}
                   />
                 )}
-                {selectedMenu === "browser" && <PageDataSettings />}
+                {selectedMenu === "browser" && (
+                  <>
+                    <PageLoadingSettings />
+                    <PageDataSettings />
+                  </>
+                )}
                 {selectedMenu === "analytics" && <p>analytics</p>}
               </motion.div>
             )}

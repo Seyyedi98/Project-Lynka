@@ -7,6 +7,7 @@ import getPageHero from "@/lib/page/get-page-header";
 import { cn } from "@/lib/utils";
 import fetchWithRetry from "@/utils/fetchWithRetry";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 // ✅ Dynamic Metadata Fetching with Error Handling
 export async function generateMetadata({ params }) {
@@ -26,6 +27,10 @@ export async function generateMetadata({ params }) {
       ? JSON.parse(metadata?.favicon)?.url
       : null;
 
+    const metaImage = metadata?.metaImage
+      ? JSON.parse(metadata.metaImage).url
+      : null;
+
     return {
       title: metadata.metaTitle || "My Page",
       description: metadata.metaDescription || "Welcome!",
@@ -43,7 +48,7 @@ export async function generateMetadata({ params }) {
         description: metadata.metaDescription || "Welcome!",
         // url: `https://example.com/${uri}`, // Dynamically construct URL
         siteName: "My Site",
-        images: [{ url: metadata.metaImage }], // Open Graph Image
+        images: [{ url: metaImage }], // Open Graph Image
         type: "website",
       },
 
@@ -79,8 +84,6 @@ const LivePage = async ({ params }) => {
     return null;
   }
 
-  console.log("live server render!!!");
-
   // Try fetching page data with retry mechanism
   const page = await fetchWithRetry(uri);
 
@@ -113,6 +116,7 @@ const LivePage = async ({ params }) => {
   };
 
   return (
+    // <Suspense fallback={<LoadingSpinner elementInstances={page.loadingIcon} />}>
     <div
       style={style}
       className="relative flex h-full w-full flex-col items-center justify-start gap-4"
@@ -120,7 +124,7 @@ const LivePage = async ({ params }) => {
       {page.loadingIcon && (
         <div
           className={cn(
-            `absolute z-50 grid h-dvh w-dvw place-items-center bg-white opacity-100 transition-opacity duration-300 animate-out`,
+            `absolute z-[50] grid h-dvh w-dvw place-items-center bg-background opacity-100 transition-opacity duration-300 animate-out`,
             page && "pointer-events-none opacity-0",
           )}
         >
@@ -132,6 +136,7 @@ const LivePage = async ({ params }) => {
         <LivePageElements content={content} />
       </section>
     </div>
+    // </Suspense>
   );
 };
 

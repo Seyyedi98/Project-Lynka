@@ -46,6 +46,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 )}
               </span>
             </li>
+
             <li
               onClick={() => {
                 setTimeout(
@@ -65,6 +66,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
             >
               <Layers className="" />
             </li>
+
             <li
               onClick={() => {
                 setTimeout(
@@ -84,6 +86,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
             >
               <Droplet className="" />
             </li>
+
             <li
               onClick={() => {
                 setTimeout(
