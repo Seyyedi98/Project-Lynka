@@ -93,7 +93,7 @@ const HeroWorkspaceUploader = ({ uri }) => {
           <Button
             onClick={handleUploadButton}
             disabled={!file || isUploading}
-            className="upload-button rounded-md"
+            className="upload-button rounded-sm bg-button text-primary"
           >
             {!isUploading ? "بارگزاری" : <Loader2 className="animate-spin" />}
           </Button>
@@ -101,7 +101,7 @@ const HeroWorkspaceUploader = ({ uri }) => {
       </div>
 
       {uploadLink && (
-        <h3 className="success-message">File uploaded successfully.</h3>
+        <h3 className="success-message">فایل با موفقیت بارگزاری شد</h3>
       )}
 
       {error && <p className="error-message">{error}</p>}

@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { motion } from "motion/react";
 import { ChevronLeft, TrashIcon } from "lucide-react";
 import { useState } from "react";
 import DeleteElementBtn from "../../common/button/delete-element-button";
@@ -7,7 +6,6 @@ import { PageElements } from "../../controller/page-elements";
 import { PageHeroElement } from "../../elements/hero/page-hero-element";
 import ElementThemeSelector from "../../theme/element-theme-selector";
 import HeroThemeSelector from "../../theme/hero-theme-selector";
-import { fadeSlideLeft } from "@/utils/animation/animation";
 
 const ElementProperties = ({ element }) => {
   const [isThemeSelectPage, setIsThemeSelectPage] = useState(false);
@@ -18,7 +16,7 @@ const ElementProperties = ({ element }) => {
   if (!PropertiesForm) PropertiesForm = PageHeroElement?.PropertiesComponent;
 
   return (
-    <div className="relative flex h-full flex-col justify-between md:mt-20">
+    <div className="relative flex h-full flex-col justify-between">
       {element && !isThemeSelectPage && (
         <PropertiesForm elementInstance={element} />
       )}
@@ -47,7 +45,7 @@ const ElementProperties = ({ element }) => {
             <Button
               asChild
               variant="destructive"
-              className="mt-2 flex w-full cursor-pointer items-center justify-center p-2 duration-200"
+              className="mt-2 flex h-12 w-full cursor-pointer items-center justify-center p-2 duration-200"
             >
               <span>
                 حذف بلوک

@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
   const data = useSelector((store) => store.page.hero);
+  const dispatch = useDispatch();
   const userImage = data?.extraAttributes?.primaryImage?.url;
 
   return (
@@ -46,7 +47,17 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
               </span>
             </li>
             <li
-              onClick={() => setSelectedMenu("elements")}
+              onClick={() => {
+                setTimeout(
+                  () =>
+                    dispatch({
+                      type: "page/setSelectedElement",
+                      payload: null,
+                    }),
+                  200,
+                );
+                setSelectedMenu("elements");
+              }}
               className={cn(
                 `translate-y-8 animate-fade-up cursor-pointer text-iconLight opacity-0 duration-300`,
                 selectedMenu === "elements" && "text-primary",
@@ -55,7 +66,17 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
               <Layers className="" />
             </li>
             <li
-              onClick={() => setSelectedMenu("theme")}
+              onClick={() => {
+                setTimeout(
+                  () =>
+                    dispatch({
+                      type: "page/setSelectedElement",
+                      payload: null,
+                    }),
+                  200,
+                );
+                setSelectedMenu("theme");
+              }}
               className={cn(
                 `translate-y-8 animate-fade-up cursor-pointer text-iconLight opacity-0 delay-100 duration-300`,
                 selectedMenu === "theme" && "text-primary",
@@ -64,7 +85,17 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
               <Droplet className="" />
             </li>
             <li
-              onClick={() => setSelectedMenu("browser")}
+              onClick={() => {
+                setTimeout(
+                  () =>
+                    dispatch({
+                      type: "page/setSelectedElement",
+                      payload: null,
+                    }),
+                  200,
+                );
+                setSelectedMenu("browser");
+              }}
               className={cn(
                 `translate-y-8 animate-fade-up cursor-pointer text-iconLight opacity-0 delay-200 duration-300`,
                 selectedMenu === "browser" && "text-primary",
@@ -73,7 +104,17 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
               <AppWindow className="" />
             </li>
             <li
-              onClick={() => setSelectedMenu("analytics")}
+              onClick={() => {
+                setTimeout(
+                  () =>
+                    dispatch({
+                      type: "page/setSelectedElement",
+                      payload: null,
+                    }),
+                  200,
+                );
+                setSelectedMenu("analytics");
+              }}
               className={cn(
                 `translate-y-8 animate-fade-up cursor-pointer text-iconLight opacity-0 delay-300 duration-300`,
                 selectedMenu === "analytics" && "text-primary",

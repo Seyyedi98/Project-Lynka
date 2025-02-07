@@ -23,6 +23,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import HeroWorkspaceUploader from "../../common/input/workspace-hero-uploader";
 import { HeroController } from "../../controller/hero-controller";
+import { toast } from "@/hooks/use-toast";
 
 const type = "HeroElement";
 
@@ -75,8 +76,8 @@ function PropertiesComponent({ elementInstance }) {
     defaultValues: {
       title: element.title || "",
       subtitle: element.subtitle || "",
-      titleFont: element.titleFont || "",
-      subTitleFont: element.subTitleFont || "",
+      titleFont: element.extraAttributes.titleFont || "",
+      subTitleFont: element.extraAttributes.subTitleFont || "",
     },
   });
 
@@ -99,6 +100,10 @@ function PropertiesComponent({ elementInstance }) {
           subTitleFont,
         },
       },
+    });
+
+    toast({
+      description: "تغییرات با موفقیت اعمال شد",
     });
 
     dispatch({ type: "modal/closeMenu" });
@@ -235,15 +240,28 @@ function PropertiesComponent({ elementInstance }) {
             )}
           />
 
+          <div className="mt-2">
+            <HeroWorkspaceUploader />
+            <p className="text-xs text-textLight">
+              پس از بارگزاری تصویر، حتما دکمه اعمال تغییرات را بزنید
+            </p>
+          </div>
+
+          {/* Mobile drawaer button */}
           <button
             type="submit"
-            className="absolute -top-20 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0"
+            className="absolute -top-20 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
           >
             <Check className="h-4 w-4 text-white" />
           </button>
-          <div className="mt-2">
-            <HeroWorkspaceUploader />
-          </div>
+
+          {/* Desktop sidebar button */}
+          <button
+            type="submit"
+            className="mt-4 hidden h-12 cursor-pointer items-center justify-center rounded-sm bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
+          >
+            اعمال تغییرات
+          </button>
         </form>
       </Form>
     </>

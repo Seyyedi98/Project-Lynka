@@ -24,6 +24,7 @@ import { memo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { ThemeController } from "../controller/theme-controller";
+import { toast } from "@/hooks/use-toast";
 
 const type = "ButtonField";
 
@@ -87,6 +88,11 @@ function PropertiesComponent({ elementInstance }) {
         },
       },
     };
+
+    toast({
+      description: "تغییرات با موفقیت اعمال شد",
+    });
+
     dispatch({ type: "page/updateElement", payload });
 
     // dispatch({ type: "modal/closeMenu" });
@@ -194,11 +200,20 @@ function PropertiesComponent({ elementInstance }) {
             )}
           />
 
+          {/* Mobile drawaer button */}
           <button
             type="submit"
-            className="absolute -top-20 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0"
+            className="absolute -top-20 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
           >
             <Check className="h-4 w-4 text-white" />
+          </button>
+
+          {/* Desktop sidebar button */}
+          <button
+            type="submit"
+            className="mt-4 hidden h-12 cursor-pointer items-center justify-center rounded-sm bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
+          >
+            اعمال تغییرات
           </button>
         </form>
       </Form>

@@ -16,44 +16,46 @@ const PageDataSettings = () => {
 
   return (
     <>
-      <div>
-        <div className="flex items-center justify-center gap-4">
+      <div className="md:mt-10">
+        <div className="flex items-center justify-center gap-4 border-b-2 pb-4">
           <SquareButton state={category} action={setCategory} rule="metaTitle">
-            title
+            عنوان
           </SquareButton>
           <SquareButton
             state={category}
             action={setCategory}
             rule="metaDescription"
           >
-            Description
+            توضیحات
           </SquareButton>
           <SquareButton state={category} action={setCategory} rule="metaImage">
-            Image
+            تصویر
           </SquareButton>
           <SquareButton state={category} action={setCategory} rule="favicon">
-            favicon
+            آیکون
           </SquareButton>
         </div>
 
-        {category === "metaTitle" ? (
-          <MetaTitleForm uri={uri} title={metadata.metaTitle} />
-        ) : null}
+        <div className="max-w-sm">
+          {category === "metaTitle" ? (
+            <MetaTitleForm uri={uri} title={metadata.metaTitle} />
+          ) : null}
 
-        {category === "metaDescription" ? (
-          <MetaDescriptionForm
-            uri={uri}
-            description={metadata.metaDescription}
-          />
-        ) : null}
+          {category === "metaDescription" ? (
+            <MetaDescriptionForm
+              uri={uri}
+              description={metadata.metaDescription}
+            />
+          ) : null}
 
-        {category === "metaImage" ? (
-          <MetaImageForm image={metadata.metaImage} uri={uri} />
-        ) : null}
+          {category === "metaImage" ? (
+            <MetaImageForm image={metadata.metaImage} uri={uri} />
+          ) : null}
 
-        {category === "favicon" ? (
-          <MetaFaviconForm favicon={metadata.favicon} uri={uri} />
-        ) : null}
+          {category === "favicon" ? (
+            <MetaFaviconForm favicon={metadata.favicon} uri={uri} />
+          ) : null}
+        </div>
       </div>
     </>
   );

@@ -2,12 +2,13 @@ import { AppWindow, ChartLine, Droplet, Layers } from "lucide-react";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
 import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
 import PageBackgroundSettings from "../../section/workspace/page-background-settings";
+import PageDataSettings from "../../section/workspace/page-data-settings";
 
 const WorkspaceSidebarMobile = () => {
   return (
-    <div className="fixed bottom-0 right-0 z-50 h-16 w-full bg-primary-foreground ring-0">
+    <div className="fixed bottom-0 right-0 z-50 h-16 w-full bg-button ring-0">
       <div className="grid h-full w-full place-items-center px-8">
-        <ul className="flex w-full items-center justify-between text-slate-700">
+        <ul className="flex w-full items-center justify-between text-foreground">
           <li className="translate-y-8 animate-fade-up opacity-0 duration-300">
             <WorkspaceDynamicModal
               mode="allDrawer"
@@ -30,17 +31,39 @@ const WorkspaceSidebarMobile = () => {
                   <Droplet className="" />
                 </div>
               }
-              title="لیست بلوک ها"
+              title="پس زمینه"
               modalId="style" // Unique identifier for this modal
             >
               <PageBackgroundSettings />
             </WorkspaceDynamicModal>
           </li>
           <li className="translate-y-8 animate-fade-up opacity-0 delay-200 duration-300">
-            <AppWindow className="" />
+            <WorkspaceDynamicModal
+              mode="allDrawer"
+              trigger={
+                <div>
+                  <AppWindow className="" />
+                </div>
+              }
+              title="مرورگر و سوشیال مدیا"
+              modalId="browser" // Unique identifier for this modal
+            >
+              <PageDataSettings />
+            </WorkspaceDynamicModal>
           </li>
           <li className="translate-y-8 animate-fade-up opacity-0 delay-300 duration-300">
-            <ChartLine className="" />
+            <WorkspaceDynamicModal
+              mode="allDrawer"
+              trigger={
+                <div>
+                  <ChartLine className="" />
+                </div>
+              }
+              title="آمار"
+              modalId="analytics" // Unique identifier for this modal
+            >
+              <PageBackgroundSettings />
+            </WorkspaceDynamicModal>
           </li>
         </ul>
       </div>

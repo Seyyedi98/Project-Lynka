@@ -73,47 +73,21 @@ const PageBackgroundSettings = () => {
 
   return (
     <>
-      <div className="mb-4 flex items-center justify-center gap-4 border-b-2 pb-4">
-        <SquareButton
-          state={category}
-          action={setCategory}
-          rule="color"
-          className={cn(``, theme.backgroundType === "color" && "bg-slate-300")}
-        >
+      <div className="mb-4 flex items-center justify-center gap-4 border-b-2 pb-4 md:mt-10">
+        <SquareButton state={category} action={setCategory} rule="color">
           رنگ
         </SquareButton>
-        <SquareButton
-          state={category}
-          action={setCategory}
-          rule="gradient"
-          className={cn(
-            ``,
-            theme.backgroundType === "gradient" && "bg-slate-300",
-          )}
-        >
-          طبف رنگی
+        <SquareButton state={category} action={setCategory} rule="gradient">
+          طیف رنگی
         </SquareButton>
-        <SquareButton
-          state={category}
-          action={setCategory}
-          rule="pattern"
-          className={cn(
-            ``,
-            theme.backgroundType === "pattern" && "bg-slate-300",
-          )}
-        >
+        <SquareButton state={category} action={setCategory} rule="pattern">
           الگو
         </SquareButton>
-        <SquareButton
-          state={category}
-          action={setCategory}
-          rule="image"
-          className={cn(``, theme.backgroundType === "image" && "bg-slate-300")}
-        >
+        <SquareButton state={category} action={setCategory} rule="image">
           تصویر
         </SquareButton>
       </div>
-      <div className="grid max-h-[50dvh] grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-4 overflow-scroll">
+      <div className="grid h-[75dvh] w-full max-w-sm grid-cols-[repeat(auto-fit,minmax(80px,1fr))] gap-4 overflow-y-scroll [scrollbar-width:none] md:max-h-full">
         {category === "color" &&
           colors.map((color) => {
             return (
@@ -122,7 +96,7 @@ const PageBackgroundSettings = () => {
                 style={{ backgroundColor: color }}
                 onClick={() => setPageBackground(color)}
                 className={cn(
-                  `h-20 w-20 cursor-pointer rounded-md border-2 border-black duration-200 hover:shadow-xl`,
+                  `h-20 w-20 cursor-pointer rounded-full border border-primary duration-200 hover:shadow-xl`,
                   theme.backgroundValue === color && "border-4",
                 )}
               ></div>
@@ -137,7 +111,7 @@ const PageBackgroundSettings = () => {
                 style={{ background: color }}
                 onClick={() => setPageBackground(color)}
                 className={cn(
-                  `h-20 w-20 cursor-pointer rounded-md border-2 border-black duration-200 hover:shadow-xl`,
+                  `h-20 w-20 cursor-pointer rounded-full border border-primary duration-200 [scrollbar-width:none] hover:shadow-xl`,
                   theme.backgroundValue === color && "border-4",
                 )}
               ></div>

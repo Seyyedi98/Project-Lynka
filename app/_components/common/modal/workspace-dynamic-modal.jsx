@@ -173,7 +173,7 @@ const DrawerComponent = function ({
           </div>
           <DrawerFooter className="">
             <DrawerClose asChild>
-              <Button variant="outline w-full">لغو تغییرات</Button>
+              <Button variant="outline w-full">بازگشت</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

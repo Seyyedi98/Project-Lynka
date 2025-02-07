@@ -6,11 +6,12 @@ import ElementProperties from "../../editor/element/element-properties";
 import WorkspaceBottomBar from "./workspace-bottom-bar";
 import WorkspaceSidebarMobile from "./workspace-sidebar-mobile";
 import { AnimatePresence, motion } from "framer-motion";
-import { fade, fadeSlideLeft } from "@/utils/animation/animation";
+import { fade, fadeSlideLeft, fadeSlideUp } from "@/utils/animation/animation";
 import ThemeSwitcher from "../../common/button/ThemeSwitcher";
 import WorkspaceSidebatDesktop from "./workspace-sidebar-desktop";
 import { useState } from "react";
 import PageBackgroundSettings from "../../section/workspace/page-background-settings";
+import PageDataSettings from "../../section/workspace/page-data-settings";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -46,38 +47,39 @@ const EditorSidebar = () => {
           selectedMenu={selectedMenu}
           setSelectedMenu={setSelectedMenu}
         />
-        <div className="group z-30 my-auto hidden h-full w-full flex-col items-center justify-between bg-secondaryBg px-3 pb-6 text-primary shadow-2xl duration-300 md:flex">
-          {selectedMenu === "elements" && (
-            <AnimatePresence mode="wait">
-              {selectedElement ? (
-                <motion.div
-                  key="element-properties"
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  variants={fadeSlideLeft}
-                  className="w-full max-w-xs"
-                >
-                  <ElementProperties element={selectedElement} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="editor-sidebar"
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  variants={fade}
-                  className="w-full max-w-xs"
-                >
-                  <EditorSidebarElements />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          )}
-
-          {selectedMenu === "browser" && (
-            <PageBackgroundSettings setPageBackground={setPageBackground} />
-          )}
+        <div className="group z-30 my-auto hidden h-full w-full flex-col items-center bg-secondaryBg px-3 pb-6 pr-20 text-primary shadow-2xl duration-700 md:flex">
+          <AnimatePresence mode="wait">
+            {selectedElement ? (
+              <motion.div
+                key="element-properties"
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={fadeSlideLeft}
+                className="h-full w-full max-w-xs"
+              >
+                <ElementProperties element={selectedElement} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key={`menu-${selectedMenu}`}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={fadeSlideUp}
+                className="w-full max-w-xs"
+              >
+                {selectedMenu === "elements" && <EditorSidebarElements />}
+                {selectedMenu === "theme" && (
+                  <PageBackgroundSettings
+                    setPageBackground={setPageBackground}
+                  />
+                )}
+                {selectedMenu === "browser" && <PageDataSettings />}
+                {selectedMenu === "analytics" && <p>analytics</p>}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </>
     );

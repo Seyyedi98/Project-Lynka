@@ -45,7 +45,10 @@ const SavePageBtn = ({ children }) => {
         handleSave();
         e.stopPropagation();
       }}
-      className={cn(``, isPending && "pointer-events-none cursor-not-allowed")}
+      className={cn(
+        ``,
+        isPending && "pointer-events-none cursor-not-allowed text-white",
+      )}
     >
       {isPending && <Loader className="animate-spin" />}
       {!isPending && children}
