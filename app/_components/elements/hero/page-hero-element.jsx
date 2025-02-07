@@ -243,7 +243,7 @@ function PropertiesComponent({ elementInstance }) {
           <div className="mt-2">
             <HeroWorkspaceUploader />
             <p className="text-xs text-textLight">
-              پس از بارگزاری تصویر، حتما دکمه اعمال تغییرات را بزنید
+              پس از انتخاب فایل، دکمه بارگزاری را بزنید
             </p>
           </div>
 

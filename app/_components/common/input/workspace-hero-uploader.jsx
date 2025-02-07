@@ -65,6 +65,14 @@ const HeroWorkspaceUploader = ({ uri }) => {
       dispatch({ type: "page/setHero", payload });
 
       dispatch({ type: "modal/closeMenu" });
+      setTimeout(
+        () =>
+          dispatch({
+            type: "page/setSelectedElement",
+            payload: null,
+          }),
+        200,
+      );
       toast({
         description: "تصویر با موفقیت تغییر یافت",
       });

@@ -50,7 +50,11 @@ const SavePageBtn = ({ children }) => {
         isPending && "pointer-events-none cursor-not-allowed text-white",
       )}
     >
-      {isPending && <Loader className="animate-spin" />}
+      {isPending && (
+        <div className="flex h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-4 text-sm">
+          <Loader className="animate-spin" />
+        </div>
+      )}
       {!isPending && children}
     </div>
   );

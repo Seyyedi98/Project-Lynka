@@ -224,23 +224,23 @@ const BuilderWorkspace = () => {
             />
 
             <div className="absolute right-4 top-4 z-20 flex gap-2">
-              <div className="flex h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-4 text-sm">
-                <SavePageBtn>
+              <SavePageBtn>
+                <div className="flex h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-4 text-sm">
                   <span className="text-white">ذخیره</span>
-                </SavePageBtn>
-              </div>
-              <div className="flex h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-2 text-sm">
-                <Dialog>
-                  <DialogTrigger asChild>
+                </div>
+              </SavePageBtn>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div className="flex h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-2 text-sm">
                     <Eye className="text-white" />
-                  </DialogTrigger>
-                  <DialogContent className="flex h-screen max-h-screen w-screen max-w-full flex-grow flex-col gap-0 p-0">
-                    <DialogTitle className="hidden"></DialogTitle>
-                    <DialogDescription className="hidden"></DialogDescription>
-                    <PreviewPageContainer />
-                  </DialogContent>
-                </Dialog>
-              </div>
+                  </div>
+                </DialogTrigger>
+                <DialogContent className="flex h-screen max-h-screen w-screen max-w-full flex-grow flex-col gap-0 p-0">
+                  <DialogTitle className="hidden"></DialogTitle>
+                  <DialogDescription className="hidden"></DialogDescription>
+                  <PreviewPageContainer />
+                </DialogContent>
+              </Dialog>
             </div>
             <div className="absolute left-4 top-4 z-20">
               <PageUrl />

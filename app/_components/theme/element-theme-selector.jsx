@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { ThemeController } from "../controller/theme-controller";
+import SquareButton from "../common/button/square-button";
 
 const ElementThemeSelector = ({ elementInstance }) => {
   const dispatch = useDispatch();
@@ -15,39 +16,39 @@ const ElementThemeSelector = ({ elementInstance }) => {
   const themesList = Object.keys(Themes);
 
   return (
-    <>
-      <div className="mb-4 flex w-full flex-grow items-center justify-between gap-2">
-        <CategoryButton
-          setThemeCategory={setThemeCategory}
-          themeCategory={themeCategory}
-          category="color"
+    <div>
+      <div className="mb-4 mt-0 flex w-full items-center justify-between gap-2 md:mt-10">
+        <SquareButton
+          action={setThemeCategory}
+          state={themeCategory}
+          rule="color"
         >
           رنگ
-        </CategoryButton>
-        <CategoryButton
-          setThemeCategory={setThemeCategory}
-          themeCategory={themeCategory}
-          category="pattern"
+        </SquareButton>
+        <SquareButton
+          action={setThemeCategory}
+          state={themeCategory}
+          rule="pattern"
         >
           الگو
-        </CategoryButton>
-        <CategoryButton
-          setThemeCategory={setThemeCategory}
-          themeCategory={themeCategory}
-          category="gradient"
+        </SquareButton>
+        <SquareButton
+          action={setThemeCategory}
+          state={themeCategory}
+          rule="gradient"
         >
           گرادیانت
-        </CategoryButton>
-        <CategoryButton
-          setThemeCategory={setThemeCategory}
-          themeCategory={themeCategory}
-          category="image"
+        </SquareButton>
+        <SquareButton
+          action={setThemeCategory}
+          state={themeCategory}
+          rule="image"
         >
           تصویر
-        </CategoryButton>
+        </SquareButton>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2">
+      <div className="grid grid-cols-1 justify-start sm:grid-cols-2">
         {themesList.map((theme, index) => {
           const RenderedElement = ThemeController[element.type][theme];
 
@@ -85,27 +86,8 @@ const ElementThemeSelector = ({ elementInstance }) => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
 export default ElementThemeSelector;
-
-const CategoryButton = ({
-  themeCategory,
-  setThemeCategory,
-  category,
-  children,
-}) => {
-  return (
-    <div
-      onClick={() => setThemeCategory(category)}
-      className={cn(
-        `grid h-10 w-20 min-w-20 cursor-pointer place-items-center rounded-md border bg-primary-foreground transition-colors duration-200`,
-        themeCategory === category && "bg-primary text-primary-foreground",
-      )}
-    >
-      {children}
-    </div>
-  );
-};

@@ -16,8 +16,8 @@ const HeroThemeSelector = () => {
   const filteredThemesList = useFilterTheme(Themes, themeCategory);
 
   return (
-    <>
-      <div className="mb-4 flex w-full flex-grow items-center justify-between gap-2">
+    <div>
+      <div className="mb-4 mt-0 flex w-full items-center justify-between gap-2 md:mt-10">
         <SquareButton
           action={setThemeCategory}
           state={themeCategory}
@@ -72,7 +72,7 @@ const HeroThemeSelector = () => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
