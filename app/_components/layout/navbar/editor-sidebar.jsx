@@ -44,11 +44,14 @@ const EditorSidebar = () => {
         <div className="absolute right-0 top-0 z-50">
           <ThemeSwitcher />
         </div>
+
+        {/* rounded menu on the right */}
         <WorkspaceSidebatDesktop
           selectedMenu={selectedMenu}
           setSelectedMenu={setSelectedMenu}
         />
-        <div className="group z-30 my-auto hidden h-full w-full flex-col items-center bg-secondaryBg px-3 pb-6 pr-20 text-primary shadow-2xl duration-700 md:flex">
+
+        <div className="group z-30 my-auto hidden h-full w-full flex-col items-center overflow-y-auto bg-secondaryBg px-3 pb-6 pr-20 text-primary shadow-2xl duration-700 md:flex">
           <AnimatePresence mode="wait">
             {selectedElement ? (
               <motion.div
@@ -57,7 +60,7 @@ const EditorSidebar = () => {
                 animate="animate"
                 exit="exit"
                 variants={fadeSlideLeft}
-                className="h-full w-full max-w-xs"
+                className="h-full w-full max-w-xs md:mt-10"
               >
                 <ElementProperties element={selectedElement} />
               </motion.div>

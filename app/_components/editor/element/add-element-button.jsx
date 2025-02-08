@@ -2,9 +2,9 @@ import { Button } from "@/components/ui/button";
 import { idGenerator } from "@/lib/id-generator";
 import { cn } from "@/lib/utils";
 import { useDraggable } from "@dnd-kit/core";
+import { PlusIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { PageElements } from "../../controller/page-elements";
-import { ArrowLeft, ChevronLeft, PlusIcon } from "lucide-react";
 
 const AddElementButton = ({ pageElement }) => {
   // former sidebar-button-element
@@ -38,7 +38,7 @@ const AddElementButton = ({ pageElement }) => {
       }}
       ref={draggable.setNodeRef}
       className={cn(
-        `bg-button relative flex h-14 w-full max-w-xs cursor-grab items-center justify-between gap-2 overflow-hidden rounded-lg px-4 text-foreground shadow-md transition-all duration-300 hover:scale-105`,
+        `relative flex h-14 w-full max-w-xs cursor-grab items-center justify-between gap-2 overflow-hidden rounded-lg bg-button px-4 text-foreground shadow-md transition-all duration-300 hover:scale-105`,
         draggable.isDragging && "ring-2 ring-primary",
       )}
       {...draggable.listeners}

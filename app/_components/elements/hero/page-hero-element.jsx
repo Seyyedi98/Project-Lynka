@@ -24,15 +24,19 @@ import { useDispatch } from "react-redux";
 import HeroWorkspaceUploader from "../../common/input/workspace-hero-uploader";
 import { HeroController } from "../../controller/hero-controller";
 import { toast } from "@/hooks/use-toast";
+import { Separator } from "@radix-ui/react-dropdown-menu";
+import Devider from "../../common/shared/devider";
 
 const type = "HeroElement";
 
 const extraAttributes = {
   style: "",
-  title: "",
-  subtitle: "",
+  title: "عنوان",
+  subtitle: "زیر عنوان",
   titleFont: "",
   subTitleFont: "",
+  titleColor: "#ffffff",
+  subtitleColor: "#ffffff",
   heroType: "",
   heroValue: "",
   primaryImage: "",
@@ -78,6 +82,8 @@ function PropertiesComponent({ elementInstance }) {
       subtitle: element.subtitle || "",
       titleFont: element.extraAttributes.titleFont || "",
       subTitleFont: element.extraAttributes.subTitleFont || "",
+      titleColor: element.extraAttributes.titleColor || "",
+      subtitleColor: element.extraAttributes.subtitleColor || "",
     },
   });
 
@@ -86,7 +92,14 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { title, subtitle, titleFont, subTitleFont } = values;
+    const {
+      title,
+      subtitle,
+      titleFont,
+      subTitleFont,
+      titleColor,
+      subtitleColor,
+    } = values;
 
     dispatch({
       type: "page/setHero",
@@ -98,6 +111,8 @@ function PropertiesComponent({ elementInstance }) {
           subtitle,
           titleFont,
           subTitleFont,
+          titleColor,
+          subtitleColor,
         },
       },
     });
@@ -124,26 +139,6 @@ function PropertiesComponent({ elementInstance }) {
           <FormField
             control={form.control}
             name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>عنوان</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.currentTarget.blur();
-                      }
-                    }}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="subtitle"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>عنوان</FormLabel>
@@ -203,6 +198,43 @@ function PropertiesComponent({ elementInstance }) {
 
           <FormField
             control={form.control}
+            name="titleColor"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>رنگ</FormLabel>
+                <FormControl>
+                  <Input {...field} type="color" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Devider className="mt-4 opacity-40" />
+
+          <FormField
+            control={form.control}
+            name="subtitle"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>عنوان</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.currentTarget.blur();
+                      }
+                    }}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
             name="subTitleFont"
             render={({ field }) => (
               <FormItem>
@@ -234,6 +266,20 @@ function PropertiesComponent({ elementInstance }) {
                       </Suspense>
                     </SelectContent>
                   </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="subtitleColor"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>رنگ</FormLabel>
+                <FormControl>
+                  <Input {...field} type="color" />
                 </FormControl>
                 <FormMessage />
               </FormItem>

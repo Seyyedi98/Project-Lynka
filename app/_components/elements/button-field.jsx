@@ -33,26 +33,25 @@ const extraAttributes = {
   theme: "",
   font: "",
   href: " ",
+  color: "#ffffff",
 };
 
 const WorkspaceComponent = memo(function WorkspaceComponent({
   elementInstance,
 }) {
   const element = elementInstance;
-  const { title, theme, font } = element.extraAttributes;
-  const RenderedElement = ThemeController[element.type][theme];
+  const data = element.extraAttributes;
+  const RenderedElement = ThemeController[element.type][data.theme];
 
-  return <RenderedElement title={title} font={font} />;
+  return <RenderedElement {...data} />;
 });
 
 function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
-  const { title, href, theme, font } = element.extraAttributes;
+  const data = element.extraAttributes;
 
-  const RenderedElement = ThemeController[element.type][theme];
-  return (
-    <RenderedElement title={title} href={href} isLive={true} font={font} />
-  );
+  const RenderedElement = ThemeController[element.type][data.theme];
+  return <RenderedElement {...data} />;
 }
 
 function PropertiesComponent({ elementInstance }) {
@@ -66,6 +65,7 @@ function PropertiesComponent({ elementInstance }) {
       title: element.extraAttributes.title || "",
       href: element.extraAttributes.href || "",
       font: element.extraAttributes.font || "",
+      color: element.extraAttributes.color || "",
     },
   });
 
@@ -74,7 +74,7 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { title, href, font } = values;
+    const { title, href, font, color } = values;
 
     const payload = {
       id: element.id,
@@ -85,6 +85,7 @@ function PropertiesComponent({ elementInstance }) {
           title,
           href,
           font,
+          color,
         },
       },
     };
@@ -194,6 +195,20 @@ function PropertiesComponent({ elementInstance }) {
                       ))}
                     </SelectContent>
                   </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="color"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>رنگ</FormLabel>
+                <FormControl>
+                  <Input {...field} type="color" />
                 </FormControl>
                 <FormMessage />
               </FormItem>

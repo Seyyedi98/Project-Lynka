@@ -1,8 +1,10 @@
 import React from "react";
 
-const Devider = () => {
+const Devider = ({ className }) => {
   return (
-    <div className="border-white/50 mx-auto w-full border-b-0 border-t-[1px]" />
+    <div
+      className={`mx-auto w-full border-b-0 border-t-[1px] border-white/50 ${className}`}
+    />
   );
 };
 

@@ -49,9 +49,18 @@ export async function generateMetadata({ params }) {
       openGraph: {
         title: metadata.metaTitle || "My Page",
         description: metadata.metaDescription || "Welcome!",
-        siteName: "My Site",
-        images: [{ url: metaImage }], // Open Graph Image
+        siteName: metadata.metaTitle,
+        url: "https://link.liara.run",
+        images: [
+          { url: metaImage, width: 720, height: 480, alt: "Share image" },
+        ], // Open Graph Image
         type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: metadata.metaTitle,
+        description: metadata.metaDescription,
+        images: [metaImage],
       },
       robots: {
         index: true,
@@ -134,7 +143,6 @@ const LivePage = async ({ params }) => {
           <LoadingSpinner elementInstances={page.loadingIcon} />
         </div>
       )}
-
       <div
         style={style}
         className="relative flex h-full w-full flex-col items-center justify-start gap-4"

@@ -36,7 +36,7 @@ const MetaImageUploader = ({ uri, metaImage }) => {
   const handleUploadButton = async () => {
     const options = {
       maxSizeMB: 1, // Compress to be <= 2MB
-      maxWidthOrHeight: 320, // Optional: Resize image to 1920px width/height if it's larger
+      maxWidthOrHeight: 720, // Optional: Resize image to 1920px width/height if it's larger
       initialQuality: 1, // Start with 100% quality and adjust as needed
       useWebWorker: true, // Enable web workers for faster processing
     };
