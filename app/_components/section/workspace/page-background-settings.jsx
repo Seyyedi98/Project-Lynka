@@ -2,7 +2,7 @@ import { useState } from "react";
 import SquareButton from "../../common/button/square-button";
 import { useDispatch, useSelector } from "react-redux";
 import { cn } from "@/lib/utils";
-import { colors, gradient } from "@/data/colors";
+import { colors, gradient, pattern } from "@/data/colors";
 import { Input } from "@/components/ui/input";
 
 const PageBackgroundSettings = () => {
@@ -64,6 +64,21 @@ const PageBackgroundSettings = () => {
             return (
               <div
                 key={color}
+                style={{ background: color }}
+                onClick={() => setPageBackground(color)}
+                className={cn(
+                  `h-20 w-20 cursor-pointer rounded-full border border-primary duration-200 [scrollbar-width:none] hover:shadow-xl`,
+                  theme.backgroundValue === color && "border-4",
+                )}
+              ></div>
+            );
+          })}
+
+        {category === "pattern" &&
+          pattern.map((color, index) => {
+            return (
+              <div
+                key={index}
                 style={{ background: color }}
                 onClick={() => setPageBackground(color)}
                 className={cn(

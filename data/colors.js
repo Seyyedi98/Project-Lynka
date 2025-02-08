@@ -102,6 +102,8 @@ export const gradient = [
   "linear-gradient(to right, #00c6ff, #0072ff)",
   "linear-gradient(45deg, #ff6a00, #ee0979)",
   "linear-gradient(to right, #11998e, #38ef7d)",
+  "linear-gradient(0deg, rgb(76, 175, 80), rgb(139, 195, 74))",
+  "linear-gradient(45deg, rgb(156, 39, 176), rgb(103, 58, 183))",
   "linear-gradient(135deg, #fc4a1a, #f7b733)",
   "linear-gradient(to right, #373b44, #4286f4)",
   "conic-gradient(from 0deg, #ff7eb3, #ff758c, #ff7eb3)",
@@ -127,4 +129,54 @@ export const gradient = [
   "conic-gradient(from 0deg, #16a085, #f4d03f)",
   "conic-gradient(from 90deg, #ff6a00, #ee0979)",
   "conic-gradient(from 180deg, #1e3c72, #2a5298)",
+];
+
+export const pattern = [
+  // Diagonal Stripes (10 variations)
+  "repeating-linear-gradient(45deg, #FF6B6B, #FF6B6B 10px, #FFE66D 10px, #FFE66D 20px)",
+  "repeating-linear-gradient(45deg, #4ECDC4, #4ECDC4 10px, #556270 10px, #556270 20px)",
+  "repeating-linear-gradient(45deg, #FF9A8B, #FF9A8B 10px, #FF6F61 10px, #FF6F61 20px)",
+  "repeating-linear-gradient(45deg, #6B5B95, #6B5B95 10px, #88B04B 10px, #88B04B 20px)",
+  "repeating-linear-gradient(45deg, #92A8D1, #92A8D1 10px, #F7CAC9 10px, #F7CAC9 20px)",
+  "repeating-linear-gradient(45deg, #955251, #955251 10px, #B565A7 10px, #B565A7 20px)",
+  "repeating-linear-gradient(45deg, #009B77, #009B77 10px, #DD4124 10px, #DD4124 20px)",
+  "repeating-linear-gradient(45deg, #D65076, #D65076 10px, #45B8AC 10px, #45B8AC 20px)",
+  "repeating-linear-gradient(45deg, #EFC050, #EFC050 10px, #5B5EA6 10px, #5B5EA6 20px)",
+  "repeating-linear-gradient(45deg, #9B2335, #9B2335 10px, #DFCFBE 10px, #DFCFBE 20px)",
+
+  // Diagonal Lines (Chevron Pattern) (10 variations)
+  "repeating-linear-gradient(135deg, #FF6B6B 25%, #FFE66D 25%, #FFE66D 50%, #FF6B6B 50%, #FF6B6B 75%, #FFE66D 75%, #FFE66D 100%)",
+  "repeating-linear-gradient(135deg, #4ECDC4 25%, #556270 25%, #556270 50%, #4ECDC4 50%, #4ECDC4 75%, #556270 75%, #556270 100%)",
+  "repeating-linear-gradient(135deg, #FF9A8B 25%, #FF6F61 25%, #FF6F61 50%, #FF9A8B 50%, #FF9A8B 75%, #FF6F61 75%, #FF6F61 100%)",
+  "repeating-linear-gradient(135deg, #6B5B95 25%, #88B04B 25%, #88B04B 50%, #6B5B95 50%, #6B5B95 75%, #88B04B 75%, #88B04B 100%)",
+  "repeating-linear-gradient(135deg, #92A8D1 25%, #F7CAC9 25%, #F7CAC9 50%, #92A8D1 50%, #92A8D1 75%, #F7CAC9 75%, #F7CAC9 100%)",
+  "repeating-linear-gradient(135deg, #955251 25%, #B565A7 25%, #B565A7 50%, #955251 50%, #955251 75%, #B565A7 75%, #B565A7 100%)",
+  "repeating-linear-gradient(135deg, #009B77 25%, #DD4124 25%, #DD4124 50%, #009B77 50%, #009B77 75%, #DD4124 75%, #DD4124 100%)",
+  "repeating-linear-gradient(135deg, #D65076 25%, #45B8AC 25%, #45B8AC 50%, #D65076 50%, #D65076 75%, #45B8AC 75%, #45B8AC 100%)",
+  "repeating-linear-gradient(135deg, #EFC050 25%, #5B5EA6 25%, #5B5EA6 50%, #EFC050 50%, #EFC050 75%, #5B5EA6 75%, #5B5EA6 100%)",
+  "repeating-linear-gradient(135deg, #9B2335 25%, #DFCFBE 25%, #DFCFBE 50%, #9B2335 50%, #9B2335 75%, #DFCFBE 75%, #DFCFBE 100%)",
+
+  // Waves (Sine Wave Pattern) (10 variations)
+  "linear-gradient(to bottom, #FF6B6B 50%, #FFE66D 50%), repeating-linear-gradient(to bottom, transparent 0px, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px)",
+  "linear-gradient(to bottom, #4ECDC4 50%, #556270 50%), repeating-linear-gradient(to bottom, transparent 0px, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px)",
+  "linear-gradient(to bottom, #FF9A8B 50%, #FF6F61 50%), repeating-linear-gradient(to bottom, transparent 0px, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px)",
+  "linear-gradient(to bottom, #6B5B95 50%, #88B04B 50%), repeating-linear-gradient(to bottom, transparent 0px, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px)",
+  "linear-gradient(to bottom, #92A8D1 50%, #F7CAC9 50%), repeating-linear-gradient(to bottom, transparent 0px, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px)",
+  "linear-gradient(to bottom, #955251 50%, #B565A7 50%), repeating-linear-gradient(to bottom, transparent 0px, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px)",
+  "linear-gradient(to bottom, #009B77 50%, #DD4124 50%), repeating-linear-gradient(to bottom, transparent 0px, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px)",
+  "linear-gradient(to bottom, #D65076 50%, #45B8AC 50%), repeating-linear-gradient(to bottom, transparent 0px, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px)",
+  "linear-gradient(to bottom, #EFC050 50%, #5B5EA6 50%), repeating-linear-gradient(to bottom, transparent 0px, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px)",
+  "linear-gradient(to bottom, #9B2335 50%, #DFCFBE 50%), repeating-linear-gradient(to bottom, transparent 0px, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px)",
+
+  // Linear Gradient Stripes (10 variations)
+  "linear-gradient(45deg, #FF6B6B 25%, #FFE66D 25%, #FFE66D 50%, #FF6B6B 50%, #FF6B6B 75%, #FFE66D 75%, #FFE66D 100%)",
+  "linear-gradient(45deg, #4ECDC4 25%, #556270 25%, #556270 50%, #4ECDC4 50%, #4ECDC4 75%, #556270 75%, #556270 100%)",
+  "linear-gradient(45deg, #FF9A8B 25%, #FF6F61 25%, #FF6F61 50%, #FF9A8B 50%, #FF9A8B 75%, #FF6F61 75%, #FF6F61 100%)",
+  "linear-gradient(45deg, #6B5B95 25%, #88B04B 25%, #88B04B 50%, #6B5B95 50%, #6B5B95 75%, #88B04B 75%, #88B04B 100%)",
+  "linear-gradient(45deg, #92A8D1 25%, #F7CAC9 25%, #F7CAC9 50%, #92A8D1 50%, #92A8D1 75%, #F7CAC9 75%, #F7CAC9 100%)",
+  "linear-gradient(45deg, #955251 25%, #B565A7 25%, #B565A7 50%, #955251 50%, #955251 75%, #B565A7 75%, #B565A7 100%)",
+  "linear-gradient(45deg, #009B77 25%, #DD4124 25%, #DD4124 50%, #009B77 50%, #009B77 75%, #DD4124 75%, #DD4124 100%)",
+  "linear-gradient(45deg, #D65076 25%, #45B8AC 25%, #45B8AC 50%, #D65076 50%, #D65076 75%, #45B8AC 75%, #45B8AC 100%)",
+  "linear-gradient(45deg, #EFC050 25%, #5B5EA6 25%, #5B5EA6 50%, #EFC050 50%, #EFC050 75%, #5B5EA6 75%, #5B5EA6 100%)",
+  "linear-gradient(45deg, #9B2335 25%, #DFCFBE 25%, #DFCFBE 50%, #9B2335 50%, #9B2335 75%, #DFCFBE 75%, #DFCFBE 100%)",
 ];
