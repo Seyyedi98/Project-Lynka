@@ -102,6 +102,12 @@ const CreateNewPage = () => {
                           <Input
                             {...field}
                             disabled={isPending}
+                            onKeyDown={(e) => {
+                              // Prevent space key
+                              if (e.key === " ") {
+                                e.preventDefault();
+                              }
+                            }}
                             className="-ml-2 mb-1.5 mt-[6px] rounded-l-none rounded-r-sm border-none text-xl shadow-none ring-0 focus:outline-none focus:ring-transparent sm:text-xl md:text-2xl"
                           />
                         </FormControl>

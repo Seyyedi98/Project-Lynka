@@ -94,6 +94,7 @@ export const gradient = [
   "radial-gradient(circle, #ff758c, #ff7eb3)",
   "radial-gradient(circle, #ff9966, #ff5e62)",
   "radial-gradient(circle at 30% 30%, #4158D0, #C850C0, #FFCC70)",
+  "radial-gradient(circle 500px at 50% 200px, #3e3e3e, #1b1b1b)",
   "radial-gradient(circle at 70% 20%, #A18CD1, #FBC2EB)",
   "radial-gradient(circle at 50% 50%, #36D1DC, #5B86E5)",
   "radial-gradient(circle at 40% 60%, #FF512F, #DD2476)",

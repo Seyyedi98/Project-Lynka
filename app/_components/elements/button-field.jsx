@@ -41,7 +41,7 @@ const WorkspaceComponent = memo(function WorkspaceComponent({
 }) {
   const element = elementInstance;
   const data = element.extraAttributes;
-  const RenderedElement = ThemeController[element.type][data.theme];
+  const RenderedElement = ThemeController[element.type][data.theme][0];
 
   return <RenderedElement {...data} />;
 });
@@ -50,8 +50,8 @@ function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
   const data = element.extraAttributes;
 
-  const RenderedElement = ThemeController[element.type][data.theme];
-  return <RenderedElement {...data} />;
+  const RenderedElement = ThemeController[element.type][data.theme][0];
+  return <RenderedElement isLive={true} {...data} />;
 }
 
 function PropertiesComponent({ elementInstance }) {
@@ -149,6 +149,11 @@ function PropertiesComponent({ elementInstance }) {
                           dir="ltr"
                           {...field}
                           onKeyDown={(e) => {
+                            // Prevent space key
+                            if (e.key === " ") {
+                              e.preventDefault();
+                            }
+                            // Handle Enter key
                             if (e.key === "Enter") {
                               e.currentTarget.blur();
                             }

@@ -1,25 +1,33 @@
 import { getPageMetadata } from "@/actions/page";
 import LoadingSpinner from "@/app/_components/common/shared/loadingSpinner";
-import LivePageElements from "@/app/_components/live-page/live-page-elements-rendere";
-import LivePageHero from "@/app/_components/live-page/live-page-hero-rendere";
 import getPageContent from "@/lib/page/get-page-content";
 import getPageHero from "@/lib/page/get-page-header";
 import { cn } from "@/lib/utils";
 import fetchWithRetry from "@/utils/fetchWithRetry";
+import { Loader2 } from "lucide-react";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
+
+const LivePageElements = dynamic(
+  () => import("@/app/_components/live-page/live-page-elements-rendere"),
+);
+const LivePageHero = dynamic(
+  () => import("@/app/_components/live-page/live-page-hero-rendere"),
+);
 
 // ✅ Dynamic Metadata Fetching with Error Handling
 export async function generateMetadata({ params }) {
   const { uri } = await params;
 
   // Handle excluded URIs
-  if (
-    uri === "dashboard" ||
-    uri.startsWith("workspace") ||
-    uri === "favicon.ico"
-  ) {
-    return null;
-  }
+  // if (
+  //   uri === "dashboard" ||
+  //   uri.startsWith("workspace") ||
+  //   uri === "favicon.ico"
+  // ) {
+  //   return null;
+  // }
 
   try {
     // Fetch the page metadata
@@ -84,15 +92,14 @@ export async function generateMetadata({ params }) {
 // ✅ Live Page Component
 const LivePage = async ({ params }) => {
   const { uri } = await params;
-
   // Handle excluded URIs
-  if (
-    uri === "dashboard" ||
-    uri.startsWith("workspace") ||
-    uri === "favicon.ico"
-  ) {
-    return null;
-  }
+  // if (
+  //   uri === "dashboard" ||
+  //   uri.startsWith("workspace") ||
+  //   uri === "favicon.ico"
+  // ) {
+  //   return null;
+  // }
 
   // Try fetching page data with retry mechanism
   const page = await fetchWithRetry(uri);
@@ -148,12 +155,28 @@ const LivePage = async ({ params }) => {
         className="relative flex h-full w-full flex-col items-center justify-start gap-4"
       >
         {/* Hero Section */}
-        <LivePageHero hero={hero} />
+        <Suspense
+          fallback={
+            <div>
+              <Loader2 />
+            </div>
+          }
+        >
+          <LivePageHero hero={hero} />
+        </Suspense>
 
         {/* Content Section */}
-        <section className="flex h-full w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
-          <LivePageElements content={content} />
-        </section>
+        <Suspense
+          fallback={
+            <div>
+              <Loader2 />
+            </div>
+          }
+        >
+          <section className="flex h-full w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
+            <LivePageElements content={content} />
+          </section>
+        </Suspense>
       </div>
     </>
   );

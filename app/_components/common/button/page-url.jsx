@@ -7,7 +7,10 @@ const PageUrl = () => {
   return (
     <div className="cursor-pointer">
       <div className="relative flex h-10 w-full items-center justify-center rounded-full bg-black bg-opacity-20 px-4">
-        <a href={`localhost:3000/${uri}`} target="_blank">
+        <a
+          href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${uri}`}
+          target="_blank"
+        >
           <span className="text-sm text-white">link.ir/{uri}</span>
         </a>
       </div>

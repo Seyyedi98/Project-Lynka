@@ -6,12 +6,12 @@ import TitleFieldSunny from "../theme/title/title-field-sunny";
 
 export const ThemeController = {
   TitleField: {
-    sunny: TitleFieldSunny,
-    nature: TitleFieldNature,
+    sunny: [TitleFieldSunny, { type: "color" }],
+    nature: [TitleFieldNature, { type: "color" }],
   },
   ButtonField: {
-    sunny: ButtonFieldSunny,
-    orange: ButtonFieldOrange,
-    nature: ButtonFieldNature,
+    sunny: [ButtonFieldSunny, { type: "color" }],
+    orange: [ButtonFieldOrange, { type: "color" }],
+    nature: [ButtonFieldNature, { type: "color" }],
   },
 };

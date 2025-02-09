@@ -1,8 +1,8 @@
-import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { ThemeController } from "../controller/theme-controller";
 import SquareButton from "../common/button/square-button";
+import { ThemeController } from "../controller/theme-controller";
+import useFilterTheme from "@/hooks/useFilterTheme";
 
 const ElementThemeSelector = ({ elementInstance }) => {
   const dispatch = useDispatch();
@@ -11,6 +11,8 @@ const ElementThemeSelector = ({ elementInstance }) => {
   const elementType = elementInstance?.type;
 
   const Themes = ThemeController[elementType];
+
+  const filteredThemesList = useFilterTheme(Themes, "color");
 
   if (!Themes) return;
   const themesList = Object.keys(Themes);
@@ -50,7 +52,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
 
       <div className="grid grid-cols-1 justify-start sm:grid-cols-2">
         {themesList.map((theme, index) => {
-          const RenderedElement = ThemeController[element.type][theme];
+          const RenderedElement = ThemeController[element.type][theme][0];
 
           return (
             <div

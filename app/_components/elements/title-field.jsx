@@ -27,7 +27,7 @@ const WorkspaceComponent = memo(function WorkspaceComponent({
 }) {
   const element = elementInstance;
   const { title, theme } = element.extraAttributes;
-  const RenderedElement = ThemeController[element.type][theme];
+  const RenderedElement = ThemeController[element.type][theme][0];
 
   return <RenderedElement title={title} />;
 });
@@ -36,7 +36,7 @@ function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
   const { title, theme } = element.extraAttributes;
 
-  const RenderedElement = ThemeController[element.type][theme];
+  const RenderedElement = ThemeController[element.type][theme][0];
 
   return <RenderedElement title={title} />;
 }
