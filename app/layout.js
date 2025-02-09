@@ -3,17 +3,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { StoreProvider } from "@/store/StoreProvider";
 import { SessionProvider } from "next-auth/react";
 import { geistMono, geistSans } from "./fonts/fonts";
-// import {
-//   geistMono,
-//   geistSans,
-//   parastoo,
-//   sahel,
-//   samim,
-//   shabnam,
-//   tanha,
-//   vazir,
-//   yekan,
-// } from "./fonts/fonts";
 import "./globals.css";
 import { ThemeProvider } from "@/context/theme-provider";
 

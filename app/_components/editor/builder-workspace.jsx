@@ -21,6 +21,7 @@ import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
 
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
+const MemoizedEditorSidebar = memo(EditorSidebar);
 
 const BuilderWorkspace = () => {
   const dispatch = useDispatch();
@@ -207,8 +208,8 @@ const BuilderWorkspace = () => {
           isAnyMenuOpen && "scale-95 md:scale-100",
         )}
       >
-        <div className="flex h-full w-full">
-          <EditorSidebar />
+        <div className="flex h-full w-full transition-all duration-500">
+          <MemoizedEditorSidebar />
 
           <div
             className="relative h-full w-full overflow-hidden md:grid md:place-content-center"

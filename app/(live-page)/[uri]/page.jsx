@@ -139,40 +139,30 @@ const LivePage = async ({ params }) => {
 
   return (
     <>
-      {/* Loading Spinner */}
-      {page.loadingIcon && (
-        <div
-          className={cn(
-            `absolute z-[50] grid h-svh w-dvw place-items-center bg-background opacity-100 transition-opacity duration-300 animate-out`,
-            page && "pointer-events-none opacity-0",
-          )}
-        >
-          <LoadingSpinner elementInstances={page.loadingIcon} />
-        </div>
-      )}
       <div
         style={style}
         className="relative flex h-full w-full flex-col items-center justify-start gap-4"
       >
-        {/* Hero Section */}
         <Suspense
           fallback={
-            <div>
-              <Loader2 />
-            </div>
+            page.loadingIcon ? (
+              <div
+                className={cn(
+                  `absolute z-[50] grid h-svh w-dvw place-items-center bg-background opacity-100 transition-opacity duration-300 animate-out`,
+                  page && "pointer-events-none opacity-0",
+                )}
+              >
+                <LoadingSpinner elementInstances={page.loadingIcon} />
+              </div>
+            ) : (
+              ""
+            )
           }
         >
+          {/* Hero Section */}
           <LivePageHero hero={hero} />
-        </Suspense>
 
-        {/* Content Section */}
-        <Suspense
-          fallback={
-            <div>
-              <Loader2 />
-            </div>
-          }
-        >
+          {/* Content Section */}
           <section className="flex h-full w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
             <LivePageElements content={content} />
           </section>

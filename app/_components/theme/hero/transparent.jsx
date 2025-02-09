@@ -1,4 +1,6 @@
+import { loadFont } from "@/utils/loadFont";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const TransparentHero = ({ ...data }) => {
   const {
@@ -13,6 +15,23 @@ const TransparentHero = ({ ...data }) => {
     heroValue,
   } = data;
   const primaryBgImage = primaryImage.url;
+  const [loadedTitleFont, setLoadedTitleFont] = useState(null);
+  const [loadedsubtitleFont, setLoadedsubtitleFont] = useState(null);
+
+  useEffect(() => {
+    const fetchFont = async () => {
+      try {
+        const titleFontVariable = await loadFont(titleFont);
+        const subtitleFontVariable = await loadFont(subTitleFont);
+        setLoadedTitleFont(titleFontVariable);
+        setLoadedsubtitleFont(subtitleFontVariable);
+      } catch (error) {
+        console.error("Error loading font:", error);
+      }
+    };
+
+    fetchFont();
+  }, [titleFont, subTitleFont]);
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
@@ -28,13 +47,21 @@ const TransparentHero = ({ ...data }) => {
       )}
       <div className="flex h-full flex-col items-center gap-4">
         <h2
-          style={{ fontFamily: titleFont, color: titleColor }}
+          style={{
+            fontFamily: loadedTitleFont ? `var(${loadedTitleFont})` : "inherit",
+            color: titleColor,
+          }}
           className="text-3xl text-white"
         >
           {title}
         </h2>
         <h4
-          style={{ fontFamily: subTitleFont, color: subtitleColor }}
+          style={{
+            fontFamily: loadedsubtitleFont
+              ? `var(${loadedsubtitleFont})`
+              : "inherit",
+            color: subtitleColor,
+          }}
           className="pb-4 text-center text-lg font-thin text-white"
         >
           {subtitle}

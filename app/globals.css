@@ -39,6 +39,15 @@ body {
       --input: 0 0% 100%;
       --ring: 248 20% 82%;
       --radius: 0.5rem;
+      --font-geist-sans: "Geist Sans", sans-serif;
+      --font-geist-mono: "Geist Mono", monospace;
+      --font-yekan: "Yekan", sans-serif;
+      --font-parastoo: "Parastoo", sans-serif;
+      --font-sahel: "Sahel", sans-serif;
+      --font-samim: "Samim", sans-serif;
+      --font-shabnam: "Shabnam", sans-serif;
+      --font-tanha: "Tanha", sans-serif;
+      --font-vazir: "Vazir", sans-serif;
     }
     .dark {
       --background: 0 0% 11%;
@@ -66,6 +75,15 @@ body {
       --input: 0 0% 19%;
       --ring: 248 0% 10%;
       --radius: 0.5rem;
+      --font-geist-sans: "Geist Sans", sans-serif;
+      --font-geist-mono: "Geist Mono", monospace;
+      --font-yekan: "Yekan", sans-serif;
+      --font-parastoo: "Parastoo", sans-serif;
+      --font-sahel: "Sahel", sans-serif;
+      --font-samim: "Samim", sans-serif;
+      --font-shabnam: "Shabnam", sans-serif;
+      --font-tanha: "Tanha", sans-serif;
+      --font-vazir: "Vazir", sans-serif;
     }
   }
 }

@@ -23,7 +23,7 @@ export const geistMono = localFont({
 
 export const yekan = localFont({
   src: "./yekan/Yekan.woff",
-  variable: "--font-Yekan",
+  variable: "--font-yekan",
   weight: "100 200 400 500 900",
 });
 
@@ -40,6 +40,7 @@ export const parastoo = localFont({
       style: "bold",
     },
   ],
+  variable: "--font-parastoo",
 });
 
 export const sahel = localFont({
@@ -55,6 +56,7 @@ export const sahel = localFont({
       style: "bold",
     },
   ],
+  variable: "--font-sahel",
 });
 
 export const samim = localFont({
@@ -70,6 +72,7 @@ export const samim = localFont({
       style: "bold",
     },
   ],
+  variable: "--font-samim",
 });
 
 export const shabnam = localFont({
@@ -90,11 +93,12 @@ export const shabnam = localFont({
       style: "bold",
     },
   ],
+  variable: "--font-shabnam",
 });
 
 export const tanha = localFont({
   src: "./tanha/Tanha.woff2",
-  variable: "--font-Yekan",
+  variable: "--font-tanha",
   weight: "100 200 400 500 900",
 });
 
@@ -121,4 +125,5 @@ export const vazir = localFont({
       style: "bold",
     },
   ],
+  variable: "--font-vazir",
 });

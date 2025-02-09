@@ -37,6 +37,7 @@ const pageSlice = createSlice({
     },
     updateElement: (state, action) => {
       const { id, updatedElement } = action.payload;
+
       const index = state.elements.findIndex((el) => el.id === id);
       if (index !== -1) {
         state.elements[index] = { ...state.elements[index], ...updatedElement };
