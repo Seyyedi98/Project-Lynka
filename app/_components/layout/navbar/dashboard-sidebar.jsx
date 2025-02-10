@@ -28,13 +28,14 @@ const DashboardSidebar = () => {
       <nav
         ref={ref}
         className={cn(
-          `transition-translate from-primary-gradient_from to-primary-gradient_to group right-0 z-10 h-12 w-full overflow-hidden bg-gradient-to-b px-2 pb-12 pt-6 duration-200 sm:fixed sm:h-full sm:w-20 sm:pb-4 xl:w-56`,
+          `transition-translate group right-0 z-10 h-12 w-full overflow-hidden bg-gradient-to-b from-background to-secondaryBg px-2 pb-12 pt-6 duration-200 sm:fixed sm:h-full sm:w-20 sm:pb-4 xl:w-56`,
+          // `transition-translate group right-0 z-10 h-12 w-full overflow-hidden bg-background px-2 pb-12 pt-6 duration-200 sm:fixed sm:h-full sm:w-20 sm:pb-4 xl:w-56`,
           isSidebarOpen ? "h-svh pb-4 sm:w-56" : "top-0",
           !isSidebarOpen && "sm:hover:w-56",
         )}
       >
         <div className="relative flex h-full flex-col justify-start sm:justify-between sm:gap-4">
-          <div className="flex justify-between px-4 text-white sm:mr-4 sm:px-0">
+          <div className="flex justify-between px-4 text-primary sm:mr-4 sm:px-0">
             <HumbergerMenuBtn
               isSidebarOpen={isSidebarOpen}
               setIsSidebarOpen={setIsSidebarOpen}

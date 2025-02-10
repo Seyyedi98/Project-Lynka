@@ -31,7 +31,7 @@ const Dashboard = async () => {
         </DashboardHeading>
         <Separator />
 
-        <div className="no-scollbar flex h-[84.5svh] flex-col gap-4 bg-neutral-50 px-4 sm:mr-20 sm:h-full sm:px-12 xl:mr-56">
+        <div className="no-scollbar flex h-[84.5svh] flex-col gap-4 bg-background px-4 sm:mr-20 sm:h-full sm:px-12 xl:mr-56">
           <section className="h-full w-full overflow-scroll pb-8 pt-4 [scrollbar-width:none] sm:overflow-visible">
             <Accordion type="single" defaultValue="pages" collapsible>
               <AccordionItem value="pages">

@@ -163,12 +163,12 @@ const DrawerComponent = function ({
       )}
 
       <DrawerContent className="mb-0 bg-background text-right md:m-2 md:mx-auto md:w-full">
-        <div className="mx-auto max-h-[95svh] w-full max-w-sm">
+        <div className="mx-auto max-h-[96svh] w-full max-w-sm overflow-y-auto">
           <DrawerHeader>
             <DrawerTitle className="mt-4 text-center">{title}</DrawerTitle>
             <DrawerDescription></DrawerDescription>
           </DrawerHeader>
-          <div className="p-2 pb-0">
+          <div className="p-2 px-4 pb-0 md:px-0">
             <div className="h-full w-full">{children}</div>
           </div>
           <DrawerFooter className="">

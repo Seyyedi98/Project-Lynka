@@ -89,7 +89,7 @@ const CreateNewPage = () => {
                         !error && "bg-green-500",
                       )}
                     />
-                    <span className="py-3 pl-2 text-xl font-medium md:text-2xl">
+                    <span className="py-3 pl-2 text-xl font-medium text-foreground md:text-2xl">
                       link.bio/
                     </span>
                   </div>
@@ -108,7 +108,7 @@ const CreateNewPage = () => {
                                 e.preventDefault();
                               }
                             }}
-                            className="-ml-2 mb-1.5 mt-[6px] rounded-l-none rounded-r-sm border-none text-xl shadow-none ring-0 focus:outline-none focus:ring-transparent sm:text-xl md:text-2xl"
+                            className="-ml-2 mb-1.5 mt-[6px] rounded-l-none rounded-r-sm border-none bg-transparent text-xl text-foreground shadow-none ring-0 focus:outline-none focus:ring-transparent sm:text-xl md:text-2xl"
                           />
                         </FormControl>
                       </FormItem>
@@ -118,7 +118,7 @@ const CreateNewPage = () => {
 
                 <Button
                   type="submit"
-                  variant="primary"
+                  variant="default"
                   disabled={!success || isPending}
                   className="mr-2 grid h-8 w-8 cursor-pointer place-items-center rounded-full bg-black duration-200 hover:bg-slate-800 lg:mr-6 lg:h-12 lg:w-12"
                 >

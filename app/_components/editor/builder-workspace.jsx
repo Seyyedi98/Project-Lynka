@@ -236,7 +236,7 @@ const BuilderWorkspace = () => {
                     <Eye className="text-white" />
                   </div>
                 </DialogTrigger>
-                <DialogContent className="flex h-screen max-h-screen w-screen max-w-full flex-grow flex-col gap-0 p-0">
+                <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
                   <DialogTitle className="hidden"></DialogTitle>
                   <DialogDescription className="hidden"></DialogDescription>
                   <PreviewPageContainer />

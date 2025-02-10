@@ -34,11 +34,6 @@ export const parastoo = localFont({
       weight: "500",
       style: "normal",
     },
-    {
-      path: "./parastoo/Parastoo-Bold.woff2",
-      weight: "700",
-      style: "bold",
-    },
   ],
   variable: "--font-parastoo",
 });
@@ -49,11 +44,6 @@ export const sahel = localFont({
       path: "./sahel/Sahel.woff2",
       weight: "500",
       style: "normal",
-    },
-    {
-      path: "./sahel/Sahel-Bold.woff2",
-      weight: "700",
-      style: "bold",
     },
   ],
   variable: "--font-sahel",
@@ -66,11 +56,6 @@ export const samim = localFont({
       weight: "500",
       style: "normal",
     },
-    {
-      path: "./samim/Samim-Bold.woff2",
-      weight: "700",
-      style: "bold",
-    },
   ],
   variable: "--font-samim",
 });
@@ -78,19 +63,9 @@ export const samim = localFont({
 export const shabnam = localFont({
   src: [
     {
-      path: "./shabnam/Shabnam-Light.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
       path: "./shabnam/Shabnam.woff2",
       weight: "500",
       style: "normal",
-    },
-    {
-      path: "./shabnam/Shabnam-Bold.woff2",
-      weight: "700",
-      style: "bold",
     },
   ],
   variable: "--font-shabnam",
@@ -105,24 +80,9 @@ export const tanha = localFont({
 export const vazir = localFont({
   src: [
     {
-      path: "./vazir/Vazir-Thin.woff2",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "./vazir/Vazir-Light.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
       path: "./vazir/Vazir-Medium.woff2",
       weight: "500",
       style: "normal",
-    },
-    {
-      path: "./vazir/Vazir-Bold.woff2",
-      weight: "700",
-      style: "bold",
     },
   ],
   variable: "--font-vazir",
