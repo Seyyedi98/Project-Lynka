@@ -30,7 +30,7 @@ export const loadFont = async (font) => {
 
         return "--font-vazir";
       default:
-        console.error("Font not found:", font);
+        // console.error("Font not found:", font);
         return null;
     }
   } catch (error) {

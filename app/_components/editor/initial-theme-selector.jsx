@@ -7,41 +7,7 @@ import ExpandableThemeGridCard from "../common/card/expandable-grid-card-theme";
 import GridLayout from "../layout/grid-layout";
 import { PageHeroElement } from "../elements/hero/page-hero-element";
 import { idGenerator } from "@/lib/id-generator";
-
-const themes = [
-  {
-    name: "sunny",
-    hero: "basic",
-    heroType: "color",
-    heroValue: "#77cf7e",
-    backgroundType: "color",
-    backgroundValue: "#fffd7e",
-  },
-  {
-    name: "aurora",
-    hero: "basic",
-    heroType: "color",
-    heroValue: "#77cf7e",
-    backgroundType: "color",
-    backgroundValue: "#fffd7e",
-  },
-  {
-    name: "nature",
-    hero: "normal",
-    heroType: "color",
-    heroValue: "#fffd7e",
-    backgroundType: "color",
-    backgroundValue: "#77cf7e",
-  },
-  {
-    name: "wooden",
-    hero: "normal",
-    heroType: "color",
-    heroValue: "#fffd7e",
-    backgroundType: "color",
-    backgroundValue: "#77cf7e",
-  },
-];
+import { themes } from "@/data/themes";
 
 const InitialThemeSelector = ({ uri }) => {
   const [isPending, startTransition] = useTransition();

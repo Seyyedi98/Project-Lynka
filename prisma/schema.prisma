@@ -116,12 +116,13 @@ model Page {
   content         String   @db.LongText
   visits          Int      @default(0)
   isPremium       Boolean  @default(false)
-  theme           String?
+  theme           String?  @db.LongText
 
   User User? @relation(fields: [owner], references: [id])
 
   @@index([title])
 }
+
 // model Page {
 //   uri             String   @unique
 //   createdAt       DateTime @default(now())

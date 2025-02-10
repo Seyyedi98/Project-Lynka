@@ -33,7 +33,7 @@ const extraAttributes = {
   theme: "",
   font: "",
   href: " ",
-  color: "#ffffff",
+  textColor: "#ffffff",
 };
 
 const WorkspaceComponent = memo(function WorkspaceComponent({
@@ -65,7 +65,7 @@ function PropertiesComponent({ elementInstance }) {
       title: element.extraAttributes.title || "",
       href: element.extraAttributes.href || "",
       font: element.extraAttributes.font || "",
-      color: element.extraAttributes.color || "",
+      textColor: element.extraAttributes.textColor || "",
     },
   });
 
@@ -74,7 +74,7 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { title, href, font, color } = values;
+    const { title, href, font, textColor } = values;
 
     const payload = {
       id: element.id,
@@ -85,7 +85,7 @@ function PropertiesComponent({ elementInstance }) {
           title,
           href,
           font,
-          color,
+          textColor,
         },
       },
     };
@@ -208,7 +208,7 @@ function PropertiesComponent({ elementInstance }) {
 
           <FormField
             control={form.control}
-            name="color"
+            name="textColor"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>رنگ</FormLabel>

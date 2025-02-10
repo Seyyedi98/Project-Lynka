@@ -1,5 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PageBackgroundSettings from "./page-background-settings";
+import PageThemeSelector from "./page-theme-selector";
 
 const PageStyleSettingsContainer = () => {
   return (
@@ -15,7 +16,7 @@ const PageStyleSettingsContainer = () => {
         </TabsContent>
 
         <TabsContent value="theme">
-          <PageBackgroundSettings />
+          <PageThemeSelector />
         </TabsContent>
       </Tabs>
     </div>

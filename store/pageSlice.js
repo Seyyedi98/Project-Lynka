@@ -43,6 +43,7 @@ const pageSlice = createSlice({
         state.elements[index] = { ...state.elements[index], ...updatedElement };
       }
     },
+
     removeElement: (state, action) => {
       const id = action.payload;
       state.elements = state.elements.filter((el) => el.id !== id);
@@ -60,6 +61,7 @@ export const {
   setSelectedElement,
   addElement,
   updateElement,
+  updateElements,
   removeElement,
   setInitialState,
 } = pageSlice.actions;

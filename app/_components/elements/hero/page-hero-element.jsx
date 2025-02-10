@@ -34,7 +34,7 @@ const extraAttributes = {
   title: "عنوان",
   subtitle: "زیر عنوان",
   titleFont: "",
-  subTitleFont: "",
+  subtitleFont: "",
   titleColor: "#ffffff",
   subtitleColor: "#ffffff",
   heroType: "",
@@ -81,7 +81,7 @@ function PropertiesComponent({ elementInstance }) {
       title: element.title || "",
       subtitle: element.subtitle || "",
       titleFont: element.extraAttributes.titleFont || "",
-      subTitleFont: element.extraAttributes.subTitleFont || "",
+      subtitleFont: element.extraAttributes.subtitleFont || "",
       titleColor: element.extraAttributes.titleColor || "",
       subtitleColor: element.extraAttributes.subtitleColor || "",
     },
@@ -96,7 +96,7 @@ function PropertiesComponent({ elementInstance }) {
       title,
       subtitle,
       titleFont,
-      subTitleFont,
+      subtitleFont,
       titleColor,
       subtitleColor,
     } = values;
@@ -110,7 +110,7 @@ function PropertiesComponent({ elementInstance }) {
           title,
           subtitle,
           titleFont,
-          subTitleFont,
+          subtitleFont,
           titleColor,
           subtitleColor,
         },
@@ -235,7 +235,7 @@ function PropertiesComponent({ elementInstance }) {
 
           <FormField
             control={form.control}
-            name="subTitleFont"
+            name="subtitleFont"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>فونت عنوان دوم</FormLabel>

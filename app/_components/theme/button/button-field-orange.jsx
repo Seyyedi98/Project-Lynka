@@ -1,7 +1,7 @@
 import { loadFont } from "@/utils/loadFont";
 import { useEffect, useState } from "react";
 
-const ButtonFieldOrange = ({ title, href, isLive, font, color }) => {
+const ButtonFieldOrange = ({ title, href, isLive, font, textColor }) => {
   const [loadedFont, setLoadedFont] = useState(null);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const ButtonFieldOrange = ({ title, href, isLive, font, color }) => {
           <p
             style={{
               fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-              color: color,
+              color: textColor,
             }}
           >
             {title}
@@ -42,7 +42,7 @@ const ButtonFieldOrange = ({ title, href, isLive, font, color }) => {
           <p
             style={{
               fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-              color: color,
+              color: textColor,
             }}
           >
             {title}

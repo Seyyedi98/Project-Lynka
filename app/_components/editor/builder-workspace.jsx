@@ -39,17 +39,20 @@ const BuilderWorkspace = () => {
 
   const workspaceBg = useMemo(
     () => ({
-      backgroundImage: `url(${hero.extraAttributes.primaryImage.url})`,
+      backgroundImage: `url(${hero?.extraAttributes?.primaryImage.url})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-      backgroundColor: hero.extraAttributes.primaryImage.url
+      backgroundColor: hero?.extraAttributes?.primaryImage.url
         ? ""
         : hero.extraAttributes.heroValue,
       filter: "blur(50px) opacity(90%)",
       transform: "scale(1.4)",
     }),
-    [hero.extraAttributes.primaryImage.url, hero.extraAttributes.heroValue],
+    [
+      hero?.extraAttributes?.primaryImage?.url,
+      hero?.extraAttributes?.heroValue,
+    ],
   );
 
   const bgStyle = useMemo(
