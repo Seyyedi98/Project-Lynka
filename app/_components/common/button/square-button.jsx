@@ -6,7 +6,7 @@ const SquareButton = ({ state, action, rule, children, className }) => {
     <div
       onClick={() => action(rule)}
       className={cn(
-        `grid h-10 w-20 min-w-20 cursor-pointer place-items-center rounded-md border bg-button transition-colors duration-200 ${className}`,
+        `grid h-10 w-[72px] min-w-[72px] cursor-pointer place-items-center rounded-md border bg-button text-sm transition-colors duration-200 ${className}`,
         state === rule && "bg-background",
       )}
     >

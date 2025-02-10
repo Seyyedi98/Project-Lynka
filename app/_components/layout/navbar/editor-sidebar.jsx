@@ -1,18 +1,17 @@
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { fadeSlideLeft, fadeSlideUp } from "@/utils/animation/animation";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ThemeSwitcher from "../../common/button/ThemeSwitcher";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
 import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
 import ElementProperties from "../../editor/element/element-properties";
-import WorkspaceBottomBar from "./workspace-bottom-bar";
-import WorkspaceSidebarMobile from "./workspace-sidebar-mobile";
-import { AnimatePresence, motion } from "framer-motion";
-import { fade, fadeSlideLeft, fadeSlideUp } from "@/utils/animation/animation";
-import ThemeSwitcher from "../../common/button/ThemeSwitcher";
-import WorkspaceSidebatDesktop from "./workspace-sidebar-desktop";
-import { useState } from "react";
 import PageBackgroundSettings from "../../section/workspace/page-background-settings";
-import PageDataSettings from "../../section/workspace/page-data-settings";
-import PageLoadingSettings from "../../section/workspace/page-loading-settings";
+import PageDataSettingsContainer from "../../section/workspace/page-data-settings-container";
+import WorkspaceSidebatDesktop from "./workspace-sidebar-desktop";
+import WorkspaceSidebarMobile from "./workspace-sidebar-mobile";
+import PageStyleSettingsContainer from "../../section/workspace/page-style-settings-container";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -75,16 +74,11 @@ const EditorSidebar = () => {
               >
                 {selectedMenu === "elements" && <EditorSidebarElements />}
                 {selectedMenu === "theme" && (
-                  <PageBackgroundSettings
+                  <PageStyleSettingsContainer
                     setPageBackground={setPageBackground}
                   />
                 )}
-                {selectedMenu === "browser" && (
-                  <>
-                    <PageLoadingSettings />
-                    <PageDataSettings />
-                  </>
-                )}
+                {selectedMenu === "browser" && <PageDataSettingsContainer />}
                 {selectedMenu === "analytics" && <p>analytics</p>}
               </motion.div>
             )}

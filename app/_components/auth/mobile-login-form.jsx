@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/input-otp";
 import { OtpLoginSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowLeftIcon, Loader } from "lucide-react";
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -137,7 +137,7 @@ export const MobileLoginForm = () => {
           {/* Enter mobile number */}
           {!showOtpInput && (
             <Button disabled={isPending} type="submit" className="w-full">
-              ارسال
+              {isPending ? <Loader className="animate-spin" /> : "ارسال"}
             </Button>
           )}
 
@@ -148,7 +148,7 @@ export const MobileLoginForm = () => {
               type="submit"
               className="w-full"
             >
-              ورود
+              {isPending ? <Loader className="animate-spin" /> : "ورود"}
             </Button>
           )}
 

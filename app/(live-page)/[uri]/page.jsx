@@ -46,6 +46,7 @@ export async function generateMetadata({ params }) {
     return {
       title: metadata.metaTitle || "My Page",
       description: metadata.metaDescription || "Welcome!",
+      favicon: null,
       icons: [
         {
           rel: "icon",
@@ -74,18 +75,12 @@ export async function generateMetadata({ params }) {
         index: true,
         follow: true,
         nocache: false,
-        googleBot: {
-          index: true,
-          follow: true,
-        },
+        googleBot: { index: true, follow: true },
       },
     };
   } catch (error) {
     console.error("Metadata fetch failed:", error);
-    return {
-      title: "Error",
-      description: "Unable to fetch metadata",
-    };
+    return { title: "Error", description: "Unable to fetch metadata" };
   }
 }
 

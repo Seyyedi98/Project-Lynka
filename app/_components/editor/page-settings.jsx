@@ -4,13 +4,12 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PageBackgroundSettings from "../section/workspace/page-background-settings";
-import PageDataSettings from "../section/workspace/page-data-settings";
+import PageMetaSettings from "../section/workspace/page-meta-settings";
 import PageLoadingSettings from "../section/workspace/page-loading-settings";
 
 const PageSettings = () => {
   const dispatch = useDispatch();
   const theme = useSelector((store) => store.page.theme);
-
 
   const [selectedTab, setSelectedTab] = useState("مرورگر");
   const TabItems = ["مرورگر", "پس زمینه", "Theme", "لودینگ", "analytics"];
@@ -34,7 +33,7 @@ const PageSettings = () => {
 
         <span
           className={cn(
-            `absolute bottom-0 border border-primary-500 transition-all duration-300`,
+            `border-primary-500 absolute bottom-0 border transition-all duration-300`,
             selectedTab === TabItems[0] && "right-[3px] w-14",
             selectedTab === TabItems[1] && "right-[75px] w-[72px]",
             selectedTab === TabItems[2] && "right-[164px] w-[56px]",
@@ -45,7 +44,7 @@ const PageSettings = () => {
       </ul>
 
       <div className="mt-4 text-right transition-all duration-200">
-        {selectedTab === TabItems[0] && <PageDataSettings />}
+        {selectedTab === TabItems[0] && <PageMetaSettings />}
         {selectedTab === TabItems[1] && (
           <PageBackgroundSettings setPageBackground={setPageBackground} />
         )}
@@ -63,7 +62,7 @@ const TabItem = ({ title, selectedTab, setSelectedTab }) => {
   return (
     <li
       className={cn(
-        `relative w-16 cursor-pointer text-center transition-colors duration-200 hover:text-primary-400`,
+        `hover:text-primary-400 relative w-16 cursor-pointer text-center transition-colors duration-200`,
         selectedTab === title && "text-primary-600 hover:text-primary-600",
       )}
       onClick={() => setSelectedTab(title)}

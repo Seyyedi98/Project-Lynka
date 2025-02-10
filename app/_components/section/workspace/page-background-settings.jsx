@@ -41,6 +41,11 @@ const PageBackgroundSettings = () => {
               </p>
               <Input
                 type="color"
+                defaultValue={
+                  theme?.backgroundType === "color"
+                    ? theme?.backgroundValue
+                    : "#FFFFFF"
+                }
                 onChange={(e) => setPageBackground(e.target.value)}
               />
             </div>

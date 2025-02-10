@@ -2,7 +2,9 @@ import { AppWindow, ChartLine, Droplet, Layers } from "lucide-react";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
 import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
 import PageBackgroundSettings from "../../section/workspace/page-background-settings";
-import PageDataSettings from "../../section/workspace/page-data-settings";
+import PageMetaSettings from "../../section/workspace/page-meta-settings";
+import PageStyleSettingsContainer from "../../section/workspace/page-style-settings-container";
+import PageDataSettingsContainer from "../../section/workspace/page-data-settings-container";
 
 const WorkspaceSidebarMobile = () => {
   return (
@@ -18,7 +20,7 @@ const WorkspaceSidebarMobile = () => {
                 </div>
               }
               title="لیست بلوک ها"
-              modalId="elements" // Unique identifier for this modal
+              modalId="elements"
             >
               <EditorSidebarElements />
             </WorkspaceDynamicModal>
@@ -31,10 +33,10 @@ const WorkspaceSidebarMobile = () => {
                   <Droplet className="" />
                 </div>
               }
-              title="پس زمینه"
-              modalId="style" // Unique identifier for this modal
+              // title="پس زمینه"
+              modalId="style"
             >
-              <PageBackgroundSettings />
+              <PageStyleSettingsContainer />
             </WorkspaceDynamicModal>
           </li>
           <li className="translate-y-8 animate-fade-up opacity-0 delay-200 duration-300">
@@ -46,9 +48,9 @@ const WorkspaceSidebarMobile = () => {
                 </div>
               }
               title="مرورگر و سوشیال مدیا"
-              modalId="browser" // Unique identifier for this modal
+              modalId="browser"
             >
-              <PageDataSettings />
+              <PageDataSettingsContainer />
             </WorkspaceDynamicModal>
           </li>
           <li className="translate-y-8 animate-fade-up opacity-0 delay-300 duration-300">
@@ -60,7 +62,7 @@ const WorkspaceSidebarMobile = () => {
                 </div>
               }
               title="آمار"
-              modalId="analytics" // Unique identifier for this modal
+              modalId="analytics"
             >
               <PageBackgroundSettings />
             </WorkspaceDynamicModal>
