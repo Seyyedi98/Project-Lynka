@@ -9,37 +9,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Check, Heading } from "lucide-react";
-import { memo, useEffect } from "react";
+import { Check } from "lucide-react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { ThemeController } from "../controller/theme-controller";
-
-const type = "TitleField";
-
-const extraAttributes = {
-  title: "عنوان",
-  theme: "",
-};
-
-const WorkspaceComponent = memo(function WorkspaceComponent({
-  elementInstance,
-}) {
-  const element = elementInstance;
-  const { title, theme } = element.extraAttributes;
-  const RenderedElement = ThemeController[element.type][theme][0];
-
-  return <RenderedElement title={title} />;
-});
-
-function LivePageComponent({ elementInstance }) {
-  const element = elementInstance;
-  const { title, theme } = element.extraAttributes;
-
-  const RenderedElement = ThemeController[element.type][theme][0];
-
-  return <RenderedElement title={title} />;
-}
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
@@ -121,20 +94,4 @@ function PropertiesComponent({ elementInstance }) {
   );
 }
 
-export const TitleFieldFormElement = {
-  type,
-  construct: (id) => ({
-    id,
-    type,
-    extraAttributes,
-  }),
-
-  ElementAdderBtn: {
-    icon: Heading,
-    label: "عنوان",
-  },
-
-  WorkspaceComponent: WorkspaceComponent,
-  LivePageComponent: LivePageComponent,
-  PropertiesComponent: PropertiesComponent,
-};
+export default PropertiesComponent;

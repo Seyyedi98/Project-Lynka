@@ -1,60 +1,29 @@
 "use client";
 
 import { fontsList } from "@/app/fonts/fonts";
-import {
+import { toast } from "@/hooks/use-toast";
+import { useEffect } from "react";
+
+const {
   Form,
-  FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
+  FormControl,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
+  FormDescription,
+} = require("@/components/ui/form");
+const { Input } = require("@/components/ui/input");
+const {
   Select,
-  SelectContent,
-  SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { ButtonIcon } from "@radix-ui/react-icons";
-import { Check } from "lucide-react";
-import { memo, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { ThemeController } from "../controller/theme-controller";
-import { toast } from "@/hooks/use-toast";
-
-const type = "ButtonField";
-
-const extraAttributes = {
-  title: "عنوان",
-  theme: "",
-  font: "",
-  href: " ",
-  textColor: "#ffffff",
-  bgColor: "",
-};
-
-
-const WorkspaceComponent = memo(function WorkspaceComponent({
-  elementInstance,
-}) {
-  const element = elementInstance;
-  const data = element.extraAttributes;
-  const RenderedElement = ThemeController[element.type][data.theme][0];
-
-  return <RenderedElement {...data} />;
-});
-
-function LivePageComponent({ elementInstance }) {
-  const element = elementInstance;
-  const data = element.extraAttributes;
-
-  const RenderedElement = ThemeController[element.type][data.theme][0];
-  return <RenderedElement isLive={true} {...data} />;
-}
+  SelectContent,
+  SelectItem,
+} = require("@/components/ui/select");
+const { Check } = require("lucide-react");
+const { useForm } = require("react-hook-form");
+const { useDispatch } = require("react-redux");
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
@@ -243,20 +212,4 @@ function PropertiesComponent({ elementInstance }) {
   );
 }
 
-export const ButtonFieldFormElement = {
-  type,
-  construct: (id) => ({
-    id,
-    type,
-    extraAttributes,
-  }),
-
-  ElementAdderBtn: {
-    icon: ButtonIcon,
-    label: "لینک",
-  },
-
-  WorkspaceComponent: WorkspaceComponent,
-  LivePageComponent: LivePageComponent,
-  PropertiesComponent: PropertiesComponent,
-};
+export default PropertiesComponent;

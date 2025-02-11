@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 const ButtonFieldSunny = ({ title, href, isLive }) => {

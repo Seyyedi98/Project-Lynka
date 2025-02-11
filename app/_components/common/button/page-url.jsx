@@ -11,7 +11,7 @@ const PageUrl = () => {
           href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${uri}`}
           target="_blank"
         >
-          <span className="text-sm text-white">link.ir/{uri}</span>
+          <span className="text-sm text-white">miral.ink/{uri}</span>
         </a>
       </div>
     </div>

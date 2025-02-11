@@ -1,13 +1,14 @@
-"use client";
+// "use client";
 
+import { Suspense } from "react";
 import { PageElements } from "../controller/page-elements";
 
-const LivePageElements = ({ content }) => {
-  return (
-    <>
-      {content.map((element) => {
-        const PageElement = PageElements[element?.type]?.LivePageComponent;
+const LivePageElements = async ({ content }) => {
+  const elements = await Promise.all(
+    content.map(async (element) => {
+      const PageElement = PageElements[element?.type]?.LivePageComponent;
 
+      if (PageElement) {
         return (
           <PageElement
             key={element.id}
@@ -15,9 +16,12 @@ const LivePageElements = ({ content }) => {
             // defaultValue={formValues.current[element.id]}
           />
         );
-      })}
-    </>
+      }
+      return null;
+    }),
   );
+
+  return <Suspense fallback={<p>Loading...</p>}>{elements}</Suspense>;
 };
 
 export default LivePageElements;
