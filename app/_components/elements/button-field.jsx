@@ -34,7 +34,9 @@ const extraAttributes = {
   font: "",
   href: " ",
   textColor: "#ffffff",
+  bgColor: "",
 };
+
 
 const WorkspaceComponent = memo(function WorkspaceComponent({
   elementInstance,

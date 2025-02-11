@@ -1,7 +1,7 @@
 import { loadFont } from "@/utils/loadFont";
 import { useEffect, useState } from "react";
 
-const ButtonFieldNature = ({ title, href, isLive, font, textColor }) => {
+const ButtonFieldPink = ({ title, href, isLive, font, textColor }) => {
   const [loadedFont, setLoadedFont] = useState(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const ButtonFieldNature = ({ title, href, isLive, font, textColor }) => {
           href={`http://${href}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl bg-[#598901] p-2 text-white shadow-lg"
+          className="flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl bg-[#F2A490] p-2 text-white shadow-lg"
         >
           <p
             style={{
@@ -38,7 +38,7 @@ const ButtonFieldNature = ({ title, href, isLive, font, textColor }) => {
       )}
 
       {!isLive && (
-        <div className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-2xl bg-[#598901] p-2 text-white shadow-lg">
+        <div className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-2xl bg-[#F2A490] p-2 text-white shadow-lg">
           <p
             style={{
               fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
@@ -53,4 +53,4 @@ const ButtonFieldNature = ({ title, href, isLive, font, textColor }) => {
   );
 };
 
-export default ButtonFieldNature;
+export default ButtonFieldPink;

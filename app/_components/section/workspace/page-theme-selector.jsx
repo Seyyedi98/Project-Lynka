@@ -7,7 +7,7 @@ const PageThemeSelector = () => {
   const hero = useSelector((state) => state.page.hero);
   const prevTheme = useSelector((store) => store.page.theme);
 
-  const updateElementStyle = ({ theme, textColor }) => {
+  const updateElementStyle = ({ theme, type, textColor, bgColor }) => {
     elements.map((element) => {
       const payload = {
         id: element.id,
@@ -16,7 +16,9 @@ const PageThemeSelector = () => {
           extraAttributes: {
             ...element.extraAttributes,
             theme,
+            type,
             textColor,
+            bgColor,
           },
         },
       };
@@ -74,6 +76,7 @@ const PageThemeSelector = () => {
     updateElementStyle({
       theme: theme.name,
       textColor: theme.elementTextColor,
+      type: theme.elementType,
       bgColor: theme.elementColor,
     });
   };

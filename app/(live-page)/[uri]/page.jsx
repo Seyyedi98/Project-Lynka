@@ -10,10 +10,10 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 const LivePageElements = dynamic(
-  () => import("@/app/_components/live-page/live-page-elements-rendere"),
+  () => import("@/app/_components/live-page/live-page-elements-render"),
 );
 const LivePageHero = dynamic(
-  () => import("@/app/_components/live-page/live-page-hero-rendere"),
+  () => import("@/app/_components/live-page/live-page-hero-render"),
 );
 
 // ✅ Dynamic Metadata Fetching with Error Handling
