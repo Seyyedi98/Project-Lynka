@@ -55,11 +55,23 @@ const BuilderWorkspace = () => {
     ],
   );
 
-  const bgStyle = useMemo(
+  const colorBgStyle = useMemo(
     () => ({
       backgroundColor:
         theme.backgroundType === "image" ? "" : theme.backgroundValue,
       background: theme.backgroundValue,
+    }),
+    [theme.backgroundType, theme.backgroundValue],
+  );
+
+  const imageBgStyle = useMemo(
+    () => ({
+      backgroundImage:
+        theme.backgroundType === "image" &&
+        `url(${JSON.parse(theme.backgroundValue).url})`,
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
     }),
     [theme.backgroundType, theme.backgroundValue],
   );
@@ -251,7 +263,12 @@ const BuilderWorkspace = () => {
             </div>
 
             <div
-              style={bgStyle}
+              style={
+                theme.backgroundType === "color" ||
+                theme.backgroundType === "gradient"
+                  ? colorBgStyle
+                  : imageBgStyle
+              }
               className={cn(
                 `relative flex h-svh w-full flex-grow flex-col items-center overflow-y-auto rounded-xl shadow-lg [scrollbar-width:none] md:h-[720px] md:w-[360px]`,
               )}

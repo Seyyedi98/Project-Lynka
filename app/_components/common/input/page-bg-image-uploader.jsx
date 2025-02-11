@@ -1,4 +1,4 @@
-import { UpdatePageFavicon } from "@/actions/page";
+import { UpdatePageMetaImage } from "@/actions/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,7 +9,7 @@ import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const FaviconUploader = ({ uri, favicon }) => {
+const PageBgImageUploader = ({ theme }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -17,9 +17,9 @@ const FaviconUploader = ({ uri, favicon }) => {
   const [permanentLink, setPermanentLink] = useState(null);
 
   const dispatch = useDispatch();
-  const metadata = useSelector((store) => store.page.metadata);
 
-  const previousImage = favicon?.key;
+  const previousImage =
+    theme.backgroundType === "image" ? JSON.parse(theme.backgroundValue) : null;
 
   const ACCESSKEY = process.env.NEXT_PUBLIC_LIARA_ACCESS_KEY;
   const SECRETKEY = process.env.NEXT_PUBLIC_LIARA_SECRET_KEY;
@@ -35,15 +35,15 @@ const FaviconUploader = ({ uri, favicon }) => {
 
   const handleUploadButton = async () => {
     const options = {
-      maxSizeMB: 0.1, // Compress to be <= 2MB
-      maxWidthOrHeight: 32, // Optional: Resize image to 1920px width/height if it's larger
+      maxSizeMB: 0.7, // Compress to be <= 0.7MB
+      maxWidthOrHeight: 1200, // Optional: Resize image to 1200px width/height if it's larger
       initialQuality: 1, // Start with 100% quality and adjust as needed
       useWebWorker: true, // Enable web workers for faster processing
     };
 
     setIsUploading(true);
     const { permanentSignedUrl, response } = await uploadFile(file, options);
-    const JSONFaviconData = JSON.stringify({
+    const JSONBgImageData = JSON.stringify({
       url: permanentSignedUrl,
       key: response.Key,
     });
@@ -51,7 +51,7 @@ const FaviconUploader = ({ uri, favicon }) => {
     try {
       if (previousImage) {
         deleteFile({
-          file: favicon,
+          file: previousImage,
           BUCKET,
           ACCESSKEY,
           SECRETKEY,
@@ -59,18 +59,17 @@ const FaviconUploader = ({ uri, favicon }) => {
         });
       }
 
-      await UpdatePageFavicon(uri, JSONFaviconData);
-
       const payload = {
-        ...metadata,
-        favicon: JSONFaviconData,
+        ...theme,
+        backgroundType: "image",
+        backgroundValue: JSONBgImageData,
       };
 
-      dispatch({ type: "page/setMetadata", payload });
+      dispatch({ type: "page/setTheme", payload });
 
       dispatch({ type: "modal/closeMenu" });
       toast({
-        description: "تصویر با موفقیت تغییر یافت",
+        description: "تصویر پس زمینه با موفقیت تغییر یافت",
       });
     } catch (error) {
       toast({
@@ -114,4 +113,4 @@ const FaviconUploader = ({ uri, favicon }) => {
   );
 };
 
-export default FaviconUploader;
+export default PageBgImageUploader;

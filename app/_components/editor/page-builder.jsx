@@ -2,7 +2,7 @@
 "use client";
 
 import getPageContent from "@/lib/page/get-page-content";
-import getPageHero from "@/lib/page/get-page-header";
+import getPageHero from "@/lib/page/get-page-hero";
 import fetchWithRetry from "@/utils/fetchWithRetry";
 import {
   DndContext,

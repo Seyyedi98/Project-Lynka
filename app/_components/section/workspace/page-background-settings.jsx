@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { cn } from "@/lib/utils";
 import { colors, gradient, pattern } from "@/data/colors";
 import { Input } from "@/components/ui/input";
+import PageBgImageForm from "../../common/form/page-bg-image-form";
+import deleteFile from "@/lib/upload/deleteFile";
 
 const PageBackgroundSettings = () => {
   const [category, setCategory] = useState("color");
@@ -12,13 +14,17 @@ const PageBackgroundSettings = () => {
   const dispatch = useDispatch();
 
   const setPageBackground = function (velue) {
-    const payload = { ...theme, backgroundValue: velue };
+    const payload = {
+      ...theme,
+      backgroundValue: velue,
+      backgroundType: "color",
+    };
     dispatch({ type: "page/setTheme", payload });
   };
 
   return (
     <>
-      <div className="mb-4 flex items-center justify-center gap-4 border-b-2 pb-4">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-4 border-b-2 pb-2 md:gap-[10px]">
         <SquareButton state={category} action={setCategory} rule="color">
           رنگ
         </SquareButton>
@@ -32,10 +38,10 @@ const PageBackgroundSettings = () => {
           تصویر
         </SquareButton>
       </div>
-      <div className="grid h-[60svh] w-full max-w-sm grid-cols-[repeat(auto-fit,minmax(80px,1fr))] gap-4 overflow-y-scroll [scrollbar-width:none] md:h-[80vh] md:max-h-full">
+      <div className="grid h-[60svh] w-full max-w-sm grid-cols-[repeat(auto-fit,minmax(80px,1fr))] place-items-center gap-4 overflow-y-scroll [scrollbar-width:none] md:h-[80vh] md:max-h-full">
         {category === "color" && (
           <>
-            <div className="col-span-full my-4 block">
+            <div className="col-span-full my-2 block w-full">
               <p className="mb-4 text-xs text-textLight">
                 رنگ دلخواه خود را انتخاب کنید
               </p>
@@ -93,6 +99,16 @@ const PageBackgroundSettings = () => {
               ></div>
             );
           })}
+
+        {category === "image" && (
+          <div className="h-full">
+            <PageBgImageForm
+              theme={theme}
+              bgType={theme.backgroundType}
+              image={theme.backgroundValue}
+            />
+          </div>
+        )}
       </div>
     </>
   );

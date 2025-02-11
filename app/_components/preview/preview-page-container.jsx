@@ -4,14 +4,27 @@ import PreviewPageHero from "./preview-hero-renderer";
 
 const PreviewPageContainer = () => {
   const theme = useSelector((state) => state.page.theme);
-  const style = {
+
+  const colorBgStyle = {
     backgroundColor: theme.backgroundValue,
     background: theme.backgroundValue,
+  };
+  const imageBgStyle = {
+    backgroundImage:
+      theme.backgroundType === "image" &&
+      `url(${JSON.parse(theme.backgroundValue).url})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
   };
 
   return (
     <div
-      style={style}
+      style={
+        theme.backgroundType === "color" || theme.backgroundType === "gradient"
+          ? colorBgStyle
+          : imageBgStyle
+      }
       className="flex h-svh w-full flex-col items-center justify-center"
     >
       <div>

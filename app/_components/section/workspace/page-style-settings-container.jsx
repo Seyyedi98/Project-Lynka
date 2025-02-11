@@ -6,7 +6,7 @@ const PageStyleSettingsContainer = () => {
   return (
     <div>
       <Tabs dir="rtl" defaultValue="background" className="">
-        <TabsList className="mb-4">
+        <TabsList className="mb-2">
           <TabsTrigger value="background">پس زمینه</TabsTrigger>
           <TabsTrigger value="theme">تم</TabsTrigger>
         </TabsList>

@@ -148,16 +148,16 @@ export async function UpdatePageLoadingIcon(uri, loadingIcon) {
   return { success: "Page theme has been updated" };
 }
 
-export async function getPageTheme(uri) {
-  const page = await prisma.page.findUnique({
-    where: {
-      uri,
-    },
-  });
-  if (!page) return { error: "Page not found!" };
+// export async function getPageTheme(uri) {
+//   const page = await prisma.page.findUnique({
+//     where: {
+//       uri,
+//     },
+//   });
+//   if (!page) return { error: "Page not found!" };
 
-  return page.theme;
-}
+//   return page.theme;
+// }
 
 export async function UpdatePageMetaTitle(uri, content) {
   const user = await currentUser();
@@ -237,7 +237,7 @@ export async function UpdatePageFavicon(uri, content) {
   return { success: "Page meta title has been updated" };
 }
 
-export async function UpdatePageImage(uri, content) {
+export async function UpdatePageMetaImage(uri, content) {
   const user = await currentUser();
   if (!user) {
     return { error: "You need to signed in" };

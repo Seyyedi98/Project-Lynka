@@ -36,7 +36,7 @@ const WorkspaceSidebarMobile = () => {
               // title="پس زمینه"
               modalId="style"
             >
-              <PageStyleSettingsContainer />
+                <PageStyleSettingsContainer />
             </WorkspaceDynamicModal>
           </li>
           <li className="translate-y-8 animate-fade-up opacity-0 delay-200 duration-300">

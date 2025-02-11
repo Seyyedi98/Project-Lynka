@@ -168,7 +168,7 @@ const DrawerComponent = function ({
             <DrawerTitle className="mt-4 text-center">{title}</DrawerTitle>
             <DrawerDescription></DrawerDescription>
           </DrawerHeader>
-          <div className="p-2 px-4 pb-0 md:px-0">
+          <div className="px-4 pb-0 md:px-0">
             <div className="h-full w-full">{children}</div>
           </div>
           <DrawerFooter className="">

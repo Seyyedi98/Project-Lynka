@@ -1,4 +1,4 @@
-import { UpdatePageImage } from "@/actions/page";
+import { UpdatePageMetaImage } from "@/actions/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,8 +35,8 @@ const MetaImageUploader = ({ uri, metaImage }) => {
 
   const handleUploadButton = async () => {
     const options = {
-      maxSizeMB: 1, // Compress to be <= 2MB
-      maxWidthOrHeight: 720, // Optional: Resize image to 1920px width/height if it's larger
+      maxSizeMB: 0.2, // Compress to be <= 200KB
+      maxWidthOrHeight: 720, // Optional: Resize image to 720px width/height if it's larger
       initialQuality: 1, // Start with 100% quality and adjust as needed
       useWebWorker: true, // Enable web workers for faster processing
     };
@@ -59,7 +59,7 @@ const MetaImageUploader = ({ uri, metaImage }) => {
         });
       }
 
-      await UpdatePageImage(uri, JSONMetaImageData);
+      await UpdatePageMetaImage(uri, JSONMetaImageData);
 
       const payload = {
         ...metadata,

@@ -1,5 +1,6 @@
+"use client";
 import { loadFont } from "@/utils/loadFont";
-import { User2Icon, UserRound } from "lucide-react";
+import { UserRound } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 

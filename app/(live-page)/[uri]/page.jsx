@@ -1,7 +1,8 @@
 import { getPageMetadata } from "@/actions/page";
 import LoadingSpinner from "@/app/_components/common/shared/loadingSpinner";
 import getPageContent from "@/lib/page/get-page-content";
-import getPageHero from "@/lib/page/get-page-header";
+import getPageHero from "@/lib/page/get-page-hero";
+import getPageTheme from "@/lib/page/get-page-theme";
 import { cn } from "@/lib/utils";
 import fetchWithRetry from "@/utils/fetchWithRetry";
 import { Loader2 } from "lucide-react";
@@ -87,14 +88,6 @@ export async function generateMetadata({ params }) {
 // ✅ Live Page Component
 const LivePage = async ({ params }) => {
   const { uri } = await params;
-  // Handle excluded URIs
-  // if (
-  //   uri === "dashboard" ||
-  //   uri.startsWith("workspace") ||
-  //   uri === "favicon.ico"
-  // ) {
-  //   return null;
-  // }
 
   // Try fetching page data with retry mechanism
   const page = await fetchWithRetry(uri);
@@ -111,12 +104,13 @@ const LivePage = async ({ params }) => {
   }
 
   if (page.error) {
-    return notFound(); // Return 404 if there is an error
+    return notFound();
   }
 
   // Extract data from the page
   const hero = getPageHero(page);
   const content = getPageContent(page);
+  const pageTheme = getPageTheme(page);
 
   // Handle theme parsing with fallback
   let theme;
@@ -127,15 +121,27 @@ const LivePage = async ({ params }) => {
     theme = { backgroundValue: "#fff" }; // Default fallback theme
   }
 
-  const style = {
+  const styleColor = {
     backgroundColor: theme.backgroundValue,
     background: theme.backgroundValue,
+  };
+
+  const styleImage = {
+    backgroundImage: `url(${JSON.parse(theme.backgroundValue).url})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
   };
 
   return (
     <>
       <div
-        style={style}
+        style={
+          theme.backgroundType === "color" ||
+          theme.backgroundType === "gradient"
+            ? styleColor
+            : styleImage
+        }
         className="relative flex h-full w-full flex-col items-center justify-start gap-4"
       >
         <Suspense

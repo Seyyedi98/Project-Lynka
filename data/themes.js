@@ -26,7 +26,22 @@ export const themes = [
     heroSubtitleFont: "sahel",
     heroTitleColor: "#ffffff",
     heroSubtitleColor: "#ffffff",
-    elementColor: "##F2A490",
+    elementColor: "#F2A490",
+    elementTextColor: "#FFFFFF",
+  },
+  {
+    name: "pink2",
+    backgroundType: "gradient",
+    backgroundValue: "linear-gradient(45deg, #AF49AB, #DF3F46)",
+    hero: "basic", //outdated, replace by style
+    heroType: "image",
+    heroStyle: "transparent",
+    heroValue: "linear-gradient(45deg, #AF49AB, #DF3F46)",
+    heroTitleFont: "sahel",
+    heroSubtitleFont: "sahel",
+    heroTitleColor: "#ffffff",
+    heroSubtitleColor: "#ffffff",
+    elementColor: "#DF3F46",
     elementTextColor: "#FFFFFF",
   },
   {

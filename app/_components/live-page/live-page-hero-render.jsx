@@ -1,5 +1,3 @@
-"use client";
-
 import { PageHeroElement } from "../elements/hero/page-hero-element";
 
 const LivePageHero = ({ hero }) => {
