@@ -1,14 +1,19 @@
-import { UpdatePageMetaImage, UpdatePageTheme } from "@/actions/page";
+import { UpdatePageTheme } from "@/actions/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import deleteFile from "@/lib/upload/deleteFile";
-import uploadFile from "@/lib/upload/uploadFile";
 import { Loader2 } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
+const uploadFile = dynamic(() => import("@/lib/upload/uploadFile"), {
+  loading: () => <Loader2 className="animate-spin" />,
+});
+const deleteFile = dynamic(() => import("@/lib/upload/deleteFile"), {
+  loading: () => <Loader2 className="animate-spin" />,
+});
 
 const PageBgImageUploader = ({ theme }) => {
   const [file, setFile] = useState(null);

@@ -1,7 +1,8 @@
 // "use client";
 
 import { Suspense } from "react";
-import { PageElements } from "../controller/page-elements";
+
+const PageElements = dynamic(() => import("../controller/page-elements"));
 
 const LivePageElements = async ({ content }) => {
   const elements = await Promise.all(

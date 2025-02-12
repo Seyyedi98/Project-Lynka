@@ -1,7 +1,5 @@
-import AddElementButton from "./add-element-button";
 import { PageElements } from "../../controller/page-elements";
-import { motion } from "motion/react";
-import { fadeSlideLeft } from "@/utils/animation/animation";
+import AddElementButton from "./add-element-button";
 
 const EditorSidebarElements = () => {
   return (

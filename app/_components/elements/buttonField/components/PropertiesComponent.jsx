@@ -1,10 +1,7 @@
 "use client";
 
 import { fontsList } from "@/app/fonts/fonts";
-import { toast } from "@/hooks/use-toast";
-import { useEffect } from "react";
-
-const {
+import {
   Form,
   FormField,
   FormItem,
@@ -12,18 +9,20 @@ const {
   FormControl,
   FormMessage,
   FormDescription,
-} = require("@/components/ui/form");
-const { Input } = require("@/components/ui/input");
-const {
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} = require("@/components/ui/select");
-const { Check } = require("lucide-react");
-const { useForm } = require("react-hook-form");
-const { useDispatch } = require("react-redux");
+} from "@/components/ui/select";
+import { toast } from "@/hooks/use-toast";
+import { Check } from "lucide-react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
