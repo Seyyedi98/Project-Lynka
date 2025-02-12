@@ -1,45 +1,26 @@
 import { getPageMetadata } from "@/actions/page";
 import LoadingSpinner from "@/app/_components/common/shared/loadingSpinner";
+import LivePageElements from "@/app/_components/live-page/live-page-elements-render";
+import LivePageHero from "@/app/_components/live-page/live-page-hero-render";
 import getPageContent from "@/lib/page/get-page-content";
 import getPageHero from "@/lib/page/get-page-hero";
 import getPageTheme from "@/lib/page/get-page-theme";
 import { cn } from "@/lib/utils";
 import fetchWithRetry from "@/utils/fetchWithRetry";
-import { Loader2 } from "lucide-react";
-import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-
-const LivePageElements = dynamic(
-  () => import("@/app/_components/live-page/live-page-elements-render"),
-);
-const LivePageHero = dynamic(
-  () => import("@/app/_components/live-page/live-page-hero-render"),
-);
 
 // ✅ Dynamic Metadata Fetching with Error Handling
 export async function generateMetadata({ params }) {
   const { uri } = await params;
 
-  // Handle excluded URIs
-  // if (
-  //   uri === "dashboard" ||
-  //   uri.startsWith("workspace") ||
-  //   uri === "favicon.ico"
-  // ) {
-  //   return null;
-  // }
-
   try {
-    // Fetch the page metadata
     const metadata = await getPageMetadata(uri);
     if (!metadata) throw new Error("Metadata not found");
 
-    // Parse metadata for favicon and meta image
     const favicon = metadata?.favicon
       ? JSON.parse(metadata?.favicon)?.url
       : null;
-
     const metaImage = metadata?.metaImage
       ? JSON.parse(metadata.metaImage).url
       : null;
@@ -63,7 +44,7 @@ export async function generateMetadata({ params }) {
         url: "https://link.liara.run",
         images: [
           { url: metaImage, width: 720, height: 480, alt: "Share image" },
-        ], // Open Graph Image
+        ],
         type: "website",
       },
       twitter: {
@@ -89,10 +70,8 @@ export async function generateMetadata({ params }) {
 const LivePage = async ({ params }) => {
   const { uri } = await params;
 
-  // Try fetching page data with retry mechanism
   const page = await fetchWithRetry(uri);
 
-  // Handle different states
   if (!page) {
     return (
       <div className="grid h-screen w-screen place-items-center">
@@ -107,18 +86,16 @@ const LivePage = async ({ params }) => {
     return notFound();
   }
 
-  // Extract data from the page
   const hero = getPageHero(page);
   const content = getPageContent(page);
   const pageTheme = getPageTheme(page);
 
-  // Handle theme parsing with fallback
   let theme;
   try {
     theme = JSON.parse(page.theme);
   } catch (error) {
     console.error("Error parsing theme:", error);
-    theme = { backgroundColor: "#fff" }; // Default fallback theme
+    theme = { backgroundColor: "#fff" };
   }
 
   const styleColor = {

@@ -15,6 +15,7 @@ const InitialThemeSelector = ({ uri }) => {
 
   const onSelect = async (theme) => {
     const heroElement = PageHeroElement.construct(idGenerator());
+
     const StyledHeroElemeent = [
       {
         ...heroElement,

@@ -1,10 +1,7 @@
 import { WorkspaceComponent } from "./components/WorkspaceComponent";
 import PropertiesComponent from "./components/PropertiesComponent";
 import { Heading } from "lucide-react";
-
-const LivePageComponent = dynamic(
-  () => import("./components/LivePageComponent"),
-);
+import { LivePageComponent } from "./components/LivePageComponent";
 
 const type = "TitleField";
 

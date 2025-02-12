@@ -17,14 +17,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast } from "@/hooks/use-toast";
 import { Check } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { toast } from "@/hooks/use-toast";
-
-import HeroWorkspaceUploader from "@/app/_components/common/input/workspace-hero-uploader";
 import Devider from "@/app/_components/common/shared/devider";
+import HeroWorkspaceUploader from "@/app/_components/common/input/workspace-hero-uploader";
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;

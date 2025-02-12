@@ -3,16 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
+import deleteFile from "@/lib/upload/deleteFile";
+import uploadFile from "@/lib/upload/uploadFile";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-const uploadFile = dynamic(() => import("@/lib/upload/uploadFile"), {
-  loading: () => <Loader2 className="animate-spin" />,
-});
-const deleteFile = dynamic(() => import("@/lib/upload/deleteFile"), {
-  loading: () => <Loader2 className="animate-spin" />,
-});
 
 const HeroWorkspaceUploader = ({ uri }) => {
   const [file, setFile] = useState(null);
@@ -40,8 +35,8 @@ const HeroWorkspaceUploader = ({ uri }) => {
 
   const handleUploadButton = async () => {
     const options = {
-      maxSizeMB: 2, // Compress to be <= 2MB
-      maxWidthOrHeight: 1920, // Optional: Resize image to 1920px width/height if it's larger
+      maxSizeMB: 0.5, // Compress to be <= 0.5MB
+      maxWidthOrHeight: 640, // Optional: Resize image to 640px width/height if it's larger
       initialQuality: 1, // Start with 100% quality and adjust as needed
       useWebWorker: true, // Enable web workers for faster processing
     };

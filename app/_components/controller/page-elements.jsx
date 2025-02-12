@@ -1,11 +1,5 @@
-import dynamic from "next/dynamic";
-
-const TitleFieldFormElement = dynamic(
-  () => import("../elements/titleField/title-field"),
-);
-const ButtonFieldFormElement = dynamic(
-  () => import("../elements/buttonField/button-field"),
-);
+import { TitleFieldFormElement } from "../elements/titleField/title-field";
+import { ButtonFieldFormElement } from "../elements/buttonField/button-field";
 
 export const PageElements = {
   TitleField: TitleFieldFormElement,
