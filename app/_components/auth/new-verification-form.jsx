@@ -24,7 +24,7 @@ export const NewVerificationForm = () => {
       .catch(() => {
         setError("Something wenst wrong!");
       });
-  }, [token, success, error]);
+  }, [token]); // removed: data, success from dependencies
 
   useEffect(() => {
     onSubmit();

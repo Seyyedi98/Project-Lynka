@@ -2,7 +2,8 @@ export const themes = [
   {
     name: "orange",
     backgroundType: "gradient",
-    backgroundValue: "linear-gradient(45deg, #801336, #C72C41)",
+    backgroundColor: "linear-gradient(45deg, #801336, #C72C41)",
+    backgroundImage: "",
     hero: "basic", //outdated, replace by style
     heroType: "image",
     heroStyle: "transparent",
@@ -17,7 +18,8 @@ export const themes = [
   {
     name: "pink",
     backgroundType: "gradient",
-    backgroundValue: "linear-gradient(45deg, #478BA2, #DE5B6D)",
+    backgroundColor: "linear-gradient(45deg, #478BA2, #DE5B6D)",
+    backgroundImage: "",
     hero: "basic", //outdated, replace by style
     heroType: "image",
     heroStyle: "transparent",
@@ -32,7 +34,8 @@ export const themes = [
   {
     name: "pink2",
     backgroundType: "gradient",
-    backgroundValue: "linear-gradient(45deg, #AF49AB, #DF3F46)",
+    backgroundColor: "linear-gradient(45deg, #AF49AB, #DF3F46)",
+    backgroundImage: "",
     hero: "basic", //outdated, replace by style
     heroType: "image",
     heroStyle: "transparent",
@@ -47,7 +50,8 @@ export const themes = [
   {
     name: "nature",
     backgroundType: "gradient",
-    backgroundValue: "linear-gradient(45deg, #598901, #2D5A00)",
+    backgroundColor: "linear-gradient(45deg, #598901, #2D5A00)",
+    backgroundImage: "",
     hero: "basic", //outdated, replace by style
     heroType: "image",
     heroStyle: "transparent",

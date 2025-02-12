@@ -1,4 +1,4 @@
-import LivePageComponent from "./conponents/LivePageComponent";
+import HeroLivePageComponent from "./conponents/LivePageComponent";
 import PropertiesComponent from "./conponents/PropertiesComponent";
 import WorkspaceComponent from "./conponents/WorkspaceComponent";
 
@@ -27,6 +27,6 @@ export const PageHeroElement = {
   }),
 
   WorkspaceComponent: WorkspaceComponent,
-  LivePageComponent: LivePageComponent,
+  LivePageComponent: HeroLivePageComponent,
   PropertiesComponent: PropertiesComponent,
 };

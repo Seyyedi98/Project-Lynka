@@ -47,7 +47,7 @@ export async function generateMetadata({ params }) {
     return {
       title: metadata.metaTitle || "My Page",
       description: metadata.metaDescription || "Welcome!",
-      favicon: null,
+      favicon: "null",
       icons: [
         {
           rel: "icon",
@@ -118,16 +118,18 @@ const LivePage = async ({ params }) => {
     theme = JSON.parse(page.theme);
   } catch (error) {
     console.error("Error parsing theme:", error);
-    theme = { backgroundValue: "#fff" }; // Default fallback theme
+    theme = { backgroundColor: "#fff" }; // Default fallback theme
   }
 
   const styleColor = {
-    backgroundColor: theme.backgroundValue,
-    background: theme.backgroundValue,
+    backgroundColor: theme.backgroundColor,
+    background: theme.backgroundColor,
   };
 
   const styleImage = {
-    backgroundImage: `url(${JSON.parse(theme.backgroundValue).url})`,
+    backgroundImage: theme.backgroundImage
+      ? `url(${JSON.parse(theme.backgroundImage).url})`
+      : "",
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",

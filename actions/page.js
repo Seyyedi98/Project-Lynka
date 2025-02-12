@@ -148,16 +148,16 @@ export async function UpdatePageLoadingIcon(uri, loadingIcon) {
   return { success: "Page theme has been updated" };
 }
 
-// export async function getPageTheme(uri) {
-//   const page = await prisma.page.findUnique({
-//     where: {
-//       uri,
-//     },
-//   });
-//   if (!page) return { error: "Page not found!" };
+export async function getPageThemeByUri(uri) {
+  const page = await prisma.page.findUnique({
+    where: {
+      uri,
+    },
+  });
+  if (!page) return { error: "Page not found!" };
 
-//   return page.theme;
-// }
+  return page.theme;
+}
 
 export async function UpdatePageMetaTitle(uri, content) {
   const user = await currentUser();

@@ -50,11 +50,6 @@ const Upload = ({ uri }) => {
     }
   };
 
-  useEffect(() => {
-    fetchBuckets();
-    fetchAllFiles();
-  }, [uploadLink]);
-
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
     setError(null);

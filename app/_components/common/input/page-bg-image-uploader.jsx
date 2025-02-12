@@ -1,4 +1,4 @@
-import { UpdatePageMetaImage } from "@/actions/page";
+import { UpdatePageMetaImage, UpdatePageTheme } from "@/actions/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,6 +6,7 @@ import { toast } from "@/hooks/use-toast";
 import deleteFile from "@/lib/upload/deleteFile";
 import uploadFile from "@/lib/upload/uploadFile";
 import { Loader2 } from "lucide-react";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,12 +15,17 @@ const PageBgImageUploader = ({ theme }) => {
   const [error, setError] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadLink, setUploadLink] = useState(null);
-  const [permanentLink, setPermanentLink] = useState(null);
+
+  const { uri } = useParams();
 
   const dispatch = useDispatch();
 
-  const previousImage =
-    theme.backgroundType === "image" ? JSON.parse(theme.backgroundValue) : null;
+  let previousImage;
+  try {
+    previousImage = JSON.parse(theme.backgroundImage);
+  } catch {
+    previousImage = null;
+  }
 
   const ACCESSKEY = process.env.NEXT_PUBLIC_LIARA_ACCESS_KEY;
   const SECRETKEY = process.env.NEXT_PUBLIC_LIARA_SECRET_KEY;
@@ -30,7 +36,6 @@ const PageBgImageUploader = ({ theme }) => {
     setFile(event.target.files[0]);
     setError(null);
     setUploadLink(null);
-    setPermanentLink(null);
   };
 
   const handleUploadButton = async () => {
@@ -62,15 +67,23 @@ const PageBgImageUploader = ({ theme }) => {
       const payload = {
         ...theme,
         backgroundType: "image",
-        backgroundValue: JSONBgImageData,
+        backgroundImage: JSONBgImageData,
       };
 
       dispatch({ type: "page/setTheme", payload });
-
       dispatch({ type: "modal/closeMenu" });
       toast({
         description: "تصویر پس زمینه با موفقیت تغییر یافت",
       });
+
+      const newTheme = JSON.stringify({
+        ...theme,
+        backgroundType: "image",
+        backgroundImage: JSONBgImageData,
+      });
+
+      // Update db
+      await UpdatePageTheme(uri, newTheme);
     } catch (error) {
       toast({
         description: "خطایی رخ داد. لطفا مجددا سعی کنید",

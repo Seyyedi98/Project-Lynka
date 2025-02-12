@@ -15,8 +15,12 @@ import { Loader2Icon } from "lucide-react";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import BuilderWorkspace from "./builder-workspace";
-import DragOverlyWrapper from "./element/drag-overly-wrapper";
+import dynamic from "next/dynamic";
+
+const BuilderWorkspace = dynamic(() => import("./builder-workspace"));
+const DragOverlyWrapper = dynamic(
+  () => import("./element/drag-overly-wrapper"),
+);
 
 const PageBuilder = ({ page }) => {
   const dispatch = useDispatch();

@@ -15,7 +15,7 @@ const PageSettings = () => {
   const TabItems = ["مرورگر", "پس زمینه", "Theme", "لودینگ", "analytics"];
 
   const setPageBackground = function (velue) {
-    const payload = { ...theme, backgroundValue: velue };
+    const payload = { ...theme, backgroundColor: velue };
     dispatch({ type: "page/setTheme", payload });
   };
 

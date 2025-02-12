@@ -6,13 +6,13 @@ const PreviewPageContainer = () => {
   const theme = useSelector((state) => state.page.theme);
 
   const colorBgStyle = {
-    backgroundColor: theme.backgroundValue,
-    background: theme.backgroundValue,
+    backgroundColor: theme.backgroundColor,
+    background: theme.backgroundColor,
   };
   const imageBgStyle = {
     backgroundImage:
       theme.backgroundType === "image" &&
-      `url(${JSON.parse(theme.backgroundValue).url})`,
+      `url(${JSON.parse(theme.backgroundImage).url})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",

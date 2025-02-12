@@ -1,7 +1,7 @@
 import { HeroController } from "@/app/_components/controller/hero-controller";
 import { Loader2 } from "lucide-react";
 
-function LivePageComponent({ elementInstance }) {
+function HeroLivePageComponent({ elementInstance }) {
   const element = elementInstance;
   const data = element?.extraAttributes;
 
@@ -10,4 +10,4 @@ function LivePageComponent({ elementInstance }) {
   return <RenderedElement {...data} />;
 }
 
-export default LivePageComponent;
+export default HeroLivePageComponent;

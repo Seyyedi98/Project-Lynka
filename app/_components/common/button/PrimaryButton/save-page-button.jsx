@@ -23,6 +23,7 @@ const SavePageBtn = ({ children }) => {
       try {
         const JSONElement = JSON.stringify(fullContent);
         const JSONTheme = JSON.stringify(theme);
+        console.log(JSONTheme);
         await UpdatePageContent(uri, JSONElement); // Call the server action
         await UpdatePageTheme(uri, JSONTheme);
         toast({

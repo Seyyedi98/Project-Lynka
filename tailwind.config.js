@@ -101,6 +101,17 @@ module.exports = {
             opacity: "",
           },
         },
+        "fade-in": {
+          "100%": {
+            opacity: "0",
+          },
+          "90%": {
+            opacity: "1",
+          },
+          "0%": {
+            opacity: "1",
+          },
+        },
         "fade-up": {
           "0%": {
             opacity: "0",
@@ -112,11 +123,11 @@ module.exports = {
           },
         },
         "fade-left": {
-          "0%": {
+          "100%": {
             opacity: "0",
             transform: "translateX(2rem)",
           },
-          "100%": {
+          "0%": {
             opacity: "1",
             transform: "translateX(0rem)",
           },
@@ -179,6 +190,7 @@ module.exports = {
       animation: {
         aurora: "aurora 60s linear infinite",
         "fade-left": "fade-left .7s ease",
+        "fade-in": "fade-in 1s forwards",
         "fade-out": "fade-oue .7s ease",
         "fade-right": "fade-right .7s ease",
         "fade-up": "fade-up 0.5s ease-out forwards",

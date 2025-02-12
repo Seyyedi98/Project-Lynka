@@ -16,7 +16,7 @@ const PageBackgroundSettings = () => {
   const setPageBackground = function (velue) {
     const payload = {
       ...theme,
-      backgroundValue: velue,
+      backgroundColor: velue,
       backgroundType: "color",
     };
     dispatch({ type: "page/setTheme", payload });
@@ -49,7 +49,7 @@ const PageBackgroundSettings = () => {
                 type="color"
                 defaultValue={
                   theme?.backgroundType === "color"
-                    ? theme?.backgroundValue
+                    ? theme?.backgroundColor
                     : "#FFFFFF"
                 }
                 onChange={(e) => setPageBackground(e.target.value)}
@@ -63,7 +63,7 @@ const PageBackgroundSettings = () => {
                 onClick={() => setPageBackground(color)}
                 className={cn(
                   `h-20 w-20 cursor-pointer rounded-full border border-primary duration-200 hover:shadow-xl`,
-                  theme.backgroundValue === color && "border-4",
+                  theme.backgroundColor === color && "border-4",
                 )}
               ></div>
             ))}
@@ -79,7 +79,7 @@ const PageBackgroundSettings = () => {
                 onClick={() => setPageBackground(color)}
                 className={cn(
                   `h-20 w-20 cursor-pointer rounded-full border border-primary duration-200 [scrollbar-width:none] hover:shadow-xl`,
-                  theme.backgroundValue === color && "border-4",
+                  theme.backgroundColor === color && "border-4",
                 )}
               ></div>
             );
@@ -94,7 +94,7 @@ const PageBackgroundSettings = () => {
                 onClick={() => setPageBackground(color)}
                 className={cn(
                   `h-20 w-20 cursor-pointer rounded-full border border-primary duration-200 [scrollbar-width:none] hover:shadow-xl`,
-                  theme.backgroundValue === color && "border-4",
+                  theme.backgroundColor === color && "border-4",
                 )}
               ></div>
             );
@@ -105,7 +105,7 @@ const PageBackgroundSettings = () => {
             <PageBgImageForm
               theme={theme}
               bgType={theme.backgroundType}
-              image={theme.backgroundValue}
+              image={theme.backgroundColor}
             />
           </div>
         )}

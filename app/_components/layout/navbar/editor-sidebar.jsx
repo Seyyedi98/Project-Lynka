@@ -22,7 +22,7 @@ const EditorSidebar = () => {
   const [selectedMenu, setSelectedMenu] = useState("elements");
 
   const setPageBackground = function (velue) {
-    const payload = { ...theme, backgroundValue: velue };
+    const payload = { ...theme, backgroundColor: velue };
     dispatch({ type: "page/setTheme", payload });
   };
 

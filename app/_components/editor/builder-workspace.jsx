@@ -37,7 +37,7 @@ const BuilderWorkspace = () => {
     shallowEqual,
   );
 
-  const workspaceBg = useMemo(
+  const workspaceBlurryBg = useMemo(
     () => ({
       backgroundImage: `url(${hero?.extraAttributes?.primaryImage.url})`,
       backgroundSize: "cover",
@@ -58,22 +58,22 @@ const BuilderWorkspace = () => {
   const colorBgStyle = useMemo(
     () => ({
       backgroundColor:
-        theme.backgroundType === "image" ? "" : theme.backgroundValue,
-      background: theme.backgroundValue,
+        theme.backgroundType === "image" ? "" : theme.backgroundColor,
+      background: theme.backgroundColor,
     }),
-    [theme.backgroundType, theme.backgroundValue],
+    [theme.backgroundType, theme.backgroundColor],
   );
 
   const imageBgStyle = useMemo(
     () => ({
       backgroundImage:
         theme.backgroundType === "image" &&
-        `url(${JSON.parse(theme.backgroundValue).url})`,
+        `url(${JSON.parse(theme.backgroundImage).url})`,
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
     }),
-    [theme.backgroundType, theme.backgroundValue],
+    [theme.backgroundType, theme.backgroundImage],
   );
 
   const droppable = useDroppable({
@@ -235,7 +235,7 @@ const BuilderWorkspace = () => {
           >
             {/* 🌆 Blurry Background Layer */}
             <div
-              style={workspaceBg}
+              style={workspaceBlurryBg}
               className="absolute left-0 top-0 hidden h-full w-full md:block"
             />
 
