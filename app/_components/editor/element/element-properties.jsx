@@ -6,6 +6,7 @@ import { PageElements } from "../../controller/page-elements-controller";
 import { PageHeroElement } from "../../elements/hero/page-hero-element";
 import ElementThemeSelector from "../../theme/element-theme-selector";
 import HeroThemeSelector from "../../theme/hero-theme-selector";
+import { ShinyButton } from "../../common/button/shiny-button";
 
 const ElementProperties = ({ element }) => {
   const [isThemeSelectPage, setIsThemeSelectPage] = useState(false);
@@ -29,7 +30,7 @@ const ElementProperties = ({ element }) => {
         ))}
 
       <div>
-        <Button
+        <ShinyButton
           className="mt-4 h-14 w-full bg-button hover:bg-card-light"
           size="lg"
           onClick={() => setIsThemeSelectPage(!isThemeSelectPage)}
@@ -38,7 +39,7 @@ const ElementProperties = ({ element }) => {
             {isThemeSelectPage ? "بازگشت" : "تغییر تم"}
             <ChevronLeft />
           </span>
-        </Button>
+        </ShinyButton>
 
         {element?.type !== "HeroElement" && (
           <DeleteElementBtn id={element?.id}>

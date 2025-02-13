@@ -4,11 +4,9 @@ import LivePageElements from "@/app/_components/live-page/live-page-elements-ren
 import LivePageHero from "@/app/_components/live-page/live-page-hero-render";
 import getPageContent from "@/lib/page/get-page-content";
 import getPageHero from "@/lib/page/get-page-hero";
-import getPageTheme from "@/lib/page/get-page-theme";
 import { cn } from "@/lib/utils";
 import fetchWithRetry from "@/utils/fetchWithRetry";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 
 // ✅ Dynamic Metadata Fetching with Error Handling
 export async function generateMetadata({ params }) {
@@ -88,7 +86,6 @@ const LivePage = async ({ params }) => {
 
   const hero = getPageHero(page);
   const content = getPageContent(page);
-  const pageTheme = getPageTheme(page);
 
   let theme;
   try {

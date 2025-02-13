@@ -52,8 +52,8 @@ const WorkspaceElementWrapper = ({ element }) => {
   return (
     <div
       ref={draggable.setNodeRef}
-      // {...draggable.listeners}
-      // {...draggable.attributes}
+      {...draggable.listeners}
+      {...draggable.attributes}
       className="relative flex w-full max-w-[380px] flex-col rounded-2xl text-foreground hover:cursor-pointer"
       onClick={(e) => {
         e.stopPropagation();

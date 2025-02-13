@@ -109,13 +109,13 @@ model Page {
   owner           String?
   loadingIcon     String?
   metaTitle       String?
-  metaDescription String?
-  favicon         String?  @db.LongText
-  metaImage       String?  @db.LongText
-  content         String   @db.LongText
+  metaDescription String?  @db.TinyText
+  favicon         String?  @db.Text
+  metaImage       String?  @db.Text
+  content         String   @db.MediumText
   visits          Int      @default(0)
   isPremium       Boolean  @default(false)
-  theme           String?  @db.LongText
+  theme           String?  @db.Text
 
   User User? @relation(fields: [owner], references: [id])
 

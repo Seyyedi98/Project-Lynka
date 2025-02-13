@@ -21,12 +21,20 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
+import { DesktopIcon } from "@radix-ui/react-icons";
 import { Check } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 function PropertiesComponent({ elementInstance }) {
+  const layoutOptions = [
+    { id: "basic", label: "Option 1" },
+    { id: "icon", label: "Option 2" },
+    { id: "imageSm", label: "Option 3" },
+    { id: "imageBg", label: "Option 3" },
+  ];
+
   const element = elementInstance;
   const dispatch = useDispatch();
 
@@ -154,6 +162,50 @@ function PropertiesComponent({ elementInstance }) {
 
           <Devider className="mt-4 opacity-50" />
           <h5 className="my-1 text-center text-xl text-primary">استایل</h5>
+
+          {/* Layout */}
+          <FormField
+            control={form.control}
+            name="layout"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>طرح بندی</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    className="flex items-center justify-between px-8"
+                  >
+                    {layoutOptions.map((option) => (
+                      <FormItem
+                        key={option.id}
+                        className="flexitems-center space-x-3 space-y-0"
+                      >
+                        <FormControl>
+                          <RadioGroupItem
+                            className="hidden"
+                            value={option.id}
+                          />
+                        </FormControl>
+                        <FormLabel
+                          className={`cursor-pointer font-normal text-iconLight ${
+                            field.value === option.id
+                              ? "text-muted-foreground"
+                              : ""
+                          }`}
+                        >
+                          <div>
+                            <DesktopIcon className="h-7 w-7" />
+                          </div>
+                        </FormLabel>
+                      </FormItem>
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           {/* Font */}
           <FormField

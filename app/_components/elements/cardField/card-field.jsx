@@ -1,9 +1,9 @@
-import { ButtonIcon } from "@radix-ui/react-icons";
-import { WorkspaceComponent } from "./components/WorkspaceComponent";
-import PropertiesComponent from "./components/PropertiesComponent";
+import { IdCardIcon } from "lucide-react";
 import LivePageComponent from "./components/LivePageComponent";
+import PropertiesComponent from "./components/PropertiesComponent";
+import { WorkspaceComponent } from "./components/WorkspaceComponent";
 
-const type = "ButtonField";
+const type = "CardField";
 
 const extraAttributes = {
   title: "عنوان",
@@ -14,7 +14,7 @@ const extraAttributes = {
   bgColor: "",
 };
 
-export const ButtonFieldFormElement = {
+export const CardFieldFormElement = {
   type,
   construct: (id) => ({
     id,
@@ -23,7 +23,7 @@ export const ButtonFieldFormElement = {
   }),
 
   ElementAdderBtn: {
-    icon: ButtonIcon,
+    icon: IdCardIcon,
     label: "لینک",
   },
 

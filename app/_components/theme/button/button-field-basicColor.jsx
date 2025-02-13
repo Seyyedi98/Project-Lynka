@@ -27,7 +27,7 @@ const ButtonFieldBasicColor = ({
 
   return (
     <>
-      {isLive && (
+      {isLive && href && (
         <a
           style={{ backgroundColor: bgColor }}
           href={`http://${href}`}
@@ -44,6 +44,22 @@ const ButtonFieldBasicColor = ({
             {title}
           </p>
         </a>
+      )}
+
+      {isLive && !href && (
+        <div
+          style={{ backgroundColor: bgColor }}
+          className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-2xl p-2 text-white shadow-lg"
+        >
+          <p
+            style={{
+              fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+              color: textColor,
+            }}
+          >
+            {title}
+          </p>
+        </div>
       )}
 
       {!isLive && (

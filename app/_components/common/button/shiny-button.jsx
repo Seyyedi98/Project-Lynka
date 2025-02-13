@@ -2,41 +2,36 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 //======================================Shiny Background
-export const EyeCatchingButton_v2 = ({ ...props }) => {
-  return (
-    <Button
-      {...props}
-      className={cn(
-        "animate-bg-shine duration-[2200ms] rounded-lg border-[1px] bg-[length:200%_100%] tracking-wide shadow",
-        "dark:border-zinc-800 dark:bg-[linear-gradient(110deg,#09090B,45%,#27272A,55%,#09090B)] dark:text-zinc-200",
-        "border-zinc-300 bg-[linear-gradient(110deg,#FFF,45%,#E4E4E7,55%,#FFF)] text-zinc-800",
-        props.className,
-      )}
-    />
-  );
-};
+export const ShinyButton = ({ ...props }) => {
+  const shinyButtonStyles = {
+    animation: "bg-shine 2.1s linear infinite",
+    backgroundSize: "200% 100%",
+  };
 
-/**
- *  tailwind.config.js
- * 
- * {
-  // ...rest of the config
-  theme:{
-    extends:{
-      "animation": {
-        "bg-shine": "bg-shine 2.1s linear infinite"
-      },
-      "keyframes": {
-        "bg-shine": {
-          "from": {
-            "backgroundPosition": "0 0"
-          },
-          "to": {
-            "backgroundPosition": "-200% 0"
-          }
-        }
+  const keyframes = `
+    @keyframes bg-shine {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: -200% 0;
       }
     }
-  }
-}
- */
+  `;
+
+  return (
+    <>
+      <style>{keyframes}</style>
+      <Button
+        {...props}
+        style={shinyButtonStyles}
+        className={cn(
+          "duration-[2200ms] rounded-lg border-[1px] tracking-wide shadow",
+          "dark:border-zinc-800 dark:bg-[linear-gradient(110deg,#2A2A2A,45%,#3f3f41,55%,#2A2A2A)] dark:text-zinc-200",
+          "border-zinc-300 bg-[linear-gradient(110deg,#FFF,45%,#E4E4E7,55%,#FFF)] text-zinc-800",
+          props.className,
+        )}
+      />
+    </>
+  );
+};

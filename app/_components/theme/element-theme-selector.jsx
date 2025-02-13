@@ -84,7 +84,12 @@ const ElementThemeSelector = ({ elementInstance }) => {
                 );
               }}
             >
-              <RenderedElement title={theme} />
+              <RenderedElement
+                theme={element.extraAttributes.theme}
+                bgColor={element.extraAttributes.bgColor}
+                textColor={element.extraAttributes.element}
+                title={element.extraAttributes.title}
+              />
             </div>
           );
         })}

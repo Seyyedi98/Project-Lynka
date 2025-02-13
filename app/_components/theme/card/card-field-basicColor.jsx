@@ -1,11 +1,17 @@
 "use client";
-
 import { loadFont } from "@/utils/loadFont";
 import { useEffect, useState } from "react";
 
-const ButtonFieldNature = ({ title, href, isLive, font, textColor }) => {
+const CardFieldBasicColor = ({
+  title,
+  href,
+  isLive,
+  font,
+  theme,
+  bgColor,
+  textColor,
+}) => {
   const [loadedFont, setLoadedFont] = useState(null);
-
   useEffect(() => {
     const fetchFont = async () => {
       try {
@@ -21,12 +27,13 @@ const ButtonFieldNature = ({ title, href, isLive, font, textColor }) => {
 
   return (
     <>
-      {isLive && (
+      {isLive && href && (
         <a
+          style={{ backgroundColor: bgColor }}
           href={`http://${href}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl bg-[#598901] p-2 text-white shadow-lg"
+          className="flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl p-2 text-white shadow-lg"
         >
           <p
             style={{
@@ -39,8 +46,27 @@ const ButtonFieldNature = ({ title, href, isLive, font, textColor }) => {
         </a>
       )}
 
+      {isLive && !href && (
+        <div
+          style={{ backgroundColor: bgColor }}
+          className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-2xl p-2 text-white shadow-lg"
+        >
+          <p
+            style={{
+              fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+              color: textColor,
+            }}
+          >
+            {title}
+          </p>
+        </div>
+      )}
+
       {!isLive && (
-        <div className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-2xl bg-[#598901] p-2 text-white shadow-lg">
+        <div
+          style={{ backgroundColor: bgColor }}
+          className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-2xl p-2 text-white shadow-lg"
+        >
           <p
             style={{
               fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
@@ -55,4 +81,4 @@ const ButtonFieldNature = ({ title, href, isLive, font, textColor }) => {
   );
 };
 
-export default ButtonFieldNature;
+export default CardFieldBasicColor;
