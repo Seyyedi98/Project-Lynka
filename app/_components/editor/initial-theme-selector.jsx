@@ -21,7 +21,7 @@ const InitialThemeSelector = ({ uri }) => {
         ...heroElement,
         extraAttributes: {
           ...heroElement.extraAttributes,
-          style: theme.hero,
+          style: theme.heroStyle,
           heroType: theme.heroType,
           heroValue: theme.heroValue,
         },

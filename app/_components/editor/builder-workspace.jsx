@@ -14,7 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../common/modal/diolog";
-import { PageElements } from "../controller/page-elements";
+import { PageElements } from "../controller/page-elements-controller";
 import EditorSidebar from "../layout/navbar/editor-sidebar";
 import PreviewPageContainer from "../preview/preview-page-container";
 import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";

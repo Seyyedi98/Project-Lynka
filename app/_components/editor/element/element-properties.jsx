@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, TrashIcon } from "lucide-react";
 import { useState } from "react";
 import DeleteElementBtn from "../../common/button/delete-element-button";
-import { PageElements } from "../../controller/page-elements";
+import { PageElements } from "../../controller/page-elements-controller";
 import { PageHeroElement } from "../../elements/hero/page-hero-element";
 import ElementThemeSelector from "../../theme/element-theme-selector";
 import HeroThemeSelector from "../../theme/hero-theme-selector";

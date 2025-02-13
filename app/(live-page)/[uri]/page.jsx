@@ -123,30 +123,23 @@ const LivePage = async ({ params }) => {
         }
         className="relative flex h-full w-full flex-col items-center justify-start gap-4"
       >
-        <Suspense
-          fallback={
-            page.loadingIcon ? (
-              <div
-                className={cn(
-                  `absolute z-[50] grid h-svh w-dvw place-items-center bg-background opacity-100 transition-opacity duration-300 animate-out`,
-                  page && "pointer-events-none opacity-0",
-                )}
-              >
-                <LoadingSpinner elementInstances={page.loadingIcon} />
-              </div>
-            ) : (
-              ""
-            )
-          }
-        >
-          {/* Hero Section */}
-          <LivePageHero hero={hero} />
+        {page.loadingIcon && (
+          <div
+            className={cn(
+              `absolute z-[50] grid h-svh w-dvw animate-fade-in place-items-center bg-background opacity-100 transition-opacity`,
+              page && "pointer-events-none opacity-0",
+            )}
+          >
+            <LoadingSpinner elementInstances={page.loadingIcon} />
+          </div>
+        )}
+        {/* Hero Section */}
+        <LivePageHero hero={hero} />
 
-          {/* Content Section */}
-          <section className="flex h-full w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
-            <LivePageElements content={content} />
-          </section>
-        </Suspense>
+        {/* Content Section */}
+        <section className="flex h-full w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
+          <LivePageElements content={content} />
+        </section>
       </div>
     </>
   );

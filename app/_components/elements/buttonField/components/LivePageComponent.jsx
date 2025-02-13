@@ -1,10 +1,10 @@
-import { ThemeController } from "../../../controller/theme-controller";
+import { ElementThemeController } from "../../../controller/element-theme-controller";
 
 function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
   const data = element.extraAttributes;
 
-  const RenderedElement = ThemeController[element.type][data.theme][0];
+  const RenderedElement = ElementThemeController[element.type][data.theme][0];
   return <RenderedElement isLive={true} {...data} />;
 }
 

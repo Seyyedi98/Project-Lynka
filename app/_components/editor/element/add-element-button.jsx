@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { useDraggable } from "@dnd-kit/core";
 import { PlusIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { PageElements } from "../../controller/page-elements";
+import { PageElements } from "../../controller/page-elements-controller";
 
 const AddElementButton = ({ pageElement }) => {
   // former sidebar-button-element

@@ -1,7 +1,7 @@
 "use client";
 
 import { useSelector } from "react-redux";
-import { PageElements } from "../controller/page-elements";
+import { PageElements } from "../controller/page-elements-controller";
 
 const PreviewPageElements = () => {
   const elements = useSelector((state) => state.page.elements);

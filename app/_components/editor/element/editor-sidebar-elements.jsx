@@ -1,4 +1,4 @@
-import { PageElements } from "../../controller/page-elements";
+import { PageElements } from "../../controller/page-elements-controller";
 import AddElementButton from "./add-element-button";
 
 const EditorSidebarElements = () => {

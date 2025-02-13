@@ -1,11 +1,11 @@
 "use client";
-import { ThemeController } from "../../../controller/theme-controller";
+import { ElementThemeController } from "../../../controller/element-theme-controller";
 
 export function LivePageComponent({ elementInstance }) {
   const element = elementInstance;
-  const { title, theme } = element.extraAttributes;
+  const data = element.extraAttributes;
 
-  const RenderedElement = ThemeController[element.type][theme][0];
+  const RenderedElement = ElementThemeController[element.type][theme][0];
 
-  return <RenderedElement title={title} />;
+  return <RenderedElement {...data} />;
 }

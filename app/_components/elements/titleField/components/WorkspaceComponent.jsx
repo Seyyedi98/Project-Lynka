@@ -1,13 +1,14 @@
 "use client";
 import { memo } from "react";
-import { ThemeController } from "../../../controller/theme-controller";
+import { ElementThemeController } from "../../../controller/element-theme-controller";
 
 export const WorkspaceComponent = memo(function WorkspaceComponent({
   elementInstance,
 }) {
   const element = elementInstance;
-  const { title, theme } = element.extraAttributes;
-  const RenderedElement = ThemeController[element.type][theme][0];
+  const data = element.extraAttributes;
+  console.log(data);
+  const RenderedElement = ElementThemeController[element.type][data.theme][0];
 
-  return <RenderedElement title={title} />;
+  return <RenderedElement {...data} />;
 });

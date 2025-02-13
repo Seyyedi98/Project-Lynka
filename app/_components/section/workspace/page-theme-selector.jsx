@@ -74,9 +74,8 @@ const PageThemeSelector = () => {
     });
 
     updateElementStyle({
-      theme: theme.name,
+      theme: theme.elementStyle,
       textColor: theme.elementTextColor,
-      type: theme.elementType,
       bgColor: theme.elementColor,
     });
   };

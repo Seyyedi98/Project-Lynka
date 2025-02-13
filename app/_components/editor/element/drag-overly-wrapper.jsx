@@ -2,7 +2,7 @@ import { DragOverlay, useDndMonitor } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { useState } from "react";
 import { shallowEqual, useSelector } from "react-redux";
-import { PageElements } from "../../controller/page-elements";
+import { PageElements } from "../../controller/page-elements-controller";
 import { AdderBtnDragOverly } from "./add-element-button";
 
 const DragOverlyWrapper = () => {

@@ -4,7 +4,6 @@ export const themes = [
     backgroundType: "gradient",
     backgroundColor: "linear-gradient(45deg, #801336, #C72C41)",
     backgroundImage: "",
-    hero: "basic", //outdated, replace by style
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "linear-gradient(45deg, #801336, #C72C41)",
@@ -12,6 +11,7 @@ export const themes = [
     heroSubtitleFont: "sahel",
     heroTitleColor: "#ffffff",
     heroSubtitleColor: "#ffffff",
+    elementStyle: "basicColor",
     elementColor: "#EE4540",
     elementTextColor: "#FFFFFF",
   },
@@ -20,7 +20,6 @@ export const themes = [
     backgroundType: "gradient",
     backgroundColor: "linear-gradient(45deg, #478BA2, #DE5B6D)",
     backgroundImage: "",
-    hero: "basic", //outdated, replace by style
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "linear-gradient(45deg, #478BA2, #DE5B6D)",
@@ -28,31 +27,16 @@ export const themes = [
     heroSubtitleFont: "sahel",
     heroTitleColor: "#ffffff",
     heroSubtitleColor: "#ffffff",
+    elementStyle: "basicColor",
     elementColor: "#F2A490",
     elementTextColor: "#FFFFFF",
   },
-  {
-    name: "pink2",
-    backgroundType: "gradient",
-    backgroundColor: "linear-gradient(45deg, #AF49AB, #DF3F46)",
-    backgroundImage: "",
-    hero: "basic", //outdated, replace by style
-    heroType: "image",
-    heroStyle: "transparent",
-    heroValue: "linear-gradient(45deg, #AF49AB, #DF3F46)",
-    heroTitleFont: "sahel",
-    heroSubtitleFont: "sahel",
-    heroTitleColor: "#ffffff",
-    heroSubtitleColor: "#ffffff",
-    elementColor: "#DF3F46",
-    elementTextColor: "#FFFFFF",
-  },
+
   {
     name: "nature",
     backgroundType: "gradient",
     backgroundColor: "linear-gradient(45deg, #598901, #2D5A00)",
     backgroundImage: "",
-    hero: "basic", //outdated, replace by style
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "linear-gradient(45deg, #598901, #2D5A00)",
@@ -60,7 +44,8 @@ export const themes = [
     heroSubtitleFont: "sahel",
     heroTitleColor: "#ffffff",
     heroSubtitleColor: "#ffffff",
-    elementColor: "##598901",
+    elementStyle: "basicColor",
+    elementColor: "#598901",
     elementTextColor: "#FFFFFF",
   },
 ];

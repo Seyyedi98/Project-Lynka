@@ -30,7 +30,9 @@ const pageSlice = createSlice({
       if (applyPageTheme) {
         element.extraAttributes = {
           ...element.extraAttributes,
-          theme: state.theme?.name,
+          theme: state.theme?.elementStyle,
+          textColor: state.theme?.elementTextColor,
+          bgColor: state.theme?.elementColor,
         };
       }
       state.elements.splice(index, 0, element);

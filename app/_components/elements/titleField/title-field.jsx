@@ -8,6 +8,9 @@ const type = "TitleField";
 const extraAttributes = {
   title: "عنوان",
   theme: "",
+  font: "",
+  textColor: "#ffffff",
+  bgColor: "",
 };
 
 export const TitleFieldFormElement = {
