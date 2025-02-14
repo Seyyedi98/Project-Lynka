@@ -24,6 +24,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Devider from "@/app/_components/common/shared/devider";
 import HeroWorkspaceUploader from "@/app/_components/common/input/workspace-hero-uploader";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
@@ -91,155 +92,171 @@ function PropertiesComponent({ elementInstance }) {
           className="flex flex-col gap-2"
           onSubmit={form.handleSubmit(applyChanges)}
         >
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>عنوان</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.currentTarget.blur();
-                      }
-                    }}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <Tabs dir="rtl" defaultValue="content" className="">
+            <TabsList className="mb-2">
+              <TabsTrigger value="content">محتوا</TabsTrigger>
+              <TabsTrigger value="style">استایل</TabsTrigger>
+            </TabsList>
 
-          <FormField
-            control={form.control}
-            name="titleFont"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>فونت عنوان اصلی</FormLabel>
-                <FormControl>
-                  <Select
-                    {...field}
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    dir="rtl"
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="فونت" />
-                    </SelectTrigger>
+            <TabsContent value="content" className="flex flex-col gap-4">
+              {/* Title */}
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>عنوان</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.currentTarget.blur();
+                          }
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                    <SelectContent>
-                      <Suspense fallback={<p>در حال بارگزاری...</p>}>
-                        {fontsList.map(({ fontName, fontValue }, index) => (
-                          <SelectItem
-                            className="hover:cursor-pointer"
-                            key={`${index}-${fontName}`}
-                            value={fontValue}
-                          >
-                            <p style={{ fontFamily: fontValue }}>
-                              {fontName} - {element.extraAttributes.title}
-                            </p>
-                          </SelectItem>
-                        ))}
-                      </Suspense>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+              {/* Subtitle */}
+              <FormField
+                control={form.control}
+                name="subtitle"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>عنوان</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.currentTarget.blur();
+                          }
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </TabsContent>
 
-          <FormField
-            control={form.control}
-            name="titleColor"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>رنگ</FormLabel>
-                <FormControl>
-                  <Input {...field} type="color" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            <TabsContent value="style" className="flex flex-col gap-4">
+              {/* Title Color */}
+              <FormField
+                control={form.control}
+                name="titleColor"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>رنگ</FormLabel>
+                    <FormControl>
+                      <Input {...field} type="color" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-          <Devider className="mt-4 opacity-40" />
+              {/* Title Font */}
+              <FormField
+                control={form.control}
+                name="titleFont"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>فونت عنوان اصلی</FormLabel>
+                    <FormControl>
+                      <Select
+                        {...field}
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        dir="rtl"
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="فونت" />
+                        </SelectTrigger>
 
-          <FormField
-            control={form.control}
-            name="subtitle"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>عنوان</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.currentTarget.blur();
-                      }
-                    }}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                        <SelectContent>
+                          <Suspense fallback={<p>در حال بارگزاری...</p>}>
+                            {fontsList.map(({ fontName, fontValue }, index) => (
+                              <SelectItem
+                                className="hover:cursor-pointer"
+                                key={`${index}-${fontName}`}
+                                value={fontValue}
+                              >
+                                <p style={{ fontFamily: fontValue }}>
+                                  {fontName} - {element.extraAttributes.title}
+                                </p>
+                              </SelectItem>
+                            ))}
+                          </Suspense>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-          <FormField
-            control={form.control}
-            name="subtitleFont"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>فونت عنوان دوم</FormLabel>
-                <FormControl>
-                  <Select
-                    {...field}
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    dir="rtl"
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="فونت" />
-                    </SelectTrigger>
+              {/* Subtitle Color */}
+              <FormField
+                control={form.control}
+                name="subtitleColor"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>رنگ</FormLabel>
+                    <FormControl>
+                      <Input {...field} type="color" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                    <SelectContent>
-                      <Suspense fallback={<p>در حال بارگزاری...</p>}>
-                        {fontsList.map(({ fontName, fontValue }, index) => (
-                          <SelectItem
-                            className="hover:cursor-pointer"
-                            key={`${index}-${fontName}`}
-                            value={fontValue}
-                          >
-                            <p style={{ fontFamily: fontValue }}>
-                              {fontName} - {element.extraAttributes.subtitle}
-                            </p>
-                          </SelectItem>
-                        ))}
-                      </Suspense>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+              {/* Subtitle Font */}
+              <FormField
+                control={form.control}
+                name="subtitleFont"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>فونت عنوان دوم</FormLabel>
+                    <FormControl>
+                      <Select
+                        {...field}
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        dir="rtl"
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="فونت" />
+                        </SelectTrigger>
 
-          <FormField
-            control={form.control}
-            name="subtitleColor"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>رنگ</FormLabel>
-                <FormControl>
-                  <Input {...field} type="color" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                        <SelectContent>
+                          <Suspense fallback={<p>در حال بارگزاری...</p>}>
+                            {fontsList.map(({ fontName, fontValue }, index) => (
+                              <SelectItem
+                                className="hover:cursor-pointer"
+                                key={`${index}-${fontName}`}
+                                value={fontValue}
+                              >
+                                <p style={{ fontFamily: fontValue }}>
+                                  {fontName} -{" "}
+                                  {element.extraAttributes.subtitle}
+                                </p>
+                              </SelectItem>
+                            ))}
+                          </Suspense>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </TabsContent>
+          </Tabs>
 
           <div className="mt-2">
             <HeroWorkspaceUploader />

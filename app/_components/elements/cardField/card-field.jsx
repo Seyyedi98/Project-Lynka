@@ -10,8 +10,10 @@ const extraAttributes = {
   theme: "",
   font: "",
   href: "",
+  layout: "basic",
   textColor: "#ffffff",
   bgColor: "",
+  image: "",
 };
 
 export const CardFieldFormElement = {

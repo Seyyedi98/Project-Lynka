@@ -1,6 +1,8 @@
 "use client";
 
+import CardElementBgUploader from "@/app/_components/common/input/card-element-image-uploader";
 import Devider from "@/app/_components/common/shared/devider";
+import { ElementThemeController } from "@/app/_components/controller/element-theme-controller";
 import { fontsList } from "@/app/fonts/fonts";
 import {
   Form,
@@ -20,6 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { DesktopIcon } from "@radix-ui/react-icons";
 import { Check } from "lucide-react";
@@ -30,13 +33,16 @@ import { useDispatch } from "react-redux";
 function PropertiesComponent({ elementInstance }) {
   const layoutOptions = [
     { id: "basic", label: "Option 1" },
-    { id: "icon", label: "Option 2" },
-    { id: "imageSm", label: "Option 3" },
-    { id: "imageBg", label: "Option 3" },
+    { id: "roundedImage", label: "Option 2" },
+    { id: "wideFullImage", label: "Option 3" },
+    { id: "highFullImage", label: "Option 3" },
   ];
 
   const element = elementInstance;
   const dispatch = useDispatch();
+
+  const RenderElement =
+    ElementThemeController[element.type][element.extraAttributes.theme][0];
 
   const form = useForm({
     // TODO: Create zod schema
@@ -47,6 +53,8 @@ function PropertiesComponent({ elementInstance }) {
       font: element.extraAttributes.font || "",
       textColor: element.extraAttributes.textColor || "",
       bgColor: element.extraAttributes.bgColor || "",
+      layout: element.extraAttributes.layout || "",
+      image: "",
     },
   });
 
@@ -55,7 +63,8 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { title, href, font, textColor, bgColor } = values;
+    const data = values;
+
 
     const payload = {
       id: element.id,
@@ -63,11 +72,7 @@ function PropertiesComponent({ elementInstance }) {
         ...element,
         extraAttributes: {
           ...element.extraAttributes,
-          title,
-          href,
-          font,
-          textColor,
-          bgColor,
+          ...data,
         },
       },
     };
@@ -93,185 +98,206 @@ function PropertiesComponent({ elementInstance }) {
           className="flex flex-col gap-5 text-primary"
           onSubmit={form.handleSubmit(applyChanges)}
         >
-          <h5 className="text-center text-xl text-primary">محتوا</h5>
+          <Tabs dir="rtl" defaultValue="content" className="">
+            <TabsList className="mb-2">
+              <TabsTrigger value="content">محتوا</TabsTrigger>
+              <TabsTrigger value="style">استایل</TabsTrigger>
+            </TabsList>
 
-          {/* Title */}
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem>
-                {/* <FormLabel>عنوان</FormLabel> */}
-                <FormControl>
-                  <Input
-                    {...field}
-                    placeholder="عنوان"
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.currentTarget.blur();
-                      }
-                    }}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Address */}
-          <div className="relative flex gap-1">
-            <div className="w-full">
+            <TabsContent value="content" className="flex flex-col gap-4">
+              {/* Title */}
               <FormField
                 control={form.control}
-                name="href"
+                name="title"
                 render={({ field }) => (
                   <FormItem>
-                    {/* <FormLabel>آدرس</FormLabel> */}
-
-                    <div>
-                      <FormControl>
-                        <Input
-                          dir="ltr"
-                          {...field}
-                          placeholder="http://url..."
-                          onKeyDown={(e) => {
-                            // Prevent space key
-                            if (e.key === " ") {
-                              e.preventDefault();
-                            }
-                            // Handle Enter key
-                            if (e.key === "Enter") {
-                              e.currentTarget.blur();
-                            }
-                          }}
-                        />
-                      </FormControl>
-                    </div>
-                    <FormDescription className="text-xs">
-                      آدرس صفحه ای که می خواهید به آن هدایت شوید
-                    </FormDescription>
+                    {/* <FormLabel>عنوان</FormLabel> */}
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder="عنوان"
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.currentTarget.blur();
+                          }
+                        }}
+                      />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-            </div>
-            {/* <div className="mb-1 flex items-end justify-end" dir="ltr">
+              {/* Address */}
+              <div className="relative flex gap-1">
+                <div className="w-full">
+                  <FormField
+                    control={form.control}
+                    name="href"
+                    render={({ field }) => (
+                      <FormItem>
+                        {/* <FormLabel>آدرس</FormLabel> */}
+
+                        <div>
+                          <FormControl>
+                            <Input
+                              dir="ltr"
+                              {...field}
+                              placeholder="http://url..."
+                              onKeyDown={(e) => {
+                                // Prevent space key
+                                if (e.key === " ") {
+                                  e.preventDefault();
+                                }
+                                // Handle Enter key
+                                if (e.key === "Enter") {
+                                  e.currentTarget.blur();
+                                }
+                              }}
+                            />
+                          </FormControl>
+                        </div>
+                        <FormDescription className="text-xs">
+                          آدرس صفحه ای که می خواهید به آن هدایت شوید
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                {/* <div className="mb-1 flex items-end justify-end" dir="ltr">
               http://
             </div> */}
-          </div>
+              </div>{" "}
+            </TabsContent>
 
-          <Devider className="mt-4 opacity-50" />
-          <h5 className="my-1 text-center text-xl text-primary">استایل</h5>
+            <TabsContent value="style" className="flex flex-col gap-4">
+              {/* Layout */}
+              <FormField
+                control={form.control}
+                name="layout"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>طرح بندی</FormLabel>
+                    <FormControl>
+                      <div className="flex flex-col gap-4">
+                        <RadioGroup
+                          dir="rtl"
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                          className="mt-2 flex items-center justify-between px-8"
+                        >
+                          {layoutOptions.map((option) => (
+                            <FormItem
+                              key={option.id}
+                              className="flexitems-center space-x-3 space-y-0"
+                            >
+                              <FormControl>
+                                <RadioGroupItem
+                                  className="hidden"
+                                  value={option.id}
+                                />
+                              </FormControl>
+                              <FormLabel
+                                className={`cursor-pointer font-normal text-iconLight ${
+                                  field.value === option.id
+                                    ? "text-muted-foreground"
+                                    : ""
+                                }`}
+                              >
+                                <div>
+                                  <DesktopIcon className="h-7 w-7" />
+                                </div>
+                              </FormLabel>
+                            </FormItem>
+                          ))}
+                        </RadioGroup>
 
-          {/* Layout */}
-          <FormField
-            control={form.control}
-            name="layout"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>طرح بندی</FormLabel>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className="flex items-center justify-between px-8"
-                  >
-                    {layoutOptions.map((option) => (
-                      <FormItem
-                        key={option.id}
-                        className="flexitems-center space-x-3 space-y-0"
-                      >
-                        <FormControl>
-                          <RadioGroupItem
-                            className="hidden"
-                            value={option.id}
+                        <div className="pointer-events-none mt-2 scale-90">
+                          <RenderElement
+                            {...element.extraAttributes}
+                            layout={field.value}
                           />
-                        </FormControl>
-                        <FormLabel
-                          className={`cursor-pointer font-normal text-iconLight ${
-                            field.value === option.id
-                              ? "text-muted-foreground"
-                              : ""
-                          }`}
-                        >
-                          <div>
-                            <DesktopIcon className="h-7 w-7" />
-                          </div>
-                        </FormLabel>
-                      </FormItem>
-                    ))}
-                  </RadioGroup>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                        </div>
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-          {/* Font */}
-          <FormField
-            control={form.control}
-            name="font"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>فونت</FormLabel>
-                <FormControl>
-                  <Select
-                    {...field}
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    dir="rtl"
-                  >
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="فونت" />
-                    </SelectTrigger>
+              <CardElementBgUploader form={form} element={element} />
 
-                    <SelectContent>
-                      {fontsList.map(({ fontName, fontValue }, index) => (
-                        <SelectItem
-                          className="hover:cursor-pointer"
-                          key={`${index}-${fontName}`}
-                          value={fontValue}
-                        >
-                          <p style={{ fontFamily: fontValue }}>{fontName}</p>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+              <Devider className="mt-4 opacity-50" />
 
-          {/* Text Color */}
-          <FormField
-            control={form.control}
-            name="textColor"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>رنگ نوشته</FormLabel>
-                <FormControl>
-                  <Input {...field} type="color" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+              {/* Font */}
+              <FormField
+                control={form.control}
+                name="font"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>فونت</FormLabel>
+                    <FormControl>
+                      <Select
+                        {...field}
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        dir="rtl"
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="فونت" />
+                        </SelectTrigger>
 
-          {/* Background Color */}
-          <FormField
-            control={form.control}
-            name="bgColor"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>رنگ بلوک</FormLabel>
-                <FormControl>
-                  <Input {...field} type="color" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                        <SelectContent>
+                          {fontsList.map(({ fontName, fontValue }, index) => (
+                            <SelectItem
+                              className="hover:cursor-pointer"
+                              key={`${index}-${fontName}`}
+                              value={fontValue}
+                            >
+                              <p style={{ fontFamily: fontValue }}>
+                                {fontName}
+                              </p>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Text Color */}
+              <FormField
+                control={form.control}
+                name="textColor"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>رنگ نوشته</FormLabel>
+                    <FormControl>
+                      <Input {...field} type="color" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Background Color */}
+              <FormField
+                control={form.control}
+                name="bgColor"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>رنگ بلوک</FormLabel>
+                    <FormControl>
+                      <Input {...field} type="color" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </TabsContent>
+          </Tabs>
 
           {/* Mobile drawaer button */}
           <button

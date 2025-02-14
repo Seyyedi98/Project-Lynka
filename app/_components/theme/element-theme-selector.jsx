@@ -50,7 +50,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
         </SquareButton>
       </div>
 
-      <div className="grid grid-cols-1 justify-start sm:grid-cols-2">
+      <div className="grid grid-cols-1 justify-start">
         {themesList.map((theme, index) => {
           const RenderedElement =
             ElementThemeController[element.type][theme][0];
@@ -58,7 +58,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
           return (
             <div
               key={(index, theme)}
-              className="scale-[0.85] cursor-pointer transition-all duration-200 hover:scale-[0.87] hover:shadow-xl"
+              className="pointer-events-none scale-[0.85] cursor-pointer transition-all duration-200 hover:scale-[0.87] hover:shadow-xl"
               onClick={() => {
                 const payload = {
                   id: element.id,

@@ -155,6 +155,48 @@ function PropertiesComponent({ elementInstance }) {
           <Devider className="mt-4 opacity-50" />
           <h5 className="my-1 text-center text-xl text-primary">استایل</h5>
 
+          {/* Layout */}
+          <FormField
+            control={form.control}
+            name="font"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>طرح بندی</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    className="flex flex-col space-y-1"
+                  >
+                    <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value="all" />
+                      </FormControl>
+                      <FormLabel className="font-normal">
+                        All new messages
+                      </FormLabel>
+                    </FormItem>
+                    <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value="mentions" />
+                      </FormControl>
+                      <FormLabel className="font-normal">
+                        Direct messages and mentions
+                      </FormLabel>
+                    </FormItem>
+                    <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value="none" />
+                      </FormControl>
+                      <FormLabel className="font-normal">Nothing</FormLabel>
+                    </FormItem>
+                  </RadioGroup>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           {/* Font */}
           <FormField
             control={form.control}

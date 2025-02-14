@@ -1,4 +1,5 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { loadFont } from "@/utils/loadFont";
 import { useEffect, useState } from "react";
 
@@ -26,58 +27,25 @@ const ButtonFieldBasicColor = ({
   }, [font]);
 
   return (
-    <>
-      {isLive && href && (
-        <a
-          style={{ backgroundColor: bgColor }}
-          href={`http://${href}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl p-2 text-white shadow-lg"
-        >
-          <p
-            style={{
-              fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-              color: textColor,
-            }}
-          >
-            {title}
-          </p>
-        </a>
+    <a
+      style={{ backgroundColor: bgColor }}
+      href={`http://${href}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={cn(
+        `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl p-2 text-lg font-medium text-white shadow-lg`,
+        !isLive || (href === " " && "pointer-events-none"),
       )}
-
-      {isLive && !href && (
-        <div
-          style={{ backgroundColor: bgColor }}
-          className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-2xl p-2 text-white shadow-lg"
-        >
-          <p
-            style={{
-              fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-              color: textColor,
-            }}
-          >
-            {title}
-          </p>
-        </div>
-      )}
-
-      {!isLive && (
-        <div
-          style={{ backgroundColor: bgColor }}
-          className="flex h-16 w-full flex-col items-center justify-center gap-2 rounded-2xl p-2 text-white shadow-lg"
-        >
-          <p
-            style={{
-              fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-              color: textColor,
-            }}
-          >
-            {title}
-          </p>
-        </div>
-      )}
-    </>
+    >
+      <p
+        style={{
+          fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+          color: textColor,
+        }}
+      >
+        {title}
+      </p>
+    </a>
   );
 };
 
