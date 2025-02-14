@@ -47,7 +47,7 @@ const CardFieldBasicColor = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl p-2 text-lg font-semibold text-white shadow-lg`,
+          `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl p-2 text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
@@ -70,7 +70,7 @@ const CardFieldBasicColor = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `flex h-28 w-full cursor-pointer items-center justify-start gap-4 rounded-2xl p-2 px-4 text-lg font-semibold text-white shadow-lg`,
+          `flex h-28 w-full cursor-pointer items-center justify-start gap-4 rounded-2xl p-2 px-4 text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
@@ -160,7 +160,7 @@ const CardFieldBasicColor = ({
           />
         )}
         <p
-          className="px-2 pb-2"
+          className="px-3 pb-2"
           style={{
             fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
             color: textColor,

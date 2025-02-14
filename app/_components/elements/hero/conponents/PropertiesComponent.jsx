@@ -105,10 +105,11 @@ function PropertiesComponent({ elementInstance }) {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>عنوان</FormLabel>
+                    {/* <FormLabel>عنوان</FormLabel> */}
                     <FormControl>
                       <Input
                         {...field}
+                        placeholder="عنوان"
                         onKeyDown={(e) => {
                           if (e.key === "Enter") {
                             e.currentTarget.blur();
@@ -127,10 +128,12 @@ function PropertiesComponent({ elementInstance }) {
                 name="subtitle"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>عنوان</FormLabel>
+                    {/* <FormLabel>عنوان</FormLabel> */}
                     <FormControl>
                       <Input
+                        className="rounded-full"
                         {...field}
+                        placeholder="توضیحات"
                         onKeyDown={(e) => {
                           if (e.key === "Enter") {
                             e.currentTarget.blur();
