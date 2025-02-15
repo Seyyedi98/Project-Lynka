@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { DesktopIcon } from "@radix-ui/react-icons";
@@ -98,8 +99,16 @@ function PropertiesComponent({ elementInstance }) {
       <Form {...form}>
         <Suspense
           fallback={
-            <div className="flex h-full w-full items-center justify-center">
-              <LoaderIcon />
+            <div>
+              <div className="flex w-full gap-4">
+                <Skeleton className="h-16 w-1/2" />
+
+                <Skeleton className="h-16 w-1/2" />
+              </div>
+              <Skeleton className="mt-6 h-16 w-full" />
+              <Skeleton className="mt-6 h-48 w-full" />
+              <Skeleton className="mt-6 h-4 w-[250px]" />
+              <Skeleton className="mt-3 h-4 w-[200px]" />
             </div>
           }
         >
@@ -235,13 +244,6 @@ function PropertiesComponent({ elementInstance }) {
                   )}
                 />
 
-                {/* <Suspense
-                fallback={
-                  <div className="flex h-full w-full items-center justify-center">
-                    <LoaderIcon />
-                  </div>
-                }
-              > */}
                 <div className="mt-2">
                   <UploadButton form={form} element={element} />
 
@@ -249,7 +251,6 @@ function PropertiesComponent({ elementInstance }) {
                     پس از انتخاب فایل، دکمه بارگزاری را بزنید
                   </p>
                 </div>
-                {/* </Suspense> */}
 
                 <Devider className="mt-4 opacity-50" />
 

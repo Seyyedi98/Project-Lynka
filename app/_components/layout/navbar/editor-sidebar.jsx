@@ -26,7 +26,6 @@ const EditorSidebar = () => {
     dispatch({ type: "page/setTheme", payload });
   };
 
-  // TODO: Replace with skeleton
   if (isDesktop === null) {
     return;
   }

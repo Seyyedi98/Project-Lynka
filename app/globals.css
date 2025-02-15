@@ -61,7 +61,7 @@ body {
       --card-foreground: 248 0% 100%;
       --popover: 248 10% 5%;
       --popover-foreground: 248 0% 100%;
-      --primary: hsl(0, 0%, 100%);
+      --primary: 0 0% 100%;
       --primary-foreground: 0 0% 100%;
       --secondary: 248 10% 20%;
       --secondary-foreground: 0 0% 100%;

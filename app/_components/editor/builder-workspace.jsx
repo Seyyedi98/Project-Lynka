@@ -262,6 +262,7 @@ const BuilderWorkspace = () => {
               <PageUrl />
             </div>
 
+            {/* Page background */}
             <div
               style={
                 theme.backgroundType === "color" ||
