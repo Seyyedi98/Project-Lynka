@@ -1,5 +1,6 @@
 "use client";
 
+// import HeroWorkspaceUploader from "@/app/_components/common/input/workspace-hero-uploader";
 import { fontsList } from "@/app/fonts/fonts";
 import {
   Form,
@@ -17,14 +18,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
-import { Check } from "lucide-react";
+import { Check, LoaderIcon } from "lucide-react";
+import dynamic from "next/dynamic";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import Devider from "@/app/_components/common/shared/devider";
-import HeroWorkspaceUploader from "@/app/_components/common/input/workspace-hero-uploader";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+const UploadButton = dynamic(
+  () => import("@/app/_components/common/input/workspace-hero-uploader"),
+);
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
@@ -131,7 +135,7 @@ function PropertiesComponent({ elementInstance }) {
                     {/* <FormLabel>عنوان</FormLabel> */}
                     <FormControl>
                       <Input
-                        className="rounded-full"
+                        className=""
                         {...field}
                         placeholder="توضیحات"
                         onKeyDown={(e) => {
@@ -261,12 +265,22 @@ function PropertiesComponent({ elementInstance }) {
             </TabsContent>
           </Tabs>
 
-          <div className="mt-2">
-            <HeroWorkspaceUploader />
-            <p className="text-xs text-textLight">
-              پس از انتخاب فایل، دکمه بارگزاری را بزنید
-            </p>
-          </div>
+          <Suspense
+            fallback={
+              <div className="flex h-full w-full items-center justify-center">
+                <LoaderIcon />
+              </div>
+            }
+          >
+            <div className="mt-2">
+              {/* <HeroWorkspaceUploader /> */}
+              <UploadButton />
+
+              <p className="text-xs text-textLight">
+                پس از انتخاب فایل، دکمه بارگزاری را بزنید
+              </p>
+            </div>
+          </Suspense>
 
           {/* Mobile drawaer button */}
           <button

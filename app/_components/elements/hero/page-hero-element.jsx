@@ -7,7 +7,7 @@ const type = "HeroElement";
 const extraAttributes = {
   style: "",
   title: "عنوان",
-  subtitle: "زیر عنوان",
+  subtitle: "توضیحات",
   titleFont: "",
   subtitleFont: "",
   titleColor: "#ffffff",
