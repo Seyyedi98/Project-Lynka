@@ -14,10 +14,13 @@ module.exports = {
     extend: {
       colors: {
         secondaryBg: "hsl(var(--secondaryBg))",
-        iconLight: "hsl(var(--iconLight))",
         textLight: "hsl(var(--textLight))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        icon: {
+          DEFAULT: "hsl(var(--icon))",
+          light: "hsl(var(--icon-light))",
+        },
         button: {
           DEFAULT: "hsl(var(--button))",
         },

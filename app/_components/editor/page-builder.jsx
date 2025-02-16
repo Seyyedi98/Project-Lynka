@@ -56,11 +56,11 @@ const PageBuilder = ({ page }) => {
         return notFound(); // Handle failure after retries
       }
 
-      // Load from database
+      // Load page elements from database
       const elements = getPageContent(pageData);
       const hero = getPageHero(pageData);
 
-      // Set data to state
+      // Set loaded data to state
       const newState = {
         elements: elements,
         hero: hero,

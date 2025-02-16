@@ -11,6 +11,7 @@ const ButtonFieldBasicColor = ({
   theme,
   bgColor,
   textColor,
+  borderRadius,
 }) => {
   const [loadedFont, setLoadedFont] = useState(null);
   useEffect(() => {
@@ -28,12 +29,12 @@ const ButtonFieldBasicColor = ({
 
   return (
     <a
-      style={{ backgroundColor: bgColor }}
+      style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
       href={`http://${href}`}
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl p-2 text-lg font-medium text-white shadow-lg`,
+        `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 text-lg font-medium text-white shadow-lg`,
         !isLive || (href === " " && "pointer-events-none"),
       )}
     >

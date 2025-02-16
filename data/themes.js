@@ -15,6 +15,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#EE4540",
     elementTextColor: "#FFFFFF",
+    borderRadius: "12px",
   },
   {
     name: "pink",
@@ -32,6 +33,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#F2A490",
     elementTextColor: "#FFFFFF",
+    borderRadius: "12px",
   },
 
   {
@@ -50,6 +52,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#598901",
     elementTextColor: "#FFFFFF",
+    borderRadius: "12px",
   },
   {
     name: "blue",
@@ -67,6 +70,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#FF1684",
     elementTextColor: "#FFFFFF",
+    borderRadius: "12px",
   },
   {
     name: "fire",
@@ -84,6 +88,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#FC122C",
     elementTextColor: "#FFFFFF",
+    borderRadius: "12px",
   },
   {
     name: "orange",
@@ -101,6 +106,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#F15F4E",
     elementTextColor: "#FFFFFF",
+    borderRadius: "12px",
   },
   {
     name: "purple",
@@ -118,6 +124,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#FFCF04",
     elementTextColor: "#FFFFFF",
+    borderRadius: "12px",
   },
   {
     name: "lucy",
@@ -135,6 +142,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#F2C6F2",
     elementTextColor: "#000",
+    borderRadius: "12px",
   },
   {
     name: "cyan",
@@ -152,6 +160,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#A0C0FF",
     elementTextColor: "#fff",
+    borderRadius: "12px",
   },
   {
     name: "sky",
@@ -169,6 +178,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#FAA7B8",
     elementTextColor: "#fff",
+    borderRadius: "12px",
   },
   {
     name: "darkPurple",
@@ -186,6 +196,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#E4007C",
     elementTextColor: "#fff",
+    borderRadius: "12px",
   },
   {
     name: "natureSky",
@@ -203,6 +214,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#8FC93A",
     elementTextColor: "#fff",
+    borderRadius: "12px",
   },
   {
     name: "pinkblue",
@@ -220,6 +232,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#85D0CC",
     elementTextColor: "#fff",
+    borderRadius: "12px",
   },
   {
     name: "semiDark",
@@ -237,6 +250,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#FF6238",
     elementTextColor: "#fff",
+    borderRadius: "12px",
   },
   {
     name: "darkRed",
@@ -254,5 +268,6 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#E73754",
     elementTextColor: "#fff",
+    borderRadius: "12px",
   },
 ];

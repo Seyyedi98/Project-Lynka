@@ -24,8 +24,9 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 import { DesktopIcon } from "@radix-ui/react-icons";
-import { Check, LoaderIcon } from "lucide-react";
+import { Check } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -43,6 +44,14 @@ function PropertiesComponent({ elementInstance }) {
     { id: "highFullImage", label: "Option 3" },
   ];
 
+  const borderRadiusList = [
+    { id: "small", value: "4px" },
+    { id: "medium", value: "6px" },
+    { id: "large", value: "8px" },
+    { id: "xlarge", value: "12px" },
+    { id: "2xlarge", value: "16px" },
+  ];
+
   const element = elementInstance;
   const dispatch = useDispatch();
 
@@ -58,6 +67,7 @@ function PropertiesComponent({ elementInstance }) {
       font: element.extraAttributes.font || "",
       textColor: element.extraAttributes.textColor || "",
       bgColor: element.extraAttributes.bgColor || "",
+      borderRadius: element.extraAttributes.borderRadius || "",
       layout: element.extraAttributes.layout || "",
       image: "",
     },
@@ -208,7 +218,7 @@ function PropertiesComponent({ elementInstance }) {
                             {layoutOptions.map((option) => (
                               <FormItem
                                 key={option.id}
-                                className="flexitems-center space-x-3 space-y-0"
+                                className="flex items-center space-x-3 space-y-0"
                               >
                                 <FormControl>
                                   <RadioGroupItem
@@ -217,7 +227,7 @@ function PropertiesComponent({ elementInstance }) {
                                   />
                                 </FormControl>
                                 <FormLabel
-                                  className={`cursor-pointer font-normal text-iconLight ${
+                                  className={`text-icon-light cursor-pointer font-normal ${
                                     field.value === option.id
                                       ? "text-muted-foreground"
                                       : ""
@@ -244,6 +254,7 @@ function PropertiesComponent({ elementInstance }) {
                   )}
                 />
 
+                {/* Image upload */}
                 <div className="mt-2">
                   <UploadButton form={form} element={element} />
 
@@ -316,6 +327,53 @@ function PropertiesComponent({ elementInstance }) {
                       <FormLabel>رنگ بلوک</FormLabel>
                       <FormControl>
                         <Input {...field} type="color" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Border radius */}
+                <FormField
+                  control={form.control}
+                  name="borderRadius"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>زاویه</FormLabel>
+                      <FormControl>
+                        <div className="flex flex-col gap-4">
+                          <RadioGroup
+                            dir="rtl"
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                            className="mt-2 flex items-center justify-between px-2"
+                          >
+                            {borderRadiusList.map((option) => (
+                              <FormItem
+                                key={option.id}
+                                className="flexitems-center space-x-3 space-y-0"
+                              >
+                                <FormControl>
+                                  <RadioGroupItem
+                                    className="hidden"
+                                    value={option.value}
+                                  />
+                                </FormControl>
+                                <FormLabel
+                                  className={`text-icon-light cursor-pointer font-normal`}
+                                >
+                                  <div
+                                    style={{ borderRadius: option.value }}
+                                    className={cn(
+                                      `bg-icon-light/60 h-6 w-12`,
+                                      field.value === option.value && "bg-icon",
+                                    )}
+                                  ></div>
+                                </FormLabel>
+                              </FormItem>
+                            ))}
+                          </RadioGroup>
+                        </div>
                       </FormControl>
                       <FormMessage />
                     </FormItem>

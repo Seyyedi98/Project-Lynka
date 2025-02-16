@@ -7,7 +7,7 @@ export const WorkspaceComponent = memo(function WorkspaceComponent({
 }) {
   const element = elementInstance;
   const data = element.extraAttributes;
-  console.log(data);
+
   const RenderedElement = ElementThemeController[element.type][data.theme][0];
 
   return <RenderedElement {...data} />;

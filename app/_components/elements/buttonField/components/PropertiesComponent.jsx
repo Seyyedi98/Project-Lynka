@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -30,6 +31,14 @@ import { useDispatch } from "react-redux";
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
   const dispatch = useDispatch();
+
+  const borderRadiusList = [
+    { id: "small", value: "4px" },
+    { id: "medium", value: "6px" },
+    { id: "large", value: "8px" },
+    { id: "xlarge", value: "12px" },
+    { id: "2xlarge", value: "16px" },
+  ];
 
   const form = useForm({
     // TODO: Create zod schema
@@ -40,6 +49,7 @@ function PropertiesComponent({ elementInstance }) {
       font: element.extraAttributes.font || "",
       textColor: element.extraAttributes.textColor || "",
       bgColor: element.extraAttributes.bgColor || "",
+      borderRadius: element.extraAttributes.borderRadius || "",
     },
   });
 
@@ -48,7 +58,7 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { title, href, font, textColor, bgColor } = values;
+    const { title, href, font, textColor, bgColor, borderRadius } = values;
 
     const payload = {
       id: element.id,
@@ -61,6 +71,7 @@ function PropertiesComponent({ elementInstance }) {
           font,
           textColor,
           bgColor,
+          borderRadius,
         },
       },
     };
@@ -222,6 +233,53 @@ function PropertiesComponent({ elementInstance }) {
                     <FormLabel>رنگ بلوک</FormLabel>
                     <FormControl>
                       <Input {...field} type="color" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Border radius */}
+              <FormField
+                control={form.control}
+                name="borderRadius"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>زاویه</FormLabel>
+                    <FormControl>
+                      <div className="flex flex-col gap-4">
+                        <RadioGroup
+                          dir="rtl"
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                          className="mt-2 flex items-center justify-between px-2"
+                        >
+                          {borderRadiusList.map((option) => (
+                            <FormItem
+                              key={option.id}
+                              className="flexitems-center space-x-3 space-y-0"
+                            >
+                              <FormControl>
+                                <RadioGroupItem
+                                  className="hidden"
+                                  value={option.value}
+                                />
+                              </FormControl>
+                              <FormLabel
+                                className={`text-icon-light cursor-pointer font-normal`}
+                              >
+                                <div
+                                  style={{ borderRadius: option.value }}
+                                  className={cn(
+                                    `bg-icon-light/60 h-6 w-12`,
+                                    field.value === option.value && "bg-icon",
+                                  )}
+                                ></div>
+                              </FormLabel>
+                            </FormItem>
+                          ))}
+                        </RadioGroup>
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>

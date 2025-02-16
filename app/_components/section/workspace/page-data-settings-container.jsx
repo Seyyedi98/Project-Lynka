@@ -7,7 +7,7 @@ const PageDataSettingsContainer = () => {
     <div className="max-w-md">
       <Tabs dir="rtl" defaultValue="browser" className="">
         <TabsList className="mb-4">
-          <TabsTrigger value="browser">مرورگر</TabsTrigger>
+          <TabsTrigger value="browser">سئو</TabsTrigger>
           <TabsTrigger value="loading">لودینگ</TabsTrigger>
         </TabsList>
 

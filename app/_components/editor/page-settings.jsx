@@ -11,8 +11,8 @@ const PageSettings = () => {
   const dispatch = useDispatch();
   const theme = useSelector((store) => store.page.theme);
 
-  const [selectedTab, setSelectedTab] = useState("مرورگر");
-  const TabItems = ["مرورگر", "پس زمینه", "Theme", "لودینگ", "analytics"];
+  const [selectedTab, setSelectedTab] = useState("سئو");
+  const TabItems = ["سئو", "پس زمینه", "Theme", "لودینگ", "analytics"];
 
   const setPageBackground = function (velue) {
     const payload = { ...theme, backgroundColor: velue };

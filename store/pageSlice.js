@@ -33,6 +33,7 @@ const pageSlice = createSlice({
           theme: state.theme?.elementStyle,
           textColor: state.theme?.elementTextColor,
           bgColor: state.theme?.elementColor,
+          borderRadius: state.theme?.borderRadius,
         };
       }
       state.elements.splice(index, 0, element);

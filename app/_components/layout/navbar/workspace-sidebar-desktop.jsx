@@ -60,7 +60,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 setSelectedMenu("elements");
               }}
               className={cn(
-                `translate-y-8 animate-fade-up cursor-pointer text-iconLight opacity-0 duration-300`,
+                `text-icon-light translate-y-8 animate-fade-up cursor-pointer opacity-0 duration-300`,
                 selectedMenu === "elements" && "text-primary",
               )}
             >
@@ -80,7 +80,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 setSelectedMenu("theme");
               }}
               className={cn(
-                `translate-y-8 animate-fade-up cursor-pointer text-iconLight opacity-0 delay-100 duration-300`,
+                `text-icon-light translate-y-8 animate-fade-up cursor-pointer opacity-0 delay-100 duration-300`,
                 selectedMenu === "theme" && "text-primary",
               )}
             >
@@ -100,7 +100,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 setSelectedMenu("browser");
               }}
               className={cn(
-                `translate-y-8 animate-fade-up cursor-pointer text-iconLight opacity-0 delay-200 duration-300`,
+                `text-icon-light translate-y-8 animate-fade-up cursor-pointer opacity-0 delay-200 duration-300`,
                 selectedMenu === "browser" && "text-primary",
               )}
             >
@@ -119,7 +119,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 setSelectedMenu("analytics");
               }}
               className={cn(
-                `translate-y-8 animate-fade-up cursor-pointer text-iconLight opacity-0 delay-300 duration-300`,
+                `text-icon-light translate-y-8 animate-fade-up cursor-pointer opacity-0 delay-300 duration-300`,
                 selectedMenu === "analytics" && "text-primary",
               )}
             >

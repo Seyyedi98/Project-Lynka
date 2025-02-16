@@ -12,6 +12,7 @@ const extraAttributes = {
   href: "",
   textColor: "#ffffff",
   bgColor: "",
+  borderRadius: "",
 };
 
 export const ButtonFieldFormElement = {

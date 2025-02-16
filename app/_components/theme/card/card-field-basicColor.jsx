@@ -14,6 +14,7 @@ const CardFieldBasicColor = ({
   textColor,
   layout,
   image,
+  borderRadius,
 }) => {
   const [loadedFont, setLoadedFont] = useState(null);
   useEffect(() => {
@@ -42,12 +43,12 @@ const CardFieldBasicColor = ({
   if (layout === "basic")
     return (
       <a
-        style={{ backgroundColor: bgColor }}
+        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
         href={`http://${href}`}
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl p-2 text-lg font-medium text-white shadow-lg`,
+          `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
@@ -65,12 +66,12 @@ const CardFieldBasicColor = ({
   if (layout === "roundedImage" || !layout)
     return (
       <a
-        style={{ backgroundColor: bgColor }}
+        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
         href={`http://${href}`}
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `flex h-28 w-full cursor-pointer items-center justify-start gap-4 rounded-2xl p-2 px-4 text-lg font-medium text-white shadow-lg`,
+          `flex h-28 w-full cursor-pointer items-center justify-start gap-4 p-2 px-4 text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
@@ -108,12 +109,12 @@ const CardFieldBasicColor = ({
   if (layout === "wideFullImage")
     return (
       <a
-        style={{ backgroundColor: bgColor }}
+        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
         href={`http://${href}`}
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `relative flex h-28 w-full cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden rounded-2xl p-2 text-lg font-medium text-white shadow-lg`,
+          `relative flex h-28 w-full cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden p-2 text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
@@ -141,12 +142,12 @@ const CardFieldBasicColor = ({
   if (layout === "highFullImage") {
     return (
       <a
-        style={{ backgroundColor: bgColor }}
+        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
         href={`http://${href}`}
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `flex w-full cursor-pointer flex-col items-start justify-center gap-2 overflow-hidden rounded-2xl text-lg font-medium text-white shadow-lg`,
+          `flex w-full cursor-pointer flex-col items-start justify-center gap-2 overflow-hidden text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
           !image && "h-48",
         )}

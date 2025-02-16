@@ -45,7 +45,7 @@ const AddElementButton = ({ pageElement }) => {
       {...draggable.attributes}
     >
       <div className="flex items-center justify-center gap-2">
-        <Icon className="h-5 w-5 cursor-grab text-3xl text-iconLight duration-200" />
+        <Icon className="text-icon-light h-5 w-5 cursor-grab text-3xl duration-200" />
         <p className="text-xs duration-200">{label}</p>
       </div>
       <span>

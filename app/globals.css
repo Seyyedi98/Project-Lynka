@@ -16,12 +16,13 @@ body {
     :root {
       --background: 0 0% 90%;
       --secondaryBg: 0 0% 98%;
-      --iconLight: 0 0% 50%;
+      --icon-light: 0 0% 50%;
+      --icon: 248 0% 10%;
       --textLight: 218 51% 26%;
       --foreground: 248 0% 10%;
       --button: 0 0% 100%;
-      --card-light: 0 0% 100%;
       --card: 248 0% 100%;
+      --card-light: 0 0% 100%;
       --card-foreground: 248 0% 15%;
       --popover: 248 0% 100%;
       --popover-foreground: 218 23% 23%;
@@ -51,13 +52,14 @@ body {
     }
     .dark {
       --background: 0 0% 11%;
-      --iconLight: 0 0% 30%;
+      --icon-ight: 0 0% 30%;
+      --icon: 248 0% 100%;
       --textLight: 0 0% 42%;
       --secondaryBg: 0 0 15%;
       --foreground: 248 0% 100%;
       --button: 0 0% 19%;
-      --card-light: 0 0% 16%;
       --card: 248 0% 10%;
+      --card-light: 0 0% 16%;
       --card-foreground: 248 0% 100%;
       --popover: 248 10% 5%;
       --popover-foreground: 248 0% 100%;

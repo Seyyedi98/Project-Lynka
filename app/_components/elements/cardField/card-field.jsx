@@ -13,6 +13,7 @@ const extraAttributes = {
   layout: "basic",
   textColor: "#ffffff",
   bgColor: "",
+  borderRadius: "",
   image: "",
 };
 
