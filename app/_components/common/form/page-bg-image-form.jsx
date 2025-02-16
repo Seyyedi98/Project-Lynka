@@ -11,14 +11,6 @@ const PageBgImageForm = ({ theme }) => {
   return (
     <div className="mt-8">
       <div className="flex flex-col items-center justify-center gap-2">
-        {/* {bgImage && backgroundType === "image" && (
-          <Image
-            width={640}
-            height={640}
-            alt="Page background image"
-            src={bgImage.url}
-          />
-        )} */}
         <h1 className="text-xl font-medium">Image</h1>
         <h2 className="text-base text-muted-foreground">
           Customise the icon shown in the browser bar

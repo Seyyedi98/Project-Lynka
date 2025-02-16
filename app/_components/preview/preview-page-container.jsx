@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import PreviewPageElements from "./preview-elements-renderer";
 import PreviewPageHero from "./preview-hero-renderer";
+import { cn } from "@/lib/utils";
 
 const PreviewPageContainer = () => {
   const theme = useSelector((state) => state.page.theme);
@@ -8,6 +9,7 @@ const PreviewPageContainer = () => {
   const colorBgStyle = {
     backgroundColor: theme.backgroundColor,
     background: theme.backgroundColor,
+    backgroundSize: theme.backgroundType === "gradient" ? "200% 200%" : "cover",
   };
   const imageBgStyle = {
     backgroundImage:
@@ -21,11 +23,18 @@ const PreviewPageContainer = () => {
   return (
     <div
       style={
-        theme.backgroundType === "color" || theme.backgroundType === "gradient"
+        theme.backgroundType === "color" ||
+        theme.backgroundType === "gradient" ||
+        theme.backgroundType === "pattern"
           ? colorBgStyle
           : imageBgStyle
       }
-      className="flex h-svh w-full flex-col items-center justify-center"
+      className={cn(
+        `flex h-svh w-full flex-col items-center justify-center`,
+        theme.isBackgroundAnimated &&
+          theme.backgroundType === "gradient" &&
+          "animate-bg-move",
+      )}
     >
       <div>
         <PreviewPageHero />

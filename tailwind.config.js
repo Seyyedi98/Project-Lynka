@@ -182,6 +182,10 @@ module.exports = {
             backgroundPosition: "350% 50%, 350% 50%",
           },
         },
+        bgMove: {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
       },
       gridTemplateColumns: {
         "auto-fill-100": "repeat(auto-fill, minmax(320px, 1fr))",
@@ -199,6 +203,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "bg-move": "bgMove 7s ease-in-out infinite",
       },
     },
   },

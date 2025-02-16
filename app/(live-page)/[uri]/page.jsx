@@ -98,6 +98,7 @@ const LivePage = async ({ params }) => {
   const styleColor = {
     backgroundColor: theme.backgroundColor,
     background: theme.backgroundColor,
+    backgroundSize: theme.backgroundType === "gradient" ? "200% 200%" : "cover",
   };
 
   const styleImage = {
@@ -114,11 +115,17 @@ const LivePage = async ({ params }) => {
       <div
         style={
           theme.backgroundType === "color" ||
+          theme.backgroundType === "pattern" ||
           theme.backgroundType === "gradient"
             ? styleColor
             : styleImage
         }
-        className="relative flex h-full w-full flex-col items-center justify-start gap-4"
+        className={cn(
+          `relative flex h-full w-full flex-col items-center justify-start gap-4`,
+          theme.isBackgroundAnimated &&
+            theme.backgroundType === "gradient" &&
+            "animate-bg-move",
+        )}
       >
         {page.loadingIcon && (
           <div

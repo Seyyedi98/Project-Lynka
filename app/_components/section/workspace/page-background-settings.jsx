@@ -1,11 +1,12 @@
-import { useState } from "react";
-import SquareButton from "../../common/button/square-button";
-import { useDispatch, useSelector } from "react-redux";
-import { cn } from "@/lib/utils";
-import { colors, gradient, pattern } from "@/data/colors";
 import { Input } from "@/components/ui/input";
+import { colors, gradient, pattern } from "@/data/colors";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import SquareButton from "../../common/button/square-button";
 import PageBgImageForm from "../../common/form/page-bg-image-form";
-import deleteFile from "@/lib/upload/deleteFile";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 const PageBackgroundSettings = () => {
   const [category, setCategory] = useState("color");
@@ -13,11 +14,19 @@ const PageBackgroundSettings = () => {
 
   const dispatch = useDispatch();
 
-  const setPageBackground = function (velue) {
+  const setPageBackground = function (velue, type) {
     const payload = {
       ...theme,
       backgroundColor: velue,
-      backgroundType: "color",
+      backgroundType: type,
+    };
+    dispatch({ type: "page/setTheme", payload });
+  };
+
+  const toggleIsBackgroundAnimated = function () {
+    const payload = {
+      ...theme,
+      isBackgroundAnimated: !theme.isBackgroundAnimated,
     };
     dispatch({ type: "page/setTheme", payload });
   };
@@ -52,7 +61,7 @@ const PageBackgroundSettings = () => {
                     ? theme?.backgroundColor
                     : "#FFFFFF"
                 }
-                onChange={(e) => setPageBackground(e.target.value)}
+                onChange={(e) => setPageBackground(e.target.value, "color")}
               />
             </div>
 
@@ -60,7 +69,7 @@ const PageBackgroundSettings = () => {
               <div
                 key={color}
                 style={{ backgroundColor: color }}
-                onClick={() => setPageBackground(color)}
+                onClick={() => setPageBackground(color, "color")}
                 className={cn(
                   `h-20 w-20 cursor-pointer rounded-full border border-primary duration-200 hover:shadow-xl`,
                   theme.backgroundColor === color && "border-4",
@@ -70,20 +79,32 @@ const PageBackgroundSettings = () => {
           </>
         )}
 
-        {category === "gradient" &&
-          gradient.map((color) => {
-            return (
-              <div
-                key={color}
-                style={{ background: color }}
-                onClick={() => setPageBackground(color)}
-                className={cn(
-                  `h-20 w-20 cursor-pointer rounded-full border border-primary duration-200 [scrollbar-width:none] hover:shadow-xl`,
-                  theme.backgroundColor === color && "border-4",
-                )}
-              ></div>
-            );
-          })}
+        {category === "gradient" && (
+          <>
+            <div className="col-span-full mb-3 flex w-[99%] items-center justify-between space-x-2 rounded-md border border-primary/50 p-4 py-6">
+              <Label htmlFor="animation-toggle">پس زمینه متحرک</Label>
+              <Switch
+                checked={theme.isBackgroundAnimated}
+                onCheckedChange={toggleIsBackgroundAnimated}
+                id="animation-toggle"
+              />
+            </div>
+
+            {gradient.map((color) => {
+              return (
+                <div
+                  key={color}
+                  style={{ background: color }}
+                  onClick={() => setPageBackground(color, "gradient")}
+                  className={cn(
+                    `h-20 w-20 cursor-pointer rounded-full border border-primary duration-200 [scrollbar-width:none] hover:shadow-xl`,
+                    theme.backgroundColor === color && "border-4",
+                  )}
+                ></div>
+              );
+            })}
+          </>
+        )}
 
         {category === "pattern" &&
           pattern.map((color, index) => {
@@ -91,7 +112,7 @@ const PageBackgroundSettings = () => {
               <div
                 key={index}
                 style={{ background: color }}
-                onClick={() => setPageBackground(color)}
+                onClick={() => setPageBackground(color, "pattern")}
                 className={cn(
                   `h-20 w-20 cursor-pointer rounded-full border border-primary duration-200 [scrollbar-width:none] hover:shadow-xl`,
                   theme.backgroundColor === color && "border-4",
