@@ -1,6 +1,6 @@
 "use client";
 
-import { useCurrentRole } from "@/hooks/useCanvasRole";
+import { useCurrentRole } from "@/hooks/useCurrentRole";
 import { FormError } from "../common/message/form-error";
 
 const RoleGate = ({ children, allowedRole }) => {

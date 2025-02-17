@@ -5,16 +5,13 @@ import prisma from "@/lib/client";
 import { PageUriSchema } from "@/schemas";
 
 export const checkPageAvailable = async (uri) => {
-  try {
-    const page = await prisma.page.findUnique({
-      where: { uri },
-    });
+  const page = await prisma.page.findFirst({
+    where: {
+      uri,
+    },
+  });
 
-    return !page;
-  } catch (error) {
-    console.error("Error checking page availability:", error);
-    throw new Error("Could not check page availability");
-  }
+  return !page;
 };
 
 export const newPageCreator = async (uri) => {

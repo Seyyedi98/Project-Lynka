@@ -22,6 +22,7 @@ export const {
   callbacks: {
     async signIn({ user, account }) {
       const existingUser = await getUserById(user.id);
+      console.log(existingUser);
 
       // Prevent sign in without email verification
       if (account.provider !== "credentials") {
@@ -32,7 +33,7 @@ export const {
       // Check if 2FA is enabled.
       if (existingUser.isTwoFactorEnabled) {
         const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(
-          existingUser.id
+          existingUser.id,
         );
         // console.log(twoFactorConfirmation);
 
@@ -61,6 +62,8 @@ export const {
         session.user.name = token.name;
         session.user.email = token.email;
         session.user.isOAuth = token.isOAuth;
+        session.user.premiumLevel = token.premiumLevel;
+        session.user.premiumExpires = token.premiumExpires;
       }
 
       return session;
@@ -82,6 +85,8 @@ export const {
       token.role = existingUser.role;
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
       token.isOAuth = !!existingAccount;
+      token.premiumLevel = existingUser.premiumLevel;
+      token.premiumExpires = existingUser.premiumExpires;
 
       return token;
     },
