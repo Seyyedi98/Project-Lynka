@@ -2,7 +2,7 @@ import { getPageMetadata } from "@/actions/page";
 import LoadingSpinner from "@/app/_components/common/shared/loadingSpinner";
 import LivePageElements from "@/app/_components/live-page/live-page-elements-render";
 import LivePageHero from "@/app/_components/live-page/live-page-hero-render";
-import { currentUserPremium } from "@/lib/auth/user-premium";
+import { currentUserPremium } from "@/lib/auth/user-subscription";
 import getPageContent from "@/lib/page/get-page-content";
 import getPageHero from "@/lib/page/get-page-hero";
 import { cn } from "@/lib/utils";

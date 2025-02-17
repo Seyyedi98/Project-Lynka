@@ -62,8 +62,8 @@ export const {
         session.user.name = token.name;
         session.user.email = token.email;
         session.user.isOAuth = token.isOAuth;
-        session.user.premiumLevel = token.premiumLevel;
-        session.user.premiumExpires = token.premiumExpires;
+        session.user.subscriptionTier = token.subscriptionTier;
+        session.user.subscriptionExpiry = token.subscriptionExpiry;
       }
 
       return session;
@@ -85,8 +85,8 @@ export const {
       token.role = existingUser.role;
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
       token.isOAuth = !!existingAccount;
-      token.premiumLevel = existingUser.premiumLevel;
-      token.premiumExpires = existingUser.premiumExpires;
+      token.subscriptionTier = existingUser.subscriptionTier;
+      token.subscriptionExpiry = existingUser.subscriptionExpiry;
 
       return token;
     },

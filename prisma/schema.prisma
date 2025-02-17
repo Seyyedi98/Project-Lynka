@@ -32,8 +32,8 @@ model User {
   isTwoFactorEnabled      Boolean                @default(false)
   twoFactorConfirmation   twoFactorConfirmation?
   role                    UserRole               @default(USER)
-  premiumLevel            String                 @default("1")
-  premiumExpires          DateTime?
+  subscriptionTier        String                 @default("1")
+  subscriptionExpiry      DateTime?
   accounts                Account[]
   twofactorConfiramtionId String?
 

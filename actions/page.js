@@ -40,11 +40,12 @@ export const getUserPages = async () => {
   const user = await currentUser();
   if (!user) return;
 
-  const pages = await prisma.page.findMany({
-    where: { owner: user.id },
+  const data = await prisma.user.findUnique({
+    where: { id: user.id },
+    include: { page: true },
   });
 
-  return pages;
+  return data.page;
 };
 
 // Get preview page data by URI (without user validation)
