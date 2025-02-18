@@ -4,7 +4,14 @@ export const useUserSubscription = () => {
   const session = useSession();
 
   const subscriptionTier = session.data?.user?.subscriptionTier;
-  const subscriptionExpiry = session.data?.user?.subscriptionExpiry;
+  const subscriptionExpire = session.data?.user?.subscriptionExpire;
 
-  return { subscriptionTier, subscriptionExpiry };
+  const todayDate = new Date();
+  const expiresDate = new Date(subscriptionExpire);
+
+  const subscriptionDaysLeft = Math.floor(
+    (expiresDate - todayDate) / (1000 * 60 * 60 * 24),
+  );
+
+  return { subscriptionTier, subscriptionDaysLeft };
 };

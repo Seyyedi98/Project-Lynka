@@ -63,7 +63,7 @@ export const {
         session.user.email = token.email;
         session.user.isOAuth = token.isOAuth;
         session.user.subscriptionTier = token.subscriptionTier;
-        session.user.subscriptionExpiry = token.subscriptionExpiry;
+        session.user.subscriptionExpire = token.subscriptionExpire;
       }
 
       return session;
@@ -86,7 +86,7 @@ export const {
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
       token.isOAuth = !!existingAccount;
       token.subscriptionTier = existingUser.subscriptionTier;
-      token.subscriptionExpiry = existingUser.subscriptionExpiry;
+      token.subscriptionExpire = existingUser.subscriptionExpire;
 
       return token;
     },

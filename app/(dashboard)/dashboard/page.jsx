@@ -1,3 +1,4 @@
+import { getSubscriptionData } from "@/actions/auth/subscription";
 import { getUserPages } from "@/actions/page";
 import CreatePageButton from "@/app/_components/common/button/new-page-btn";
 import ExpandableRowCard from "@/app/_components/common/card/expandable-row-card-page";
@@ -10,9 +11,13 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
+import { currentUserSubscription } from "@/lib/auth/user-subscription";
 
 const Dashboard = async () => {
   const allPages = await getUserPages();
+
+  const { subscriptionTier, subscriptionDaysLeft } =
+    await currentUserSubscription();
 
   if (allPages.length === 0)
     return (
@@ -28,6 +33,10 @@ const Dashboard = async () => {
 
         <DashboardHeading>
           <CreatePageButton />
+          <div className="flex gap-4 text-sm">
+            <span>Your Tire: {subscriptionTier}</span>
+            <span>Days Left: {subscriptionDaysLeft}</span>
+          </div>
         </DashboardHeading>
         <Separator />
 

@@ -24,6 +24,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { cn } from "@/lib/utils";
 import { DesktopIcon } from "@radix-ui/react-icons";
 import { Check } from "lucide-react";
@@ -54,6 +55,8 @@ function PropertiesComponent({ elementInstance }) {
 
   const element = elementInstance;
   const dispatch = useDispatch();
+
+  const userSubscription = useUserSubscription();
 
   const RenderElement =
     ElementThemeController[element.type][element.extraAttributes.theme][0];
@@ -227,7 +230,7 @@ function PropertiesComponent({ elementInstance }) {
                                   />
                                 </FormControl>
                                 <FormLabel
-                                  className={`text-icon-light cursor-pointer font-normal ${
+                                  className={`cursor-pointer font-normal text-icon-light ${
                                     field.value === option.id
                                       ? "text-muted-foreground"
                                       : ""
@@ -360,12 +363,12 @@ function PropertiesComponent({ elementInstance }) {
                                   />
                                 </FormControl>
                                 <FormLabel
-                                  className={`text-icon-light cursor-pointer font-normal`}
+                                  className={`cursor-pointer font-normal text-icon-light`}
                                 >
                                   <div
                                     style={{ borderRadius: option.value }}
                                     className={cn(
-                                      `bg-icon-light/60 h-6 w-12`,
+                                      `h-6 w-12 bg-icon-light/60`,
                                       field.value === option.value && "bg-icon",
                                     )}
                                   ></div>
