@@ -56,8 +56,7 @@ function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
   const dispatch = useDispatch();
 
-  const { subscriptionDaysLeft, subscriptionPlan, isSilver } =
-    useUserSubscription();
+  const { isSilver } = useUserSubscription();
 
   const RenderElement =
     ElementThemeController[element.type][element.extraAttributes.theme][0];

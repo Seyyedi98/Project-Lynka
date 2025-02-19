@@ -9,12 +9,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { Loader2 } from "lucide-react";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 const MetaDescriptionForm = ({ uri, description }) => {
   const [isPending, startTransition] = useTransition();
+  const { isSilver } = useUserSubscription();
 
   const form = useForm({
     // resolver:zodResolver(),
@@ -24,7 +26,11 @@ const MetaDescriptionForm = ({ uri, description }) => {
   });
 
   function applyChanges(values) {
-    startTransition(() => UpdatePageMetaDescription(uri, values));
+    if (isSilver) {
+      startTransition(() => UpdatePageMetaDescription(uri, values));
+    } else {
+      throw console.error("You're not allowed to do this XD");
+    }
   }
 
   return (
@@ -39,34 +45,40 @@ const MetaDescriptionForm = ({ uri, description }) => {
           your Lnk.Bio page on chats ( Instagram DM, WhatsApp, iMessage, etc).
         </h5>
       </div>
-      <Form {...form}>
-        <form
-          className="flex flex-col gap-4"
-          onSubmit={form.handleSubmit(applyChanges)}
-        >
-          <FormField
-            control={form.control}
-            name="metaDescription"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>description</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <Button
-            disabled={isPending}
-            type="submit"
-            className="flex cursor-pointer items-center justify-center p-2 duration-200 sm:right-0"
+      {isSilver ? (
+        <Form {...form}>
+          <form
+            className="flex flex-col gap-4"
+            onSubmit={form.handleSubmit(applyChanges)}
           >
-            {isPending ? <Loader2 className="animate-spin" /> : "Save"}
-          </Button>
-        </form>
-      </Form>
+            <FormField
+              control={form.control}
+              name="metaDescription"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>description</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Button
+              disabled={isPending}
+              type="submit"
+              className="flex cursor-pointer items-center justify-center p-2 duration-200 sm:right-0"
+            >
+              {isPending ? <Loader2 className="animate-spin" /> : "Save"}
+            </Button>
+          </form>
+        </Form>
+      ) : (
+        <p className="mt-4 text-center text-sm text-destructive">
+          برای استفاده ای این قابلیت به اشتراک ویژه نیاز دارید
+        </p>
+      )}
     </div>
   );
 };

@@ -33,6 +33,8 @@ export const useUserSubscription = () => {
 
   if (subscriptionPlan === "silver" && subscriptionDaysLeft > 0) {
     isSilver = true;
+  } else {
+    isSilver = false;
   }
 
   return { subscriptionPlan, subscriptionDaysLeft, isSilver };

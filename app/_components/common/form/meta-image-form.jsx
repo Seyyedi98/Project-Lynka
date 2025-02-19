@@ -1,8 +1,10 @@
 import Image from "next/image";
 import MetaImageUploader from "../input/meta-image-uploader";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
 
 const MetaImageForm = ({ uri, image }) => {
   let metaImage = "";
+  const { isSilver } = useUserSubscription();
   if (image) metaImage = JSON.parse(image);
 
   return (
@@ -21,7 +23,13 @@ const MetaImageForm = ({ uri, image }) => {
           Customise the icon shown in the browser bar
         </h2>
       </div>
-      <MetaImageUploader metaImage={metaImage} uri={uri} />
+      {isSilver ? (
+        <MetaImageUploader metaImage={metaImage} uri={uri} />
+      ) : (
+        <p className="mt-4 text-center text-sm text-destructive">
+          برای استفاده ای این قابلیت به اشتراک ویژه نیاز دارید
+        </p>
+      )}
     </div>
   );
 };
