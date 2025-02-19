@@ -2,7 +2,10 @@ import { getPageMetadata } from "@/actions/page";
 import LoadingSpinner from "@/app/_components/common/shared/loadingSpinner";
 import LivePageElements from "@/app/_components/live-page/live-page-elements-render";
 import LivePageHero from "@/app/_components/live-page/live-page-hero-render";
-import { currentUserPremium } from "@/lib/auth/user-subscription";
+import {
+  currentUserPremium,
+  getSubscriptionByUri,
+} from "@/lib/auth/user-subscription";
 import getPageContent from "@/lib/page/get-page-content";
 import getPageHero from "@/lib/page/get-page-hero";
 import { cn } from "@/lib/utils";
@@ -12,6 +15,7 @@ import { notFound } from "next/navigation";
 // ✅ Dynamic Metadata Fetching with Error Handling
 export async function generateMetadata({ params }) {
   const { uri } = await params;
+  const { isSilver } = await getSubscriptionByUri(uri);
 
   try {
     const metadata = await getPageMetadata(uri);
@@ -20,13 +24,14 @@ export async function generateMetadata({ params }) {
     const favicon = metadata?.favicon
       ? JSON.parse(metadata?.favicon)?.url
       : null;
-    const metaImage = metadata?.metaImage
-      ? JSON.parse(metadata.metaImage).url
-      : null;
+    const metaImage =
+      isSilver && metadata?.metaImage
+        ? JSON.parse(metadata.metaImage).url
+        : null;
 
     return {
-      title: metadata.metaTitle || "My Page",
-      description: metadata.metaDescription || "Welcome!",
+      title: metadata.metaTitle || "Myiralink",
+      description: isSilver ? metadata.metaDescription || "Welcome!" : "",
       favicon: "null",
       icons: [
         {
@@ -37,8 +42,8 @@ export async function generateMetadata({ params }) {
         },
       ],
       openGraph: {
-        title: metadata.metaTitle || "My Page",
-        description: metadata.metaDescription || "Welcome!",
+        title: isSilver ? metadata.metaTitle || "My Page" : "",
+        description: isSilver ? metadata.metaDescription || "Welcome!" : "",
         siteName: metadata.metaTitle,
         url: "https://link.liara.run",
         images: [
@@ -49,7 +54,7 @@ export async function generateMetadata({ params }) {
       twitter: {
         card: "summary_large_image",
         title: metadata.metaTitle,
-        description: metadata.metaDescription,
+        description: isSilver ? metadata.metaDescription : "",
         images: [metaImage],
       },
       robots: {
@@ -143,7 +148,7 @@ const LivePage = async ({ params }) => {
 
         {/* Content Section */}
         <section className="flex h-full w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
-          <LivePageElements content={content} />
+          <LivePageElements uri={uri} content={content} />
         </section>
       </div>
     </>

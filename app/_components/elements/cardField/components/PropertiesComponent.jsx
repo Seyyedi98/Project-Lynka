@@ -56,7 +56,8 @@ function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
   const dispatch = useDispatch();
 
-  const userSubscription = useUserSubscription();
+  const { subscriptionDaysLeft, subscriptionPlan, isSilver } =
+    useUserSubscription();
 
   const RenderElement =
     ElementThemeController[element.type][element.extraAttributes.theme][0];
@@ -81,7 +82,17 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const data = values;
+    const {
+      title,
+      theme,
+      textColor,
+      layout,
+      image,
+      href,
+      font,
+      borderRadius,
+      bgColor,
+    } = values;
 
     const payload = {
       id: element.id,
@@ -89,7 +100,20 @@ function PropertiesComponent({ elementInstance }) {
         ...element,
         extraAttributes: {
           ...element.extraAttributes,
-          ...data,
+          title,
+          theme,
+          textColor,
+          layout:
+            layout === "basic" || layout === "roundedImage"
+              ? layout
+              : isSilver
+                ? layout
+                : element.extraAttributes.layout,
+          image,
+          href,
+          font,
+          borderRadius,
+          bgColor,
         },
       },
     };
@@ -244,11 +268,30 @@ function PropertiesComponent({ elementInstance }) {
                             ))}
                           </RadioGroup>
 
-                          <div className="pointer-events-none mt-2 scale-90">
+                          <div
+                            className={cn(
+                              "pointer-events-none mt-2 scale-90",
+                              !isSilver &&
+                                field.value === "wideFullImage" &&
+                                "opacity-40",
+                              !isSilver &&
+                                field.value === "highFullImage" &&
+                                "opacity-40",
+                            )}
+                          >
                             <RenderElement
                               {...element.extraAttributes}
                               layout={field.value}
                             />
+
+                            {!isSilver &&
+                              (field.value === "wideFullImage" ||
+                                field.value === "highFullImage") && (
+                                <p className="mt-4 text-sm text-destructive">
+                                  برای استفاده ای این قابلیت به اشتراک ویژه نیاز
+                                  دارید
+                                </p>
+                              )}
                           </div>
                         </div>
                       </FormControl>

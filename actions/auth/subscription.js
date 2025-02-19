@@ -5,22 +5,36 @@ import prisma from "@/lib/client";
 
 export const getSubscriptionData = async () => {
   const session = await currentUser();
+  if (!session) return;
+
   const data = await prisma.user.findUnique({
     where: {
       id: session.id,
     },
-    select: { subscriptionTier: true, subscriptionExpire: true },
+    select: { subscriptionPlan: true, subscriptionExpire: true },
   });
 
   return data;
 };
 
-export const updateSubscriptionData = async ({ subscriptionTier, days }) => {
+export const getSubscriptionDataByUri = async (uri) => {
+  const userId = await prisma.page.findUnique({
+    where: { uri },
+    select: { User: true },
+  });
+
+  const { subscriptionPlan, subscriptionExpire } = userId.User;
+
+  return { subscriptionPlan, subscriptionExpire };
+};
+
+export const updateSubscriptionData = async ({ subscriptionPlan, days }) => {
   const session = await currentUser();
+  if (!session) return;
 
   let startingDate;
 
-  if (session.subscriptionTier !== "bronze") {
+  if (session.subscriptionPlan !== "bronze") {
     startingDate = session.subscriptionExpire;
   } else {
     startingDate = new Date();
@@ -29,28 +43,32 @@ export const updateSubscriptionData = async ({ subscriptionTier, days }) => {
   const date = new Date(startingDate);
   date.setDate(date.getDate() + days);
 
-  // updateSubscriptionData({ subscriptionTier: "silver", days: 30 });
+  // updateSubscriptionData({ subscriptionPlan: "silver", days: 30 });
 
   await prisma.user.update({
     where: {
       id: session.id,
     },
-    data: { subscriptionTier, subscriptionExpire: date },
+    data: { subscriptionPlan, subscriptionExpire: date },
   });
 };
 
-export const updateSubscriptionTier = async (subscriptionTier) => {
+export const updatesubscriptionPlan = async (subscriptionPlan) => {
   const session = await currentUser();
+  if (!session) return;
+
   await prisma.user.update({
     where: {
       id: session.id,
     },
-    data: { subscriptionTier },
+    data: { subscriptionPlan },
   });
 };
 
 export const updateSubscriptionDate = async (subscriptionExpire) => {
   const session = await currentUser();
+  if (!session) return;
+
   await prisma.user.update({
     where: {
       id: session.id,

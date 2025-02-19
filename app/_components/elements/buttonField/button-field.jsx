@@ -2,6 +2,7 @@ import { ButtonIcon } from "@radix-ui/react-icons";
 import { WorkspaceComponent } from "./components/WorkspaceComponent";
 import PropertiesComponent from "./components/PropertiesComponent";
 import LivePageComponent from "./components/LivePageComponent";
+import PreviewPageComponent from "./components/PreviewPageComponent";
 
 const type = "ButtonField";
 
@@ -30,5 +31,6 @@ export const ButtonFieldFormElement = {
 
   WorkspaceComponent: WorkspaceComponent,
   LivePageComponent: LivePageComponent,
+  PreviewPageComponent: PreviewPageComponent,
   PropertiesComponent: PropertiesComponent,
 };

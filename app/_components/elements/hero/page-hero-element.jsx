@@ -1,4 +1,5 @@
 import HeroLivePageComponent from "./conponents/LivePageComponent";
+import PreviewPageComponent from "./conponents/PreviewPageComponent";
 import PropertiesComponent from "./conponents/PropertiesComponent";
 import WorkspaceComponent from "./conponents/WorkspaceComponent";
 
@@ -28,5 +29,6 @@ export const PageHeroElement = {
 
   WorkspaceComponent: WorkspaceComponent,
   LivePageComponent: HeroLivePageComponent,
+  PreviewPageComponent: PreviewPageComponent,
   PropertiesComponent: PropertiesComponent,
 };

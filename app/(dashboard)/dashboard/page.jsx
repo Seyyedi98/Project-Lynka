@@ -16,7 +16,7 @@ import { currentUserSubscription } from "@/lib/auth/user-subscription";
 const Dashboard = async () => {
   const allPages = await getUserPages();
 
-  const { subscriptionTier, subscriptionDaysLeft } =
+  const { subscriptionPlan, subscriptionDaysLeft } =
     await currentUserSubscription();
 
   if (allPages.length === 0)
@@ -34,7 +34,7 @@ const Dashboard = async () => {
         <DashboardHeading>
           <CreatePageButton />
           <div className="flex gap-4 text-sm">
-            <span>Your Tire: {subscriptionTier}</span>
+            <span>Your Tire: {subscriptionPlan}</span>
             <span>Days Left: {subscriptionDaysLeft}</span>
           </div>
         </DashboardHeading>

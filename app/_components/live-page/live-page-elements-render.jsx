@@ -1,9 +1,7 @@
-// "use client";
-
 import { Suspense } from "react";
 import { PageElements } from "../controller/page-elements-controller";
 
-const LivePageElements = async ({ content }) => {
+const LivePageElements = async ({ content, uri }) => {
   const elements = await Promise.all(
     content.map(async (element) => {
       const PageElement = PageElements[element?.type]?.LivePageComponent;
@@ -11,6 +9,7 @@ const LivePageElements = async ({ content }) => {
       if (PageElement) {
         return (
           <PageElement
+            uri={uri}
             key={element.id}
             elementInstance={element}
             // defaultValue={formValues.current[element.id]}

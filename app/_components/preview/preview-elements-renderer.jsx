@@ -9,7 +9,7 @@ const PreviewPageElements = () => {
   return (
     <>
       {elements.map((element) => {
-        const PageElement = PageElements[element?.type]?.LivePageComponent;
+        const PageElement = PageElements[element?.type]?.PreviewPageComponent;
 
         return (
           <PageElement
