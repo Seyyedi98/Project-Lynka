@@ -19,7 +19,7 @@ export const useUserSubscription = () => {
 
   const subscriptionDaysLeft =
     expiresDate - todayDate > 0
-      ? Math.floor((expiresDate - todayDate) / (1000 * 60 * 60 * 24))
+      ? Math.ceil((expiresDate - todayDate) / (1000 * 60 * 60 * 24))
       : 0;
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export const useSubscriptionByUri = (uri) => {
 
       const subscriptionDaysLeft =
         expiresDate - todayDate > 0
-          ? Math.floor((expiresDate - todayDate) / (1000 * 60 * 60 * 24))
+          ? Math.ceil((expiresDate - todayDate) / (1000 * 60 * 60 * 24))
           : 0;
 
       if (

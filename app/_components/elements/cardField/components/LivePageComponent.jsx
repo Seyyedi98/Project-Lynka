@@ -8,15 +8,12 @@ export async function LivePageComponent({ elementInstance, uri }) {
   const hour = date.getHours();
 
   const { isSilver } = await getSubscriptionByUri(uri);
-  const scheduledRender = data.scheduleData.schedule
-    ? isSilver &&
-      hour >= data.scheduleData.scheduleStart &&
-      hour < data.scheduleData.scheduleEnd
+  const scheduledRender = isSilver
+    ? data.scheduleData.schedule
+      ? hour >= data.scheduleData.scheduleStart &&
+        hour < data.scheduleData.scheduleEnd
+      : true
     : true;
-
-  // console.log(data.scheduleData.scheduleStart);
-  // console.log(data.scheduleData.scheduleEnd);
-  // console.log(data.scheduleData.schedule);
 
   const RenderedElement = ElementThemeController[element.type][data.theme][0];
   return scheduledRender ? (
