@@ -16,6 +16,7 @@ const extraAttributes = {
   bgColor: "",
   borderRadius: "",
   image: "",
+  scheduleData: { schedule: false, scheduleStart: 0, scheduleEnd: 0 },
 };
 
 export const CardFieldFormElement = {

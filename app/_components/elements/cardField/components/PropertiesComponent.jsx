@@ -13,6 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
@@ -22,6 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
@@ -29,7 +31,7 @@ import { cn } from "@/lib/utils";
 import { DesktopIcon } from "@radix-ui/react-icons";
 import { Check } from "lucide-react";
 import dynamic from "next/dynamic";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
@@ -44,7 +46,6 @@ function PropertiesComponent({ elementInstance }) {
     { id: "wideFullImage", label: "Option 3" },
     { id: "highFullImage", label: "Option 3" },
   ];
-
   const borderRadiusList = [
     { id: "small", value: "4px" },
     { id: "medium", value: "6px" },
@@ -55,7 +56,7 @@ function PropertiesComponent({ elementInstance }) {
 
   const element = elementInstance;
   const dispatch = useDispatch();
-
+  console.log(element.extraAttributes);
   const { isSilver } = useUserSubscription();
 
   const RenderElement =
@@ -73,6 +74,9 @@ function PropertiesComponent({ elementInstance }) {
       borderRadius: element.extraAttributes.borderRadius || "",
       layout: element.extraAttributes.layout || "",
       image: "",
+      schedule: element.extraAttributes.scheduleData.schedule || false,
+      scheduleStart: element.extraAttributes.scheduleData.scheduleStart || "",
+      scheduleEnd: element.extraAttributes.scheduleData.scheduleEnd || "",
     },
   });
 
@@ -91,6 +95,9 @@ function PropertiesComponent({ elementInstance }) {
       font,
       borderRadius,
       bgColor,
+      schedule,
+      scheduleStart,
+      scheduleEnd,
     } = values;
 
     const payload = {
@@ -113,6 +120,13 @@ function PropertiesComponent({ elementInstance }) {
           font,
           borderRadius,
           bgColor,
+          scheduleData: isSilver
+            ? { schedule, scheduleStart, scheduleEnd }
+            : {
+                schedule: element.extraAttributes.schedule,
+                scheduleStart: element.extraAttributes.scheduleStart,
+                scheduleEnd: element.extraAttributes.scheduleEnd,
+              },
         },
       },
     };
@@ -182,6 +196,7 @@ function PropertiesComponent({ elementInstance }) {
                     </FormItem>
                   )}
                 />
+
                 {/* Address */}
                 <div className="relative flex gap-1">
                   <div className="w-full">
@@ -222,7 +237,81 @@ function PropertiesComponent({ elementInstance }) {
                   {/* <div className="mb-1 flex items-end justify-end" dir="ltr">
               http://
             </div> */}
-                </div>{" "}
+                </div>
+
+                {/* Schedule */}
+                <div className="mt-6">
+                  <FormField
+                    control={form.control}
+                    name="schedule"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                        <div className="flex flex-col gap-2">
+                          <Label htmlFor="schedule-toggle">
+                            زمان بندی نمایش بلوک
+                          </Label>
+                          <p className="text-wrap text-xs text-textLight">
+                            نمایش بلوک در ساعات خاصی از روز
+                          </p>
+                        </div>
+                        <FormControl>
+                          <Switch
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                            aria-readonly
+                            disabled={!isSilver}
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+
+                  {isSilver ? (
+                    <div className="mt-2 flex items-center justify-center gap-4">
+                      <FormField
+                        control={form.control}
+                        name="scheduleStart"
+                        render={({ field }) => (
+                          <FormItem className="w-full">
+                            <FormControl>
+                              <Input
+                                {...field}
+                                placeholder="ساعت شروع"
+                                type="number"
+                                max="24"
+                                min="0"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="scheduleEnd"
+                        render={({ field }) => (
+                          <FormItem className="w-full">
+                            <FormControl>
+                              <Input
+                                {...field}
+                                className="w-full"
+                                placeholder="ساعت پایان"
+                                type="number"
+                                max="24"
+                                min="0"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  ) : (
+                    <p className="mt-4 text-sm text-destructive">
+                      برای استفاده ای این قابلیت به اشتراک ویژه نیاز دارید
+                    </p>
+                  )}
+                </div>
               </TabsContent>
 
               <TabsContent value="style" className="flex flex-col gap-4">

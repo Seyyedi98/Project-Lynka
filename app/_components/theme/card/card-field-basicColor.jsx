@@ -20,6 +20,9 @@ const CardFieldBasicColor = (props) => {
   } = props;
   const [loadedFont, setLoadedFont] = useState(null);
 
+  const clinetSideDate = new Date();
+  console.log("clinetSideDate", clinetSideDate);
+
   useEffect(() => {
     const fetchFont = async () => {
       try {
@@ -45,6 +48,13 @@ const CardFieldBasicColor = (props) => {
 
   // Workspace view for free and premium users && premium users live Page
   if (isSilver || !isLive) {
+    if (layout === "basic") return <Basic {...props} />;
+    if (layout === "roundedImage" || !layout)
+      return <RoundedImage bgImageStyle={bgImageStyle} {...props} />;
+    if (layout === "wideFullImage") return <WideFullImage {...props} />;
+    if (layout === "highFullImage") return <HighFullImage {...props} />;
+  }
+  if (isSilver || isLive) {
     if (layout === "basic") return <Basic {...props} />;
     if (layout === "roundedImage" || !layout)
       return <RoundedImage bgImageStyle={bgImageStyle} {...props} />;
