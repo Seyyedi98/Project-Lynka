@@ -36,8 +36,8 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 {userImage ? (
                   <Image
                     src={userImage}
-                    width={64}
-                    height={64}
+                    width={128}
+                    height={128}
                     alt="user image"
                     className="h-7 w-10 scale-[1.4] rounded-full object-cover"
                   />
@@ -60,7 +60,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 setSelectedMenu("elements");
               }}
               className={cn(
-                `text-icon-light translate-y-8 animate-fade-up cursor-pointer opacity-0 duration-300`,
+                `translate-y-8 animate-fade-up cursor-pointer text-icon-light opacity-0 duration-300`,
                 selectedMenu === "elements" && "text-primary",
               )}
             >
@@ -80,7 +80,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 setSelectedMenu("theme");
               }}
               className={cn(
-                `text-icon-light translate-y-8 animate-fade-up cursor-pointer opacity-0 delay-100 duration-300`,
+                `translate-y-8 animate-fade-up cursor-pointer text-icon-light opacity-0 delay-100 duration-300`,
                 selectedMenu === "theme" && "text-primary",
               )}
             >
@@ -100,7 +100,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 setSelectedMenu("browser");
               }}
               className={cn(
-                `text-icon-light translate-y-8 animate-fade-up cursor-pointer opacity-0 delay-200 duration-300`,
+                `translate-y-8 animate-fade-up cursor-pointer text-icon-light opacity-0 delay-200 duration-300`,
                 selectedMenu === "browser" && "text-primary",
               )}
             >
@@ -119,7 +119,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 setSelectedMenu("analytics");
               }}
               className={cn(
-                `text-icon-light translate-y-8 animate-fade-up cursor-pointer opacity-0 delay-300 duration-300`,
+                `translate-y-8 animate-fade-up cursor-pointer text-icon-light opacity-0 delay-300 duration-300`,
                 selectedMenu === "analytics" && "text-primary",
               )}
             >

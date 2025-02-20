@@ -2,9 +2,11 @@
 
 import { useSelector } from "react-redux";
 import { PageElements } from "../controller/page-elements-controller";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
 
 const PreviewPageElements = () => {
   const elements = useSelector((state) => state.page.elements);
+  const { isSilver } = useUserSubscription();
 
   return (
     <>
@@ -15,6 +17,7 @@ const PreviewPageElements = () => {
           <PageElement
             key={element.id}
             elementInstance={element}
+            isSilver={isSilver}
             // defaultValue={formValues.current[element.id]}
           />
         );

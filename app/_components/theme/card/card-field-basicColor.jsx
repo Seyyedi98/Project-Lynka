@@ -48,30 +48,37 @@ const CardFieldBasicColor = (props) => {
 
   // Workspace view for free and premium users && premium users live Page
   if (isSilver || !isLive) {
-    if (layout === "basic") return <Basic {...props} />;
+    if (layout === "basic") return <Basic loadedFont={loadedFont} {...props} />;
     if (layout === "roundedImage" || !layout)
-      return <RoundedImage bgImageStyle={bgImageStyle} {...props} />;
-    if (layout === "wideFullImage") return <WideFullImage {...props} />;
-    if (layout === "highFullImage") return <HighFullImage {...props} />;
-  }
-  if (isSilver || isLive) {
-    if (layout === "basic") return <Basic {...props} />;
-    if (layout === "roundedImage" || !layout)
-      return <RoundedImage bgImageStyle={bgImageStyle} {...props} />;
-    if (layout === "wideFullImage") return <WideFullImage {...props} />;
-    if (layout === "highFullImage") return <HighFullImage {...props} />;
+      return (
+        <RoundedImage
+          loadedFont={loadedFont}
+          bgImageStyle={bgImageStyle}
+          {...props}
+        />
+      );
+    if (layout === "wideFullImage")
+      return <WideFullImage loadedFont={loadedFont} {...props} />;
+    if (layout === "highFullImage")
+      return <HighFullImage loadedFont={loadedFont} {...props} />;
   }
 
   // Live page view for free users
   if (!isSilver && isLive) {
-    if (layout === "basic") return <Basic {...props} />;
+    if (layout === "basic") return <Basic loadedFont={loadedFont} {...props} />;
     if (
       layout === "roundedImage" ||
       layout === "wideFullImage" ||
       layout === "highFullImage" ||
       !layout
     )
-      return <RoundedImage bgImageStyle={bgImageStyle} {...props} />;
+      return (
+        <RoundedImage
+          loadedFont={loadedFont}
+          bgImageStyle={bgImageStyle}
+          {...props}
+        />
+      );
   }
 };
 

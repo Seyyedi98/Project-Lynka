@@ -307,7 +307,7 @@ function PropertiesComponent({ elementInstance }) {
                       />
                     </div>
                   ) : (
-                    <p className="mt-4 text-sm text-destructive">
+                    <p className="mt-2 text-sm text-destructive">
                       برای استفاده ای این قابلیت به اشتراک ویژه نیاز دارید
                     </p>
                   )}
@@ -371,16 +371,15 @@ function PropertiesComponent({ elementInstance }) {
                               {...element.extraAttributes}
                               layout={field.value}
                             />
-
-                            {!isSilver &&
-                              (field.value === "wideFullImage" ||
-                                field.value === "highFullImage") && (
-                                <p className="mt-4 text-sm text-destructive">
-                                  برای استفاده ای این قابلیت به اشتراک ویژه نیاز
-                                  دارید
-                                </p>
-                              )}
                           </div>
+                          {!isSilver &&
+                            (field.value === "wideFullImage" ||
+                              field.value === "highFullImage") && (
+                              <p className="-mt-4 mb-2 text-center text-sm text-destructive">
+                                برای استفاده ای این قابلیت به اشتراک ویژه نیاز
+                                دارید
+                              </p>
+                            )}
                         </div>
                       </FormControl>
                       <FormMessage />
