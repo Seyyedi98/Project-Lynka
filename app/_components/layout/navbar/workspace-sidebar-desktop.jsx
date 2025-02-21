@@ -5,7 +5,6 @@ import {
   ChartLine,
   Droplet,
   Layers,
-  UserIcon,
   UserRoundIcon,
 } from "lucide-react";
 import Image from "next/image";

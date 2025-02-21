@@ -1,6 +1,8 @@
 "use client";
 
-// import HeroWorkspaceUploader from "@/app/_components/common/input/workspace-hero-uploader";
+import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
+import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
+import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import { fontsList } from "@/app/fonts/fonts";
 import {
   Form,
@@ -120,168 +122,43 @@ function PropertiesComponent({ elementInstance }) {
 
               <TabsContent value="content" className="flex flex-col gap-4">
                 {/* Title */}
-                <FormField
-                  control={form.control}
-                  name="title"
-                  render={({ field }) => (
-                    <FormItem>
-                      {/* <FormLabel>عنوان</FormLabel> */}
-                      <FormControl>
-                        <Input
-                          {...field}
-                          placeholder="عنوان"
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                              e.currentTarget.blur();
-                            }
-                          }}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <ElementTitleFormField form={form} />
 
                 {/* Subtitle */}
-                <FormField
-                  control={form.control}
-                  name="subtitle"
-                  render={({ field }) => (
-                    <FormItem>
-                      {/* <FormLabel>عنوان</FormLabel> */}
-                      <FormControl>
-                        <Input
-                          className=""
-                          {...field}
-                          placeholder="توضیحات"
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                              e.currentTarget.blur();
-                            }
-                          }}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                <ElementTitleFormField
+                  form={form}
+                  fieldName="subtitle"
+                  placeholder="توضیحات"
                 />
               </TabsContent>
 
               <TabsContent value="style" className="flex flex-col gap-4">
                 {/* Title Color */}
-                <FormField
-                  control={form.control}
-                  name="titleColor"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>رنگ</FormLabel>
-                      <FormControl>
-                        <Input {...field} type="color" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                <ElementColorFormField
+                  form={form}
+                  fieldName="titleColor"
+                  label="رنگ"
                 />
 
                 {/* Title Font */}
-                <FormField
-                  control={form.control}
-                  name="titleFont"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>فونت عنوان اصلی</FormLabel>
-                      <FormControl>
-                        <Select
-                          {...field}
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          dir="rtl"
-                        >
-                          <SelectTrigger className="w-full">
-                            <SelectValue placeholder="فونت" />
-                          </SelectTrigger>
-
-                          <SelectContent>
-                            <Suspense fallback={<p>در حال بارگزاری...</p>}>
-                              {fontsList.map(
-                                ({ fontName, fontValue }, index) => (
-                                  <SelectItem
-                                    className="hover:cursor-pointer"
-                                    key={`${index}-${fontName}`}
-                                    value={fontValue}
-                                  >
-                                    <p style={{ fontFamily: fontValue }}>
-                                      {fontName} -{" "}
-                                      {element.extraAttributes.title}
-                                    </p>
-                                  </SelectItem>
-                                ),
-                              )}
-                            </Suspense>
-                          </SelectContent>
-                        </Select>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                <ElementFontFormField
+                  form={form}
+                  fieldName="titleFont"
+                  label="فونت عنوان اصلی"
                 />
 
                 {/* Subtitle Color */}
-                <FormField
-                  control={form.control}
-                  name="subtitleColor"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>رنگ</FormLabel>
-                      <FormControl>
-                        <Input {...field} type="color" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                <ElementColorFormField
+                  form={form}
+                  fieldName="subtitleColor"
+                  label="رنگ"
                 />
 
                 {/* Subtitle Font */}
-                <FormField
-                  control={form.control}
-                  name="subtitleFont"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>فونت عنوان دوم</FormLabel>
-                      <FormControl>
-                        <Select
-                          {...field}
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          dir="rtl"
-                        >
-                          <SelectTrigger className="w-full">
-                            <SelectValue placeholder="فونت" />
-                          </SelectTrigger>
-
-                          <SelectContent>
-                            <Suspense fallback={<p>در حال بارگزاری...</p>}>
-                              {fontsList.map(
-                                ({ fontName, fontValue }, index) => (
-                                  <SelectItem
-                                    className="hover:cursor-pointer"
-                                    key={`${index}-${fontName}`}
-                                    value={fontValue}
-                                  >
-                                    <p style={{ fontFamily: fontValue }}>
-                                      {fontName} -{" "}
-                                      {element.extraAttributes.subtitle}
-                                    </p>
-                                  </SelectItem>
-                                ),
-                              )}
-                            </Suspense>
-                          </SelectContent>
-                        </Select>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                <ElementFontFormField
+                  form={form}
+                  fieldName="subtitleFont"
+                  label="فونت عنوان دوم"
                 />
               </TabsContent>
             </Tabs>
@@ -289,7 +166,6 @@ function PropertiesComponent({ elementInstance }) {
             <div className="mt-2">
               {/* <HeroWorkspaceUploader /> */}
               <UploadButton />
-
               <p className="text-xs text-textLight">
                 پس از انتخاب فایل، دکمه بارگزاری را بزنید
               </p>

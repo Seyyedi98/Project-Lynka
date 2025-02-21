@@ -35,8 +35,8 @@ const HeroWorkspaceUploader = ({ uri }) => {
 
   const handleUploadButton = async () => {
     const options = {
-      maxSizeMB: 0.3, // Compress to be <= 0.5MB
-      maxWidthOrHeight: 640, // Optional: Resize image to 640px width/height if it's larger
+      maxSizeMB: 0.3, // Compress to be <= 0.3MB
+      maxWidthOrHeight: 720, // Optional: Resize image to 720px width/height if it's larger
       initialQuality: 1, // Start with 100% quality and adjust as needed
       useWebWorker: true, // Enable web workers for faster processing
     };
