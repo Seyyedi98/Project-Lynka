@@ -77,7 +77,7 @@ const WorkspaceElementWrapper = ({ element }) => {
       />
 
       {topHalf.isOver && (
-        <div className="bg-primary-600 absolute top-0 h-[3px] w-full rounded-md rounded-b-none bg-white/50" />
+        <div className="bg-primary-600 absolute top-0 h-[5px] w-full rounded-md rounded-b-none bg-white/50" />
       )}
 
       {/* Content Section */}
@@ -118,7 +118,7 @@ const WorkspaceElementWrapper = ({ element }) => {
       </div>
 
       {bottomHalf.isOver && (
-        <div className="bg-primary-600 absolute bottom-0 h-[2px] w-full rounded-t-none bg-white/50" />
+        <div className="bg-primary-600 absolute bottom-0 h-[5px] w-full rounded-t-none bg-white/50" />
       )}
     </div>
   );

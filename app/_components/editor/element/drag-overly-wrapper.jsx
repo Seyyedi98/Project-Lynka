@@ -1,5 +1,5 @@
 import { DragOverlay, useDndMonitor } from "@dnd-kit/core";
-import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import { restrictToVerticalAxis, snapCenterToCursor } from "@dnd-kit/modifiers";
 import { useState } from "react";
 import { shallowEqual, useSelector } from "react-redux";
 import { PageElements } from "../../controller/page-elements-controller";
@@ -45,7 +45,7 @@ const DragOverlyWrapper = () => {
       const WorkspaceElementComponent =
         PageElements[element.type].WorkspaceComponent;
       node = (
-        <div className="border-rounded-xl pointer-events-none flex w-full bg-transparent px-4 py-2 opacity-80">
+        <div className="border-rounded-xl pointer-events-none flex max-h-32 w-full bg-transparent px-4 py-2 opacity-80">
           <WorkspaceElementComponent elementInstance={element} />
         </div>
       );
@@ -53,7 +53,9 @@ const DragOverlyWrapper = () => {
   }
 
   // Dynamically determine modifiers based on the group
-  const modifiers = isSidebarBtnElement ? [] : [restrictToVerticalAxis];
+  const modifiers = isSidebarBtnElement
+    ? [snapCenterToCursor]
+    : [restrictToVerticalAxis];
 
   return <DragOverlay modifiers={modifiers}>{node}</DragOverlay>;
 };
