@@ -141,6 +141,7 @@ function PropertiesComponent({ elementInstance }) {
             <Tabs dir="rtl" defaultValue="content" className="">
               <TabsList className="mb-2">
                 <TabsTrigger value="content">محتوا</TabsTrigger>
+                <TabsTrigger value="schedule">زمان بندی</TabsTrigger>
                 <TabsTrigger value="style">استایل</TabsTrigger>
               </TabsList>
 
@@ -162,6 +163,11 @@ function PropertiesComponent({ elementInstance }) {
                   />
                 </div>
               </TabsContent>
+
+              <TabsContent
+                value="schedule"
+                className="flex flex-col gap-4"
+              ></TabsContent>
 
               <TabsContent value="style" className="flex flex-col gap-4">
                 {/* Layout */}

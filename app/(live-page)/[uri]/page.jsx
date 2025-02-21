@@ -127,7 +127,7 @@ const LivePage = async ({ params }) => {
             : styleImage
         }
         className={cn(
-          `relative flex h-full w-full flex-col items-center justify-start gap-4`,
+          `relative flex w-full flex-col items-center justify-start gap-4 overflow-hidden pb-20`,
           theme.isBackgroundAnimated &&
             theme.backgroundType === "gradient" &&
             "animate-bg-move",
@@ -143,6 +143,7 @@ const LivePage = async ({ params }) => {
             <LoadingSpinner elementInstances={page.loadingIcon} />
           </div>
         )}
+
         {/* Hero Section */}
         <LivePageHero hero={hero} />
 

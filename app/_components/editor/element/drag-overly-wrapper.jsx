@@ -55,7 +55,7 @@ const DragOverlyWrapper = () => {
   // Dynamically determine modifiers based on the group
   const modifiers = isSidebarBtnElement
     ? [snapCenterToCursor]
-    : [restrictToVerticalAxis];
+    : [snapCenterToCursor];
 
   return <DragOverlay modifiers={modifiers}>{node}</DragOverlay>;
 };

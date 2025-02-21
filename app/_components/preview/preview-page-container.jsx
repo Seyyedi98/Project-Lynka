@@ -30,18 +30,20 @@ const PreviewPageContainer = () => {
           : imageBgStyle
       }
       className={cn(
-        `flex h-svh w-full flex-col items-center justify-center`,
+        `flex h-svh w-full flex-col items-center justify-center overflow-y-scroll pb-20 [scrollbar-width:none]`,
         theme.isBackgroundAnimated &&
           theme.backgroundType === "gradient" &&
           "animate-bg-move",
       )}
     >
-      <div>
-        <PreviewPageHero />
+      <div className="h-full">
+        <div>
+          <PreviewPageHero />
+        </div>
+        <section className="mt-2 flex w-full max-w-[400px] flex-col items-center justify-start gap-4 px-4">
+          <PreviewPageElements />
+        </section>
       </div>
-      <section className="mt-2 flex h-full w-full max-w-[400px] flex-col items-center justify-start gap-4 px-4">
-        <PreviewPageElements />
-      </section>
     </div>
   );
 };
