@@ -1,4 +1,5 @@
 // redux/slices/pageSlice.js
+import { arrayMove } from "@dnd-kit/sortable";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -46,7 +47,14 @@ const pageSlice = createSlice({
         state.elements[index] = { ...state.elements[index], ...updatedElement };
       }
     },
+    sortElement: (state, action) => {
+      const { active, over, elements } = action.payload;
 
+      const oldIndex = elements.findIndex((element) => element.id === active);
+      const newIndex = elements.findIndex((element) => element.id === over);
+      const newElemetns = arrayMove(elements, oldIndex, newIndex);
+      state.elements = newElemetns;
+    },
     removeElement: (state, action) => {
       const id = action.payload;
       state.elements = state.elements.filter((el) => el.id !== id);

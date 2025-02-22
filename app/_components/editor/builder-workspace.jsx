@@ -19,6 +19,10 @@ import EditorSidebar from "../layout/navbar/editor-sidebar";
 import PreviewPageContainer from "../preview/preview-page-container";
 import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 const MemoizedEditorSidebar = memo(EditorSidebar);
@@ -76,13 +80,6 @@ const BuilderWorkspace = () => {
     [theme.backgroundType, theme.backgroundImage],
   );
 
-  const droppable = useDroppable({
-    id: "editor-drop-area",
-    data: {
-      isWorkspaceDropArea: true,
-    },
-  });
-
   useDndMonitor({
     onDragStart: useCallback(
       () => dispatch({ type: "modal/closeMenu" }),
@@ -92,123 +89,10 @@ const BuilderWorkspace = () => {
     onDragEnd: useCallback(
       (event) => {
         const { active, over } = event;
-        if (!active || !over) return;
 
-        const isAdderBtn = active.data?.current?.isAdderBtn;
-        const isDroppingOverWorkspaceArea =
-          over.data?.current?.isWorkspaceDropArea;
-        const isDraggingWorkspaceElement =
-          active.data?.current?.isWorkspaceElement;
-        const isDroppingOverWorkspaceElementTopHalf =
-          over.data?.current?.isTopHalfWorkspaceElement;
-        const isDroppingOverWorkspaceElementBottomHalf =
-          over.data?.current?.isBottomHalfWorkspaceElement;
-        const droppingOverWorkspaceElement =
-          isDroppingOverWorkspaceElementTopHalf ||
-          isDroppingOverWorkspaceElementBottomHalf;
-
-        ////////////////////////////////////////////////////////////////////////////////////
-        //     1. When drop new element on workspace, It will be added as a last item     //
-        ////////////////////////////////////////////////////////////////////////////////////
-
-        if (isAdderBtn && isDroppingOverWorkspaceArea) {
-          const type = active.data?.current?.type;
-          const newElement = PageElements[type].construct(idGenerator());
-          const applyPageTheme = true;
-
-          const payload = {
-            index: elements.length,
-            element: newElement,
-            applyPageTheme,
-          };
-
-          dispatch({ type: "page/addElement", payload });
-          return;
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////
-        //        2. When Drop new element on top or bottom half on canvas element        //
-        ////////////////////////////////////////////////////////////////////////////////////
-
-        if (isAdderBtn && droppingOverWorkspaceElement) {
-          const type = active.data?.current?.type;
-          const newElement = PageElements[type].construct(idGenerator());
-          const overId = over.data?.current?.elementId;
-          const overElementIndex = elements.findIndex((el) => el.id === overId);
-          if (overElementIndex === -1) throw new Error("Element not found");
-
-          let indexForNewElement = overElementIndex; // For drop on top half
-          if (isDroppingOverWorkspaceElementBottomHalf) {
-            indexForNewElement = indexForNewElement + 1;
-          }
-
-          const payload = {
-            index: indexForNewElement,
-            element: newElement,
-            applyPageTheme: true,
-          };
-
-          dispatch({ type: "page/addElement", payload });
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////
-        //              3. When drag workspace elements and reposition them               //
-        ////////////////////////////////////////////////////////////////////////////////////
-
-        const repositionWorkspaceElement =
-          droppingOverWorkspaceElement && isDraggingWorkspaceElement;
-
-        if (repositionWorkspaceElement) {
-          const activeId = active.data?.current.elementId;
-          const overId = over.data?.current.elementId;
-          const activeElementIndex = elements.findIndex(
-            (el) => el.id === activeId,
-          );
-          const overElementIndex = elements.findIndex((el) => el.id === overId);
-
-          if (activeElementIndex === -1 || overElementIndex === -1) {
-            throw new Error("Element not found");
-          }
-
-          const activeElement = { ...elements[activeElementIndex] }; // Copy active element
-          dispatch({ type: "page/removeElement", payload: activeId });
-
-          let indexForNewElement = overElementIndex; // For top half
-          if (isDroppingOverWorkspaceElementBottomHalf) {
-            indexForNewElement = indexForNewElement + 1;
-          }
-
-          const payload = {
-            index: indexForNewElement,
-            element: activeElement,
-          };
-
-          dispatch({ type: "page/addElement", payload });
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////
-        //         4. When drag workspace elements and drop on the workspace area         //
-        ////////////////////////////////////////////////////////////////////////////////////
-
-        if (isDraggingWorkspaceElement && isDroppingOverWorkspaceArea) {
-          const activeId = active.data?.current.elementId;
-          const activeElementIndex = elements.findIndex(
-            (el) => el.id === activeId,
-          );
-
-          if (activeElementIndex === -1) {
-            throw new Error("Element not found");
-          }
-
-          const activeElement = { ...elements[activeElementIndex] }; // Copy active element
-          dispatch({ type: "page/removeElement", payload: activeId });
-
-          const payload = {
-            index: elements.length,
-            element: activeElement,
-          };
-
-          dispatch({ type: "page/addElement", payload });
+        if (over && active.id !== over.id) {
+          const data = { active: active.id, over: over.id, elements };
+          dispatch({ type: "page/sortElement", payload: data });
         }
       },
       [elements, dispatch],
@@ -245,6 +129,7 @@ const BuilderWorkspace = () => {
                   <span className="text-white">ذخیره</span>
                 </div>
               </SavePageBtn>
+
               <Dialog>
                 <DialogTrigger asChild>
                   <div className="flex h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-2 text-sm">
@@ -274,34 +159,28 @@ const BuilderWorkspace = () => {
               className={cn(
                 `relative flex h-svh w-full flex-grow flex-col items-center overflow-y-auto rounded-xl shadow-lg [scrollbar-width:none] md:h-[720px] md:w-[360px]`,
               )}
-              ref={droppable.setNodeRef}
             >
               <div className="w-full">
                 <WorkspaceHeroWrapper element={hero} />
               </div>
 
-              {!droppable.isOver && elements?.length === 0 && (
+              {elements?.length === 0 && (
                 <p className="flex items-center justify-center text-xl font-medium text-gray-500">
                   Add some blocks to start!
                 </p>
               )}
 
-              {droppable.isOver && elements?.length === 0 && (
-                <div className="w-full p-4">
-                  <div className="h-32 rounded-lg bg-blue-100">
-                    اینجا رها کنید
-                  </div>
-                </div>
-              )}
-
-              {elements?.map((element) => (
-                <div
-                  key={element.id}
-                  className="flex w-full justify-center md:px-2"
-                >
-                  <MemoizedWorkspaceElementWrapper element={element} />
-                </div>
-              ))}
+              <SortableContext
+                strategy={verticalListSortingStrategy}
+                items={elements}
+              >
+                {elements.map((element) => (
+                  <MemoizedWorkspaceElementWrapper
+                    element={element}
+                    key={element.id}
+                  />
+                ))}
+              </SortableContext>
               <div className="mt-auto pb-24"></div>
             </div>
           </div>

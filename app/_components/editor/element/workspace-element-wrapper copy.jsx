@@ -22,12 +22,22 @@ const WorkspaceElementWrapper = ({ element }) => {
     transition,
   };
 
-  const draggable = useDraggable({
-    id: element.id + "-drag-handler",
+  // Droppable setup
+  const topHalf = useDroppable({
+    id: element.id + "-top",
     data: {
       type: element.type,
       elementId: element.id,
-      isCanvasElement: true,
+      isTopHalfWorkspaceElement: true,
+    },
+  });
+
+  const bottomHalf = useDroppable({
+    id: element.id + "-bottom",
+    data: {
+      type: element.type,
+      elementId: element.id,
+      isBottomHalfWorkspaceElement: true,
     },
   });
 
@@ -50,6 +60,22 @@ const WorkspaceElementWrapper = ({ element }) => {
         });
       }}
     >
+      {/* Top droppable half */}
+      <div
+        ref={topHalf.setNodeRef}
+        className="absolute h-1/2 w-full rounded-t-md"
+      />
+
+      {/* Bottom droppable half */}
+      <div
+        ref={bottomHalf.setNodeRef}
+        className="absolute bottom-0 h-1/2 w-full rounded-b-md"
+      />
+
+      {topHalf.isOver && (
+        <div className="bg-primary-600 absolute top-0 h-[5px] w-full rounded-md rounded-b-none bg-white/50" />
+      )}
+
       {/* Content Section */}
       <div
         className={cn(
@@ -57,7 +83,10 @@ const WorkspaceElementWrapper = ({ element }) => {
         )}
       >
         {/* Edit button */}
-        <div className="cursor-pointer rounded-md text-primary md:block">
+        <div
+          // className="absolute -right-12 top-1/2 hidden -translate-y-1/2 cursor-pointer rounded-md bg-gray-200 px-2 py-2 md:block"
+          className="cursor-pointer rounded-md text-primary md:block"
+        >
           {element === selectedElement ? (
             <XIcon className="h-5 w-5" />
           ) : (
@@ -78,6 +107,10 @@ const WorkspaceElementWrapper = ({ element }) => {
           </button>
         </div>
       </div>
+
+      {bottomHalf.isOver && (
+        <div className="bg-primary-600 absolute bottom-0 h-[5px] w-full rounded-t-none bg-white/50" />
+      )}
     </div>
   );
 };
