@@ -127,7 +127,7 @@ const LivePage = async ({ params }) => {
             : styleImage
         }
         className={cn(
-          `relative flex w-full flex-col items-center justify-start gap-4 overflow-hidden pb-20`,
+          `relative flex h-svh w-full flex-col items-center justify-start gap-4 overflow-hidden`,
           theme.isBackgroundAnimated &&
             theme.backgroundType === "gradient" &&
             "animate-bg-move",
@@ -144,13 +144,15 @@ const LivePage = async ({ params }) => {
           </div>
         )}
 
-        {/* Hero Section */}
-        <LivePageHero hero={hero} />
+        <main className="flex w-full flex-col items-center overflow-y-auto pb-20 [scrollbar-width:none]">
+          {/* Hero Section */}
+          <LivePageHero hero={hero} />
 
-        {/* Content Section */}
-        <section className="flex h-full w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
-          <LivePageElements uri={uri} content={content} />
-        </section>
+          {/* Content Section */}
+          <section className="flex w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
+            <LivePageElements uri={uri} content={content} />
+          </section>
+        </main>
       </div>
     </>
   );

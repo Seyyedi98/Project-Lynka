@@ -61,6 +61,23 @@ export const getPageDataByUri = async (uri) => {
   return page;
 };
 
+export const getWorkspacePageDataByUri = async (uri) => {
+  const user = await currentUser();
+  if (!user) return;
+
+  const page = await prisma.page.findUnique({
+    where: {
+      uri,
+    },
+  });
+
+  if (page.owner !== user.id) return { error: "Unauthorized access" };
+
+  if (!page) return { error: "Page not found!" };
+
+  return page;
+};
+
 export const getPageMetadata = async (uri) => {
   if (!uri) return { error: "Cannot get page data" };
   const metaData = await prisma.page.findUnique({
@@ -91,6 +108,7 @@ export async function UpdatePageContent(uri, jsonContent) {
       uri,
     },
   });
+
   if (page.owner !== user.id) return { error: "Unauthorized access" };
 
   await prisma.page.update({

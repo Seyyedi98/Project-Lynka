@@ -1,10 +1,15 @@
-import { getPageDataByUri } from "@/actions/page";
+import { getWorkspacePageDataByUri } from "@/actions/page";
 import PageBuilder from "@/app/_components/editor/page-builder";
-import { redirect } from "next/navigation";
+import NotFound from "@/app/not-found";
+import { currentUser } from "@/lib/auth/get-user";
+import { notFound, redirect } from "next/navigation";
 
 const EditorPage = async ({ params }) => {
   const { uri } = await params;
-  const page = await getPageDataByUri(uri);
+  const user = await currentUser();
+  const page = await getWorkspacePageDataByUri(uri);
+
+  if (page && page.owner !== user.id) return <NotFound />;
 
   if (page.theme) {
     return (

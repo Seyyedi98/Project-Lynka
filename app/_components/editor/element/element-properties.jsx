@@ -46,13 +46,24 @@ const ElementProperties = ({ element }) => {
             <Button
               asChild
               variant="destructive"
-              className="mt-2 flex h-12 w-full cursor-pointer items-center justify-center p-2 duration-200"
+              className="mt-2 hidden h-12 w-full cursor-pointer items-center justify-center p-2 duration-200 md:flex"
             >
               <span>
                 حذف بلوک
                 <TrashIcon className="h-4 w-4 text-white" />
               </span>
             </Button>
+          </DeleteElementBtn>
+        )}
+
+        {element?.type !== "HeroElement" && (
+          <DeleteElementBtn id={element?.id}>
+            <button
+              variant="destructive"
+              className="absolute -top-16 left-2 flex cursor-pointer items-center justify-center rounded-full bg-destructive p-2 duration-200 hover:bg-green-600 md:right-0 md:hidden"
+            >
+              <TrashIcon className="h-4 w-4 text-white" />
+            </button>
           </DeleteElementBtn>
         )}
       </div>

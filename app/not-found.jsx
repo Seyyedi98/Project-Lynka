@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const notFound = () => {
+const NotFound = () => {
   return (
     <div className="flex h-svh w-full flex-col items-center justify-center gap-4">
       <p className="text-4xl">صفحه پیدا نشد!</p>
@@ -10,4 +10,4 @@ const notFound = () => {
   );
 };
 
-export default notFound;
+export default NotFound;

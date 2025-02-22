@@ -174,7 +174,7 @@ function PropertiesComponent({ elementInstance }) {
             {/* Mobile drawaer button */}
             <button
               type="submit"
-              className="absolute -top-20 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+              className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
             >
               <Check className="h-4 w-4 text-white" />
             </button>

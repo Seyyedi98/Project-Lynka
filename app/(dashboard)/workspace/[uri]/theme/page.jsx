@@ -1,10 +1,13 @@
-import { getPageDataByUri } from "@/actions/page";
+import { getWorkspacePageDataByUri } from "@/actions/page";
 import InitialThemeSelector from "@/app/_components/editor/initial-theme-selector";
 import { redirect } from "next/navigation";
 
 const SelectThemePage = async ({ params }) => {
   const { uri } = await params;
-  const page = await getPageDataByUri(uri);
+  const page = await getWorkspacePageDataByUri(uri);
+
+  if (page.error == "Unauthorized access") redirect(`/dashboard`);
+  if (page && page.owner !== user.id) return <NotFound />;
   if (page.theme) redirect(`/workspace/${uri}`);
 
   return (
