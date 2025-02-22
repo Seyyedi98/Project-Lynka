@@ -16,7 +16,7 @@ import { useState } from "react";
 import UserButton from "../../auth/user-button";
 import SidebarLink from "../../common/button/NavigationButton/sidebar-link";
 import HumbergerMenuBtn from "../../common/button/PrimaryButton/humberger-menu";
-import Devider from "../../common/shared/devider";
+import Divider from "../../common/shared/devider";
 
 const DashboardSidebar = () => {
   const user = useCurrentUser();
@@ -71,7 +71,7 @@ const DashboardSidebar = () => {
 
             <div className="mr-[2px] mt-6 flex flex-col gap-3 sm:mt-0">
               <div className="mx-3">
-                <Devider />
+                <Divider />
               </div>
               <SidebarLink
                 isExpanded={isSidebarOpen}

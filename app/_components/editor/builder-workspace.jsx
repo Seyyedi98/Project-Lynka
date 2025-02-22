@@ -5,7 +5,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { Eye } from "lucide-react";
+import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { memo, useCallback, useMemo, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import PageUrl from "../common/button/page-url";
@@ -23,6 +23,8 @@ import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
 import { PageElements } from "../controller/page-elements-controller";
 import { idGenerator } from "@/lib/id-generator";
+import { redirect } from "next/navigation";
+import BackButtonWithConfirmation from "../common/button/back-button-confirmation";
 
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 const MemoizedEditorSidebar = memo(EditorSidebar);
@@ -148,15 +150,26 @@ const BuilderWorkspace = () => {
             />
 
             <div className="absolute right-4 top-4 z-20 flex gap-2">
+              {/* Back To Dashboard */}
+              <BackButtonWithConfirmation url="/dashboard">
+                <div className="flex cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 p-2 text-sm md:hidden">
+                  <span className="text-white">
+                    <ChevronRight />
+                  </span>
+                </div>
+              </BackButtonWithConfirmation>
+
+              {/* Page Save Button */}
               <SavePageBtn>
                 <div className="flex h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-4 text-sm">
                   <span className="text-white">ذخیره</span>
                 </div>
               </SavePageBtn>
 
+              {/* Page Preview Button */}
               <Dialog>
                 <DialogTrigger asChild>
-                  <div className="flex h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-2 text-sm">
+                  <div className="hidden h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-2 text-sm md:flex">
                     <Eye className="text-white" />
                   </div>
                 </DialogTrigger>

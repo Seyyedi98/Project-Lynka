@@ -7,7 +7,7 @@ import ElementhrefFormField from "@/app/_components/common/form/element-properti
 import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
-import Devider from "@/app/_components/common/shared/devider";
+import Divider from "@/app/_components/common/shared/devider";
 import { ElementThemeController } from "@/app/_components/controller/element-theme-controller";
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -141,8 +141,8 @@ function PropertiesComponent({ elementInstance }) {
             <Tabs dir="rtl" defaultValue="content" className="">
               <TabsList className="mb-2">
                 <TabsTrigger value="content">محتوا</TabsTrigger>
-                <TabsTrigger value="schedule">زمان بندی</TabsTrigger>
-                <TabsTrigger value="style">استایل</TabsTrigger>
+                <TabsTrigger value="design">طراحی</TabsTrigger>
+                <TabsTrigger value="visibility">نمایش</TabsTrigger>
               </TabsList>
 
               <TabsContent value="content" className="flex flex-col gap-4">
@@ -152,41 +152,7 @@ function PropertiesComponent({ elementInstance }) {
                 {/* Address */}
                 <ElementhrefFormField form={form} />
 
-                {/* Schedule */}
-                <div className="mt-6">
-                  <ElementScheduleFormField
-                    scheduleState={
-                      element.extraAttributes.scheduleData.schedule
-                    }
-                    form={form}
-                    isSilver={isSilver}
-                  />
-                </div>
-              </TabsContent>
-
-              <TabsContent
-                value="schedule"
-                className="flex flex-col gap-4"
-              ></TabsContent>
-
-              <TabsContent value="style" className="flex flex-col gap-4">
-                {/* Layout */}
-                <ElementCardLayoutFormField
-                  form={form}
-                  RenderElement={RenderElement}
-                  isSilver={isSilver}
-                  element={element}
-                />
-
-                {/* Image upload */}
-                <div className="mt-2">
-                  <UploadButton form={form} element={element} />
-                  <p className="text-xs text-textLight">
-                    پس از انتخاب فایل، دکمه بارگزاری را بزنید
-                  </p>
-                </div>
-
-                <Devider className="mt-4 opacity-50" />
+                <Divider className="mt-4 opacity-50" />
 
                 {/* Font */}
                 <ElementFontFormField fieldName="font" form={form} />
@@ -197,6 +163,21 @@ function PropertiesComponent({ elementInstance }) {
                   label="رنگ نوشته"
                   fieldName="textColor"
                 />
+              </TabsContent>
+
+              <TabsContent value="design" className="flex flex-col gap-4">
+                {/* Layout */}
+                <ElementCardLayoutFormField
+                  form={form}
+                  RenderElement={RenderElement}
+                  isSilver={isSilver}
+                  element={element}
+                />
+
+                {/* Border radius */}
+                <ElementBorderRadiusFormField form={form} />
+
+                <Divider className="mt-4 opacity-50" />
 
                 {/* Background Color */}
                 <ElementColorFormField
@@ -205,8 +186,26 @@ function PropertiesComponent({ elementInstance }) {
                   fieldName="bgColor"
                 />
 
-                {/* Border radius */}
-                <ElementBorderRadiusFormField form={form} />
+                {/* Image upload */}
+                <div className="mt-2">
+                  <UploadButton form={form} element={element} />
+                  <p className="text-xs text-textLight">
+                    پس از انتخاب فایل، دکمه بارگزاری را بزنید
+                  </p>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="visibility" className="flex flex-col gap-4">
+                {/* Schedule */}
+                <div className="mt-6">
+                  <ElementScheduleFormField
+                    scheduleState={
+                      element.extraAttributes.scheduleData.schedule
+                    }
+                    form={form}
+                    isSilver={isSilver}
+                  />
+                </div>
               </TabsContent>
             </Tabs>
 

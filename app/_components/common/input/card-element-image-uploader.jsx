@@ -91,7 +91,7 @@ const CardElementBgUploader = ({ element }) => {
   return (
     <div className="upload-container">
       <div className="file-upload text-nowrap">
-        <Label htmlFor="uploader">تصویر کارت</Label>
+        <Label htmlFor="uploader">تصویر پس زمینه</Label>
         <div className="mt-2 flex justify-center gap-2">
           <Input
             id="uploader"

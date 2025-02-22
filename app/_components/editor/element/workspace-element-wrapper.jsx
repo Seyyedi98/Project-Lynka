@@ -53,22 +53,22 @@ const WorkspaceElementWrapper = ({ element }) => {
       {/* Content Section */}
       <div
         className={cn(
-          "pointer-events-none relative flex w-full items-center justify-center gap-2 rounded-md py-2 opacity-100 transition-all duration-200",
+          "pointer-events-none relative flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 opacity-100 transition-all duration-200",
         )}
       >
         {/* Edit button */}
-        <div className="cursor-pointer rounded-md text-primary md:block">
+        {/* <div className="cursor-pointer rounded-md text-primary md:block">
           {element === selectedElement ? (
             <XIcon className="h-5 w-5" />
           ) : (
             <Pencil1Icon className="h-5 w-5" />
           )}
-        </div>
+        </div> */}
 
         <PageElement elementInstance={element} />
 
         {/* Drag Handles */}
-        <div
+        {/* <div
           onClick={(e) => e.stopPropagation()}
           // className="pointer-events-auto absolute -left-14 flex"
           className="pointer-events-auto translate-y-1"
@@ -76,7 +76,7 @@ const WorkspaceElementWrapper = ({ element }) => {
           <button className="cursor-grab rounded-md text-primary">
             <GripHorizontal />
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

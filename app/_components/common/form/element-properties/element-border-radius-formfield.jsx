@@ -7,14 +7,13 @@ import {
 } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
-import { DesktopIcon } from "@radix-ui/react-icons";
 
 const borderRadiusList = [
+  { id: "none", value: "0px" },
   { id: "small", value: "4px" },
-  { id: "medium", value: "6px" },
-  { id: "large", value: "8px" },
-  { id: "xlarge", value: "12px" },
-  { id: "2xlarge", value: "16px" },
+  { id: "medium", value: "8px" },
+  { id: "large", value: "12px" },
+  { id: "xlarge", value: "16px" },
 ];
 
 const ElementBorderRadiusFormField = ({ form }) => {
@@ -24,7 +23,7 @@ const ElementBorderRadiusFormField = ({ form }) => {
       name="borderRadius"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>زاویه</FormLabel>
+          <FormLabel>گوشه‌های گرد</FormLabel>
           <FormControl>
             <div className="flex flex-col gap-4">
               <RadioGroup

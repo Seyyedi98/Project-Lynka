@@ -1,11 +1,11 @@
 import React from "react";
 
-const Devider = ({ className }) => {
+const Divider = ({ className }) => {
   return (
     <div
-      className={`mx-auto w-full border-b-0 border-t-[1px] border-white/50 ${className}`}
+      className={`mx-auto w-full border-b-0 border-t-[1px] border-primary/30 ${className}`}
     />
   );
 };
 
-export default Devider;
+export default Divider;

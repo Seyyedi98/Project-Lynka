@@ -240,11 +240,14 @@ const BuilderWorkspace = () => {
             />
 
             <div className="absolute right-4 top-4 z-20 flex gap-2">
+              {/* Page Save Button */}
               <SavePageBtn>
                 <div className="flex h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-4 text-sm">
                   <span className="text-white">ذخیره</span>
                 </div>
               </SavePageBtn>
+
+              {/* Page Preview Button */}
               <Dialog>
                 <DialogTrigger asChild>
                   <div className="flex h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-2 text-sm">

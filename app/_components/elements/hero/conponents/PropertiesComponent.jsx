@@ -3,6 +3,7 @@
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
+import Divider from "@/app/_components/common/shared/devider";
 import { fontsList } from "@/app/fonts/fonts";
 import {
   Form,
@@ -117,7 +118,7 @@ function PropertiesComponent({ elementInstance }) {
             <Tabs dir="rtl" defaultValue="content" className="">
               <TabsList className="mb-2">
                 <TabsTrigger value="content">محتوا</TabsTrigger>
-                <TabsTrigger value="style">استایل</TabsTrigger>
+                <TabsTrigger value="design">استایل</TabsTrigger>
               </TabsList>
 
               <TabsContent value="content" className="flex flex-col gap-4">
@@ -130,46 +131,46 @@ function PropertiesComponent({ elementInstance }) {
                   fieldName="subtitle"
                   placeholder="توضیحات"
                 />
-              </TabsContent>
 
-              <TabsContent value="style" className="flex flex-col gap-4">
+                <Divider className="mt-4 opacity-50" />
+
                 {/* Title Color */}
                 <ElementColorFormField
                   form={form}
                   fieldName="titleColor"
-                  label="رنگ"
+                  label="رنگ عنوان"
                 />
 
                 {/* Title Font */}
                 <ElementFontFormField
                   form={form}
                   fieldName="titleFont"
-                  label="فونت عنوان اصلی"
+                  label="فونت عنوان "
                 />
 
                 {/* Subtitle Color */}
                 <ElementColorFormField
                   form={form}
                   fieldName="subtitleColor"
-                  label="رنگ"
+                  label="رنگ توضیحات"
                 />
 
                 {/* Subtitle Font */}
                 <ElementFontFormField
                   form={form}
                   fieldName="subtitleFont"
-                  label="فونت عنوان دوم"
+                  label="فونت توضیحات"
                 />
               </TabsContent>
-            </Tabs>
 
-            <div className="mt-2">
-              {/* <HeroWorkspaceUploader /> */}
-              <UploadButton />
-              <p className="text-xs text-textLight">
-                پس از انتخاب فایل، دکمه بارگزاری را بزنید
-              </p>
-            </div>
+              <TabsContent value="design" className="flex flex-col gap-4">
+                {/* <HeroWorkspaceUploader /> */}
+                <UploadButton />
+                <p className="text-xs text-textLight">
+                  پس از انتخاب فایل، دکمه بارگزاری را بزنید
+                </p>
+              </TabsContent>
+            </Tabs>
 
             {/* Mobile drawaer button */}
             <button

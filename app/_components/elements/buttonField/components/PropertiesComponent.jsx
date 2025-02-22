@@ -1,6 +1,6 @@
 "use client";
 
-import Devider from "@/app/_components/common/shared/devider";
+import Divider from "@/app/_components/common/shared/devider";
 import { fontsList } from "@/app/fonts/fonts";
 import {
   Form,
@@ -266,12 +266,12 @@ function PropertiesComponent({ elementInstance }) {
                                 />
                               </FormControl>
                               <FormLabel
-                                className={`text-icon-light cursor-pointer font-normal`}
+                                className={`cursor-pointer font-normal text-icon-light`}
                               >
                                 <div
                                   style={{ borderRadius: option.value }}
                                   className={cn(
-                                    `bg-icon-light/60 h-6 w-12`,
+                                    `h-6 w-12 bg-icon-light/60`,
                                     field.value === option.value && "bg-icon",
                                   )}
                                 ></div>

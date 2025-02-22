@@ -12,11 +12,12 @@ import {
   DialogTrigger,
 } from "../modal/diolog";
 
-const BackButtonWithConfirmation = ({ url }) => {
+const BackButtonWithConfirmation = ({ url, children }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <ArrowLeft className="h-6 w-6 cursor-pointer text-white" />
+        {children}
+        {/* <ArrowLeft className="h-6 w-6 cursor-pointer text-white" /> */}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -32,7 +33,7 @@ const BackButtonWithConfirmation = ({ url }) => {
               بازگشت
             </Button>
           </DialogClose>
-          <Button type="submit" className="px-4" variant="primary" asChild>
+          <Button type="submit" className="px-4" variant="secondary" asChild>
             <Link href={url}>تایید</Link>
           </Button>
         </DialogFooter>

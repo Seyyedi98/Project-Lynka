@@ -21,7 +21,7 @@ const ElementFontFormField = ({ form, fieldName, label }) => {
       name={fieldName}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label || "قونت"}</FormLabel>
+          <FormLabel>{label || "فونت"}</FormLabel>
           <FormControl>
             <Select
               {...field}
