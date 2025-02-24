@@ -1,5 +1,4 @@
 // redux/slices/pageSlice.js
-import { toast } from "@/hooks/use-toast";
 import { arrayMove } from "@dnd-kit/sortable";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -45,9 +44,6 @@ const pageSlice = createSlice({
         };
       }
 
-      toast({
-        description: "بلوک جدید ایجاد شد",
-      });
       state.elements.splice(newElementIndex, 0, element);
     },
     updateElement: (state, action) => {

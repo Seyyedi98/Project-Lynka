@@ -90,13 +90,9 @@ const BuilderWorkspace = () => {
   });
 
   useDndMonitor({
-    onDragStart: useCallback(
-      (event) => {
-        setActiveDragItem(event?.active?.data?.current);
-        // dispatch({ type: "modal/closeMenu" });
-      },
-      [dispatch],
-    ),
+    onDragStart: useCallback((event) => {
+      setActiveDragItem(event?.active?.data?.current);
+    }, []),
 
     onDragEnd: useCallback(
       (event) => {

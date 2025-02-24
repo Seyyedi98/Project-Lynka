@@ -6,6 +6,7 @@ import { PlusIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { PageElements } from "../../controller/page-elements-controller";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { toast } from "@/hooks/use-toast";
 
 const AddElementButton = ({ pageElement }) => {
   // former sidebar-button-element
@@ -36,6 +37,9 @@ const AddElementButton = ({ pageElement }) => {
           element: newElement,
           applyPageTheme,
         };
+        toast({
+          description: "بلوک جدید ایجاد شد",
+        });
         dispatch({ type: "page/addElement", payload });
       }}
       ref={draggable.setNodeRef}
@@ -67,6 +71,9 @@ const AddElementButton = ({ pageElement }) => {
           element: newElement,
           applyPageTheme,
         };
+        toast({
+          description: "بلوک جدید ایجاد شد",
+        });
         dispatch({ type: "page/addElement", payload });
       }}
       className={cn(
