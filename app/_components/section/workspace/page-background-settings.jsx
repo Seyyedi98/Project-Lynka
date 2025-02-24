@@ -7,6 +7,7 @@ import SquareButton from "../../common/button/square-button";
 import PageBgImageForm from "../../common/form/page-bg-image-form";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { Toggle } from "rsuite";
 
 const PageBackgroundSettings = () => {
   const [category, setCategory] = useState("color");
@@ -83,10 +84,14 @@ const PageBackgroundSettings = () => {
           <>
             <div className="col-span-full mb-3 flex w-[99%] items-center justify-between space-x-2 rounded-md border border-primary/50 p-4 py-6">
               <Label htmlFor="animation-toggle">پس زمینه متحرک</Label>
-              <Switch
+
+              <Toggle
+                dir="rtl"
                 checked={theme.isBackgroundAnimated}
-                onCheckedChange={toggleIsBackgroundAnimated}
+                onChange={toggleIsBackgroundAnimated}
+                aria-readonly
                 id="animation-toggle"
+                color="blue"
               />
             </div>
 

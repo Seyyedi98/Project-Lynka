@@ -6,6 +6,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTheme } from "next-themes";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { Toggle } from "rsuite";
 // import { MoonIcon, SunIcon } from "lucide-react";
 
 const ThemeSwitcher = () => {
@@ -29,10 +30,12 @@ const ThemeSwitcher = () => {
   return (
     <div className="col-span-full mb-3 flex w-[99%] items-center justify-between space-x-2 rounded-md border border-primary/50 p-4 py-6">
       <Label htmlFor="theme-toggle">حالت تاریک</Label>
-      <Switch
+      <Toggle
         checked={theme === "dark" ? true : false}
-        onCheckedChange={toggleTheme}
+        onChange={toggleTheme}
+        aria-readonly
         id="theme-toggle"
+        color="blue"
       />
     </div>
   );

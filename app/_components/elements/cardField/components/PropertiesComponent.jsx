@@ -2,10 +2,11 @@
 
 import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementCardLayoutFormField from "@/app/_components/common/form/element-properties/element-card-layout-formfield";
+import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
+import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementhrefFormField from "@/app/_components/common/form/element-properties/element-href-formfield";
 import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
-import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
 import { ElementThemeController } from "@/app/_components/controller/element-theme-controller";
@@ -19,6 +20,10 @@ import dynamic from "next/dynamic";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import jalaali from "jalaali-js";
+import moment from "moment-jalaali";
+import { dateToMiladi } from "@/utils/dateToMiladi";
+import { dateToShamsi } from "@/utils/dateToShamsi";
 
 const UploadButton = dynamic(
   () => import("@/app/_components/common/input/card-element-image-uploader"),
@@ -48,6 +53,8 @@ function PropertiesComponent({ elementInstance }) {
       schedule: element.extraAttributes.schedule || false,
       scheduleStart: element.extraAttributes.scheduleStart || 0,
       scheduleEnd: element.extraAttributes.scheduleEnd || 0,
+      countdown: element.extraAttributes.countdown || false,
+      countdownDate: element.extraAttributes.countdownDate || "0",
     },
   });
 
@@ -69,6 +76,8 @@ function PropertiesComponent({ elementInstance }) {
       schedule,
       scheduleStart,
       scheduleEnd,
+      countdown,
+      countdownDate,
     } = values;
 
     const payload = {
@@ -98,6 +107,10 @@ function PropertiesComponent({ elementInstance }) {
           scheduleEnd: isSilver
             ? scheduleEnd
             : element.extraAttributes.scheduleEnd,
+          countdown: isSilver ? countdown : element.extraAttributes.countdown,
+          countdownDate: isSilver
+            ? JSON.stringify(countdownDate)
+            : element.extraAttributes.countdownDate,
         },
       },
     };
@@ -200,6 +213,15 @@ function PropertiesComponent({ elementInstance }) {
                 <div className="mt-6">
                   <ElementScheduleFormField
                     scheduleData={element.extraAttributes}
+                    form={form}
+                    isSilver={isSilver}
+                  />
+                </div>
+
+                {/* Countdown */}
+                <div className="mt-6">
+                  <ElementCountdownFormField
+                    countdownData={element.extraAttributes}
                     form={form}
                     isSilver={isSilver}
                   />

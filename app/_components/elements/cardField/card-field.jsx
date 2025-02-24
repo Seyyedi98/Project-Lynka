@@ -19,6 +19,8 @@ const extraAttributes = {
   schedule: false,
   scheduleStart: 0,
   scheduleEnd: 0,
+  countdown: false,
+  countdownDate: "0",
 };
 
 export const CardFieldFormElement = {

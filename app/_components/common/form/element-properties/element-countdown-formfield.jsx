@@ -4,30 +4,39 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import { fade } from "@/utils/animation/animation";
 import { AnimatePresence, motion } from "framer-motion";
-import { Toggle } from "rsuite";
+import { useState } from "react";
+import { DateInput } from "rsuite";
+import Toggle from "rsuite/Toggle";
+import "rsuite/Toggle/styles/index.css";
 
-const ElementScheduleFormField = ({ form, isSilver, scheduleData }) => {
-  let isScheduleActive = scheduleData.schedule;
-  if (form.watch("schedule") !== undefined) {
-    isScheduleActive = form.watch("schedule");
+const ElementCountdownFormField = ({ form, isSilver, countdownData }) => {
+  const { countdownDate, countdown } = countdownData;
+  const [value, setValue] = useState(new Date(JSON.parse(countdownDate)));
+
+  const handleChange = (date) => {
+    setValue(date); // Update the local state
+    form.setValue("countdownDate", date); // Update the form value
+  };
+
+  let isCountdownActive = countdownData;
+  if (form.watch("countdown") !== undefined) {
+    isCountdownActive = form.watch("countdown");
   }
 
   return (
     <>
       <FormField
         control={form.control}
-        name="schedule"
+        name="countdown"
         render={({ field }) => (
           <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
             <div className="flex flex-col gap-2">
-              <Label htmlFor="schedule-toggle">زمان بندی نمایش بلوک</Label>
+              <Label htmlFor="schedule-toggle">شمارش معکوس</Label>
               <p className="text-wrap text-xs text-textLight">
-                نمایش بلوک در ساعات خاصی از روز
+                بلوک تا تاریخ مشخض شده پنهان می ماند
               </p>
             </div>
             <FormControl>
@@ -46,7 +55,7 @@ const ElementScheduleFormField = ({ form, isSilver, scheduleData }) => {
 
       {isSilver ? (
         <AnimatePresence>
-          {isScheduleActive && (
+          {isCountdownActive && (
             <motion.div
               key="schedule"
               initial="initial"
@@ -57,35 +66,17 @@ const ElementScheduleFormField = ({ form, isSilver, scheduleData }) => {
             >
               <FormField
                 control={form.control}
-                name="scheduleStart"
+                name="countdownDate"
                 render={({ field }) => (
                   <FormItem className="w-full">
                     <FormControl>
-                      <Input
+                      <DateInput
                         {...field}
-                        placeholder="ساعت شروع"
-                        type="number"
-                        max="24"
-                        min="0"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="scheduleEnd"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormControl>
-                      <Input
-                        {...field}
-                        className="w-full"
-                        placeholder="ساعت پایان"
-                        type="number"
-                        max="24"
-                        min="0"
+                        value={value}
+                        onChange={handleChange}
+                        dir="ltr"
+                        format="yyyy/MM/dd HH:mm"
+                        placeholder="دقیقه:ساعت  روز/ماه/سال"
                       />
                     </FormControl>
                     <FormMessage />
@@ -104,4 +95,4 @@ const ElementScheduleFormField = ({ form, isSilver, scheduleData }) => {
   );
 };
 
-export default ElementScheduleFormField;
+export default ElementCountdownFormField;
