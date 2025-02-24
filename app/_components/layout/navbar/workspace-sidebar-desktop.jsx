@@ -3,12 +3,22 @@ import { GearIcon } from "@radix-ui/react-icons";
 import {
   AppWindow,
   ChartLine,
+  ChevronRight,
   Droplet,
   Layers,
   UserRoundIcon,
 } from "lucide-react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
+import BackButtonWithConfirmation from "../../common/button/back-button-confirmation";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import PageSettings from "../../editor/page-settings";
 
 const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
   const data = useSelector((store) => store.page.hero);
@@ -126,8 +136,23 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
             </li>
           </ul>
 
-          <div>
-            <GearIcon className="h-7 w-7 cursor-pointer" />
+          <div className="flex flex-col items-center justify-center gap-4">
+            <BackButtonWithConfirmation url="/dashboard">
+              <span className="cursor-pointer text-white">
+                <ChevronRight />
+              </span>
+            </BackButtonWithConfirmation>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <GearIcon className="h-7 w-7 cursor-pointer" />
+              </DialogTrigger>
+              <DialogContent className="">
+                <DialogTitle className="hidden"></DialogTitle>
+                <DialogDescription className="hidden"></DialogDescription>
+                <PageSettings />
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>

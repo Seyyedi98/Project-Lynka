@@ -3,15 +3,13 @@ import { fadeSlideLeft, fadeSlideUp } from "@/utils/animation/animation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ThemeSwitcher from "../../common/button/ThemeSwitcher";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
 import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
 import ElementProperties from "../../editor/element/element-properties";
-import PageBackgroundSettings from "../../section/workspace/page-background-settings";
 import PageDataSettingsContainer from "../../section/workspace/page-data-settings-container";
+import PageStyleSettingsContainer from "../../section/workspace/page-style-settings-container";
 import WorkspaceSidebatDesktop from "./workspace-sidebar-desktop";
 import WorkspaceSidebarMobile from "./workspace-sidebar-mobile";
-import PageStyleSettingsContainer from "../../section/workspace/page-style-settings-container";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -39,10 +37,6 @@ const EditorSidebar = () => {
   if (isDesktop) {
     return (
       <>
-        <div className="absolute right-0 top-0 z-50">
-          <ThemeSwitcher />
-        </div>
-
         {/* rounded menu on the right */}
         <WorkspaceSidebatDesktop
           selectedMenu={selectedMenu}

@@ -1,4 +1,5 @@
 // redux/slices/pageSlice.js
+import { toast } from "@/hooks/use-toast";
 import { arrayMove } from "@dnd-kit/sortable";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -27,7 +28,13 @@ const pageSlice = createSlice({
       state.metadata = action.payload;
     },
     addElement: (state, action) => {
-      const { index, element, applyPageTheme } = action.payload;
+      const { index, overId, element, applyPageTheme } = action.payload;
+      let newElementIndex = index;
+
+      if (!index && overId)
+        newElementIndex =
+          state.elements.findIndex((el) => el.id === overId) + 1;
+
       if (applyPageTheme) {
         element.extraAttributes = {
           ...element.extraAttributes,
@@ -37,7 +44,11 @@ const pageSlice = createSlice({
           borderRadius: state.theme?.borderRadius,
         };
       }
-      state.elements.splice(index, 0, element);
+
+      toast({
+        description: "بلوک جدید ایجاد شد",
+      });
+      state.elements.splice(newElementIndex, 0, element);
     },
     updateElement: (state, action) => {
       const { id, updatedElement } = action.payload;

@@ -27,7 +27,7 @@ const DragOverlyWrapper = () => {
 
   if (!draggedItem) return null;
 
-  let node = <div>No drag overly</div>;
+  let node = null;
   const isSidebarBtnElement = draggedItem.data?.current?.isAdderBtn;
 
   // Overlay when drag sidebar adder button to workspace
@@ -36,7 +36,9 @@ const DragOverlyWrapper = () => {
     node = <AdderBtnDragOverly pageElement={PageElements[type]} />;
   }
 
-  const isWorkspaceElement = draggedItem.data?.current.isWorkspaceElement;
+  const isWorkspaceElement = draggedItem.data?.current?.sortable;
+
+  console.log(isWorkspaceElement);
 
   // Overlay when drag elements inside workspace
   if (isWorkspaceElement) {
@@ -44,7 +46,9 @@ const DragOverlyWrapper = () => {
     const element = elements.find((el) => el.id === elementId);
 
     if (!element) {
-      node = <div>Element not found!</div>;
+      node = (
+        <div className="h-16 w-full rounded-md bg-background/40 px-4"></div>
+      );
     } else {
       const WorkspaceElementComponent =
         PageElements[element.type].WorkspaceComponent;

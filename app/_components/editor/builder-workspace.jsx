@@ -1,13 +1,15 @@
+import { idGenerator } from "@/lib/id-generator";
 import { cn } from "@/lib/utils";
 import { selectIsAnyMenuOpen } from "@/store/modalSlice";
-import { useDndMonitor } from "@dnd-kit/core";
+import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
+import { ChevronRight, Eye } from "lucide-react";
 import { memo, useCallback, useMemo, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import BackButtonWithConfirmation from "../common/button/back-button-confirmation";
 import PageUrl from "../common/button/page-url";
 import SavePageBtn from "../common/button/PrimaryButton/save-page-button";
 import {
@@ -17,14 +19,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../common/modal/diolog";
+import { PageElements } from "../controller/page-elements-controller";
 import EditorSidebar from "../layout/navbar/editor-sidebar";
 import PreviewPageContainer from "../preview/preview-page-container";
 import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
-import { PageElements } from "../controller/page-elements-controller";
-import { idGenerator } from "@/lib/id-generator";
-import { redirect } from "next/navigation";
-import BackButtonWithConfirmation from "../common/button/back-button-confirmation";
 
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 const MemoizedEditorSidebar = memo(EditorSidebar);
@@ -83,11 +82,18 @@ const BuilderWorkspace = () => {
     [theme.backgroundType, theme.backgroundImage],
   );
 
+  const droppable = useDroppable({
+    id: "editor-drop-area",
+    data: {
+      isWorkspaceDropArea: true,
+    },
+  });
+
   useDndMonitor({
     onDragStart: useCallback(
       (event) => {
         setActiveDragItem(event?.active?.data?.current);
-        dispatch({ type: "modal/closeMenu" });
+        // dispatch({ type: "modal/closeMenu" });
       },
       [dispatch],
     ),
@@ -95,20 +101,37 @@ const BuilderWorkspace = () => {
     onDragEnd: useCallback(
       (event) => {
         const { active, over } = event;
-        if (!over || active.id === over.id) return;
+
+        if (!over || active?.id === over?.id) return;
 
         const draggedData = active.data.current;
         if (draggedData?.isAdderBtn) {
           const type = active.data?.current?.type;
           const newElement = PageElements[type].construct(idGenerator());
-          dispatch({
-            type: "page/addElement",
-            payload: {
-              index: elements.length,
-              element: newElement,
-              applyPageTheme: true,
-            },
-          });
+
+          // on drop on workspace element
+          if (over?.data?.current.sortable) {
+            dispatch({
+              type: "page/addElement",
+              payload: {
+                overId: over.id,
+                element: newElement,
+                applyPageTheme: true,
+              },
+            });
+          }
+
+          // on drop on workspace add as last item
+          if (over?.data?.current?.isWorkspaceDropArea) {
+            dispatch({
+              type: "page/addElement",
+              payload: {
+                index: elements.length,
+                element: newElement,
+                applyPageTheme: true,
+              },
+            });
+          }
         } else {
           dispatch({
             type: "page/sortElement",
@@ -196,6 +219,7 @@ const BuilderWorkspace = () => {
               className={cn(
                 `relative flex h-svh w-full flex-grow flex-col items-center overflow-y-auto rounded-xl shadow-lg [scrollbar-width:none] md:h-[720px] md:w-[360px]`,
               )}
+              ref={droppable.setNodeRef}
             >
               <div className="w-full">
                 <WorkspaceHeroWrapper element={hero} />

@@ -50,6 +50,18 @@ const WorkspaceElementWrapper = ({ element }) => {
         });
       }}
     >
+      {/* Top droppable half */}
+      {/* <div
+        ref={topHalf.setNodeRef}
+        className="absolute h-1/2 w-full rounded-t-md"
+      /> */}
+
+      {/* Bottom droppable half */}
+      {/* <div
+        ref={bottomHalf.setNodeRef}
+        className="absolute bottom-0 h-1/2 w-full rounded-b-md"
+      /> */}
+
       {/* Content Section */}
       <div
         className={cn(

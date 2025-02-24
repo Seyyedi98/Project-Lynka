@@ -1,10 +1,17 @@
-import { AppWindow, ChartLine, Droplet, Layers } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { GearIcon } from "@radix-ui/react-icons";
+import { AppWindow, Droplet, Layers } from "lucide-react";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
 import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
-import PageBackgroundSettings from "../../section/workspace/page-background-settings";
-import PageMetaSettings from "../../section/workspace/page-meta-settings";
-import PageStyleSettingsContainer from "../../section/workspace/page-style-settings-container";
+import PageSettings from "../../editor/page-settings";
 import PageDataSettingsContainer from "../../section/workspace/page-data-settings-container";
+import PageStyleSettingsContainer from "../../section/workspace/page-style-settings-container";
 
 const WorkspaceSidebarMobile = () => {
   return (
@@ -36,7 +43,7 @@ const WorkspaceSidebarMobile = () => {
               // title="پس زمینه"
               modalId="style"
             >
-                <PageStyleSettingsContainer />
+              <PageStyleSettingsContainer />
             </WorkspaceDynamicModal>
           </li>
           <li className="translate-y-8 animate-fade-up opacity-0 delay-200 duration-300">
@@ -53,19 +60,18 @@ const WorkspaceSidebarMobile = () => {
               <PageDataSettingsContainer />
             </WorkspaceDynamicModal>
           </li>
+
           <li className="translate-y-8 animate-fade-up opacity-0 delay-300 duration-300">
-            <WorkspaceDynamicModal
-              mode="allDrawer"
-              trigger={
-                <div>
-                  <ChartLine className="" />
-                </div>
-              }
-              title="آمار"
-              modalId="analytics"
-            >
-              <PageBackgroundSettings />
-            </WorkspaceDynamicModal>
+            <Dialog>
+              <DialogTrigger asChild>
+                <GearIcon className="h-7 w-7 cursor-pointer" />
+              </DialogTrigger>
+              <DialogContent className="">
+                <DialogTitle className="hidden"></DialogTitle>
+                <DialogDescription className="hidden"></DialogDescription>
+                <PageSettings />
+              </DialogContent>
+            </Dialog>
           </li>
         </ul>
       </div>

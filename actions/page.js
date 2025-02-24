@@ -71,7 +71,7 @@ export const getWorkspacePageDataByUri = async (uri) => {
     },
   });
 
-  if (page.owner !== user.id) return { error: "Unauthorized access" };
+  if (page && page.owner !== user.id) return { error: "Unauthorized access" };
 
   if (!page) return { error: "Page not found!" };
 

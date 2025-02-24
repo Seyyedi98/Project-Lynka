@@ -4,11 +4,21 @@ import { useEffect, useState } from "react";
 import { DesktopIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTheme } from "next-themes";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 // import { MoonIcon, SunIcon } from "lucide-react";
 
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState();
+
+  function toggleTheme() {
+    if (theme === "dark") {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
+  }
 
   useEffect(() => {
     setMounted(true);
@@ -17,19 +27,14 @@ const ThemeSwitcher = () => {
   if (!mounted) return null;
 
   return (
-    <Tabs defaultValue={theme}>
-      <TabsList>
-        <TabsTrigger value="light" onClick={() => setTheme("light")}>
-          <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-90 duration-500 dark:rotate-0" />
-        </TabsTrigger>
-        <TabsTrigger value="dark" onClick={() => setTheme("dark")}>
-          <MoonIcon className="h-[1.2rem] w-[1.2rem] rotate-90 transition-all duration-500 dark:rotate-0" />
-        </TabsTrigger>
-        <TabsTrigger value="system" onClick={() => setTheme("system")}>
-          <DesktopIcon className="h-[1.2rem] w-[1.2rem]" />
-        </TabsTrigger>
-      </TabsList>
-    </Tabs>
+    <div className="col-span-full mb-3 flex w-[99%] items-center justify-between space-x-2 rounded-md border border-primary/50 p-4 py-6">
+      <Label htmlFor="theme-toggle">حالت تاریک</Label>
+      <Switch
+        checked={theme === "dark" ? true : false}
+        onCheckedChange={toggleTheme}
+        id="theme-toggle"
+      />
+    </div>
   );
 };
 

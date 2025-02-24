@@ -2,27 +2,19 @@
 
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import PageBackgroundSettings from "../section/workspace/page-background-settings";
-import PageMetaSettings from "../section/workspace/page-meta-settings";
 import PageLoadingSettings from "../section/workspace/page-loading-settings";
+import WorkspaceSettings from "../section/workspace/workspace-settings";
 
 const PageSettings = () => {
-  const dispatch = useDispatch();
-  const theme = useSelector((store) => store.page.theme);
-
-  const [selectedTab, setSelectedTab] = useState("سئو");
-  const TabItems = ["سئو", "پس زمینه", "Theme", "لودینگ", "analytics"];
-
-  const setPageBackground = function (velue) {
-    const payload = { ...theme, backgroundColor: velue };
-    dispatch({ type: "page/setTheme", payload });
-  };
+  const [selectedTab, setSelectedTab] = useState("تنظیمات");
+  const MobileTabItems = ["تنظیمات", "لودینگ", "آمار"];
+  const DesktopTabItems = ["تنظیمات"];
 
   return (
     <div className="pt-1">
-      <ul className="relative flex items-center justify-start gap-4 border-b-2 pb-2 font-medium text-muted-foreground">
-        {TabItems.map((item) => (
+      {/* Mobile Tab */}
+      <ul className="relative flex items-center justify-start gap-4 border-b-2 pb-2 font-medium text-muted-foreground md:hidden">
+        {MobileTabItems.map((item) => (
           <TabItem
             key={item}
             title={item}
@@ -33,24 +25,47 @@ const PageSettings = () => {
 
         <span
           className={cn(
-            `border-primary-500 absolute bottom-0 border transition-all duration-300`,
-            selectedTab === TabItems[0] && "right-[3px] w-14",
-            selectedTab === TabItems[1] && "right-[75px] w-[72px]",
-            selectedTab === TabItems[2] && "right-[164px] w-[56px]",
-            selectedTab === TabItems[3] && "right-[242px] w-[58px]",
-            selectedTab === TabItems[4] && "right-[320px] w-[65px]",
+            `absolute bottom-0 border border-primary transition-all duration-300`,
+            selectedTab === MobileTabItems[0] && "right-[3px] w-[60px]",
+            selectedTab === MobileTabItems[1] && "right-[81.5px] w-[60px]",
+            selectedTab === MobileTabItems[2] && "right-[160px] w-[60px]",
           )}
         />
       </ul>
 
-      <div className="mt-4 text-right transition-all duration-200">
-        {selectedTab === TabItems[0] && <PageMetaSettings />}
-        {selectedTab === TabItems[1] && (
-          <PageBackgroundSettings setPageBackground={setPageBackground} />
-        )}
-        {selectedTab === TabItems[2] && <div>theme</div>}
-        {selectedTab === TabItems[3] && <PageLoadingSettings />}
-        {selectedTab === TabItems[4] && <div>analytics</div>}
+      {/* Mobile Menu */}
+      <div className="mt-4 text-right transition-all duration-200 md:hidden">
+        {selectedTab === MobileTabItems[0] && <WorkspaceSettings />}
+        {selectedTab === MobileTabItems[1] && <PageLoadingSettings />}
+        {selectedTab === MobileTabItems[2] && <div>analytics</div>}
+      </div>
+
+      {/* Desktop Tap */}
+      <ul className="relative hidden items-center justify-start gap-4 border-b-2 pb-2 font-medium text-muted-foreground md:flex">
+        {DesktopTabItems.map((item) => (
+          <TabItem
+            key={item}
+            title={item}
+            selectedTab={selectedTab}
+            setSelectedTab={setSelectedTab}
+          />
+        ))}
+
+        <span
+          className={cn(
+            `absolute bottom-0 border border-primary transition-all duration-300`,
+            selectedTab === DesktopTabItems[0] && "right-[3px] w-[60px]",
+            selectedTab === DesktopTabItems[1] && "right-[81.5px] w-[60px]",
+            selectedTab === DesktopTabItems[2] && "right-[160px] w-[60px]",
+          )}
+        />
+      </ul>
+
+      {/* Desktop Menu */}
+      <div className="mt-4 hidden text-right transition-all duration-200 md:block">
+        {selectedTab === DesktopTabItems[0] && <WorkspaceSettings />}
+        {/* {selectedTab === DesktopTabItems[1] && <PageLoadingSettings />}
+        {selectedTab === DesktopTabItems[2] && <div>analytics</div>} */}
       </div>
     </div>
   );
