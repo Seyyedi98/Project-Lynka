@@ -9,9 +9,8 @@ export async function LivePageComponent({ elementInstance, uri }) {
 
   const { isSilver } = await getSubscriptionByUri(uri);
   const scheduledRender = isSilver
-    ? data.scheduleData.schedule
-      ? hour >= data.scheduleData.scheduleStart &&
-        hour < data.scheduleData.scheduleEnd
+    ? data.schedule
+      ? hour >= data.scheduleStart && hour < data.scheduleEnd
       : true
     : true;
 

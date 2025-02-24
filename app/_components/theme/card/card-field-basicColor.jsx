@@ -21,7 +21,7 @@ const CardFieldBasicColor = (props) => {
   const [loadedFont, setLoadedFont] = useState(null);
 
   const clinetSideDate = new Date();
-  console.log("clinetSideDate", clinetSideDate);
+  // console.log("clinetSideDate", clinetSideDate);
 
   useEffect(() => {
     const fetchFont = async () => {

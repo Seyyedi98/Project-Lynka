@@ -10,8 +10,10 @@ import { Switch } from "@/components/ui/switch";
 import { fade } from "@/utils/animation/animation";
 import { AnimatePresence, motion } from "framer-motion";
 
-const ElementScheduleFormField = ({ form, isSilver, scheduleState }) => {
-  let isScheduleActive = scheduleState;
+const ElementScheduleFormField = ({ form, isSilver, scheduleData }) => {
+  const { scheduleStart, scheduleEnd, schedule } = scheduleData;
+
+  let isScheduleActive = scheduleData;
   if (form.watch("schedule") !== undefined) {
     isScheduleActive = form.watch("schedule");
   }

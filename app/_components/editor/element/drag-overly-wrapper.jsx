@@ -38,8 +38,6 @@ const DragOverlyWrapper = () => {
 
   const isWorkspaceElement = draggedItem.data?.current?.sortable;
 
-  console.log(isWorkspaceElement);
-
   // Overlay when drag elements inside workspace
   if (isWorkspaceElement) {
     const elementId = draggedItem.data?.current.elementId;

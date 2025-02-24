@@ -115,7 +115,7 @@ export const gradient = [
   "linear-gradient(135deg, #F4D03F, #16A085)",
   "linear-gradient(135deg, #EECDA3, #EF629F)",
   "linear-gradient(135deg, #F2D50F, #DA0641)",
-  "radial-gradient(125% 125% at 50% 10%, #000 40%, #63e 100%)",
+  "radial-gradient(125% 125% at 50% 10%, #000000 40%, #63e 100%)",
   "radial-gradient(circle, #ff9a9e, #fad0c4)",
   "radial-gradient(circle, #ff758c, #ff7eb3)",
   "radial-gradient(circle, #ff9966, #ff5e62)",

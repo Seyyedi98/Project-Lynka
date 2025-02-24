@@ -255,11 +255,11 @@ export const themes = [
   {
     name: "darkRed",
     backgroundType: "color",
-    backgroundColor: "#000",
+    backgroundColor: "#000000",
     backgroundImage: "",
     heroType: "image",
     heroStyle: "transparent",
-    heroValue: "#000",
+    heroValue: "#000000",
     heroTitleFont: "sahel",
     heroSubtitleFont: "sahel",
     heroTitleColor: "#ffffff",

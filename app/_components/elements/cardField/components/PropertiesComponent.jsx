@@ -45,9 +45,9 @@ function PropertiesComponent({ elementInstance }) {
       borderRadius: element.extraAttributes.borderRadius || "",
       layout: element.extraAttributes.layout || "",
       image: "",
-      schedule: element.extraAttributes.scheduleData.schedule || false,
-      scheduleStart: element.extraAttributes.scheduleData.scheduleStart || "",
-      scheduleEnd: element.extraAttributes.scheduleData.scheduleEnd || "",
+      schedule: element.extraAttributes.schedule || false,
+      scheduleStart: element.extraAttributes.scheduleStart || 0,
+      scheduleEnd: element.extraAttributes.scheduleEnd || 0,
     },
   });
 
@@ -91,13 +91,13 @@ function PropertiesComponent({ elementInstance }) {
           font,
           borderRadius,
           bgColor,
-          scheduleData: isSilver
-            ? { schedule, scheduleStart, scheduleEnd }
-            : {
-                schedule: element.extraAttributes.schedule,
-                scheduleStart: element.extraAttributes.scheduleStart,
-                scheduleEnd: element.extraAttributes.scheduleEnd,
-              },
+          schedule: isSilver ? schedule : element.extraAttributes.schedule,
+          scheduleStart: isSilver
+            ? scheduleStart
+            : element.extraAttributes.scheduleStart,
+          scheduleEnd: isSilver
+            ? scheduleEnd
+            : element.extraAttributes.scheduleEnd,
         },
       },
     };
@@ -199,9 +199,7 @@ function PropertiesComponent({ elementInstance }) {
                 {/* Schedule */}
                 <div className="mt-6">
                   <ElementScheduleFormField
-                    scheduleState={
-                      element.extraAttributes.scheduleData.schedule
-                    }
+                    scheduleData={element.extraAttributes}
                     form={form}
                     isSilver={isSilver}
                   />
