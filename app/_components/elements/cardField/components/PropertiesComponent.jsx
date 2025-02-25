@@ -109,7 +109,7 @@ function PropertiesComponent({ elementInstance }) {
             : element.extraAttributes.scheduleEnd,
           countdown: isSilver ? countdown : element.extraAttributes.countdown,
           countdownDate: isSilver
-            ? JSON.stringify(countdownDate)
+            ? countdownDate
             : element.extraAttributes.countdownDate,
         },
       },

@@ -14,11 +14,20 @@ import "rsuite/Toggle/styles/index.css";
 
 const ElementCountdownFormField = ({ form, isSilver, countdownData }) => {
   const { countdownDate, countdown } = countdownData;
-  const [value, setValue] = useState(new Date(JSON.parse(countdownDate)));
+
+  const adjustedCountdownDate = new Date(countdownDate);
+  adjustedCountdownDate.setHours(adjustedCountdownDate.getHours() - 3);
+  adjustedCountdownDate.setMinutes(adjustedCountdownDate.getMinutes() - 26);
+
+  const [startDate, setStartDate] = useState(adjustedCountdownDate);
 
   const handleChange = (date) => {
-    setValue(date); // Update the local state
-    form.setValue("countdownDate", date); // Update the form value
+    const adjustedDate = new Date(date);
+    adjustedDate.setHours(adjustedDate.getHours() + 3);
+    adjustedDate.setMinutes(adjustedDate.getMinutes() + 26);
+    const isoDate = adjustedDate.toISOString();
+    setStartDate(date);
+    form.setValue("countdownDate", isoDate);
   };
 
   let isCountdownActive = countdownData;
@@ -57,7 +66,7 @@ const ElementCountdownFormField = ({ form, isSilver, countdownData }) => {
         <AnimatePresence>
           {isCountdownActive && (
             <motion.div
-              key="schedule"
+              key="countdown"
               initial="initial"
               animate="animate"
               exit="exit"
@@ -72,7 +81,7 @@ const ElementCountdownFormField = ({ form, isSilver, countdownData }) => {
                     <FormControl>
                       <DateInput
                         {...field}
-                        value={value}
+                        value={startDate}
                         onChange={handleChange}
                         dir="ltr"
                         format="yyyy/MM/dd HH:mm"
