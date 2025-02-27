@@ -68,110 +68,104 @@ export const CredentialsLoginForm = () => {
   };
 
   return (
-    <CardWrapper
-      headerLabel="خوش آمدید"
-      backButtonLabel="حساب کاربری ندارید؟"
-      backButtonHref="/auth/register"
-    >
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="space-y-4">
-            {/* Main login page */}
-            {!showTwoFactor && (
-              <>
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>ایمیل</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          disabled={isPending}
-                          placeholder="email@mail.com"
-                          type="email"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>رمز عبور</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          disabled={isPending}
-                          placeholder="********"
-                          type="password"
-                        />
-                      </FormControl>
-                      <Button
-                        disabled={isPending}
-                        size="sm"
-                        variant="link"
-                        className="px-0 font-normal"
-                        asChild
-                      >
-                        <Link href="/auth/reset">
-                          رمز عبور خود را فراموش کرده ابد؟
-                        </Link>
-                      </Button>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </>
-            )}
-
-            {/* 2FA Confirmation page */}
-            {showTwoFactor && (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <div className="space-y-4">
+          {/* Main login page */}
+          {!showTwoFactor && (
+            <>
               <FormField
                 control={form.control}
-                name="code"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>کد یکبار مصرف</FormLabel>
+                    <FormLabel>ایمیل</FormLabel>
                     <FormControl>
-                      <InputOTP maxLength={6} {...field} disabled={isPending}>
-                        <InputOTPGroup>
-                          <InputOTPSlot index={0} />
-                          <InputOTPSlot index={1} />
-                          <InputOTPSlot index={2} />
-                          <InputOTPSlot index={3} />
-                          <InputOTPSlot index={4} />
-                          <InputOTPSlot index={5} />
-                        </InputOTPGroup>
-                      </InputOTP>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="email@mail.com"
+                        type="email"
+                      />
                     </FormControl>
-                    <FormDescription>
-                      لطفا کد یکبار مصرف ارسال شده به ایمیلتان را وارد کنید
-                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-            )}
-          </div>
-          <FormError message={error} />
-          <FormSuccess message={success} />
-          <Button disabled={isPending} type="submit" className="w-full">
-            {isPending ? (
-              <Loader className="animate-spin" />
-            ) : showTwoFactor ? (
-              "ارسال"
-            ) : (
-              "ورود"
-            )}
-          </Button>
-        </form>
-      </Form>
-    </CardWrapper>
+
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>رمز عبور</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="********"
+                        type="password"
+                      />
+                    </FormControl>
+                    <Button
+                      disabled={isPending}
+                      size="sm"
+                      variant="link"
+                      className="px-0 font-normal"
+                      asChild
+                    >
+                      <Link href="/auth/reset">
+                        رمز عبور خود را فراموش کرده ابد؟
+                      </Link>
+                    </Button>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </>
+          )}
+
+          {/* 2FA Confirmation page */}
+          {showTwoFactor && (
+            <FormField
+              control={form.control}
+              name="code"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>کد یکبار مصرف</FormLabel>
+                  <FormControl>
+                    <InputOTP maxLength={6} {...field} disabled={isPending}>
+                      <InputOTPGroup>
+                        <InputOTPSlot index={0} />
+                        <InputOTPSlot index={1} />
+                        <InputOTPSlot index={2} />
+                        <InputOTPSlot index={3} />
+                        <InputOTPSlot index={4} />
+                        <InputOTPSlot index={5} />
+                      </InputOTPGroup>
+                    </InputOTP>
+                  </FormControl>
+                  <FormDescription>
+                    لطفا کد یکبار مصرف ارسال شده به ایمیلتان را وارد کنید
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
+        </div>
+        <FormError message={error} />
+        <FormSuccess message={success} />
+        <Button disabled={isPending} type="submit" className="w-full">
+          {isPending ? (
+            <Loader className="animate-spin" />
+          ) : showTwoFactor ? (
+            "ارسال"
+          ) : (
+            "ورود"
+          )}
+        </Button>
+      </form>
+    </Form>
   );
 };

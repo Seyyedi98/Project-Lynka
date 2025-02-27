@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-button  text-primary-foreground shadow-md hover:bg-primary/90",
+          "bg-primary  text-primary-foreground shadow-md hover:bg-primary/90",
         primary: "text-primary bg-button-600/90 hover:bg-button-600",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",

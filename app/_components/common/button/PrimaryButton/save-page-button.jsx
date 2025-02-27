@@ -7,12 +7,14 @@ import { Loader } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useTransition } from "react";
 import { useSelector } from "react-redux";
+import { useToaster } from "rsuite";
 
 const SavePageBtn = ({ children }) => {
   const elements = useSelector((store) => store.page.elements);
   const hero = useSelector((store) => store.page.hero);
   const theme = useSelector((store) => store.page.theme);
   const [isPending, startTransition] = useTransition();
+  const toaster = useToaster();
 
   const { uri } = useParams();
 
@@ -27,12 +29,10 @@ const SavePageBtn = ({ children }) => {
         await UpdatePageContent(uri, JSONElement); // Call the server action
         await UpdatePageTheme(uri, JSONTheme);
         toast({
-          title: "عملیات موفقیت آمیز",
-          description: "فرم با موفقت ذخیره شد",
+          description: "صفحه با موفقت ذخیره شد",
         });
       } catch (error) {
         toast({
-          title: "عملیات ناموفق",
           description: "هنگام ذخیره سازی خطایی رخ داد",
           variant: "destructive",
         });

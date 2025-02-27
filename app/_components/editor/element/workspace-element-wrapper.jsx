@@ -1,11 +1,8 @@
 import { cn } from "@/lib/utils";
-import { useDraggable, useDroppable } from "@dnd-kit/core";
-import { Pencil1Icon } from "@radix-ui/react-icons";
-import { GripHorizontal, XIcon } from "lucide-react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { PageElements } from "../../controller/page-elements-controller";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { useDispatch, useSelector } from "react-redux";
+import { PageElements } from "../../controller/page-elements-controller";
 
 const WorkspaceElementWrapper = ({ element }) => {
   const dispatch = useDispatch();
@@ -31,7 +28,7 @@ const WorkspaceElementWrapper = ({ element }) => {
       className="relative flex w-full max-w-[380px] flex-col rounded-2xl text-foreground hover:cursor-pointer"
       onClick={(e) => {
         e.stopPropagation();
-        if (selectedElement) {
+        if (selectedElement && selectedElement?.id !== element?.id) {
           dispatch({ type: "page/setSelectedElement", payload: null });
           setTimeout(() => {
             dispatch({ type: "page/setSelectedElement", payload: element });

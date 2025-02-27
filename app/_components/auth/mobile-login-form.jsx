@@ -66,104 +66,98 @@ export const MobileLoginForm = () => {
   };
 
   return (
-    <CardWrapper
-      // headerLabel="خوش آمدید"
-      backButtonLabel="حساب کاربری ندارید؟"
-      backButtonHref="/auth/register"
-    >
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="space-y-4">
-            {/* Email field */}
-            {!showOtpInput && (
-              <FormField
-                control={form.control}
-                name="phoneNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>شماره موبایل</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        pattern="\d*"
-                        {...field}
-                        disabled={isPending}
-                        placeholder="09123456789"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-
-            {/* OTP Confirmation page */}
-            {showOtpInput && !error && (
-              <FormField
-                control={form.control}
-                name="code"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>کد یکبار مصرف</FormLabel>
-                    <FormControl>
-                      <InputOTP
-                        {...field}
-                        maxLength={6}
-                        disabled={isPending}
-                        pattern={REGEXP_ONLY_DIGITS}
-                      >
-                        <InputOTPGroup>
-                          <InputOTPSlot index={0} />
-                          <InputOTPSlot index={1} />
-                          <InputOTPSlot index={2} />
-                          <InputOTPSlot index={3} />
-                          <InputOTPSlot index={4} />
-                          <InputOTPSlot index={5} />
-                        </InputOTPGroup>
-                      </InputOTP>
-                    </FormControl>
-                    <FormDescription>
-                      لطفا کد یکبار مصرف ارسال شده به موبایلتان را وارد کنید
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-          </div>
-          <FormError message={error} />
-          <FormSuccess message={success} />
-
-          {/* Enter mobile number */}
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <div className="space-y-4">
+          {/* Email field */}
           {!showOtpInput && (
-            <Button disabled={isPending} type="submit" className="w-full">
-              {isPending ? <Loader className="animate-spin" /> : "ارسال"}
-            </Button>
+            <FormField
+              control={form.control}
+              name="phoneNumber"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>شماره موبایل</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      pattern="\d*"
+                      {...field}
+                      disabled={isPending}
+                      placeholder="09123456789"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           )}
 
-          {/* Enter OTP Code */}
+          {/* OTP Confirmation page */}
           {showOtpInput && !error && (
-            <Button
-              disabled={isPending || !isCodeEntered}
-              type="submit"
-              className="w-full"
-            >
-              {isPending ? <Loader className="animate-spin" /> : "ورود"}
-            </Button>
+            <FormField
+              control={form.control}
+              name="code"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>کد یکبار مصرف</FormLabel>
+                  <FormControl>
+                    <InputOTP
+                      {...field}
+                      maxLength={6}
+                      disabled={isPending}
+                      pattern={REGEXP_ONLY_DIGITS}
+                    >
+                      <InputOTPGroup>
+                        <InputOTPSlot index={0} />
+                        <InputOTPSlot index={1} />
+                        <InputOTPSlot index={2} />
+                        <InputOTPSlot index={3} />
+                        <InputOTPSlot index={4} />
+                        <InputOTPSlot index={5} />
+                      </InputOTPGroup>
+                    </InputOTP>
+                  </FormControl>
+                  <FormDescription>
+                    لطفا کد یکبار مصرف ارسال شده به موبایلتان را وارد کنید
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           )}
+        </div>
+        <FormError message={error} />
+        <FormSuccess message={success} />
 
-          {/* Wrong OTP Code */}
-          {showOtpInput && error && (
-            <Link
-              href="/"
-              className="group flex w-full items-center justify-center gap-1 text-center"
-            >
-              <ArrowLeftIcon className="mt-1 h-4 w-4 duration-200 group-hover:-translate-x-1" />
-              <span className="text-center text-sm">بازگشت</span>
-            </Link>
-          )}
-        </form>
-      </Form>
-    </CardWrapper>
+        {/* Enter mobile number */}
+        {!showOtpInput && (
+          <Button disabled={isPending} type="submit" className="w-full">
+            {isPending ? <Loader className="animate-spin" /> : "ارسال"}
+          </Button>
+        )}
+
+        {/* Enter OTP Code */}
+        {showOtpInput && !error && (
+          <Button
+            disabled={isPending || !isCodeEntered}
+            type="submit"
+            className="w-full"
+          >
+            {isPending ? <Loader className="animate-spin" /> : "ورود"}
+          </Button>
+        )}
+
+        {/* Wrong OTP Code */}
+        {showOtpInput && error && (
+          <Link
+            href="/"
+            className="group flex w-full items-center justify-center gap-1 text-center"
+          >
+            <ArrowLeftIcon className="mt-1 h-4 w-4 duration-200 group-hover:-translate-x-1" />
+            <span className="text-center text-sm">بازگشت</span>
+          </Link>
+        )}
+      </form>
+    </Form>
   );
 };

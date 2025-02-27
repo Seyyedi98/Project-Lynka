@@ -16,21 +16,27 @@ body {
 @layer base {
   @layer base {
     :root {
+      --background-gradient-from: 207 90% 54%;
+      --background-gradient-to: 172 100% 37%;
+      --primary: 207 90% 54%;
+      --secondary: 172 100% 37%;
+      --card: 0 0% 100%;
+
+      --text: 248 0% 20%;
+      --textLight: 248 0% 40%;
+
       --background: 0 0% 90%;
       --secondaryBg: 0 0% 98%;
       --icon-light: 0 0% 50%;
       --icon: 248 0% 10%;
-      --textLight: 218 51% 26%;
       --foreground: 248 0% 10%;
       --button: 0 0% 100%;
-      --card: 248 0% 100%;
       --card-light: 0 0% 100%;
       --card-foreground: 248 0% 15%;
       --popover: 248 0% 100%;
       --popover-foreground: 218 23% 23%;
-      --primary: 248 0% 10%;
+
       --primary-foreground: 0 0% 100%;
-      --secondary: 248 10% 90%;
       --secondary-foreground: 0 0% 0%;
       --muted: 210 10% 95%;
       --muted-foreground: 248 0% 40%;
@@ -53,21 +59,26 @@ body {
       --font-vazir: "Vazir", sans-serif;
     }
     .dark {
+      --background-gradient-from: 207 90% 30%;
+      --background-gradient-to: 172 80% 25%;
+      --primary: 207 90% 54%;
+      --secondary: 172 100% 37%;
+      --card: 0 0% 26%;
+
+      --text: 248 0% 100%;
+      --textLight: 248 0% 65%;
+
       --background: 0 0% 11%;
       --icon-ight: 0 0% 30%;
       --icon: 248 0% 100%;
-      --textLight: 0 0% 42%;
       --secondaryBg: 0 0 15%;
       --foreground: 248 0% 100%;
       --button: 0 0% 19%;
-      --card: 248 0% 10%;
       --card-light: 0 0% 16%;
       --card-foreground: 248 0% 100%;
       --popover: 248 10% 5%;
       --popover-foreground: 248 0% 100%;
-      --primary: 0 0% 100%;
       --primary-foreground: 0 0% 100%;
-      --secondary: 248 10% 20%;
       --secondary-foreground: 0 0% 100%;
       --muted: 210 10% 25%;
       --muted-foreground: 248 0% 65%;

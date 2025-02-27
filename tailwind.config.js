@@ -13,9 +13,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        text: {
+          DEFAULT: "hsl(var(--text))",
+          light: "hsl(var(--textLight))",
+        },
+        background: {
+          DEFAULT: "hsl(var(--background))",
+          gradient_from: "hsl(var(--background-gradient-from))",
+          gradient_to: "hsl(var(--background-gradient-to))",
+        },
         secondaryBg: "hsl(var(--secondaryBg))",
-        textLight: "hsl(var(--textLight))",
-        background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         icon: {
           DEFAULT: "hsl(var(--icon))",
@@ -73,6 +80,10 @@ module.exports = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      backgroundImage: {
+        "main-gradient":
+          "linear-gradient(-45deg,hsl(var(--background-gradient-from)) 0%,hsl(var(--background-gradient-from)) 33%, hsl(var(--background-gradient-to)) 100%)",
       },
 
       boxShadow: {

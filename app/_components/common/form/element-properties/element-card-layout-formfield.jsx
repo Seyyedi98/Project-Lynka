@@ -60,7 +60,7 @@ const ElementCardLayoutFormField = ({
 
               <div
                 className={cn(
-                  "pointer-events-none mt-2 scale-90",
+                  "pointer-events-none mt-2 scale-95",
                   !isSilver && field.value === "wideFullImage" && "opacity-40",
                   !isSilver && field.value === "highFullImage" && "opacity-40",
                 )}
