@@ -10,15 +10,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { RegisterSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader } from "lucide-react";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { CardWrapper } from "../layout/card-wrapper";
+import { Input } from "rsuite";
 import { FormError } from "../common/message/form-error";
 import { FormSuccess } from "../common/message/form-success";
-import { Loader } from "lucide-react";
 
 export const CredentialsRegisterForm = () => {
   const [error, setError] = useState("");
@@ -59,6 +58,7 @@ export const CredentialsRegisterForm = () => {
                     {...field}
                     disabled={isPending}
                     placeholder="نام خود را اینجا بنویسید"
+                    className="h-12"
                   />
                 </FormControl>
                 <FormMessage />
@@ -79,6 +79,7 @@ export const CredentialsRegisterForm = () => {
                     disabled={isPending}
                     placeholder="email@mail.com"
                     type="email"
+                    className="h-12"
                   />
                 </FormControl>
                 <FormMessage />
@@ -99,6 +100,7 @@ export const CredentialsRegisterForm = () => {
                     disabled={isPending}
                     placeholder="********"
                     type="password"
+                    className="h-12"
                   />
                 </FormControl>
                 <FormMessage />
@@ -108,7 +110,7 @@ export const CredentialsRegisterForm = () => {
         </div>
         <FormError message={error} />
         <FormSuccess message={success} />
-        <Button disabled={isPending} type="submit" className="w-full">
+        <Button disabled={isPending} type="submit" className="h-12 w-full">
           {isPending ? <Loader className="animate-spin" /> : "عضویت"}
         </Button>
       </form>

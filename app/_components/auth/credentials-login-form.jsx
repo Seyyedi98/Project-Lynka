@@ -11,21 +11,20 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { LoginSchema } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
-import { useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { CardWrapper } from "../layout/card-wrapper";
-import { FormError } from "../common/message/form-error";
-import { FormSuccess } from "../common/message/form-success";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { LoginSchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader } from "lucide-react";
+import Link from "next/link";
+import { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { Input } from "rsuite";
+import { FormError } from "../common/message/form-error";
+import { FormSuccess } from "../common/message/form-success";
 
 export const CredentialsLoginForm = () => {
   const [showTwoFactor, setShowTwoFactor] = useState(false);
@@ -86,6 +85,7 @@ export const CredentialsLoginForm = () => {
                         disabled={isPending}
                         placeholder="email@mail.com"
                         type="email"
+                        className="h-12"
                       />
                     </FormControl>
                     <FormMessage />
@@ -105,17 +105,21 @@ export const CredentialsLoginForm = () => {
                         disabled={isPending}
                         placeholder="********"
                         type="password"
+                        className="h-12"
                       />
                     </FormControl>
                     <Button
                       disabled={isPending}
                       size="sm"
                       variant="link"
-                      className="px-0 font-normal"
+                      className="font-normal"
                       asChild
                     >
-                      <Link href="/auth/reset">
-                        رمز عبور خود را فراموش کرده ابد؟
+                      <Link
+                        className="-mr-5 hover:text-secondary"
+                        href="/auth/reset"
+                      >
+                        رمز عبور خود را فراموش کرده اید؟
                       </Link>
                     </Button>
                     <FormMessage />
@@ -156,7 +160,7 @@ export const CredentialsLoginForm = () => {
         </div>
         <FormError message={error} />
         <FormSuccess message={success} />
-        <Button disabled={isPending} type="submit" className="w-full">
+        <Button disabled={isPending} type="submit" className="h-12 w-full">
           {isPending ? (
             <Loader className="animate-spin" />
           ) : showTwoFactor ? (

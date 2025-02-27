@@ -11,7 +11,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import {
   InputOTP,
   InputOTPGroup,
@@ -19,14 +18,14 @@ import {
 } from "@/components/ui/input-otp";
 import { OtpLoginSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { ArrowLeftIcon, Loader } from "lucide-react";
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { FormError } from "../common/message/form-error";
 import { FormSuccess } from "../common/message/form-success";
-import { CardWrapper } from "../layout/card-wrapper";
-import { REGEXP_ONLY_DIGITS } from "input-otp";
+import { Input } from "rsuite";
 
 export const MobileLoginForm = () => {
   const [showOtpInput, setShowOtpInput] = useState(false);
@@ -79,6 +78,7 @@ export const MobileLoginForm = () => {
                   <FormLabel>شماره موبایل</FormLabel>
                   <FormControl>
                     <Input
+                      className="h-12"
                       type="number"
                       pattern="\d*"
                       {...field}

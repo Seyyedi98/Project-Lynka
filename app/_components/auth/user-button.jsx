@@ -43,7 +43,7 @@ const UserButton = ({ children, isExpanded, title, path }) => {
 
       <div
         className={cn(
-          `z-[12] ml-4 mr-auto cursor-pointer rounded-lg p-3 text-white duration-200 hover:bg-link-hover/40 sm:absolute sm:ml-2 sm:-translate-x-[70px] sm:group-hover:block`,
+          `text-text hover:bg-link-hover/40 z-[12] ml-4 mr-auto cursor-pointer rounded-lg p-3 duration-200 sm:absolute sm:ml-2 sm:-translate-x-[70px] sm:group-hover:block`,
           !isExpanded && "hidden sm:block",
         )}
         onClick={(e) => {

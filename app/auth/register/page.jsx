@@ -12,27 +12,29 @@ const Register = () => {
 
   return (
     <main className="flex w-full">
-      <div className="flex w-full flex-col items-center bg-card px-4 pt-10 lg:max-w-[480px]">
-        <span className="flex w-full items-center justify-between px-8 text-sm">
+      <div className="flex w-full flex-col items-center overflow-y-scroll bg-card px-4 pt-10 [scrollbar-width:none] lg:max-w-[480px]">
+        <span className="flex w-full items-center justify-between px-2 text-sm lg:px-8">
           <Link
             style={{ textDecoration: "none" }}
             href="/auth/login"
             className="flex gap-1 text-primary transition-colors duration-200 hover:text-secondary"
           >
             قبلا حساب کاربری ایجاد کرده اید؟
-            <ArrowRight className="h-5 w-5" />
+            <ArrowRight className="mt-0.5 h-5 w-5" />
           </Link>
           <p>Logo</p>
         </span>
 
         <h2 className="mt-6 text-4xl text-primary">ورود</h2>
 
-        <div className="text-text-light relative mt-8 flex w-full cursor-pointer items-center justify-center gap-10 text-lg font-thin">
+        <div className="text-text-light relative mt-8 flex cursor-pointer items-center justify-center gap-10 text-base font-thin">
           <span
             className={cn(
               `absolute bottom-0 h-[4px] translate-y-3 bg-secondary transition-all duration-300`,
-              selectedTab === "email" && "right-[110px] w-[82px]",
-              selectedTab === "mobile" && "right-[222px] w-[114px]",
+              selectedTab === "email" &&
+                "right-[-3px] w-[67px] lg:right-[-5px] lg:w-[70px]",
+              selectedTab === "mobile" &&
+                "right-[98px] w-[100px] lg:right-[98px] lg:w-[100px]",
             )}
           />
           <p
@@ -49,7 +51,7 @@ const Register = () => {
           </p>
         </div>
 
-        <div className="mt-8 w-full px-4">
+        <div className="mt-8 w-full max-w-md px-4">
           {selectedTab === "email" && <CredentialsRegisterForm />}
           {selectedTab === "mobile" && <MobileLoginForm />}
         </div>
