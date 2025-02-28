@@ -2,7 +2,6 @@
 
 import { CredentialsLoginForm } from "@/app/_components/auth/credentials-login-form";
 import { MobileLoginForm } from "@/app/_components/auth/mobile-login-form";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -18,16 +17,17 @@ const Login = () => {
           <Link
             style={{ textDecoration: "none" }}
             href="/auth/register"
-            className="flex gap-1 text-primary transition-colors duration-200 hover:text-secondary"
+            className="group relative flex gap-1 text-sm text-primary transition-colors duration-200 hover:text-secondary"
           >
+            <div className="absolute -bottom-1 right-0 h-[1px] w-0 bg-secondary transition-all group-hover:w-full" />
             حساب کاربری ندارید؟
-            <ArrowRight className="mt-0.5 h-5 w-5" />
+            <ArrowRight className="mt-1 h-4 w-4" />
           </Link>
           <p>Logo</p>
         </span>
 
         <h2 className="mt-6 text-4xl text-primary">ورود</h2>
-        <div className="text-text-light relative mt-8 flex cursor-pointer items-center justify-center gap-10 text-base font-thin">
+        <div className="relative mt-8 flex cursor-pointer items-center justify-center gap-10 text-base font-thin text-text-light">
           <span
             className={cn(
               `absolute bottom-0 h-[4px] translate-y-3 bg-secondary transition-all duration-300`,

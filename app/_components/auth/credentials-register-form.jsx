@@ -15,9 +15,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader } from "lucide-react";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { Input } from "rsuite";
+import { Checkbox, Input } from "rsuite";
 import { FormError } from "../common/message/form-error";
 import { FormSuccess } from "../common/message/form-success";
+import Link from "next/link";
 
 export const CredentialsRegisterForm = () => {
   const [error, setError] = useState("");
@@ -30,6 +31,7 @@ export const CredentialsRegisterForm = () => {
       name: "",
       email: "",
       password: "",
+      terms: false,
     },
   });
 
@@ -44,7 +46,7 @@ export const CredentialsRegisterForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="mb-10 space-y-6">
         <div className="space-y-4">
           {/* Name field */}
           <FormField
@@ -102,6 +104,39 @@ export const CredentialsRegisterForm = () => {
                     type="password"
                     className="h-12"
                   />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Terms */}
+          <FormField
+            control={form.control}
+            name="terms"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Checkbox
+                    {...field}
+                    checked={field.value}
+                    onChange={(value, checked) => {
+                      field.onChange(checked);
+                    }}
+                    disabled={isPending}
+                    className="text-base font-thin"
+                  >
+                    با{" "}
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      className="text-primary hover:text-secondary"
+                      href="/terms"
+                      target="_blank"
+                    >
+                      شرایط
+                    </Link>{" "}
+                    موافقم
+                  </Checkbox>
                 </FormControl>
                 <FormMessage />
               </FormItem>

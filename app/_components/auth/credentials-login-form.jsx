@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/input-otp";
 import { LoginSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader } from "lucide-react";
+import { ArrowRight, Loader } from "lucide-react";
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -108,20 +108,17 @@ export const CredentialsLoginForm = () => {
                         className="h-12"
                       />
                     </FormControl>
-                    <Button
+
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      href="/auth/reset"
                       disabled={isPending}
-                      size="sm"
-                      variant="link"
-                      className="font-normal"
-                      asChild
+                      className="group relative flex w-fit gap-1 pt-2 text-xs font-normal text-primary transition-colors duration-200 hover:text-secondary"
                     >
-                      <Link
-                        className="-mr-5 hover:text-secondary"
-                        href="/auth/reset"
-                      >
-                        رمز عبور خود را فراموش کرده اید؟
-                      </Link>
-                    </Button>
+                      <div className="absolute -bottom-1 right-0 h-[1px] w-0 bg-secondary transition-all group-hover:w-full" />
+                      رمز عبور خود را فراموش کرده اید؟
+                      <ArrowRight className="mt-0.5 h-4 w-4" />
+                    </Link>
                     <FormMessage />
                   </FormItem>
                 )}

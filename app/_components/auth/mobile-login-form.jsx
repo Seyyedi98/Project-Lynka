@@ -131,7 +131,7 @@ export const MobileLoginForm = () => {
 
         {/* Enter mobile number */}
         {!showOtpInput && (
-          <Button disabled={isPending} type="submit" className="w-full">
+          <Button disabled={isPending} type="submit" className="h-12 w-full">
             {isPending ? <Loader className="animate-spin" /> : "ارسال"}
           </Button>
         )}
@@ -141,7 +141,7 @@ export const MobileLoginForm = () => {
           <Button
             disabled={isPending || !isCodeEntered}
             type="submit"
-            className="w-full"
+            className="h-12 w-full"
           >
             {isPending ? <Loader className="animate-spin" /> : "ورود"}
           </Button>

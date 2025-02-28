@@ -17,17 +17,18 @@ const Register = () => {
           <Link
             style={{ textDecoration: "none" }}
             href="/auth/login"
-            className="flex gap-1 text-primary transition-colors duration-200 hover:text-secondary"
+            className="group relative flex gap-1 text-sm text-primary transition-colors duration-200 hover:text-secondary"
           >
+            <div className="absolute -bottom-1 right-0 h-[1px] w-0 bg-secondary transition-all group-hover:w-full" />
             قبلا حساب کاربری ایجاد کرده اید؟
-            <ArrowRight className="mt-0.5 h-5 w-5" />
+            <ArrowRight className="mt-1 h-4 w-4" />
           </Link>
           <p>Logo</p>
         </span>
 
         <h2 className="mt-6 text-4xl text-primary">ورود</h2>
 
-        <div className="text-text-light relative mt-8 flex cursor-pointer items-center justify-center gap-10 text-base font-thin">
+        <div className="relative mt-8 flex cursor-pointer items-center justify-center gap-10 text-base font-thin text-text-light">
           <span
             className={cn(
               `absolute bottom-0 h-[4px] translate-y-3 bg-secondary transition-all duration-300`,
