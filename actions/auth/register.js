@@ -23,7 +23,7 @@ export const register = async (values) => {
 
   // Check if user with this email already registered
   const existingUser = await getUserByEmail(email);
-
+  console.log(existingUser);
   if (existingUser)
     return { error: "کاربری با این ایمیل قبلا ثبت نام کرده است" };
 

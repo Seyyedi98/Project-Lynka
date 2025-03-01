@@ -1,7 +1,4 @@
-import BgWave from "@/public/bg_wave";
 import Image from "next/image";
-import Link from "next/link";
-import React from "react";
 import ThemeSwitcher from "../_components/common/button/ThemeSwitcher";
 const backgroundLight = "/bg_wave.svg";
 const backgroundGray = "/bg_wave_gray.svg";
@@ -22,10 +19,6 @@ const layout = ({ children }) => {
         src={backgroundGray}
         alt="bg"
       />
-      {/* <nav className="absolute flex w-full gap-4 bg-red-500 p-4 font-semibold text-white">
-        <Link href="/auth/login">ورود</Link>
-        <Link href="/auth/register">عضویت</Link>
-      </nav> */}
       <div className="z-10 flex h-svh w-full text-lg">{children}</div>
     </div>
   );

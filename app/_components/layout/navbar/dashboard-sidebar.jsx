@@ -28,14 +28,13 @@ const DashboardSidebar = () => {
       <nav
         ref={ref}
         className={cn(
-          `transition-translate group right-0 z-10 h-12 w-full overflow-hidden bg-gradient-to-b from-background to-secondaryBg px-2 pb-12 pt-6 duration-200 sm:fixed sm:h-full sm:w-20 sm:pb-4 xl:w-56`,
-          // `transition-translate group right-0 z-10 h-12 w-full overflow-hidden bg-background px-2 pb-12 pt-6 duration-200 sm:fixed sm:h-full sm:w-20 sm:pb-4 xl:w-56`,
+          `transition-translate group right-0 z-10 h-12 w-full overflow-hidden bg-gradient-to-b from-secondary to-primary px-2 pb-12 pt-6 duration-200 sm:fixed sm:h-full sm:w-20 sm:pb-4 xl:w-56`,
           isSidebarOpen ? "h-svh pb-4 sm:w-56" : "top-0",
           !isSidebarOpen && "sm:hover:w-56",
         )}
       >
         <div className="relative flex h-full flex-col justify-start sm:justify-between sm:gap-4">
-          <div className="flex justify-between px-4 text-primary sm:mr-4 sm:px-0">
+          <div className="flex justify-between px-4 text-white sm:mr-4 sm:px-0">
             <HumbergerMenuBtn
               isSidebarOpen={isSidebarOpen}
               setIsSidebarOpen={setIsSidebarOpen}
@@ -51,21 +50,21 @@ const DashboardSidebar = () => {
                 title="پنل کاربری"
                 path="/dashboard"
               >
-                <LucideHome className="h-6 w-6" />
+                <LucideHome className="h-6 w-6 text-white" />
               </SidebarLink>
               <SidebarLink
                 isExpanded={isSidebarOpen}
                 title="فروشگاه"
                 path="/dashboard/shop"
               >
-                <ShoppingCart />
+                <ShoppingCart className="text-white" />
               </SidebarLink>
               <SidebarLink
                 isExpanded={isSidebarOpen}
                 title="آمار"
                 path="/dashboard/analytics"
               >
-                <ChartLine />
+                <ChartLine className="text-white" />
               </SidebarLink>
             </div>
 
@@ -78,28 +77,28 @@ const DashboardSidebar = () => {
                 title="پیام ها"
                 path="/dashboard/notifications"
               >
-                <BellDot />
+                <BellDot className="text-white" />
               </SidebarLink>
               <SidebarLink
                 isExpanded={isSidebarOpen}
                 title="تازه ها"
                 path="/dashboard/whats-new"
               >
-                <Newspaper />
+                <Newspaper className="text-white" />
               </SidebarLink>
               <SidebarLink
                 isExpanded={isSidebarOpen}
                 title="راهنما"
                 path="/dashboard/help"
               >
-                <MessageCircleQuestion />
+                <MessageCircleQuestion className="text-white" />
               </SidebarLink>
               <UserButton
                 isExpanded={isSidebarOpen}
                 title={user?.name || "پروفایل"}
                 path="/dashboard/user"
               >
-                <CircleUser />
+                <CircleUser className="text-white" />
               </UserButton>
             </div>
           </div>

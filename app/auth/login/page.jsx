@@ -2,6 +2,7 @@
 
 import { CredentialsLoginForm } from "@/app/_components/auth/credentials-login-form";
 import { MobileLoginForm } from "@/app/_components/auth/mobile-login-form";
+import Social from "@/app/_components/auth/social";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -54,6 +55,7 @@ const Login = () => {
         <div className="mt-8 w-full max-w-md px-4">
           {selectedTab === "email" && <CredentialsLoginForm />}
           {selectedTab === "mobile" && <MobileLoginForm />}
+          <Social />
         </div>
       </div>
       <div className="hidden h-full w-full place-items-center text-4xl text-white lg:grid">

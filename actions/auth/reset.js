@@ -15,7 +15,7 @@ export const reset = async (values) => {
   const { email } = validatedFields.data;
   const existingUser = await getUserByEmail(email);
 
-  if (existingUser.error === "User not found!") {
+  if (!existingUser) {
     return { error: "کاربری با این ایمیل یافت نشد" };
   }
 

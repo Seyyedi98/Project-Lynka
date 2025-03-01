@@ -19,16 +19,17 @@ export const {
       data: { emailVerified: new Date() },
     });
   },
+
   callbacks: {
     async signIn({ user, account }) {
       const existingUser = await getUserById(user.id);
-      console.log(existingUser);
 
       // Prevent sign in without email verification
-      if (account.provider !== "credentials") {
-        if (!existingUser?.emailVerified) return false;
-        return true;
-      }
+      // if (account.provider !== "credentials") {
+      //   if (!existingUser?.emailVerified) return false;
+      //   return true;
+      // }
+      if (account.provider !== "credentials") return true;
 
       // Check if 2FA is enabled.
       if (existingUser.isTwoFactorEnabled) {

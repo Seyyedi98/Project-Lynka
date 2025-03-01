@@ -7,7 +7,7 @@ export const getUserByEmail = async (email) => {
         email,
       },
     });
-    if (!user) return { error: "User not found!" };
+    if (!user) return false;
     return user;
   } catch {
     return { error: "Something went wrong" };
@@ -21,7 +21,7 @@ export const getUserById = async (id) => {
         id,
       },
     });
-    if (!user) return { error: "User not found!" };
+    if (!user) return false;
     return user;
   } catch {
     return { error: "Something went wrong" };
@@ -35,7 +35,7 @@ export const getUserByPhoneNumber = async (phoneNumber) => {
         phoneNumber,
       },
     });
-    if (!user) return { error: "User not found!" };
+    if (!user) return false;
     return user;
   } catch {
     return { error: "Something went wrong" };

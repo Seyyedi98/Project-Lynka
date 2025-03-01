@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import bcrypt from "bcryptjs";
 import Credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
 import { getUserByEmail, getUserByPhoneNumber } from "./data/user";
 import { LoginSchema, OtpLoginSchema } from "./schemas";
 
@@ -41,6 +42,11 @@ export default {
         }
         return null;
       },
+    }),
+    Google({
+      clientId: process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
 };
