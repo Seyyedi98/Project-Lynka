@@ -112,6 +112,14 @@ body {
   }
 }
 
+a {
+  text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+  text-decoration: none; /* Optional: Remove underline on hover */
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
