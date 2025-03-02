@@ -61,7 +61,10 @@ module.exports = {
           foreground: "hsl(var(--destructive-foreground))",
         },
         border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
+        input: {
+          DEFAULT: "hsl(var(--input))",
+          blue: "hsl(var(--input-blue))",
+        },
         ring: "hsl(var(--ring))",
         chart: {
           1: "hsl(var(--chart-1))",
@@ -84,6 +87,8 @@ module.exports = {
       backgroundImage: {
         "main-gradient":
           "linear-gradient(-45deg,hsl(var(--background-gradient-from)) 0%,hsl(var(--background-gradient-from)) 33%, hsl(var(--background-gradient-to)) 100%)",
+        "main-gradient-light":
+          "linear-gradient(-45deg,hsl(var(--primary)) 0%,hsl(var(--primary)) 33%, hsl(var(--secondary)) 100%)",
       },
 
       boxShadow: {

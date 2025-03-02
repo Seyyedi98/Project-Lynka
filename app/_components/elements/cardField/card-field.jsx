@@ -21,6 +21,8 @@ const extraAttributes = {
   scheduleEnd: 0,
   countdown: false,
   countdownDate: "0",
+  protected: false,
+  password: "",
 };
 
 export const CardFieldFormElement = {

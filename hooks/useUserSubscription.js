@@ -22,14 +22,14 @@ export const useUserSubscription = () => {
       ? Math.ceil((expiresDate - todayDate) / (1000 * 60 * 60 * 24))
       : 0;
 
-  useEffect(() => {
-    const updateTier = async () => {
-      if (subscriptionDaysLeft === 0) {
-        await updatesubscriptionPlan("bronze");
-      }
-    };
-    updateTier();
-  }, [subscriptionDaysLeft]);
+  // useEffect(() => {
+  //   const updateTier = async () => {
+  //     if (subscriptionDaysLeft === 0) {
+  //       await updatesubscriptionPlan("bronze");
+  //     }
+  //   };
+  //   updateTier();
+  // }, [subscriptionDaysLeft]);
 
   if (subscriptionPlan === "silver" && subscriptionDaysLeft > 0) {
     isSilver = true;

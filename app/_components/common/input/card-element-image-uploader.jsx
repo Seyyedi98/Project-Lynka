@@ -36,7 +36,7 @@ const CardElementBgUploader = ({ element }) => {
 
   const handleUploadButton = async () => {
     const options = {
-      maxSizeMB: 0.2, // Compress to be <= 200KB
+      maxSizeMB: 0.15, // Compress to be <= 150KB
       maxWidthOrHeight: 720, // Optional: Resize image to 720px width/height if it's larger
       initialQuality: 1, // Start with 100% quality and adjust as needed
       useWebWorker: true, // Enable web workers for faster processing

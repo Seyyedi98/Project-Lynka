@@ -24,10 +24,18 @@ export async function LivePageComponent({ elementInstance, uri }) {
       : true
     : true;
 
+  const protectedElement = isSilver ? data.isProtected : false;
+
   const RenderedElement = ElementThemeController[element.type][data.theme][0];
   return countdownRender ? (
     scheduledRender ? (
-      <RenderedElement isLive={true} {...data} isSilver={isSilver} />
+      <RenderedElement
+        protectedElement={protectedElement}
+        isPasswordsMatch
+        isLive={true}
+        isSilver={isSilver}
+        {...data}
+      />
     ) : null
   ) : null;
 }

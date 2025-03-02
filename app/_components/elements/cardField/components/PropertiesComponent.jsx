@@ -6,6 +6,7 @@ import ElementColorFormField from "@/app/_components/common/form/element-propert
 import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementhrefFormField from "@/app/_components/common/form/element-properties/element-href-formfield";
+import ElementPasswordFormField from "@/app/_components/common/form/element-properties/element-password-formfield";
 import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
@@ -15,15 +16,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
+import CryptoJS from "crypto-js";
 import { Check } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import jalaali from "jalaali-js";
-import moment from "moment-jalaali";
-import { dateToMiladi } from "@/utils/dateToMiladi";
-import { dateToShamsi } from "@/utils/dateToShamsi";
 
 const UploadButton = dynamic(
   () => import("@/app/_components/common/input/card-element-image-uploader"),
@@ -37,6 +35,11 @@ function PropertiesComponent({ elementInstance }) {
 
   const RenderElement =
     ElementThemeController[element.type][element.extraAttributes.theme][0];
+
+  const hashPassword = (password) => {
+    const hashedPassword = CryptoJS.SHA256(password).toString();
+    return hashedPassword;
+  };
 
   const form = useForm({
     // TODO: Create zod schema
@@ -55,6 +58,8 @@ function PropertiesComponent({ elementInstance }) {
       scheduleEnd: element.extraAttributes.scheduleEnd || 0,
       countdown: element.extraAttributes.countdown || false,
       countdownDate: element.extraAttributes.countdownDate || "0",
+      isProtected: element.extraAttributes.isProtected || false,
+      password: "",
     },
   });
 
@@ -78,6 +83,8 @@ function PropertiesComponent({ elementInstance }) {
       scheduleEnd,
       countdown,
       countdownDate,
+      isProtected,
+      password,
     } = values;
 
     const payload = {
@@ -111,6 +118,14 @@ function PropertiesComponent({ elementInstance }) {
           countdownDate: isSilver
             ? countdownDate
             : element.extraAttributes.countdownDate,
+          isProtected: isSilver
+            ? isProtected
+            : element.extraAttributes.isProtected,
+          password: isSilver
+            ? element.extraAttributes.password !== password
+              ? hashPassword(password)
+              : element.extraAttributes.password
+            : element.extraAttributes.password,
         },
       },
     };
@@ -202,7 +217,7 @@ function PropertiesComponent({ elementInstance }) {
                 {/* Image upload */}
                 <div className="mt-2">
                   <UploadButton form={form} element={element} />
-                  <p className="text-xs text-textLight">
+                  <p className="text-textLight text-xs">
                     پس از انتخاب فایل، دکمه بارگزاری را بزنید
                   </p>
                 </div>
@@ -222,6 +237,15 @@ function PropertiesComponent({ elementInstance }) {
                 <div className="mt-6">
                   <ElementCountdownFormField
                     countdownData={element.extraAttributes}
+                    form={form}
+                    isSilver={isSilver}
+                  />
+                </div>
+
+                {/* Password */}
+                <div className="mt-6">
+                  <ElementPasswordFormField
+                    passwordData={element.extraAttributes}
                     form={form}
                     isSilver={isSilver}
                   />
