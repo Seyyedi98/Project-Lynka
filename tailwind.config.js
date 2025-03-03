@@ -1,3 +1,4 @@
+const { default: Tab } = require("rsuite/esm/Tabs/Tab");
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
@@ -64,6 +65,10 @@ module.exports = {
         input: {
           DEFAULT: "hsl(var(--input))",
           blue: "hsl(var(--input-blue))",
+        },
+        tab: {
+          DEFAULT: "hsl(var(--tab))",
+          blue: "hsl(var(--tab-active))",
         },
         ring: "hsl(var(--ring))",
         chart: {

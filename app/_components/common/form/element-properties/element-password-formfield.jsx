@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { fade } from "@/utils/animation/animation";
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect } from "react";
 import { Toggle } from "rsuite";
 
 const ElementPasswordFormField = ({ form, isSilver, passwordData }) => {
@@ -15,6 +16,7 @@ const ElementPasswordFormField = ({ form, isSilver, passwordData }) => {
   if (form.watch("password") !== undefined) {
     isProtected = form.watch("isProtected");
   }
+  useEffect(() => form.setValue("password", ""), [form]);
 
   return (
     <>
@@ -22,7 +24,7 @@ const ElementPasswordFormField = ({ form, isSilver, passwordData }) => {
         control={form.control}
         name="isProtected"
         render={({ field }) => (
-          <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+          <FormItem className="flex flex-row items-center justify-between rounded-md border p-3 shadow-sm">
             <div className="flex flex-col gap-2">
               <Label htmlFor="schedule-toggle">لینک محافظت شده</Label>
               <p className="text-textLight text-wrap text-xs">

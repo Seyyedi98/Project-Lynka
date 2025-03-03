@@ -122,7 +122,7 @@ function PropertiesComponent({ elementInstance }) {
             ? isProtected
             : element.extraAttributes.isProtected,
           password: isSilver
-            ? element.extraAttributes.password !== password
+            ? element.extraAttributes.password !== password && password !== ""
               ? hashPassword(password)
               : element.extraAttributes.password
             : element.extraAttributes.password,
@@ -163,7 +163,7 @@ function PropertiesComponent({ elementInstance }) {
         >
           <form
             // onBlur={form.handleSubmit(applyChanges)}
-            className="flex flex-col gap-5 text-primary"
+            className="flex flex-col gap-5 text-text/90"
             onSubmit={form.handleSubmit(applyChanges)}
           >
             <Tabs dir="rtl" defaultValue="content" className="">
@@ -173,7 +173,7 @@ function PropertiesComponent({ elementInstance }) {
                 <TabsTrigger value="visibility">نمایش</TabsTrigger>
               </TabsList>
 
-              <TabsContent value="content" className="flex flex-col gap-4">
+              <TabsContent value="content" className="flex flex-col gap-5">
                 {/* Title */}
                 <ElementTitleFormField form={form} />
 
@@ -188,7 +188,7 @@ function PropertiesComponent({ elementInstance }) {
                 {/* Text Color */}
                 <ElementColorFormField
                   form={form}
-                  label="رنگ نوشته"
+                  label="رنگ متن"
                   fieldName="textColor"
                 />
               </TabsContent>

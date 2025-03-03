@@ -41,10 +41,10 @@ const ElementCountdownFormField = ({ form, isSilver, countdownData }) => {
         control={form.control}
         name="countdown"
         render={({ field }) => (
-          <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+          <FormItem className="flex flex-row items-center justify-between rounded-md border p-3 shadow-sm">
             <div className="flex flex-col gap-2">
               <Label htmlFor="schedule-toggle">شمارش معکوس</Label>
-              <p className="text-wrap text-xs text-textLight">
+              <p className="text-textLight text-wrap text-xs">
                 بلوک تا تاریخ مشخض شده پنهان می ماند
               </p>
             </div>

@@ -4,27 +4,11 @@ import ElementColorFormField from "@/app/_components/common/form/element-propert
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
-import { fontsList } from "@/app/fonts/fonts";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
-import { Check, LoaderIcon } from "lucide-react";
+import { Check } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -166,7 +150,7 @@ function PropertiesComponent({ elementInstance }) {
               <TabsContent value="design" className="flex flex-col gap-4">
                 {/* <HeroWorkspaceUploader /> */}
                 <UploadButton />
-                <p className="text-xs text-textLight">
+                <p className="text-textLight text-xs">
                   پس از انتخاب فایل، دکمه بارگزاری را بزنید
                 </p>
               </TabsContent>

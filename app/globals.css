@@ -25,6 +25,10 @@ body {
     --textLight: 248 0% 40%;
     --input: 0 0% 100%;
     --input-blue: 213 92% 85%;
+    --tab: 207 90% 54%;
+    --tab-active: 172 100% 37%;
+
+    --border: 207 90% 54%;
 
     --background: 0 0% 90%;
     --secondaryBg: 0 0% 98%;
@@ -45,7 +49,6 @@ body {
     --accent-foreground: 248 0% 15%;
     --destructive: 0 50% 50%;
     --destructive-foreground: 248 0% 100%;
-    --border: 248 20% 82%;
     --ring: 248 20% 82%;
     --radius: 0.5rem;
     --font-geist-sans: "Geist Sans", sans-serif;
@@ -69,6 +72,10 @@ body {
     --textLight: 248 0% 65%;
     --input: 0 0% 30%;
     --input-blue: 213 92% 85%;
+    --tab: 210 10% 25%;
+    --tab-active: 0 0% 11%;
+
+    --border: 0 0% 19%;
 
     --background: 0 0% 11%;
     --icon-ight: 0 0% 30%;
@@ -88,7 +95,7 @@ body {
     --accent-foreground: 248 0% 95%;
     --destructive: 0 50% 50%;
     --destructive-foreground: 248 0% 100%;
-    --border: 0 0% 19%;
+
     --ring: 248 0% 10%;
     --radius: 0.5rem;
     --font-geist-sans: "Geist Sans", sans-serif;

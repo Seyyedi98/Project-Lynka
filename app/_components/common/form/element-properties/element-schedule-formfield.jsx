@@ -23,10 +23,10 @@ const ElementScheduleFormField = ({ form, isSilver, scheduleData }) => {
         control={form.control}
         name="schedule"
         render={({ field }) => (
-          <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+          <FormItem className="flex flex-row items-center justify-between rounded-md border p-3 shadow-sm">
             <div className="flex flex-col gap-2">
               <Label htmlFor="schedule-toggle">زمان بندی نمایش بلوک</Label>
-              <p className="text-wrap text-xs text-textLight">
+              <p className="text-textLight text-wrap text-xs">
                 نمایش بلوک در ساعات خاصی از روز
               </p>
             </div>

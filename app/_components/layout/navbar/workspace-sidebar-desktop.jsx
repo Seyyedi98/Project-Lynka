@@ -27,7 +27,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
 
   return (
     <div className="fixed right-2 top-0 z-40 flex h-full w-16 items-center ring-0">
-      <div className="flex h-2/3 w-full items-stretch justify-center rounded-full bg-background px-8 py-5">
+      <div className="flex h-2/3 w-full items-stretch justify-center rounded-full bg-background/90 px-8 py-5 dark:bg-background">
         <div className="flex flex-col items-center justify-between">
           <ul className="relative flex flex-col items-center gap-8">
             <div

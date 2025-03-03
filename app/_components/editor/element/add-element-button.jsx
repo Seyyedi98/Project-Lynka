@@ -44,7 +44,7 @@ const AddElementButton = ({ pageElement }) => {
       }}
       ref={draggable.setNodeRef}
       className={cn(
-        `relative flex h-14 w-full max-w-xs cursor-grab items-center justify-between gap-2 overflow-hidden rounded-lg bg-button px-4 text-foreground shadow-md transition-all duration-300 hover:scale-105`,
+        `relative flex h-14 w-full max-w-xs cursor-grab items-center justify-between gap-2 overflow-hidden rounded-lg border border-border/20 bg-button px-4 text-foreground shadow-sm transition-all duration-300 hover:scale-105 hover:border-border/90`,
         draggable.isDragging && "ring-2 ring-primary",
       )}
       {...draggable.listeners}
@@ -77,7 +77,7 @@ const AddElementButton = ({ pageElement }) => {
         dispatch({ type: "page/addElement", payload });
       }}
       className={cn(
-        `relative flex h-14 w-full max-w-xs cursor-grab items-center justify-between gap-2 overflow-hidden rounded-lg bg-button px-4 text-foreground shadow-md transition-all duration-300 hover:scale-105`,
+        `relative flex h-14 w-full max-w-xs cursor-grab items-center justify-between gap-2 overflow-hidden rounded-lg border border-border/20 bg-button px-4 text-foreground shadow-sm transition-all duration-300 hover:scale-105 hover:border-border/90`,
       )}
     >
       <div className="flex items-center justify-center gap-2">
