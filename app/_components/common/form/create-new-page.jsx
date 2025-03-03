@@ -1,6 +1,6 @@
 "use client";
 
-import { checkPageAvailable, newPageCreator } from "@/actions/page";
+import { checkPageAvailable, newPageCreator } from "@/actions/page/page";
 import { AuroraBackground } from "@/app/_components/common/shared/aurora-background";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";

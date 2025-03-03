@@ -1,5 +1,5 @@
-import { getWorkspacePageDataByUri } from "@/actions/page";
-import InitialThemeSelector from "@/app/_components/editor/initial-theme-selector";
+import { getWorkspacePageDataByUri } from "@/actions/page/page";
+import InitialThemeSelector from "@/app/_components/workspace/initial-theme-selector";
 import NotFound from "@/app/not-found";
 import { currentUser } from "@/lib/auth/get-user";
 import { redirect } from "next/navigation";

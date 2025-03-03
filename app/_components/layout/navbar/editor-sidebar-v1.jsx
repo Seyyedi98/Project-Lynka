@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useSelector } from "react-redux";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
-import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
+import EditorSidebarElements from "../../workspace/element/editor-sidebar-elements";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -16,7 +16,7 @@ const EditorSidebar = () => {
   // Mobile Device
   if (!isDesktop && !selectedElement) {
     return (
-      <div className="fixed bottom-0 h-16 w-full bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to text-white">
+      <div className="from-primary-gradient_from to-primary-gradient_to fixed bottom-0 h-16 w-full bg-gradient-to-b text-white">
         <ul className="flex h-full items-center justify-between px-5">
           <li>Settings</li>
           <WorkspaceDynamicModal
@@ -34,7 +34,7 @@ const EditorSidebar = () => {
 
   if (!isDesktop && selectedElement) {
     return (
-      <div className="fixed bottom-0 h-16 w-full bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to text-white">
+      <div className="from-primary-gradient_from to-primary-gradient_to fixed bottom-0 h-16 w-full bg-gradient-to-b text-white">
         <ul className="flex h-full items-center justify-between px-5">
           <li>Settings</li>
           <WorkspaceDynamicModal
@@ -54,7 +54,7 @@ const EditorSidebar = () => {
   if (isDesktop) {
     return (
       <>
-        <div className="flex w-64 flex-col items-center justify-between bg-gradient-to-b from-primary-gradient_from to-primary-gradient_to py-8 text-white">
+        <div className="from-primary-gradient_from to-primary-gradient_to flex w-64 flex-col items-center justify-between bg-gradient-to-b py-8 text-white">
           {/* Properties drawer */}
           {/* <div
             className={cn(

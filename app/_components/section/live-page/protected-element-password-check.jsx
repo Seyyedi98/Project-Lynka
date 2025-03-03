@@ -1,12 +1,13 @@
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
-const backgroundLight = "/bg_wave.svg";
-import { AnimatePresence, motion } from "framer-motion";
-import { fade } from "@/utils/animation/animation";
-import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
+import { fade } from "@/utils/animation/animation";
 import CryptoJS from "crypto-js";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, ChevronLeft } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+
+const backgroundLight = "/bg_wave.svg";
 
 const ProtectedPagePasswordCheck = ({
   isModalOpen,
@@ -35,7 +36,7 @@ const ProtectedPagePasswordCheck = ({
           animate="animate"
           exit="exit"
           variants={fade}
-          className="bg-main-gradient-light relative z-20 h-full w-full"
+          className="relative z-20 h-full w-full bg-main-gradient-light"
         >
           <span
             onClick={() => setIsModalOpen(false)}
@@ -53,7 +54,7 @@ const ProtectedPagePasswordCheck = ({
             <div className="flex w-full items-center justify-center gap-4 p-4 sm:w-fit">
               <div
                 onClick={handleClick}
-                className="text-input-blue transition-color mt-0.5 cursor-pointer self-start rounded-full bg-secondary p-2.5 text-white duration-100 hover:bg-secondary/80"
+                className="transition-color mt-0.5 cursor-pointer self-start rounded-full bg-secondary p-2.5 text-input-blue text-white duration-100 hover:bg-secondary/80"
               >
                 <ArrowRight className="h-6 w-6" />
               </div>
@@ -64,7 +65,7 @@ const ProtectedPagePasswordCheck = ({
                   dir="ltr"
                   placeholder="رمز عبور"
                   type="password"
-                  className="bg-input-blue/50 h-12 rounded-md border-none text-center text-white placeholder-white caret-white placeholder:opacity-60 focus:border-none focus:ring-0 sm:w-72"
+                  className="h-12 rounded-md border-none bg-input-blue/50 text-center text-white placeholder-white caret-white placeholder:opacity-60 focus:border-none focus:ring-0 sm:w-72"
                 />
                 <div className="mt-2 text-base opacity-60 sm:mt-0 md:text-xs">
                   برای مشاهده ی لینک، رمز عبور را وارد کنید

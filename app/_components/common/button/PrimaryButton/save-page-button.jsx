@@ -1,6 +1,6 @@
 "use client";
 
-import { UpdatePageContent, UpdatePageTheme } from "@/actions/page";
+import { UpdatePageContent, UpdatePageTheme } from "@/actions/page/page";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { Loader } from "lucide-react";

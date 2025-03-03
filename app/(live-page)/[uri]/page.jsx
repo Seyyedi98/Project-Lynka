@@ -1,11 +1,8 @@
-import { getPageMetadata, increasePageView } from "@/actions/page";
+import { getPageMetadata, increasePageView } from "@/actions/page/page";
 import LoadingSpinner from "@/app/_components/common/shared/loadingSpinner";
 import LivePageElements from "@/app/_components/live-page/live-page-elements-render";
 import LivePageHero from "@/app/_components/live-page/live-page-hero-render";
-import {
-  currentUserPremium,
-  getSubscriptionByUri,
-} from "@/lib/auth/user-subscription";
+import { getSubscriptionByUri } from "@/lib/auth/user-subscription";
 import getPageContent from "@/lib/page/get-page-content";
 import getPageHero from "@/lib/page/get-page-hero";
 import { cn } from "@/lib/utils";

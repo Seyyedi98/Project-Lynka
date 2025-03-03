@@ -1,6 +1,6 @@
 import { getSubscriptionByUri } from "@/lib/auth/user-subscription";
-import { ElementThemeController } from "../../../controller/element-theme-controller";
 import moment from "moment-jalaali";
+import { ElementThemeController } from "../../../controller/element-theme-controller";
 
 export async function LivePageComponent({ elementInstance, uri }) {
   const element = elementInstance;
@@ -30,6 +30,8 @@ export async function LivePageComponent({ elementInstance, uri }) {
   return countdownRender ? (
     scheduledRender ? (
       <RenderedElement
+        uri={uri}
+        elementId={element.id}
         protectedElement={protectedElement}
         isPasswordsMatch
         isLive={true}

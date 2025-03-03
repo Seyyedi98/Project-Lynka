@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import SavePageBtn from "../../common/button/PrimaryButton/save-page-button";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
-import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
+import EditorSidebarElements from "../../workspace/element/editor-sidebar-elements";
 
 const WorkspaceBottomBar = ({ isDesktop }) => {
   const websiteUrl = process.env.NEXT_PUBLIC_WEBSITE_URL;
@@ -22,7 +22,7 @@ const WorkspaceBottomBar = ({ isDesktop }) => {
         )}
       >
         <SavePageBtn uri={params.uri}>
-          <div className="cursor-pointer rounded-full bg-primary-600 p-2 text-white duration-200 hover:bg-primary-700">
+          <div className="bg-primary-600 hover:bg-primary-700 cursor-pointer rounded-full p-2 text-white duration-200">
             <SaveIcon className="h-6 w-6" />
           </div>
         </SavePageBtn>
@@ -35,7 +35,7 @@ const WorkspaceBottomBar = ({ isDesktop }) => {
             href={`${websiteUrl}${params.uri}`}
             // href={`${websiteUrl}${params.uri}`}
             target="_blank"
-            className="truncate text-nowrap font-medium text-brand-600 hover:underline hover:underline-offset-4"
+            className="text-brand-600 truncate text-nowrap font-medium hover:underline hover:underline-offset-4"
           >
             {websiteUrl}
             <span className="truncate text-nowrap">{pageUri}</span>
@@ -50,7 +50,7 @@ const WorkspaceBottomBar = ({ isDesktop }) => {
           </div>
         </div>
         {!isDesktop && (
-          <div className="cursor-pointer rounded-full bg-primary-600 p-2 text-white duration-200 hover:bg-primary-700">
+          <div className="bg-primary-600 hover:bg-primary-700 cursor-pointer rounded-full p-2 text-white duration-200">
             <WorkspaceDynamicModal
               mode="allDrawer"
               trigger={

@@ -1,4 +1,4 @@
-import { UpdatePageMetaDescription } from "@/actions/page";
+import { UpdatePageMetaDescription } from "@/actions/page/page";
 import { Button } from "@/components/ui/button";
 import {
   Form,

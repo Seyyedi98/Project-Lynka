@@ -8,8 +8,8 @@ import {
 import { GearIcon } from "@radix-ui/react-icons";
 import { AppWindow, Droplet, Layers } from "lucide-react";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
-import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
-import PageSettings from "../../editor/page-settings";
+import EditorSidebarElements from "../../workspace/element/editor-sidebar-elements";
+import PageSettings from "../../workspace/page-settings";
 import PageDataSettingsContainer from "../../section/workspace/page-data-settings-container";
 import PageStyleSettingsContainer from "../../section/workspace/page-style-settings-container";
 

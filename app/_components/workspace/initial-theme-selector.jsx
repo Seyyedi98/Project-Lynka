@@ -1,6 +1,6 @@
 "use client";
 
-import { UpdatePageContent, UpdatePageTheme } from "@/actions/page";
+import { UpdatePageContent, UpdatePageTheme } from "@/actions/page/page";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import ExpandableThemeGridCard from "../common/card/expandable-grid-card-theme";

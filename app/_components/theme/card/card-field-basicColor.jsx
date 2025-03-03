@@ -5,21 +5,27 @@ import { loadFont } from "@/utils/loadFont";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import ProtectedPagePasswordCheck from "../../section/live-page/protected-element-password-check";
+import { updateElementClicked } from "@/actions/page/element";
+
+const handleClick = async ({
+  setIsModalOpen,
+  protectedElement,
+  href,
+  uri,
+  elementId,
+  isLive,
+}) => {
+  if (protectedElement) {
+    // await updateElementClicked({ uri, elementId });
+    await setIsModalOpen(true);
+  } else {
+    isLive && (await updateElementClicked({ uri, elementId }));
+    isLive && window.open(`http://${href}`, "_blank");
+  }
+};
 
 const CardFieldBasicColor = (props) => {
-  const {
-    title,
-    href,
-    isLive,
-    font,
-    bgColor,
-    textColor,
-    layout,
-    image,
-    borderRadius,
-    isSilver,
-    protectedElement,
-  } = props;
+  const { isLive, font, layout, image, isSilver } = props;
   const [loadedFont, setLoadedFont] = useState(null);
 
   useEffect(() => {
@@ -94,19 +100,24 @@ const Basic = ({
   borderRadius,
   protectedElement,
   password,
+  uri,
+  elementId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <>
       <a
         style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
-        onClick={() => {
-          if (protectedElement) {
-            setIsModalOpen(true);
-          } else {
-            window.open(`http://${href}`, "_blank");
-          }
-        }}
+        onClick={() =>
+          handleClick({
+            setIsModalOpen,
+            href,
+            protectedElement,
+            uri,
+            elementId,
+            isLive,
+          })
+        }
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
@@ -153,6 +164,8 @@ const RoundedImage = ({
   borderRadius,
   protectedElement,
   password,
+  uri,
+  elementId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -160,13 +173,16 @@ const RoundedImage = ({
     <>
       <a
         style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
-        onClick={() => {
-          if (protectedElement) {
-            setIsModalOpen(true);
-          } else {
-            window.open(`http://${href}`, "_blank");
-          }
-        }}
+        onClick={() =>
+          handleClick({
+            setIsModalOpen,
+            href,
+            protectedElement,
+            uri,
+            elementId,
+            isLive,
+          })
+        }
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
@@ -232,6 +248,8 @@ const WideFullImage = ({
   borderRadius,
   protectedElement,
   password,
+  uri,
+  elementId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -239,13 +257,16 @@ const WideFullImage = ({
     <>
       <a
         style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
-        onClick={() => {
-          if (protectedElement) {
-            setIsModalOpen(true);
-          } else {
-            window.open(`http://${href}`, "_blank");
-          }
-        }}
+        onClick={() =>
+          handleClick({
+            setIsModalOpen,
+            href,
+            protectedElement,
+            uri,
+            elementId,
+            isLive,
+          })
+        }
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
@@ -300,6 +321,8 @@ const HighFullImage = ({
   borderRadius,
   protectedElement,
   password,
+  uri,
+  elementId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -307,13 +330,16 @@ const HighFullImage = ({
     <>
       <a
         style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
-        onClick={() => {
-          if (protectedElement) {
-            setIsModalOpen(true);
-          } else {
-            window.open(`http://${href}`, "_blank");
-          }
-        }}
+        onClick={() =>
+          handleClick({
+            setIsModalOpen,
+            href,
+            protectedElement,
+            uri,
+            elementId,
+            isLive,
+          })
+        }
         target="_blank"
         rel="noopener noreferrer"
         className={cn(

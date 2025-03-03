@@ -1,7 +1,7 @@
 import React, { useTransition } from "react";
 import { LoadingController } from "../../controller/loading-controller";
 import LoadingSpinner from "../../common/shared/loadingSpinner";
-import { UpdatePageLoadingIcon } from "@/actions/page";
+import { UpdatePageLoadingIcon } from "@/actions/page/page";
 import { useParams } from "next/navigation";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";

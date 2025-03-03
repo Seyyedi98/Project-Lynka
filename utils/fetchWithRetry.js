@@ -1,4 +1,4 @@
-import { getPageDataByUri } from "@/actions/page";
+import { getPageDataByUri } from "@/actions/page/page";
 
 // ✅ Helper function to retry fetching if database connection fails
 export default async function fetchWithRetry(uri, retries = 3, delay = 1000) {

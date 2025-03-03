@@ -1,4 +1,4 @@
-import { UpdatePageTheme } from "@/actions/page";
+import { UpdatePageTheme } from "@/actions/page/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";

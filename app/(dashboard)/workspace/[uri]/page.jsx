@@ -1,5 +1,5 @@
-import { getWorkspacePageDataByUri } from "@/actions/page";
-import PageBuilder from "@/app/_components/editor/page-builder";
+import { getWorkspacePageDataByUri } from "@/actions/page/page";
+import PageBuilder from "@/app/_components/workspace/page-builder";
 import NotFound from "@/app/not-found";
 import { currentUser } from "@/lib/auth/get-user";
 import { notFound, redirect } from "next/navigation";

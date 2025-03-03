@@ -23,6 +23,7 @@ const extraAttributes = {
   countdownDate: "0",
   protected: false,
   password: "",
+  clicked: 0,
 };
 
 export const CardFieldFormElement = {

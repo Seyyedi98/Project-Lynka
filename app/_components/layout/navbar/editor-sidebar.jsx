@@ -4,12 +4,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
-import EditorSidebarElements from "../../editor/element/editor-sidebar-elements";
-import ElementProperties from "../../editor/element/element-properties";
+import EditorSidebarElements from "../../workspace/element/editor-sidebar-elements";
+import ElementProperties from "../../workspace/element/element-properties";
 import PageDataSettingsContainer from "../../section/workspace/page-data-settings-container";
 import PageStyleSettingsContainer from "../../section/workspace/page-style-settings-container";
 import WorkspaceSidebatDesktop from "./workspace-sidebar-desktop";
 import WorkspaceSidebarMobile from "./workspace-sidebar-mobile";
+import PageAnalytics from "../../section/workspace/page-analytics";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -72,7 +73,7 @@ const EditorSidebar = () => {
                   />
                 )}
                 {selectedMenu === "browser" && <PageDataSettingsContainer />}
-                {selectedMenu === "analytics" && <p>analytics</p>}
+                {selectedMenu === "analytics" && <PageAnalytics />}
               </motion.div>
             )}
           </AnimatePresence>

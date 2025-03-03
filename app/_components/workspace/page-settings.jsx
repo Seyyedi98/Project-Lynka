@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import PageLoadingSettings from "../section/workspace/page-loading-settings";
 import WorkspaceSettings from "../section/workspace/workspace-settings";
+import PageAnalytics from "../section/workspace/page-analytics";
 
 const PageSettings = () => {
   const [selectedTab, setSelectedTab] = useState("تنظیمات");
@@ -37,7 +38,7 @@ const PageSettings = () => {
       <div className="mt-4 text-right transition-all duration-200 md:hidden">
         {selectedTab === MobileTabItems[0] && <WorkspaceSettings />}
         {selectedTab === MobileTabItems[1] && <PageLoadingSettings />}
-        {selectedTab === MobileTabItems[2] && <div>analytics</div>}
+        {selectedTab === MobileTabItems[2] && <PageAnalytics />}
       </div>
 
       {/* Desktop Tap */}
