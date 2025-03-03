@@ -115,7 +115,7 @@ model Page {
   favicon         String?  @db.Text
   metaImage       String?  @db.Text
   content         String   @db.MediumText
-  visits          Int      @default(0)
+  views           Int      @default(0)
   isPremium       Boolean  @default(false)
   theme           String?  @db.Text
 

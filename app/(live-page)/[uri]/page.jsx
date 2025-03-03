@@ -1,4 +1,4 @@
-import { getPageMetadata } from "@/actions/page";
+import { getPageMetadata, increasePageView } from "@/actions/page";
 import LoadingSpinner from "@/app/_components/common/shared/loadingSpinner";
 import LivePageElements from "@/app/_components/live-page/live-page-elements-render";
 import LivePageHero from "@/app/_components/live-page/live-page-hero-render";
@@ -16,6 +16,7 @@ import { notFound } from "next/navigation";
 export async function generateMetadata({ params }) {
   const { uri } = await params;
   const { isSilver } = await getSubscriptionByUri(uri);
+  await increasePageView(uri);
 
   try {
     const metadata = await getPageMetadata(uri);

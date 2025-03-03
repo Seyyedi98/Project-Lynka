@@ -284,3 +284,26 @@ export async function UpdatePageMetaImage(uri, content) {
 
   return { success: "Page meta image has been updated" };
 }
+
+export async function increasePageView(uri) {
+  const page = await prisma.page.findUnique({
+    where: {
+      uri,
+    },
+  });
+
+  if (!page) return { error: "Page not found!" };
+
+  await prisma.page.update({
+    where: {
+      uri,
+    },
+    data: {
+      views: {
+        increment: 1,
+      },
+    },
+  });
+
+  return { success: "Page view has been increased" };
+}
