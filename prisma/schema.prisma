@@ -119,7 +119,19 @@ model Page {
   isPremium       Boolean  @default(false)
   theme           String?  @db.Text
 
-  User User? @relation(fields: [owner], references: [id])
+  User User? @relation(fields: [owner], references: [id], onDelete: Cascade)
 
   @@index([uri])
+}
+
+model LinkView {
+  id           String   @id @default(cuid())
+  linkName     String
+  linkId       String   @unique @map("link_id")
+  lastViewedAt DateTime @updatedAt
+  views        Int      @default(0)
+  userAgent    String?  @db.LongText
+
+  @@index([linkId])
+  @@map("link_views")
 }

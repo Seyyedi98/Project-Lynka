@@ -1,11 +1,12 @@
 "use client";
 
+import { updateElementClicked } from "@/actions/page/element";
 import { cn } from "@/lib/utils";
+import GetUserAgentData from "@/utils/getUserAgent";
 import { loadFont } from "@/utils/loadFont";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import ProtectedPagePasswordCheck from "../../section/live-page/protected-element-password-check";
-import { updateElementClicked } from "@/actions/page/element";
 
 const handleClick = async ({
   setIsModalOpen,
@@ -14,13 +15,27 @@ const handleClick = async ({
   uri,
   elementId,
   isLive,
+  title,
 }) => {
+  // Get User-Agent
+  const userAgent = await GetUserAgentData();
+
   if (protectedElement) {
     // await updateElementClicked({ uri, elementId });
     await setIsModalOpen(true);
   } else {
-    isLive && (await updateElementClicked({ uri, elementId }));
-    isLive && window.open(`http://${href}`, "_blank");
+    if (isLive) {
+      window.open(`http://${href}`, "_blank");
+
+      updateElementClicked({
+        uri,
+        elementId,
+        title,
+        userAgent,
+      }).catch((error) => {
+        console.error("Failed to update analytics data:", error);
+      });
+    }
   }
 };
 
@@ -115,6 +130,7 @@ const Basic = ({
             protectedElement,
             uri,
             elementId,
+            title,
             isLive,
           })
         }
