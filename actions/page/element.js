@@ -8,17 +8,32 @@ export async function updateElementClicked({
   title,
   userAgent,
 }) {
+  const { device, os } = userAgent;
   let updatedElementId = `${uri}-${elementId}`;
-  let usersData = [];
+  let usersData = {
+    device: {},
+    os: {},
+  };
 
   const linkData = await prisma.linkView.findUnique({
     where: { linkId: updatedElementId },
   });
 
   if (!linkData) {
-    usersData = [userAgent];
+    if (usersData.device[device]) {
+      usersData.device[device] += 1;
+    } else {
+      usersData.device[device] = 1;
+    }
+
+    if (usersData.os[os]) {
+      usersData.os[os] += 1;
+    } else {
+      usersData.os[os] = 1;
+    }
+
     const JsonUserDate = JSON.stringify(usersData);
-    // create new row
+    // // create new row
     await prisma.linkView.create({
       data: {
         linkId: updatedElementId,
@@ -28,9 +43,19 @@ export async function updateElementClicked({
     });
   } else {
     const prevAgentData = JSON.parse(linkData.userAgent);
-    usersData = [...prevAgentData, userAgent];
+    if (prevAgentData.device[device]) {
+      prevAgentData.device[device] += 1;
+    } else {
+      prevAgentData.device[device] = 1;
+    }
 
-    const JsonUserDate = JSON.stringify(usersData);
+    if (prevAgentData.os[os]) {
+      prevAgentData.os[os] += 1;
+    } else {
+      prevAgentData.os[os] = 1;
+    }
+
+    const newAgentData = JSON.stringify(prevAgentData);
     // update existing row
     await prisma.linkView.update({
       where: {
@@ -40,7 +65,7 @@ export async function updateElementClicked({
         views: {
           increment: 1,
         },
-        userAgent: JsonUserDate,
+        userAgent: newAgentData,
       },
     });
   }
