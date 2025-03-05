@@ -36,9 +36,11 @@ export async function updateElementClicked({
     // // create new row
     await prisma.linkView.create({
       data: {
-        linkId: updatedElementId,
         linkName: title,
+        linkId: updatedElementId,
+        pageUri: uri,
         userAgent: JsonUserDate,
+        elementId,
       },
     });
   } else {
@@ -62,7 +64,7 @@ export async function updateElementClicked({
         linkId: updatedElementId,
       },
       data: {
-        views: {
+        clicks: {
           increment: 1,
         },
         userAgent: newAgentData,

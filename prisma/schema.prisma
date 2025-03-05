@@ -125,12 +125,14 @@ model Page {
 }
 
 model LinkView {
-  id           String   @id @default(cuid())
-  linkName     String
-  linkId       String   @unique @map("link_id")
-  lastViewedAt DateTime @updatedAt
-  views        Int      @default(0)
-  userAgent    String?  @db.LongText
+  id            String   @id @default(cuid())
+  linkName      String
+  linkId        String   @unique @map("link_id")
+  pageUri       String
+  elementId     String
+  lastClickedAt DateTime @updatedAt
+  clicks        Int      @default(1)
+  userAgent     String?  @db.LongText
 
   @@index([linkId])
   @@map("link_views")

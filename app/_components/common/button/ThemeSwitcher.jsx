@@ -1,13 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { DesktopIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useTheme } from "next-themes";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { Toggle } from "rsuite";
-// import { MoonIcon, SunIcon } from "lucide-react";
 
 const ThemeSwitcher = (className) => {
   const { theme, setTheme } = useTheme();

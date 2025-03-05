@@ -12,7 +12,12 @@ import { notFound } from "next/navigation";
 // ✅ Dynamic Metadata Fetching with Error Handling
 export async function generateMetadata({ params }) {
   const { uri } = await params;
-  const { isSilver } = await getSubscriptionByUri(uri);
+
+  const subscription = await getSubscriptionByUri(uri);
+  if (!subscription) return;
+  const { isSilver } = subscription;
+
+  // TODO: run in background
   await increasePageView(uri);
 
   try {

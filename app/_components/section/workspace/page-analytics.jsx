@@ -1,6 +1,7 @@
-import { getPageDataByUri } from "@/actions/page/page";
+import { getPageAnalytics } from "@/actions/page/analytics";
+import { LoaderIcon } from "lucide-react";
 import { useParams } from "next/navigation";
-import React, { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SimpleAnalytics from "../../analytics/simple-analytics";
 
 const PageAnalytics = () => {
@@ -9,34 +10,35 @@ const PageAnalytics = () => {
 
   useEffect(() => {
     const getPageData = async () => {
-      const data = await getPageDataByUri(uri);
-      const content = JSON.parse(data.content);
-
-      content[1].map((element) => {
-        if (element.extraAttributes.clicked) {
-          //   console.log(element);
-          setList((prev) => [
-            ...prev,
-            {
-              id: element.extraAttributes.id,
-              title: element.extraAttributes.title,
-              clicked: element.extraAttributes.clicked,
-            },
-          ]);
-        }
+      const data = await getPageAnalytics(uri);
+      data.map((element) => {
+        setList((prev) => [
+          ...prev,
+          {
+            elementId: element.elementId,
+            title: element.linkName,
+            clicked: element.clicks,
+            device: JSON.parse(element.userAgent).device,
+            os: JSON.parse(element.userAgent).os,
+          },
+        ]);
       });
     };
     getPageData();
   }, [uri]);
 
   return (
-    <Suspense fallback={<p>loading...</p>}>
-      <div className="flex flex-col gap-2">
-        {list.map((el, index) => (
-          <SimpleAnalytics key={`${el.id}-${index}`} data={el} />
-        ))}
-      </div>
-    </Suspense>
+    <div className="flex flex-col gap-2">
+      {list.length > 0 ? (
+        list.map((el, index) => {
+          return <SimpleAnalytics key={`${el.elementId}-${index}`} data={el} />;
+        })
+      ) : (
+        <div className="grid h-full place-content-center">
+          <LoaderIcon className="animate-spin" />
+        </div>
+      )}
+    </div>
   );
 };
 
