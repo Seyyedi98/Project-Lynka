@@ -3,10 +3,12 @@ import { LoaderIcon } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import SimpleAnalytics from "../../analytics/simple-analytics";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
 
 const PageAnalytics = () => {
   const { uri } = useParams();
   const [list, setList] = useState([]);
+  const { isSilver } = useUserSubscription();
 
   useEffect(() => {
     const getPageData = async () => {
@@ -28,14 +30,26 @@ const PageAnalytics = () => {
   }, [uri]);
 
   return (
-    <div className="flex flex-col gap-2">
-      {list.length > 0 ? (
-        list.map((el, index) => {
-          return <SimpleAnalytics key={`${el.elementId}-${index}`} data={el} />;
-        })
+    <div className="h-full">
+      {isSilver ? (
+        <div className="flex flex-col gap-2">
+          {list.length > 0 ? (
+            list.map((el, index) => {
+              return (
+                <SimpleAnalytics key={`${el.elementId}-${index}`} data={el} />
+              );
+            })
+          ) : (
+            <div className="grid h-full place-content-center">
+              <LoaderIcon className="animate-spin" />
+            </div>
+          )}
+        </div>
       ) : (
         <div className="grid h-full place-content-center">
-          <LoaderIcon className="animate-spin" />
+          <p className="mt-4 text-center text-sm text-destructive">
+            برای استفاده ای این قابلیت به اشتراک ویژه نیاز دارید
+          </p>
         </div>
       )}
     </div>

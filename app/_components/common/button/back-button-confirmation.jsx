@@ -29,12 +29,14 @@ const BackButtonWithConfirmation = ({ url, children }) => {
 
         <DialogFooter className="mt-6 flex gap-2 sm:justify-end">
           <DialogClose asChild>
-            <Button type="button" variant="secondary">
+            <Button type="button" variant="outline">
               بازگشت
             </Button>
           </DialogClose>
-          <Button type="submit" className="px-4" variant="secondary" asChild>
-            <Link href={url}>تایید</Link>
+          <Button type="submit" className="px-4" variant="default" asChild>
+            <Link className="hover:text-white" href={url}>
+              تایید
+            </Link>
           </Button>
         </DialogFooter>
       </DialogContent>

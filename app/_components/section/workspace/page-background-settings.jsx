@@ -34,7 +34,7 @@ const PageBackgroundSettings = () => {
 
   return (
     <>
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-4 border-b-2 pb-2 md:gap-[10px]">
+      <div className="mb-4 flex w-full  flex-wrap items-center border-b-2 pb-4">
         <SquareButton state={category} action={setCategory} rule="color">
           رنگ
         </SquareButton>
@@ -52,7 +52,7 @@ const PageBackgroundSettings = () => {
         {category === "color" && (
           <>
             <div className="col-span-full my-2 block w-full">
-              <p className="mb-4 text-xs text-textLight">
+              <p className="text-textLight mb-4 text-xs">
                 رنگ دلخواه خود را انتخاب کنید
               </p>
               <Input

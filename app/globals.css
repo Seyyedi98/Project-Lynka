@@ -28,6 +28,7 @@ body {
     --tab: 207 90% 54%;
     --tab-active: 172 100% 37%;
 
+    --button: 0 0% 100%;
     --border: 207 90% 54%;
 
     --background: 0 0% 90%;
@@ -35,7 +36,6 @@ body {
     --icon-light: 0 0% 50%;
     --icon: 248 0% 10%;
     --foreground: 248 0% 10%;
-    --button: 0 0% 100%;
     --card-light: 0 0% 100%;
     --card-foreground: 248 0% 15%;
     --popover: 248 0% 100%;
@@ -74,6 +74,7 @@ body {
     --input-blue: 213 92% 85%;
     --tab: 210 10% 25%;
     --tab-active: 0 0% 11%;
+    --button: 0 0% 19%;
 
     --border: 0 0% 19%;
 
@@ -82,7 +83,6 @@ body {
     --icon: 248 0% 100%;
     --secondaryBg: 0 0 15%;
     --foreground: 248 0% 100%;
-    --button: 0 0% 19%;
     --card-light: 0 0% 16%;
     --card-foreground: 248 0% 100%;
     --popover: 248 10% 5%;

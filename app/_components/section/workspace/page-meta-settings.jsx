@@ -16,7 +16,7 @@ const PageMetaSettings = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center gap-3 border-b-2 pb-4">
+      <div className="flex items-center border-b-2 pb-4">
         <SquareButton state={category} action={setCategory} rule="metaTitle">
           عنوان
         </SquareButton>
