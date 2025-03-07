@@ -28,7 +28,7 @@ const CarouselComponent = () => {
   }, [images.length]);
 
   const changeSlideInterval = useEffect(() => {
-    const changeSlideInterval = setInterval(handleNextSlide, 6000);
+    const changeSlideInterval = setInterval(handleNextSlide, 12000);
     return () => {
       clearInterval(changeSlideInterval);
     };
