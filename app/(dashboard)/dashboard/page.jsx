@@ -1,9 +1,9 @@
 import { getUserPages } from "@/actions/page/page";
+import CreatePageButton from "@/app/_components/common/button/new-page-btn";
+import CarouselComponent from "@/app/_components/common/carousel";
 import CreateNewPage from "@/app/_components/common/form/create-new-page";
-import DashboardHeading from "@/app/_components/layout/navbar/dashboard-heading";
 import DashboardSidebar from "@/app/_components/layout/navbar/dashboard-sidebar";
-import PagesList from "@/app/_components/section/dashboard/pages-list";
-import { currentUserSubscription } from "@/lib/auth/user-subscription";
+import PagesList from "@/app/_components/section/dashboard-pages-list";
 
 const Dashboard = async () => {
   const allPages = await getUserPages();
@@ -17,12 +17,23 @@ const Dashboard = async () => {
 
   if (allPages.length > 0)
     return (
-      <div className="flex w-full">
+      // <ImageSlider />
+      <div className="flex w-full select-none">
         <DashboardSidebar />
-        <main className="h-fit w-full flex-1 lg:mr-56">
-          <div className="no-scollbar z-50 mx-2 mt-52 flex flex-col gap-4 rounded-lg bg-card px-8 pt-6 sm:h-full md:mx-4 md:pt-10">
-            <PagesList pages={allPages} />
+        <main className="grid w-full flex-1 auto-rows-auto grid-cols-2 gap-4 px-2 pt-52 md:mx-4 lg:mr-56 lg:pr-6">
+          <div className="col-span-2 bg-sky-500 md:col-span-1">Guide</div>
+          <div className="col-span-2 overflow-hidden rounded-lg bg-cyan-500 md:col-span-1">
+            <CarouselComponent />
           </div>
+
+          <div className="col-span-full h-fit overflow-hidden rounded-lg bg-red-50">
+            <PagesList pages={allPages} />
+            <div className="flex w-full justify-center bg-primary/80 transition-colors duration-200 hover:bg-primary">
+              <CreatePageButton className="" />
+            </div>
+          </div>
+          <div className="col-span-2 bg-purple-500 md:col-span-1">Blog</div>
+          <div className="col-span-2 bg-green-500 md:col-span-1">Analytics</div>
         </main>
       </div>
     );

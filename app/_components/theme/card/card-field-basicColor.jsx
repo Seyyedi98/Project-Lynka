@@ -6,7 +6,7 @@ import GetUserAgentData from "@/utils/getUserAgent";
 import { loadFont } from "@/utils/loadFont";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import ProtectedPagePasswordCheck from "../../section/live-page/protected-element-password-check";
+import ProtectedPagePasswordCheck from "../../section/livepage-password-check";
 
 const handleClick = async ({
   setIsModalOpen,
