@@ -118,7 +118,7 @@ export default function ExpandableThemeGridCard({
                   exit={{ opacity: 0 }}
                   onClick={() => onSelect(theme)}
                   disabled={isPending}
-                  className="absolute bottom-0 right-0 mt-auto flex h-10 w-full items-center justify-center bg-brand-600/90 text-primary-foreground duration-200 hover:bg-brand-600 sm:relative"
+                  className="bg-brand-600/90 hover:bg-brand-600 absolute bottom-0 right-0 mt-auto flex h-10 w-full items-center justify-center text-primary-foreground duration-200 sm:relative"
                 >
                   {isPending ? <LoaderIcon /> : "انتخاب"}
                 </motion.button>

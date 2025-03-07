@@ -1,5 +1,6 @@
 "use server";
 
+import Error from "@/app/error";
 import { currentUser } from "@/lib/auth/get-user";
 import prisma from "@/lib/client";
 import { PageUriSchema } from "@/schemas";
@@ -44,6 +45,11 @@ export const getUserPages = async () => {
     where: { id: user.id },
     include: { page: true },
   });
+
+  if (!data) {
+    console.error("Error getting user pages");
+    return <Error />;
+  }
 
   return data.page;
 };

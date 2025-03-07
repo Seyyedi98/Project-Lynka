@@ -1,26 +1,12 @@
-import {
-  getSubscriptionData,
-  updateSubscriptionData,
-} from "@/actions/auth/subscription";
 import { getUserPages } from "@/actions/page/page";
-import CreatePageButton from "@/app/_components/common/button/new-page-btn";
-import ExpandableRowCard from "@/app/_components/common/card/expandable-row-card-page";
 import CreateNewPage from "@/app/_components/common/form/create-new-page";
 import DashboardHeading from "@/app/_components/layout/navbar/dashboard-heading";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Separator } from "@/components/ui/separator";
+import DashboardSidebar from "@/app/_components/layout/navbar/dashboard-sidebar";
+import PagesList from "@/app/_components/section/dashboard/pages-list";
 import { currentUserSubscription } from "@/lib/auth/user-subscription";
 
 const Dashboard = async () => {
   const allPages = await getUserPages();
-
-  const { subscriptionPlan, subscriptionDaysLeft } =
-    await currentUserSubscription();
 
   if (allPages.length === 0)
     return (
@@ -31,46 +17,14 @@ const Dashboard = async () => {
 
   if (allPages.length > 0)
     return (
-      <main className="h-full">
-        {/* <DashboardSidebar /> */}
-
-        <DashboardHeading>
-          <CreatePageButton />
-          <div className="flex gap-4 text-sm">
-            <span>Your Tire: {subscriptionPlan}</span>
-            <span>Days Left: {subscriptionDaysLeft}</span>
+      <div className="flex w-full">
+        <DashboardSidebar />
+        <main className="h-fit w-full flex-1 lg:mr-56">
+          <div className="no-scollbar z-50 mx-2 mt-52 flex flex-col gap-4 rounded-lg bg-card px-8 pt-6 sm:h-full md:mx-4 md:pt-10">
+            <PagesList pages={allPages} />
           </div>
-        </DashboardHeading>
-        <Separator />
-
-        <div className="no-scollbar flex h-[84.5svh] flex-col gap-4 bg-background px-4 sm:mr-20 sm:h-full sm:px-12 xl:mr-56">
-          <section className="h-full w-full overflow-scroll pb-8 pt-4 [scrollbar-width:none] sm:overflow-visible">
-            <Accordion type="single" defaultValue="pages" collapsible>
-              <AccordionItem value="pages">
-                <AccordionTrigger>صفحه های شما</AccordionTrigger>
-                <AccordionContent>
-                  {/* <GridLayout> */}
-
-                  {allPages.map((page) => {
-                    return <ExpandableRowCard page={page} key={page.uri} />;
-                  })}
-                  {/* </GridLayout> */}
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="showcase">
-                <AccordionTrigger>نمونه صفحه ها</AccordionTrigger>
-                <AccordionContent>Sample pages</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="explore">
-                <AccordionTrigger>راهنما</AccordionTrigger>
-                <AccordionContent>News and docs</AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </section>
-        </div>
-      </main>
+        </main>
+      </div>
     );
 };
 

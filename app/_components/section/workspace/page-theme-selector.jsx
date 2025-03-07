@@ -1,9 +1,9 @@
 import { themes } from "@/data/themes";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 const PageThemeSelector = () => {
   const dispatch = useDispatch();
-  const elements = useSelector((state) => state.page.elements);
+  const elements = useSelector((state) => state.page.elements, shallowEqual);
   const hero = useSelector((state) => state.page.hero);
   const prevTheme = useSelector((store) => store.page.theme);
 

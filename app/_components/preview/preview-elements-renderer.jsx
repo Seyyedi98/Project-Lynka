@@ -1,11 +1,11 @@
 "use client";
 
-import { useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
 import { PageElements } from "../controller/page-elements-controller";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 
 const PreviewPageElements = () => {
-  const elements = useSelector((state) => state.page.elements);
+  const elements = useSelector((state) => state.page.elements, shallowEqual);
   const { isSilver } = useUserSubscription();
 
   return (

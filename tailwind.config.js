@@ -92,6 +92,9 @@ module.exports = {
       backgroundImage: {
         "main-gradient":
           "linear-gradient(-45deg,hsl(var(--background-gradient-from)) 0%,hsl(var(--background-gradient-from)) 33%, hsl(var(--background-gradient-to)) 100%)",
+        "main-gradient-2":
+          // "linear-gradient(-70deg,hsl(var(--background-gradient-from)) 0%,hsl(var(--background-gradient-from)) 10%, hsl(var(--background-gradient-to)) 100%)",
+          "linear-gradient(-70deg,hsl(var(--background-gradient-to)) 0%,hsl(var(--background-gradient-to)) 10%, hsl(var(--background-gradient-from)) 100%)",
         "main-gradient-light":
           "linear-gradient(-45deg,hsl(var(--primary)) 0%,hsl(var(--primary)) 33%, hsl(var(--secondary)) 100%)",
       },

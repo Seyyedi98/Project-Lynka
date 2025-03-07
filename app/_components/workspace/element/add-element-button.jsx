@@ -3,7 +3,7 @@ import { idGenerator } from "@/lib/id-generator";
 import { cn } from "@/lib/utils";
 import { useDraggable } from "@dnd-kit/core";
 import { PlusIcon } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { PageElements } from "../../controller/page-elements-controller";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { toast } from "@/hooks/use-toast";
@@ -13,7 +13,7 @@ const AddElementButton = ({ pageElement }) => {
   const { label, icon: Icon } = pageElement.ElementAdderBtn;
 
   const dispatch = useDispatch();
-  const elements = useSelector((state) => state.page.elements);
+  const elements = useSelector((state) => state.page.elements, shallowEqual);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const draggable = useDraggable({

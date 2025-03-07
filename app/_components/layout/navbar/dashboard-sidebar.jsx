@@ -3,20 +3,11 @@
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { cn } from "@/lib/utils";
-import {
-  BellDot,
-  ChartLine,
-  CircleUser,
-  LucideHome,
-  MessageCircleQuestion,
-  Newspaper,
-  ShoppingCart,
-} from "lucide-react";
+import { ChartBar, LucideHome } from "lucide-react";
 import { useState } from "react";
-import UserButton from "../../auth/user-button";
 import SidebarLink from "../../common/button/NavigationButton/sidebar-link";
 import HumbergerMenuBtn from "../../common/button/PrimaryButton/humberger-menu";
-import Divider from "../../common/shared/devider";
+import { GearIcon } from "@radix-ui/react-icons";
 
 const DashboardSidebar = () => {
   const user = useCurrentUser();
@@ -24,87 +15,52 @@ const DashboardSidebar = () => {
   const ref = useOutsideClick(() => setIsSidebarOpen(false), true);
 
   return (
-    <>
-      <nav
-        ref={ref}
+    <nav ref={ref} className={cn(`relative z-40 h-full`)}>
+      <div
         className={cn(
-          `transition-translate group right-0 z-10 h-12 w-full overflow-hidden bg-gradient-to-b from-secondary to-primary px-2 pb-12 pt-6 duration-200 sm:fixed sm:h-full sm:w-20 sm:pb-4 xl:w-56`,
-          isSidebarOpen ? "h-svh pb-4 sm:w-56" : "top-0",
-          !isSidebarOpen && "sm:hover:w-56",
+          `fixed top-4 z-40 transition-all duration-200 lg:hidden`,
+          isSidebarOpen ? "left-4 sm:hidden" : "right-4",
         )}
       >
-        <div className="relative flex h-full flex-col justify-start sm:justify-between sm:gap-4">
-          <div className="flex justify-between px-4 text-white sm:mr-4 sm:px-0">
-            <HumbergerMenuBtn
-              isSidebarOpen={isSidebarOpen}
-              setIsSidebarOpen={setIsSidebarOpen}
-            />
-            <span>Logo</span>
-          </div>
+        <HumbergerMenuBtn
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
+      </div>
 
-          {/* NavLinks */}
-          <div className="flex h-full flex-col justify-between">
-            <div className="mr-[2px] mt-6 flex flex-col gap-3 sm:mt-2">
-              <SidebarLink
-                isExpanded={isSidebarOpen}
-                title="پنل کاربری"
-                path="/dashboard"
-              >
-                <LucideHome className="h-6 w-6 text-white" />
-              </SidebarLink>
-              <SidebarLink
-                isExpanded={isSidebarOpen}
-                title="فروشگاه"
-                path="/dashboard/shop"
-              >
-                <ShoppingCart className="text-white" />
-              </SidebarLink>
-              <SidebarLink
-                isExpanded={isSidebarOpen}
-                title="آمار"
-                path="/dashboard/analytics"
-              >
-                <ChartLine className="text-white" />
-              </SidebarLink>
-            </div>
+      <div
+        className={cn(
+          `fixed right-0 top-0 flex h-full flex-col items-center gap-2 bg-card pt-20 transition-all duration-200 sm:items-start sm:bg-card`,
+          isSidebarOpen
+            ? "w-full opacity-95 sm:w-56"
+            : "w-1 opacity-0 lg:w-56 lg:opacity-95",
+        )}
+      >
+        <SidebarLink
+          isExpanded={isSidebarOpen}
+          title="پنل کاربری"
+          path="/dashboard"
+        >
+          <LucideHome className="h-5 w-5" />
+        </SidebarLink>
 
-            <div className="mr-[2px] mt-6 flex flex-col gap-3 sm:mt-0">
-              <div className="mx-3">
-                <Divider />
-              </div>
-              <SidebarLink
-                isExpanded={isSidebarOpen}
-                title="پیام ها"
-                path="/dashboard/notifications"
-              >
-                <BellDot className="text-white" />
-              </SidebarLink>
-              <SidebarLink
-                isExpanded={isSidebarOpen}
-                title="تازه ها"
-                path="/dashboard/whats-new"
-              >
-                <Newspaper className="text-white" />
-              </SidebarLink>
-              <SidebarLink
-                isExpanded={isSidebarOpen}
-                title="راهنما"
-                path="/dashboard/help"
-              >
-                <MessageCircleQuestion className="text-white" />
-              </SidebarLink>
-              <UserButton
-                isExpanded={isSidebarOpen}
-                title={user?.name || "پروفایل"}
-                path="/dashboard/user"
-              >
-                <CircleUser className="text-white" />
-              </UserButton>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </>
+        <SidebarLink
+          isExpanded={isSidebarOpen}
+          title="آمار"
+          path="/dashboard/analytics"
+        >
+          <ChartBar className="h-5 w-5" />
+        </SidebarLink>
+
+        <SidebarLink
+          isExpanded={isSidebarOpen}
+          title="تنظیمات"
+          path="/dashboard/settings"
+        >
+          <GearIcon className="h-5 w-5" />
+        </SidebarLink>
+      </div>
+    </nav>
   );
 };
 

@@ -1,9 +1,64 @@
-import React from "react";
+"use client";
+import { IconNotification } from "@tabler/icons-react";
+import {
+  Bell,
+  BellDot,
+  ChevronDown,
+  HelpCircle,
+  UserCircleIcon,
+} from "lucide-react";
+import React, { useState, useEffect } from "react";
 
-const DashboardHeading = ({ children }) => {
+const DashboardHeading = ({
+  children,
+  subscriptionPlan,
+  subscriptionDaysLeft,
+}) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 120) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="flex h-14 items-center justify-between bg-secondaryBg px-2 sm:mr-20 xl:mr-56">
-      {children}
+    <div
+      className={`fixed left-0 top-0 z-40 flex h-16 w-full items-center justify-between px-2 text-white transition-shadow duration-150 ${
+        isScrolled ? "bg-main-gradient-2 shadow" : "bg-transparent"
+      }`}
+    >
+      <div className="mr-16 flex items-center justify-center gap-4 text-sm">
+        <span>
+          <BellDot className="mt-2 h-8 w-8" />
+          {/* <Bell className="mt-1 h-8 w-8" /> */}
+        </span>
+        <span>
+          <HelpCircle className="mt-2 h-8 w-8" />
+        </span>
+      </div>
+
+      <div className="ml-2 flex items-center justify-center gap-4 text-sm">
+        <span className="flex cursor-pointer items-center justify-center">
+          <span>
+            <ChevronDown className="h-5 w-5" />
+          </span>
+          Welcome
+        </span>
+        <span>
+          <UserCircleIcon className="h-8 w-8" />
+        </span>
+      </div>
     </div>
   );
 };

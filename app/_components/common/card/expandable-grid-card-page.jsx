@@ -55,7 +55,7 @@ export default function ExpandableGridCard({ page }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, transition: { duration: 0.05 } }}
-              className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-white md:hidden"
+              className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-card md:hidden"
               onClick={() => setIsModalOpen(false)}
             >
               <XIcon className="h-5 w-5" />
@@ -97,7 +97,7 @@ export default function ExpandableGridCard({ page }) {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     className={cn(
-                      `rounded-md border-2 border-brand-400 px-2 py-1 text-xs font-bold text-brand-500`,
+                      `border-brand-400 text-brand-500 rounded-md border-2 px-2 py-1 text-xs font-bold`,
                       page.isPremium && "bg-brand-500 text-white",
                     )}
                   >
@@ -150,7 +150,7 @@ export default function ExpandableGridCard({ page }) {
             <div className="flex items-center justify-end">
               <span
                 className={cn(
-                  `ml-4 rounded-md border-2 border-brand-400 px-2 py-1 text-xs text-brand-500`,
+                  `border-brand-400 text-brand-500 ml-4 rounded-md border-2 px-2 py-1 text-xs`,
                   page.isPremium && "bg-brand-400 text-white",
                 )}
               >
