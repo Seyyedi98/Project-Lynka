@@ -1,4 +1,4 @@
-import { getUserPages } from "@/actions/page/page";
+import { getUserPageData } from "@/actions/page/page";
 import CreatePageButton from "@/app/_components/common/button/new-page-btn";
 import DashboardDataCard from "@/app/_components/common/card/dashboard-data-card";
 import Carousel from "@/app/_components/common/carousel";
@@ -9,7 +9,7 @@ import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import { ApertureIcon, BadgeCheck, ChartSpline } from "lucide-react";
 
 const Dashboard = async () => {
-  const allPages = await getUserPages();
+  const allPages = await getUserPageData();
 
   if (allPages.length === 0)
     return (
@@ -21,9 +21,12 @@ const Dashboard = async () => {
   if (allPages.length > 0)
     return (
       // <ImageSlider />
-      <div className="flex w-full select-none">
+      <div className="relative flex w-full select-none">
         <DashboardSidebar />
-        <main className="grid w-full flex-1 auto-rows-auto grid-cols-2 gap-4 px-2 pt-52 md:mx-4 lg:mr-56 lg:pr-6">
+        <h2 className="absolute right-4 top-40 pr-0 text-3xl text-white md:pr-3">
+          پنل کاربری
+        </h2>
+        <main className="grid w-full flex-1 auto-rows-auto grid-cols-2 gap-4 px-2 pt-60 md:mx-4 lg:mr-56 lg:pr-6">
           {/* Slider */}
           <div className="col-span-2 h-60 overflow-hidden rounded-lg md:col-span-1">
             <Carousel showArrows={true} />
@@ -65,10 +68,14 @@ const Dashboard = async () => {
           </div>
 
           {/* Blog */}
-          <div className="col-span-2 bg-purple-500 md:col-span-1">Blog</div>
+          <div className="col-span-2 h-60 rounded-lg bg-purple-500 md:col-span-1">
+            Blog
+          </div>
 
           {/* Analytics */}
-          <div className="col-span-2 bg-green-500 md:col-span-1">Analytics</div>
+          <div className="col-span-2 h-60 rounded-lg bg-green-500 md:col-span-1">
+            Analytics
+          </div>
         </main>
       </div>
     );

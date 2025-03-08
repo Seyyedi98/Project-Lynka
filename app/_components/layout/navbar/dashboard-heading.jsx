@@ -40,11 +40,11 @@ const DashboardHeading = ({
     >
       <div className="mr-16 flex items-center justify-center gap-4 text-sm">
         <span>
-          <BellDot className="mt-2 h-8 w-8" />
-          {/* <Bell className="mt-1 h-8 w-8" /> */}
+          <BellDot className="mt-2 h-7 w-7" />
+          {/* <Bell className="mt-1 h-7 w-7" /> */}
         </span>
         <span>
-          <HelpCircle className="mt-2 h-8 w-8" />
+          <HelpCircle className="mt-2 h-7 w-7" />
         </span>
       </div>
 

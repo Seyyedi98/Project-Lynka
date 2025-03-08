@@ -4,6 +4,7 @@ import Error from "@/app/error";
 import { currentUser } from "@/lib/auth/get-user";
 import prisma from "@/lib/client";
 import { PageUriSchema } from "@/schemas";
+import { view } from "framer-motion";
 
 export const checkPageAvailable = async (uri) => {
   try {
@@ -44,6 +45,30 @@ export const getUserPages = async () => {
   const data = await prisma.user.findUnique({
     where: { id: user.id },
     include: { page: true },
+  });
+
+  if (!data) {
+    console.error("Error getting user pages");
+    return <Error />;
+  }
+
+  return data.page;
+};
+
+export const getUserPageData = async () => {
+  const user = await currentUser();
+  if (!user) return;
+
+  const data = await prisma.user.findUnique({
+    where: { id: user.id },
+    include: {
+      page: {
+        select: {
+          uri: true,
+          views: true,
+        },
+      },
+    },
   });
 
   if (!data) {

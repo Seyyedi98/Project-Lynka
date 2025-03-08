@@ -79,7 +79,7 @@ const Carousel = ({ showArrows }) => {
           className="z-10 flex h-fit w-fit flex-col items-center justify-center"
         >
           <h3 className="text-3xl text-white">{data[currentSlide].title}</h3>
-          <Button variant="primary_rounded" size="rounded" className="mt-1">
+          <Button variant="primary_2" size="rounded" className="mt-1">
             <Link
               href={data[currentSlide].ctaLink}
               className="hover:text-white"

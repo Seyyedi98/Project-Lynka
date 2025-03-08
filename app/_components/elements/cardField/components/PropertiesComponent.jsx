@@ -201,19 +201,15 @@ function PropertiesComponent({ elementInstance }) {
                   isSilver={isSilver}
                   element={element}
                 />
-
                 {/* Border radius */}
                 <ElementBorderRadiusFormField form={form} />
-
                 <Divider className="mt-4 opacity-50" />
-
                 {/* Background Color */}
                 <ElementColorFormField
                   form={form}
                   label="رنگ بلوک"
                   fieldName="bgColor"
                 />
-
                 {/* Image upload */}
                 <div className="mt-2">
                   <UploadButton form={form} element={element} />
