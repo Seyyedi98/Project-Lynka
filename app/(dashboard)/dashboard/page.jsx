@@ -1,9 +1,12 @@
 import { getUserPages } from "@/actions/page/page";
 import CreatePageButton from "@/app/_components/common/button/new-page-btn";
+import DashboardDataCard from "@/app/_components/common/card/dashboard-data-card";
 import Carousel from "@/app/_components/common/carousel";
 import CreateNewPage from "@/app/_components/common/form/create-new-page";
 import DashboardSidebar from "@/app/_components/layout/navbar/dashboard-sidebar";
 import PagesList from "@/app/_components/section/dashboard-pages-list";
+import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
+import { ApertureIcon, BadgeCheck, ChartSpline } from "lucide-react";
 
 const Dashboard = async () => {
   const allPages = await getUserPages();
@@ -21,18 +24,50 @@ const Dashboard = async () => {
       <div className="flex w-full select-none">
         <DashboardSidebar />
         <main className="grid w-full flex-1 auto-rows-auto grid-cols-2 gap-4 px-2 pt-52 md:mx-4 lg:mr-56 lg:pr-6">
-          <div className="col-span-2 bg-sky-500 md:col-span-1">Guide</div>
-          <div className="col-span-2 overflow-hidden rounded-lg md:col-span-1">
+          {/* Slider */}
+          <div className="col-span-2 h-60 overflow-hidden rounded-lg md:col-span-1">
             <Carousel showArrows={true} />
           </div>
 
-          <div className="rounded- col-span-full h-fit overflow-hidden">
+          {/* Cards */}
+          <div className="col-span-2 flex h-60 flex-col gap-2 md:col-span-1">
+            <div className="flex h-full w-full gap-2">
+              <DashboardDataCard bgColor="#ec407a" text="پیام جدید" data="12">
+                <EnvelopeClosedIcon className="h-20 w-20" />
+              </DashboardDataCard>
+
+              <DashboardDataCard bgColor="#536dfe" text=" بازدید ها" data="12">
+                <ChartSpline className="h-20 w-20" />
+              </DashboardDataCard>
+            </div>
+
+            <div className="flex h-full w-full gap-2">
+              <DashboardDataCard
+                bgColor="#7cb342"
+                text="اشتراک ویژه"
+                data="۱۲ روز"
+              >
+                <BadgeCheck className="h-20 w-20" />
+              </DashboardDataCard>
+
+              <DashboardDataCard bgColor="#fb8c00" text="قرعه کشی" data="12">
+                <ApertureIcon className="h-20 w-20" />
+              </DashboardDataCard>
+            </div>
+          </div>
+
+          {/* Pages List */}
+          <div className="col-span-full h-fit overflow-hidden rounded-lg">
             <PagesList pages={allPages} />
             <div className="flex w-full justify-center bg-primary/80 transition-colors duration-200 hover:bg-primary">
               <CreatePageButton className="" />
             </div>
           </div>
+
+          {/* Blog */}
           <div className="col-span-2 bg-purple-500 md:col-span-1">Blog</div>
+
+          {/* Analytics */}
           <div className="col-span-2 bg-green-500 md:col-span-1">Analytics</div>
         </main>
       </div>

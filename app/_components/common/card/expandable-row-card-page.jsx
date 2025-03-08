@@ -70,7 +70,7 @@ export default function ExpandableCardDemo({ page }) {
             <motion.div
               layoutId={`page-${isModalOpen.title}-${id}`}
               ref={ref}
-              className="flex h-full w-full max-w-[500px] flex-col overflow-hidden bg-white dark:bg-neutral-900 sm:rounded-2xl md:h-fit md:max-h-[90%]"
+              className="flex h-full w-full max-w-[500px] flex-col overflow-hidden bg-card sm:rounded-2xl md:h-fit md:max-h-[90%]"
             >
               <motion.div layoutId={`image-${isModalOpen.title}-${id}`}>
                 {/* Modal open image */}
@@ -132,7 +132,7 @@ export default function ExpandableCardDemo({ page }) {
         layoutId={`page-${page.title}-${id}`}
         key={`page-${page.title}-${id}`}
         onClick={() => setIsModalOpen(page)}
-        className="flex cursor-pointer items-center justify-between rounded-xl p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800"
+        className="flex cursor-pointer items-center justify-between p-4 transition-colors duration-200 hover:bg-neutral-200 dark:hover:bg-neutral-800"
       >
         <div className="flex items-center gap-4">
           <motion.div layoutId={`image-${page.title}-${id}`}>

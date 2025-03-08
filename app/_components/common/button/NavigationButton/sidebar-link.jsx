@@ -14,7 +14,7 @@ const SidebarLink = ({ children, isExpanded, title, path }) => {
       className={cn(
         `group/color w-5/6 cursor-pointer py-4 sm:rounded-l-full`,
         pathname === path ? "bg-primary/70" : "hover:bg-gray-300/40",
-        isExpanded ? "block" : "hidden",
+        isExpanded ? "block" : "hidden lg:block",
       )}
     >
       <div
