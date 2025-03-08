@@ -2,30 +2,50 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import ChevronButton from "./button/chevron-button";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-const CarouselComponent = () => {
-  const images = [
-    "https://arklight.storage.c2.liara.space/jinx6.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=6b96162b-d379-44a7-ae3f-e3cd178bbf19%2F20250307%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250307T165615Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=58ba12cc7fda20344fba36f187a21641bf559c73e943ab88253c3f26293c75ef",
-    "https://arklight.storage.c2.liara.space/jinx7.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=6b96162b-d379-44a7-ae3f-e3cd178bbf19%2F20250307%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250307T165748Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ccb5f0c8c8850c1292bd5ee4c3ed1d2ba00655b50df3c19dd1cea83ed2b943fb",
-    "https://arklight.storage.c2.liara.space/jinx11.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=6b96162b-d379-44a7-ae3f-e3cd178bbf19%2F20250307%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250307T172330Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=303f63f01c1620e49cf39d3709a02b2d8e1a10a19c58d5ff0c197029e2bec2c8",
+const Carousel = ({ showArrows }) => {
+  const data = [
+    {
+      image:
+        "https://arklight.storage.c2.liara.space/Road%20to%20Sa%20Calobra%2C%20Majorca%2C%20Spain.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=6b96162b-d379-44a7-ae3f-e3cd178bbf19%2F20250308%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250308T042310Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8a8167eeac40b0a5791b7bd6cdbe49903a48235df0510daff5e7e0294f8e9a1a",
+      title: "Road to Sa Calobra",
+      ctaText: "View",
+      ctaLink: "#",
+    },
+    {
+      image:
+        "https://arklight.storage.c2.liara.space/lake-7844270_1920.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=6b96162b-d379-44a7-ae3f-e3cd178bbf19%2F20250308%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250308T042318Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c7cdb308c8ada6dd673e5206f272e427bbaa5bebc130c65f07db2490e950f0a4",
+      title: "Lake",
+      ctaText: "View",
+      ctaLink: "#",
+    },
+    {
+      image:
+        "https://arklight.storage.c2.liara.space/manhattan-bridge-271357_1920.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=6b96162b-d379-44a7-ae3f-e3cd178bbf19%2F20250308%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250308T042324Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=af5bfb2f9288ac6722c6867748f04c0a983d6d41a2da039e39a4407ba8d7d9b7",
+      title: "Manhattan Bridge",
+      ctaText: "View",
+      ctaLink: "#",
+    },
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleNextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+    setCurrentSlide((prev) => (prev < data.length - 1 ? prev + 1 : 0));
     clearInterval(changeSlideInterval);
-  }, [images.length]);
+  }, [data.length]);
 
   const handlePrevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+    setCurrentSlide((prev) => (prev > 0 ? prev - 1 : data.length - 1));
     clearInterval(changeSlideInterval);
-  }, [images.length]);
+  }, [data.length]);
 
   const changeSlideInterval = useEffect(() => {
     const changeSlideInterval = setInterval(handleNextSlide, 12000);
@@ -35,12 +55,40 @@ const CarouselComponent = () => {
   }, [handleNextSlide, currentSlide]);
 
   return (
-    <div className="relative flex h-56 w-full items-center justify-center overflow-hidden bg-black">
-      <div className="absolute right-2 z-10" onClick={handlePrevSlide}>
-        <ChevronButton direction="right" />
-      </div>
+    <div className="relative flex h-60 w-full items-center justify-center bg-black">
+      {/* Slider Controllers */}
+      {showArrows && (
+        <div className="absolute right-1 z-10" onClick={handlePrevSlide}>
+          <ChevronButton direction="right" />
+        </div>
+      )}
+
+      {showArrows && (
+        <div className="absolute left-1 z-10" onClick={handleNextSlide}>
+          <ChevronButton direction="left" />
+        </div>
+      )}
 
       <AnimatePresence mode="wait">
+        {/* Slider Content */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="z-10 flex h-fit w-fit flex-col items-center justify-center"
+        >
+          <h3 className="text-3xl text-white">{data[currentSlide].title}</h3>
+          <Button variant="primary_rounded" size="rounded" className="mt-1">
+            <Link
+              href={data[currentSlide].ctaLink}
+              className="hover:text-white"
+            >
+              {data[currentSlide].ctaText}
+            </Link>
+          </Button>
+        </motion.div>
+
         <motion.div
           key={currentSlide}
           initial={{ opacity: 0, x: 100 }}
@@ -52,25 +100,22 @@ const CarouselComponent = () => {
           <div className="h-full w-full bg-black">
             <Image
               fill
-              className="object-cover"
-              src={images[currentSlide]}
+              className="object-cover brightness-[60%]"
+              src={data[currentSlide].image}
               alt="carousel"
             />
           </div>
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute left-2 z-10" onClick={handleNextSlide}>
-        <ChevronButton direction="left" />
-      </div>
-
+      {/* Slider Dots */}
       <div className="absolute bottom-2 flex gap-2">
-        {images.map((image, index) => (
+        {data.map((image, index) => (
           <div
             key={index}
             className={cn(
-              `relative h-1 w-4 cursor-pointer overflow-hidden rounded-md bg-white transition-all duration-200`,
-              currentSlide === index && "w-8 bg-primary",
+              `relative h-1 w-4 cursor-pointer overflow-hidden rounded-md bg-white/40 transition-all duration-200`,
+              currentSlide === index && "w-8 bg-white",
             )}
             onClick={() => setCurrentSlide(index)}
           ></div>
@@ -80,4 +125,4 @@ const CarouselComponent = () => {
   );
 };
 
-export default CarouselComponent;
+export default Carousel;

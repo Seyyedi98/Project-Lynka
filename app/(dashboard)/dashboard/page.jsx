@@ -1,6 +1,6 @@
 import { getUserPages } from "@/actions/page/page";
 import CreatePageButton from "@/app/_components/common/button/new-page-btn";
-import CarouselComponent from "@/app/_components/common/carousel";
+import Carousel from "@/app/_components/common/carousel";
 import CreateNewPage from "@/app/_components/common/form/create-new-page";
 import DashboardSidebar from "@/app/_components/layout/navbar/dashboard-sidebar";
 import PagesList from "@/app/_components/section/dashboard-pages-list";
@@ -22,11 +22,11 @@ const Dashboard = async () => {
         <DashboardSidebar />
         <main className="grid w-full flex-1 auto-rows-auto grid-cols-2 gap-4 px-2 pt-52 md:mx-4 lg:mr-56 lg:pr-6">
           <div className="col-span-2 bg-sky-500 md:col-span-1">Guide</div>
-          <div className="col-span-2 overflow-hidden rounded-lg bg-cyan-500 md:col-span-1">
-            <CarouselComponent />
+          <div className="col-span-2 overflow-hidden rounded-lg md:col-span-1">
+            <Carousel showArrows={true} />
           </div>
 
-          <div className="col-span-full h-fit overflow-hidden rounded-lg bg-red-50">
+          <div className="rounded- col-span-full h-fit overflow-hidden">
             <PagesList pages={allPages} />
             <div className="flex w-full justify-center bg-primary/80 transition-colors duration-200 hover:bg-primary">
               <CreatePageButton className="" />

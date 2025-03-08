@@ -12,6 +12,8 @@ const buttonVariants = cva(
         default:
           "bg-stone-900/90 text-white shadow-md border-[1px] border-white/30 hover:bg-stone-900/80",
         primary: "text-primary bg-button-600/90 hover:bg-button-600",
+        primary_rounded:
+          "text-white hover:bg-primary-hover duration-200 transition-color font-semibold bg-primary rounded-full",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
@@ -25,6 +27,7 @@ const buttonVariants = cva(
         default: "h-9 px-2 py-2",
         sm: "h-8 rounded-sm px-3 sm:px-6 text-xs",
         lg: "h-10 rounded-md px-8",
+        rounded: "rounded-full h-7 px-4",
         icon: "h-9 w-9",
       },
     },
