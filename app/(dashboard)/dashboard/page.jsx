@@ -21,11 +21,11 @@ const Dashboard = async () => {
 
   return (
     <div className="relative flex w-full select-none pb-[300px]">
-      <h2 className="absolute right-4 top-40 pr-0 text-3xl text-white md:pr-3 lg:mr-56">
+      <h2 className="absolute right-4 top-40 pr-0 text-3xl text-white md:pr-3 xl:mr-56">
         پنل کاربری
       </h2>
 
-      <main className="grid w-full flex-1 auto-rows-auto grid-cols-2 gap-4 px-2 pt-60 md:mx-4 lg:mr-56 lg:pr-6">
+      <main className="grid w-full flex-1 auto-rows-auto grid-cols-2 gap-4 px-2 pt-60 md:mx-4 xl:mr-56 xl:pr-6">
         {/* ImageSlider */}
         <div className="col-span-2 h-60 overflow-hidden rounded-lg md:col-span-1 xl:h-80">
           <Carousel showArrows={true} />
@@ -34,11 +34,11 @@ const Dashboard = async () => {
         {/* Cards */}
         <div className="col-span-2 flex h-60 flex-col gap-2 md:col-span-1 xl:h-80">
           <div className="flex h-full w-full gap-2">
-            <DashboardDataCard bgColor="#ec407a" text="پیام جدید" data="12">
+            <DashboardDataCard bgColor="#ec407a" text="پیام جدید" data="۱۲">
               <EnvelopeClosedIcon className="h-20 w-20" />
             </DashboardDataCard>
 
-            <DashboardDataCard bgColor="#536dfe" text=" بازدید ها" data="12">
+            <DashboardDataCard bgColor="#536dfe" text=" بازدید ها" data="۱۲">
               <ChartSpline className="h-20 w-20" />
             </DashboardDataCard>
           </div>
@@ -52,7 +52,7 @@ const Dashboard = async () => {
               <BadgeCheck className="h-20 w-20" />
             </DashboardDataCard>
 
-            <DashboardDataCard bgColor="#fb8c00" text="عنوان" data="12">
+            <DashboardDataCard bgColor="#fb8c00" text="عنوان" data="۱۲">
               <ApertureIcon className="h-20 w-20" />
             </DashboardDataCard>
           </div>

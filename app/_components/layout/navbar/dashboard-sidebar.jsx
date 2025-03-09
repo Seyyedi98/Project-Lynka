@@ -18,7 +18,7 @@ const DashboardSidebar = () => {
     <nav ref={ref} className={cn(`relative z-50 h-full`)}>
       <div
         className={cn(
-          `fixed top-4 z-40 transition-all duration-200 lg:hidden`,
+          `fixed top-4 z-40 transition-all duration-200 xl:hidden`,
           isSidebarOpen ? "left-4 sm:hidden" : "right-4",
         )}
       >
@@ -33,7 +33,7 @@ const DashboardSidebar = () => {
           `fixed right-0 top-0 flex h-full flex-col items-center gap-2 bg-card pt-20 transition-all duration-200 sm:items-start sm:bg-card`,
           isSidebarOpen
             ? "w-full opacity-95 backdrop-blur-lg sm:w-56"
-            : "w-1 opacity-0 lg:w-56 lg:opacity-95",
+            : "w-1 opacity-0 xl:w-56 xl:opacity-95",
         )}
       >
         <SidebarLink
