@@ -20,7 +20,7 @@ const Dashboard = async () => {
   );
 
   return (
-    <div className="relative flex w-full select-none pb-[1000px]">
+    <div className="relative flex w-full select-none pb-[300px]">
       <h2 className="absolute right-4 top-40 pr-0 text-3xl text-white md:pr-3 lg:mr-56">
         پنل کاربری
       </h2>
@@ -52,7 +52,7 @@ const Dashboard = async () => {
               <BadgeCheck className="h-20 w-20" />
             </DashboardDataCard>
 
-            <DashboardDataCard bgColor="#fb8c00" text="قرعه کشی" data="12">
+            <DashboardDataCard bgColor="#fb8c00" text="عنوان" data="12">
               <ApertureIcon className="h-20 w-20" />
             </DashboardDataCard>
           </div>

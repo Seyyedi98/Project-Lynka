@@ -1,35 +1,16 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-
-const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-];
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "hsl(var(--chart-1))",
-  },
-};
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 const AnalyticsWidget = ({ pages, elementsAnalytics }) => {
   let pagesList = [];
@@ -37,6 +18,7 @@ const AnalyticsWidget = ({ pages, elementsAnalytics }) => {
     pagesList.push(page.uri);
   });
 
+  const [list, setList] = useState([]);
   const [selectedPage, setSelectedPage] = useState(pagesList[0] || "");
 
   const flattenedData = elementsAnalytics.flat();
@@ -66,9 +48,27 @@ const AnalyticsWidget = ({ pages, elementsAnalytics }) => {
       </div>
 
       {selectedPage ? (
-        <div className="mt-1 h-full p-3">
+        <div className="mt-1 flex h-full flex-col gap-4 p-3">
           {filteredElements.map((data, index) => {
-            return <div key={index}>{data.linkName}</div>;
+            const linkData = {
+              name: data.linkName,
+              value: data.clicks,
+              device: JSON.parse(data.userAgent).device,
+              os: JSON.parse(data.userAgent).os,
+            };
+
+            return (
+              <div key={index}>
+                <div>{linkData.name}</div>
+                <div className="flex gap-2">
+                  {Object.entries(linkData.device).map(([key, value]) => (
+                    <p key={key} className="first:mt-2">
+                      {key}: {value}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            );
           })}
         </div>
       ) : (
