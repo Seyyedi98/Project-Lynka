@@ -5,7 +5,7 @@ import { ChevronLeft, PlusIcon } from "lucide-react";
 import { useState } from "react";
 import CreateNewPage from "../form/create-new-page";
 
-const CreatePageButton = () => {
+const CreatePageButton = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="relative">
@@ -13,11 +13,10 @@ const CreatePageButton = () => {
         onClick={() => setIsOpen(true)}
         variant="secondary"
         className={cn(
-          `z-40 flex h-[36px] w-[154px] cursor-pointer items-center justify-center gap-1 rounded-md bg-primary-500 text-primary-foreground transition-all duration-500 hover:bg-primary-600`,
+          `bg-primary-500 hover:bg-primary-600 z-40 flex h-[36px] w-[154px] cursor-pointer items-center justify-center gap-1 rounded-md text-center text-primary transition-all duration-500`,
         )}
       >
-        <p>ایجاد صفحه جدید</p>
-        <PlusIcon className="mt-1 h-4 w-4 text-primary-foreground" />
+        {children}
       </div>
 
       <div

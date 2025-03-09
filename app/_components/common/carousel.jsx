@@ -55,7 +55,7 @@ const Carousel = ({ showArrows }) => {
   }, [handleNextSlide, currentSlide]);
 
   return (
-    <div className="relative flex h-60 w-full items-center justify-center bg-black">
+    <div className="relative flex h-60 w-full items-center justify-center bg-black xl:h-80">
       {/* Slider Controllers */}
       {showArrows && (
         <div className="absolute right-1 z-10" onClick={handlePrevSlide}>

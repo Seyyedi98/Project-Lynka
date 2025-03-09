@@ -1,9 +1,9 @@
 "use server";
 import prisma from "@/lib/client";
 
-export async function getPageAnalytics({ uri }) {
+export async function getPageAnalytics(uri) {
   const pageAnalytics = prisma.linkView.findMany({
-    where: { uri },
+    where: { pageUri: uri },
   });
 
   return pageAnalytics;

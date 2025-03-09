@@ -18,7 +18,7 @@ const DashboardHeading = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 120) {
+      if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -35,7 +35,7 @@ const DashboardHeading = ({
   return (
     <div
       className={`fixed left-0 top-0 z-40 flex h-16 w-full items-center justify-between px-2 text-white transition-shadow duration-150 ${
-        isScrolled ? "bg-main-gradient-2 shadow" : "bg-transparent"
+        isScrolled ? "bg-main-gradient-2" : "bg-transparent"
       }`}
     >
       <div className="mr-16 flex items-center justify-center gap-4 text-sm">
