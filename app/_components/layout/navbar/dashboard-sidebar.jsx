@@ -55,7 +55,7 @@ const DashboardSidebar = () => {
         <SidebarLink
           isExpanded={isSidebarOpen}
           title="بلاگ"
-          path="/dashboard/analytics"
+          path="/dashboard/blog"
         >
           <ChartBar className="h-5 w-5" />
         </SidebarLink>
@@ -63,7 +63,7 @@ const DashboardSidebar = () => {
         <SidebarLink
           isExpanded={isSidebarOpen}
           title="راهنما"
-          path="/dashboard/analytics"
+          path="/dashboard/docs"
         >
           <ChartBar className="h-5 w-5" />
         </SidebarLink>

@@ -6,32 +6,26 @@ const bgMaskLight = "/bg-dashboard-mask.svg";
 const bgMaskDark = "/bg-dashboard-mask-dark.svg";
 
 const EditorLayout = async ({ children }) => {
-  const { subscriptionPlan, subscriptionDaysLeft } =
-    await currentUserSubscription();
-
   return (
     <>
       <DashboardSidebar />
       {/* Light */}
       <img
-        className="fixed mt-60 w-full dark:hidden"
+        className="fixed mt-72 w-full dark:hidden sm:mt-60"
         src={bgMaskLight}
         alt="bgmask"
       />
 
       {/* Mask */}
       <img
-        className="fixed mt-60 hidden w-full dark:block"
+        className="fixed mt-72 hidden w-full dark:block sm:mt-60"
         src={bgMaskDark}
         alt="bgmask"
       />
       <main className="relative h-svh w-full">
         {/* Background */}
         <div className="fixed left-0 top-0 z-[-1] h-80 w-full bg-main-gradient-2"></div>
-        <DashboardHeading
-          subscriptionPlan={subscriptionPlan}
-          subscriptionDaysLeft={subscriptionDaysLeft}
-        />
+        <DashboardHeading />
         {children}
       </main>
     </>

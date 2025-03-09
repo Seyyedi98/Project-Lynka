@@ -114,7 +114,7 @@ const Carousel = ({ showArrows }) => {
           <div
             key={index}
             className={cn(
-              `relative h-1 w-4 cursor-pointer overflow-hidden rounded-md bg-white/40 transition-all duration-200`,
+              `relative h-1 w-3 cursor-pointer overflow-hidden rounded-md bg-white/40 transition-all duration-200`,
               currentSlide === index && "w-8 bg-white",
             )}
             onClick={() => setCurrentSlide(index)}

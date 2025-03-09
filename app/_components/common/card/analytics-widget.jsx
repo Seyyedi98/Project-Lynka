@@ -1,16 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { useState } from "react";
 
 const AnalyticsWidget = ({ pages, elementsAnalytics }) => {
   let pagesList = [];

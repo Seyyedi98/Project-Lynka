@@ -8,9 +8,12 @@ import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import { ApertureIcon, BadgeCheck, ChartSpline } from "lucide-react";
 import AnalyticsWidget from "@/app/_components/common/card/analytics-widget";
 import { getPageAnalytics } from "@/actions/page/analytics";
+import { currentUserSubscription } from "@/lib/auth/user-subscription";
 
 const Dashboard = async () => {
   const allPages = await getUserPageData();
+  const { subscriptionPlan, subscriptionDaysLeft } =
+    await currentUserSubscription();
 
   const elementsAnalytics = await Promise.all(
     allPages.map(async (page) => {
@@ -20,7 +23,7 @@ const Dashboard = async () => {
   );
 
   return (
-    <div className="relative flex w-full select-none pb-[300px]">
+    <div className="relative flex w-full select-none pb-10">
       <h2 className="absolute right-4 top-40 pr-0 text-3xl text-white md:pr-3 xl:mr-56">
         پنل کاربری
       </h2>
@@ -47,7 +50,12 @@ const Dashboard = async () => {
             <DashboardDataCard
               bgColor="#7cb342"
               text="اشتراک ویژه"
-              data="۱۲ روز"
+              data={
+                <span className="flex items-center gap-1">
+                  <p className="mt-2">{subscriptionDaysLeft}</p>
+                  <p className="text-base">روز</p>
+                </span>
+              }
             >
               <BadgeCheck className="h-20 w-20" />
             </DashboardDataCard>

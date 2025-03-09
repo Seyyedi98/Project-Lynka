@@ -1,20 +1,27 @@
 "use client";
-import { IconNotification } from "@tabler/icons-react";
 import {
-  Bell,
   BellDot,
-  ChevronDown,
   HelpCircle,
+  KeyIcon,
+  LoaderIcon,
   UserCircleIcon,
 } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const DashboardHeading = ({
-  children,
-  subscriptionPlan,
-  subscriptionDaysLeft,
-}) => {
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { LogoutButton } from "../../auth/logout-button";
+
+const DashboardHeading = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const user = useCurrentUser();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,13 +57,27 @@ const DashboardHeading = ({
 
       <div className="ml-2 flex items-center justify-center gap-4 text-sm">
         <span className="flex cursor-pointer items-center justify-center">
-          <span>
-            <ChevronDown className="h-5 w-5" />
-          </span>
-          Welcome
-        </span>
-        <span>
-          <UserCircleIcon className="h-8 w-8" />
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent hover:text-white">
+                  {user ? user.name : <LoaderIcon className="animate-spin" />}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent dir="rtl">
+                  <NavigationMenuLink className="flex items-center gap-1 px-2 hover:text-primary">
+                    <UserCircleIcon className="h-5 w-5" />
+                    <div className="w-40 p-2">پروفایل</div>
+                  </NavigationMenuLink>
+                  <LogoutButton className="">
+                    <NavigationMenuLink className="flex items-center px-2 hover:text-primary">
+                      <KeyIcon className="h-5 w-5" />
+                      <div className="w-40 p-2">خروج</div>
+                    </NavigationMenuLink>
+                  </LogoutButton>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </span>
       </div>
     </div>
