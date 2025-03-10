@@ -6,6 +6,7 @@
 
 body {
   font-family: Yekan, Arial, Helvetica, sans-serif;
+  font-feature-settings: "ss01";
 }
 
 ::selection {

@@ -81,3 +81,25 @@ export const PageUriSchema = z.object({
       message: "نام کاربری فقط باید شامل حروف انگلیسی و اعداد بدون فاصله باشد",
     }),
 });
+
+// Fields
+export const cardFieldSchems = z.object({
+  title: z
+    .string()
+    .max(50, { message: "عنوان نمی تواند بیش از ۱۰۰ کاراکتر باشد" }),
+  theme: z.string(),
+  textColor: z.string(),
+  layout: z.string(),
+  image: z.string(),
+  href: z.string(),
+  font: z.string(),
+  borderRadius: z.string(),
+  bgColor: z.string(),
+  schedule: z.boolean(),
+  scheduleStart: z.string(),
+  scheduleEnd: z.string(),
+  countdown: z.boolean(),
+  countdownDate: z.string(),
+  protected: z.boolean(),
+  password: z.string(),
+});

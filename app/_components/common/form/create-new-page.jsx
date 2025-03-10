@@ -1,7 +1,6 @@
 "use client";
 
 import { checkPageAvailable, newPageCreator } from "@/actions/page/page";
-import { AuroraBackground } from "@/app/_components/common/shared/aurora-background";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -61,17 +60,27 @@ const CreateNewPage = () => {
     setError("");
     setSuccess("");
     startTransition(async () => {
-      await newPageCreator(values.uri).then((data) => {
-        router.push(`/workspace/${data.uri}`);
-      });
+      const isAvailable = await checkPageAvailable(uriValue);
+      if (isAvailable) {
+        await newPageCreator(values.uri).then((data) => {
+          router.push(`/workspace/${data.uri}`);
+        });
+      } else {
+        setError("");
+        setError("این آدرس قبلا استفاده شده");
+        setSuccess("");
+      }
     });
   };
 
   return (
-    <AuroraBackground>
+    <>
+      <div className="pb-4">
+        <h4 className="text-center text-lg">ساخت صفحه ی جدید</h4>
+      </div>
       <div
         dir="ltr"
-        className="z-50 flex h-[50px] w-[380px] animate-fade-right items-center justify-between rounded-full border border-black lg:h-[100px] lg:w-[650px]"
+        className="r z-50 flex items-center justify-between lg:h-[100px] lg:w-[650px]"
       >
         <div className="ml-4 flex w-full items-center justify-between gap-4 lg:ml-8">
           <Form {...form}>
@@ -120,7 +129,7 @@ const CreateNewPage = () => {
                   type="submit"
                   variant="default"
                   disabled={!success || isPending}
-                  className="mr-2 grid h-8 w-8 cursor-pointer place-items-center rounded-full bg-black duration-200 hover:bg-slate-800 lg:mr-6 lg:h-12 lg:w-12"
+                  className="mr-2 grid h-8 w-8 cursor-pointer place-items-center rounded-full bg-primary duration-200 hover:bg-slate-800 lg:mr-6 lg:h-12 lg:w-12"
                 >
                   <span>
                     <ChevronRight className="h-7 w-7 text-white" />
@@ -134,7 +143,7 @@ const CreateNewPage = () => {
       <div dir="rtl" className="z-20 mt-4 text-right text-destructive">
         {error}
       </div>
-    </AuroraBackground>
+    </>
   );
 };
 

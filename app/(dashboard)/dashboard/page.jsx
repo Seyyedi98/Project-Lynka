@@ -15,6 +15,8 @@ const Dashboard = async () => {
   const { subscriptionPlan, subscriptionDaysLeft } =
     await currentUserSubscription();
 
+  const totalViews = allPages.reduce((sum, item) => sum + item.views, 0);
+
   const elementsAnalytics = await Promise.all(
     allPages.map(async (page) => {
       const elementsData = await getPageAnalytics(page.uri);
@@ -41,7 +43,11 @@ const Dashboard = async () => {
               <EnvelopeClosedIcon className="h-20 w-20" />
             </DashboardDataCard>
 
-            <DashboardDataCard bgColor="#536dfe" text=" بازدید ها" data="۱۲">
+            <DashboardDataCard
+              bgColor="#536dfe"
+              text=" بازدید ها"
+              data={totalViews}
+            >
               <ChartSpline className="h-20 w-20" />
             </DashboardDataCard>
           </div>
@@ -72,7 +78,7 @@ const Dashboard = async () => {
           <div className="relative flex justify-center py-3 transition-colors duration-200">
             <div className="absolute top-0 mx-auto h-[1px] w-[95%] bg-primary" />
             <CreatePageButton>
-              <div className="group relative mx-auto flex gap-1 text-sm text-primary transition-colors duration-200 hover:text-secondary">
+              <div className="group relative mx-auto flex cursor-pointer gap-1 text-sm text-primary transition-colors duration-200 hover:text-secondary">
                 <div className="absolute -bottom-1 right-1/2 h-[1px] w-0 bg-secondary transition-all group-hover:w-1/2" />
                 <div className="absolute -bottom-1 left-1/2 h-[1px] w-0 bg-secondary transition-all group-hover:w-1/2" />
                 ایجاد صفحه جدید

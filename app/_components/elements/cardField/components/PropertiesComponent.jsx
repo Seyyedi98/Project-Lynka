@@ -16,6 +16,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
+import { cardFieldSchems } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 import CryptoJS from "crypto-js";
 import { Check } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -42,8 +44,7 @@ function PropertiesComponent({ elementInstance }) {
   };
 
   const form = useForm({
-    // TODO: Create zod schema
-    // resolver: zodResolver(),
+    resolver: zodResolver(cardFieldSchems),
     defaultValues: {
       title: element.extraAttributes.title || "",
       href: element.extraAttributes.href || "",
@@ -54,8 +55,8 @@ function PropertiesComponent({ elementInstance }) {
       layout: element.extraAttributes.layout || "",
       image: "",
       schedule: element.extraAttributes.schedule || false,
-      scheduleStart: element.extraAttributes.scheduleStart || 0,
-      scheduleEnd: element.extraAttributes.scheduleEnd || 0,
+      scheduleStart: element.extraAttributes.scheduleStart || "0",
+      scheduleEnd: element.extraAttributes.scheduleEnd || "0",
       countdown: element.extraAttributes.countdown || false,
       countdownDate: element.extraAttributes.countdownDate || "0",
       isProtected: element.extraAttributes.isProtected || false,

@@ -27,9 +27,9 @@ export function WorkspaceDynamicModal({
   children,
   title,
   trigger,
-  mode,
+  mode, // desktopDrawer || mobileDrawer || mobileDrawer || mobileDialog
   delay = 0,
-  modalId, // Unique identifier for this modal
+  modalId,
 }) {
   const dispatch = useDispatch();
   const isDesktop = useMediaQuery("(min-width: 768px)");

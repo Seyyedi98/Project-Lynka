@@ -8,7 +8,6 @@ const AnalyticsWidget = ({ pages, elementsAnalytics }) => {
     pagesList.push(page.uri);
   });
 
-  const [list, setList] = useState([]);
   const [selectedPage, setSelectedPage] = useState(pagesList[0] || "");
 
   const flattenedData = elementsAnalytics.flat();
