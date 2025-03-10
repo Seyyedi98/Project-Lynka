@@ -21,7 +21,6 @@ const handleClick = async ({
   const userAgent = await GetUserAgentData();
 
   if (protectedElement) {
-    // await updateElementClicked({ uri, elementId });
     await setIsModalOpen(true);
   } else {
     if (isLive) {
@@ -158,6 +157,9 @@ const Basic = ({
         )}
       >
         <ProtectedPagePasswordCheck
+          uri={uri}
+          elementId={elementId}
+          title={title}
           href={href}
           password={password}
           isModalOpen={isModalOpen}
@@ -196,6 +198,7 @@ const RoundedImage = ({
             protectedElement,
             uri,
             elementId,
+            title,
             isLive,
           })
         }
@@ -243,6 +246,9 @@ const RoundedImage = ({
         )}
       >
         <ProtectedPagePasswordCheck
+          uri={uri}
+          elementId={elementId}
+          title={title}
           href={href}
           password={password}
           isModalOpen={isModalOpen}
@@ -280,6 +286,7 @@ const WideFullImage = ({
             protectedElement,
             uri,
             elementId,
+            title,
             isLive,
           })
         }
@@ -300,7 +307,7 @@ const WideFullImage = ({
           />
         )}
         <p
-          className="z-20"
+          className="z-10"
           style={{
             fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
             color: textColor,
@@ -316,6 +323,9 @@ const WideFullImage = ({
         )}
       >
         <ProtectedPagePasswordCheck
+          uri={uri}
+          elementId={elementId}
+          title={title}
           href={href}
           password={password}
           isModalOpen={isModalOpen}
@@ -353,6 +363,7 @@ const HighFullImage = ({
             protectedElement,
             uri,
             elementId,
+            title,
             isLive,
           })
         }
@@ -389,6 +400,9 @@ const HighFullImage = ({
         )}
       >
         <ProtectedPagePasswordCheck
+          uri={uri}
+          elementId={elementId}
+          title={title}
           href={href}
           password={password}
           isModalOpen={isModalOpen}

@@ -167,7 +167,7 @@ function PropertiesComponent({ elementInstance }) {
             {/* Desktop sidebar button */}
             <button
               type="submit"
-              className="mt-4 hidden h-12 cursor-pointer items-center justify-center rounded-sm bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
+              className="mt-4 hidden h-12 cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
             >
               اعمال تغییرات
             </button>

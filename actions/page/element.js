@@ -33,7 +33,7 @@ export async function updateElementClicked({
     }
 
     const JsonUserDate = JSON.stringify(usersData);
-    // // create new row
+    // create new row
     await prisma.linkView.create({
       data: {
         linkName: title,

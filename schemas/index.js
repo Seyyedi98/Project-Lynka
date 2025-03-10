@@ -100,6 +100,6 @@ export const cardFieldSchems = z.object({
   scheduleEnd: z.string(),
   countdown: z.boolean(),
   countdownDate: z.string(),
-  protected: z.boolean(),
+  isProtected: z.boolean(),
   password: z.string(),
 });

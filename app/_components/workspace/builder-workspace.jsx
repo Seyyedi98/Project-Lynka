@@ -31,8 +31,8 @@ const MemoizedEditorSidebar = memo(EditorSidebar);
 const BuilderWorkspace = () => {
   const dispatch = useDispatch();
   const [activeDragItem, setActiveDragItem] = useState(null);
-
   const isAnyMenuOpen = useSelector(selectIsAnyMenuOpen);
+
   const { hero, theme, elements } = useSelector(
     (state) => ({
       hero: state.page.hero,

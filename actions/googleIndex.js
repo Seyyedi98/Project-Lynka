@@ -1,4 +1,3 @@
-// app/actions/indexPage.js
 "use server";
 import { google } from "googleapis";
 
