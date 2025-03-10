@@ -4,7 +4,11 @@ import Error from "@/app/error";
 import { currentUser } from "@/lib/auth/get-user";
 import prisma from "@/lib/client";
 import { PageUriSchema } from "@/schemas";
-import { view } from "framer-motion";
+
+export const getAllPages = async () => {
+  const page = await prisma.page.findMany();
+  return page;
+};
 
 export const checkPageAvailable = async (uri) => {
   try {

@@ -3,6 +3,10 @@
     {
       "name": "arklight",
       "mountTo": "arklight/migrations"
+    },
+    {
+      "name": "sitemap",
+      "mountTo": "arklight/pubkic"
     }
   ]
 }
