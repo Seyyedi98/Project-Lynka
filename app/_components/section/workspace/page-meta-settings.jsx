@@ -1,7 +1,7 @@
 "use clinet";
 
 import { useParams } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import SquareButton from "../../common/button/square-button";
 import MetaDescriptionForm from "../../common/form/meta-description-form";
@@ -14,7 +14,6 @@ import { generateSitemap } from "@/actions/generateSitemap";
 
 const PageMetaSettings = () => {
   const metadata = useSelector((store) => store.page.metadata);
-  const [isPending, startTransition] = useTransition();
   const [category, setCategory] = useState("metaTitle");
   const { uri } = useParams();
 

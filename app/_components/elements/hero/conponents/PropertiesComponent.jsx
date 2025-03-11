@@ -1,5 +1,6 @@
 "use client";
 
+import SquareButton from "@/app/_components/common/button/square-button";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
@@ -8,14 +9,20 @@ import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
+import { heroFieldSchems } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Check } from "lucide-react";
 import dynamic from "next/dynamic";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 const UploadButton = dynamic(
   () => import("@/app/_components/common/input/workspace-hero-uploader"),
+);
+const UploadButtonSecondary = dynamic(
+  () =>
+    import("@/app/_components/common/input/workspace-hero-secondary-uploader"),
 );
 
 function PropertiesComponent({ elementInstance }) {
@@ -23,11 +30,12 @@ function PropertiesComponent({ elementInstance }) {
   const dispatch = useDispatch();
 
   const form = useForm({
-    // TODO: Create zod schema
-    // resolver: zodResolver(),
+    // resolver: zodResolver(heroFieldSchems),
     defaultValues: {
-      title: element.title || "",
-      subtitle: element.subtitle || "",
+      heroType: element.extraAttributes.heroType || "",
+      heroValue: element.extraAttributes.heroValue || "",
+      title: element.extraAttributes.title || "",
+      subtitle: element.extraAttributes.subtitle || "",
       titleFont: element.extraAttributes.titleFont || "",
       subtitleFont: element.extraAttributes.subtitleFont || "",
       titleColor: element.extraAttributes.titleColor || "",
@@ -35,12 +43,15 @@ function PropertiesComponent({ elementInstance }) {
     },
   });
 
+  const [category, setCategory] = useState(element.extraAttributes.heroType);
+
   useEffect(() => {
     form.reset(element.extraAttributes);
   }, [element, form]);
 
   function applyChanges(values) {
     const {
+      heroValue,
       title,
       subtitle,
       titleFont,
@@ -55,6 +66,8 @@ function PropertiesComponent({ elementInstance }) {
         ...element,
         extraAttributes: {
           ...element.extraAttributes,
+          heroType: category,
+          heroValue,
           title,
           subtitle,
           titleFont,
@@ -148,11 +161,42 @@ function PropertiesComponent({ elementInstance }) {
               </TabsContent>
 
               <TabsContent value="design" className="flex flex-col gap-4">
-                {/* <HeroWorkspaceUploader /> */}
-                <UploadButton />
-                <p className="text-textLight text-xs">
-                  پس از انتخاب فایل، دکمه بارگزاری را بزنید
-                </p>
+                <div className="flex">
+                  <SquareButton
+                    state={category}
+                    action={setCategory}
+                    rule="image"
+                  >
+                    تصویر
+                  </SquareButton>
+                  <SquareButton
+                    state={category}
+                    action={setCategory}
+                    rule="color"
+                  >
+                    رنگ
+                  </SquareButton>
+                </div>
+                {category === "image" && (
+                  <>
+                    {/* <HeroWorkspaceUploader /> */}
+                    <UploadButton />
+                    <UploadButtonSecondary />
+                    <p className="text-textLight text-xs">
+                      پس از انتخاب فایل، دکمه بارگزاری را بزنید
+                    </p>
+                  </>
+                )}
+                {category === "color" && (
+                  <>
+                    <ElementColorFormField
+                      form={form}
+                      fieldName="heroValue"
+                      label="رنگ پس زمینه"
+                    />
+                    <p className="text-textLight text-xs"></p>
+                  </>
+                )}
               </TabsContent>
             </Tabs>
 

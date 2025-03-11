@@ -83,7 +83,7 @@ export const PageUriSchema = z.object({
 });
 
 // Fields
-export const cardFieldSchems = z.object({
+export const heroFieldSchems = z.object({
   title: z
     .string()
     .max(50, { message: "عنوان نمی تواند بیش از ۱۰۰ کاراکتر باشد" }),
@@ -102,4 +102,22 @@ export const cardFieldSchems = z.object({
   countdownDate: z.string(),
   isProtected: z.boolean(),
   password: z.string(),
+});
+
+export const cardFieldSchems = z.object({
+  title: z
+    .string()
+    .max(100, { message: "عنوان نمی تواند بیش از ۱۰۰ کاراکتر باشد" }),
+  subtitle: z
+    .string()
+    .max(200, { message: "عنوان نمی تواند بیش از ۲۰۰ کاراکتر باشد" }),
+  titleFont: z.any(),
+  subtitleFont: z.any(),
+  titleColor: z.any(),
+  subtitleColor: z.any(),
+  heroType: z.any(),
+  heroValue: z.any(),
+  primaryImage: z.any(),
+  secondaryImage: z.any(),
+  style: z.any(),
 });

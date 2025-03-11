@@ -1,4 +1,4 @@
-import { UpdatePageTheme } from "@/actions/page/page";
+// import { savePageSettings } from "@/actions/page/page-data";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,26 +6,20 @@ import { toast } from "@/hooks/use-toast";
 import deleteFile from "@/lib/upload/deleteFile";
 import uploadFile from "@/lib/upload/uploadFile";
 import { Loader2 } from "lucide-react";
-import { useParams } from "next/navigation";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-const PageBgImageUploader = ({ theme }) => {
+const HeroWorkspaceSecondaryUploader = ({ uri }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadLink, setUploadLink] = useState(null);
-
-  const { uri } = useParams();
+  const [permanentLink, setPermanentLink] = useState(null);
 
   const dispatch = useDispatch();
+  const hero = useSelector((store) => store.page.hero);
 
-  let previousImage;
-  try {
-    previousImage = JSON.parse(theme.backgroundImage);
-  } catch {
-    previousImage = null;
-  }
+  const previousImage = hero?.extraAttributes?.secondaryImage;
 
   const ACCESSKEY = process.env.NEXT_PUBLIC_LIARA_ACCESS_KEY;
   const SECRETKEY = process.env.NEXT_PUBLIC_LIARA_SECRET_KEY;
@@ -36,22 +30,19 @@ const PageBgImageUploader = ({ theme }) => {
     setFile(event.target.files[0]);
     setError(null);
     setUploadLink(null);
+    setPermanentLink(null);
   };
 
   const handleUploadButton = async () => {
     const options = {
-      maxSizeMB: 0.7, // Compress to be <= 0.7MB
-      maxWidthOrHeight: 1280, // Optional: Resize image to 1280px width/height if it's larger
+      maxSizeMB: 0.3, // Compress to be <= 0.3MB
+      maxWidthOrHeight: 720, // Optional: Resize image to 720px width/height if it's larger
       initialQuality: 1, // Start with 100% quality and adjust as needed
       useWebWorker: true, // Enable web workers for faster processing
     };
 
     setIsUploading(true);
     const { permanentSignedUrl, response } = await uploadFile(file, options);
-    const JSONBgImageData = JSON.stringify({
-      url: permanentSignedUrl,
-      key: response.Key,
-    });
 
     try {
       if (previousImage) {
@@ -65,30 +56,30 @@ const PageBgImageUploader = ({ theme }) => {
       }
 
       const payload = {
-        ...theme,
-        backgroundType: "image",
-        backgroundImage: JSONBgImageData,
+        ...hero,
+        extraAttributes: {
+          ...hero.extraAttributes,
+          secondaryImage: { url: permanentSignedUrl, key: response.Key },
+        },
       };
+      dispatch({ type: "page/setHero", payload });
 
-      dispatch({ type: "page/setTheme", payload });
       dispatch({ type: "modal/closeMenu" });
+      setTimeout(
+        () =>
+          dispatch({
+            type: "page/setSelectedElement",
+            payload: null,
+          }),
+        200,
+      );
       toast({
-        description: "تصویر پس زمینه با موفقیت تغییر یافت",
+        description: "تصویر با موفقیت تغییر یافت",
       });
-
-      const newTheme = JSON.stringify({
-        ...theme,
-        backgroundType: "image",
-        backgroundImage: JSONBgImageData,
-      });
-
-      // Update db
-      await UpdatePageTheme(uri, newTheme);
     } catch (error) {
       toast({
         description: "خطایی رخ داد. لطفا مجددا سعی کنید",
       });
-      console.log(error);
     }
 
     setIsUploading(false);
@@ -97,7 +88,7 @@ const PageBgImageUploader = ({ theme }) => {
   return (
     <div className="upload-container">
       <div className="file-upload text-nowrap">
-        <Label htmlFor="uploader">تصویر اصلی</Label>
+        <Label htmlFor="uploader">تصویر دوم</Label>
         <div className="mt-2 flex justify-center gap-2">
           <Input
             id="uploader"
@@ -110,7 +101,7 @@ const PageBgImageUploader = ({ theme }) => {
           <Button
             onClick={handleUploadButton}
             disabled={!file || isUploading}
-            className="upload-button rounded-md"
+            className="upload-button rounded-sm bg-button text-primary"
           >
             {!isUploading ? "بارگزاری" : <Loader2 className="animate-spin" />}
           </Button>
@@ -118,7 +109,7 @@ const PageBgImageUploader = ({ theme }) => {
       </div>
 
       {uploadLink && (
-        <h3 className="success-message">File uploaded successfully.</h3>
+        <h3 className="success-message">فایل با موفقیت بارگزاری شد</h3>
       )}
 
       {error && <p className="error-message">{error}</p>}
@@ -126,4 +117,4 @@ const PageBgImageUploader = ({ theme }) => {
   );
 };
 
-export default PageBgImageUploader;
+export default HeroWorkspaceSecondaryUploader;
