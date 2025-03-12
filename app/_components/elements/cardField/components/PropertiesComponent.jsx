@@ -44,7 +44,7 @@ function PropertiesComponent({ elementInstance }) {
   };
 
   const form = useForm({
-    resolver: zodResolver(cardFieldSchems),
+    // resolver: zodResolver(cardFieldSchems),
     defaultValues: {
       title: element.extraAttributes.title || "",
       href: element.extraAttributes.href || "",
