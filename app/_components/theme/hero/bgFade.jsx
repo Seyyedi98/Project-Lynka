@@ -4,7 +4,7 @@ import { UserRound } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
-const NormalHero = ({ ...data }) => {
+const BgFadeHero = ({ ...data }) => {
   const {
     title,
     subtitle,
@@ -33,12 +33,16 @@ const NormalHero = ({ ...data }) => {
 
   const imageBgStyle = useMemo(
     () => ({
-      backgroundImage: heroType === "image" && secondaryImage,
-      backgroundPosition: "center",
+      backgroundImage: `url(${secondaryBgImage})`,
       backgroundSize: "cover",
+      backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
+      filter: "blur(10px) opacity(100%)",
+      transform: "scale(1.05)",
+      maskImage: "linear-gradient(180deg,#000000,40%,#000000,80%,transparent)",
+      // maskImage: "linear-gradient(black, transparent)",
     }),
-    [heroType, secondaryImage],
+    [secondaryBgImage],
   );
 
   useEffect(() => {
@@ -57,40 +61,30 @@ const NormalHero = ({ ...data }) => {
   }, [titleFont, subtitleFont]);
 
   return (
-    <div
-      style={colorBgStyle}
-      className="relative flex h-[400px] w-screen flex-col items-center justify-center gap-4 md:h-[500px]"
-    >
-      {primaryBgImage ? (
-        <Image
-          priority
-          width={400}
-          height={400}
-          src={primaryBgImage}
-          alt={title}
-          className="z-10 mt-12 h-36 w-36 rounded-full bg-white object-cover"
-        />
-      ) : (
-        <div className="mt-12 grid h-32 w-32 place-content-center rounded-full border-2 border-dashed border-white">
-          <UserRound className="h-20 w-20 text-white" />
+    <div className="relative flex h-[450px] w-full flex-col items-center justify-center gap-4 overflow-hidden pt-8">
+      <div
+        className="absolute right-0 top-0 -mt-2 h-full w-full"
+        style={heroType === "color" ? colorBgStyle : imageBgStyle}
+      />
+
+      {heroType === "image" && secondaryBgImage && (
+        <div className="absolute right-0 top-0 flex h-full w-full items-center">
+          <Image
+            priority
+            width={1080}
+            height={640}
+            src={secondaryBgImage}
+            alt={title}
+            style={{
+              maskImage:
+                "linear-gradient(180deg,#000000,40%,#000000,80%,transparent)",
+            }}
+            className="position-bottom top-0 z-10 mx-auto h-full w-full max-w-[600px] bg-white object-cover xl:max-w-[1000px]"
+          />
         </div>
       )}
-      {heroType === "image" && secondaryBgImage && (
-        <Image
-          priority
-          width={400}
-          height={400}
-          src={secondaryBgImage}
-          alt={title}
-          style={{
-            maskImage:
-              "linear-gradient(180deg,#000000,0%,#000000,50%,transparent)",
-            // maskImage: "linear-gradient(black, transparent)",
-          }}
-          className="absolute right-0 top-0 z-0 h-full w-full bg-white object-cover"
-        />
-      )}
-      <div className="z-10 flex h-full flex-col items-center gap-4">
+
+      <div className="z-20 flex h-full flex-col items-center gap-4">
         <h2
           style={{
             fontFamily: loadedTitleFont ? `var(${loadedTitleFont})` : "inherit",
@@ -116,4 +110,4 @@ const NormalHero = ({ ...data }) => {
   );
 };
 
-export default NormalHero;
+export default BgFadeHero;
