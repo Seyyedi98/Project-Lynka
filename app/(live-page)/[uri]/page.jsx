@@ -152,7 +152,7 @@ const LivePage = async ({ params }) => {
           <LivePageHero hero={hero} />
 
           {/* Content Section */}
-          <section className="flex w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
+          <section className="mt-2 flex w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
             <LivePageElements uri={uri} content={content} />
           </section>
         </main>
