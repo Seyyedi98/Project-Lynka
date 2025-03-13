@@ -1,6 +1,6 @@
 "use client";
 import { loadFont } from "@/utils/loadFont";
-import { UserRound } from "lucide-react";
+import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -48,7 +48,7 @@ const TransparentHero = ({ ...data }) => {
         />
       ) : (
         <div className="grid h-32 w-32 place-content-center rounded-full border-2 border-dashed border-white">
-          <UserRound className="h-20 w-20 text-white" />
+          <ImageIcon className="h-16 w-16 text-white" />
         </div>
       )}
       <div className="flex h-full flex-col items-center gap-4">

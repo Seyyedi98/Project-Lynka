@@ -35,7 +35,7 @@ const ElementProperties = ({ element }) => {
           size="lg"
           onClick={() => setIsThemeSelectPage(!isThemeSelectPage)}
         >
-          <span className="s flex w-full items-center justify-between text-primary">
+          <span className="s flex w-full items-center justify-between text-text">
             {isThemeSelectPage ? "بازگشت" : "تغییر تم"}
             <ChevronLeft />
           </span>

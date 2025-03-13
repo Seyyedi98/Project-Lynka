@@ -1,6 +1,6 @@
 "use client";
 import { loadFont } from "@/utils/loadFont";
-import { UserRound } from "lucide-react";
+import { PictureInPicture, UserRound } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -51,7 +51,7 @@ const BgCurvedHero = ({ ...data }) => {
         />
       ) : (
         <div className="grid h-32 w-32 place-content-center rounded-full border-2 border-dashed border-white">
-          <UserRound className="h-20 w-20 text-white" />
+          <PictureInPicture className="h-20 w-20 text-white" />
         </div>
       )}
 
