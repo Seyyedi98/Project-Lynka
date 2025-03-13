@@ -16,6 +16,7 @@ export const themes = [
     elementColor: "#EE4540",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
+    isPremium: true,
   },
   {
     name: "pink",
@@ -34,6 +35,7 @@ export const themes = [
     elementColor: "#F2A490",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
+    isPremium: true,
   },
 
   {
@@ -53,6 +55,7 @@ export const themes = [
     elementColor: "#598901",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
+    isPremium: true,
   },
   {
     name: "blue",
@@ -71,6 +74,7 @@ export const themes = [
     elementColor: "#FF1684",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
+    isPremium: true,
   },
   {
     name: "fire",
@@ -89,6 +93,7 @@ export const themes = [
     elementColor: "#FC122C",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
+    isPremium: false,
   },
   {
     name: "orange",
@@ -107,6 +112,7 @@ export const themes = [
     elementColor: "#F15F4E",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
+    isPremium: false,
   },
   {
     name: "purple",
@@ -125,6 +131,7 @@ export const themes = [
     elementColor: "#FFCF04",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
+    isPremium: false,
   },
   {
     name: "lucy",
@@ -143,6 +150,7 @@ export const themes = [
     elementColor: "#F2C6F2",
     elementTextColor: "#000000",
     borderRadius: "12px",
+    isPremium: false,
   },
   {
     name: "cyan",
@@ -161,6 +169,7 @@ export const themes = [
     elementColor: "#A0C0FF",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    isPremium: false,
   },
   {
     name: "sky",
@@ -179,6 +188,7 @@ export const themes = [
     elementColor: "#FAA7B8",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    isPremium: false,
   },
   {
     name: "darkPurple",
@@ -197,6 +207,7 @@ export const themes = [
     elementColor: "#E4007C",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    isPremium: false,
   },
   {
     name: "natureSky",
@@ -215,6 +226,7 @@ export const themes = [
     elementColor: "#8FC93A",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    isPremium: false,
   },
   {
     name: "pinkblue",
@@ -233,12 +245,13 @@ export const themes = [
     elementColor: "#85D0CC",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    isPremium: false,
   },
   {
     name: "semiDark",
-    backgroundType: "color",
+    backgroundType: "image",
     backgroundColor: "#212A37",
-    backgroundImage: "",
+    backgroundImage: '{"url":"/pageBg/bg_1.webp","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#212A37",
@@ -251,7 +264,9 @@ export const themes = [
     elementColor: "#FF6238",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    isPremium: false,
   },
+
   {
     name: "darkRed",
     backgroundType: "color",
@@ -269,5 +284,6 @@ export const themes = [
     elementColor: "#E73754",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    isPremium: false,
   },
 ];

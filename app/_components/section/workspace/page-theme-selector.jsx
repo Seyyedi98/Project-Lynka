@@ -1,4 +1,6 @@
 import { themes } from "@/data/themes";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
+import { cn } from "@/lib/utils";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 const PageThemeSelector = () => {
@@ -6,6 +8,7 @@ const PageThemeSelector = () => {
   const elements = useSelector((state) => state.page.elements, shallowEqual);
   const hero = useSelector((state) => state.page.hero);
   const prevTheme = useSelector((store) => store.page.theme);
+  const { isSilver } = useUserSubscription();
 
   const updateElementStyle = ({ theme, type, textColor, bgColor }) => {
     elements.map((element) => {
@@ -58,37 +61,55 @@ const PageThemeSelector = () => {
   };
 
   const updateThemeAndBackground = ({ theme }) => {
+    console.log(theme);
     dispatch({ type: "page/setTheme", payload: theme });
   };
 
-  const handleThemeUpdate = (theme) => {
-    updateThemeAndBackground({ theme });
+  const handleThemeUpdate = (theme, isAllowedToApplyTheme) => {
+    isAllowedToApplyTheme && updateThemeAndBackground({ theme });
 
-    updateHeroStyle({
-      style: theme.heroStyle,
-      heroType: theme.heroType, // outdated
-      titleFont: theme.heroTitleFont,
-      subtitleFont: theme.heroSubtitleFont,
-      titleColor: theme.heroTitleColor,
-      subtitleColor: theme.heroSubtitleColor,
-    });
+    isAllowedToApplyTheme &&
+      updateHeroStyle({
+        style: theme.heroStyle,
+        heroType: theme.heroType, // outdated
+        titleFont: theme.heroTitleFont,
+        subtitleFont: theme.heroSubtitleFont,
+        titleColor: theme.heroTitleColor,
+        subtitleColor: theme.heroSubtitleColor,
+      });
 
-    updateElementStyle({
-      theme: theme.elementStyle,
-      textColor: theme.elementTextColor,
-      bgColor: theme.elementColor,
-    });
+    isAllowedToApplyTheme &&
+      updateElementStyle({
+        theme: theme.elementStyle,
+        textColor: theme.elementTextColor,
+        bgColor: theme.elementColor,
+      });
   };
 
   return (
     <div>
       <h4>PageThemeSelector</h4>
       <div>
-        {themes.map((theme) => (
-          <p onClick={() => handleThemeUpdate(theme)} key={theme.name}>
-            {theme.name}
-          </p>
-        ))}
+        {themes.map((theme) => {
+          const isAllowedToApplyTheme = theme.isPremium
+            ? isSilver
+              ? true
+              : false
+            : true;
+
+          return (
+            <p
+              className={cn(
+                ``,
+                !isAllowedToApplyTheme ? "cursor-not-allowed opacity-60" : "",
+              )}
+              onClick={() => handleThemeUpdate(theme, isAllowedToApplyTheme)}
+              key={theme.name}
+            >
+              {theme.name}
+            </p>
+          );
+        })}
       </div>
     </div>
   );
