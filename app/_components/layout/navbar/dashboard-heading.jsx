@@ -45,7 +45,7 @@ const DashboardHeading = ({ children }) => {
         isScrolled ? "bg-main-gradient-2" : "bg-transparent"
       }`}
     >
-      <div className="mr-16 flex items-center justify-center gap-4 text-sm">
+      <div className="mr-16 flex items-center justify-center gap-4 text-sm xl:mr-60">
         <span>
           <BellDot className="mt-2 h-7 w-7" />
           {/* <Bell className="mt-1 h-7 w-7" /> */}

@@ -32,7 +32,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
           <ul className="relative flex flex-col items-center gap-8">
             <div
               className={cn(
-                `absolute right-0 h-10 w-1 translate-x-[17px] border-r-2 border-primary transition-all duration-200`,
+                `absolute right-0 h-10 w-1 translate-x-[17px] border-r-2 border-text transition-all duration-200`,
                 selectedMenu === "elements" && "top-[85px]",
                 selectedMenu === "theme" && "top-[141px]",
                 selectedMenu === "browser" && "top-[195px]",
@@ -69,8 +69,8 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 setSelectedMenu("elements");
               }}
               className={cn(
-                `translate-y-8 animate-fade-up cursor-pointer text-icon-light opacity-0 duration-300`,
-                selectedMenu === "elements" && "text-primary",
+                `translate-y-8 animate-fade-up cursor-pointer text-icon-light/70 opacity-0 duration-300`,
+                selectedMenu === "elements" && "text-text",
               )}
             >
               <Layers className="" />
@@ -89,8 +89,8 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 setSelectedMenu("theme");
               }}
               className={cn(
-                `translate-y-8 animate-fade-up cursor-pointer text-icon-light opacity-0 delay-100 duration-300`,
-                selectedMenu === "theme" && "text-primary",
+                `translate-y-8 animate-fade-up cursor-pointer text-icon-light/70 opacity-0 delay-100 duration-300`,
+                selectedMenu === "theme" && "text-text",
               )}
             >
               <Droplet className="" />
@@ -109,8 +109,8 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 setSelectedMenu("browser");
               }}
               className={cn(
-                `translate-y-8 animate-fade-up cursor-pointer text-icon-light opacity-0 delay-200 duration-300`,
-                selectedMenu === "browser" && "text-primary",
+                `translate-y-8 animate-fade-up cursor-pointer text-icon-light/70 opacity-0 delay-200 duration-300`,
+                selectedMenu === "browser" && "text-text",
               )}
             >
               <AppWindow className="" />
@@ -128,8 +128,8 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 setSelectedMenu("analytics");
               }}
               className={cn(
-                `translate-y-8 animate-fade-up cursor-pointer text-icon-light opacity-0 delay-300 duration-300`,
-                selectedMenu === "analytics" && "text-primary",
+                `translate-y-8 animate-fade-up cursor-pointer text-icon-light/70 opacity-0 delay-300 duration-300`,
+                selectedMenu === "analytics" && "text-text",
               )}
             >
               <ChartLine className="" />
@@ -138,7 +138,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
 
           <div className="flex flex-col items-center justify-center gap-4">
             <BackButtonWithConfirmation url="/dashboard">
-              <span className="cursor-pointer text-white">
+              <span className="cursor-pointer text-text">
                 <ChevronRight />
               </span>
             </BackButtonWithConfirmation>

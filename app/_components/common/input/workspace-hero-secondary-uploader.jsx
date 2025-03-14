@@ -59,7 +59,7 @@ const HeroWorkspaceSecondaryUploader = ({ uri }) => {
         ...hero,
         extraAttributes: {
           ...hero.extraAttributes,
-          secondaryImage: { url: permanentSignedUrl, key: response.Key },
+          secondaryImage: { key: response.Key },
         },
       };
       dispatch({ type: "page/setHero", payload });

@@ -61,7 +61,6 @@ const PageThemeSelector = () => {
   };
 
   const updateThemeAndBackground = ({ theme }) => {
-    console.log(theme);
     dispatch({ type: "page/setTheme", payload: theme });
   };
 

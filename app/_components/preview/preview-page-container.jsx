@@ -2,9 +2,16 @@ import { useSelector } from "react-redux";
 import PreviewPageElements from "./preview-elements-renderer";
 import PreviewPageHero from "./preview-hero-renderer";
 import { cn } from "@/lib/utils";
+import parseJson from "@/utils/parseJSON";
+import getImageAddress from "@/utils/get-image-address";
 
 const PreviewPageContainer = () => {
   const theme = useSelector((state) => state.page.theme);
+
+  const backgroundImageUrl =
+    theme.backgroundImage && parseJson(theme.backgroundImage)?.key === "no_key"
+      ? parseJson(theme.backgroundImage)?.url
+      : getImageAddress(parseJson(theme.backgroundImage)?.key);
 
   const colorBgStyle = {
     backgroundColor: theme.backgroundColor,
@@ -13,8 +20,7 @@ const PreviewPageContainer = () => {
   };
   const imageBgStyle = {
     backgroundImage:
-      theme.backgroundType === "image" &&
-      `url(${JSON.parse(theme.backgroundImage).url})`,
+      theme.backgroundType === "image" && `url(${backgroundImageUrl})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",

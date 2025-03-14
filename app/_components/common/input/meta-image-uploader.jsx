@@ -44,7 +44,6 @@ const MetaImageUploader = ({ uri, metaImage }) => {
     setIsUploading(true);
     const { permanentSignedUrl, response } = await uploadFile(file, options);
     const JSONMetaImageData = JSON.stringify({
-      url: permanentSignedUrl,
       key: response.Key,
     });
 

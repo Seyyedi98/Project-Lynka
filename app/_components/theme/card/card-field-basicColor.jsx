@@ -7,6 +7,7 @@ import { loadFont } from "@/utils/loadFont";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import ProtectedPagePasswordCheck from "../../section/livepage-password-check";
+import getImageAddress from "@/utils/get-image-address";
 
 const handleClick = async ({
   setIsModalOpen,
@@ -42,6 +43,8 @@ const CardFieldBasicColor = (props) => {
   const { isLive, font, layout, image, isSilver } = props;
   const [loadedFont, setLoadedFont] = useState(null);
 
+  const imageUrl = image && getImageAddress(JSON.parse(image).key);
+
   useEffect(() => {
     const fetchFont = async () => {
       try {
@@ -57,12 +60,12 @@ const CardFieldBasicColor = (props) => {
 
   const bgImageStyle = useMemo(
     () => ({
-      backgroundImage: image ? `url(${JSON.parse(image).url})` : "",
+      backgroundImage: image ? `url(${imageUrl})` : "",
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
     }),
-    [image],
+    [image, imageUrl],
   );
 
   // Workspace view for free and premium users && premium users live Page
@@ -186,6 +189,7 @@ const RoundedImage = ({
   elementId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
   return (
     <>
@@ -212,7 +216,7 @@ const RoundedImage = ({
         <div
           className={cn(
             `h-20 w-20 rounded-xl`,
-            !image && "border-2 border-dashed border-white",
+            !imageUrl && "border-2 border-dashed border-white",
           )}
           style={bgImageStyle}
         />
@@ -275,6 +279,8 @@ const WideFullImage = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const imageUrl = image && getImageAddress(JSON.parse(image).key);
+
   return (
     <>
       <a
@@ -297,13 +303,13 @@ const WideFullImage = ({
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
-        {image && (
+        {imageUrl && (
           <Image
             className="absolute right-0 top-0 z-10 h-28 object-cover"
             height={360}
             width={720}
             alt="card Image"
-            src={JSON.parse(image).url}
+            src={imageUrl}
           />
         )}
         <p
@@ -351,6 +357,7 @@ const HighFullImage = ({
   elementId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
   return (
     <>
@@ -372,16 +379,11 @@ const HighFullImage = ({
         className={cn(
           `flex w-full cursor-pointer flex-col items-start justify-center gap-2 overflow-hidden text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
-          !image && "h-48",
+          !imageUrl && "h-48",
         )}
       >
-        {image && (
-          <Image
-            height={720}
-            width={720}
-            alt="card Image"
-            src={JSON.parse(image).url}
-          />
+        {imageUrl && (
+          <Image height={720} width={720} alt="card Image" src={imageUrl} />
         )}
         <p
           className="px-3 pb-2"

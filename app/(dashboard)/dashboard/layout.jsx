@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import DashboardHeading from "@/app/_components/layout/navbar/dashboard-heading";
 import DashboardSidebar from "@/app/_components/layout/navbar/dashboard-sidebar";
-import { currentUserSubscription } from "@/lib/auth/user-subscription";
 const bgMaskLight = "/bg-dashboard-mask.svg";
 const bgMaskDark = "/bg-dashboard-mask-dark.svg";
 
@@ -16,7 +15,7 @@ const EditorLayout = async ({ children }) => {
         alt="bgmask"
       />
 
-      {/* Mask */}
+      {/* Dark */}
       <img
         className="fixed mt-72 hidden w-full dark:block sm:mt-60"
         src={bgMaskDark}
@@ -24,7 +23,7 @@ const EditorLayout = async ({ children }) => {
       />
       <main className="relative h-svh w-full">
         {/* Background */}
-        <div className="fixed left-0 top-0 z-[-1] h-80 w-full bg-main-gradient-2"></div>
+        <div className="fixed left-0 top-0 z-[-1] h-[400px] w-full bg-main-gradient-2"></div>
         <DashboardHeading />
         {children}
       </main>

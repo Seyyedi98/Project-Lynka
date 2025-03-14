@@ -1,4 +1,5 @@
 "use client";
+import getImageAddress from "@/utils/get-image-address";
 import { loadFont } from "@/utils/loadFont";
 import { PictureInPicture, UserRound } from "lucide-react";
 import Image from "next/image";
@@ -18,8 +19,8 @@ const BgCurvedHero = ({ ...data }) => {
     heroValue,
   } = data;
 
-  const primaryBgImage = primaryImage.url;
-  const secondaryBgImage = secondaryImage.url;
+  const primaryBgImage = getImageAddress(primaryImage.key);
+  const secondaryBgImage = getImageAddress(secondaryImage.key);
   const [loadedTitleFont, setLoadedTitleFont] = useState(null);
   const [loadedSubtitleFont, setLoadedSubtitleFont] = useState(null);
 

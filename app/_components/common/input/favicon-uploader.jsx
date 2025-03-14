@@ -44,7 +44,6 @@ const FaviconUploader = ({ uri, favicon }) => {
     setIsUploading(true);
     const { permanentSignedUrl, response } = await uploadFile(file, options);
     const JSONFaviconData = JSON.stringify({
-      url: permanentSignedUrl,
       key: response.Key,
     });
 

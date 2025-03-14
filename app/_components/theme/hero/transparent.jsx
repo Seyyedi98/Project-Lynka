@@ -1,4 +1,5 @@
 "use client";
+import getImageAddress from "@/utils/get-image-address";
 import { loadFont } from "@/utils/loadFont";
 import { ImageIcon } from "lucide-react";
 import Image from "next/image";
@@ -16,7 +17,8 @@ const TransparentHero = ({ ...data }) => {
     heroType,
     heroValue,
   } = data;
-  const primaryBgImage = primaryImage.url;
+
+  const primaryBgImage = getImageAddress(primaryImage.key);
   const [loadedTitleFont, setLoadedTitleFont] = useState(null);
   const [loadedSubtitleFont, setLoadedSubtitleFont] = useState(null);
 

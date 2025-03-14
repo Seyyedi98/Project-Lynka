@@ -22,6 +22,7 @@ const CardElementBgUploader = ({ element }) => {
     : "";
   const previousImageKey = previousImage ? previousImage?.key : null;
 
+  // Ensure these environment variables are updated with ParsPack's credentials
   const ACCESSKEY = process.env.NEXT_PUBLIC_LIARA_ACCESS_KEY;
   const SECRETKEY = process.env.NEXT_PUBLIC_LIARA_SECRET_KEY;
   const ENDPOINT = process.env.NEXT_PUBLIC_LIARA_ENDPOINT;
@@ -43,15 +44,18 @@ const CardElementBgUploader = ({ element }) => {
     };
 
     setIsUploading(true);
-    const { permanentSignedUrl, response } = await uploadFile(file, options);
-    const JSONCardImageData = JSON.stringify({
-      url: permanentSignedUrl,
-      key: response.Key,
-    });
-
     try {
+      // Upload the file using the updated `uploadFile` function
+      const data = await uploadFile(file, options);
+      const { permanentSignedUrl, response } = data;
+
+      const JSONCardImageData = JSON.stringify({
+        key: response.Key,
+      });
+
+      // Delete the previous image if it exists
       if (previousImageKey) {
-        deleteFile({
+        await deleteFile({
           file: previousImage,
           BUCKET,
           ACCESSKEY,
@@ -60,6 +64,7 @@ const CardElementBgUploader = ({ element }) => {
         });
       }
 
+      // Update the element with the new image data
       const payload = {
         id: element.id,
         updatedElement: {
@@ -82,10 +87,10 @@ const CardElementBgUploader = ({ element }) => {
       toast({
         description: "خطایی رخ داد. لطفا مجددا سعی کنید",
       });
-      console.log(error);
+      console.error("Error uploading file:", error);
+    } finally {
+      setIsUploading(false);
     }
-
-    setIsUploading(false);
   };
 
   return (

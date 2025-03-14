@@ -24,6 +24,8 @@ import EditorSidebar from "../layout/navbar/editor-sidebar";
 import PreviewPageContainer from "../preview/preview-page-container";
 import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
+import getImageAddress from "@/utils/get-image-address";
+import parseJson from "@/utils/parseJSON";
 
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 const MemoizedEditorSidebar = memo(EditorSidebar);
@@ -43,22 +45,28 @@ const BuilderWorkspace = () => {
     shallowEqual,
   );
 
+  const backgroundImageUrl =
+    theme.backgroundImage && parseJson(theme.backgroundImage)?.key === "no_key"
+      ? parseJson(theme.backgroundImage)?.url
+      : getImageAddress(parseJson(theme.backgroundImage)?.key);
+
+  const blurryBackgroundImageUrl = getImageAddress(
+    hero?.extraAttributes?.primaryImage.key,
+  );
+
   const workspaceBlurryBg = useMemo(
     () => ({
-      backgroundImage: `url(${hero?.extraAttributes?.primaryImage.url})`,
+      backgroundImage: `url(${blurryBackgroundImageUrl})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-      backgroundColor: hero?.extraAttributes?.primaryImage.url
+      backgroundColor: blurryBackgroundImageUrl
         ? ""
         : hero.extraAttributes.heroValue,
       filter: "blur(50px) opacity(90%)",
       transform: "scale(1.4)",
     }),
-    [
-      hero?.extraAttributes?.primaryImage?.url,
-      hero?.extraAttributes?.heroValue,
-    ],
+    [blurryBackgroundImageUrl, hero?.extraAttributes?.heroValue],
   );
 
   const colorBgStyle = useMemo(
@@ -73,13 +81,12 @@ const BuilderWorkspace = () => {
   const imageBgStyle = useMemo(
     () => ({
       backgroundImage:
-        theme.backgroundType === "image" &&
-        `url(${JSON.parse(theme.backgroundImage).url})`,
+        theme.backgroundType === "image" && `url(${backgroundImageUrl})`,
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
     }),
-    [theme.backgroundType, theme.backgroundImage],
+    [theme.backgroundType, backgroundImageUrl],
   );
 
   const droppable = useDroppable({

@@ -6,7 +6,7 @@
     },
     {
       "name": "sitemap",
-      "mountTo": "arklight/pubkic"
+      "mountTo": "public"
     }
   ]
 }

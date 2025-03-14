@@ -1,11 +1,12 @@
 import Image from "next/image";
 import MetaImageUploader from "../input/meta-image-uploader";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
+import getImageAddress from "@/utils/get-image-address";
 
 const MetaImageForm = ({ uri, image }) => {
   let metaImage = "";
   const { isSilver } = useUserSubscription();
-  if (image) metaImage = JSON.parse(image);
+  if (image) metaImage = getImageAddress(JSON.parse(image).key);
 
   return (
     <div className="mt-8">
@@ -15,7 +16,7 @@ const MetaImageForm = ({ uri, image }) => {
             width={280}
             height={280}
             alt="meta image preview"
-            src={metaImage.url}
+            src={metaImage}
           />
         )}
         <h1 className="text-xl font-medium">Image</h1>

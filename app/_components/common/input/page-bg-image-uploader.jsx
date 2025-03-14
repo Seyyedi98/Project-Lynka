@@ -49,7 +49,6 @@ const PageBgImageUploader = ({ theme }) => {
     setIsUploading(true);
     const { permanentSignedUrl, response } = await uploadFile(file, options);
     const JSONBgImageData = JSON.stringify({
-      url: permanentSignedUrl,
       key: response.Key,
     });
 

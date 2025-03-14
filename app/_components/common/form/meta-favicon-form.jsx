@@ -1,9 +1,10 @@
 import Image from "next/image";
 import FaviconUploader from "../input/favicon-uploader";
+import getImageAddress from "@/utils/get-image-address";
 
 const MetaFaviconForm = ({ uri, favicon }) => {
-  let metaFavicon = "";
-  if (favicon) metaFavicon = JSON.parse(favicon);
+  let metaFavicon;
+  if (favicon) metaFavicon = getImageAddress(JSON.parse(favicon).key);
 
   return (
     <div className="mt-8">
@@ -13,7 +14,7 @@ const MetaFaviconForm = ({ uri, favicon }) => {
             width={32}
             height={32}
             alt="meta image preview"
-            src={metaFavicon.url}
+            src={metaFavicon}
           />
         )}
         <h1 className="text-xl font-medium">Favicon</h1>
