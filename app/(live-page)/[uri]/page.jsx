@@ -1,5 +1,6 @@
 import { getPageMetadata, increasePageView } from "@/actions/page/page";
 import LoadingSpinner from "@/app/_components/common/shared/loadingSpinner";
+import LivePageBackground from "@/app/_components/live-page/live-page-background";
 import LivePageElements from "@/app/_components/live-page/live-page-elements-render";
 import LivePageHero from "@/app/_components/live-page/live-page-hero-render";
 import { getSubscriptionByUri } from "@/lib/auth/user-subscription";
@@ -7,6 +8,8 @@ import getPageContent from "@/lib/page/get-page-content";
 import getPageHero from "@/lib/page/get-page-hero";
 import { cn } from "@/lib/utils";
 import fetchWithRetry from "@/utils/fetchWithRetry";
+import getImageAddress from "@/utils/get-image-address";
+import parseJson from "@/utils/parseJSON";
 import { notFound } from "next/navigation";
 
 // ✅ Dynamic Metadata Fetching with Error Handling
@@ -25,11 +28,11 @@ export async function generateMetadata({ params }) {
     if (!metadata) throw new Error("Metadata not found");
 
     const favicon = metadata?.favicon
-      ? JSON.parse(metadata?.favicon)?.url
+      ? getImageAddress(parseJson(metadata?.favicon)?.key)
       : null;
     const metaImage =
       isSilver && metadata?.metaImage
-        ? JSON.parse(metadata.metaImage).url
+        ? getImageAddress(parseJson(metadata?.metaImage)?.key)
         : null;
 
     return {
@@ -76,6 +79,7 @@ export async function generateMetadata({ params }) {
 // ✅ Live Page Component
 const LivePage = async ({ params }) => {
   const { uri } = await params;
+  const isDesktop = true;
 
   const page = await fetchWithRetry(uri);
 
@@ -104,38 +108,9 @@ const LivePage = async ({ params }) => {
     theme = { backgroundColor: "#fff" };
   }
 
-  const styleColor = {
-    backgroundColor: theme.backgroundColor,
-    background: theme.backgroundColor,
-    backgroundSize: theme.backgroundType === "gradient" ? "200% 200%" : "cover",
-  };
-
-  const styleImage = {
-    backgroundImage: theme.backgroundImage
-      ? `url(${JSON.parse(theme.backgroundImage).url})`
-      : "",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-  };
-
   return (
     <>
-      <div
-        style={
-          theme.backgroundType === "color" ||
-          theme.backgroundType === "pattern" ||
-          theme.backgroundType === "gradient"
-            ? styleColor
-            : styleImage
-        }
-        className={cn(
-          `relative flex h-svh w-full flex-col items-center justify-start gap-4 overflow-hidden`,
-          theme.isBackgroundAnimated &&
-            theme.backgroundType === "gradient" &&
-            "animate-bg-move",
-        )}
-      >
+      <LivePageBackground theme={theme}>
         {page.loadingIcon && (
           <div
             className={cn(
@@ -156,7 +131,7 @@ const LivePage = async ({ params }) => {
             <LivePageElements uri={uri} content={content} />
           </section>
         </main>
-      </div>
+      </LivePageBackground>
     </>
   );
 };

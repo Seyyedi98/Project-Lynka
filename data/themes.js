@@ -40,9 +40,9 @@ export const themes = [
 
   {
     name: "nature",
-    backgroundType: "gradient",
+    backgroundType: "image",
     backgroundColor: "linear-gradient(45deg, #598901, #2D5A00)",
-    backgroundImage: "",
+    backgroundImage: '{"url":"/pageBg/mobile-april.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "linear-gradient(45deg, #598901, #2D5A00)",
@@ -59,9 +59,9 @@ export const themes = [
   },
   {
     name: "blue",
-    backgroundType: "gradient",
+    backgroundType: "image",
     backgroundColor: "linear-gradient(45deg, #1039A0, #0146F2)",
-    backgroundImage: "",
+    backgroundImage: '{"url":"/pageBg/singapore-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "linear-gradient(45deg, #1039A0, #0146F2)",
@@ -251,7 +251,7 @@ export const themes = [
     name: "semiDark",
     backgroundType: "image",
     backgroundColor: "#212A37",
-    backgroundImage: '{"url":"/pageBg/bg_1.webp","key":"no_key"}',
+    backgroundImage: '{"url":"/pageBg/mobile-earth.webp","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#212A37",

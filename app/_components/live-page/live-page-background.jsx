@@ -1,13 +1,12 @@
-import { useSelector } from "react-redux";
-import PreviewPageElements from "./preview-elements-renderer";
-import PreviewPageHero from "./preview-hero-renderer";
-import { cn } from "@/lib/utils";
-import parseJson from "@/utils/parseJSON";
-import getImageAddress from "@/utils/get-image-address";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
+"use client";
 
-const PreviewPageContainer = () => {
-  const theme = useSelector((state) => state.page.theme);
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { cn } from "@/lib/utils";
+import getImageAddress from "@/utils/get-image-address";
+import parseJson from "@/utils/parseJSON";
+import React from "react";
+
+const LivePageBackground = ({ theme, children }) => {
   const isDesktop = useMediaQuery("(min-width: 600px)");
 
   const backgroundImageUrl =
@@ -17,14 +16,14 @@ const PreviewPageContainer = () => {
         : parseJson(theme.backgroundImage)?.url // images form public folder
       : getImageAddress(parseJson(theme.backgroundImage)?.key); // images from bucket
 
-  const colorBgStyle = {
+  const styleColor = {
     backgroundColor: theme.backgroundColor,
     background: theme.backgroundColor,
     backgroundSize: theme.backgroundType === "gradient" ? "200% 200%" : "cover",
   };
-  const imageBgStyle = {
-    backgroundImage:
-      theme.backgroundType === "image" && `url(${backgroundImageUrl})`,
+
+  const styleImage = {
+    backgroundImage: `url(${backgroundImageUrl})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
@@ -34,28 +33,21 @@ const PreviewPageContainer = () => {
     <div
       style={
         theme.backgroundType === "color" ||
-        theme.backgroundType === "gradient" ||
-        theme.backgroundType === "pattern"
-          ? colorBgStyle
-          : imageBgStyle
+        theme.backgroundType === "pattern" ||
+        theme.backgroundType === "gradient"
+          ? styleColor
+          : styleImage
       }
       className={cn(
-        `flex h-svh w-full flex-col items-center justify-start overflow-y-scroll pb-20 [scrollbar-width:none]`,
+        `relative flex h-svh w-full flex-col items-center justify-start gap-4 overflow-hidden`,
         theme.isBackgroundAnimated &&
           theme.backgroundType === "gradient" &&
           "animate-bg-move",
       )}
     >
-      {/* <div className="h-full w-full"> */}
-
-      <PreviewPageHero />
-
-      <section className="mt-2 flex w-full max-w-[400px] flex-col items-center justify-start gap-4 px-4">
-        <PreviewPageElements />
-      </section>
-      {/* </div> */}
+      {children}
     </div>
   );
 };
 
-export default PreviewPageContainer;
+export default LivePageBackground;

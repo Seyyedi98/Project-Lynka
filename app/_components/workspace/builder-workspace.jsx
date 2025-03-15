@@ -26,6 +26,7 @@ import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
 import getImageAddress from "@/utils/get-image-address";
 import parseJson from "@/utils/parseJSON";
+import Image from "next/image";
 
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 const MemoizedEditorSidebar = memo(EditorSidebar);
