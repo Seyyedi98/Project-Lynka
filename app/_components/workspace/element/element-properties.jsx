@@ -7,9 +7,18 @@ import { PageHeroElement } from "../../elements/hero/page-hero-element";
 import ElementThemeSelector from "../../theme/element-theme-selector";
 import HeroThemeSelector from "../../theme/hero-theme-selector";
 import { ShinyButton } from "../../common/button/shiny-button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "../../common/modal/diolog";
+import { useDispatch } from "react-redux";
 
 const ElementProperties = ({ element }) => {
   const [isThemeSelectPage, setIsThemeSelectPage] = useState(false);
+  const dispatch = useDispatch();
 
   let PropertiesForm;
   PropertiesForm = PageElements[element?.type]?.PropertiesComponent;
@@ -18,28 +27,35 @@ const ElementProperties = ({ element }) => {
 
   return (
     <div className="relative flex h-full flex-col justify-between">
+      <PropertiesForm elementInstance={element} />
+      {/* 
       {element && !isThemeSelectPage && (
         <PropertiesForm elementInstance={element} />
-      )}
-
-      {isThemeSelectPage &&
-        (element?.type == "HeroElement" ? (
-          <HeroThemeSelector />
-        ) : (
-          <ElementThemeSelector elementInstance={element} />
-        ))}
+      )} */}
 
       <div>
-        <ShinyButton
-          className="mt-4 h-14 w-full bg-button hover:bg-card-light"
-          size="lg"
-          onClick={() => setIsThemeSelectPage(!isThemeSelectPage)}
-        >
-          <span className="s flex w-full items-center justify-between text-text">
-            {isThemeSelectPage ? "بازگشت" : "تغییر تم"}
-            <ChevronLeft />
-          </span>
-        </ShinyButton>
+        <Dialog>
+          <DialogTrigger asChild>
+            <ShinyButton
+              className="mt-4 h-14 w-full bg-button hover:bg-card-light"
+              size="lg"
+            >
+              <span className="s flex w-full items-center justify-between text-text">
+                {isThemeSelectPage ? "بازگشت" : "تغییر تم"}
+                <ChevronLeft />
+              </span>
+            </ShinyButton>
+          </DialogTrigger>
+          <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
+            <DialogTitle className="hidden"></DialogTitle>
+            <DialogDescription className="hidden"></DialogDescription>
+            {element?.type == "HeroElement" ? (
+              <HeroThemeSelector />
+            ) : (
+              <ElementThemeSelector elementInstance={element} />
+            )}
+          </DialogContent>
+        </Dialog>
 
         {element?.type !== "HeroElement" && (
           <DeleteElementBtn id={element?.id}>

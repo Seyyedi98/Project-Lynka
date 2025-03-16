@@ -40,7 +40,7 @@ const BgCurvedHero = ({ ...data }) => {
   }, [titleFont, subtitleFont]);
 
   return (
-    <div className="relative h-[360px] w-full flex-col items-center justify-center gap-4 overflow-hidden pt-8">
+    <div className="relative w-full flex-col items-center justify-center gap-4 overflow-hidden pt-8">
       {primaryBgImage ? (
         <Image
           priority
@@ -86,7 +86,7 @@ const BgCurvedHero = ({ ...data }) => {
             fontFamily: loadedTitleFont ? `var(${loadedTitleFont})` : "inherit",
             color: titleColor,
           }}
-          className="text-3xl text-white"
+          className="z-10 text-3xl text-white"
         >
           {title}
         </h2>
@@ -97,7 +97,7 @@ const BgCurvedHero = ({ ...data }) => {
               : "inherit",
             color: subtitleColor,
           }}
-          className="pb-4 text-center text-lg font-thin text-white"
+          className="z-10 h-full w-full max-w-sm text-wrap pb-4 text-center text-lg font-thin text-white"
         >
           {subtitle}
         </h4>

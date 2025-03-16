@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils";
 
 const ElementThemeSelector = ({ elementInstance }) => {
   const dispatch = useDispatch();
-  const [themeCategory, setThemeCategory] = useState("color"); // color || pattern || gradient || image
   const element = elementInstance;
   const elementType = elementInstance?.type;
   const { isSilver } = useUserSubscription();
@@ -22,38 +21,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
 
   return (
     <div>
-      <div className="mb-4 mt-0 flex w-full items-center justify-between gap-2">
-        <SquareButton
-          action={setThemeCategory}
-          state={themeCategory}
-          rule="color"
-        >
-          رنگ
-        </SquareButton>
-        <SquareButton
-          action={setThemeCategory}
-          state={themeCategory}
-          rule="pattern"
-        >
-          الگو
-        </SquareButton>
-        <SquareButton
-          action={setThemeCategory}
-          state={themeCategory}
-          rule="gradient"
-        >
-          گرادیانت
-        </SquareButton>
-        <SquareButton
-          action={setThemeCategory}
-          state={themeCategory}
-          rule="image"
-        >
-          تصویر
-        </SquareButton>
-      </div>
-
-      <div className="grid grid-cols-1 justify-start">
+      <div className="grid grid-cols-1 justify-start gap-2 px-2 pt-12 sm:grid-cols-2 xl:grid-cols-3">
         {themesList.map((theme, index) => {
           const isPremiumTheme = Themes[theme][2].isPremium;
           const isAllowedToApplyTheme = isPremiumTheme

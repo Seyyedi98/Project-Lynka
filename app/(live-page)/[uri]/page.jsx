@@ -79,7 +79,6 @@ export async function generateMetadata({ params }) {
 // ✅ Live Page Component
 const LivePage = async ({ params }) => {
   const { uri } = await params;
-  const isDesktop = true;
 
   const page = await fetchWithRetry(uri);
 

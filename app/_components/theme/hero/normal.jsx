@@ -60,7 +60,7 @@ const NormalHero = ({ ...data }) => {
   }, [titleFont, subtitleFont]);
 
   return (
-    <div className="relative flex h-[300px] w-full flex-col items-center justify-center gap-4 overflow-hidden pt-8">
+    <div className="relative flex w-full flex-col items-center justify-center gap-4 overflow-hidden pt-8">
       <div
         className="absolute right-0 top-0 -mt-2 h-full w-full"
         style={heroType === "color" ? colorBgStyle : imageBgStyle}
@@ -113,7 +113,7 @@ const NormalHero = ({ ...data }) => {
               : "inherit",
             color: subtitleColor,
           }}
-          className="pb-4 text-center text-lg font-thin text-white"
+          className="w-full max-w-sm pb-4 text-center text-lg font-thin text-white"
         >
           {subtitle}
         </h4>

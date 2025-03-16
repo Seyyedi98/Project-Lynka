@@ -44,7 +44,7 @@ const EditorSidebar = () => {
           setSelectedMenu={setSelectedMenu}
         />
 
-        <div className="group z-30 my-auto hidden h-full w-full flex-col items-center overflow-y-auto bg-secondaryBg px-3 pb-6 pr-20 text-primary shadow-2xl duration-700 md:flex">
+        <div className="group z-30 my-auto hidden h-full w-full flex-col items-center overflow-y-auto bg-secondaryBg px-3 pb-6 pr-20 text-text shadow-2xl duration-700 md:flex">
           <AnimatePresence mode="wait">
             {selectedElement ? (
               <motion.div

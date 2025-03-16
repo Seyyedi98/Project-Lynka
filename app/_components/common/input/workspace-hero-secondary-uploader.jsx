@@ -35,7 +35,7 @@ const HeroWorkspaceSecondaryUploader = ({ uri }) => {
 
   const handleUploadButton = async () => {
     const options = {
-      maxSizeMB: 0.3, // Compress to be <= 0.3MB
+      maxSizeMB: 0.5, // Compress to be <= 0.3MB
       maxWidthOrHeight: 1080, // Optional: Resize image to 720px width/height if it's larger
       initialQuality: 1, // Start with 100% quality and adjust as needed
       useWebWorker: true, // Enable web workers for faster processing
@@ -101,7 +101,7 @@ const HeroWorkspaceSecondaryUploader = ({ uri }) => {
           <Button
             onClick={handleUploadButton}
             disabled={!file || isUploading}
-            className="upload-button rounded-sm bg-button text-primary"
+            className="upload-button rounded-sm bg-button text-text"
           >
             {!isUploading ? "بارگزاری" : <Loader2 className="animate-spin" />}
           </Button>

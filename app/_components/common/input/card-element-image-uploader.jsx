@@ -54,15 +54,15 @@ const CardElementBgUploader = ({ element }) => {
       });
 
       // Delete the previous image if it exists
-      if (previousImageKey) {
-        await deleteFile({
-          file: previousImage,
-          BUCKET,
-          ACCESSKEY,
-          SECRETKEY,
-          ENDPOINT,
-        });
-      }
+      // if (previousImageKey) {
+      //   await deleteFile({
+      //     file: previousImage,
+      //     BUCKET,
+      //     ACCESSKEY,
+      //     SECRETKEY,
+      //     ENDPOINT,
+      //   });
+      // }
 
       // Update the element with the new image data
       const payload = {

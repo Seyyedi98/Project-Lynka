@@ -109,7 +109,7 @@ function PropertiesComponent({ elementInstance }) {
         >
           <form
             // onBlur={form.handleSubmit(applyChanges)}
-            className="flex flex-col gap-2"
+            className="flex flex-col gap-2 text-text"
             onSubmit={form.handleSubmit(applyChanges)}
           >
             <Tabs dir="rtl" defaultValue="content" className="">
@@ -182,7 +182,7 @@ function PropertiesComponent({ elementInstance }) {
                     {/* <HeroWorkspaceUploader /> */}
                     <UploadButton />
                     <UploadButtonSecondary />
-                    <p className="text-textLight text-xs">
+                    <p className="text-xs">
                       پس از انتخاب فایل، دکمه بارگزاری را بزنید
                     </p>
                   </>

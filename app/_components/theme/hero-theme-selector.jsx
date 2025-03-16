@@ -14,44 +14,15 @@ const HeroThemeSelector = () => {
   if (!Themes) throw new Error("Cannot load hero themes");
 
   const filteredThemesList = useFilterTheme(Themes, themeCategory);
+  const themesList = Object.keys(Themes);
 
   return (
-    <div>
-      <div className="mb-4 mt-0 flex w-full items-center justify-between gap-2">
-        <SquareButton
-          action={setThemeCategory}
-          state={themeCategory}
-          rule="color"
-        >
-          رنگ
-        </SquareButton>
-        <SquareButton
-          action={setThemeCategory}
-          state={themeCategory}
-          rule="pattern"
-        >
-          الگو
-        </SquareButton>
-        <SquareButton
-          action={setThemeCategory}
-          state={themeCategory}
-          rule="gradient"
-        >
-          گرادیانت
-        </SquareButton>
-        <SquareButton
-          action={setThemeCategory}
-          state={themeCategory}
-          rule="image"
-        >
-          تصویر
-        </SquareButton>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2">
-        {filteredThemesList.map((theme, index) => {
+    <div className="h-full w-full overflow-auto">
+      <div className="grid w-full grid-cols-1 gap-x-2 gap-y-8 px-2 pt-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {themesList.map((theme, index) => {
           return (
             <div
+              className="mx-auto"
               key={(index, theme)}
               onClick={() => {
                 dispatch({
@@ -60,14 +31,26 @@ const HeroThemeSelector = () => {
                     ...hero,
                     extraAttributes: {
                       ...hero.extraAttributes,
-                      style: theme[0],
+                      style: theme,
                     },
                   },
                 });
+
                 dispatch({ type: "modal/closeMenu" });
+
+                setTimeout(
+                  () =>
+                    dispatch({
+                      type: "page/setSelectedElement",
+                      payload: null,
+                    }),
+                  200,
+                );
               }}
             >
-              {theme[0]}
+              <div className="h-96 w-60 cursor-pointer bg-gray-500 transition-transform duration-200 hover:scale-105">
+                {theme}
+              </div>
             </div>
           );
         })}
