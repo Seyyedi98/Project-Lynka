@@ -80,7 +80,7 @@ const BgCurvedHero = ({ ...data }) => {
         )}
       </div>
 
-      <div className="z-20 mt-56 flex h-full flex-col items-center gap-4">
+      <div className="z-20 mt-56 flex h-full flex-col items-center gap-4 px-3">
         <h2
           style={{
             fontFamily: loadedTitleFont ? `var(${loadedTitleFont})` : "inherit",

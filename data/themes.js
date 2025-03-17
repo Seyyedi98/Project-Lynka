@@ -73,7 +73,7 @@ export const themes = [
     elementStyle: "basicColor",
     elementColor: "#FF1684",
     elementTextColor: "#FFFFFF",
-    borderRadius: "12px",
+    borderRadius: "20px",
     isPremium: true,
   },
   {

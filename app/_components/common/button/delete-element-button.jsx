@@ -43,7 +43,7 @@ const DeleteElementBtn = ({ id, children }) => {
 
           <DialogFooter className="mt-6 flex gap-2 sm:justify-end">
             <DialogClose asChild>
-              <Button type="button" variant="secondary">
+              <Button type="button" variant="ghost">
                 بازگشت
               </Button>
             </DialogClose>

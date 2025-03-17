@@ -40,6 +40,7 @@ function PropertiesComponent({ elementInstance }) {
       subtitleFont: element.extraAttributes.subtitleFont || "",
       titleColor: element.extraAttributes.titleColor || "",
       subtitleColor: element.extraAttributes.subtitleColor || "",
+      imageBurn: element.extraAttributes.imageBurn || "",
     },
   });
 
@@ -58,6 +59,7 @@ function PropertiesComponent({ elementInstance }) {
       subtitleFont,
       titleColor,
       subtitleColor,
+      imageBurn,
     } = values;
 
     dispatch({
@@ -74,6 +76,7 @@ function PropertiesComponent({ elementInstance }) {
           subtitleFont,
           titleColor,
           subtitleColor,
+          imageBurn,
         },
       },
     });
@@ -200,7 +203,7 @@ function PropertiesComponent({ elementInstance }) {
               </TabsContent>
             </Tabs>
 
-            {/* Mobile drawaer button */}
+            {/* Mobile drawer button */}
             <button
               type="submit"
               className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"

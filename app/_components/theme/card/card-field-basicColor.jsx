@@ -189,7 +189,6 @@ const RoundedImage = ({
   elementId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
   return (
     <>
@@ -216,7 +215,7 @@ const RoundedImage = ({
         <div
           className={cn(
             `h-20 w-20 rounded-xl`,
-            !imageUrl && "border-2 border-dashed border-white",
+            !image && "border-2 border-dashed border-white",
           )}
           style={bgImageStyle}
         />
@@ -310,6 +309,7 @@ const WideFullImage = ({
             width={720}
             alt="card Image"
             src={imageUrl}
+            loading="lazy"
           />
         )}
         <p
@@ -383,7 +383,13 @@ const HighFullImage = ({
         )}
       >
         {imageUrl && (
-          <Image height={720} width={720} alt="card Image" src={imageUrl} />
+          <Image
+            height={720}
+            width={720}
+            alt="card Image"
+            src={imageUrl}
+            loading="lazy"
+          />
         )}
         <p
           className="px-3 pb-2"

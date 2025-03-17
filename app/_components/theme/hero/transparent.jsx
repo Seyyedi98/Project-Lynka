@@ -53,7 +53,7 @@ const TransparentHero = ({ ...data }) => {
           <ImageIcon className="h-16 w-16 text-white" />
         </div>
       )}
-      <div className="flex h-full flex-col items-center gap-4">
+      <div className="flex h-full flex-col items-center gap-4 px-3">
         <h2
           style={{
             fontFamily: loadedTitleFont ? `var(${loadedTitleFont})` : "inherit",

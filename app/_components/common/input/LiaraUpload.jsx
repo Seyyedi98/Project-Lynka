@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import uploadFile from "@/lib/upload/uploadFile";
 import { S3 } from "aws-sdk";
+import { Loader2Icon } from "lucide-react";
 import { useState } from "react";
 
 const Upload = ({ uri }) => {
@@ -95,6 +96,13 @@ const Upload = ({ uri }) => {
 
   return (
     <div className="upload-container">
+      {isUploading && (
+        <div className="fixed right-0 top-0 z-[99999] grid h-screen w-screen cursor-wait place-content-center bg-black opacity-80">
+          <span className="flex items-center justify-center gap-2">
+            در حال بارگزاری <Loader2Icon className="mt-1 animate-spin" />
+          </span>
+        </div>
+      )}
       <div className="file-upload flex gap-2">
         <Input
           type="file"

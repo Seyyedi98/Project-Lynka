@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import deleteFile from "@/lib/upload/deleteFile";
 import uploadFile from "@/lib/upload/uploadFile";
-import { Loader2 } from "lucide-react";
+import { Loader2, Loader2Icon, LoaderIcon } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -95,6 +95,13 @@ const PageBgImageUploader = ({ theme }) => {
 
   return (
     <div className="upload-container">
+      {isUploading && (
+        <div className="fixed right-0 top-0 z-[99999] grid h-screen w-screen cursor-wait place-content-center bg-black opacity-80">
+          <span className="flex items-center justify-center gap-2">
+            در حال بارگزاری <Loader2Icon className="mt-1 animate-spin" />
+          </span>
+        </div>
+      )}
       <div className="file-upload text-nowrap">
         <Label htmlFor="uploader">تصویر اصلی</Label>
         <div className="mt-2 flex justify-center gap-2">
@@ -107,9 +114,11 @@ const PageBgImageUploader = ({ theme }) => {
             accept="image/*"
           />
           <Button
+            size="md"
+            variant="primary_2"
             onClick={handleUploadButton}
             disabled={!file || isUploading}
-            className="upload-button rounded-md"
+            className="upload-button"
           >
             {!isUploading ? "بارگزاری" : <Loader2 className="animate-spin" />}
           </Button>

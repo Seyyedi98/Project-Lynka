@@ -10,7 +10,13 @@ const PageThemeSelector = () => {
   const prevTheme = useSelector((store) => store.page.theme);
   const { isSilver } = useUserSubscription();
 
-  const updateElementStyle = ({ theme, type, textColor, bgColor }) => {
+  const updateElementStyle = ({
+    theme,
+    type,
+    textColor,
+    bgColor,
+    borderRadius,
+  }) => {
     elements.map((element) => {
       const payload = {
         id: element.id,
@@ -22,6 +28,7 @@ const PageThemeSelector = () => {
             type,
             textColor,
             bgColor,
+            borderRadius,
           },
         },
       };
@@ -82,6 +89,7 @@ const PageThemeSelector = () => {
         theme: theme.elementStyle,
         textColor: theme.elementTextColor,
         bgColor: theme.elementColor,
+        borderRadius: theme.borderRadius,
       });
   };
 

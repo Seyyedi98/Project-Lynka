@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import deleteFile from "@/lib/upload/deleteFile";
 import uploadFile from "@/lib/upload/uploadFile";
-import { Loader2 } from "lucide-react";
+import { Loader2, Loader2Icon } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -21,12 +21,6 @@ const CardElementBgUploader = ({ element }) => {
     ? JSON.parse(element.extraAttributes.image)
     : "";
   const previousImageKey = previousImage ? previousImage?.key : null;
-
-  // Ensure these environment variables are updated with ParsPack's credentials
-  const ACCESSKEY = process.env.NEXT_PUBLIC_LIARA_ACCESS_KEY;
-  const SECRETKEY = process.env.NEXT_PUBLIC_LIARA_SECRET_KEY;
-  const ENDPOINT = process.env.NEXT_PUBLIC_LIARA_ENDPOINT;
-  const BUCKET = process.env.NEXT_PUBLIC_LIARA_BUCKET_NAME;
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -95,6 +89,13 @@ const CardElementBgUploader = ({ element }) => {
 
   return (
     <div className="upload-container">
+      {isUploading && (
+        <div className="fixed right-0 top-0 z-[99999] grid h-screen w-screen cursor-wait place-content-center bg-black opacity-80">
+          <span className="flex items-center justify-center gap-2">
+            در حال بارگزاری <Loader2Icon className="mt-1 animate-spin" />
+          </span>
+        </div>
+      )}
       <div className="file-upload text-nowrap">
         <Label htmlFor="uploader">تصویر پس زمینه</Label>
         <div className="mt-2 flex justify-center gap-2">
@@ -107,9 +108,11 @@ const CardElementBgUploader = ({ element }) => {
             accept="image/*"
           />
           <Button
+            size="md"
+            variant="primary_2"
             onClick={handleUploadButton}
             disabled={!file || isUploading}
-            className="upload-button rounded-md"
+            className="upload-button"
           >
             {!isUploading ? "بارگزاری" : <Loader2 className="animate-spin" />}
           </Button>
