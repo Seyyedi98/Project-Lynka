@@ -17,6 +17,7 @@ const BgFadeHero = ({ ...data }) => {
     subtitleColor,
     heroType,
     heroValue,
+    imageBrightness,
   } = data;
 
   // const primaryBgImage = getImageAddress(primaryImage.key);
@@ -79,6 +80,8 @@ const BgFadeHero = ({ ...data }) => {
             style={{
               maskImage:
                 "linear-gradient(180deg,#000000,40%,#000000,80%,transparent)",
+              // filter: `brightness(0.6)`,
+              filter: `brightness(${1 - imageBrightness / 100})`,
             }}
             className="position-bottom top-0 z-10 mx-auto h-full w-full max-w-[600px] bg-white object-cover xl:max-w-[1000px]"
           />

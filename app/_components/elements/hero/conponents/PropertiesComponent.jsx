@@ -5,6 +5,7 @@ import ElementColorFormField from "@/app/_components/common/form/element-propert
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
+import PageImageDarkness from "@/app/_components/section/workspace/page-image-darkness";
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -40,7 +41,7 @@ function PropertiesComponent({ elementInstance }) {
       subtitleFont: element.extraAttributes.subtitleFont || "",
       titleColor: element.extraAttributes.titleColor || "",
       subtitleColor: element.extraAttributes.subtitleColor || "",
-      imageBurn: element.extraAttributes.imageBurn || "",
+      imageBrightness: element.extraAttributes.imageBrightness || "",
     },
   });
 
@@ -59,7 +60,7 @@ function PropertiesComponent({ elementInstance }) {
       subtitleFont,
       titleColor,
       subtitleColor,
-      imageBurn,
+      imageBrightness,
     } = values;
 
     dispatch({
@@ -76,7 +77,7 @@ function PropertiesComponent({ elementInstance }) {
           subtitleFont,
           titleColor,
           subtitleColor,
-          imageBurn,
+          imageBrightness,
         },
       },
     });
@@ -185,9 +186,14 @@ function PropertiesComponent({ elementInstance }) {
                     {/* <HeroWorkspaceUploader /> */}
                     <UploadButton />
                     <UploadButtonSecondary />
-                    <p className="text-xs">
+                    <p className="mb-4 text-xs">
                       پس از انتخاب فایل، دکمه بارگزاری را بزنید
                     </p>
+                    <PageImageDarkness
+                      form={form}
+                      fieldName="imageBrightness"
+                      label="میزان تیرگی تصویر"
+                    />
                   </>
                 )}
                 {category === "color" && (

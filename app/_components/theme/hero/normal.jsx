@@ -17,6 +17,7 @@ const NormalHero = ({ ...data }) => {
     subtitleColor,
     heroType,
     heroValue,
+    imageBrightness,
   } = data;
 
   const primaryBgImage = getImageAddress(primaryImage.key);
@@ -92,6 +93,7 @@ const NormalHero = ({ ...data }) => {
             src={secondaryBgImage}
             alt={title}
             className="position-bottom top-0 z-10 mx-auto h-full w-full max-w-[600px] bg-white object-cover xl:max-w-[1000px]"
+            style={{ filter: `brightness(${1 - imageBrightness / 100})` }}
           />
         </div>
       )}

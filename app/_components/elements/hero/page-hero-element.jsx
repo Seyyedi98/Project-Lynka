@@ -17,7 +17,7 @@ const extraAttributes = {
   heroValue: "",
   primaryImage: "",
   secondaryImage: "",
-  imageBurn: 0,
+  imageBrightness: 0,
 };
 
 export const PageHeroElement = {

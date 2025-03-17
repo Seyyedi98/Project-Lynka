@@ -16,6 +16,7 @@ const TransparentHero = ({ ...data }) => {
     subtitleColor,
     heroType,
     heroValue,
+    imageBrightness,
   } = data;
 
   const primaryBgImage = getImageAddress(primaryImage.key);
