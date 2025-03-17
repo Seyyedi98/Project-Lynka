@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { loadFont } from "@/utils/loadFont";
 import { useEffect, useState } from "react";
 
-const ButtonFieldBasicColor = ({
+const ButtonFieldDefault = ({
   title,
   href,
   isLive,
@@ -50,4 +50,4 @@ const ButtonFieldBasicColor = ({
   );
 };
 
-export default ButtonFieldBasicColor;
+export default ButtonFieldDefault;

@@ -5,7 +5,7 @@ import ElementColorFormField from "@/app/_components/common/form/element-propert
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
-import PageImageDarkness from "@/app/_components/section/workspace/page-image-darkness";
+import PageFieldValueSlider from "@/app/_components/section/workspace/page-value-slider";
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -186,11 +186,12 @@ function PropertiesComponent({ elementInstance }) {
                     {/* <HeroWorkspaceUploader /> */}
                     <UploadButton />
                     <UploadButtonSecondary />
-                    <p className="mb-4 text-xs">
+                    <p className="mb-6 text-xs">
                       پس از انتخاب فایل، دکمه بارگزاری را بزنید
                     </p>
-                    <PageImageDarkness
+                    <PageFieldValueSlider
                       form={form}
+                      max={100}
                       fieldName="imageBrightness"
                       label="میزان تیرگی تصویر"
                     />

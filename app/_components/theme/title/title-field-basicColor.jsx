@@ -1,6 +1,6 @@
 import React from "react";
 
-const TitleFieldBasicColor = ({ title, font, bgColor, textColor }) => {
+const TitleFieldDefault = ({ title, font, bgColor, textColor }) => {
   return (
     <div
       style={{ backgroundColor: bgColor }}
@@ -11,4 +11,4 @@ const TitleFieldBasicColor = ({ title, font, bgColor, textColor }) => {
   );
 };
 
-export default TitleFieldBasicColor;
+export default TitleFieldDefault;

@@ -7,7 +7,7 @@ import {
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
 
-const PageImageDarkness = ({ form, fieldName, label }) => {
+const PageFieldValueSlider = ({ form, fieldName, label, max }) => {
   return (
     <FormField
       control={form.control}
@@ -16,12 +16,12 @@ const PageImageDarkness = ({ form, fieldName, label }) => {
         <FormItem>
           <FormControl>
             <div className="flex items-center justify-between gap-4">
-              <p>{label || "تیرگی تصویر"}</p>
+              <p>{label || "اندازه"}</p>
               <Slider
                 {...field}
                 onValueChange={(value) => field.onChange(value[0])}
                 value={[field.value || 0]}
-                max={100}
+                max={max}
                 step={10}
                 className={cn("mx-auto w-[60%]")}
               />
@@ -34,4 +34,4 @@ const PageImageDarkness = ({ form, fieldName, label }) => {
   );
 };
 
-export default PageImageDarkness;
+export default PageFieldValueSlider;

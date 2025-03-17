@@ -1,11 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, TrashIcon } from "lucide-react";
-import { useState } from "react";
 import DeleteElementBtn from "../../common/button/delete-element-button";
-import { PageElements } from "../../controller/page-elements-controller";
-import { PageHeroElement } from "../../elements/hero/page-hero-element";
-import ElementThemeSelector from "../../theme/element-theme-selector";
-import HeroThemeSelector from "../../theme/hero-theme-selector";
 import { ShinyButton } from "../../common/button/shiny-button";
 import {
   Dialog,
@@ -14,12 +9,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../common/modal/diolog";
-import { useDispatch } from "react-redux";
+import { PageElements } from "../../controller/page-elements-controller";
+import { PageHeroElement } from "../../elements/hero/page-hero-element";
+import ElementThemeSelector from "../../theme/element-theme-selector";
+import HeroThemeSelector from "../../theme/hero-theme-selector";
 
 const ElementProperties = ({ element }) => {
-  const [isThemeSelectPage, setIsThemeSelectPage] = useState(false);
-  const dispatch = useDispatch();
-
   let PropertiesForm;
   PropertiesForm = PageElements[element?.type]?.PropertiesComponent;
 
@@ -28,10 +23,6 @@ const ElementProperties = ({ element }) => {
   return (
     <div className="relative flex h-full flex-col justify-between">
       <PropertiesForm elementInstance={element} />
-      {/* 
-      {element && !isThemeSelectPage && (
-        <PropertiesForm elementInstance={element} />
-      )} */}
 
       <div>
         <Dialog>
@@ -41,7 +32,7 @@ const ElementProperties = ({ element }) => {
               size="lg"
             >
               <span className="s flex w-full items-center justify-between text-text">
-                {isThemeSelectPage ? "بازگشت" : "تغییر تم"}
+                تغییر تم
                 <ChevronLeft />
               </span>
             </ShinyButton>

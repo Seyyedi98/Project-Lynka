@@ -1,17 +1,13 @@
-import ButtonFieldBasicColor from "../theme/button/button-field-basicColor";
-import CardFieldBasicColor from "../theme/card/card-field-basicColor";
+import CardFieldDefault from "../theme/card/card-field-default";
 import CardFieldMinimal from "../theme/card/card-field-minimal";
-import TitleFieldBasicColor from "../theme/title/title-field-basicColor";
+import SpaceFieldDefault from "../theme/space/space-field-default";
 
 export const ElementThemeController = {
-  TitleField: {
-    basicColor: [TitleFieldBasicColor, { type: "color" }],
-  },
-  ButtonField: {
-    basicColor: [ButtonFieldBasicColor, { type: "color" }],
-  },
   CardField: {
-    basicColor: [CardFieldBasicColor, { type: "color" }, { isPremium: false }],
+    default: [CardFieldDefault, { type: "color" }, { isPremium: false }],
     minimal: [CardFieldMinimal, { type: "color" }, { isPremium: true }],
+  },
+  SpaceField: {
+    default: [SpaceFieldDefault, { type: "color" }, { isPremium: false }],
   },
 };

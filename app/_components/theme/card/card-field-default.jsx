@@ -39,7 +39,7 @@ const handleClick = async ({
   }
 };
 
-const CardFieldBasicColor = (props) => {
+const CardFieldDefault = (props) => {
   const { isLive, font, layout, image, isSilver } = props;
   const [loadedFont, setLoadedFont] = useState(null);
 
@@ -104,7 +104,7 @@ const CardFieldBasicColor = (props) => {
   }
 };
 
-export default CardFieldBasicColor;
+export default CardFieldDefault;
 
 const Basic = ({
   title,
