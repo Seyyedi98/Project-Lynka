@@ -52,7 +52,7 @@ const BgCurvedHero = ({ ...data }) => {
           className="absolute right-1/2 top-28 z-20 h-32 w-32 translate-x-1/2 rounded-full object-cover lg:h-36 lg:w-36"
         />
       ) : (
-        <div className="grid h-32 w-32 place-content-center rounded-full border-2 border-dashed border-white">
+        <div className="absolute right-1/2 top-28 z-20 grid h-32 w-32 translate-x-1/2 place-content-center rounded-full border-2 border-dashed border-white">
           <PictureInPicture className="h-20 w-20 text-white" />
         </div>
       )}

@@ -1,30 +1,27 @@
 "use client";
 
 import { useAnimate } from "framer-motion";
+import moment from "moment-jalaali";
 import { useEffect, useRef, useState } from "react";
-
-const COUNTDOWN_FROM = "2025-10-01";
 
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
 const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 
-const ShiftingCountdown = () => {
+const ShiftingCountdown = (countdownDate) => {
   return (
-    <div className="bg-gradient-to-br from-violet-600 to-indigo-600 p-4">
-      <div className="mx-auto flex w-full max-w-5xl items-center bg-white">
-        <CountdownItem unit="Second" text="ثانیه" />
-        <CountdownItem unit="Minute" text="دقیقه" />
-        <CountdownItem unit="Hour" text="ساعت" />
-        <CountdownItem unit="Day" text="روز" />
-      </div>
+    <div className="mx-auto flex w-full max-w-5xl items-center rounded-md bg-white">
+      <CountdownItem unit="Second" text="ثانیه" countdownDate={countdownDate} />
+      <CountdownItem unit="Minute" text="دقیقه" countdownDate={countdownDate} />
+      <CountdownItem unit="Hour" text="ساعت" countdownDate={countdownDate} />
+      <CountdownItem unit="Day" text="روز" countdownDate={countdownDate} />
     </div>
   );
 };
 
-const CountdownItem = ({ unit, text }) => {
-  const { ref, time } = useTimer(unit);
+const CountdownItem = ({ unit, text, countdownDate }) => {
+  const { ref, time } = useTimer(unit, countdownDate);
 
   return (
     <div className="flex h-24 w-1/4 flex-col items-center justify-center gap-1 border-r-[1px] border-slate-200 md:h-36 md:gap-2">
@@ -45,7 +42,7 @@ const CountdownItem = ({ unit, text }) => {
 
 export default ShiftingCountdown;
 
-const useTimer = (unit) => {
+const useTimer = (unit, countdownDate) => {
   const [ref, animate] = useAnimate();
 
   const intervalRef = useRef(null);
@@ -57,11 +54,11 @@ const useTimer = (unit) => {
     intervalRef.current = setInterval(handleCountdown, 1000);
 
     return () => clearInterval(intervalRef.current || undefined);
-  }, []);
+  }, [countdownDate]);
 
   const handleCountdown = async () => {
-    const end = new Date(COUNTDOWN_FROM);
-    const now = new Date();
+    const end = new Date(countdownDate.countdownDate);
+    const now = new Date(moment().format("jYYYY-jMM-jDDTHH:mm:ss.SSSZ"));
     const distance = +end - +now;
 
     let newTime = 0;

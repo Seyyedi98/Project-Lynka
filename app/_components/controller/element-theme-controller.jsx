@@ -1,7 +1,8 @@
 import CardFieldDefault from "../theme/card/card-field-default";
 import CardFieldMinimal from "../theme/card/card-field-minimal";
-import DeviderFieldDefault from "../theme/devider/devider-field-default";
 import SpaceFieldDefault from "../theme/space/space-field-default";
+import DeviderFieldDefault from "../theme/devider/devider-field-default";
+import CountdownFieldDefault from "../theme/countdown/countdown-field-default";
 
 export const ElementThemeController = {
   CardField: {
@@ -13,5 +14,8 @@ export const ElementThemeController = {
   },
   DeviderField: {
     default: [DeviderFieldDefault, { type: "color" }, { isPremium: false }],
+  },
+  CountdownField: {
+    default: [CountdownFieldDefault, { type: "color" }, { isPremium: false }],
   },
 };

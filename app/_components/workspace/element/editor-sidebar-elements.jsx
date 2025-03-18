@@ -13,6 +13,7 @@ const EditorSidebarElements = () => {
         <AddElementButton pageElement={PageElements.CardField} />
         <AddElementButton pageElement={PageElements.SpaceField} />
         <AddElementButton pageElement={PageElements.DeviderField} />
+        <AddElementButton pageElement={PageElements.CountdownField} />
       </div>
     </div>
   );

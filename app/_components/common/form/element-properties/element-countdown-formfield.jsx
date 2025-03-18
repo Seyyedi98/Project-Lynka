@@ -12,7 +12,12 @@ import { DateInput } from "rsuite";
 import Toggle from "rsuite/Toggle";
 import "rsuite/Toggle/styles/index.css";
 
-const ElementCountdownFormField = ({ form, isSilver, countdownData }) => {
+const ElementCountdownFormField = ({
+  form,
+  isSilver,
+  countdownData,
+  showToggle,
+}) => {
   const { countdownDate, countdown } = countdownData;
 
   const adjustedCountdownDate = new Date(countdownDate);
@@ -40,31 +45,33 @@ const ElementCountdownFormField = ({ form, isSilver, countdownData }) => {
       <FormField
         control={form.control}
         name="countdown"
-        render={({ field }) => (
-          <FormItem className="flex flex-row items-center justify-between rounded-md border p-3 shadow-sm">
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="schedule-toggle">شمارش معکوس</Label>
-              <p className="text-textLight text-wrap text-xs">
-                بلوک تا تاریخ مشخض شده پنهان می ماند
-              </p>
-            </div>
-            <FormControl>
-              <Toggle
-                dir="rtl"
-                checked={field.value}
-                onChange={field.onChange}
-                aria-readonly
-                disabled={!isSilver}
-                color="blue"
-              />
-            </FormControl>
-          </FormItem>
-        )}
+        render={({ field }) =>
+          showToggle && (
+            <FormItem className="flex flex-row items-center justify-between rounded-md border p-3 shadow-sm">
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="schedule-toggle">شمارش معکوس</Label>
+                <p className="text-textLight text-wrap text-xs">
+                  بلوک تا تاریخ مشخض شده پنهان می ماند
+                </p>
+              </div>
+              <FormControl>
+                <Toggle
+                  dir="rtl"
+                  checked={field.value}
+                  onChange={field.onChange}
+                  aria-readonly
+                  disabled={!isSilver}
+                  color="blue"
+                />
+              </FormControl>
+            </FormItem>
+          )
+        }
       />
 
       {isSilver ? (
         <AnimatePresence>
-          {isCountdownActive && (
+          {(isCountdownActive || !showToggle) && (
             <motion.div
               key="countdown"
               initial="initial"

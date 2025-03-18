@@ -242,6 +242,7 @@ function PropertiesComponent({ elementInstance }) {
                 {/* Countdown */}
                 <div className="mt-6">
                   <ElementCountdownFormField
+                    showToggle={true}
                     countdownData={element.extraAttributes}
                     form={form}
                     isSilver={isSilver}
