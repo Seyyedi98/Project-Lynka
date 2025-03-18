@@ -1,5 +1,6 @@
 import CardFieldDefault from "../theme/card/card-field-default";
 import CardFieldMinimal from "../theme/card/card-field-minimal";
+import DeviderFieldDefault from "../theme/devider/devider-field-default";
 import SpaceFieldDefault from "../theme/space/space-field-default";
 
 export const ElementThemeController = {
@@ -9,5 +10,8 @@ export const ElementThemeController = {
   },
   SpaceField: {
     default: [SpaceFieldDefault, { type: "color" }, { isPremium: false }],
+  },
+  DeviderField: {
+    default: [DeviderFieldDefault, { type: "color" }, { isPremium: false }],
   },
 };

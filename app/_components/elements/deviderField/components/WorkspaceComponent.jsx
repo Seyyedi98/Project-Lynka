@@ -9,5 +9,5 @@ export const WorkspaceComponent = memo(function WorkspaceComponent({
   const data = element.extraAttributes;
   const RenderedElement = ElementThemeController[element.type][data.theme][0];
 
-  return <RenderedElement {...data} />;
+  return <RenderedElement isLive={false} {...data} />;
 });

@@ -1,20 +1,20 @@
-import { Heading } from "lucide-react";
-import { LivePageComponent } from "./components/LivePageComponent";
-import PreviewPageComponent from "./components/PreviewPageComponent";
+import { GitCommitHorizontal } from "lucide-react";
+import LivePageComponent from "./components/LivePageComponent";
 import PropertiesComponent from "./components/PropertiesComponent";
 import { WorkspaceComponent } from "./components/WorkspaceComponent";
+import PreviewPageComponent from "./components/PreviewPageComponent";
 
-const type = "TitleField";
+const type = "DeviderField";
 
 const extraAttributes = {
   title: "عنوان",
   theme: "",
-  font: "",
   textColor: "#ffffff",
-  bgColor: "",
+  font: "",
+  deviderColor: "#ffffff",
 };
 
-export const TitleFieldFormElement = {
+export const DeviderFieldFormElement = {
   type,
   construct: (id) => ({
     id,
@@ -23,8 +23,8 @@ export const TitleFieldFormElement = {
   }),
 
   ElementAdderBtn: {
-    icon: Heading,
-    label: "عنوان",
+    icon: GitCommitHorizontal,
+    label: "جدا کننده",
   },
 
   WorkspaceComponent: WorkspaceComponent,

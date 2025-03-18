@@ -20,7 +20,7 @@ const BgCurvedHero = ({ ...data }) => {
     imageBrightness,
   } = data;
 
-  const primaryBgImage = getImageAddress(primaryImage.key);
+  const primaryBgImage = primaryImage ? getImageAddress(primaryImage.key) : "";
   const secondaryBgImage = getImageAddress(secondaryImage.key);
   const [loadedTitleFont, setLoadedTitleFont] = useState(null);
   const [loadedSubtitleFont, setLoadedSubtitleFont] = useState(null);

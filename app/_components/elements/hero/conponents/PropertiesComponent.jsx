@@ -12,11 +12,21 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { heroFieldSchems } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check } from "lucide-react";
+import { Check, ChevronLeft } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Suspense, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { ShinyButton } from "@/app/_components/common/button/shiny-button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
+import HeroThemeSelector from "@/app/_components/theme/hero-theme-selector";
 
 const UploadButton = dynamic(
   () => import("@/app/_components/common/input/workspace-hero-uploader"),
@@ -228,6 +238,27 @@ function PropertiesComponent({ elementInstance }) {
           </form>
         </Suspense>
       </Form>
+
+      <div className="mt-auto">
+        <Dialog>
+          <DialogTrigger asChild>
+            <ShinyButton
+              className="mt-4 h-14 w-full bg-button hover:bg-card-light"
+              size="lg"
+            >
+              <span className="s flex w-full items-center justify-between text-text">
+                تغییر تم
+                <ChevronLeft />
+              </span>
+            </ShinyButton>
+          </DialogTrigger>
+          <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
+            <DialogTitle className="hidden"></DialogTitle>
+            <DialogDescription className="hidden"></DialogDescription>
+            <HeroThemeSelector />
+          </DialogContent>
+        </Dialog>
+      </div>
     </>
   );
 }

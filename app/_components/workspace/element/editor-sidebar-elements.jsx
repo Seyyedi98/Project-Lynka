@@ -12,6 +12,7 @@ const EditorSidebarElements = () => {
       <div className="mx-2 grid max-h-[70svh] grid-cols-1 place-items-center gap-y-4">
         <AddElementButton pageElement={PageElements.CardField} />
         <AddElementButton pageElement={PageElements.SpaceField} />
+        <AddElementButton pageElement={PageElements.DeviderField} />
       </div>
     </div>
   );

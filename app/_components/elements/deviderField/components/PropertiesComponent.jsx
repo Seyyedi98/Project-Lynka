@@ -18,6 +18,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
+import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
+import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
@@ -26,7 +30,11 @@ function PropertiesComponent({ elementInstance }) {
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),
     defaultValues: {
-      height: element.extraAttributes.height || "",
+      title: element.extraAttributes.title || "",
+      theme: element.extraAttributes.theme || "",
+      textColor: element.extraAttributes.textColor || "",
+      font: element.extraAttributes.font || "",
+      deviderColor: element.extraAttributes.deviderColor || "",
     },
   });
 
@@ -35,7 +43,7 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { height } = values;
+    const { title, theme, textColor, font, deviderColor } = values;
 
     const payload = {
       id: element.id,
@@ -43,7 +51,11 @@ function PropertiesComponent({ elementInstance }) {
         ...element,
         extraAttributes: {
           ...element.extraAttributes,
-          height,
+          title,
+          theme,
+          textColor,
+          font,
+          deviderColor,
         },
       },
     };
@@ -84,14 +96,28 @@ function PropertiesComponent({ elementInstance }) {
             className="mt-4 flex flex-col gap-5 text-text/90"
             onSubmit={form.handleSubmit(applyChanges)}
           >
-            <p className="mb-2 text-center text-text">
-              بین دو بلوک فاصله ایجاد کنید
-            </p>
-            <PageFieldValueSlider
+            {/* title, */}
+            <ElementTitleFormField
+              fieldName="title"
+              placeholder="متن"
               form={form}
-              max={250}
-              fieldName="height"
-              label="ارتفاع"
+            />
+
+            {/* font */}
+            <ElementFontFormField fieldName="font" form={form} />
+
+            {/* textColor */}
+            <ElementColorFormField
+              form={form}
+              label="رنگ متن"
+              fieldName="textColor"
+            />
+
+            {/* deviderColor */}
+            <ElementColorFormField
+              form={form}
+              label="رنگ بلوک"
+              fieldName="deviderColor"
             />
 
             {/* Mobile drawaer button */}
