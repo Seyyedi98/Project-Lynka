@@ -7,7 +7,14 @@ import {
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
 
-const PageFieldValueSlider = ({ form, fieldName, label, max }) => {
+const PageFieldValueSlider = ({
+  form,
+  fieldName,
+  label,
+  min = 0,
+  max = 100,
+  step = 10,
+}) => {
   return (
     <FormField
       control={form.control}
@@ -21,8 +28,9 @@ const PageFieldValueSlider = ({ form, fieldName, label, max }) => {
                 {...field}
                 onValueChange={(value) => field.onChange(value[0])}
                 value={[field.value || 0]}
+                min={min}
                 max={max}
-                step={10}
+                step={step}
                 className={cn("mx-auto w-[60%]")}
               />
             </div>

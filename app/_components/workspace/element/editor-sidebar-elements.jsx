@@ -14,6 +14,7 @@ const EditorSidebarElements = () => {
         <AddElementButton pageElement={PageElements.SpaceField} />
         <AddElementButton pageElement={PageElements.DeviderField} />
         <AddElementButton pageElement={PageElements.CountdownField} />
+        <AddElementButton pageElement={PageElements.TextField} />
       </div>
     </div>
   );

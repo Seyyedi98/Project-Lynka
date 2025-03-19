@@ -1,6 +1,5 @@
 "use client";
 
-import PageFieldValueSlider from "@/app/_components/section/workspace/page-value-slider";
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "@/hooks/use-toast";
@@ -10,6 +9,10 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 import { ShinyButton } from "@/app/_components/common/button/shiny-button";
+import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
+import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
+import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
+import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
 import {
   Dialog,
   DialogContent,
@@ -17,11 +20,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
-import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
-import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;

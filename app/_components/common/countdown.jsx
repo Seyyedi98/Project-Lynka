@@ -61,6 +61,7 @@ const useTimer = (unit, countdownDate) => {
     const now = new Date(moment().format("jYYYY-jMM-jDDTHH:mm:ss.SSSZ"));
     const distance = +end - +now;
 
+
     let newTime = 0;
 
     if (unit === "Day") {

@@ -2,7 +2,6 @@
 
 import { ShinyButton } from "@/app/_components/common/button/shiny-button";
 import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
-import { ElementThemeController } from "@/app/_components/controller/element-theme-controller";
 import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
 import {
   Dialog,
@@ -15,7 +14,6 @@ import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "@/hooks/use-toast";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
-import CryptoJS from "crypto-js";
 import { Check, ChevronLeft } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -26,9 +24,6 @@ function PropertiesComponent({ elementInstance }) {
   const dispatch = useDispatch();
 
   const { isSilver } = useUserSubscription();
-
-  const RenderElement =
-    ElementThemeController[element.type][element.extraAttributes.theme][0];
 
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),

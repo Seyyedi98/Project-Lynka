@@ -10,6 +10,10 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 import { ShinyButton } from "@/app/_components/common/button/shiny-button";
+import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
+import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
+import ElementTextAreaFormField from "@/app/_components/common/form/element-properties/element-textarea-formfield";
+import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
 import {
   Dialog,
   DialogContent,
@@ -17,7 +21,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
+import ElementItemsToggleFormField from "@/app/_components/common/form/element-properties/element-itemstoggle-formfield";
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
@@ -26,7 +30,14 @@ function PropertiesComponent({ elementInstance }) {
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),
     defaultValues: {
-      height: element.extraAttributes.height || "",
+      title: element.extraAttributes.title || "",
+      theme: element.extraAttributes.theme || "",
+      textColor: element.extraAttributes.textColor || "",
+      font: element.extraAttributes.font || "",
+      backgroundColor: element.extraAttributes.backgroundColor || "",
+      borderColor: element.extraAttributes.borderColor || "",
+      lineHeight: element.extraAttributes.lineHeight || "",
+      textAlign: element.extraAttributes.textAlign || "",
     },
   });
 
@@ -35,7 +46,16 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { height } = values;
+    const {
+      title,
+      theme,
+      textColor,
+      font,
+      backgroundColor,
+      borderColor,
+      lineHeight,
+      textAlign,
+    } = values;
 
     const payload = {
       id: element.id,
@@ -43,7 +63,14 @@ function PropertiesComponent({ elementInstance }) {
         ...element,
         extraAttributes: {
           ...element.extraAttributes,
-          height,
+          title,
+          theme,
+          textColor,
+          font,
+          backgroundColor,
+          borderColor,
+          lineHeight,
+          textAlign,
         },
       },
     };
@@ -84,14 +111,50 @@ function PropertiesComponent({ elementInstance }) {
             className="mt-4 flex flex-col gap-5 text-text/90"
             onSubmit={form.handleSubmit(applyChanges)}
           >
-            <p className="mb-2 text-center text-text">
-              بین دو بلوک فاصله ایجاد کنید
-            </p>
+            <div>
+              {/* textAlign, */}
+              <ElementItemsToggleFormField form={form} fieldName="textAlign" />
+
+              {/* title, */}
+              <ElementTextAreaFormField
+                fieldName="title"
+                placeholder="متن خود را اینجا بنویسید"
+                form={form}
+              />
+            </div>
+
+            {/* font */}
+            <ElementFontFormField fieldName="font" form={form} />
+
+            {/* textColor */}
+            <ElementColorFormField
+              form={form}
+              label="رنگ متن"
+              fieldName="textColor"
+            />
+
+            {/* backgroundColor, */}
+            <ElementColorFormField
+              form={form}
+              label="رنگ پس زمینه"
+              fieldName="backgroundColor"
+            />
+
+            {/* borderColor, */}
+            <ElementColorFormField
+              form={form}
+              label="رنگ حاشیه"
+              fieldName="borderColor"
+            />
+
+            {/* lineHeight, */}
             <PageFieldValueSlider
               form={form}
-              max={250}
-              fieldName="height"
-              label="ارتفاع"
+              min={1}
+              max={3}
+              step={0.1}
+              fieldName="lineHeight"
+              label="فاصله خطوط"
             />
 
             {/* Mobile drawaer button */}

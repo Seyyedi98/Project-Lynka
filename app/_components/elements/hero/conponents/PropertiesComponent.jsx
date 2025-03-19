@@ -5,7 +5,7 @@ import ElementColorFormField from "@/app/_components/common/form/element-propert
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
-import PageFieldValueSlider from "@/app/_components/section/workspace/page-value-slider";
+import PageFieldValueSlider from "@/app/_components/common/form/element-properties/page-slider-formfield";
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";

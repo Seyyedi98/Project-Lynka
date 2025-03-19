@@ -1,3 +1,5 @@
+"use client";
+
 import { loadFont } from "@/utils/loadFont";
 import React, { useEffect, useState } from "react";
 
