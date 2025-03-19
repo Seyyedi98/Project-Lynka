@@ -17,7 +17,7 @@ export const ElementThemeController = {
     default: [DeviderFieldDefault, { type: "color" }, { isPremium: false }],
   },
   CountdownField: {
-    default: [CountdownFieldDefault, { type: "color" }, { isPremium: false }],
+    default: [CountdownFieldDefault, { type: "color" }, { isPremium: true }],
   },
   TextField: {
     default: [TextFieldDefault, { type: "color" }, { isPremium: false }],

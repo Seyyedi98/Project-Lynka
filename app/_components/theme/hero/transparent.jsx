@@ -36,7 +36,7 @@ const TransparentHero = ({ ...data }) => {
   }, [titleFont, subtitleFont]);
 
   return (
-    <div className="mt-12 flex-col items-center justify-center gap-4">
+    <div className="mt-12 flex w-full flex-col items-center gap-4">
       {primaryBgImage ? (
         <Image
           priority

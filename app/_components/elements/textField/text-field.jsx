@@ -9,7 +9,7 @@ const type = "TextField";
 const extraAttributes = {
   title: "",
   theme: "",
-  textColor: "#ffffff",
+  textColor: "#000000",
   font: "",
   backgroundColor: "#ffffff",
   borderColor: "#ffffff",

@@ -11,7 +11,7 @@ const TextFieldDefault = ({
 }) => {
   return (
     <div
-      className="h-full w-full text-wrap rounded-md px-3 py-2"
+      className="w-full text-wrap rounded-md px-3 py-2"
       style={{ backgroundColor: backgroundColor }}
     >
       <p
