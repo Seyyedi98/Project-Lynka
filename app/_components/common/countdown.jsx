@@ -57,11 +57,18 @@ const useTimer = (unit, countdownDate) => {
   }, [countdownDate]);
 
   const handleCountdown = async () => {
-    const end = new Date(countdownDate.countdownDate);
-    const now = new Date(moment().format("jYYYY-jMM-jDDTHH:mm:ss.SSSZ"));
+    // Convert the countdownDate to Shamsi
+    const end = moment(countdownDate.countdownDate, "jYYYY/jMM/jDD HH:mm");
+    const now = moment(); // Current time in Shamsi
+
     const distance = +end - +now;
 
     let newTime = 0;
+
+    const DAY = 86400000; // milliseconds in a day
+    const HOUR = 3600000; // milliseconds in an hour
+    const MINUTE = 60000; // milliseconds in a minute
+    const SECOND = 1000; // milliseconds in a second
 
     if (unit === "Day") {
       newTime = Math.floor(distance / DAY);
@@ -92,6 +99,43 @@ const useTimer = (unit, countdownDate) => {
       );
     }
   };
+
+  // const handleCountdown = async () => {
+  //   const end = new Date(countdownDate.countdownDate);
+  //   const now = new Date(moment().format("jYYYY-jMM-jDDTHH:mm:ss.SSSZ"));
+  //   const distance = +end - +now;
+
+  //   let newTime = 0;
+
+  //   if (unit === "Day") {
+  //     newTime = Math.floor(distance / DAY);
+  //   } else if (unit === "Hour") {
+  //     newTime = Math.floor((distance % DAY) / HOUR);
+  //   } else if (unit === "Minute") {
+  //     newTime = Math.floor((distance % HOUR) / MINUTE);
+  //   } else {
+  //     newTime = Math.floor((distance % MINUTE) / SECOND);
+  //   }
+
+  //   if (newTime !== timeRef.current) {
+  //     // Exit animation
+  //     await animate(
+  //       ref.current,
+  //       { y: ["0%", "-50%"], opacity: [1, 0] },
+  //       { duration: 0.35 },
+  //     );
+
+  //     timeRef.current = newTime;
+  //     setTime(newTime);
+
+  //     // Enter animation
+  //     await animate(
+  //       ref.current,
+  //       { y: ["50%", "0%"], opacity: [0, 1] },
+  //       { duration: 0.35 },
+  //     );
+  //   }
+  // };
 
   return { ref, time };
 };

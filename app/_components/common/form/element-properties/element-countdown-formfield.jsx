@@ -1,3 +1,4 @@
+import moment from "moment-jalaali"; // Import moment-jalaali for Shamsi dates
 import {
   FormControl,
   FormField,
@@ -20,6 +21,7 @@ const ElementCountdownFormField = ({
 }) => {
   const { countdownDate, countdown } = countdownData;
 
+  // Convert the Miladi countdownDate to Shamsi
   const adjustedCountdownDate = new Date(countdownDate);
   adjustedCountdownDate.setHours(adjustedCountdownDate.getHours() - 3);
   adjustedCountdownDate.setMinutes(adjustedCountdownDate.getMinutes() - 26);
@@ -27,6 +29,8 @@ const ElementCountdownFormField = ({
   const [startDate, setStartDate] = useState(adjustedCountdownDate);
 
   const handleChange = (date) => {
+    // Convert the selected Miladi date to Shamsi
+    const shamsiDate = moment(date).format("jYYYY/jMM/jDD HH:mm");
     const adjustedDate = new Date(date);
     adjustedDate.setHours(adjustedDate.getHours() + 3);
     adjustedDate.setMinutes(adjustedDate.getMinutes() + 26);
