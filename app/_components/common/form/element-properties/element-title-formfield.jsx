@@ -1,12 +1,18 @@
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-const ElementTitleFormField = ({ form, fieldName, placeholder }) => {
+const ElementTitleFormField = ({
+  form,
+  fieldName,
+  placeholder,
+  description,
+}) => {
   return (
     <FormField
       control={form.control}
@@ -25,6 +31,9 @@ const ElementTitleFormField = ({ form, fieldName, placeholder }) => {
               }}
             />
           </FormControl>
+          {description && (
+            <FormDescription className="text-xs">{description}</FormDescription>
+          )}
           <FormMessage />
         </FormItem>
       )}

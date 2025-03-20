@@ -1,12 +1,14 @@
 import { idGenerator } from "@/lib/id-generator";
 import { cn } from "@/lib/utils";
 import { selectIsAnyMenuOpen } from "@/store/modalSlice";
+import getImageAddress from "@/utils/get-image-address";
+import parseJson from "@/utils/parseJSON";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { ChevronRight, Eye } from "lucide-react";
+import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { memo, useCallback, useMemo, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import BackButtonWithConfirmation from "../common/button/back-button-confirmation";
@@ -24,9 +26,6 @@ import EditorSidebar from "../layout/navbar/editor-sidebar";
 import PreviewPageContainer from "../preview/preview-page-container";
 import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
-import getImageAddress from "@/utils/get-image-address";
-import parseJson from "@/utils/parseJSON";
-import Image from "next/image";
 
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 const MemoizedEditorSidebar = memo(EditorSidebar);
@@ -160,7 +159,7 @@ const BuilderWorkspace = () => {
           isAnyMenuOpen && "scale-95 md:scale-100",
         )}
       >
-        <div className="flex h-full w-full transition-all duration-500">
+        <div className="relative flex h-full w-full transition-all duration-500">
           <MemoizedEditorSidebar />
 
           <div
@@ -207,8 +206,15 @@ const BuilderWorkspace = () => {
                 </DialogContent>
               </Dialog>
             </div>
-            <div className="absolute left-4 top-4 z-20">
+            <div className="absolute left-4 top-4 z-20 flex gap-2">
               <PageUrl />
+              <BackButtonWithConfirmation url="/dashboard">
+                <div className="hidden cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 p-2 text-sm md:flex">
+                  <span className="text-white">
+                    <ChevronLeft />
+                  </span>
+                </div>
+              </BackButtonWithConfirmation>
             </div>
 
             {/* Page background */}

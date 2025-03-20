@@ -15,6 +15,12 @@ const extraAttributes = {
   borderColor: "#ffffff",
   lineHeight: "1",
   textAlign: "right",
+  borderRadius: "",
+  schedule: false,
+  scheduleStart: "0",
+  scheduleEnd: "0",
+  countdown: false,
+  countdownDate: "0",
 };
 
 export const TextFieldFormElement = {

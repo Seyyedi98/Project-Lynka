@@ -22,10 +22,17 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import ElementItemsToggleFormField from "@/app/_components/common/form/element-properties/element-itemstoggle-formfield";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
+import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
+import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
   const dispatch = useDispatch();
+
+  const { isSilver } = useUserSubscription();
 
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),
@@ -38,6 +45,12 @@ function PropertiesComponent({ elementInstance }) {
       borderColor: element.extraAttributes.borderColor || "",
       lineHeight: element.extraAttributes.lineHeight || "",
       textAlign: element.extraAttributes.textAlign || "",
+      borderRadius: element.extraAttributes.borderRadius || "",
+      schedule: element.extraAttributes.schedule || false,
+      scheduleStart: element.extraAttributes.scheduleStart || "0",
+      scheduleEnd: element.extraAttributes.scheduleEnd || "0",
+      countdown: element.extraAttributes.countdown || false,
+      countdownDate: element.extraAttributes.countdownDate || "0",
     },
   });
 
@@ -55,6 +68,12 @@ function PropertiesComponent({ elementInstance }) {
       borderColor,
       lineHeight,
       textAlign,
+      borderRadius,
+      schedule,
+      scheduleStart,
+      scheduleEnd,
+      countdown,
+      countdownDate,
     } = values;
 
     const payload = {
@@ -71,6 +90,18 @@ function PropertiesComponent({ elementInstance }) {
           borderColor,
           lineHeight,
           textAlign,
+          borderRadius,
+          schedule: isSilver ? schedule : element.extraAttributes.schedule,
+          scheduleStart: isSilver
+            ? scheduleStart
+            : element.extraAttributes.scheduleStart,
+          scheduleEnd: isSilver
+            ? scheduleEnd
+            : element.extraAttributes.scheduleEnd,
+          countdown: isSilver ? countdown : element.extraAttributes.countdown,
+          countdownDate: isSilver
+            ? countdownDate
+            : element.extraAttributes.countdownDate,
         },
       },
     };
@@ -111,52 +142,90 @@ function PropertiesComponent({ elementInstance }) {
             className="mt-4 flex flex-col gap-5 text-text/90"
             onSubmit={form.handleSubmit(applyChanges)}
           >
-            <div>
-              {/* textAlign, */}
-              <ElementItemsToggleFormField form={form} fieldName="textAlign" />
+            <Tabs dir="rtl" defaultValue="content" className="">
+              <TabsList className="mb-2">
+                <TabsTrigger value="content">محتوا</TabsTrigger>
+                <TabsTrigger value="design">طراحی</TabsTrigger>
+                <TabsTrigger value="visibility">نمایش</TabsTrigger>
+              </TabsList>
 
-              {/* title, */}
-              <ElementTextAreaFormField
-                fieldName="title"
-                placeholder="متن خود را اینجا بنویسید"
-                form={form}
-              />
-            </div>
+              <TabsContent value="content" className="flex flex-col gap-5">
+                <div>
+                  {/* textAlign, */}
+                  <ElementItemsToggleFormField
+                    form={form}
+                    fieldName="textAlign"
+                  />
 
-            {/* font */}
-            <ElementFontFormField fieldName="font" form={form} />
+                  {/* title, */}
+                  <ElementTextAreaFormField
+                    fieldName="title"
+                    placeholder="متن خود را اینجا بنویسید"
+                    form={form}
+                  />
+                </div>
 
-            {/* textColor */}
-            <ElementColorFormField
-              form={form}
-              label="رنگ متن"
-              fieldName="textColor"
-            />
+                {/* font */}
+                <ElementFontFormField fieldName="font" form={form} />
 
-            {/* backgroundColor, */}
-            <ElementColorFormField
-              form={form}
-              label="رنگ پس زمینه"
-              fieldName="backgroundColor"
-            />
+                {/* textColor */}
+                <ElementColorFormField
+                  form={form}
+                  label="رنگ متن"
+                  fieldName="textColor"
+                />
+              </TabsContent>
 
-            {/* borderColor, */}
-            <ElementColorFormField
-              form={form}
-              label="رنگ حاشیه"
-              fieldName="borderColor"
-            />
+              <TabsContent value="design" className="flex flex-col gap-5">
+                {/* backgroundColor, */}
+                <ElementColorFormField
+                  form={form}
+                  label="رنگ پس زمینه"
+                  fieldName="backgroundColor"
+                />
 
-            {/* lineHeight, */}
-            <PageFieldValueSlider
-              form={form}
-              min={1}
-              max={3}
-              step={0.1}
-              fieldName="lineHeight"
-              label="فاصله خطوط"
-            />
+                {/* borderColor, */}
+                <ElementColorFormField
+                  form={form}
+                  label="رنگ حاشیه"
+                  fieldName="borderColor"
+                />
 
+                {/* Border radius */}
+                <ElementBorderRadiusFormField form={form} />
+
+                {/* lineHeight, */}
+                <PageFieldValueSlider
+                  form={form}
+                  min={1}
+                  max={3}
+                  step={0.1}
+                  fieldName="lineHeight"
+                  label="فاصله خطوط"
+                />
+              </TabsContent>
+
+              <TabsContent value="visibility" className="flex flex-col gap-4">
+                {/* Schedule */}
+                <div className="mt-6">
+                  <ElementScheduleFormField
+                    scheduleData={element.extraAttributes}
+                    form={form}
+                    isSilver={isSilver}
+                  />
+                </div>
+
+                {/* Countdown */}
+                <div className="mt-6">
+                  <ElementCountdownFormField
+                    showToggle={true}
+                    countdownData={element.extraAttributes}
+                    form={form}
+                    isSilver={isSilver}
+                  />
+                </div>
+              </TabsContent>
+            </Tabs>
             {/* Mobile drawaer button */}
             <button
               type="submit"

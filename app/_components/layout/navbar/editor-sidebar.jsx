@@ -4,13 +4,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
-import EditorSidebarElements from "../../workspace/element/editor-sidebar-elements";
-import ElementProperties from "../../workspace/element/element-properties";
+import PageAnalytics from "../../section/workspace/page-analytics";
 import PageDataSettingsContainer from "../../section/workspace/page-data-settings-container";
 import PageStyleSettingsContainer from "../../section/workspace/page-style-settings-container";
+import EditorSidebarElements from "../../workspace/element/editor-sidebar-elements";
+import ElementProperties from "../../workspace/element/element-properties";
 import WorkspaceSidebatDesktop from "./workspace-sidebar-desktop";
 import WorkspaceSidebarMobile from "./workspace-sidebar-mobile";
-import PageAnalytics from "../../section/workspace/page-analytics";
+import { cn } from "@/lib/utils";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -39,12 +40,15 @@ const EditorSidebar = () => {
     return (
       <>
         {/* rounded menu on the right */}
+
         <WorkspaceSidebatDesktop
           selectedMenu={selectedMenu}
           setSelectedMenu={setSelectedMenu}
         />
 
-        <div className="group z-30 my-auto hidden h-full w-full flex-col items-center overflow-y-auto bg-secondaryBg px-3 pb-6 pr-20 text-text shadow-2xl duration-700 md:flex">
+        <div className="group relative z-30 my-auto hidden h-full w-full flex-col items-center overflow-y-auto bg-secondaryBg px-3 pb-6 pr-20 text-text shadow-2xl duration-700 md:flex">
+          {/* Back to dashboard btn */}
+
           <AnimatePresence mode="wait">
             {selectedElement ? (
               <motion.div

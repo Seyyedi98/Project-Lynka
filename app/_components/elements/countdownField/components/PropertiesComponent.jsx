@@ -1,7 +1,9 @@
 "use client";
 
 import { ShinyButton } from "@/app/_components/common/button/shiny-button";
+import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
+import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
 import {
   Dialog,
@@ -12,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { Check, ChevronLeft } from "lucide-react";
@@ -29,6 +32,8 @@ function PropertiesComponent({ elementInstance }) {
     // resolver: zodResolver(cardFieldSchems),
     defaultValues: {
       countdownDate: element.extraAttributes.countdownDate || "0",
+      message: element.extraAttributes.message || "",
+      borderRadius: element.extraAttributes.borderRadius || "",
     },
   });
 
@@ -37,7 +42,7 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { countdownDate, theme } = values;
+    const { countdownDate, message, theme, borderRadius } = values;
 
     const payload = {
       id: element.id,
@@ -46,7 +51,9 @@ function PropertiesComponent({ elementInstance }) {
         extraAttributes: {
           ...element.extraAttributes,
           countdownDate,
+          message,
           theme,
+          borderRadius,
         },
       },
     };
@@ -87,17 +94,47 @@ function PropertiesComponent({ elementInstance }) {
             className="flex flex-col gap-5 text-text/90"
             onSubmit={form.handleSubmit(applyChanges)}
           >
-            {/* Countdown */}
-            <div className="mt-6">
-              <ElementCountdownFormField
-                showToggle={false}
-                countdownData={element.extraAttributes}
-                form={form}
-                isSilver={isSilver}
-              />
-            </div>
+            <Tabs dir="rtl" defaultValue="content" className="">
+              <TabsList className="mb-2">
+                <TabsTrigger value="content">محتوا</TabsTrigger>
+                <TabsTrigger value="design">طراحی</TabsTrigger>
+              </TabsList>
 
-            {/* Mobile drawaer button */}
+              <TabsContent value="content" className="flex flex-col gap-5">
+                {/* message */}
+                <div className="flex flex-col gap-3">
+                  <p className="text-wrap text-xs text-text/70">
+                    نمایش متن پس از پایان شمارش گر
+                  </p>
+                  <ElementTitleFormField
+                    fieldName="message"
+                    placeholder="متن خود را اینجا بنویسید"
+                    form={form}
+                    description="اگر نمیخواهید پس از پایان شمارشگر متنی نمایش داده شود، این فیلد را خالی بگذارید"
+                  />
+                </div>
+
+                {/* Countdown */}
+                <div className="mt-2 flex flex-col gap-2">
+                  <p className="text-wrap text-xs text-text/70">
+                    تاریخ اتمام شمارش
+                  </p>
+                  <ElementCountdownFormField
+                    showToggle={false}
+                    countdownData={element.extraAttributes}
+                    form={form}
+                    isSilver={isSilver}
+                  />
+                </div>
+              </TabsContent>
+
+              <TabsContent value="design" className="flex flex-col gap-4">
+                {/* Border radius */}
+                <ElementBorderRadiusFormField form={form} />{" "}
+              </TabsContent>
+            </Tabs>
+
+            {/* Mobile drawer button */}
             <button
               type="submit"
               className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"

@@ -8,7 +8,9 @@ const type = "CountdownField";
 
 const extraAttributes = {
   countdownDate: "0",
+  message: "",
   theme: "",
+  borderRadius: "",
 };
 
 export const CountdownFieldFormElement = {

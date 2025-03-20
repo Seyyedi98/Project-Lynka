@@ -11,5 +11,5 @@ export const WorkspaceComponent = memo(function WorkspaceComponent({
   const RenderedElement = ElementThemeController[element.type][data.theme][0];
   const { isSilver } = useUserSubscription();
 
-  return <RenderedElement isSilver={isSilver} {...data} />;
+  return <RenderedElement isLive={false} isSilver={isSilver} {...data} />;
 });

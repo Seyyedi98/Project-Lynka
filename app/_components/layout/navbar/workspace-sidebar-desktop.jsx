@@ -137,12 +137,6 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
           </ul>
 
           <div className="flex flex-col items-center justify-center gap-4">
-            <BackButtonWithConfirmation url="/dashboard">
-              <span className="cursor-pointer text-text">
-                <ChevronRight />
-              </span>
-            </BackButtonWithConfirmation>
-
             <Dialog>
               <DialogTrigger asChild>
                 <GearIcon className="h-7 w-7 cursor-pointer" />
