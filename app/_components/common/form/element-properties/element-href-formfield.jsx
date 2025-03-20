@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-const ElementhrefFormField = (form) => {
+const ElementhrefFormField = ({ form, message }) => {
   return (
     <FormField
       control={form.control}
@@ -35,9 +35,7 @@ const ElementhrefFormField = (form) => {
               />
             </FormControl>
           </div>
-          <FormDescription className="text-xs">
-            آدرس صفحه ای که می خواهید به آن هدایت شوید
-          </FormDescription>
+          <FormDescription className="text-xs">{message}</FormDescription>
           <FormMessage />
         </FormItem>
       )}

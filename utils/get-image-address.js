@@ -1,5 +1,5 @@
 const getImageAddress = (key) => {
-  const imageUrl = `https://${process.env.NEXT_PUBLIC_LIARA_ENDPOINT}/${process.env.NEXT_PUBLIC_LIARA_BUCKET_NAME}/${key}`;
+  const imageUrl = `https://${process.env.NEXT_PUBLIC_ENDPOINT}/${process.env.NEXT_PUBLIC_BUCKET_NAME}/${key}`;
   return imageUrl;
 };
 

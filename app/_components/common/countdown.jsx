@@ -9,64 +9,19 @@ const MINUTE = SECOND * 60;
 const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 
-const ShiftingCountdown = (props) => {
-  const { countdownDate, message, borderRadius } = props;
-  const [isCountdownFinished, setIsCountdownFinished] = useState(false);
-
-  // Check if the countdown has finished
-  useEffect(() => {
-    const end = moment(countdownDate.countdownDate, "jYYYY/jMM/jDD HH:mm");
-    const now = moment(); // Current time in Shamsi
-    const distance = +end - +now;
-
-    if (distance <= 0) {
-      setIsCountdownFinished(true);
-    }
-  }, [countdownDate]);
-
+const ShiftingCountdown = (countdownDate) => {
   return (
-    <div
-      style={{ borderRadius: borderRadius }}
-      className="mx-auto flex w-full max-w-5xl items-center bg-white"
-    >
-      {isCountdownFinished && message ? (
-        <div className="flex h-24 w-full items-center justify-center text-wrap text-center text-base font-medium text-black">
-          {message}
-        </div>
-      ) : (
-        <>
-          <CountdownItem
-            unit="Second"
-            text="ثانیه"
-            countdownDate={countdownDate}
-            onFinish={() => setIsCountdownFinished(true)}
-          />
-          <CountdownItem
-            unit="Minute"
-            text="دقیقه"
-            countdownDate={countdownDate}
-            onFinish={() => setIsCountdownFinished(true)}
-          />
-          <CountdownItem
-            unit="Hour"
-            text="ساعت"
-            countdownDate={countdownDate}
-            onFinish={() => setIsCountdownFinished(true)}
-          />
-          <CountdownItem
-            unit="Day"
-            text="روز"
-            countdownDate={countdownDate}
-            onFinish={() => setIsCountdownFinished(true)}
-          />
-        </>
-      )}
+    <div className="mx-auto flex w-full max-w-5xl items-center rounded-md bg-white">
+      <CountdownItem unit="Second" text="ثانیه" countdownDate={countdownDate} />
+      <CountdownItem unit="Minute" text="دقیقه" countdownDate={countdownDate} />
+      <CountdownItem unit="Hour" text="ساعت" countdownDate={countdownDate} />
+      <CountdownItem unit="Day" text="روز" countdownDate={countdownDate} />
     </div>
   );
 };
 
-const CountdownItem = ({ unit, text, countdownDate, onFinish }) => {
-  const { ref, time } = useTimer(unit, countdownDate, onFinish);
+const CountdownItem = ({ unit, text, countdownDate }) => {
+  const { ref, time } = useTimer(unit, countdownDate);
 
   return (
     <div className="flex h-24 w-1/4 flex-col items-center justify-center gap-1 border-r-[1px] border-slate-200 md:h-36 md:gap-2">
@@ -87,7 +42,7 @@ const CountdownItem = ({ unit, text, countdownDate, onFinish }) => {
 
 export default ShiftingCountdown;
 
-const useTimer = (unit, countdownDate, onFinish) => {
+const useTimer = (unit, countdownDate) => {
   const [ref, animate] = useAnimate();
 
   const intervalRef = useRef(null);
@@ -108,15 +63,12 @@ const useTimer = (unit, countdownDate, onFinish) => {
 
     const distance = +end - +now;
 
-    // Stop the countdown if the distance is zero or negative
-    if (distance <= 0) {
-      clearInterval(intervalRef.current || undefined);
-      setTime(0); // Set time to 0 when countdown finishes
-      onFinish(); // Notify parent that the countdown has finished
-      return;
-    }
-
     let newTime = 0;
+
+    const DAY = 86400000; // milliseconds in a day
+    const HOUR = 3600000; // milliseconds in an hour
+    const MINUTE = 60000; // milliseconds in a minute
+    const SECOND = 1000; // milliseconds in a second
 
     if (unit === "Day") {
       newTime = Math.floor(distance / DAY);

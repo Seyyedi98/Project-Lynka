@@ -18,9 +18,6 @@ export const getSubscriptionData = async () => {
 };
 
 export const getSubscriptionDataByUri = async (uri) => {
-  const session = await currentUser();
-  if (!session) return;
-
   const userId = await prisma.page.findUnique({
     where: { uri },
     select: { User: true },

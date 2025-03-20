@@ -12,6 +12,7 @@ export async function LivePageComponent({ elementInstance, uri }) {
   const currentShamsiDate = moment().format("jYYYY-jMM-jDDTHH:mm:ss.SSSZ");
 
   const { isSilver } = await getSubscriptionByUri(uri);
+
   const scheduledRender = isSilver
     ? data.schedule
       ? hour >= data.scheduleStart && hour < data.scheduleEnd

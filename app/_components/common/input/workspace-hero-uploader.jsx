@@ -21,10 +21,10 @@ const HeroWorkspaceUploader = ({ uri }) => {
 
   const previousImage = hero?.extraAttributes?.primaryImage;
 
-  const ACCESSKEY = process.env.NEXT_PUBLIC_LIARA_ACCESS_KEY;
-  const SECRETKEY = process.env.NEXT_PUBLIC_LIARA_SECRET_KEY;
-  const ENDPOINT = process.env.NEXT_PUBLIC_LIARA_ENDPOINT;
-  const BUCKET = process.env.NEXT_PUBLIC_LIARA_BUCKET_NAME;
+  const ACCESSKEY = process.env.NEXT_PUBLIC_ACCESS_KEY;
+  const SECRETKEY = process.env.NEXT_PUBLIC_SECRET_KEY;
+  const ENDPOINT = process.env.NEXT_PUBLIC_ENDPOINT;
+  const BUCKET = process.env.NEXT_PUBLIC_BUCKET_NAME;
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);

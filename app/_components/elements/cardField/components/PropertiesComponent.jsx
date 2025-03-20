@@ -188,7 +188,10 @@ function PropertiesComponent({ elementInstance }) {
                 <ElementTitleFormField form={form} />
 
                 {/* Address */}
-                <ElementhrefFormField form={form} />
+                <ElementhrefFormField
+                  form={form}
+                  message="آدرس صفحه ای که می خواهید به آن هدایت شوید"
+                />
 
                 <Divider className="mt-4 opacity-50" />
 

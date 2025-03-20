@@ -131,7 +131,10 @@ function PropertiesComponent({ elementInstance }) {
 
               <TabsContent value="content" className="flex flex-col gap-5">
                 {/* Address */}
-                <ElementhrefFormField form={form} />
+                <ElementhrefFormField
+                  form={form}
+                  message="آدرس ویدیو در آپارات را اینجا بنویسید"
+                />
 
                 <Divider className="mt-4 opacity-50" />
               </TabsContent>

@@ -71,7 +71,7 @@ const VideoFieldDefault = ({ href }) => {
           ></iframe>
         </div>
       ) : (
-        <p>Invalid Aparat video link</p>
+        <p>آدرس وارد شده معتبر نمی باشد</p>
       )}
     </div>
   );
