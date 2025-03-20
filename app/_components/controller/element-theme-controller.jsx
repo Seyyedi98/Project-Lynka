@@ -4,6 +4,7 @@ import SpaceFieldDefault from "../theme/space/space-field-default";
 import DeviderFieldDefault from "../theme/devider/devider-field-default";
 import CountdownFieldDefault from "../theme/countdown/countdown-field-default";
 import TextFieldDefault from "../theme/text/text-field-default";
+import VideoFieldDefault from "../theme/video/video-field-default";
 
 export const ElementThemeController = {
   CardField: {
@@ -21,5 +22,8 @@ export const ElementThemeController = {
   },
   TextField: {
     default: [TextFieldDefault, { type: "color" }, { isPremium: false }],
+  },
+  VideoField: {
+    default: [VideoFieldDefault, { type: "color" }, { isPremium: true }],
   },
 };

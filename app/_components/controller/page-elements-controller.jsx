@@ -3,6 +3,7 @@ import { CountdownFieldFormElement } from "../elements/countdownField/countdown-
 import { DeviderFieldFormElement } from "../elements/deviderField/devider-field";
 import { SpaceFieldFormElement } from "../elements/spaceField/space-field";
 import { TextFieldFormElement } from "../elements/textField/text-field";
+import { VideoFieldFormElement } from "../elements/videoField/video-field";
 
 export const PageElements = {
   CardField: CardFieldFormElement,
@@ -10,4 +11,5 @@ export const PageElements = {
   DeviderField: DeviderFieldFormElement,
   CountdownField: CountdownFieldFormElement,
   TextField: TextFieldFormElement,
+  VideoField: VideoFieldFormElement,
 };

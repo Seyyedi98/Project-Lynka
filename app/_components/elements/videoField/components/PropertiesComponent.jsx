@@ -1,18 +1,11 @@
 "use client";
 
-import PageFieldValueSlider from "@/app/_components/common/form/element-properties/page-slider-formfield";
-import { Form } from "@/components/ui/form";
-import { Skeleton } from "@/components/ui/skeleton";
-import { toast } from "@/hooks/use-toast";
-import { Check, ChevronLeft } from "lucide-react";
-import { Suspense, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-
 import { ShinyButton } from "@/app/_components/common/button/shiny-button";
-import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
-import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
-import ElementTextAreaFormField from "@/app/_components/common/form/element-properties/element-textarea-formfield";
+import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
+import ElementhrefFormField from "@/app/_components/common/form/element-properties/element-href-formfield";
+import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
+import Divider from "@/app/_components/common/shared/devider";
+import { ElementThemeController } from "@/app/_components/controller/element-theme-controller";
 import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
 import {
   Dialog,
@@ -21,13 +14,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import ElementItemsToggleFormField from "@/app/_components/common/form/element-properties/element-itemstoggle-formfield";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
+import { Form } from "@/components/ui/form";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
-import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
-import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
-import Divider from "@/app/_components/common/shared/devider";
+import { toast } from "@/hooks/use-toast";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
+import { Check, ChevronLeft } from "lucide-react";
+import { Suspense, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
@@ -35,23 +30,20 @@ function PropertiesComponent({ elementInstance }) {
 
   const { isSilver } = useUserSubscription();
 
+  const RenderElement =
+    ElementThemeController[element.type][element.extraAttributes.theme][0];
+
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),
     defaultValues: {
-      title: element.extraAttributes.title || "",
-      theme: element.extraAttributes.theme || "",
-      textColor: element.extraAttributes.textColor || "",
-      font: element.extraAttributes.font || "",
-      backgroundColor: element.extraAttributes.backgroundColor || "",
-      borderColor: element.extraAttributes.borderColor || "",
-      lineHeight: element.extraAttributes.lineHeight || "",
-      textAlign: element.extraAttributes.textAlign || "",
-      borderRadius: element.extraAttributes.borderRadius || "",
+      href: element.extraAttributes.href || "",
       schedule: element.extraAttributes.schedule || false,
       scheduleStart: element.extraAttributes.scheduleStart || "0",
       scheduleEnd: element.extraAttributes.scheduleEnd || "0",
       countdown: element.extraAttributes.countdown || false,
       countdownDate: element.extraAttributes.countdownDate || "0",
+      isProtected: element.extraAttributes.isProtected || false,
+      password: "",
     },
   });
 
@@ -61,15 +53,8 @@ function PropertiesComponent({ elementInstance }) {
 
   function applyChanges(values) {
     const {
-      title,
       theme,
-      textColor,
-      font,
-      backgroundColor,
-      borderColor,
-      lineHeight,
-      textAlign,
-      borderRadius,
+      href,
       schedule,
       scheduleStart,
       scheduleEnd,
@@ -83,15 +68,9 @@ function PropertiesComponent({ elementInstance }) {
         ...element,
         extraAttributes: {
           ...element.extraAttributes,
-          title,
           theme,
-          textColor,
-          font,
-          backgroundColor,
-          borderColor,
-          lineHeight,
-          textAlign,
-          borderRadius,
+          href,
+
           schedule: isSilver ? schedule : element.extraAttributes.schedule,
           scheduleStart: isSilver
             ? scheduleStart
@@ -140,7 +119,7 @@ function PropertiesComponent({ elementInstance }) {
         >
           <form
             // onBlur={form.handleSubmit(applyChanges)}
-            className="mt-4 flex flex-col gap-5 text-text/90"
+            className="flex flex-col gap-5 text-text/90"
             onSubmit={form.handleSubmit(applyChanges)}
           >
             <Tabs dir="rtl" defaultValue="content" className="">
@@ -151,61 +130,10 @@ function PropertiesComponent({ elementInstance }) {
               </TabsList>
 
               <TabsContent value="content" className="flex flex-col gap-5">
-                <div>
-                  {/* textAlign, */}
-                  <ElementItemsToggleFormField
-                    form={form}
-                    fieldName="textAlign"
-                  />
-
-                  {/* title, */}
-                  <ElementTextAreaFormField
-                    fieldName="title"
-                    placeholder="متن خود را اینجا بنویسید"
-                    form={form}
-                  />
-                </div>
+                {/* Address */}
+                <ElementhrefFormField form={form} />
 
                 <Divider className="mt-4 opacity-50" />
-
-                {/* font */}
-                <ElementFontFormField fieldName="font" form={form} />
-
-                {/* textColor */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ متن"
-                  fieldName="textColor"
-                />
-              </TabsContent>
-
-              <TabsContent value="design" className="flex flex-col gap-5">
-                {/* backgroundColor, */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ پس زمینه"
-                  fieldName="backgroundColor"
-                />
-
-                {/* borderColor, */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ حاشیه"
-                  fieldName="borderColor"
-                />
-
-                {/* Border radius */}
-                <ElementBorderRadiusFormField form={form} />
-
-                {/* lineHeight, */}
-                <PageFieldValueSlider
-                  form={form}
-                  min={1}
-                  max={3}
-                  step={0.1}
-                  fieldName="lineHeight"
-                  label="فاصله خطوط"
-                />
               </TabsContent>
 
               <TabsContent value="visibility" className="flex flex-col gap-4">
@@ -229,6 +157,7 @@ function PropertiesComponent({ elementInstance }) {
                 </div>
               </TabsContent>
             </Tabs>
+
             {/* Mobile drawaer button */}
             <button
               type="submit"
@@ -247,7 +176,6 @@ function PropertiesComponent({ elementInstance }) {
           </form>
         </Suspense>
       </Form>
-
       <div className="mt-auto">
         <Dialog>
           <DialogTrigger asChild>
