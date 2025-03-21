@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 
 // It's react hook and only works on client component
 export const useCurrentUser = () => {
-  const session = useSession();
+  const session = useSession({ required: true });
 
-  return session.data?.user;
+  if (session.status === "authenticated") return session.data?.user;
 };

@@ -20,7 +20,7 @@ export const CountdownFieldFormElement = {
     type,
     extraAttributes,
   }),
-
+  isPremium: true,
   ElementAdderBtn: {
     icon: TimerIcon,
     label: "شمارش معکوس",

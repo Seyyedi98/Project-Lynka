@@ -1,15 +1,14 @@
+import { getPageAnalytics } from "@/actions/page/analytics";
 import { getUserPageData } from "@/actions/page/page";
-import BlogWidget from "@/app/_components/common/card/blog-widget";
 import CreatePageButton from "@/app/_components/common/button/new-page-btn";
+import AnalyticsWidget from "@/app/_components/common/card/analytics-widget";
+import BlogWidget from "@/app/_components/common/card/blog-widget";
 import DashboardDataCard from "@/app/_components/common/card/dashboard-data-card";
 import Carousel from "@/app/_components/common/carousel";
 import PagesList from "@/app/_components/section/dashboard-pages-list";
+import { currentUserSubscription } from "@/lib/auth/user-subscription";
 import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import { ApertureIcon, BadgeCheck, ChartSpline } from "lucide-react";
-import AnalyticsWidget from "@/app/_components/common/card/analytics-widget";
-import { getPageAnalytics } from "@/actions/page/analytics";
-import { currentUserSubscription } from "@/lib/auth/user-subscription";
-import ShiftingCountdown from "@/app/_components/common/countdown";
 
 const Dashboard = async () => {
   const allPages = await getUserPageData();

@@ -16,8 +16,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { LogoutButton } from "../../auth/logout-button";
+import { useCurrentUser } from "../../../../hooks/useCurrentUser";
 
 const DashboardHeading = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);

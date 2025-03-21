@@ -10,47 +10,17 @@ const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 
 const ShiftingCountdown = (props) => {
-  const [isCountdownFinished, setIsCountdownFinished] = useState(false);
   const { countdownDate, message, borderRadius } = props;
-
-  // Convert the countdownDate to Shamsi
-  const end = moment(countdownDate, "jYYYY/jMM/jDD HH:mm");
-  const now = moment();
-  const distance = +end - +now;
-
-  useEffect(() => {
-    if (distance < 0) setIsCountdownFinished(true);
-  }, [distance]);
 
   return (
     <div
       style={{ borderRadius: borderRadius }}
       className="mx-auto flex w-full max-w-5xl items-center bg-white"
     >
-      {isCountdownFinished ? (
-        <p className="grid h-20 w-full place-content-center text-wrap text-base text-black">
-          {message || "شمارشگر به پایان رسیده است"}
-        </p>
-      ) : (
-        <>
-          <CountdownItem
-            unit="Second"
-            text="ثانیه"
-            countdownDate={countdownDate}
-          />
-          <CountdownItem
-            unit="Minute"
-            text="دقیقه"
-            countdownDate={countdownDate}
-          />
-          <CountdownItem
-            unit="Hour"
-            text="ساعت"
-            countdownDate={countdownDate}
-          />
-          <CountdownItem unit="Day" text="روز" countdownDate={countdownDate} />
-        </>
-      )}
+      <CountdownItem unit="Second" text="ثانیه" countdownDate={countdownDate} />
+      <CountdownItem unit="Minute" text="دقیقه" countdownDate={countdownDate} />
+      <CountdownItem unit="Hour" text="ساعت" countdownDate={countdownDate} />
+      <CountdownItem unit="Day" text="روز" countdownDate={countdownDate} />
     </div>
   );
 };
@@ -59,13 +29,18 @@ const CountdownItem = ({ unit, text, countdownDate }) => {
   const { ref, time } = useTimer(unit, countdownDate);
 
   return (
-    <div className="flex h-24 w-1/4 flex-col items-center justify-center gap-1 border-slate-200 md:h-36 md:gap-2">
+    <div className="flex h-24 w-1/4 flex-col items-center justify-center gap-1 border-r-[1px] border-slate-200 md:h-36 md:gap-2">
       <div className="relative w-full overflow-hidden text-center">
-        <span ref={ref} className="block text-3xl font-medium text-black">
+        <span
+          ref={ref}
+          className="block text-2xl font-medium text-black md:text-4xl lg:text-6xl xl:text-7xl"
+        >
           {time}
         </span>
       </div>
-      <span className="text-base font-light text-slate-500">{text}</span>
+      <span className="text-xs font-light text-slate-500 md:text-sm lg:text-base">
+        {text}
+      </span>
     </div>
   );
 };
@@ -88,17 +63,17 @@ const useTimer = (unit, countdownDate) => {
 
   const handleCountdown = async () => {
     // Convert the countdownDate to Shamsi
-    const end = moment(countdownDate, "jYYYY/jMM/jDD HH:mm");
-    const now = moment();
+    const end = moment(countdownDate.countdownDate, "jYYYY/jMM/jDD HH:mm");
+    const now = moment(); // Current time in Shamsi
 
     const distance = +end - +now;
 
     let newTime = 0;
 
-    const DAY = 86400000;
-    const HOUR = 3600000;
-    const MINUTE = 60000;
-    const SECOND = 1000;
+    const DAY = 86400000; // milliseconds in a day
+    const HOUR = 3600000; // milliseconds in an hour
+    const MINUTE = 60000; // milliseconds in a minute
+    const SECOND = 1000; // milliseconds in a second
 
     if (unit === "Day") {
       newTime = Math.floor(distance / DAY);

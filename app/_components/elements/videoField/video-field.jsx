@@ -24,7 +24,7 @@ export const VideoFieldFormElement = {
     type,
     extraAttributes,
   }),
-
+  isPremium: true,
   ElementAdderBtn: {
     icon: VideoIcon,
     label: "فیلم",

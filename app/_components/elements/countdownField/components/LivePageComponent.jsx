@@ -16,13 +16,13 @@ export async function LivePageComponent({ elementInstance, uri }) {
     ? data.schedule
       ? hour >= data.scheduleStart && hour < data.scheduleEnd
       : true
-    : true;
+    : false;
 
   const countdownRender = isSilver
     ? data.countdown
       ? currentShamsiDate > countdownDate
       : true
-    : true;
+    : false;
 
   const protectedElement = isSilver ? data.isProtected : false;
 
