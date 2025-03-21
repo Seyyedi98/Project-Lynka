@@ -28,7 +28,7 @@ export const RssFieldFormElement = {
     type,
     extraAttributes,
   }),
-
+  isPremium: true,
   ElementAdderBtn: {
     icon: RssIcon,
     label: "فید rss",

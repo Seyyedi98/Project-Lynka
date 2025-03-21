@@ -13,12 +13,15 @@ const RssFieldDefault = ({
   font,
   borderRadius,
   bgColor,
+  isLive,
 }) => {
   const { isSilver } = useUserSubscription();
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const [loadedFont, setLoadedFont] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  console.log(posts);
 
   useEffect(() => {
     const fetchFont = async () => {
@@ -56,9 +59,9 @@ const RssFieldDefault = ({
 
   return (
     <div className="relative w-full">
-      {!isSilver && (
-        <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
-          برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
+      {!isSilver && !isLive && (
+        <div className="absolute left-1/2 top-1/2 z-10 w-3/4 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
+          برای استفاده از فید rss، اشتراک ویژه خود را تمدید کنید
         </div>
       )}
       <div
@@ -67,52 +70,57 @@ const RssFieldDefault = ({
           !isSilver && "opacity-70",
         )}
       >
-        {isSilver ? (
-          error ? (
-            <div className="text-red-500">خطا در دریافت اطلاعات فید</div>
-          ) : (
-            <ul className="list-none space-y-2 pl-0">
-              <h4 style={{ color: textColor }} className="text-center text-lg">
-                {title}
-              </h4>
-              {loading ? (
-                <div className="flex h-16 w-full items-center justify-center">
-                  <Loader2Icon className="h-8 w-8 animate-spin text-gray-500" />
-                </div>
-              ) : (
-                posts.map((post, index) => (
-                  <li key={index} className="w-full">
-                    <a
-                      href={post.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        backgroundColor: bgColor,
-                        borderRadius: borderRadius,
-                      }}
-                      className={cn(
-                        `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 px-4 text-justify text-base font-medium text-white shadow-lg`,
-                        href === "" && "pointer-events-none",
-                      )}
-                    >
-                      <p
+        {href ? (
+          isSilver || !isLive ? (
+            error ? (
+              <div className="text-red-500">خطا در دریافت اطلاعات فید</div>
+            ) : (
+              <ul className="list-none space-y-2 pl-0">
+                <h4
+                  style={{ color: textColor }}
+                  className="text-center text-lg"
+                >
+                  {title}
+                </h4>
+                {loading ? (
+                  <div className="flex h-16 w-full items-center justify-center">
+                    <Loader2Icon className="h-8 w-8 animate-spin text-gray-500" />
+                  </div>
+                ) : (
+                  posts.map((post, index) => (
+                    <li key={index} className="w-full">
+                      <a
+                        href={post.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         style={{
-                          fontFamily: loadedFont
-                            ? `var(${loadedFont})`
-                            : "inherit",
-                          color: textColor,
+                          backgroundColor: bgColor,
+                          borderRadius: borderRadius,
                         }}
+                        className={cn(
+                          `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 px-4 text-justify text-base font-medium text-white shadow-lg`,
+                          href === "" && "pointer-events-none",
+                        )}
                       >
-                        {post.title}
-                      </p>
-                    </a>
-                  </li>
-                ))
-              )}
-            </ul>
-          )
+                        <p
+                          style={{
+                            fontFamily: loadedFont
+                              ? `var(${loadedFont})`
+                              : "inherit",
+                            color: textColor,
+                          }}
+                        >
+                          {post.title}
+                        </p>
+                      </a>
+                    </li>
+                  ))
+                )}
+              </ul>
+            )
+          ) : null
         ) : (
-          "rss field"
+          "برای اتصال به rss اینجا کلیک کنید"
         )}
       </div>
     </div>

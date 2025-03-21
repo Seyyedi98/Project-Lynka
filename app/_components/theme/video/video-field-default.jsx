@@ -5,7 +5,7 @@ import { Loader2 as LoaderIcon } from "lucide-react";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { cn } from "@/lib/utils";
 
-const VideoFieldDefault = ({ href }) => {
+const VideoFieldDefault = ({ href, isLive }) => {
   const iframeRef = useRef(null);
   const [iframeHeight, setIframeHeight] = useState("400px");
   const [isLoading, setIsLoading] = useState(true);
@@ -47,8 +47,8 @@ const VideoFieldDefault = ({ href }) => {
 
   return (
     <div className="relative w-full">
-      {!isSilver && (
-        <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
+      {!isSilver && !isLive && (
+        <div className="absolute left-1/2 top-1/2 z-10 w-3/4 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
           برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
         </div>
       )}
@@ -59,31 +59,33 @@ const VideoFieldDefault = ({ href }) => {
         )}
       >
         {iframeUrl ? (
-          <div style={{ position: "relative" }}>
-            {isLoading && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                }}
-              >
-                <LoaderIcon className="h-8 w-8 animate-spin text-gray-500" />{" "}
-              </div>
-            )}
-            <iframe
-              ref={iframeRef}
-              src={iframeUrl}
-              width="100%"
-              height={iframeHeight}
-              frameBorder="0"
-              allowFullScreen
-              title="Aparat Video"
-              style={{ display: "block" }}
-              onLoad={handleIframeLoad}
-            ></iframe>
-          </div>
+          isSilver || !isLive ? (
+            <div style={{ position: "relative" }}>
+              {isLoading && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  <LoaderIcon className="h-8 w-8 animate-spin text-gray-500" />
+                </div>
+              )}
+              <iframe
+                ref={iframeRef}
+                src={iframeUrl}
+                width="100%"
+                height={iframeHeight}
+                frameBorder="0"
+                allowFullScreen
+                title="Aparat Video"
+                style={{ display: "block" }}
+                onLoad={handleIframeLoad}
+              ></iframe>
+            </div>
+          ) : null
         ) : (
           <p>آدرس وارد شده معتبر نمی باشد</p>
         )}
