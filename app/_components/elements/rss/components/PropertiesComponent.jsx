@@ -1,30 +1,16 @@
 "use client";
 
+import { ShinyButton } from "@/app/_components/common/button/shiny-button";
 import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
-import ElementCardLayoutFormField from "@/app/_components/common/form/element-properties/element-card-layout-formfield";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementhrefFormField from "@/app/_components/common/form/element-properties/element-href-formfield";
-import ElementPasswordFormField from "@/app/_components/common/form/element-properties/element-password-formfield";
 import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
 import { ElementThemeController } from "@/app/_components/controller/element-theme-controller";
-import { Form } from "@/components/ui/form";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { toast } from "@/hooks/use-toast";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
-import { cardFieldSchems } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import CryptoJS from "crypto-js";
-import { Check, ChevronLeft } from "lucide-react";
-import dynamic from "next/dynamic";
-import { Suspense, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { ShinyButton } from "@/app/_components/common/button/shiny-button";
+import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
 import {
   Dialog,
   DialogContent,
@@ -32,7 +18,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
+import { Form } from "@/components/ui/form";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { toast } from "@/hooks/use-toast";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
+import { Check, ChevronLeft } from "lucide-react";
+import dynamic from "next/dynamic";
+import { Suspense, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 const UploadButton = dynamic(
   () => import("@/app/_components/common/input/card-element-image-uploader"),
@@ -47,11 +42,6 @@ function PropertiesComponent({ elementInstance }) {
   const RenderElement =
     ElementThemeController[element.type][element.extraAttributes.theme][0];
 
-  const hashPassword = (password) => {
-    const hashedPassword = CryptoJS.SHA256(password).toString();
-    return hashedPassword;
-  };
-
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),
     defaultValues: {
@@ -61,15 +51,11 @@ function PropertiesComponent({ elementInstance }) {
       textColor: element.extraAttributes.textColor || "",
       bgColor: element.extraAttributes.bgColor || "",
       borderRadius: element.extraAttributes.borderRadius || "",
-      layout: element.extraAttributes.layout || "",
-      image: "",
       schedule: element.extraAttributes.schedule || false,
       scheduleStart: element.extraAttributes.scheduleStart || "0",
       scheduleEnd: element.extraAttributes.scheduleEnd || "0",
       countdown: element.extraAttributes.countdown || false,
       countdownDate: element.extraAttributes.countdownDate || "0",
-      isProtected: element.extraAttributes.isProtected || false,
-      password: "",
     },
   });
 
@@ -82,19 +68,15 @@ function PropertiesComponent({ elementInstance }) {
       title,
       theme,
       textColor,
-      layout,
-      image,
-      href,
-      font,
       bgColor,
       borderRadius,
+      href,
+      font,
       schedule,
       scheduleStart,
       scheduleEnd,
       countdown,
       countdownDate,
-      isProtected,
-      password,
     } = values;
 
     const payload = {
@@ -106,13 +88,6 @@ function PropertiesComponent({ elementInstance }) {
           title,
           theme,
           textColor,
-          layout:
-            layout === "basic" || layout === "roundedImage"
-              ? layout
-              : isSilver
-                ? layout
-                : element.extraAttributes.layout,
-          image,
           href,
           font,
           borderRadius,
@@ -128,14 +103,6 @@ function PropertiesComponent({ elementInstance }) {
           countdownDate: isSilver
             ? countdownDate
             : element.extraAttributes.countdownDate,
-          isProtected: isSilver
-            ? isProtected
-            : element.extraAttributes.isProtected,
-          password: isSilver
-            ? element.extraAttributes.password !== password && password !== ""
-              ? hashPassword(password)
-              : element.extraAttributes.password
-            : element.extraAttributes.password,
         },
       },
     };
@@ -190,7 +157,7 @@ function PropertiesComponent({ elementInstance }) {
                 {/* Address */}
                 <ElementhrefFormField
                   form={form}
-                  message="آدرس صفحه ای که می خواهید به آن هدایت شوید"
+                  message="آدرس فید را اینجا وارد کنید"
                 />
 
                 <Divider className="mt-4 opacity-50" />
@@ -207,18 +174,8 @@ function PropertiesComponent({ elementInstance }) {
               </TabsContent>
 
               <TabsContent value="design" className="flex flex-col gap-4">
-                {/* Layout */}
-                <ElementCardLayoutFormField
-                  form={form}
-                  RenderElement={RenderElement}
-                  isSilver={isSilver}
-                  element={element}
-                />
-
                 {/* Border radius */}
                 <ElementBorderRadiusFormField form={form} />
-
-                <Divider className="mt-4 opacity-50" />
 
                 {/* Background Color */}
                 <ElementColorFormField
@@ -226,14 +183,6 @@ function PropertiesComponent({ elementInstance }) {
                   label="رنگ بلوک"
                   fieldName="bgColor"
                 />
-
-                {/* Image upload */}
-                <div className="mt-2">
-                  <UploadButton form={form} element={element} />
-                  <p className="text-textLight text-xs">
-                    پس از انتخاب فایل، دکمه بارگزاری را بزنید
-                  </p>
-                </div>
               </TabsContent>
 
               <TabsContent value="visibility" className="flex flex-col gap-4">
@@ -251,15 +200,6 @@ function PropertiesComponent({ elementInstance }) {
                   <ElementCountdownFormField
                     showToggle={true}
                     countdownData={element.extraAttributes}
-                    form={form}
-                    isSilver={isSilver}
-                  />
-                </div>
-
-                {/* Password */}
-                <div className="mt-6">
-                  <ElementPasswordFormField
-                    passwordData={element.extraAttributes}
                     form={form}
                     isSilver={isSilver}
                   />

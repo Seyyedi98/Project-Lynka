@@ -1,10 +1,9 @@
 "use client";
 
 import { useUserSubscription } from "@/hooks/useUserSubscription";
-import ShiftingCountdown from "../../common/countdown";
 import { cn } from "@/lib/utils";
 
-const CountdownFieldDefault = (props) => {
+const RssFieldDefault = ({ href }) => {
   const { isSilver } = useUserSubscription();
 
   return (
@@ -14,11 +13,16 @@ const CountdownFieldDefault = (props) => {
           برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
         </div>
       )}
-      <div className={cn(`w-full`, !isSilver && "opacity-70")}>
-        <ShiftingCountdown {...props} />
+      <div
+        className={cn(
+          `w-full text-wrap rounded-md py-2`,
+          !isSilver && "opacity-70",
+        )}
+      >
+        rss field
       </div>
     </div>
   );
 };
 
-export default CountdownFieldDefault;
+export default VideoFieldDefault;

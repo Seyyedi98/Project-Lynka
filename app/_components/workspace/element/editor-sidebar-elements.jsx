@@ -16,6 +16,7 @@ const EditorSidebarElements = () => {
         <AddElementButton pageElement={PageElements.CountdownField} />
         <AddElementButton pageElement={PageElements.TextField} />
         <AddElementButton pageElement={PageElements.VideoField} />
+        <AddElementButton pageElement={PageElements.RssField} />
       </div>
     </div>
   );

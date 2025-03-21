@@ -5,6 +5,7 @@ import DeviderFieldDefault from "../theme/devider/devider-field-default";
 import CountdownFieldDefault from "../theme/countdown/countdown-field-default";
 import TextFieldDefault from "../theme/text/text-field-default";
 import VideoFieldDefault from "../theme/video/video-field-default";
+import RssFieldDefault from "../theme/rss/rss-field-default";
 
 export const ElementThemeController = {
   CardField: {
@@ -25,5 +26,8 @@ export const ElementThemeController = {
   },
   VideoField: {
     default: [VideoFieldDefault, { type: "color" }, { isPremium: true }],
+  },
+  RssField: {
+    default: [RssFieldDefault, { type: "color" }, { isPremium: true }],
   },
 };
