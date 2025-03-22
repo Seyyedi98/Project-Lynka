@@ -1,50 +1,59 @@
-import { getPageAnalytics } from "@/actions/page/analytics";
-import { LoaderIcon } from "lucide-react";
+import { getLinkAnalytics, getPageAnalytics } from "@/actions/page/analytics";
+import { Loader2Icon, LoaderIcon } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import SimpleAnalytics from "../../analytics/simple-analytics";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
+import { getUserPageData } from "@/actions/page/page";
 
 const PageAnalytics = () => {
   const { uri } = useParams();
-  const [list, setList] = useState([]);
+  const [analytics, setAnalytics] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [totalViews, setTotalViews] = useState(0);
   const { isSilver } = useUserSubscription();
 
   useEffect(() => {
-    const getPageData = async () => {
-      const data = await getPageAnalytics(uri);
-      data.map((element) => {
-        setList((prev) => [
-          ...prev,
-          {
-            elementId: element.elementId,
-            title: element.linkName,
-            clicked: element.clicks,
-            device: JSON.parse(element.userAgent).device,
-            os: JSON.parse(element.userAgent).os,
-          },
-        ]);
-      });
+    const fetchAnalytics = async () => {
+      setIsLoading(true);
+      const allPages = await getUserPageData();
+      setTotalViews(allPages.reduce((sum, item) => sum + item.views, 0));
+      const allAnalytics = [];
+
+      for (const page of allPages) {
+        const data = await getLinkAnalytics(page.uri);
+        allAnalytics.push(...data);
+      }
+
+      setAnalytics(allAnalytics);
+      setIsLoading(false);
     };
-    getPageData();
-  }, [uri]);
+
+    fetchAnalytics();
+  }, []);
 
   return (
     <div className="h-full">
+      <div>Total Views: {totalViews}</div>
       {isSilver ? (
-        <div className="flex flex-col gap-2">
-          {list.length > 0 ? (
-            list.map((el, index) => {
+        <ul>
+          {analytics.length > 1 ? (
+            analytics.map((click) => {
               return (
-                <SimpleAnalytics key={`${el.elementId}-${index}`} data={el} />
+                <li key={click.id}>
+                  {click.elementName} -{" "}
+                  {new Date(click.clickedAt).toLocaleString()}
+                </li>
               );
             })
+          ) : !isLoading && analytics.length === 0 ? (
+            <div>no data</div>
           ) : (
-            <div className="grid h-full place-content-center">
-              <LoaderIcon className="animate-spin" />
+            <div>
+              <Loader2Icon className="animate-spin" />
             </div>
           )}
-        </div>
+        </ul>
       ) : (
         <div className="grid h-full place-content-center">
           <p className="mt-4 text-center text-sm text-destructive">

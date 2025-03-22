@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 
 const ElementTitleFormField = ({
   form,
+  required,
   fieldName,
   placeholder,
   description,

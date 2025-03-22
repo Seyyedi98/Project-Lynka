@@ -125,10 +125,11 @@ model Page {
 }
 
 model LinkView {
-  id        String   @id @default(cuid())
-  pageUri   String
-  elementId String
-  clickedAt DateTime @default(now())
+  id          String   @id @default(cuid())
+  pageUri     String
+  elementId   String
+  elementName String
+  clickedAt   DateTime @default(now())
 
   @@index([pageUri])
   @@index([elementId])

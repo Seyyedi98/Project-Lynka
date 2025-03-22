@@ -2,13 +2,14 @@
 import prisma from "@/lib/client";
 
 export async function trackClick(props) {
-  const { pageUri, elementId } = props;
+  const { pageUri, elementId, elementName } = props;
 
   try {
     await prisma.linkView.create({
       data: {
         pageUri,
         elementId,
+        elementName,
       },
     });
   } catch (error) {

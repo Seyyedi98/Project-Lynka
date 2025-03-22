@@ -28,6 +28,7 @@ const handleClick = async ({
 
       trackClick({
         pageUri: uri,
+        elementName: title,
         elementId,
       }).catch((error) => {
         console.error("Failed to update analytics data:", error);
