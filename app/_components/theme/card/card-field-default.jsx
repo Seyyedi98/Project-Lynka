@@ -1,13 +1,12 @@
 "use client";
 
-import { updateElementClicked } from "@/actions/page/element";
 import { cn } from "@/lib/utils";
-import GetUserAgentData from "@/utils/getUserAgent";
+import getImageAddress from "@/utils/get-image-address";
 import { loadFont } from "@/utils/loadFont";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import ProtectedPagePasswordCheck from "../../section/livepage-password-check";
-import getImageAddress from "@/utils/get-image-address";
+import { trackClick } from "@/actions/page/analytics";
 
 const handleClick = async ({
   setIsModalOpen,
@@ -19,7 +18,7 @@ const handleClick = async ({
   title,
 }) => {
   // Get User-Agent
-  const userAgent = await GetUserAgentData();
+  // const userAgent = await GetUserAgentData();
 
   if (protectedElement) {
     await setIsModalOpen(true);
@@ -27,11 +26,9 @@ const handleClick = async ({
     if (isLive) {
       window.open(`http://${href}`, "_blank");
 
-      updateElementClicked({
-        uri,
+      trackClick({
+        pageUri: uri,
         elementId,
-        title,
-        userAgent,
       }).catch((error) => {
         console.error("Failed to update analytics data:", error);
       });

@@ -1,8 +1,7 @@
-import { updateElementClicked } from "@/actions/page/element";
+import { trackClick } from "@/actions/page/analytics";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import { fade } from "@/utils/animation/animation";
-import GetUserAgentData from "@/utils/getUserAgent";
 import CryptoJS from "crypto-js";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronLeft } from "lucide-react";
@@ -23,16 +22,14 @@ const ProtectedPagePasswordCheck = ({
   const [enteredPassword, setEnteredPassword] = useState("");
 
   const handleClick = async () => {
-    const userAgent = await GetUserAgentData();
+    // const userAgent = await GetUserAgentData();
 
     if (password === CryptoJS.SHA256(enteredPassword).toString()) {
       window.open(`http://${href}`, "_blank");
 
-      updateElementClicked({
-        uri,
+      trackClick({
+        pageUri: uri,
         elementId,
-        title,
-        userAgent,
       }).catch((error) => {
         console.error("Failed to update analytics data:", error);
       });

@@ -17,12 +17,12 @@ const Dashboard = async () => {
 
   const totalViews = allPages.reduce((sum, item) => sum + item.views, 0);
 
-  const elementsAnalytics = await Promise.all(
-    allPages.map(async (page) => {
-      const elementsData = await getPageAnalytics(page.uri);
-      return elementsData;
-    }),
-  );
+  // const elementsAnalytics = await Promise.all(
+  //   allPages.map(async (page) => {
+  //     const elementsData = await getPageAnalytics(page.uri);
+  //     return elementsData;
+  //   }),
+  // );
 
   return (
     <div className="relative flex w-full select-none pb-10">
@@ -94,10 +94,10 @@ const Dashboard = async () => {
 
         {/* Analytics */}
         <div className="col-span-2 h-60 rounded-lg bg-secondaryBg/50 backdrop-blur-lg md:col-span-1">
-          <AnalyticsWidget
+          {/* <AnalyticsWidget
             pages={allPages}
             elementsAnalytics={elementsAnalytics}
-          />
+          /> */}
         </div>
       </main>
     </div>

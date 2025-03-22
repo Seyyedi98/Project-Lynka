@@ -21,8 +21,6 @@ const RssFieldDefault = ({
   const [loadedFont, setLoadedFont] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  console.log(posts);
-
   useEffect(() => {
     const fetchFont = async () => {
       try {

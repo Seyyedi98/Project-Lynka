@@ -10,14 +10,14 @@ const EditorLayout = async ({ children }) => {
       <DashboardSidebar />
       {/* Light */}
       <img
-        className="fixed mt-72 w-full dark:hidden sm:mt-60"
+        className="fixed mt-72 w-full translate-y-1/2 dark:hidden sm:mt-64 lg:translate-y-0"
         src={bgMaskLight}
         alt="bgmask"
       />
 
       {/* Dark */}
       <img
-        className="fixed mt-72 hidden w-full dark:block sm:mt-60"
+        className="fixed mt-72 hidden w-full translate-y-1/2 dark:block sm:mt-64 lg:translate-y-0"
         src={bgMaskDark}
         alt="bgmask"
       />

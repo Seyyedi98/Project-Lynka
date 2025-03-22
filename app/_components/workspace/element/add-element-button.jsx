@@ -1,13 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { idGenerator } from "@/lib/id-generator";
-import { cn } from "@/lib/utils";
-import { useDraggable } from "@dnd-kit/core";
-import { LockIcon, PlusIcon } from "lucide-react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { PageElements } from "../../controller/page-elements-controller";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { toast } from "@/hooks/use-toast";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
 import {
   Dialog,
   DialogContent,
@@ -17,8 +8,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { toast } from "@/hooks/use-toast";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
+import { idGenerator } from "@/lib/id-generator";
+import { cn } from "@/lib/utils";
+import { useDraggable } from "@dnd-kit/core";
+import { LockIcon, PlusIcon } from "lucide-react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { PageElements } from "../../controller/page-elements-controller";
 
 const AddElementButton = ({ pageElement }) => {
   const { label, icon: Icon } = pageElement.ElementAdderBtn;
