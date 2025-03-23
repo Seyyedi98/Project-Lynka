@@ -9,7 +9,7 @@ import { Loader2, Loader2Icon } from "lucide-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const HeroWorkspaceUploader = ({ uri }) => {
+const HeroWorkspaceUploader = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [isUploading, setIsUploading] = useState(false);

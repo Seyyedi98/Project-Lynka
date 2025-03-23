@@ -6,6 +6,7 @@ import CountdownFieldDefault from "../theme/countdown/countdown-field-default";
 import TextFieldDefault from "../theme/text/text-field-default";
 import VideoFieldDefault from "../theme/video/video-field-default";
 import RssFieldDefault from "../theme/rss/rss-field-default";
+import FaqFieldDefault from "../theme/faq/faq-field-default";
 
 export const ElementThemeController = {
   CardField: {
@@ -29,5 +30,8 @@ export const ElementThemeController = {
   },
   RssField: {
     default: [RssFieldDefault, { type: "color" }, { isPremium: true }],
+  },
+  FaqField: {
+    default: [FaqFieldDefault, { type: "color" }, { isPremium: true }],
   },
 };

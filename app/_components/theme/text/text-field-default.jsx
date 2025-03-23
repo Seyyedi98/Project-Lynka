@@ -4,7 +4,7 @@ const TextFieldDefault = ({
   title,
   textColor,
   font,
-  backgroundColor,
+  bgColor,
   borderColor,
   borderRadius,
   lineHeight,
@@ -13,7 +13,7 @@ const TextFieldDefault = ({
   return (
     <div
       className="w-full text-wrap rounded-md px-3 py-2"
-      style={{ backgroundColor: backgroundColor, borderRadius: borderRadius }}
+      style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
     >
       <p
         style={{

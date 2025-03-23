@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import SquareButton from "../common/button/square-button";
 import { ElementThemeController } from "../controller/element-theme-controller";
 import useFilterTheme from "@/hooks/useFilterTheme";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
@@ -12,6 +11,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
   const elementType = elementInstance?.type;
   const { isSilver } = useUserSubscription();
 
+  // Get array of current element theme
   const Themes = ElementThemeController[elementType];
 
   const filteredThemesList = useFilterTheme(Themes, "color");
@@ -79,12 +79,15 @@ const ElementThemeSelector = ({ elementInstance }) => {
               </div>
               <div className={cn(!isAllowedToApplyTheme ? "opacity-60" : "")}>
                 <RenderedElement
-                  theme={element.extraAttributes.theme}
-                  bgColor={element.extraAttributes.bgColor}
-                  textColor={element.extraAttributes.element}
-                  title={element.extraAttributes.title}
-                  font={element.extraAttributes.font}
-                  borderRadius={element.extraAttributes.borderRadius}
+                  theme={element.extraAttributes?.theme}
+                  bgColor={element.extraAttributes?.bgColor}
+                  textColor={element.extraAttributes?.element}
+                  title={element.extraAttributes?.title}
+                  font={element.extraAttributes?.font}
+                  borderRadius={element.extraAttributes?.borderRadius}
+                  href={element.extraAttributes?.href}
+                  countdownDate={element.extraAttributes?.countdownDate}
+                  isLive={false}
                 />
               </div>
             </div>

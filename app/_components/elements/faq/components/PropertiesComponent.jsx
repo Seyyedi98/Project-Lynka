@@ -1,18 +1,15 @@
 "use client";
 
-import PageFieldValueSlider from "@/app/_components/common/form/element-properties/page-slider-formfield";
-import { Form } from "@/components/ui/form";
-import { Skeleton } from "@/components/ui/skeleton";
-import { toast } from "@/hooks/use-toast";
-import { Check, ChevronLeft } from "lucide-react";
-import { Suspense, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-
 import { ShinyButton } from "@/app/_components/common/button/shiny-button";
+import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
+import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
-import ElementTextAreaFormField from "@/app/_components/common/form/element-properties/element-textarea-formfield";
+import ElementhrefFormField from "@/app/_components/common/form/element-properties/element-href-formfield";
+import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
+import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
+import Divider from "@/app/_components/common/shared/devider";
+import { ElementThemeController } from "@/app/_components/controller/element-theme-controller";
 import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
 import {
   Dialog,
@@ -21,13 +18,20 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import ElementItemsToggleFormField from "@/app/_components/common/form/element-properties/element-itemstoggle-formfield";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
+import { Form } from "@/components/ui/form";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
-import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
-import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
-import Divider from "@/app/_components/common/shared/devider";
+import { toast } from "@/hooks/use-toast";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
+import { Check, ChevronLeft } from "lucide-react";
+import dynamic from "next/dynamic";
+import { Suspense, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+
+const UploadButton = dynamic(
+  () => import("@/app/_components/common/input/card-element-image-uploader"),
+);
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
@@ -35,18 +39,18 @@ function PropertiesComponent({ elementInstance }) {
 
   const { isSilver } = useUserSubscription();
 
+  const RenderElement =
+    ElementThemeController[element.type][element.extraAttributes.theme][0];
+
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),
     defaultValues: {
       title: element.extraAttributes.title || "",
-      theme: element.extraAttributes.theme || "",
-      textColor: element.extraAttributes.textColor || "",
       font: element.extraAttributes.font || "",
+      textColor: element.extraAttributes.textColor || "",
       bgColor: element.extraAttributes.bgColor || "",
-      borderColor: element.extraAttributes.borderColor || "",
-      lineHeight: element.extraAttributes.lineHeight || "",
-      textAlign: element.extraAttributes.textAlign || "",
       borderRadius: element.extraAttributes.borderRadius || "",
+      options: element.extraAttributes.options || [],
       schedule: element.extraAttributes.schedule || false,
       scheduleStart: element.extraAttributes.scheduleStart || "0",
       scheduleEnd: element.extraAttributes.scheduleEnd || "0",
@@ -64,12 +68,10 @@ function PropertiesComponent({ elementInstance }) {
       title,
       theme,
       textColor,
-      font,
       bgColor,
-      borderColor,
-      lineHeight,
-      textAlign,
       borderRadius,
+      options,
+      font,
       schedule,
       scheduleStart,
       scheduleEnd,
@@ -86,12 +88,10 @@ function PropertiesComponent({ elementInstance }) {
           title,
           theme,
           textColor,
+          options,
           font,
-          bgColor,
-          borderColor,
-          lineHeight,
-          textAlign,
           borderRadius,
+          bgColor,
           schedule: isSilver ? schedule : element.extraAttributes.schedule,
           scheduleStart: isSilver
             ? scheduleStart
@@ -140,7 +140,7 @@ function PropertiesComponent({ elementInstance }) {
         >
           <form
             // onBlur={form.handleSubmit(applyChanges)}
-            className="mt-4 flex flex-col gap-5 text-text/90"
+            className="flex flex-col gap-5 text-text/90"
             onSubmit={form.handleSubmit(applyChanges)}
           >
             <Tabs dir="rtl" defaultValue="content" className="">
@@ -151,27 +151,21 @@ function PropertiesComponent({ elementInstance }) {
               </TabsList>
 
               <TabsContent value="content" className="flex flex-col gap-5">
-                <div>
-                  {/* textAlign */}
-                  <ElementItemsToggleFormField
-                    form={form}
-                    fieldName="textAlign"
-                  />
+                {/* Title */}
+                <ElementTitleFormField form={form} />
 
-                  {/* title */}
-                  <ElementTextAreaFormField
-                    fieldName="title"
-                    placeholder="متن خود را اینجا بنویسید"
-                    form={form}
-                  />
-                </div>
+                {/* Address */}
+                <ElementhrefFormField
+                  form={form}
+                  message="آدرس فید را اینجا وارد کنید"
+                />
 
                 <Divider className="mt-4 opacity-50" />
 
-                {/* font */}
+                {/* Font */}
                 <ElementFontFormField fieldName="font" form={form} />
 
-                {/* textColor */}
+                {/* Text Color */}
                 <ElementColorFormField
                   form={form}
                   label="رنگ متن"
@@ -179,32 +173,15 @@ function PropertiesComponent({ elementInstance }) {
                 />
               </TabsContent>
 
-              <TabsContent value="design" className="flex flex-col gap-5">
-                {/* backgroundColor, */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ پس زمینه"
-                  fieldName="bgColor"
-                />
-
-                {/* borderColor, */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ حاشیه"
-                  fieldName="borderColor"
-                />
-
+              <TabsContent value="design" className="flex flex-col gap-4">
                 {/* Border radius */}
                 <ElementBorderRadiusFormField form={form} />
 
-                {/* lineHeight, */}
-                <PageFieldValueSlider
+                {/* Background Color */}
+                <ElementColorFormField
                   form={form}
-                  min={1}
-                  max={3}
-                  step={0.1}
-                  fieldName="lineHeight"
-                  label="فاصله خطوط"
+                  label="رنگ بلوک"
+                  fieldName="bgColor"
                 />
               </TabsContent>
 
@@ -229,6 +206,7 @@ function PropertiesComponent({ elementInstance }) {
                 </div>
               </TabsContent>
             </Tabs>
+
             {/* Mobile drawaer button */}
             <button
               type="submit"
@@ -247,7 +225,6 @@ function PropertiesComponent({ elementInstance }) {
           </form>
         </Suspense>
       </Form>
-
       <div className="mt-auto">
         <Dialog>
           <DialogTrigger asChild>

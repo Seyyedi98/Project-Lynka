@@ -87,30 +87,55 @@ const RssFieldDefault = ({
                 ) : (
                   posts.map((post, index) => (
                     <li key={index} className="w-full">
-                      <a
-                        href={post.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          backgroundColor: bgColor,
-                          borderRadius: borderRadius,
-                        }}
-                        className={cn(
-                          `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 px-4 text-justify text-base font-medium text-white shadow-lg`,
-                          href === "" && "pointer-events-none",
-                        )}
-                      >
-                        <p
+                      {isLive ? (
+                        <a
+                          href={post.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           style={{
-                            fontFamily: loadedFont
-                              ? `var(${loadedFont})`
-                              : "inherit",
-                            color: textColor,
+                            backgroundColor: bgColor,
+                            borderRadius: borderRadius,
                           }}
+                          className={cn(
+                            `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 px-4 text-justify text-base font-medium text-white shadow-lg`,
+                            href === "" && "pointer-events-none",
+                          )}
                         >
-                          {post.title}
-                        </p>
-                      </a>
+                          <p
+                            style={{
+                              fontFamily: loadedFont
+                                ? `var(${loadedFont})`
+                                : "inherit",
+                              color: textColor,
+                            }}
+                          >
+                            {post.title}
+                          </p>
+                        </a>
+                      ) : (
+                        <div
+                          rel="noopener noreferrer"
+                          style={{
+                            backgroundColor: bgColor,
+                            borderRadius: borderRadius,
+                          }}
+                          className={cn(
+                            `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 px-4 text-justify text-base font-medium text-white shadow-lg`,
+                            href === "" && "pointer-events-none",
+                          )}
+                        >
+                          <p
+                            style={{
+                              fontFamily: loadedFont
+                                ? `var(${loadedFont})`
+                                : "inherit",
+                              color: textColor,
+                            }}
+                          >
+                            {post.title}
+                          </p>
+                        </div>
+                      )}
                     </li>
                   ))
                 )}
