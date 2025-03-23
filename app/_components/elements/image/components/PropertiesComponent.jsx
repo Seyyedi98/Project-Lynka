@@ -46,12 +46,8 @@ function PropertiesComponent({ elementInstance }) {
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),
     defaultValues: {
-      title: element.extraAttributes.title || "",
-      font: element.extraAttributes.font || "",
-      textColor: element.extraAttributes.textColor || "",
-      bgColor: element.extraAttributes.bgColor || "",
       borderRadius: element.extraAttributes.borderRadius || "",
-      questions: element.extraAttributes.questions || [],
+      image: element.extraAttributes.image || "",
       schedule: element.extraAttributes.schedule || false,
       scheduleStart: element.extraAttributes.scheduleStart || "0",
       scheduleEnd: element.extraAttributes.scheduleEnd || "0",
@@ -66,13 +62,9 @@ function PropertiesComponent({ elementInstance }) {
 
   function applyChanges(values) {
     const {
-      title,
       theme,
-      textColor,
-      bgColor,
       borderRadius,
-      questions,
-      font,
+      image,
       schedule,
       scheduleStart,
       scheduleEnd,
@@ -86,13 +78,9 @@ function PropertiesComponent({ elementInstance }) {
         ...element,
         extraAttributes: {
           ...element.extraAttributes,
-          title,
           theme,
-          textColor,
-          questions,
-          font,
+          image,
           borderRadius,
-          bgColor,
           schedule: isSilver ? schedule : element.extraAttributes.schedule,
           scheduleStart: isSilver
             ? scheduleStart
@@ -152,39 +140,17 @@ function PropertiesComponent({ elementInstance }) {
               </TabsList>
 
               <TabsContent value="content" className="flex flex-col gap-5">
-                {/* Title */}
-
-                <ElementTitleFormField form={form} />
-
-                {/* Questions */}
-                <ElementAddQuestionsFormField
-                  fieldName="questions"
-                  form={form}
-                />
+                <UploadButton form={form} element={element} />
+                <p className="text-textLight text-xs">
+                  پس از انتخاب فایل، دکمه بارگزاری را بزنید
+                </p>
 
                 <Divider className="mt-4 opacity-50" />
-
-                {/* Font */}
-                <ElementFontFormField fieldName="font" form={form} />
-
-                {/* Text Color */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ متن"
-                  fieldName="textColor"
-                />
               </TabsContent>
 
               <TabsContent value="design" className="flex flex-col gap-4">
                 {/* Border radius */}
                 <ElementBorderRadiusFormField form={form} />
-
-                {/* Background Color */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ بلوک"
-                  fieldName="bgColor"
-                />
               </TabsContent>
 
               <TabsContent value="visibility" className="flex flex-col gap-4">

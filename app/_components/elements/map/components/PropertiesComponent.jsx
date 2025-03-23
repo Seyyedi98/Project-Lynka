@@ -47,11 +47,9 @@ function PropertiesComponent({ elementInstance }) {
     // resolver: zodResolver(cardFieldSchems),
     defaultValues: {
       title: element.extraAttributes.title || "",
+      location: element.extraAttributes.location || "",
       font: element.extraAttributes.font || "",
       textColor: element.extraAttributes.textColor || "",
-      bgColor: element.extraAttributes.bgColor || "",
-      borderRadius: element.extraAttributes.borderRadius || "",
-      questions: element.extraAttributes.questions || [],
       schedule: element.extraAttributes.schedule || false,
       scheduleStart: element.extraAttributes.scheduleStart || "0",
       scheduleEnd: element.extraAttributes.scheduleEnd || "0",
@@ -67,11 +65,9 @@ function PropertiesComponent({ elementInstance }) {
   function applyChanges(values) {
     const {
       title,
+      location,
       theme,
       textColor,
-      bgColor,
-      borderRadius,
-      questions,
       font,
       schedule,
       scheduleStart,
@@ -88,11 +84,9 @@ function PropertiesComponent({ elementInstance }) {
           ...element.extraAttributes,
           title,
           theme,
+          location,
           textColor,
-          questions,
           font,
-          borderRadius,
-          bgColor,
           schedule: isSilver ? schedule : element.extraAttributes.schedule,
           scheduleStart: isSilver
             ? scheduleStart
@@ -147,19 +141,18 @@ function PropertiesComponent({ elementInstance }) {
             <Tabs dir="rtl" defaultValue="content" className="">
               <TabsList className="mb-2">
                 <TabsTrigger value="content">محتوا</TabsTrigger>
-                <TabsTrigger value="design">طراحی</TabsTrigger>
                 <TabsTrigger value="visibility">نمایش</TabsTrigger>
               </TabsList>
 
               <TabsContent value="content" className="flex flex-col gap-5">
                 {/* Title */}
-
                 <ElementTitleFormField form={form} />
 
-                {/* Questions */}
-                <ElementAddQuestionsFormField
-                  fieldName="questions"
+                {/* Location */}
+                <ElementhrefFormField
                   form={form}
+                  fieldName="location"
+                  message="آدرس مکان مورد نظر را در اینجا وارد کنید"
                 />
 
                 <Divider className="mt-4 opacity-50" />
@@ -172,18 +165,6 @@ function PropertiesComponent({ elementInstance }) {
                   form={form}
                   label="رنگ متن"
                   fieldName="textColor"
-                />
-              </TabsContent>
-
-              <TabsContent value="design" className="flex flex-col gap-4">
-                {/* Border radius */}
-                <ElementBorderRadiusFormField form={form} />
-
-                {/* Background Color */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ بلوک"
-                  fieldName="bgColor"
                 />
               </TabsContent>
 

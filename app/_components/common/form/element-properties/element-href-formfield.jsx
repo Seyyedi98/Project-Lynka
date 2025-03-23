@@ -7,11 +7,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-const ElementhrefFormField = ({ form, message }) => {
+const ElementhrefFormField = ({ form, message, fieldName }) => {
   return (
     <FormField
       control={form.control}
-      name="href"
+      name={fieldName || "href"}
       render={({ field }) => (
         <FormItem>
           {/* <FormLabel>آدرس</FormLabel> */}

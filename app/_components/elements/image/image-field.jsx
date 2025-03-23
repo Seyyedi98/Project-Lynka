@@ -1,25 +1,15 @@
-import {
-  CircleHelp,
-  IdCardIcon,
-  ImageIcon,
-  MapIcon,
-  RssIcon,
-} from "lucide-react";
+import { ImageIcon } from "lucide-react";
 import LivePageComponent from "./components/LivePageComponent";
+import PreviewPageComponent from "./components/PreviewPageComponent";
 import PropertiesComponent from "./components/PropertiesComponent";
 import { WorkspaceComponent } from "./components/WorkspaceComponent";
-import PreviewPageComponent from "./components/PreviewPageComponent";
 
 const type = "ImageField";
 
 const extraAttributes = {
-  title: "سوالات متداول",
   theme: "",
-  font: "",
-  textColor: "#ffffff",
-  bgColor: "",
   borderRadius: "",
-  questions: [],
+  image: "",
   schedule: false,
   scheduleStart: "0",
   scheduleEnd: "0",
