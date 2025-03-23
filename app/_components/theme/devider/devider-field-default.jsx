@@ -27,6 +27,7 @@ const DeviderFieldDefault = (props) => {
         className="h-[2px] w-full"
       ></span>
       <span
+        className="text-nowrap"
         style={{
           color: textColor,
           fontFamily: textFont ? `var(${textFont})` : "inherit",

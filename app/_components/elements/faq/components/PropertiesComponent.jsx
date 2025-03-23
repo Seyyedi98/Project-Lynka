@@ -1,6 +1,7 @@
 "use client";
 
 import { ShinyButton } from "@/app/_components/common/button/shiny-button";
+import ElementAddQuestionsFormField from "@/app/_components/common/form/element-properties/element-add-questions-formfield";
 import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
@@ -50,7 +51,7 @@ function PropertiesComponent({ elementInstance }) {
       textColor: element.extraAttributes.textColor || "",
       bgColor: element.extraAttributes.bgColor || "",
       borderRadius: element.extraAttributes.borderRadius || "",
-      options: element.extraAttributes.options || [],
+      questions: element.extraAttributes.questions || [],
       schedule: element.extraAttributes.schedule || false,
       scheduleStart: element.extraAttributes.scheduleStart || "0",
       scheduleEnd: element.extraAttributes.scheduleEnd || "0",
@@ -70,7 +71,7 @@ function PropertiesComponent({ elementInstance }) {
       textColor,
       bgColor,
       borderRadius,
-      options,
+      questions,
       font,
       schedule,
       scheduleStart,
@@ -88,7 +89,7 @@ function PropertiesComponent({ elementInstance }) {
           title,
           theme,
           textColor,
-          options,
+          questions,
           font,
           borderRadius,
           bgColor,
@@ -152,12 +153,12 @@ function PropertiesComponent({ elementInstance }) {
 
               <TabsContent value="content" className="flex flex-col gap-5">
                 {/* Title */}
-                <ElementTitleFormField form={form} />
 
-                {/* Address */}
-                <ElementhrefFormField
+                <ElementTitleFormField form={form} />
+                {/* Questions */}
+                <ElementAddQuestionsFormField
+                  fieldName="questions"
                   form={form}
-                  message="آدرس فید را اینجا وارد کنید"
                 />
 
                 <Divider className="mt-4 opacity-50" />

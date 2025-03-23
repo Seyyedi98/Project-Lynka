@@ -17,6 +17,7 @@ const EditorSidebarElements = () => {
         <AddElementButton pageElement={PageElements.TextField} />
         <AddElementButton pageElement={PageElements.VideoField} />
         <AddElementButton pageElement={PageElements.RssField} />
+        <AddElementButton pageElement={PageElements.FaqField} />
       </div>
     </div>
   );

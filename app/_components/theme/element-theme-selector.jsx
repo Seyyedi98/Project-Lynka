@@ -87,6 +87,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
                   borderRadius={element.extraAttributes?.borderRadius}
                   href={element.extraAttributes?.href}
                   countdownDate={element.extraAttributes?.countdownDate}
+                  questions={element.extraAttributes?.questions}
                   isLive={false}
                 />
               </div>

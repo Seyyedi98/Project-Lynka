@@ -2,9 +2,28 @@
 
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { cn } from "@/lib/utils";
+import { loadFont } from "@/utils/loadFont";
+import { useEffect, useState } from "react";
+import { Accordion, Placeholder } from "rsuite";
 
-const FaqFieldDefault = ({ href }) => {
+const FaqFieldDefault = (props) => {
+  const { title, isLive, textColor, bgColor, borderRadius, font, questions } =
+    props;
   const { isSilver } = useUserSubscription();
+  const [textFont, setTextFont] = useState(null);
+
+  useEffect(() => {
+    const fetchFont = async () => {
+      try {
+        const textFontVariable = await loadFont(font);
+        setTextFont(textFontVariable);
+      } catch (error) {
+        console.error("Error loading font:", error);
+      }
+    };
+
+    fetchFont();
+  }, [textFont, font]);
 
   return (
     <div className="relative w-full">
@@ -19,7 +38,33 @@ const FaqFieldDefault = ({ href }) => {
           !isSilver && "opacity-70",
         )}
       >
-        faq field
+        <p
+          style={{
+            fontFamily: textFont ? `var(${textFont})` : "inherit",
+            color: textColor,
+          }}
+          className="text-center text-text"
+        >
+          {title}
+        </p>
+        <Accordion
+          style={{
+            fontFamily: textFont ? `var(${textFont})` : "inherit",
+            color: textColor,
+          }}
+          className={cn(``, !isLive && "pointer-events-none")}
+        >
+          {questions.map((question, index) => {
+            return (
+              <Accordion.Panel
+                key={question.question}
+                header={question.question}
+              >
+                {question.answer}
+              </Accordion.Panel>
+            );
+          })}
+        </Accordion>
       </div>
     </div>
   );

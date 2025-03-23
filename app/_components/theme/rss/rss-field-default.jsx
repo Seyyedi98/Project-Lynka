@@ -97,7 +97,7 @@ const RssFieldDefault = ({
                             borderRadius: borderRadius,
                           }}
                           className={cn(
-                            `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 px-4 text-justify text-base font-medium text-white shadow-lg`,
+                            `flex w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 px-4 text-justify text-base font-medium text-white shadow-lg`,
                             href === "" && "pointer-events-none",
                           )}
                         >
@@ -120,7 +120,7 @@ const RssFieldDefault = ({
                             borderRadius: borderRadius,
                           }}
                           className={cn(
-                            `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 px-4 text-justify text-base font-medium text-white shadow-lg`,
+                            `flex h-full w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 px-4 text-justify text-base font-medium text-white shadow-lg`,
                             href === "" && "pointer-events-none",
                           )}
                         >

@@ -13,7 +13,7 @@ const extraAttributes = {
   textColor: "#ffffff",
   bgColor: "",
   borderRadius: "",
-  options: [],
+  questions: [],
   schedule: false,
   scheduleStart: "0",
   scheduleEnd: "0",
@@ -21,7 +21,7 @@ const extraAttributes = {
   countdownDate: "0",
 };
 
-export const RssFieldFormElement = {
+export const FaqFieldFormElement = {
   type,
   construct: (id) => ({
     id,

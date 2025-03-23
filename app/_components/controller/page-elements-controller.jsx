@@ -1,6 +1,7 @@
 import { CardFieldFormElement } from "../elements/cardField/card-field";
 import { CountdownFieldFormElement } from "../elements/countdownField/countdown-field";
 import { DeviderFieldFormElement } from "../elements/deviderField/devider-field";
+import { FaqFieldFormElement } from "../elements/faq/faq-field";
 import { RssFieldFormElement } from "../elements/rss/rss-field";
 import { SpaceFieldFormElement } from "../elements/spaceField/space-field";
 import { TextFieldFormElement } from "../elements/textField/text-field";
@@ -14,4 +15,5 @@ export const PageElements = {
   TextField: TextFieldFormElement,
   VideoField: VideoFieldFormElement,
   RssField: RssFieldFormElement,
+  FaqField: FaqFieldFormElement,
 };
