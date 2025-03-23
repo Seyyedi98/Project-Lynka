@@ -9,7 +9,8 @@ const EditorSidebarElements = () => {
       <p className="mb-6 place-self-center text-sm text-muted-foreground md:place-self-start md:p-4 md:text-white">
         فیلد ها
       </p>
-      <div className="mx-2 grid max-h-[70svh] grid-cols-1 place-items-center gap-y-4">
+      <div className="mx-2 grid max-h-[70svh] grid-cols-1 place-items-center gap-y-4 overflow-scroll md:max-h-full md:pb-10 md:[scrollbar-width:none]">
+        <AddElementButton pageElement={PageElements.SocialsField} />
         <AddElementButton pageElement={PageElements.CardField} />
         <AddElementButton pageElement={PageElements.SpaceField} />
         <AddElementButton pageElement={PageElements.DeviderField} />
@@ -18,6 +19,12 @@ const EditorSidebarElements = () => {
         <AddElementButton pageElement={PageElements.VideoField} />
         <AddElementButton pageElement={PageElements.RssField} />
         <AddElementButton pageElement={PageElements.FaqField} />
+        <AddElementButton pageElement={PageElements.MapField} />
+        <AddElementButton pageElement={PageElements.ImageField} />
+        <AddElementButton pageElement={PageElements.GalleryField} />
+        <AddElementButton pageElement={PageElements.CarouselField} />
+        <AddElementButton pageElement={PageElements.PostTrackerField} />
+        <AddElementButton pageElement={PageElements.FormField} />
       </div>
     </div>
   );

@@ -52,6 +52,7 @@ const FaqFieldDefault = (props) => {
             fontFamily: textFont ? `var(${textFont})` : "inherit",
             color: textColor,
           }}
+          bordered
           className={cn(``, !isLive && "pointer-events-none")}
         >
           {questions.map((question, index) => {
@@ -59,6 +60,7 @@ const FaqFieldDefault = (props) => {
               <Accordion.Panel
                 key={question.question}
                 header={question.question}
+                eventKey={index}
               >
                 {question.answer}
               </Accordion.Panel>

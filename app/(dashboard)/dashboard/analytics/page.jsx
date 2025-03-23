@@ -37,21 +37,19 @@ const AnalyticsPanel = () => {
       <main className="grid w-full flex-1 auto-rows-auto grid-cols-2 gap-4 px-2 pt-60 md:mx-4 xl:mr-56 xl:pr-6">
         <h1>Link Analytics</h1>
         <ul>
-          {analytics.length > 1 ? (
-            analytics.map((click) => {
-              return (
-                <li key={click.id}>
-                  {click.elementName} -{" "}
-                  {new Date(click.clickedAt).toLocaleString()}
-                </li>
-              );
-            })
-          ) : !isLoading && analytics.length === 0 ? (
-            <div>no data</div>
-          ) : (
+          {isLoading ? (
             <div>
               <Loader2Icon className="animate-spin" />
             </div>
+          ) : analytics.length > 0 ? (
+            analytics.map((click) => (
+              <li key={click.id}>
+                {click.elementName} -{" "}
+                {new Date(click.clickedAt).toLocaleString()}
+              </li>
+            ))
+          ) : (
+            <div>no data</div>
           )}
         </ul>
       </main>

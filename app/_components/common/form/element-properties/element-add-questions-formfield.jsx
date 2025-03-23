@@ -17,21 +17,6 @@ const ElementAddQuestionsFormField = ({ form, fieldName, description }) => {
       name={fieldName || "questions"}
       render={({ field }) => (
         <FormItem>
-          <Button
-            variant="outline"
-            className="gap-2"
-            onClick={(e) => {
-              e.preventDefault();
-              form.setValue(
-                "questions",
-                field.value.concat({ question: "", answer: "" }),
-              );
-            }}
-          >
-            <PlusCircleIcon />
-            افزودن
-          </Button>
-
           <div>
             <FormControl>
               <div className="flex flex-col gap-2">
@@ -75,6 +60,21 @@ const ElementAddQuestionsFormField = ({ form, fieldName, description }) => {
               </div>
             </FormControl>
           </div>
+
+          <Button
+            variant="outline"
+            className="w-full gap-2 text-text"
+            onClick={(e) => {
+              e.preventDefault();
+              form.setValue(
+                "questions",
+                field.value.concat({ question: "", answer: "" }),
+              );
+            }}
+          >
+            <PlusCircleIcon />
+            افزون فیلد جدید
+          </Button>
           {description && (
             <FormDescription className="text-xs">{description}</FormDescription>
           )}

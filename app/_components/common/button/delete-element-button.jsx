@@ -43,8 +43,8 @@ const DeleteElementBtn = ({ id, children }) => {
 
           <DialogFooter className="mt-6 flex gap-2 sm:justify-end">
             <DialogClose asChild>
-              <Button type="button" variant="ghost">
-                بازگشت
+              <Button type="button" variant="ghost" size="lg">
+                نه، برگرد
               </Button>
             </DialogClose>
             <Button
@@ -53,8 +53,9 @@ const DeleteElementBtn = ({ id, children }) => {
               type="submit"
               className="px-4"
               variant="destructive"
+              size="lg"
             >
-              {isPending ? <Loader2Icon /> : "تایید"}
+              {isPending ? <Loader2Icon /> : "بله، حذف شود"}
             </Button>
           </DialogFooter>
         </DialogContent>

@@ -11,7 +11,6 @@ import EditorSidebarElements from "../../workspace/element/editor-sidebar-elemen
 import ElementProperties from "../../workspace/element/element-properties";
 import WorkspaceSidebatDesktop from "./workspace-sidebar-desktop";
 import WorkspaceSidebarMobile from "./workspace-sidebar-mobile";
-import { cn } from "@/lib/utils";
 
 const EditorSidebar = () => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
