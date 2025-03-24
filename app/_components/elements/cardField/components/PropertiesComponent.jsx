@@ -171,140 +171,142 @@ function PropertiesComponent({ elementInstance }) {
             </div>
           }
         >
-          <form
-            // onBlur={form.handleSubmit(applyChanges)}
-            className="flex flex-col gap-5 text-text/90"
-            onSubmit={form.handleSubmit(applyChanges)}
-          >
-            <Tabs dir="rtl" defaultValue="content" className="">
-              <TabsList className="mb-2">
-                <TabsTrigger value="content">محتوا</TabsTrigger>
-                <TabsTrigger value="design">طراحی</TabsTrigger>
-                <TabsTrigger value="visibility">نمایش</TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="content" className="flex flex-col gap-5">
-                {/* Title */}
-                <ElementTitleFormField form={form} />
-
-                {/* Address */}
-                <ElementhrefFormField
-                  form={form}
-                  message="آدرس صفحه ای که می خواهید به آن هدایت شوید"
-                />
-
-                <Divider className="mt-4 opacity-50" />
-
-                {/* Font */}
-                <ElementFontFormField fieldName="font" form={form} />
-
-                {/* Text Color */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ متن"
-                  fieldName="textColor"
-                />
-              </TabsContent>
-
-              <TabsContent value="design" className="flex flex-col gap-4">
-                {/* Layout */}
-                <ElementCardLayoutFormField
-                  form={form}
-                  RenderElement={RenderElement}
-                  isSilver={isSilver}
-                  element={element}
-                />
-
-                {/* Border radius */}
-                <ElementBorderRadiusFormField form={form} />
-
-                <Divider className="mt-4 opacity-50" />
-
-                {/* Background Color */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ پس زمینه"
-                  fieldName="bgColor"
-                />
-
-                {/* Image upload */}
-                <div className="mt-2">
-                  <UploadButton form={form} element={element} />
-                  <p className="text-textLight text-xs">
-                    پس از انتخاب فایل، دکمه بارگزاری را بزنید
-                  </p>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="visibility" className="flex flex-col gap-4">
-                {/* Schedule */}
-                <div className="mt-6">
-                  <ElementScheduleFormField
-                    scheduleData={element.extraAttributes}
-                    form={form}
-                    isSilver={isSilver}
-                  />
-                </div>
-
-                {/* Countdown */}
-                <div className="mt-6">
-                  <ElementCountdownFormField
-                    showToggle={true}
-                    countdownData={element.extraAttributes}
-                    form={form}
-                    isSilver={isSilver}
-                  />
-                </div>
-
-                {/* Password */}
-                <div className="mt-6">
-                  <ElementPasswordFormField
-                    passwordData={element.extraAttributes}
-                    form={form}
-                    isSilver={isSilver}
-                  />
-                </div>
-              </TabsContent>
-            </Tabs>
-
-            {/* Mobile drawaer button */}
-            <button
-              type="submit"
-              className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+          <div className="h-full w-full">
+            <form
+              className="flex h-full flex-col gap-5 text-text/90"
+              onSubmit={form.handleSubmit(applyChanges)}
             >
-              <Check className="h-4 w-4 text-white" />
-            </button>
+              <Tabs dir="rtl" defaultValue="content" className="">
+                <TabsList className="mb-2">
+                  <TabsTrigger value="content">محتوا</TabsTrigger>
+                  <TabsTrigger value="design">طراحی</TabsTrigger>
+                  <TabsTrigger value="visibility">نمایش</TabsTrigger>
+                </TabsList>
 
-            {/* Desktop sidebar button */}
-            <button
-              type="submit"
-              className="mt-4 hidden h-12 cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
-            >
-              اعمال تغییرات
-            </button>
-          </form>
+                <TabsContent value="content" className="flex flex-col gap-5">
+                  {/* Title */}
+                  <ElementTitleFormField form={form} />
+
+                  {/* Address */}
+                  <ElementhrefFormField
+                    form={form}
+                    message="آدرس صفحه ای که می خواهید به آن هدایت شوید"
+                  />
+
+                  <Divider className="mt-4 opacity-50" />
+
+                  {/* Font */}
+                  <ElementFontFormField fieldName="font" form={form} />
+
+                  {/* Text Color */}
+                  <ElementColorFormField
+                    form={form}
+                    label="رنگ متن"
+                    fieldName="textColor"
+                  />
+                </TabsContent>
+
+                <TabsContent value="design" className="flex flex-col gap-4">
+                  {/* Layout */}
+                  <ElementCardLayoutFormField
+                    form={form}
+                    RenderElement={RenderElement}
+                    isSilver={isSilver}
+                    element={element}
+                  />
+
+                  {/* Border radius */}
+                  <ElementBorderRadiusFormField form={form} />
+
+                  <Divider className="mt-4 opacity-50" />
+
+                  {/* Background Color */}
+                  <ElementColorFormField
+                    form={form}
+                    label="رنگ پس زمینه"
+                    fieldName="bgColor"
+                  />
+
+                  {/* Image upload */}
+                  <div className="mt-2">
+                    <UploadButton form={form} element={element} />
+                    <p className="text-textLight text-xs">
+                      پس از انتخاب فایل، دکمه بارگزاری را بزنید
+                    </p>
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="visibility" className="flex flex-col gap-4">
+                  {/* Schedule */}
+                  <div className="mt-6">
+                    <ElementScheduleFormField
+                      scheduleData={element.extraAttributes}
+                      form={form}
+                      isSilver={isSilver}
+                    />
+                  </div>
+
+                  {/* Countdown */}
+                  <div className="mt-6">
+                    <ElementCountdownFormField
+                      showToggle={true}
+                      countdownData={element.extraAttributes}
+                      form={form}
+                      isSilver={isSilver}
+                    />
+                  </div>
+
+                  {/* Password */}
+                  <div className="mt-6">
+                    <ElementPasswordFormField
+                      passwordData={element.extraAttributes}
+                      form={form}
+                      isSilver={isSilver}
+                    />
+                  </div>
+                </TabsContent>
+              </Tabs>
+
+              {/* Mobile drawaer button */}
+              <button
+                type="submit"
+                className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+              >
+                <Check className="h-4 w-4 text-white" />
+              </button>
+
+              <div className="mt-auto">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <ShinyButton
+                      className="mt-4 h-14 w-full bg-button hover:bg-card-light"
+                      size="lg"
+                    >
+                      <span className="s flex w-full items-center justify-between text-text">
+                        تغییر تم
+                        <ChevronLeft />
+                      </span>
+                    </ShinyButton>
+                  </DialogTrigger>
+                  <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
+                    <DialogTitle className="hidden"></DialogTitle>
+                    <DialogDescription className="hidden"></DialogDescription>
+                    <ElementThemeSelector elementInstance={element} />
+                  </DialogContent>
+                </Dialog>
+
+                {/* Desktop sidebar button */}
+                <button
+                  type="submit"
+                  className="mt-4 hidden h-12 w-full cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
+                >
+                  اعمال تغییرات
+                </button>
+              </div>
+            </form>
+          </div>
         </Suspense>
       </Form>
-      <div className="mt-auto">
-        <Dialog>
-          <DialogTrigger asChild>
-            <ShinyButton
-              className="mt-4 h-14 w-full bg-button hover:bg-card-light"
-              size="lg"
-            >
-              <span className="s flex w-full items-center justify-between text-text">
-                تغییر تم
-                <ChevronLeft />
-              </span>
-            </ShinyButton>
-          </DialogTrigger>
-          <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
-            <DialogTitle className="hidden"></DialogTitle>
-            <DialogDescription className="hidden"></DialogDescription>
-            <ElementThemeSelector elementInstance={element} />
-          </DialogContent>
-        </Dialog>
-      </div>
     </>
   );
 }

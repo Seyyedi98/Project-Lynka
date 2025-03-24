@@ -4,20 +4,10 @@ import PageFieldValueSlider from "@/app/_components/common/form/element-properti
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "@/hooks/use-toast";
-import { Check, ChevronLeft } from "lucide-react";
+import { Check } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-
-import { ShinyButton } from "@/app/_components/common/button/shiny-button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
@@ -79,37 +69,39 @@ function PropertiesComponent({ elementInstance }) {
             </div>
           }
         >
-          <form
-            // onBlur={form.handleSubmit(applyChanges)}
-            className="mt-4 flex flex-col gap-5 text-text/90"
-            onSubmit={form.handleSubmit(applyChanges)}
-          >
-            <p className="mb-2 text-center text-text">
-              بین دو بلوک فاصله ایجاد کنید
-            </p>
-            <PageFieldValueSlider
-              form={form}
-              max={250}
-              fieldName="height"
-              label="ارتفاع"
-            />
-
-            {/* Mobile drawaer button */}
-            <button
-              type="submit"
-              className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+          <div className="h-full w-full">
+            <form
+              // onBlur={form.handleSubmit(applyChanges)}
+              className="flex h-full flex-col gap-5 text-text/90"
+              onSubmit={form.handleSubmit(applyChanges)}
             >
-              <Check className="h-4 w-4 text-white" />
-            </button>
+              <p className="mb-2 text-center text-text">
+                بین دو بلوک فاصله ایجاد کنید
+              </p>
+              <PageFieldValueSlider
+                form={form}
+                max={250}
+                fieldName="height"
+                label="ارتفاع"
+              />
 
-            {/* Desktop sidebar button */}
-            <button
-              type="submit"
-              className="mt-4 hidden h-12 cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
-            >
-              اعمال تغییرات
-            </button>
-          </form>
+              {/* Mobile drawaer button */}
+              <button
+                type="submit"
+                className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+              >
+                <Check className="h-4 w-4 text-white" />
+              </button>
+
+              {/* Desktop sidebar button */}
+              <button
+                type="submit"
+                className="mt-auto hidden h-12 w-full cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
+              >
+                اعمال تغییرات
+              </button>
+            </form>
+          </div>
         </Suspense>
       </Form>
     </>

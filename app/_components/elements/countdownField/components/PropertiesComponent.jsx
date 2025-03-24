@@ -89,89 +89,92 @@ function PropertiesComponent({ elementInstance }) {
             </div>
           }
         >
-          <form
-            // onBlur={form.handleSubmit(applyChanges)}
-            className="flex flex-col gap-5 text-text/90"
-            onSubmit={form.handleSubmit(applyChanges)}
-          >
-            <Tabs dir="rtl" defaultValue="content" className="">
-              <TabsList className="mb-2">
-                <TabsTrigger value="content">محتوا</TabsTrigger>
-                <TabsTrigger value="design">طراحی</TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="content" className="flex flex-col gap-5">
-                {/* message */}
-                <div className="flex flex-col gap-3">
-                  <p className="text-wrap text-xs text-text/70">
-                    نمایش متن پس از پایان شمارش گر
-                  </p>
-                  <ElementTitleFormField
-                    fieldName="message"
-                    placeholder="متن خود را اینجا بنویسید"
-                    form={form}
-                    description="اگر نمیخواهید پس از پایان شمارشگر متنی نمایش داده شود، این فیلد را خالی بگذارید"
-                  />
-                </div>
-
-                {/* Countdown */}
-                <div className="mt-2 flex flex-col gap-2">
-                  <p className="text-wrap text-xs text-text/70">
-                    تاریخ اتمام شمارش
-                  </p>
-                  <ElementCountdownFormField
-                    showToggle={false}
-                    countdownData={element.extraAttributes}
-                    form={form}
-                    isSilver={isSilver}
-                  />
-                </div>
-              </TabsContent>
-
-              <TabsContent value="design" className="flex flex-col gap-4">
-                {/* Border radius */}
-                <ElementBorderRadiusFormField form={form} />{" "}
-              </TabsContent>
-            </Tabs>
-
-            {/* Mobile drawer button */}
-            <button
-              type="submit"
-              className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+          <div className="h-full w-full">
+            <form
+              // onBlur={form.handleSubmit(applyChanges)}
+              className="flex h-full flex-col gap-5 text-text/90"
+              onSubmit={form.handleSubmit(applyChanges)}
             >
-              <Check className="h-4 w-4 text-white" />
-            </button>
+              <Tabs dir="rtl" defaultValue="content" className="">
+                <TabsList className="mb-2">
+                  <TabsTrigger value="content">محتوا</TabsTrigger>
+                  <TabsTrigger value="design">طراحی</TabsTrigger>
+                </TabsList>
 
-            {/* Desktop sidebar button */}
-            <button
-              type="submit"
-              className="mt-4 hidden h-12 cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
-            >
-              اعمال تغییرات
-            </button>
-          </form>
+                <TabsContent value="content" className="flex flex-col gap-5">
+                  {/* message */}
+                  <div className="flex flex-col gap-3">
+                    <p className="text-wrap text-xs text-text/70">
+                      نمایش متن پس از پایان شمارش گر
+                    </p>
+                    <ElementTitleFormField
+                      fieldName="message"
+                      placeholder="متن خود را اینجا بنویسید"
+                      form={form}
+                      description="اگر نمیخواهید پس از پایان شمارشگر متنی نمایش داده شود، این فیلد را خالی بگذارید"
+                    />
+                  </div>
+
+                  {/* Countdown */}
+                  <div className="mt-2 flex flex-col gap-2">
+                    <p className="text-wrap text-xs text-text/70">
+                      تاریخ اتمام شمارش
+                    </p>
+                    <ElementCountdownFormField
+                      showToggle={false}
+                      countdownData={element.extraAttributes}
+                      form={form}
+                      isSilver={isSilver}
+                    />
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="design" className="flex flex-col gap-4">
+                  {/* Border radius */}
+                  <ElementBorderRadiusFormField form={form} />{" "}
+                </TabsContent>
+              </Tabs>
+
+              {/* Mobile drawer button */}
+              <button
+                type="submit"
+                className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+              >
+                <Check className="h-4 w-4 text-white" />
+              </button>
+
+              <div className="mt-auto">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <ShinyButton
+                      className="mt-4 h-14 w-full bg-button hover:bg-card-light"
+                      size="lg"
+                    >
+                      <span className="s flex w-full items-center justify-between text-text">
+                        تغییر تم
+                        <ChevronLeft />
+                      </span>
+                    </ShinyButton>
+                  </DialogTrigger>
+                  <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
+                    <DialogTitle className="hidden"></DialogTitle>
+                    <DialogDescription className="hidden"></DialogDescription>
+                    <ElementThemeSelector elementInstance={element} />
+                  </DialogContent>
+                </Dialog>
+
+                {/* Desktop sidebar button */}
+                <button
+                  type="submit"
+                  className="mt-4 hidden h-12 w-full cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
+                >
+                  اعمال تغییرات
+                </button>
+              </div>
+            </form>
+          </div>
         </Suspense>
       </Form>
-      <div className="mt-auto">
-        <Dialog>
-          <DialogTrigger asChild>
-            <ShinyButton
-              className="mt-4 h-14 w-full bg-button hover:bg-card-light"
-              size="lg"
-            >
-              <span className="s flex w-full items-center justify-between text-text">
-                تغییر تم
-                <ChevronLeft />
-              </span>
-            </ShinyButton>
-          </DialogTrigger>
-          <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
-            <DialogTitle className="hidden"></DialogTitle>
-            <DialogDescription className="hidden"></DialogDescription>
-            <ElementThemeSelector elementInstance={element} />
-          </DialogContent>
-        </Dialog>
-      </div>
     </>
   );
 }

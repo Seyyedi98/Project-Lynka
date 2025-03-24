@@ -89,74 +89,75 @@ function PropertiesComponent({ elementInstance }) {
             </div>
           }
         >
-          <form
-            // onBlur={form.handleSubmit(applyChanges)}
-            className="mt-4 flex flex-col gap-5 text-text/90"
-            onSubmit={form.handleSubmit(applyChanges)}
-          >
-            {/* title, */}
-            <ElementTitleFormField
-              fieldName="title"
-              placeholder="متن"
-              form={form}
-            />
-
-            {/* font */}
-            <ElementFontFormField fieldName="font" form={form} />
-
-            {/* textColor */}
-            <ElementColorFormField
-              form={form}
-              label="رنگ متن"
-              fieldName="textColor"
-            />
-
-            {/* deviderColor */}
-            <ElementColorFormField
-              form={form}
-              label="رنگ پس زمینه"
-              fieldName="deviderColor"
-            />
-
-            {/* Mobile drawaer button */}
-            <button
-              type="submit"
-              className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+          <div className="h-full w-full">
+            <form
+              className="flex h-full flex-col gap-5 text-text/90"
+              onSubmit={form.handleSubmit(applyChanges)}
             >
-              <Check className="h-4 w-4 text-white" />
-            </button>
+              {/* title, */}
+              <ElementTitleFormField
+                fieldName="title"
+                placeholder="متن"
+                form={form}
+              />
 
-            {/* Desktop sidebar button */}
-            <button
-              type="submit"
-              className="mt-4 hidden h-12 cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
-            >
-              اعمال تغییرات
-            </button>
-          </form>
+              {/* font */}
+              <ElementFontFormField fieldName="font" form={form} />
+
+              {/* textColor */}
+              <ElementColorFormField
+                form={form}
+                label="رنگ متن"
+                fieldName="textColor"
+              />
+
+              {/* deviderColor */}
+              <ElementColorFormField
+                form={form}
+                label="رنگ پس زمینه"
+                fieldName="deviderColor"
+              />
+
+              {/* Mobile drawaer button */}
+              <button
+                type="submit"
+                className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+              >
+                <Check className="h-4 w-4 text-white" />
+              </button>
+
+              <div className="mt-auto">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <ShinyButton
+                      className="mt-4 h-14 w-full bg-button hover:bg-card-light"
+                      size="lg"
+                    >
+                      <span className="s flex w-full items-center justify-between text-text">
+                        تغییر تم
+                        <ChevronLeft />
+                      </span>
+                    </ShinyButton>
+                  </DialogTrigger>
+                  <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
+                    <DialogTitle className="hidden"></DialogTitle>
+                    <DialogDescription className="hidden"></DialogDescription>
+                    <ElementThemeSelector elementInstance={element} />
+                  </DialogContent>
+                </Dialog>
+
+                {/* Desktop sidebar button */}
+                <button
+                  type="submit"
+                  className="mt-4 hidden h-12 w-full cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
+                >
+                  اعمال تغییرات
+                </button>
+              </div>
+            </form>
+          </div>
         </Suspense>
       </Form>
-
-      <div className="mt-auto">
-        <Dialog>
-          <DialogTrigger asChild>
-            <ShinyButton
-              className="mt-4 h-14 w-full bg-button hover:bg-card-light"
-              size="lg"
-            >
-              <span className="s flex w-full items-center justify-between text-text">
-                تغییر تم
-                <ChevronLeft />
-              </span>
-            </ShinyButton>
-          </DialogTrigger>
-          <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
-            <DialogTitle className="hidden"></DialogTitle>
-            <DialogDescription className="hidden"></DialogDescription>
-            <ElementThemeSelector elementInstance={element} />
-          </DialogContent>
-        </Dialog>
-      </div>
     </>
   );
 }
