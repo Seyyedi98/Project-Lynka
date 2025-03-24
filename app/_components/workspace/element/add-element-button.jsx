@@ -56,7 +56,7 @@ const AddElementButton = ({ pageElement }) => {
       }}
       ref={isDesktop ? draggable.setNodeRef : null}
       className={cn(
-        `relative flex h-14 w-full max-w-xs cursor-grab items-center justify-between gap-2 overflow-hidden rounded-lg border border-border/20 bg-button px-4 text-foreground shadow-sm transition-all duration-300 hover:scale-105 hover:border-border/90`,
+        `relative flex h-14 w-full max-w-xs scale-95 cursor-grab items-center justify-between gap-2 overflow-hidden rounded-lg border border-border/20 bg-button px-4 text-foreground shadow-sm transition-all duration-300 hover:scale-100 hover:border-border/90`,
         draggable.isDragging && "ring-2 ring-primary",
       )}
       {...(isDesktop ? draggable.listeners : {})}
