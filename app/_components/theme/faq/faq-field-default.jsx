@@ -52,7 +52,6 @@ const FaqFieldDefault = (props) => {
             fontFamily: textFont ? `var(${textFont})` : "inherit",
             color: textColor,
           }}
-          bordered
           className={cn(``, !isLive && "pointer-events-none")}
         >
           {questions.map((question, index) => {

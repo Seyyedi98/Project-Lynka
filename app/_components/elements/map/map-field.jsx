@@ -7,11 +7,15 @@ import { WorkspaceComponent } from "./components/WorkspaceComponent";
 const type = "MapField";
 
 const extraAttributes = {
-  title: "نقشه",
-  location: "",
+  title: "",
+  subtitleTitle: "",
+  subtitleDescription: "",
+  coords: "",
   theme: "",
   font: "",
   textColor: "#ffffff",
+  bgColor: "#1e293b",
+  borderRadius: "",
   schedule: false,
   scheduleStart: "0",
   scheduleEnd: "0",

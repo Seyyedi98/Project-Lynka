@@ -114,7 +114,7 @@ function PropertiesComponent({ elementInstance }) {
             {/* deviderColor */}
             <ElementColorFormField
               form={form}
-              label="رنگ بلوک"
+              label="رنگ پس زمینه"
               fieldName="deviderColor"
             />
 

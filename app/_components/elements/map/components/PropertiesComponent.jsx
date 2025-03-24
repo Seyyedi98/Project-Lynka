@@ -7,6 +7,7 @@ import ElementColorFormField from "@/app/_components/common/form/element-propert
 import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementhrefFormField from "@/app/_components/common/form/element-properties/element-href-formfield";
+import ElementMapFormField from "@/app/_components/common/form/element-properties/element-map-formfield";
 import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
@@ -47,9 +48,13 @@ function PropertiesComponent({ elementInstance }) {
     // resolver: zodResolver(cardFieldSchems),
     defaultValues: {
       title: element.extraAttributes.title || "",
-      location: element.extraAttributes.location || "",
+      subtitleTitle: element.extraAttributes.subtitleTitle || "",
+      subtitleDescription: element.extraAttributes.subtitleDescription || "",
+      coords: element.extraAttributes.coords || "",
       font: element.extraAttributes.font || "",
       textColor: element.extraAttributes.textColor || "",
+      bgColor: element.extraAttributes.bgColor || "",
+      borderRadius: element.extraAttributes.borderRadius || "",
       schedule: element.extraAttributes.schedule || false,
       scheduleStart: element.extraAttributes.scheduleStart || "0",
       scheduleEnd: element.extraAttributes.scheduleEnd || "0",
@@ -65,9 +70,13 @@ function PropertiesComponent({ elementInstance }) {
   function applyChanges(values) {
     const {
       title,
-      location,
+      subtitleTitle,
+      subtitleDescription,
+      coords,
       theme,
       textColor,
+      bgColor,
+      borderRadius,
       font,
       schedule,
       scheduleStart,
@@ -83,9 +92,13 @@ function PropertiesComponent({ elementInstance }) {
         extraAttributes: {
           ...element.extraAttributes,
           title,
+          subtitleTitle,
+          subtitleDescription,
           theme,
-          location,
+          coords,
           textColor,
+          bgColor,
+          borderRadius,
           font,
           schedule: isSilver ? schedule : element.extraAttributes.schedule,
           scheduleStart: isSilver
@@ -133,101 +146,134 @@ function PropertiesComponent({ elementInstance }) {
             </div>
           }
         >
-          <form
-            // onBlur={form.handleSubmit(applyChanges)}
-            className="flex flex-col gap-5 text-text/90"
-            onSubmit={form.handleSubmit(applyChanges)}
-          >
-            <Tabs dir="rtl" defaultValue="content" className="">
-              <TabsList className="mb-2">
-                <TabsTrigger value="content">محتوا</TabsTrigger>
-                <TabsTrigger value="visibility">نمایش</TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="content" className="flex flex-col gap-5">
-                {/* Title */}
-                <ElementTitleFormField form={form} />
-
-                {/* Location */}
-                <ElementhrefFormField
-                  form={form}
-                  fieldName="location"
-                  message="آدرس مکان مورد نظر را در اینجا وارد کنید"
-                />
-
-                <Divider className="mt-4 opacity-50" />
-
-                {/* Font */}
-                <ElementFontFormField fieldName="font" form={form} />
-
-                {/* Text Color */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ متن"
-                  fieldName="textColor"
-                />
-              </TabsContent>
-
-              <TabsContent value="visibility" className="flex flex-col gap-4">
-                {/* Schedule */}
-                <div className="mt-6">
-                  <ElementScheduleFormField
-                    scheduleData={element.extraAttributes}
-                    form={form}
-                    isSilver={isSilver}
-                  />
-                </div>
-
-                {/* Countdown */}
-                <div className="mt-6">
-                  <ElementCountdownFormField
-                    showToggle={true}
-                    countdownData={element.extraAttributes}
-                    form={form}
-                    isSilver={isSilver}
-                  />
-                </div>
-              </TabsContent>
-            </Tabs>
-
-            {/* Mobile drawaer button */}
-            <button
-              type="submit"
-              className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+          <div className="h-full w-full">
+            <form
+              // onBlur={form.handleSubmit(applyChanges)}
+              className="flex h-full flex-col gap-5 text-text/90"
+              onSubmit={form.handleSubmit(applyChanges)}
             >
-              <Check className="h-4 w-4 text-white" />
-            </button>
+              <Tabs dir="rtl" defaultValue="content" className="">
+                <TabsList className="mb-2">
+                  <TabsTrigger value="content">محتوا</TabsTrigger>
+                  <TabsTrigger value="design">طراحی</TabsTrigger>
+                  <TabsTrigger value="visibility">نمایش</TabsTrigger>
+                </TabsList>
 
-            {/* Desktop sidebar button */}
-            <button
-              type="submit"
-              className="mt-4 hidden h-12 cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
-            >
-              اعمال تغییرات
-            </button>
-          </form>
+                <TabsContent value="content" className="flex flex-col gap-5">
+                  {/* Title */}
+                  <ElementTitleFormField
+                    form={form}
+                    placeholder="عنوان نقشه"
+                    description="این متن در بالای نقشه نشان داده می شود"
+                  />
+
+                  {/* subtitleTitle */}
+                  <ElementTitleFormField
+                    form={form}
+                    fieldName="subtitleTitle"
+                    placeholder="عنوان بخش توضیحات"
+                  />
+
+                  {/* subtitleDescription */}
+                  <ElementTitleFormField
+                    form={form}
+                    fieldName="subtitleDescription"
+                    placeholder="توضیحات"
+                    description="این متن ها در زیر نقشه نشان داده می شوند"
+                  />
+
+                  {/* Location */}
+                  <ElementMapFormField
+                    form={form}
+                    fieldName="coords"
+                    placeholder=""
+                  />
+
+                  <Divider className="mt-4 opacity-50" />
+
+                  {/* Font */}
+                  <ElementFontFormField fieldName="font" form={form} />
+
+                  {/* Text Color */}
+                  <ElementColorFormField
+                    form={form}
+                    label="رنگ متن"
+                    fieldName="textColor"
+                  />
+                </TabsContent>
+
+                <TabsContent value="design" className="flex flex-col gap-4">
+                  {/* Border radius */}
+                  <ElementBorderRadiusFormField form={form} />
+                  {/* Background Color */}
+                  <ElementColorFormField
+                    form={form}
+                    label="رنگ پس زمینه"
+                    fieldName="bgColor"
+                  />
+                </TabsContent>
+
+                <TabsContent value="visibility" className="flex flex-col gap-4">
+                  {/* Schedule */}
+                  <div className="mt-6">
+                    <ElementScheduleFormField
+                      scheduleData={element.extraAttributes}
+                      form={form}
+                      isSilver={isSilver}
+                    />
+                  </div>
+
+                  {/* Countdown */}
+                  <div className="mt-6">
+                    <ElementCountdownFormField
+                      showToggle={true}
+                      countdownData={element.extraAttributes}
+                      form={form}
+                      isSilver={isSilver}
+                    />
+                  </div>
+                </TabsContent>
+              </Tabs>
+
+              {/* Mobile drawaer button */}
+              <button
+                type="submit"
+                className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+              >
+                <Check className="h-4 w-4 text-white" />
+              </button>
+
+              <div className="mt-auto">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <ShinyButton
+                      className="mt-4 h-14 w-full bg-button hover:bg-card-light"
+                      size="lg"
+                    >
+                      <span className="s flex w-full items-center justify-between text-text">
+                        تغییر تم
+                        <ChevronLeft />
+                      </span>
+                    </ShinyButton>
+                  </DialogTrigger>
+                  <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
+                    <DialogTitle className="hidden"></DialogTitle>
+                    <DialogDescription className="hidden"></DialogDescription>
+                    <ElementThemeSelector elementInstance={element} />
+                  </DialogContent>
+                </Dialog>
+                {/* Desktop sidebar button */}
+                <button
+                  type="submit"
+                  className="mt-4 hidden h-12 w-full cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
+                >
+                  اعمال تغییرات
+                </button>
+              </div>
+            </form>
+          </div>
         </Suspense>
       </Form>
-      <div className="mt-auto">
-        <Dialog>
-          <DialogTrigger asChild>
-            <ShinyButton
-              className="mt-4 h-14 w-full bg-button hover:bg-card-light"
-              size="lg"
-            >
-              <span className="s flex w-full items-center justify-between text-text">
-                تغییر تم
-                <ChevronLeft />
-              </span>
-            </ShinyButton>
-          </DialogTrigger>
-          <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
-            <DialogTitle className="hidden"></DialogTitle>
-            <DialogDescription className="hidden"></DialogDescription>
-            <ElementThemeSelector elementInstance={element} />
-          </DialogContent>
-        </Dialog>
-      </div>
     </>
   );
 }

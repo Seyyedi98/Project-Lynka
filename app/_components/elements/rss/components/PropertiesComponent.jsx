@@ -180,7 +180,7 @@ function PropertiesComponent({ elementInstance }) {
                 {/* Background Color */}
                 <ElementColorFormField
                   form={form}
-                  label="رنگ بلوک"
+                  label="رنگ پس زمینه"
                   fieldName="bgColor"
                 />
               </TabsContent>

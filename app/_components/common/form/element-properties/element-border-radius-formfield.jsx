@@ -14,6 +14,7 @@ const borderRadiusList = [
   { id: "medium", value: "8px" },
   { id: "large", value: "12px" },
   { id: "xlarge", value: "16px" },
+  { id: "xxlarge", value: "24px" },
 ];
 
 const ElementBorderRadiusFormField = ({ form }) => {
@@ -46,7 +47,7 @@ const ElementBorderRadiusFormField = ({ form }) => {
                       <div
                         style={{ borderRadius: option.value }}
                         className={cn(
-                          `h-6 w-12 bg-icon-light/60`,
+                          `h-10 w-10 bg-icon-light/60`,
                           field.value === option.value && "bg-icon",
                         )}
                       ></div>
