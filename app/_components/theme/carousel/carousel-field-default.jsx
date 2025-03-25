@@ -3,7 +3,8 @@
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { cn } from "@/lib/utils";
 
-const CarouselFieldDefault = ({ href }) => {
+const CarouselFieldDefault = (props) => {
+  const { href, slides } = props;
   const { isSilver } = useUserSubscription();
 
   return (

@@ -1,17 +1,18 @@
 "use client";
 
+import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
 import { ShinyButton } from "@/app/_components/common/button/shiny-button";
-import ElementAddQuestionsFormField from "@/app/_components/common/form/element-properties/element-add-questions-formfield";
+import ElementAddSlideFormField from "@/app/_components/common/form/element-properties/element-add-slide-formfield";
 import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
-import ElementhrefFormField from "@/app/_components/common/form/element-properties/element-href-formfield";
 import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
 import { ElementThemeController } from "@/app/_components/controller/element-theme-controller";
 import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -24,15 +25,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
-import { Check, ChevronLeft } from "lucide-react";
-import dynamic from "next/dynamic";
+import { Check, ChevronLeft, TrashIcon } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-
-const UploadButton = dynamic(
-  () => import("@/app/_components/common/input/card-element-image-uploader"),
-);
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
@@ -51,7 +47,7 @@ function PropertiesComponent({ elementInstance }) {
       textColor: element.extraAttributes.textColor || "",
       bgColor: element.extraAttributes.bgColor || "",
       borderRadius: element.extraAttributes.borderRadius || "",
-      questions: element.extraAttributes.questions || [],
+      slides: element.extraAttributes.slides || [],
       schedule: element.extraAttributes.schedule || false,
       scheduleStart: element.extraAttributes.scheduleStart || "0",
       scheduleEnd: element.extraAttributes.scheduleEnd || "0",
@@ -71,7 +67,7 @@ function PropertiesComponent({ elementInstance }) {
       textColor,
       bgColor,
       borderRadius,
-      questions,
+      slides,
       font,
       schedule,
       scheduleStart,
@@ -79,6 +75,8 @@ function PropertiesComponent({ elementInstance }) {
       countdown,
       countdownDate,
     } = values;
+
+    console.log(slides);
 
     const payload = {
       id: element.id,
@@ -89,7 +87,7 @@ function PropertiesComponent({ elementInstance }) {
           title,
           theme,
           textColor,
-          questions,
+          slides,
           font,
           borderRadius,
           bgColor,
@@ -139,114 +137,146 @@ function PropertiesComponent({ elementInstance }) {
             </div>
           }
         >
-          <form
-            // onBlur={form.handleSubmit(applyChanges)}
-            className="flex flex-col gap-5 text-text/90"
-            onSubmit={form.handleSubmit(applyChanges)}
-          >
-            <Tabs dir="rtl" defaultValue="content" className="">
-              <TabsList className="mb-2">
-                <TabsTrigger value="content">محتوا</TabsTrigger>
-                <TabsTrigger value="design">طراحی</TabsTrigger>
-                <TabsTrigger value="visibility">نمایش</TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="content" className="flex flex-col gap-5">
-                {/* Title */}
-
-                <ElementTitleFormField form={form} />
-
-                {/* Questions */}
-                <ElementAddQuestionsFormField
-                  fieldName="questions"
-                  form={form}
-                />
-
-                <Divider className="mt-4 opacity-50" />
-
-                {/* Font */}
-                <ElementFontFormField fieldName="font" form={form} />
-
-                {/* Text Color */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ متن"
-                  fieldName="textColor"
-                />
-              </TabsContent>
-
-              <TabsContent value="design" className="flex flex-col gap-4">
-                {/* Border radius */}
-                <ElementBorderRadiusFormField form={form} />
-
-                {/* Background Color */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ پس زمینه"
-                  fieldName="bgColor"
-                />
-              </TabsContent>
-
-              <TabsContent value="visibility" className="flex flex-col gap-4">
-                {/* Schedule */}
-                <div className="mt-6">
-                  <ElementScheduleFormField
-                    scheduleData={element.extraAttributes}
-                    form={form}
-                    isSilver={isSilver}
-                  />
-                </div>
-
-                {/* Countdown */}
-                <div className="mt-6">
-                  <ElementCountdownFormField
-                    showToggle={true}
-                    countdownData={element.extraAttributes}
-                    form={form}
-                    isSilver={isSilver}
-                  />
-                </div>
-              </TabsContent>
-            </Tabs>
-
-            {/* Mobile drawaer button */}
-            <button
-              type="submit"
-              className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+          <div className="h-full w-full">
+            <form
+              // onBlur={form.handleSubmit(applyChanges)}
+              className="flex h-full flex-col gap-5 text-text/90"
+              // className="flex h-full flex-col gap-5 overflow-y-scroll text-text/90 [scrollbar-width:none]"
+              onSubmit={form.handleSubmit(applyChanges)}
             >
-              <Check className="h-4 w-4 text-white" />
-            </button>
+              <Tabs dir="rtl" defaultValue="content" className="">
+                <TabsList className="mb-2">
+                  <TabsTrigger value="content">محتوا</TabsTrigger>
+                  <TabsTrigger value="design">طراحی</TabsTrigger>
+                  <TabsTrigger value="visibility">نمایش</TabsTrigger>
+                </TabsList>
 
-            {/* Desktop sidebar button */}
-            <button
-              type="submit"
-              className="mt-4 hidden h-12 cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
-            >
-              اعمال تغییرات
-            </button>
-          </form>
+                <TabsContent value="content" className="flex flex-col gap-5">
+                  {/* Title */}
+                  <ElementTitleFormField form={form} />
+
+                  {/* slides */}
+                  <ElementAddSlideFormField
+                    fieldName="slides"
+                    element={element}
+                    form={form}
+                  />
+
+                  <Divider className="mt-4 opacity-50" />
+
+                  {/* Font */}
+                  <ElementFontFormField fieldName="font" form={form} />
+
+                  {/* Text Color */}
+                  <ElementColorFormField
+                    form={form}
+                    label="رنگ متن"
+                    fieldName="textColor"
+                  />
+                </TabsContent>
+
+                <TabsContent value="design" className="flex flex-col gap-4">
+                  {/* Border radius */}
+                  <ElementBorderRadiusFormField form={form} />
+
+                  {/* Background Color */}
+                  <ElementColorFormField
+                    form={form}
+                    label="رنگ پس زمینه"
+                    fieldName="bgColor"
+                  />
+                </TabsContent>
+
+                <TabsContent value="visibility" className="flex flex-col gap-4">
+                  {/* Schedule */}
+                  <div className="mt-6">
+                    <ElementScheduleFormField
+                      scheduleData={element.extraAttributes}
+                      form={form}
+                      isSilver={isSilver}
+                    />
+                  </div>
+
+                  {/* Countdown */}
+                  <div className="mt-6">
+                    <ElementCountdownFormField
+                      showToggle={true}
+                      countdownData={element.extraAttributes}
+                      form={form}
+                      isSilver={isSilver}
+                    />
+                  </div>
+                </TabsContent>
+              </Tabs>
+
+              {/* Mobile drawaer button */}
+              <button
+                type="submit"
+                className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+              >
+                <Check className="h-4 w-4 text-white" />
+              </button>
+
+              <div className="mt-auto">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <ShinyButton
+                      className="mt-4 h-14 w-full bg-button hover:bg-card-light"
+                      size="lg"
+                    >
+                      <span className="s flex w-full items-center justify-between text-text">
+                        تغییر تم
+                        <ChevronLeft />
+                      </span>
+                    </ShinyButton>
+                  </DialogTrigger>
+                  <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
+                    <DialogTitle className="hidden"></DialogTitle>
+                    <DialogDescription className="hidden"></DialogDescription>
+                    <ElementThemeSelector elementInstance={element} />
+                  </DialogContent>
+                </Dialog>
+
+                {/* Desktop sidebar button */}
+                <button
+                  type="submit"
+                  className="mt-4 hidden h-12 w-full cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
+                >
+                  اعمال تغییرات
+                </button>
+
+                <div>
+                  {element?.type !== "HeroElement" && (
+                    <DeleteElementBtn id={element?.id}>
+                      <Button
+                        asChild
+                        variant="destructive"
+                        className="mt-2 hidden h-12 w-full cursor-pointer items-center justify-center p-2 duration-200 md:flex"
+                      >
+                        <span>
+                          حذف بلوک
+                          <TrashIcon className="h-4 w-4 text-white" />
+                        </span>
+                      </Button>
+                    </DeleteElementBtn>
+                  )}
+
+                  {element?.type !== "HeroElement" && (
+                    <DeleteElementBtn id={element?.id}>
+                      <button
+                        variant="destructive"
+                        className="absolute -top-16 left-2 flex cursor-pointer items-center justify-center rounded-full bg-destructive p-2 duration-200 hover:bg-green-600 md:right-0 md:hidden"
+                      >
+                        <TrashIcon className="h-4 w-4 text-white" />
+                      </button>
+                    </DeleteElementBtn>
+                  )}
+                </div>
+              </div>
+            </form>
+          </div>
         </Suspense>
       </Form>
-      <div className="mt-auto">
-        <Dialog>
-          <DialogTrigger asChild>
-            <ShinyButton
-              className="mt-4 h-14 w-full bg-button hover:bg-card-light"
-              size="lg"
-            >
-              <span className="s flex w-full items-center justify-between text-text">
-                تغییر تم
-                <ChevronLeft />
-              </span>
-            </ShinyButton>
-          </DialogTrigger>
-          <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
-            <DialogTitle className="hidden"></DialogTitle>
-            <DialogDescription className="hidden"></DialogDescription>
-            <ElementThemeSelector elementInstance={element} />
-          </DialogContent>
-        </Dialog>
-      </div>
     </>
   );
 }

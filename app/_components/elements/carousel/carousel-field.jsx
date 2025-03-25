@@ -7,13 +7,13 @@ import { WorkspaceComponent } from "./components/WorkspaceComponent";
 const type = "CarouselField";
 
 const extraAttributes = {
-  title: "سوالات متداول",
+  title: "",
   theme: "",
   font: "",
   textColor: "#ffffff",
   bgColor: "",
   borderRadius: "",
-  questions: [],
+  slides: [],
   schedule: false,
   scheduleStart: "0",
   scheduleEnd: "0",

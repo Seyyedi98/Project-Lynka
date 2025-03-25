@@ -1,23 +1,15 @@
 "use client";
 
+import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
+import { ShinyButton } from "@/app/_components/common/button/shiny-button";
 import SquareButton from "@/app/_components/common/button/square-button";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
-import Divider from "@/app/_components/common/shared/devider";
 import PageFieldValueSlider from "@/app/_components/common/form/element-properties/page-slider-formfield";
-import { Form } from "@/components/ui/form";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { toast } from "@/hooks/use-toast";
-import { heroFieldSchems } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Check, ChevronLeft } from "lucide-react";
-import dynamic from "next/dynamic";
-import { Suspense, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { ShinyButton } from "@/app/_components/common/button/shiny-button";
+import Divider from "@/app/_components/common/shared/devider";
+import HeroThemeSelector from "@/app/_components/theme/hero-theme-selector";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -25,8 +17,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
-import HeroThemeSelector from "@/app/_components/theme/hero-theme-selector";
+import { Form } from "@/components/ui/form";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { toast } from "@/hooks/use-toast";
+import { ChevronLeft, TrashIcon } from "lucide-react";
+import dynamic from "next/dynamic";
+import { Suspense, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 const UploadButton = dynamic(
   () => import("@/app/_components/common/input/workspace-hero-uploader"),
@@ -121,144 +120,166 @@ function PropertiesComponent({ elementInstance }) {
             </div>
           }
         >
-          <form
-            // onBlur={form.handleSubmit(applyChanges)}
-            className="flex flex-col gap-2 text-text"
-            onSubmit={form.handleSubmit(applyChanges)}
-          >
-            <Tabs dir="rtl" defaultValue="content" className="">
-              <TabsList className="mb-2">
-                <TabsTrigger value="content">محتوا</TabsTrigger>
-                <TabsTrigger value="design">استایل</TabsTrigger>
-              </TabsList>
+          <div className="h-full w-full">
+            <form
+              // onBlur={form.handleSubmit(applyChanges)}
+              className="flex h-full flex-col gap-2 text-text"
+              onSubmit={form.handleSubmit(applyChanges)}
+            >
+              <Tabs dir="rtl" defaultValue="content" className="">
+                <TabsList className="mb-2">
+                  <TabsTrigger value="content">محتوا</TabsTrigger>
+                  <TabsTrigger value="design">استایل</TabsTrigger>
+                </TabsList>
 
-              <TabsContent value="content" className="flex flex-col gap-4">
-                {/* Title */}
-                <ElementTitleFormField form={form} />
+                <TabsContent value="content" className="flex flex-col gap-4">
+                  {/* Title */}
+                  <ElementTitleFormField form={form} />
 
-                {/* Subtitle */}
-                <ElementTitleFormField
-                  form={form}
-                  fieldName="subtitle"
-                  placeholder="توضیحات"
-                />
+                  {/* Subtitle */}
+                  <ElementTitleFormField
+                    form={form}
+                    fieldName="subtitle"
+                    placeholder="توضیحات"
+                  />
 
-                <Divider className="mt-4 opacity-50" />
+                  <Divider className="mt-4 opacity-50" />
 
-                {/* Title Color */}
-                <ElementColorFormField
-                  form={form}
-                  fieldName="titleColor"
-                  label="رنگ عنوان"
-                />
+                  {/* Title Color */}
+                  <ElementColorFormField
+                    form={form}
+                    fieldName="titleColor"
+                    label="رنگ عنوان"
+                  />
 
-                {/* Title Font */}
-                <ElementFontFormField
-                  form={form}
-                  fieldName="titleFont"
-                  label="فونت عنوان "
-                />
+                  {/* Title Font */}
+                  <ElementFontFormField
+                    form={form}
+                    fieldName="titleFont"
+                    label="فونت عنوان "
+                  />
 
-                {/* Subtitle Color */}
-                <ElementColorFormField
-                  form={form}
-                  fieldName="subtitleColor"
-                  label="رنگ توضیحات"
-                />
+                  {/* Subtitle Color */}
+                  <ElementColorFormField
+                    form={form}
+                    fieldName="subtitleColor"
+                    label="رنگ توضیحات"
+                  />
 
-                {/* Subtitle Font */}
-                <ElementFontFormField
-                  form={form}
-                  fieldName="subtitleFont"
-                  label="فونت توضیحات"
-                />
-              </TabsContent>
+                  {/* Subtitle Font */}
+                  <ElementFontFormField
+                    form={form}
+                    fieldName="subtitleFont"
+                    label="فونت توضیحات"
+                  />
+                </TabsContent>
 
-              <TabsContent value="design" className="flex flex-col gap-4">
-                <div className="flex">
-                  <SquareButton
-                    state={category}
-                    action={setCategory}
-                    rule="image"
-                  >
-                    تصویر
-                  </SquareButton>
-                  <SquareButton
-                    state={category}
-                    action={setCategory}
-                    rule="color"
-                  >
-                    رنگ
-                  </SquareButton>
+                <TabsContent value="design" className="flex flex-col gap-4">
+                  <div className="flex">
+                    <SquareButton
+                      state={category}
+                      action={setCategory}
+                      rule="image"
+                    >
+                      تصویر
+                    </SquareButton>
+                    <SquareButton
+                      state={category}
+                      action={setCategory}
+                      rule="color"
+                    >
+                      رنگ
+                    </SquareButton>
+                  </div>
+                  {category === "image" && (
+                    <>
+                      {/* <HeroWorkspaceUploader /> */}
+                      <UploadButton />
+                      <UploadButtonSecondary />
+                      <p className="mb-6 text-xs">
+                        پس از انتخاب فایل، دکمه بارگزاری را بزنید
+                      </p>
+                      <PageFieldValueSlider
+                        form={form}
+                        max={100}
+                        fieldName="imageBrightness"
+                        label="میزان تیرگی تصویر"
+                      />
+                    </>
+                  )}
+                  {category === "color" && (
+                    <>
+                      <ElementColorFormField
+                        form={form}
+                        fieldName="heroValue"
+                        label="رنگ پس زمینه"
+                      />
+                      <p className="text-textLight text-xs"></p>
+                    </>
+                  )}
+                </TabsContent>
+              </Tabs>
+
+              <div className="mt-auto">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <ShinyButton
+                      className="mt-4 h-14 w-full bg-button hover:bg-card-light"
+                      size="lg"
+                    >
+                      <span className="s flex w-full items-center justify-between text-text">
+                        تغییر تم
+                        <ChevronLeft />
+                      </span>
+                    </ShinyButton>
+                  </DialogTrigger>
+                  <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
+                    <DialogTitle className="hidden"></DialogTitle>
+                    <DialogDescription className="hidden"></DialogDescription>
+                    <HeroThemeSelector />
+                  </DialogContent>
+                </Dialog>
+
+                {/* Desktop sidebar button */}
+                <button
+                  type="submit"
+                  className="mt-4 hidden h-12 w-full cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
+                >
+                  اعمال تغییرات
+                </button>
+
+                <div>
+                  {element?.type !== "HeroElement" && (
+                    <DeleteElementBtn id={element?.id}>
+                      <Button
+                        asChild
+                        variant="destructive"
+                        className="mt-2 hidden h-12 w-full cursor-pointer items-center justify-center p-2 duration-200 md:flex"
+                      >
+                        <span>
+                          حذف بلوک
+                          <TrashIcon className="h-4 w-4 text-white" />
+                        </span>
+                      </Button>
+                    </DeleteElementBtn>
+                  )}
+
+                  {element?.type !== "HeroElement" && (
+                    <DeleteElementBtn id={element?.id}>
+                      <button
+                        variant="destructive"
+                        className="absolute -top-16 left-2 flex cursor-pointer items-center justify-center rounded-full bg-destructive p-2 duration-200 hover:bg-green-600 md:right-0 md:hidden"
+                      >
+                        <TrashIcon className="h-4 w-4 text-white" />
+                      </button>
+                    </DeleteElementBtn>
+                  )}
                 </div>
-                {category === "image" && (
-                  <>
-                    {/* <HeroWorkspaceUploader /> */}
-                    <UploadButton />
-                    <UploadButtonSecondary />
-                    <p className="mb-6 text-xs">
-                      پس از انتخاب فایل، دکمه بارگزاری را بزنید
-                    </p>
-                    <PageFieldValueSlider
-                      form={form}
-                      max={100}
-                      fieldName="imageBrightness"
-                      label="میزان تیرگی تصویر"
-                    />
-                  </>
-                )}
-                {category === "color" && (
-                  <>
-                    <ElementColorFormField
-                      form={form}
-                      fieldName="heroValue"
-                      label="رنگ پس زمینه"
-                    />
-                    <p className="text-textLight text-xs"></p>
-                  </>
-                )}
-              </TabsContent>
-            </Tabs>
-
-            {/* Mobile drawer button */}
-            <button
-              type="submit"
-              className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
-            >
-              <Check className="h-4 w-4 text-white" />
-            </button>
-
-            {/* Desktop sidebar button */}
-            <button
-              type="submit"
-              className="mt-4 hidden h-12 cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
-            >
-              اعمال تغییرات
-            </button>
-          </form>
+              </div>
+            </form>
+          </div>
         </Suspense>
       </Form>
-
-      <div className="mt-auto">
-        <Dialog>
-          <DialogTrigger asChild>
-            <ShinyButton
-              className="mt-4 h-14 w-full bg-button hover:bg-card-light"
-              size="lg"
-            >
-              <span className="s flex w-full items-center justify-between text-text">
-                تغییر تم
-                <ChevronLeft />
-              </span>
-            </ShinyButton>
-          </DialogTrigger>
-          <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
-            <DialogTitle className="hidden"></DialogTitle>
-            <DialogDescription className="hidden"></DialogDescription>
-            <HeroThemeSelector />
-          </DialogContent>
-        </Dialog>
-      </div>
     </>
   );
 }
