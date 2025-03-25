@@ -1,13 +1,11 @@
 "use client";
 
-import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { cn } from "@/lib/utils";
 import getImageAddress from "@/utils/get-image-address";
 import Image from "next/image";
 
 const ImageFieldDefault = (props) => {
-  const { borderRadius, image } = props;
-  const { isSilver } = useUserSubscription();
+  const { borderRadius, isSilver, image } = props;
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
   return (

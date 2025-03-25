@@ -16,8 +16,8 @@ const MapFieldDefault = (props) => {
     bgColor,
     borderRadius,
     font,
+    isSilver,
   } = props;
-  const { isSilver } = useUserSubscription();
   const [latitude, longitude] = coords ? coords.split(",") : [null, null];
   const [loadedFont, setLoadedFont] = useState(null);
   const mark = "round";

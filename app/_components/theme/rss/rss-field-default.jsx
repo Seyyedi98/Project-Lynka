@@ -1,6 +1,5 @@
 "use client";
 
-import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { cn } from "@/lib/utils";
 import { loadFont } from "@/utils/loadFont";
 import { Loader2Icon } from "lucide-react";
@@ -14,8 +13,8 @@ const RssFieldDefault = ({
   borderRadius,
   bgColor,
   isLive,
+  isSilver,
 }) => {
-  const { isSilver } = useUserSubscription();
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const [loadedFont, setLoadedFont] = useState(null);

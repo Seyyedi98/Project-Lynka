@@ -1,15 +1,13 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { Loader2 as LoaderIcon } from "lucide-react";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { cn } from "@/lib/utils";
+import { Loader2 as LoaderIcon } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
-const VideoFieldDefault = ({ href, isLive }) => {
+const VideoFieldDefault = ({ href, isLive, isSilver }) => {
   const iframeRef = useRef(null);
   const [iframeHeight, setIframeHeight] = useState("400px");
   const [isLoading, setIsLoading] = useState(true);
-  const { isSilver } = useUserSubscription();
 
   // extract video ID from the Aparat link
   const getVideoId = (url) => {

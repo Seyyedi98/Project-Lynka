@@ -99,7 +99,7 @@ const FaviconUploader = ({ uri, favicon }) => {
             type="file"
             onChange={handleFileChange}
             className="file-input mb-2 rounded-md"
-            accept="image/*"
+            accept=".ico,image/vnd.microsoft.icon,image/x-icon"
           />
           <Button
             size="md"

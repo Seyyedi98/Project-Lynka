@@ -1,12 +1,10 @@
 "use client";
 
-import { useUserSubscription } from "@/hooks/useUserSubscription";
-import ShiftingCountdown from "../../common/countdown";
 import { cn } from "@/lib/utils";
+import ShiftingCountdown from "../../common/countdown";
 
 const CountdownFieldDefault = (props) => {
-  const { isLive } = props;
-  const { isSilver } = useUserSubscription();
+  const { isLive, isSilver } = props;
 
   return (
     <div className="relative w-full">

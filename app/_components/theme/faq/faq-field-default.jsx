@@ -1,15 +1,21 @@
 "use client";
 
-import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { cn } from "@/lib/utils";
 import { loadFont } from "@/utils/loadFont";
 import { useEffect, useState } from "react";
-import { Accordion, Placeholder } from "rsuite";
+import { Accordion } from "rsuite";
 
 const FaqFieldDefault = (props) => {
-  const { title, isLive, textColor, bgColor, borderRadius, font, questions } =
-    props;
-  const { isSilver } = useUserSubscription();
+  const {
+    title,
+    isSilver,
+    isLive,
+    textColor,
+    bgColor,
+    borderRadius,
+    font,
+    questions,
+  } = props;
   const [textFont, setTextFont] = useState(null);
 
   useEffect(() => {

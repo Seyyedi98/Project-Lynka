@@ -39,12 +39,37 @@ export async function generateMetadata({ params }) {
       title: metadata.metaTitle || "Miralink",
       description: isSilver ? metadata.metaDescription || "Welcome!" : "",
       favicon: "null",
+      // icons: [
+      //   {
+      //     rel: "icon",
+      //     url:
+      //       favicon ||
+      //       "https://arklight.storage.c2.liara.space/files/arcane.ico",
+      //   },
+      // ],
       icons: [
         {
           rel: "icon",
           url:
             favicon ||
             "https://arklight.storage.c2.liara.space/files/arcane.ico",
+          sizes: "32x32",
+          type: "image/x-icon",
+        },
+        {
+          rel: "icon",
+          url:
+            favicon ||
+            "https://arklight.storage.c2.liara.space/files/arcane.ico",
+          sizes: "16x16",
+          type: "image/x-icon",
+        },
+        {
+          rel: "apple-touch-icon",
+          url:
+            favicon ||
+            "https://arklight.storage.c2.liara.space/files/arcane.ico",
+          sizes: "180x180",
         },
       ],
       openGraph: {
