@@ -7,13 +7,12 @@ import { WorkspaceComponent } from "./components/WorkspaceComponent";
 const type = "GalleryField";
 
 const extraAttributes = {
-  title: "سوالات متداول",
-  theme: "",
+  title: "",
   font: "",
+  theme: "",
   textColor: "#ffffff",
-  bgColor: "",
   borderRadius: "",
-  questions: [],
+  images: [],
   schedule: false,
   scheduleStart: "0",
   scheduleEnd: "0",

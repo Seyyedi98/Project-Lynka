@@ -13,6 +13,7 @@ import ImageFieldDefault from "../theme/Image/image-field-default";
 import CarouselFieldDefault from "../theme/carousel/carousel-field-default";
 import PostTrackerFieldDefault from "../theme/postTracker/postTracker-field-default";
 import FormFieldDefault from "../theme/form/form-field-default";
+import GalleryFieldDefault from "../theme/gallery/gallery-field-default";
 
 export const ElementThemeController = {
   SocialsField: {
@@ -48,6 +49,9 @@ export const ElementThemeController = {
   },
   ImageField: {
     default: [ImageFieldDefault, { type: "color" }, { isPremium: true }],
+  },
+  GalleryField: {
+    default: [GalleryFieldDefault, { type: "color" }, { isPremium: true }],
   },
   CarouselField: {
     default: [CarouselFieldDefault, { type: "color" }, { isPremium: true }],

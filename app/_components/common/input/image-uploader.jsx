@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Loader2, X, Check, Image as ImageIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import getImageAddress from "@/utils/get-image-address";
 import Image from "next/image";
 import uploadFile from "@/lib/upload/uploadFile";
@@ -11,31 +11,35 @@ export const ImageUploaderField = ({
   index,
   label = "تصویر",
   options,
+  showImageDeleteButton = true,
 }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [tempFile, setTempFile] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
-  const handleUpload = async () => {
-    if (!tempFile) return;
+  // Auto-upload when file is selected
+  useEffect(() => {
+    const handleAutoUpload = async () => {
+      if (tempFile && !value) {
+        setIsUploading(true);
+        try {
+          const data = await uploadFile(tempFile, options);
+          const { response } = data;
+          const stringifiedData = JSON.stringify({
+            key: response.Key,
+          });
+          onChange(stringifiedData);
+          setTempFile(null);
+        } catch (error) {
+          console.error("Upload failed:", error);
+        } finally {
+          setIsUploading(false);
+        }
+      }
+    };
 
-    setIsUploading(true);
-    try {
-      const data = await uploadFile(tempFile, options);
-      const { response } = data;
-
-      const stringifiedData = JSON.stringify({
-        key: response.Key,
-      });
-
-      onChange(stringifiedData);
-      setTempFile(null);
-    } catch (error) {
-      console.error("Upload failed:", error);
-    } finally {
-      setIsUploading(false);
-    }
-  };
+    handleAutoUpload();
+  }, [tempFile, value, onChange, options]);
 
   return (
     <div className="mt-2 flex flex-col gap-2">
@@ -92,17 +96,19 @@ export const ImageUploaderField = ({
               </Button>
             </div>
           ) : (
-            <Button
-              variant="destructive"
-              size="sm"
-              className="bottom-0 right-0 mt-1 w-full"
-              onClick={(e) => {
-                e.preventDefault();
-                setShowDeleteConfirm(true);
-              }}
-            >
-              حذف تصویر
-            </Button>
+            showImageDeleteButton && (
+              <Button
+                variant="destructive"
+                size="sm"
+                className="bottom-0 right-0 mt-1 w-full"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowDeleteConfirm(true);
+                }}
+              >
+                حذف تصویر
+              </Button>
+            )
           )}
         </div>
       ) : (
@@ -119,31 +125,19 @@ export const ImageUploaderField = ({
             }}
             className="hidden"
           />
-          {!tempFile && (
-            <label
-              htmlFor={`file-upload-${index}`}
-              className="flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-md border-4 border-dashed border-gray-300 transition-colors duration-200 hover:border-gray-400 dark:border-white/30 dark:hover:border-white/50"
-            >
-              <ImageIcon className="h-10 w-10 text-gray-400" />
-              <span className="mt-2 text-sm text-gray-500">انتخاب تصویر</span>
-            </label>
-          )}
-
-          {tempFile && (
-            <Button
-              onClick={(e) => {
-                e.preventDefault();
-                handleUpload();
-              }}
-              disabled={isUploading}
-            >
-              {isUploading ? (
-                <Loader2 className="animate-spin" />
-              ) : (
-                "آپلود تصویر"
-              )}
-            </Button>
-          )}
+          <label
+            htmlFor={`file-upload-${index}`}
+            className="flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-md border-4 border-dashed border-gray-300 transition-colors duration-200 hover:border-gray-400 dark:border-white/30 dark:hover:border-white/50"
+          >
+            {isUploading ? (
+              <Loader2 className="h-10 w-10 animate-spin text-gray-400" />
+            ) : (
+              <>
+                <ImageIcon className="h-10 w-10 text-gray-400" />
+                <span className="mt-2 text-sm text-gray-500">انتخاب تصویر</span>
+              </>
+            )}
+          </label>
         </div>
       )}
     </div>

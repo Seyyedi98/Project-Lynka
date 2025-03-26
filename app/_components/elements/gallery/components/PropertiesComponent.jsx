@@ -1,17 +1,18 @@
 "use client";
 
+import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
 import { ShinyButton } from "@/app/_components/common/button/shiny-button";
 import ElementAddQuestionsFormField from "@/app/_components/common/form/element-properties/element-add-questions-formfield";
 import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
-import ElementhrefFormField from "@/app/_components/common/form/element-properties/element-href-formfield";
+import ElementAddGalleyImageFormField from "@/app/_components/common/form/element-properties/element-gallery-image-formfield";
 import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
-import { ElementThemeController } from "@/app/_components/controller/element-theme-controller";
 import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -24,8 +25,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
-import { Check, ChevronLeft } from "lucide-react";
-import dynamic from "next/dynamic";
+import { Check, ChevronLeft, TrashIcon } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -36,18 +36,14 @@ function PropertiesComponent({ elementInstance }) {
 
   const { isSilver } = useUserSubscription();
 
-  const RenderElement =
-    ElementThemeController[element.type][element.extraAttributes.theme][0];
-
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),
     defaultValues: {
       title: element.extraAttributes.title || "",
       font: element.extraAttributes.font || "",
       textColor: element.extraAttributes.textColor || "",
-      bgColor: element.extraAttributes.bgColor || "",
       borderRadius: element.extraAttributes.borderRadius || "",
-      questions: element.extraAttributes.questions || [],
+      images: element.extraAttributes.questions || [],
       schedule: element.extraAttributes.schedule || false,
       scheduleStart: element.extraAttributes.scheduleStart || "0",
       scheduleEnd: element.extraAttributes.scheduleEnd || "0",
@@ -65,9 +61,8 @@ function PropertiesComponent({ elementInstance }) {
       title,
       theme,
       textColor,
-      bgColor,
       borderRadius,
-      questions,
+      images,
       font,
       schedule,
       scheduleStart,
@@ -85,10 +80,9 @@ function PropertiesComponent({ elementInstance }) {
           title,
           theme,
           textColor,
-          questions,
+          images,
           font,
           borderRadius,
-          bgColor,
           schedule: isSilver ? schedule : element.extraAttributes.schedule,
           scheduleStart: isSilver
             ? scheduleStart
@@ -149,12 +143,11 @@ function PropertiesComponent({ elementInstance }) {
 
               <TabsContent value="content" className="flex flex-col gap-5">
                 {/* Title */}
-
                 <ElementTitleFormField form={form} />
 
-                {/* Questions */}
-                <ElementAddQuestionsFormField
-                  fieldName="questions"
+                {/* Images */}
+                <ElementAddGalleyImageFormField
+                  fieldName="images"
                   form={form}
                 />
 
@@ -174,13 +167,6 @@ function PropertiesComponent({ elementInstance }) {
               <TabsContent value="design" className="flex flex-col gap-4">
                 {/* Border radius */}
                 <ElementBorderRadiusFormField form={form} />
-
-                {/* Background Color */}
-                <ElementColorFormField
-                  form={form}
-                  label="رنگ پس زمینه"
-                  fieldName="bgColor"
-                />
               </TabsContent>
 
               <TabsContent value="visibility" className="flex flex-col gap-4">
@@ -213,36 +199,62 @@ function PropertiesComponent({ elementInstance }) {
               <Check className="h-4 w-4 text-white" />
             </button>
 
-            {/* Desktop sidebar button */}
-            <button
-              type="submit"
-              className="mt-4 hidden h-12 cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
-            >
-              اعمال تغییرات
-            </button>
+            <div className="mt-auto">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <ShinyButton
+                    className="mt-4 h-14 w-full bg-button hover:bg-card-light"
+                    size="lg"
+                  >
+                    <span className="s flex w-full items-center justify-between text-text">
+                      تغییر تم
+                      <ChevronLeft />
+                    </span>
+                  </ShinyButton>
+                </DialogTrigger>
+                <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
+                  <DialogTitle className="hidden"></DialogTitle>
+                  <DialogDescription className="hidden"></DialogDescription>
+                  <ElementThemeSelector elementInstance={element} />
+                </DialogContent>
+              </Dialog>
+
+              {/* Desktop sidebar button */}
+              <button
+                type="submit"
+                className="mt-4 hidden h-12 w-full cursor-pointer items-center justify-center rounded-md bg-green-500 p-2 text-white duration-200 hover:bg-green-600 sm:right-0 md:flex"
+              >
+                اعمال تغییرات
+              </button>
+
+              {/* Delete element buttons */}
+              <div>
+                <DeleteElementBtn id={element?.id}>
+                  <Button
+                    asChild
+                    variant="destructive"
+                    className="mt-2 hidden h-12 w-full cursor-pointer items-center justify-center p-2 duration-200 md:flex"
+                  >
+                    <span>
+                      حذف بلوک
+                      <TrashIcon className="h-4 w-4 text-white" />
+                    </span>
+                  </Button>
+                </DeleteElementBtn>
+
+                <DeleteElementBtn id={element?.id}>
+                  <button
+                    variant="destructive"
+                    className="absolute -top-16 left-2 flex cursor-pointer items-center justify-center rounded-full bg-destructive p-2 duration-200 hover:bg-green-600 md:right-0 md:hidden"
+                  >
+                    <TrashIcon className="h-4 w-4 text-white" />
+                  </button>
+                </DeleteElementBtn>
+              </div>
+            </div>
           </form>
         </Suspense>
       </Form>
-      <div className="mt-auto">
-        <Dialog>
-          <DialogTrigger asChild>
-            <ShinyButton
-              className="mt-4 h-14 w-full bg-button hover:bg-card-light"
-              size="lg"
-            >
-              <span className="s flex w-full items-center justify-between text-text">
-                تغییر تم
-                <ChevronLeft />
-              </span>
-            </ShinyButton>
-          </DialogTrigger>
-          <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 p-0">
-            <DialogTitle className="hidden"></DialogTitle>
-            <DialogDescription className="hidden"></DialogDescription>
-            <ElementThemeSelector elementInstance={element} />
-          </DialogContent>
-        </Dialog>
-      </div>
     </>
   );
 }
