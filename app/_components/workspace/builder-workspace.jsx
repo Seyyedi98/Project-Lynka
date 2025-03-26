@@ -50,9 +50,9 @@ const BuilderWorkspace = () => {
       ? parseJson(theme.backgroundImage)?.url
       : getImageAddress(parseJson(theme.backgroundImage)?.key);
 
-  const blurryBackgroundImageUrl = getImageAddress(
-    hero?.extraAttributes?.primaryImage.key,
-  );
+  const blurryBackgroundImageUrl = hero.extraAttributes.primaryImage
+    ? getImageAddress(JSON.parse(hero?.extraAttributes?.primaryImage).key)
+    : null;
 
   const workspaceBlurryBg = useMemo(
     () => ({
