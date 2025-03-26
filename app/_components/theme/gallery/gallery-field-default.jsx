@@ -3,10 +3,11 @@
 import { cn } from "@/lib/utils";
 import getImageAddress from "@/utils/get-image-address";
 import Image from "next/image";
-import { useMemo } from "react";
+import { useState, useMemo } from "react";
 
 const GalleryFieldDefault = (props) => {
   const { isSilver, images } = props;
+  const [loadedImages, setLoadedImages] = useState({});
 
   // Filter out invalid images
   const validImages = useMemo(() => {
@@ -21,6 +22,11 @@ const GalleryFieldDefault = (props) => {
       })
       .filter(Boolean);
   }, [images]);
+
+  // Handle image load
+  const handleImageLoad = (index) => {
+    setLoadedImages((prev) => ({ ...prev, [index]: true }));
+  };
 
   // Determine grid columns based on image count
   const gridClass = useMemo(() => {
@@ -50,19 +56,24 @@ const GalleryFieldDefault = (props) => {
           validImages.map((image, index) => (
             <div
               key={index}
-              className="aspect-square overflow-hidden rounded-md"
+              className="relative aspect-square overflow-hidden rounded-md"
             >
-              {console.log(image.key)}
+              {!loadedImages[index] && (
+                <div className="absolute inset-0 flex animate-pulse items-center justify-center bg-gray-200">
+                  <span className="text-gray-500">در حال بارگزاری</span>
+                </div>
+              )}
               <Image
                 src={getImageAddress(image.key)}
                 alt={`Gallery image ${index + 1}`}
-                className="h-full w-full object-cover"
+                className={cn(
+                  "h-full w-full object-cover transition-opacity duration-300",
+                  loadedImages[index] ? "opacity-100" : "opacity-0",
+                )}
                 width={300}
                 height={300}
-                // loading="lazy"
                 quality={80}
-                // placeholder="blur"
-                // blurDataURL="/placeholder-image.jpg" // Add a small placeholder image
+                onLoadingComplete={() => handleImageLoad(index)}
               />
             </div>
           ))

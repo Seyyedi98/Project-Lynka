@@ -8,8 +8,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { PlusCircleIcon, XIcon } from "lucide-react";
+import { PlusCircleIcon, XIcon, CheckIcon } from "lucide-react";
 import dynamic from "next/dynamic";
+import { useState } from "react";
 
 const ImageUploaderField = dynamic(
   () =>
@@ -26,6 +27,26 @@ const ElementAddSlideFormField = ({
   description,
   element,
 }) => {
+  const [confirmDeleteIndex, setConfirmDeleteIndex] = useState(null);
+
+  const handleDeleteClick = (index, e) => {
+    e.preventDefault();
+    if (confirmDeleteIndex === index) {
+      // Second click - confirm deletion
+      const currentSlides = form.getValues("slides") || [];
+      const newSlides = currentSlides.filter((_, i) => i !== index);
+      form.setValue("slides", newSlides);
+      setConfirmDeleteIndex(null);
+    } else {
+      // First click - show confirmation
+      setConfirmDeleteIndex(index);
+    }
+  };
+
+  const cancelDelete = () => {
+    setConfirmDeleteIndex(null);
+  };
+
   return (
     <FormField
       control={form.control}
@@ -38,10 +59,10 @@ const ElementAddSlideFormField = ({
                 {form.watch("slides")?.map((item, index) => (
                   <div
                     key={index}
-                    className="flex flex-col gap-2 rounded border border-border/50 p-2 dark:border-border"
+                    className="relative flex flex-col gap-2 rounded border border-border/50 p-2 dark:border-border"
                   >
                     {/* Title */}
-                    <div className="flex items-center justify-between gap-1">
+                    <div className="mt-8 flex items-center justify-between gap-1">
                       <Input
                         placeholder="عنوان"
                         value={item.title}
@@ -50,18 +71,6 @@ const ElementAddSlideFormField = ({
                           field.onChange(field.value);
                         }}
                       />
-                      <Button
-                        variant="destructive"
-                        size="icon"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          const newOptions = [...field.value];
-                          newOptions.splice(index, 1);
-                          field.onChange(newOptions);
-                        }}
-                      >
-                        <XIcon />
-                      </Button>
                     </div>
 
                     {/* Description */}
@@ -88,6 +97,37 @@ const ElementAddSlideFormField = ({
                         useWebWorker: true,
                       }}
                     />
+
+                    {/* Delete button with confirmation */}
+                    {confirmDeleteIndex === index ? (
+                      <div className="absolute right-2 top-2 flex gap-1">
+                        <Button
+                          variant="destructive"
+                          size="icon"
+                          className="h-6 w-6 rounded-full"
+                          onClick={(e) => handleDeleteClick(index, e)}
+                        >
+                          <CheckIcon className="h-3 w-3" />
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="h-6 w-6 rounded-full"
+                          onClick={cancelDelete}
+                        >
+                          <XIcon className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    ) : (
+                      <Button
+                        variant="destructive"
+                        size="icon"
+                        className="absolute right-2 top-2 h-6 w-6 rounded-full"
+                        onClick={(e) => handleDeleteClick(index, e)}
+                      >
+                        <XIcon className="h-3 w-3" />
+                      </Button>
+                    )}
                   </div>
                 ))}
               </div>
@@ -101,7 +141,7 @@ const ElementAddSlideFormField = ({
               e.preventDefault();
               form.setValue(
                 "slides",
-                field.value.concat({ title: "", image: "" }),
+                field.value.concat({ title: "", description: "", image: "" }),
               );
             }}
           >
