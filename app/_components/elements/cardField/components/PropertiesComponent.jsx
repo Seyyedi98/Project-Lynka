@@ -19,7 +19,7 @@ import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { cardFieldSchems } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CryptoJS from "crypto-js";
-import { Check, ChevronLeft } from "lucide-react";
+import { Check, ChevronLeft, TrashIcon } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -33,9 +33,18 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
+import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
+import { Button } from "@/components/ui/button";
 
-const UploadButton = dynamic(
-  () => import("@/app/_components/common/input/card-element-image-uploader"),
+const ImageUploaderField = dynamic(
+  () =>
+    import("@/app/_components/common/input/image-uploader").then(
+      (mod) => mod.ImageUploaderField,
+    ),
+  {
+    ssr: false,
+    loading: () => <Skeleton className="h-32 w-full rounded-md"></Skeleton>,
+  },
 );
 
 function PropertiesComponent({ elementInstance }) {
@@ -229,10 +238,16 @@ function PropertiesComponent({ elementInstance }) {
 
                   {/* Image upload */}
                   <div className="mt-2">
-                    <UploadButton form={form} element={element} />
-                    <p className="text-textLight text-xs">
-                      پس از انتخاب فایل، دکمه بارگزاری را بزنید
-                    </p>
+                    <ImageUploaderField
+                      value={form.watch("image")}
+                      onChange={(value) => form.setValue("image", value)}
+                      label="پیش نمایش"
+                      options={{
+                        maxSizeMB: 0.2,
+                        maxWidthOrHeight: 720,
+                        useWebWorker: true,
+                      }}
+                    />
                   </div>
                 </TabsContent>
 
@@ -302,6 +317,31 @@ function PropertiesComponent({ elementInstance }) {
                 >
                   اعمال تغییرات
                 </button>
+
+                {/* Delete element buttons */}
+                <div>
+                  <DeleteElementBtn id={element?.id}>
+                    <Button
+                      asChild
+                      variant="destructive"
+                      className="mt-2 hidden h-12 w-full cursor-pointer items-center justify-center p-2 duration-200 md:flex"
+                    >
+                      <span>
+                        حذف بلوک
+                        <TrashIcon className="h-4 w-4 text-white" />
+                      </span>
+                    </Button>
+                  </DeleteElementBtn>
+
+                  <DeleteElementBtn id={element?.id}>
+                    <button
+                      variant="destructive"
+                      className="absolute -top-16 left-2 flex cursor-pointer items-center justify-center rounded-full bg-destructive p-2 duration-200 hover:bg-green-600 md:right-0 md:hidden"
+                    >
+                      <TrashIcon className="h-4 w-4 text-white" />
+                    </button>
+                  </DeleteElementBtn>
+                </div>
               </div>
             </form>
           </div>

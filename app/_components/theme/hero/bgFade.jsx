@@ -20,8 +20,12 @@ const BgFadeHero = ({ ...data }) => {
     imageBrightness,
   } = data;
 
-  // const primaryBgImage = getImageAddress(primaryImage.key);
-  const secondaryBgImage = getImageAddress(secondaryImage.key);
+  // const primaryBgImage = primaryImage
+  //   ? getImageAddress(JSON.parse(primaryImage).key)
+  //   : "";
+  const secondaryBgImage = secondaryImage
+    ? getImageAddress(JSON.parse(secondaryImage).key)
+    : "";
   const [loadedTitleFont, setLoadedTitleFont] = useState(null);
   const [loadedSubtitleFont, setLoadedSubtitleFont] = useState(null);
 

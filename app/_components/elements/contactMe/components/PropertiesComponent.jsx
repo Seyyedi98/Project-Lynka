@@ -30,18 +30,11 @@ import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-const UploadButton = dynamic(
-  () => import("@/app/_components/common/input/card-element-image-uploader"),
-);
-
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
   const dispatch = useDispatch();
 
   const { isSilver } = useUserSubscription();
-
-  const RenderElement =
-    ElementThemeController[element.type][element.extraAttributes.theme][0];
 
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),

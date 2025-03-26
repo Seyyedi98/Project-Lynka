@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import deleteFile from "@/lib/upload/deleteFile";
 import uploadFile from "@/lib/upload/uploadFile";
-import { Loader2, Loader2Icon, LoaderIcon } from "lucide-react";
+import { Loader2, Loader2Icon } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -19,7 +19,6 @@ const PageBgImageUploader = ({ theme }) => {
   const { uri } = useParams();
 
   const dispatch = useDispatch();
-
   let previousImage;
   try {
     previousImage = JSON.parse(theme.backgroundImage);

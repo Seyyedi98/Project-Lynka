@@ -6,7 +6,6 @@ import ElementBorderRadiusFormField from "@/app/_components/common/form/element-
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
-import ElementhrefFormField from "@/app/_components/common/form/element-properties/element-href-formfield";
 import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
@@ -25,14 +24,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { Check, ChevronLeft } from "lucide-react";
-import dynamic from "next/dynamic";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-
-const UploadButton = dynamic(
-  () => import("@/app/_components/common/input/card-element-image-uploader"),
-);
 
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;

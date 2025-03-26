@@ -1,4 +1,5 @@
 const getImageAddress = (key) => {
+  // console.log(key);
   const imageUrl = `https://${process.env.NEXT_PUBLIC_ENDPOINT}/${process.env.NEXT_PUBLIC_BUCKET_NAME}/${key}`;
   return imageUrl;
 };

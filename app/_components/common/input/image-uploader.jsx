@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Loader2, X, Check } from "lucide-react";
+import { Loader2, X, Check, Image as ImageIcon } from "lucide-react";
 import { useState } from "react";
 import getImageAddress from "@/utils/get-image-address";
 import Image from "next/image";
@@ -9,7 +9,7 @@ export const ImageUploaderField = ({
   value,
   onChange,
   index,
-  label = "تصویر اسلاید",
+  label = "تصویر",
   options,
 }) => {
   const [isUploading, setIsUploading] = useState(false);
@@ -117,8 +117,18 @@ export const ImageUploaderField = ({
                 setTempFile(file);
               }
             }}
-            className="hover:file:bg-primary-dark block w-full text-sm text-gray-500 file:mr-4 file:rounded-md file:border-0 file:bg-primary file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white"
+            className="hidden"
           />
+          {!tempFile && (
+            <label
+              htmlFor={`file-upload-${index}`}
+              className="flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-md border-4 border-dashed border-gray-300 transition-colors duration-200 hover:border-gray-400 dark:border-white/30 dark:hover:border-white/50"
+            >
+              <ImageIcon className="h-10 w-10 text-gray-400" />
+              <span className="mt-2 text-sm text-gray-500">انتخاب تصویر</span>
+            </label>
+          )}
+
           {tempFile && (
             <Button
               onClick={(e) => {

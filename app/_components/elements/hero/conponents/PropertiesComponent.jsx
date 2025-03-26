@@ -35,6 +35,17 @@ const UploadButtonSecondary = dynamic(
     import("@/app/_components/common/input/workspace-hero-secondary-uploader"),
 );
 
+const ImageUploaderField = dynamic(
+  () =>
+    import("@/app/_components/common/input/image-uploader").then(
+      (mod) => mod.ImageUploaderField,
+    ),
+  {
+    ssr: false,
+    loading: () => <Skeleton className="h-32 w-full rounded-md"></Skeleton>,
+  },
+);
+
 function PropertiesComponent({ elementInstance }) {
   const element = elementInstance;
   const dispatch = useDispatch();
@@ -51,6 +62,8 @@ function PropertiesComponent({ elementInstance }) {
       titleColor: element.extraAttributes.titleColor || "",
       subtitleColor: element.extraAttributes.subtitleColor || "",
       imageBrightness: element.extraAttributes.imageBrightness || "",
+      primaryImage: element.extraAttributes.primaryImage || "",
+      secondaryImage: element.extraAttributes.secondaryImage || "",
     },
   });
 
@@ -70,6 +83,8 @@ function PropertiesComponent({ elementInstance }) {
       titleColor,
       subtitleColor,
       imageBrightness,
+      primaryImage,
+      secondaryImage,
     } = values;
 
     dispatch({
@@ -87,6 +102,8 @@ function PropertiesComponent({ elementInstance }) {
           titleColor,
           subtitleColor,
           imageBrightness,
+          primaryImage,
+          secondaryImage,
         },
       },
     });
@@ -194,8 +211,33 @@ function PropertiesComponent({ elementInstance }) {
                   {category === "image" && (
                     <>
                       {/* <HeroWorkspaceUploader /> */}
-                      <UploadButton />
-                      <UploadButtonSecondary />
+                      {/* <UploadButton />
+                      <UploadButtonSecondary /> */}
+                      <ImageUploaderField
+                        value={form.watch("primaryImage")}
+                        onChange={(value) =>
+                          form.setValue("primaryImage", value)
+                        }
+                        label="پیش نمایش"
+                        options={{
+                          maxSizeMB: 0.4,
+                          maxWidthOrHeight: 720,
+                          useWebWorker: true,
+                        }}
+                      />
+
+                      <ImageUploaderField
+                        value={form.watch("secondaryImage")}
+                        onChange={(value) =>
+                          form.setValue("secondaryImage", value)
+                        }
+                        label="پیش نمایش"
+                        options={{
+                          maxSizeMB: 0.4,
+                          maxWidthOrHeight: 720,
+                          useWebWorker: true,
+                        }}
+                      />
                       <p className="mb-6 text-xs">
                         پس از انتخاب فایل، دکمه بارگزاری را بزنید
                       </p>

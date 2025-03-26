@@ -8,14 +8,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { PlusCircleIcon } from "lucide-react";
+import { PlusCircleIcon, XIcon } from "lucide-react";
 import dynamic from "next/dynamic";
 
 const ImageUploaderField = dynamic(
   () =>
-    import("../../input/slider-image-uploader").then(
-      (mod) => mod.ImageUploaderField,
-    ),
+    import("../../input/image-uploader").then((mod) => mod.ImageUploaderField),
   {
     ssr: false,
     loading: () => <Skeleton className="h-32 w-full rounded-md"></Skeleton>,
@@ -53,7 +51,7 @@ const ElementAddSlideFormField = ({
                         }}
                       />
                       <Button
-                        variant="ghost"
+                        variant="destructive"
                         size="icon"
                         onClick={(e) => {
                           e.preventDefault();
@@ -62,7 +60,7 @@ const ElementAddSlideFormField = ({
                           field.onChange(newOptions);
                         }}
                       >
-                        <span className="px-2">حذف</span>
+                        <XIcon />
                       </Button>
                     </div>
 
@@ -98,7 +96,7 @@ const ElementAddSlideFormField = ({
 
           <Button
             variant="primary_2"
-            className="w-full gap-2 text-text"
+            className="w-full gap-2 text-white"
             onClick={(e) => {
               e.preventDefault();
               form.setValue(

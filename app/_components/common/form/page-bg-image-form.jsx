@@ -1,6 +1,20 @@
-import { useParams } from "next/navigation";
-import PageBgImageUploader from "../input/page-bg-image-uploader";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
+import getImageAddress from "@/utils/get-image-address";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useParams } from "next/navigation";
+
+const PageBgImageUploader = dynamic(
+  () =>
+    import("../input/page-bg-image-uploader").then(
+      (mod) => mod.default || mod.PageBgImageUploader,
+    ),
+  {
+    ssr: false,
+    loading: () => <Skeleton className="h-32 w-full rounded-md"></Skeleton>,
+  },
+);
 
 const PageBgImageForm = ({ theme }) => {
   const { backgroundType, backgroundImage } = theme;
@@ -13,6 +27,14 @@ const PageBgImageForm = ({ theme }) => {
   return (
     <div className="mt-8">
       <div className="flex flex-col items-center justify-center gap-2">
+        {bgImage && (
+          <Image
+            width={320}
+            height={640}
+            alt="background image preview"
+            src={getImageAddress(bgImage.key)}
+          />
+        )}
         <h1 className="text-xl font-medium">تصویر زمینه</h1>
         <h2 className="text-base text-muted-foreground">
           Customise the icon shown in the browser bar

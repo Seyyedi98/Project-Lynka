@@ -1,7 +1,19 @@
 import Image from "next/image";
-import MetaImageUploader from "../input/meta-image-uploader";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 import getImageAddress from "@/utils/get-image-address";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const MetaImageUploader = dynamic(
+  () =>
+    import("../input/meta-image-uploader").then(
+      (mod) => mod.default || mod.PageBgImageUploader,
+    ),
+  {
+    ssr: false,
+    loading: () => <Skeleton className="h-32 w-full rounded-md"></Skeleton>,
+  },
+);
 
 const MetaImageForm = ({ uri, image }) => {
   let metaImage = "";

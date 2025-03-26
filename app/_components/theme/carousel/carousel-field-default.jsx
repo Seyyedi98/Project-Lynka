@@ -1,11 +1,19 @@
 "use client";
 
-import { useUserSubscription } from "@/hooks/useUserSubscription";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
+import getImageAddress from "@/utils/get-image-address";
+import Image from "next/image";
 
 const CarouselFieldDefault = (props) => {
-  const { href, slides } = props;
-  const { isSilver } = useUserSubscription();
+  const { title, slides, bgColor, borderRadius, font, textColor, isSilver } =
+    props;
 
   return (
     <div className="relative w-full">
@@ -20,7 +28,33 @@ const CarouselFieldDefault = (props) => {
           !isSilver && "opacity-70",
         )}
       >
-        rss field
+        <h4 style={{ color: textColor }} className="text-center">
+          {title}
+        </h4>
+        <Carousel dir="ltr">
+          <CarouselContent>
+            {slides.map((slide, index) => (
+              <CarouselItem key={index}>
+                <p style={{ color: textColor }} className="text-center">
+                  {slide.title}
+                </p>
+                {slide.image ? (
+                  <Image
+                    width={500}
+                    height={700}
+                    alt={slide.title}
+                    src={getImageAddress(JSON.parse(slide.image).key)}
+                  />
+                ) : null}
+                <p style={{ color: textColor }} className="text-center">
+                  {slide.description}
+                </p>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious variant="default" />
+          <CarouselNext variant="default" />
+        </Carousel>
       </div>
     </div>
   );

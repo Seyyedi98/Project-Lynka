@@ -1,7 +1,8 @@
 "use client";
+
 import getImageAddress from "@/utils/get-image-address";
 import { loadFont } from "@/utils/loadFont";
-import { ImageIcon, PictureInPicture } from "lucide-react";
+import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
@@ -20,8 +21,15 @@ const NormalHero = ({ ...data }) => {
     imageBrightness,
   } = data;
 
-  const primaryBgImage = primaryImage ? getImageAddress(primaryImage.key) : "";
-  const secondaryBgImage = getImageAddress(secondaryImage.key);
+  const primaryBgImage = primaryImage
+    ? getImageAddress(JSON.parse(primaryImage).key)
+    : "";
+  const secondaryBgImage = secondaryImage
+    ? getImageAddress(JSON.parse(secondaryImage).key)
+    : "";
+
+  console.log();
+
   const [loadedTitleFont, setLoadedTitleFont] = useState(null);
   const [loadedSubtitleFont, setLoadedSubtitleFont] = useState(null);
 

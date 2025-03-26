@@ -1,10 +1,12 @@
 "use client";
 
+import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
 import { ShinyButton } from "@/app/_components/common/button/shiny-button";
 import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -17,7 +19,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
-import { Check, ChevronLeft } from "lucide-react";
+import { Check, ChevronLeft, TrashIcon } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -170,6 +172,31 @@ function PropertiesComponent({ elementInstance }) {
                 >
                   اعمال تغییرات
                 </button>
+
+                {/* Delete element buttons */}
+                <div>
+                  <DeleteElementBtn id={element?.id}>
+                    <Button
+                      asChild
+                      variant="destructive"
+                      className="mt-2 hidden h-12 w-full cursor-pointer items-center justify-center p-2 duration-200 md:flex"
+                    >
+                      <span>
+                        حذف بلوک
+                        <TrashIcon className="h-4 w-4 text-white" />
+                      </span>
+                    </Button>
+                  </DeleteElementBtn>
+
+                  <DeleteElementBtn id={element?.id}>
+                    <button
+                      variant="destructive"
+                      className="absolute -top-16 left-2 flex cursor-pointer items-center justify-center rounded-full bg-destructive p-2 duration-200 hover:bg-green-600 md:right-0 md:hidden"
+                    >
+                      <TrashIcon className="h-4 w-4 text-white" />
+                    </button>
+                  </DeleteElementBtn>
+                </div>
               </div>
             </form>
           </div>
