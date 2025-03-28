@@ -20,21 +20,18 @@ import { useState } from "react";
 const fieldTypes = [
   {
     value: "text",
-    name: "Text Field",
-    description: "Single line text input",
-    icon: "📝",
+    name: "متن کوتاه",
+    description: "برای متن های کوتاه مثل اسم، ایمیل و...",
   },
   {
     value: "textarea",
-    name: "Text Area",
-    description: "Multi-line text input",
-    icon: "📄",
+    name: "متن طولانی",
+    description: "برای متن های طولانی، مانند آدرس",
   },
   {
     value: "number",
-    name: "Number Field",
-    description: "Numeric input",
-    icon: "🔢",
+    name: "عدد",
+    description: "برای ورودی اعداد",
   },
 ];
 
@@ -91,13 +88,9 @@ const ElementAddContactFormFormField = ({
                 {(field.value || []).map((item, index) => (
                   <div
                     key={index}
-                    className="relative flex flex-col gap-2 rounded border border-border/50 p-4 dark:border-border"
+                    className="relative flex flex-col gap-2 rounded border border-border/50 p-4 pt-10 dark:border-border"
                   >
                     <div className="flex items-center gap-2">
-                      <span className="text-xl">
-                        {fieldTypes.find((p) => p.value === item.type)?.icon ||
-                          "📝"}
-                      </span>
                       <span className="font-medium">
                         {fieldTypes.find((p) => p.value === item.type)?.name ||
                           "Field"}
@@ -175,38 +168,40 @@ const ElementAddContactFormFormField = ({
           <Button
             variant="primary_2"
             className="mt-2 w-full gap-2"
+            size="md"
             onClick={(e) => {
               e.preventDefault();
               setIsModalOpen(true);
             }}
           >
             <PlusCircleIcon />
-            Add Form Field
+            افزودن فیلد جدید
           </Button>
 
           <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Select Field Type</DialogTitle>
+                <DialogTitle>نوع فیلد را انتخاب کنید</DialogTitle>
               </DialogHeader>
               <div className="grid grid-cols-1 gap-2">
                 {fieldTypes.map((fieldType) => (
-                  <Button
+                  <div
                     key={fieldType.value}
-                    variant="outline"
-                    className="flex items-center justify-between gap-2 p-4 text-left"
+                    className="flex cursor-pointer items-center justify-between gap-2 rounded-md border border-border p-4 text-left"
                     onClick={() => addField(fieldType.value)}
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-2xl">{fieldType.icon}</span>
-                      <div>
-                        <div className="font-medium">{fieldType.name}</div>
-                        <div className="text-xs text-muted-foreground">
+                      <div className="flex flex-col gap-2">
+                        <div className="text-right font-medium text-text">
+                          {fieldType.name}
+                        </div>
+                        <div className="text-right text-xs text-muted-foreground">
                           {fieldType.description}
                         </div>
                       </div>
                     </div>
-                  </Button>
+                  </div>
                 ))}
               </div>
             </DialogContent>
