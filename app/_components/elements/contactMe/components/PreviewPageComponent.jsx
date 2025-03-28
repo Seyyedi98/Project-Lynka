@@ -5,7 +5,7 @@ export function PreviewPageComponent({ elementInstance, isSilver }) {
   const data = element.extraAttributes;
 
   const RenderedElement = ElementThemeController[element.type][data.theme][0];
-  return <RenderedElement isLive={true} isSilver={isSilver} {...data} />;
+  return <RenderedElement isLive={false} isSilver={isSilver} {...data} />;
 }
 
 export default PreviewPageComponent;

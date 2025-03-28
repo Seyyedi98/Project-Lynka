@@ -15,13 +15,14 @@ import { SliderIcon } from "@radix-ui/react-icons";
 const type = "FormField";
 
 const extraAttributes = {
-  title: "سوالات متداول",
+  title: "فرم",
+  successMessage: "",
   theme: "",
   font: "",
   textColor: "#ffffff",
   bgColor: "",
   borderRadius: "",
-  questions: [],
+  fields: [],
   schedule: false,
   scheduleStart: "0",
   scheduleEnd: "0",

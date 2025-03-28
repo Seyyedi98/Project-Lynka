@@ -24,31 +24,42 @@ const CarouselFieldDefault = (props) => {
       )}
       <div
         className={cn(
-          `w-full text-wrap rounded-md py-2`,
+          `w-full overflow-hidden rounded-md py-2`,
           !isSilver && "opacity-70",
         )}
       >
-        <h4 style={{ color: textColor }} className="text-center">
+        <h4 style={{ color: textColor }} className="mb-4 text-center">
           {title}
         </h4>
-        <Carousel dir="ltr">
-          <CarouselContent>
+        <Carousel dir="ltr" className="w-full">
+          <CarouselContent className="min-h-[200px]">
             {slides.map((slide, index) => (
-              <CarouselItem key={index}>
-                <p style={{ color: textColor }} className="text-center">
-                  {slide.title}
-                </p>
-                {slide.image ? (
-                  <Image
-                    width={500}
-                    height={700}
-                    alt={slide.title}
-                    src={getImageAddress(JSON.parse(slide.image).key)}
-                  />
-                ) : null}
-                <p style={{ color: textColor }} className="text-center">
-                  {slide.description}
-                </p>
+              <CarouselItem key={index} className="basis-full">
+                <div className="relative aspect-video w-full">
+                  {slide.image && (
+                    <Image
+                      fill
+                      alt={slide.title}
+                      src={getImageAddress(JSON.parse(slide.image).key)}
+                      className="object-cover"
+                      priority={index === 0} // Preload first image
+                    />
+                  )}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/30 p-4">
+                    <p
+                      style={{ color: textColor }}
+                      className="text-center text-lg font-bold"
+                    >
+                      {slide.title}
+                    </p>
+                    <p
+                      style={{ color: textColor }}
+                      className="mt-2 text-center"
+                    >
+                      {slide.description}
+                    </p>
+                  </div>
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>

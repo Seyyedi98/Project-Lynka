@@ -39,9 +39,7 @@ const handleClick = async ({
 
 const CardFieldDefault = (props) => {
   const { isLive, font, layout, image, isSilver } = props;
-
   const [loadedFont, setLoadedFont] = useState(null);
-
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
   useEffect(() => {

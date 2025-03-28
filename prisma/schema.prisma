@@ -135,3 +135,21 @@ model LinkView {
   @@index([elementId])
   @@index([clickedAt])
 }
+
+model FormSubmission {
+  id        String   @id @default(cuid())
+  pageUri   String
+  formName  String?
+  formData  Json
+  createdAt DateTime @default(now())
+
+  // Metadata for analytics
+  ipAddress String?
+  userAgent String?
+  referrer  String?
+  country   String?
+
+  @@index([pageUri])
+  @@index([createdAt])
+  @@index([pageUri, formName]) // For querying specific forms
+}

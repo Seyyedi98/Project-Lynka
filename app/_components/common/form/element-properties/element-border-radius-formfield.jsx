@@ -17,14 +17,14 @@ const borderRadiusList = [
   { id: "xxlarge", value: "24px" },
 ];
 
-const ElementBorderRadiusFormField = ({ form }) => {
+const ElementBorderRadiusFormField = ({ form, fieldName, label }) => {
   return (
     <FormField
       control={form.control}
-      name="borderRadius"
+      name={fieldName || "borderRadius"}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>گوشه‌های گرد</FormLabel>
+          <FormLabel>{label || "گوشه های گرد"}</FormLabel>
           <FormControl>
             <div className="flex flex-col gap-4">
               <RadioGroup
