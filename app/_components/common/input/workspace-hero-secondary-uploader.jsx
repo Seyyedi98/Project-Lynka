@@ -48,10 +48,6 @@ const HeroWorkspaceSecondaryUploader = ({ uri }) => {
       if (previousImage) {
         deleteFile({
           file: previousImage,
-          BUCKET,
-          ACCESSKEY,
-          SECRETKEY,
-          ENDPOINT,
         });
       }
 

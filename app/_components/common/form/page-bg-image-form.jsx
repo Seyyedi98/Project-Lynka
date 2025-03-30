@@ -25,7 +25,7 @@ const PageBgImageForm = ({ theme }) => {
   const { uri } = useParams();
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 w-full">
       <div className="flex flex-col items-center justify-center gap-2">
         {bgImage && (
           <Image
@@ -35,10 +35,6 @@ const PageBgImageForm = ({ theme }) => {
             src={getImageAddress(bgImage.key)}
           />
         )}
-        <h1 className="text-xl font-medium">تصویر زمینه</h1>
-        <h2 className="text-base text-muted-foreground">
-          Customise the icon shown in the browser bar
-        </h2>
       </div>
       {isSilver ? (
         <PageBgImageUploader theme={theme} bgImage={bgImage} uri={uri} />

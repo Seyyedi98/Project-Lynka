@@ -37,7 +37,7 @@ const MetaImageForm = ({ uri, image }) => {
         </h2>
       </div>
       {isSilver ? (
-        <MetaImageUploader metaImage={metaImage} uri={uri} />
+        <MetaImageUploader metaImage={image} uri={uri} />
       ) : (
         <p className="mt-4 text-center text-sm text-destructive">
           برای استفاده ای این قابلیت به اشتراک ویژه نیاز دارید

@@ -34,7 +34,7 @@ const PageBackgroundSettings = () => {
 
   return (
     <>
-      <div className="mb-4 flex w-full  flex-wrap items-center border-b-2 pb-4">
+      <div className="mb-4 flex w-full flex-wrap items-center border-b-2 pb-4">
         <SquareButton state={category} action={setCategory} rule="color">
           رنگ
         </SquareButton>
@@ -127,7 +127,7 @@ const PageBackgroundSettings = () => {
           })}
 
         {category === "image" && (
-          <div className="h-full">
+          <div className="h-full w-full">
             <PageBgImageForm
               theme={theme}
               bgType={theme.backgroundType}

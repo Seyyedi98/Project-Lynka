@@ -5,58 +5,63 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import deleteFile from "@/lib/upload/deleteFile";
 import uploadFile from "@/lib/upload/uploadFile";
-import { Loader2, Loader2Icon } from "lucide-react";
-import { useState } from "react";
+import getImageAddress from "@/utils/get-image-address";
+import { Loader2, ImageIcon, Trash2, X, Check } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const FaviconUploader = ({ uri, favicon }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
-  const [uploadLink, setUploadLink] = useState(null);
-  const [permanentLink, setPermanentLink] = useState(null);
+  const [hasFavicon, setHasFavicon] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const fileInputRef = useRef(null);
 
   const dispatch = useDispatch();
   const metadata = useSelector((store) => store.page.metadata);
 
-  const previousImage = favicon?.key;
+  const previousImage = favicon && getImageAddress(JSON.parse(favicon).key);
 
   const ACCESSKEY = process.env.NEXT_PUBLIC_ACCESS_KEY;
   const SECRETKEY = process.env.NEXT_PUBLIC_SECRET_KEY;
   const ENDPOINT = process.env.NEXT_PUBLIC_ENDPOINT;
   const BUCKET = process.env.NEXT_PUBLIC_BUCKET_NAME;
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
+  // Set initial state from favicon prop
+  useEffect(() => {
+    setHasFavicon(!!favicon);
+  }, [favicon]);
+
+  const handleFileChange = async (event) => {
+    const selectedFile = event.target.files[0];
+    if (!selectedFile) return;
+
+    setFile(selectedFile);
     setError(null);
-    setUploadLink(null);
-    setPermanentLink(null);
+
+    // Automatically start upload
+    await handleUpload(selectedFile);
   };
 
-  const handleUploadButton = async () => {
+  const handleUpload = async (fileToUpload) => {
     const options = {
-      maxSizeMB: 0.1, // Compress to be <= 2MB
-      maxWidthOrHeight: 32, // Optional: Resize image to 1920px width/height if it's larger
-      initialQuality: 1, // Start with 100% quality and adjust as needed
-      useWebWorker: true, // Enable web workers for faster processing
+      maxSizeMB: 0.1,
+      maxWidthOrHeight: 32,
+      initialQuality: 1,
+      useWebWorker: true,
     };
 
     setIsUploading(true);
-    const { permanentSignedUrl, response } = await uploadFile(file, options);
-    const JSONFaviconData = JSON.stringify({
-      key: response.Key,
-    });
 
     try {
-      if (previousImage) {
-        deleteFile({
-          file: favicon,
-          BUCKET,
-          ACCESSKEY,
-          SECRETKEY,
-          ENDPOINT,
-        });
-      }
+      const { permanentSignedUrl, response } = await uploadFile(
+        fileToUpload,
+        options,
+      );
+      const JSONFaviconData = JSON.stringify({
+        key: response.Key,
+      });
 
       await UpdatePageFavicon(uri, JSONFaviconData);
 
@@ -66,19 +71,65 @@ const FaviconUploader = ({ uri, favicon }) => {
       };
 
       dispatch({ type: "page/setMetadata", payload });
-
       dispatch({ type: "modal/closeMenu" });
       toast({
-        description: "تصویر با موفقیت تغییر یافت",
+        description: "فاویکون با موفقیت تغییر یافت",
       });
+
+      setHasFavicon(true);
     } catch (error) {
       toast({
         description: "خطایی رخ داد. لطفا مجددا سعی کنید",
       });
       console.log(error);
+      setError("خطا در آپلود فاویکون");
+    } finally {
+      setIsUploading(false);
     }
+  };
 
-    setIsUploading(false);
+  const handleDelete = async () => {
+    const file = favicon ? { key: JSON.parse(favicon).key } : null;
+
+    setIsUploading(true);
+    try {
+      if (favicon) {
+        await deleteFile({
+          file: file,
+          BUCKET,
+          ACCESSKEY,
+          SECRETKEY,
+          ENDPOINT,
+        });
+      }
+
+      await UpdatePageFavicon(uri, null);
+
+      const payload = {
+        ...metadata,
+        favicon: null,
+      };
+
+      dispatch({ type: "page/setMetadata", payload });
+      dispatch({ type: "modal/closeMenu" });
+      toast({
+        description: "فاویکون با موفقیت حذف شد",
+      });
+
+      setHasFavicon(false);
+      setShowDeleteConfirm(false);
+    } catch (error) {
+      toast({
+        description: "خطایی در حذف فاویکون رخ داد",
+      });
+      console.log(error);
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current.click();
   };
 
   return (
@@ -86,38 +137,90 @@ const FaviconUploader = ({ uri, favicon }) => {
       {isUploading && (
         <div className="fixed right-0 top-0 z-[99999] grid h-screen w-screen cursor-wait place-content-center bg-black opacity-80">
           <span className="flex items-center justify-center gap-2">
-            در حال بارگزاری <Loader2Icon className="mt-1 animate-spin" />
+            در حال بارگزاری <Loader2 className="mt-1 animate-spin" />
           </span>
         </div>
       )}
+
       <div className="file-upload text-nowrap">
-        <Label htmlFor="uploader">تصویر اصلی</Label>
-        <div className="mt-2 flex justify-center gap-2">
-          <Input
-            id="uploader"
-            disabled={isUploading}
-            type="file"
-            onChange={handleFileChange}
-            className="file-input mb-2 rounded-md"
-            accept=".ico,image/vnd.microsoft.icon,image/x-icon"
-          />
-          <Button
-            size="md"
-            variant="primary_2"
-            onClick={handleUploadButton}
-            disabled={!file || isUploading}
-            className="upload-button"
+        {/* Hidden file input */}
+        <Input
+          id="favicon-uploader"
+          ref={fileInputRef}
+          type="file"
+          onChange={handleFileChange}
+          className="hidden"
+          accept=".ico,image/vnd.microsoft.icon,image/x-icon,image/png,image/svg+xml"
+        />
+
+        {/* Only show upload area if there's no favicon */}
+        {!hasFavicon && (
+          <div
+            onClick={triggerFileInput}
+            className="mt-2 flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-md border-4 border-dashed border-gray-300 transition-colors duration-200 hover:border-gray-400 dark:border-white/30 dark:hover:border-white/50"
           >
-            {!isUploading ? "بارگزاری" : <Loader2 className="animate-spin" />}
-          </Button>
-        </div>
+            {isUploading ? (
+              <Loader2 className="h-10 w-10 animate-spin text-gray-400" />
+            ) : (
+              <>
+                <ImageIcon className="h-10 w-10 text-gray-400" />
+                <span className="mt-2 text-sm text-gray-500">
+                  انتخاب فاویکون
+                </span>
+              </>
+            )}
+          </div>
+        )}
+
+        {/* Show delete button if there's a favicon */}
+        {hasFavicon && (
+          <div className="mt-2">
+            {showDeleteConfirm ? (
+              <div className="flex w-full gap-2">
+                <Button
+                  variant="outline"
+                  className="flex-1 gap-1"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowDeleteConfirm(false);
+                  }}
+                  disabled={isUploading}
+                >
+                  <X className="h-4 w-4" />
+                  انصراف
+                </Button>
+                <Button
+                  variant="destructive"
+                  className="flex-1 gap-1"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleDelete();
+                  }}
+                  disabled={isUploading}
+                >
+                  <Check className="h-4 w-4" />
+                  حذف
+                </Button>
+              </div>
+            ) : (
+              <Button
+                variant="destructive"
+                className="w-full"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowDeleteConfirm(true);
+                }}
+                disabled={isUploading}
+              >
+                <Trash2 className="ml-2 h-4 w-4" />
+                حذف فاویکون
+              </Button>
+            )}
+          </div>
+        )}
+
+        {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
       </div>
-
-      {uploadLink && (
-        <h3 className="success-message">File uploaded successfully.</h3>
-      )}
-
-      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };

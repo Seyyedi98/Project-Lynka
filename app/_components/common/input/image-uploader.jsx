@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Loader2, X, Check, Image as ImageIcon } from "lucide-react";
-import { useState, useEffect } from "react";
-import getImageAddress from "@/utils/get-image-address";
-import Image from "next/image";
 import uploadFile from "@/lib/upload/uploadFile";
+import getImageAddress from "@/utils/get-image-address";
+import { Check, Image as ImageIcon, Loader2, X } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export const ImageUploaderField = ({
   value,
@@ -130,7 +130,12 @@ export const ImageUploaderField = ({
             className="flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-md border-4 border-dashed border-gray-300 transition-colors duration-200 hover:border-gray-400 dark:border-white/30 dark:hover:border-white/50"
           >
             {isUploading ? (
-              <Loader2 className="h-10 w-10 animate-spin text-gray-400" />
+              // <Loader2 className="h-10 w-10 animate-spin text-gray-400" />
+              <div className="fixed right-0 top-0 z-[99999] grid h-screen w-screen cursor-wait place-content-center bg-black opacity-80">
+                <span className="flex items-center justify-center gap-2">
+                  در حال بارگزاری <Loader2 className="mt-1 animate-spin" />
+                </span>
+              </div>
             ) : (
               <>
                 <ImageIcon className="h-10 w-10 text-gray-400" />

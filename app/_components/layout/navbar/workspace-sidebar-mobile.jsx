@@ -6,12 +6,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { GearIcon } from "@radix-ui/react-icons";
-import { AppWindow, Droplet, Layers, Palette, PlusIcon } from "lucide-react";
+import { AppWindow, Palette, PlusIcon } from "lucide-react";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
-import EditorSidebarElements from "../../workspace/element/editor-sidebar-elements";
-import PageSettings from "../../workspace/page-settings";
 import PageDataSettingsContainer from "../../section/workspace/page-data-settings-container";
 import PageStyleSettingsContainer from "../../section/workspace/page-style-settings-container";
+import EditorSidebarElements from "../../workspace/element/editor-sidebar-elements";
+import PageSettings from "../../workspace/page-settings";
 
 const WorkspaceSidebarMobile = () => {
   return (

@@ -22,7 +22,7 @@ const MetaFaviconForm = ({ uri, favicon }) => {
           Customise the icon shown in the browser bar
         </h2>
       </div>
-      <FaviconUploader favicon={metaFavicon} uri={uri} />
+      <FaviconUploader favicon={favicon} uri={uri} />
     </div>
   );
 };
