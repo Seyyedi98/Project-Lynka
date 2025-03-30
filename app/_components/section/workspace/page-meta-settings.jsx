@@ -19,7 +19,7 @@ const PageMetaSettings = () => {
 
   const onClick = async () => {
     // const googleResult = await submitToGoogleIndexing(
-    //   `https://miralink.ir/pages/${uri}`,
+    //   `https://lynkaink.ir/pages/${uri}`,
     // );
 
     const sitemapResult = await generateSitemap();

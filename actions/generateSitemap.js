@@ -11,7 +11,7 @@ export async function generateSitemap() {
         .map(
           (page) => `
         <url>
-          <loc>https://miralink.ir/pages/${page.uri}</loc>
+          <loc>https://lynkaink.ir/pages/${page.uri}</loc>
           <lastmod>${new Date().toISOString()}</lastmod>
           <changefreq>daily</changefreq>
           <priority>0.8</priority>

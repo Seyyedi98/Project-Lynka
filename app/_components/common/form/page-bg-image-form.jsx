@@ -27,7 +27,7 @@ const PageBgImageForm = ({ theme }) => {
   return (
     <div className="mt-8 w-full">
       <div className="flex flex-col items-center justify-center gap-2">
-        {bgImage && (
+        {bgImage && bgImage.key !== "no_key" && (
           <Image
             width={320}
             height={640}

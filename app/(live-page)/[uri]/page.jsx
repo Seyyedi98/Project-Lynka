@@ -36,7 +36,7 @@ export async function generateMetadata({ params }) {
         : null;
 
     return {
-      title: metadata.metaTitle || "Miralink",
+      title: metadata.metaTitle || "lynkaink",
       description: isSilver ? metadata.metaDescription || "Welcome!" : "",
       favicon: "null",
       // icons: [

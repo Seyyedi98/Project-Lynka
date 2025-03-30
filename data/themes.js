@@ -1,6 +1,7 @@
 export const themes = [
   {
     name: "red",
+    themeCategory: "color",
     backgroundType: "gradient",
     backgroundColor: "linear-gradient(45deg, #801336, #C72C41)",
     backgroundImage: "",
@@ -20,6 +21,7 @@ export const themes = [
   },
   {
     name: "pink",
+    themeCategory: "color",
     backgroundType: "gradient",
     backgroundColor: "linear-gradient(45deg, #478BA2, #DE5B6D)",
     backgroundImage: "",
@@ -37,12 +39,12 @@ export const themes = [
     borderRadius: "12px",
     isPremium: true,
   },
-
   {
     name: "nature",
+    themeCategory: "color",
     backgroundType: "image",
     backgroundColor: "linear-gradient(45deg, #598901, #2D5A00)",
-    backgroundImage: '{"url":"/pageBg/mobile-april.svgz","key":"no_key"}',
+    backgroundImage: '{"url":"/mobile-april.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "linear-gradient(45deg, #598901, #2D5A00)",
@@ -59,9 +61,10 @@ export const themes = [
   },
   {
     name: "blue",
+    themeCategory: "color",
     backgroundType: "image",
     backgroundColor: "linear-gradient(45deg, #1039A0, #0146F2)",
-    backgroundImage: '{"url":"/pageBg/singapore-mobile.svgz","key":"no_key"}',
+    backgroundImage: '{"url":"/singapore-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "linear-gradient(45deg, #1039A0, #0146F2)",
@@ -78,6 +81,7 @@ export const themes = [
   },
   {
     name: "fire",
+    themeCategory: "color",
     backgroundType: "gradient",
     backgroundColor: "linear-gradient(45deg, #FC122C, #821963)",
     backgroundImage: "",
@@ -97,6 +101,7 @@ export const themes = [
   },
   {
     name: "orange",
+    themeCategory: "color",
     backgroundType: "gradient",
     backgroundColor: "linear-gradient(45deg, #F15F4E, #F4D550)",
     backgroundImage: "",
@@ -116,6 +121,7 @@ export const themes = [
   },
   {
     name: "purple",
+    themeCategory: "color",
     backgroundType: "gradient",
     backgroundColor: "linear-gradient(45deg, #A637A0, #933FA1)",
     backgroundImage: "",
@@ -135,6 +141,7 @@ export const themes = [
   },
   {
     name: "lucy",
+    themeCategory: "color",
     backgroundType: "gradient",
     backgroundColor: "linear-gradient(45deg, #A6D1FF, #F2C6F2)",
     backgroundImage: "",
@@ -154,6 +161,7 @@ export const themes = [
   },
   {
     name: "cyan",
+    themeCategory: "color",
     backgroundType: "gradient",
     backgroundColor: "linear-gradient(45deg, #C9FFA0, #A0ECFF)",
     backgroundImage: "",
@@ -173,6 +181,7 @@ export const themes = [
   },
   {
     name: "sky",
+    themeCategory: "color",
     backgroundType: "gradient",
     backgroundColor: "linear-gradient(45deg, #AAB6FB, #6096FD)",
     backgroundImage: "",
@@ -192,6 +201,7 @@ export const themes = [
   },
   {
     name: "darkPurple",
+    themeCategory: "color",
     backgroundType: "gradient",
     backgroundColor: "linear-gradient(45deg, #090088, #930077)",
     backgroundImage: "",
@@ -211,6 +221,7 @@ export const themes = [
   },
   {
     name: "natureSky",
+    themeCategory: "color",
     backgroundType: "gradient",
     backgroundColor: "linear-gradient(45deg, #1E91D6, #0072BB)",
     backgroundImage: "",
@@ -230,6 +241,7 @@ export const themes = [
   },
   {
     name: "pinkblue",
+    themeCategory: "color",
     backgroundType: "color",
     backgroundColor: "#F392A3",
     backgroundImage: "",
@@ -249,9 +261,10 @@ export const themes = [
   },
   {
     name: "semiDark",
+    themeCategory: "color",
     backgroundType: "image",
     backgroundColor: "#212A37",
-    backgroundImage: '{"url":"/pageBg/mobile-earth.webp","key":"no_key"}',
+    backgroundImage: '{"url":"/mobile-earth.webp","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#212A37",
@@ -266,9 +279,9 @@ export const themes = [
     borderRadius: "12px",
     isPremium: false,
   },
-
   {
     name: "darkRed",
+    themeCategory: "color",
     backgroundType: "color",
     backgroundColor: "#000000",
     backgroundImage: "",

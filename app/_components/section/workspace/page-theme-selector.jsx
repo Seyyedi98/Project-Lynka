@@ -1,7 +1,15 @@
 import { themes } from "@/data/themes";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
-import { cn } from "@/lib/utils";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../../common/modal/diolog";
+import ThemesList from "./themes-list";
 
 const PageThemeSelector = () => {
   const dispatch = useDispatch();
@@ -10,6 +18,7 @@ const PageThemeSelector = () => {
   const prevTheme = useSelector((store) => store.page.theme);
   const { isSilver } = useUserSubscription();
 
+  // Update the theme and background of the page based on the selected theme
   const updateElementStyle = ({
     theme,
     type,
@@ -95,29 +104,34 @@ const PageThemeSelector = () => {
 
   return (
     <div>
-      <h4>PageThemeSelector</h4>
-      <div>
-        {themes.map((theme) => {
-          const isAllowedToApplyTheme = theme.isPremium
-            ? isSilver
-              ? true
-              : false
-            : true;
+      <Dialog>
+        <DialogTrigger className="w-full">
+          <div
+            variant="primary_2"
+            className="flex h-10 w-full cursor-pointer items-center justify-center rounded-md bg-primary transition-colors duration-200 hover:bg-primary-hover"
+          >
+            انتخاب تم صفحه
+          </div>
+        </DialogTrigger>
+        <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 overflow-y-scroll p-0">
+          <DialogHeader>
+            <DialogTitle>Are you absolutely sure?</DialogTitle>
+            <DialogDescription>
+              This action cannot be undone. This will permanently delete your
+              account and remove your data from our servers.
+            </DialogDescription>
 
-          return (
-            <p
-              className={cn(
-                ``,
-                !isAllowedToApplyTheme ? "cursor-not-allowed opacity-60" : "",
-              )}
-              onClick={() => handleThemeUpdate(theme, isAllowedToApplyTheme)}
-              key={theme.name}
-            >
-              {theme.name}
-            </p>
-          );
-        })}
-      </div>
+            <ThemesList
+              isSilver={isSilver}
+              handleThemeUpdate={handleThemeUpdate}
+              themes={themes
+                .filter((theme) => theme.themeCategory === "color")
+                .slice(-6)}
+            />
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+      <div></div>
     </div>
   );
 };

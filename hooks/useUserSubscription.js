@@ -79,5 +79,8 @@ export const useSubscriptionByUri = (uri) => {
     }
   }, [subscriptionData]);
 
+  // remove
+  console.log(subscriptionData, setSubscriptionData, isSilver);
+
   return { subscriptionData, setSubscriptionData, isSilver };
 };

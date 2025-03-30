@@ -11,6 +11,7 @@ const page = async () => {
         <img src="/album.jpg" alt="image" className="w-32" />
         <img src="/singapore-mobile.svgz" alt="image" className="w-32" />
         <img src="/pageBg/mobile-april.svgz" alt="image" className="w-32" />
+        <img src="/mobile-april.svgz" alt="image" className="w-32" />
       </LoginButton>
     </div>
   );

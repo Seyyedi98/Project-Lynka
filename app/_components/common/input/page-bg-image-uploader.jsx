@@ -29,7 +29,11 @@ const PageBgImageUploader = ({ theme, bgImage }) => {
 
   // Set initial state from bgImage prop
   useEffect(() => {
-    setHasImage(!!bgImage);
+    if (bgImage && bgImage.key !== "no_key") {
+      setHasImage(true);
+    } else {
+      setHasImage(false);
+    }
   }, [bgImage]);
 
   const handleFileChange = async (event) => {
