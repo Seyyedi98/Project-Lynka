@@ -41,11 +41,11 @@ const DashboardHeading = ({ children }) => {
 
   return (
     <div
-      className={`fixed left-0 top-0 z-40 flex h-16 w-full items-center justify-between px-2 text-white transition-shadow duration-150 ${
+      className={`fixed left-0 top-0 z-40 flex h-16 w-full items-center justify-between px-2 text-white transition-shadow duration-150 sm:pr-8 ${
         isScrolled ? "bg-main-gradient-2" : "bg-transparent"
       }`}
     >
-      <div className="mr-16 flex items-center justify-center gap-4 text-sm xl:mr-60">
+      <div className="mr-16 flex items-center justify-center gap-4 text-sm">
         <span>
           <BellDot className="mt-2 h-7 w-7" />
           {/* <Bell className="mt-1 h-7 w-7" /> */}

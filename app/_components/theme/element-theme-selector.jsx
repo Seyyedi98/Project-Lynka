@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { ElementThemeController } from "../controller/element-theme-controller";
-import useFilterTheme from "@/hooks/useFilterTheme";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { cn } from "@/lib/utils";
 
@@ -13,8 +12,6 @@ const ElementThemeSelector = ({ elementInstance }) => {
 
   // Get array of current element theme
   const Themes = ElementThemeController[elementType];
-
-  const filteredThemesList = useFilterTheme(Themes, "color");
 
   if (!Themes) return;
   const themesList = Object.keys(Themes);
@@ -77,7 +74,12 @@ const ElementThemeSelector = ({ elementInstance }) => {
               >
                 <p>نیازمند اشتراک ویژه</p>
               </div>
-              <div className={cn(!isAllowedToApplyTheme ? "opacity-60" : "")}>
+              <div
+                className={cn(
+                  "pointer-events-none",
+                  !isAllowedToApplyTheme ? "opacity-60" : "",
+                )}
+              >
                 <RenderedElement
                   theme={element.extraAttributes?.theme}
                   bgColor={element.extraAttributes?.bgColor}
@@ -87,8 +89,14 @@ const ElementThemeSelector = ({ elementInstance }) => {
                   borderRadius={element.extraAttributes?.borderRadius}
                   href={element.extraAttributes?.href}
                   countdownDate={element.extraAttributes?.countdownDate}
-                  questions={element.extraAttributes?.questions}
+                  questions={element.extraAttributes?.questions} //faq
+                  socials={element.extraAttributes?.socials} // socials
+                  fields={element.extraAttributes?.fields} // contact form
+                  slides={element.extraAttributes?.slides} // carousel
+                  images={element.extraAttributes?.images} // gallery
+                  coords={element.extraAttributes?.coords} // map
                   isLive={false}
+                  isSilver={true}
                 />
               </div>
             </div>

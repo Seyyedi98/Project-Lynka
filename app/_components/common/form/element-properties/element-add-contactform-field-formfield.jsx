@@ -124,7 +124,7 @@ const ElementAddContactFormFormField = ({
                         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                       />
                       <label htmlFor={`required-${index}`} className="text-sm">
-                        Required Field
+                        پر کردن این فیلد اجباری است
                       </label>
                     </div>
 

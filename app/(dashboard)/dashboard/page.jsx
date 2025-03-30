@@ -26,11 +26,11 @@ const Dashboard = async () => {
 
   return (
     <div className="relative flex w-full select-none pb-10">
-      <h2 className="absolute right-4 top-40 pr-0 text-3xl text-white md:pr-3 xl:mr-56">
+      <h2 className="absolute right-4 top-40 pr-0 text-3xl text-white sm:mr-20 sm:pr-3">
         پنل کاربری
       </h2>
 
-      <main className="grid w-full flex-1 auto-rows-auto grid-cols-2 gap-4 px-2 pt-60 md:mx-4 xl:mr-56 xl:pr-6">
+      <main className="grid w-full flex-1 auto-rows-auto grid-cols-2 gap-4 px-2 pt-60 sm:mx-4 sm:mr-20 xl:pr-6">
         {/* ImageSlider */}
         <div className="col-span-2 h-60 overflow-hidden rounded-lg md:col-span-1 xl:h-80">
           <Carousel showArrows={true} />

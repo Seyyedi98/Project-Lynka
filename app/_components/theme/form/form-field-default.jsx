@@ -47,7 +47,7 @@ const FormFieldDefault = (props) => {
       persianA: toPersianNumbers(a),
       persianB: toPersianNumbers(b),
     });
-    setValue("mathAnswer", ""); // Clear math answer field
+    setValue("mathAnswer", "");
   };
 
   useEffect(() => {

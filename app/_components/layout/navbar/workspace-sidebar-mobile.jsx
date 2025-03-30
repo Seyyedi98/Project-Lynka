@@ -6,7 +6,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { GearIcon } from "@radix-ui/react-icons";
-import { AppWindow, Droplet, Layers } from "lucide-react";
+import { AppWindow, Droplet, Layers, Palette, PlusIcon } from "lucide-react";
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
 import EditorSidebarElements from "../../workspace/element/editor-sidebar-elements";
 import PageSettings from "../../workspace/page-settings";
@@ -18,26 +18,12 @@ const WorkspaceSidebarMobile = () => {
     <div className="fixed bottom-0 right-0 z-50 h-16 w-full bg-button ring-0">
       <div className="grid h-full w-full place-items-center px-8">
         <ul className="flex w-full items-center justify-between text-foreground">
-          <li className="translate-y-8 animate-fade-up opacity-0 duration-300">
-            <WorkspaceDynamicModal
-              mode="allDrawer"
-              trigger={
-                <div>
-                  <Layers className="" />
-                </div>
-              }
-              title="لیست بلوک ها"
-              modalId="elements"
-            >
-              <EditorSidebarElements />
-            </WorkspaceDynamicModal>
-          </li>
           <li className="translate-y-8 animate-fade-up opacity-0 delay-100 duration-300">
             <WorkspaceDynamicModal
               mode="allDrawer"
               trigger={
                 <div>
-                  <Droplet className="" />
+                  <Palette className="" />
                 </div>
               }
               // title="پس زمینه"
@@ -55,6 +41,36 @@ const WorkspaceSidebarMobile = () => {
                 </div>
               }
               title="مرورگر و سوشیال مدیا"
+              modalId="browser"
+            >
+              <PageDataSettingsContainer />
+            </WorkspaceDynamicModal>
+          </li>
+
+          <li className="translate-y-8 animate-fade-up rounded-md border-2 border-text px-4 py-1 opacity-0 duration-300">
+            <WorkspaceDynamicModal
+              mode="allDrawer"
+              trigger={
+                <div>
+                  <PlusIcon className="" />
+                </div>
+              }
+              title="لیست بلوک ها"
+              modalId="elements"
+            >
+              <EditorSidebarElements />
+            </WorkspaceDynamicModal>
+          </li>
+
+          <li className="translate-y-8 animate-fade-up opacity-0 delay-200 duration-300">
+            <WorkspaceDynamicModal
+              mode="allDrawer"
+              trigger={
+                <div>
+                  <AppWindow className="" />
+                </div>
+              }
+              title="آمار"
               modalId="browser"
             >
               <PageDataSettingsContainer />

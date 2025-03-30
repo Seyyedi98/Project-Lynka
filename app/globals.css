@@ -16,43 +16,54 @@ body {
 
 @layer base {
   :root {
+    /* Color System */
+    /* Primary Colors */
+    --primary: 207 90% 54%;
+    --primary-hover: 212 80% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary Colors */
+    --secondary: 172 100% 37%;
+    --secondary-foreground: 0 0% 0%;
+
+    /* Backgrounds */
+    --background: 0 0% 90%;
+    --secondaryBg: 0 0% 98%;
     --background-gradient-from: 207 90% 54%;
     --background-gradient-to: 172 100% 37%;
-    --primary: 207 90% 54%;
-    --secondary: 172 100% 37%;
-    --primary-hover: 212 80% 42%;
-    --card: 0 0% 100%;
 
+    /* Cards */
+    --card: 0 0% 100%;
+    --card-light: 0 0% 100%;
+    --card-foreground: 248 0% 15%;
+
+    /* Text */
     --text: 248 0% 20%;
     --textLight: 248 0% 40%;
+    --foreground: 248 0% 10%;
+
+    /* UI Elements */
     --input: 0 0% 100%;
     --input-blue: 213 92% 85%;
+    --button: 0 0% 100%;
+    --border: 207 90% 54%;
     --tab: 207 90% 54%;
     --tab-active: 172 100% 37%;
 
-    --button: 0 0% 100%;
-    --border: 207 90% 54%;
-
-    --background: 0 0% 90%;
-    --secondaryBg: 0 0% 98%;
-    --icon-light: 0 0% 50%;
+    /* Miscellaneous */
     --icon: 248 0% 10%;
-    --foreground: 248 0% 10%;
-    --card-light: 0 0% 100%;
-    --card-foreground: 248 0% 15%;
-    --popover: 248 0% 100%;
-    --popover-foreground: 218 23% 23%;
-
-    --primary-foreground: 0 0% 100%;
-    --secondary-foreground: 0 0% 0%;
+    --icon-light: 0 0% 50%;
     --muted: 210 10% 95%;
     --muted-foreground: 248 0% 40%;
     --accent: 210 10% 90%;
     --accent-foreground: 248 0% 15%;
     --destructive: 0 50% 50%;
     --destructive-foreground: 248 0% 100%;
+    --popover: 248 0% 100%;
+    --popover-foreground: 218 23% 23%;
     --ring: 248 20% 82%;
-    --radius: 0.5rem;
+
+    /* Typography */
     --font-geist-sans: "Geist Sans", sans-serif;
     --font-geist-mono: "Geist Mono", monospace;
     --font-yekan: "Yekan", sans-serif;
@@ -62,44 +73,59 @@ body {
     --font-shabnam: "Shabnam", sans-serif;
     --font-tanha: "Tanha", sans-serif;
     --font-vazir: "Vazir", sans-serif;
+
+    /* Borders & Radius */
+    --radius: 0.5rem;
   }
+
   .dark {
+    /* Color System */
+    /* Primary Colors */
+    --primary: 207 90% 54%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary Colors */
+    --secondary: 172 100% 37%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Backgrounds */
+    --background: 0 0% 11%;
+    --secondaryBg: 0 0 15%;
     --background-gradient-from: 207 90% 30%;
     --background-gradient-to: 172 80% 25%;
-    --primary: 207 90% 54%;
-    --secondary: 172 100% 37%;
+
+    /* Cards */
     --card: 0 0% 26%;
-
-    --text: 248 0% 100%;
-    --textLight: 248 0% 65%;
-    --input: 0 0% 30%;
-    --input-blue: 213 92% 85%;
-    --tab: 210 10% 25%;
-    --tab-active: 0 0% 11%;
-    --button: 0 0% 19%;
-
-    --border: 0 0% 19%;
-
-    --background: 0 0% 11%;
-    --icon-ight: 0 0% 30%;
-    --icon: 248 0% 100%;
-    --secondaryBg: 0 0 15%;
-    --foreground: 248 0% 100%;
     --card-light: 0 0% 16%;
     --card-foreground: 248 0% 100%;
-    --popover: 248 10% 5%;
-    --popover-foreground: 248 0% 100%;
-    --primary-foreground: 0 0% 100%;
-    --secondary-foreground: 0 0% 100%;
+
+    /* Text */
+    --text: 248 0% 100%;
+    --textLight: 248 0% 65%;
+    --foreground: 248 0% 100%;
+
+    /* UI Elements */
+    --input: 0 0% 30%;
+    --input-blue: 213 92% 85%;
+    --button: 0 0% 19%;
+    --border: 0 0% 19%;
+    --tab: 210 10% 25%;
+    --tab-active: 0 0% 11%;
+
+    /* Miscellaneous */
+    --icon: 248 0% 100%;
+    --icon-ight: 0 0% 30%;
     --muted: 210 10% 25%;
     --muted-foreground: 248 0% 65%;
     --accent: 210 10% 25%;
     --accent-foreground: 248 0% 95%;
     --destructive: 0 50% 50%;
     --destructive-foreground: 248 0% 100%;
-
+    --popover: 248 10% 5%;
+    --popover-foreground: 248 0% 100%;
     --ring: 248 0% 10%;
-    --radius: 0.5rem;
+
+    /* Typography (same as light theme) */
     --font-geist-sans: "Geist Sans", sans-serif;
     --font-geist-mono: "Geist Mono", monospace;
     --font-yekan: "Yekan", sans-serif;
@@ -109,9 +135,11 @@ body {
     --font-shabnam: "Shabnam", sans-serif;
     --font-tanha: "Tanha", sans-serif;
     --font-vazir: "Vazir", sans-serif;
+
+    /* Borders & Radius */
+    --radius: 0.5rem;
   }
 }
-
 @layer base {
   * {
     @apply border-border outline-ring/50;

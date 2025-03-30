@@ -18,7 +18,7 @@ const DashboardSidebar = () => {
     <nav ref={ref} className={cn(`relative z-50 h-full`)}>
       <div
         className={cn(
-          `fixed top-4 z-40 transition-all duration-200 sm:hidden xl:hidden`,
+          `fixed top-4 z-40 transition-all duration-200 xl:hidden`,
           isSidebarOpen ? "left-4 sm:hidden" : "right-4",
         )}
       >
@@ -32,8 +32,8 @@ const DashboardSidebar = () => {
         className={cn(
           `fixed right-0 top-0 flex h-full flex-col items-center gap-2 bg-card pt-20 transition-all duration-200 sm:items-start sm:bg-card`,
           isSidebarOpen
-            ? "w-full opacity-95 backdrop-blur-lg sm:w-16"
-            : "w-1 opacity-0 sm:w-16 sm:opacity-95 xl:opacity-95",
+            ? "w-full opacity-95 backdrop-blur-lg sm:w-56"
+            : "w-1 opacity-0 xl:w-56 xl:opacity-95",
         )}
       >
         <SidebarLink
@@ -41,7 +41,7 @@ const DashboardSidebar = () => {
           title="پنل کاربری"
           path="/dashboard"
         >
-          <LucideHome className="h-6 w-6" />
+          <LucideHome className="h-5 w-5" />
         </SidebarLink>
 
         <SidebarLink
@@ -49,7 +49,7 @@ const DashboardSidebar = () => {
           title="آمار"
           path="/dashboard/analytics"
         >
-          <ChartBar className="h-6 w-6" />
+          <ChartBar className="h-5 w-5" />
         </SidebarLink>
 
         <SidebarLink
@@ -57,7 +57,7 @@ const DashboardSidebar = () => {
           title="بلاگ"
           path="/dashboard/blog"
         >
-          <ChartBar className="h-6 w-6" />
+          <ChartBar className="h-5 w-5" />
         </SidebarLink>
 
         <SidebarLink
@@ -65,7 +65,7 @@ const DashboardSidebar = () => {
           title="راهنما"
           path="/dashboard/docs"
         >
-          <ChartBar className="h-6 w-6" />
+          <ChartBar className="h-5 w-5" />
         </SidebarLink>
 
         <SidebarLink
@@ -73,7 +73,7 @@ const DashboardSidebar = () => {
           title="تنظیمات"
           path="/dashboard/settings"
         >
-          <GearIcon className="h-6 w-6" />
+          <GearIcon className="h-5 w-5" />
         </SidebarLink>
       </div>
     </nav>
