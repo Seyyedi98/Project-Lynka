@@ -108,25 +108,20 @@ const PageThemeSelector = () => {
         <DialogTrigger className="w-full">
           <div
             variant="primary_2"
-            className="flex h-10 w-full cursor-pointer items-center justify-center rounded-md bg-primary transition-colors duration-200 hover:bg-primary-hover"
+            className="flex h-10 w-full cursor-pointer items-center justify-center rounded-md bg-primary text-white transition-colors duration-200 hover:bg-primary-hover"
           >
             انتخاب تم صفحه
           </div>
         </DialogTrigger>
         <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 overflow-y-scroll p-0">
-          <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
-            <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </DialogDescription>
+          <DialogHeader className="pt-16">
+            <DialogTitle className="px-10">تم صفحه را تغییر دهید</DialogTitle>
+            <DialogDescription></DialogDescription>
 
             <ThemesList
               isSilver={isSilver}
               handleThemeUpdate={handleThemeUpdate}
-              themes={themes
-                .filter((theme) => theme.themeCategory === "color")
-                .slice(-6)}
+              themes={themes}
             />
           </DialogHeader>
         </DialogContent>
