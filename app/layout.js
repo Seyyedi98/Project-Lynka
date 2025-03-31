@@ -1,11 +1,10 @@
 import { auth } from "@/auth";
-// import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/context/theme-provider";
 import { StoreProvider } from "@/store/StoreProvider";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from "react-hot-toast";
 import { geistMono, geistSans } from "./fonts/fonts";
 import "./globals.css";
-import { ThemeProvider } from "@/context/theme-provider";
-import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Create Next App",

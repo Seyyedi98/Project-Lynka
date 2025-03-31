@@ -1,12 +1,12 @@
 import { UpdatePageTheme } from "@/actions/page/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/hooks/use-toast";
 import deleteFile from "@/lib/upload/deleteFile";
 import uploadFile from "@/lib/upload/uploadFile";
 import { Check, ImageIcon, Loader2, Trash2, X } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
 const PageBgImageUploader = ({ theme, bgImage }) => {
@@ -74,9 +74,7 @@ const PageBgImageUploader = ({ theme, bgImage }) => {
 
       dispatch({ type: "page/setTheme", payload });
       dispatch({ type: "modal/closeMenu" });
-      toast({
-        description: "تصویر پس زمینه با موفقیت تغییر یافت",
-      });
+      toast.success("تصویر پس زمینه با موفقیت تغییر یافت");
 
       const newTheme = JSON.stringify({
         ...theme,
@@ -88,9 +86,8 @@ const PageBgImageUploader = ({ theme, bgImage }) => {
       await UpdatePageTheme(uri, newTheme);
       setHasImage(true);
     } catch (error) {
-      toast({
-        description: "خطایی رخ داد. لطفا مجددا سعی کنید",
-      });
+      toast.error("خطایی رخ داد. لطفا مجددا سعی کنید");
+
       console.log(error);
       setError("خطا در آپلود تصویر");
     } finally {
@@ -115,9 +112,7 @@ const PageBgImageUploader = ({ theme, bgImage }) => {
 
       dispatch({ type: "page/setTheme", payload });
       dispatch({ type: "modal/closeMenu" });
-      toast({
-        description: "تصویر پس زمینه با موفقیت حذف شد",
-      });
+      toast.success("تصویر پس زمینه با موفقیت حذف شد");
 
       const newTheme = JSON.stringify({
         ...theme,
@@ -129,9 +124,8 @@ const PageBgImageUploader = ({ theme, bgImage }) => {
       setHasImage(false);
       setShowDeleteConfirm(false);
     } catch (error) {
-      toast({
-        description: "خطایی در حذف تصویر رخ داد",
-      });
+      toast.error("خطایی در حذف تصویر رخ داد");
+
       console.log(error);
     } finally {
       setIsUploading(false);

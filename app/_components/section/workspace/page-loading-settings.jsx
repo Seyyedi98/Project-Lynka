@@ -3,7 +3,7 @@ import { LoadingController } from "../../controller/loading-controller";
 import LoadingSpinner from "../../common/shared/loadingSpinner";
 import { UpdatePageLoadingIcon } from "@/actions/page/page";
 import { useParams } from "next/navigation";
-import { toast } from "@/hooks/use-toast";
+import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
 
 const PageLoadingSettings = () => {
@@ -15,9 +15,7 @@ const PageLoadingSettings = () => {
   const changeLoadingIcon = (uri, loadingEl) => {
     startTransition(async () => {
       await UpdatePageLoadingIcon(uri, loadingEl).then(
-        toast({
-          description: "آیکون لودینگ با موفقیت تغییر یافت",
-        }),
+        toast.success("آیکون لودینگ با موفقیت تغییر یافت"),
       );
     });
   };

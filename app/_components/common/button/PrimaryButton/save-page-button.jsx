@@ -1,20 +1,18 @@
 "use client";
 
 import { UpdatePageContent, UpdatePageTheme } from "@/actions/page/page";
-import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { Loader } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useTransition } from "react";
+import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
-import { useToaster } from "rsuite";
 
 const SavePageBtn = ({ children }) => {
   const elements = useSelector((store) => store.page.elements);
   const hero = useSelector((store) => store.page.hero);
   const theme = useSelector((store) => store.page.theme);
   const [isPending, startTransition] = useTransition();
-  const toaster = useToaster();
 
   const { uri } = useParams();
 
@@ -28,14 +26,9 @@ const SavePageBtn = ({ children }) => {
 
         await UpdatePageContent(uri, JSONElement); // Call the server action
         await UpdatePageTheme(uri, JSONTheme);
-        toast({
-          description: "صفحه با موفقت ذخیره شد",
-        });
+        toast.success("صفحه با موفقت ذخیره شد");
       } catch (error) {
-        toast({
-          description: "هنگام ذخیره سازی خطایی رخ داد",
-          variant: "destructive",
-        });
+        toast.error("هنگام ذخیره سازی خطایی رخ داد");
       }
     });
   };

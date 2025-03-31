@@ -1,13 +1,11 @@
 import { UpdatePageMetaImage } from "@/actions/page/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { toast } from "@/hooks/use-toast";
 import deleteFile from "@/lib/upload/deleteFile";
 import uploadFile from "@/lib/upload/uploadFile";
-import getImageAddress from "@/utils/get-image-address";
-import { Loader2, ImageIcon, Trash2, X, Check } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { Check, ImageIcon, Loader2, Trash2, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
 const MetaImageUploader = ({ uri, metaImage }) => {
@@ -82,15 +80,12 @@ const MetaImageUploader = ({ uri, metaImage }) => {
 
       dispatch({ type: "page/setMetadata", payload });
       dispatch({ type: "modal/closeMenu" });
-      toast({
-        description: "تصویر با موفقیت تغییر یافت",
-      });
+      toast.success("تصویر با موفقیت تغییر یافت");
 
       setHasMetaImage(true);
     } catch (error) {
-      toast({
-        description: "خطایی رخ داد. لطفا مجددا سعی کنید",
-      });
+      toast.error("خطایی رخ داد. لطفا مجددا سعی کنید");
+
       console.log(error);
       setError("خطا در آپلود تصویر");
     } finally {
@@ -112,16 +107,13 @@ const MetaImageUploader = ({ uri, metaImage }) => {
 
       dispatch({ type: "page/setMetadata", payload });
       dispatch({ type: "modal/closeMenu" });
-      toast({
-        description: "تصویر با موفقیت حذف شد",
-      });
+      toast.success("تصویر با موفقیت حذف شد");
 
       setHasMetaImage(false);
       setShowDeleteConfirm(false);
     } catch (error) {
-      toast({
-        description: "خطایی در حذف تصویر رخ داد",
-      });
+      toast.error("خطایی در حذف تصویر رخ داد");
+
       console.log(error);
     } finally {
       setIsUploading(false);

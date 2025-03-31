@@ -25,7 +25,7 @@ import {
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { toast } from "@/hooks/use-toast";
+import toast from "react-hot-toast";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { Check, ChevronLeft, TrashIcon } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -110,9 +110,7 @@ function PropertiesComponent({ elementInstance }) {
       },
     };
 
-    toast({
-      description: "تغییرات با موفقیت اعمال شد",
-    });
+    toast.success("تغییرات با موفقیت اعمال شد");
 
     dispatch({ type: "page/updateElement", payload });
 

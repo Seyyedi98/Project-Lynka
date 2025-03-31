@@ -2,12 +2,12 @@ import { UpdatePageFavicon } from "@/actions/page/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { toast } from "@/hooks/use-toast";
 import deleteFile from "@/lib/upload/deleteFile";
 import uploadFile from "@/lib/upload/uploadFile";
 import getImageAddress from "@/utils/get-image-address";
 import { Loader2, ImageIcon, Trash2, X, Check } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
 const FaviconUploader = ({ uri, favicon }) => {
@@ -72,15 +72,12 @@ const FaviconUploader = ({ uri, favicon }) => {
 
       dispatch({ type: "page/setMetadata", payload });
       dispatch({ type: "modal/closeMenu" });
-      toast({
-        description: "فاویکون با موفقیت تغییر یافت",
-      });
+      toast.success("آیکون با موفقیت تغییر یافت");
 
       setHasFavicon(true);
     } catch (error) {
-      toast({
-        description: "خطایی رخ داد. لطفا مجددا سعی کنید",
-      });
+      toast.error("خطایی رخ داد. لطفا مجددا سعی کنید");
+
       console.log(error);
       setError("خطا در آپلود فاویکون");
     } finally {
@@ -112,16 +109,13 @@ const FaviconUploader = ({ uri, favicon }) => {
 
       dispatch({ type: "page/setMetadata", payload });
       dispatch({ type: "modal/closeMenu" });
-      toast({
-        description: "فاویکون با موفقیت حذف شد",
-      });
+      toast.success("فاویکون با موفقیت حذف شد");
 
       setHasFavicon(false);
       setShowDeleteConfirm(false);
     } catch (error) {
-      toast({
-        description: "خطایی در حذف فاویکون رخ داد",
-      });
+      toast.error("خطایی در حذف فاویکون رخ داد");
+
       console.log(error);
     } finally {
       setIsUploading(false);

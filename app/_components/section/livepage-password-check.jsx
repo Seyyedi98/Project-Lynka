@@ -1,6 +1,6 @@
 import { trackClick } from "@/actions/page/analytics";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/hooks/use-toast";
+import toast from "react-hot-toast";
 import { fade } from "@/utils/animation/animation";
 import CryptoJS from "crypto-js";
 import { AnimatePresence, motion } from "framer-motion";
@@ -35,10 +35,7 @@ const ProtectedPagePasswordCheck = ({
         console.error("Failed to update analytics data:", error);
       });
     } else {
-      toast({
-        variant: "destructive",
-        description: "رمز عبور وارد شده اشتباه می باشد",
-      });
+      toast.error("رمز عبور وارد شده اشتباه می باشد");
     }
   };
   return (

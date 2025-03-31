@@ -2,11 +2,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { toast } from "@/hooks/use-toast";
 import deleteFile from "@/lib/upload/deleteFile";
 import uploadFile from "@/lib/upload/uploadFile";
 import { Loader2, Loader2Icon } from "lucide-react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
 const HeroWorkspaceSecondaryUploader = ({ uri }) => {
@@ -20,11 +20,6 @@ const HeroWorkspaceSecondaryUploader = ({ uri }) => {
   const hero = useSelector((store) => store.page.hero);
 
   const previousImage = hero?.extraAttributes?.secondaryImage;
-
-  const ACCESSKEY = process.env.NEXT_PUBLIC_ACCESS_KEY;
-  const SECRETKEY = process.env.NEXT_PUBLIC_SECRET_KEY;
-  const ENDPOINT = process.env.NEXT_PUBLIC_ENDPOINT;
-  const BUCKET = process.env.NEXT_PUBLIC_BUCKET_NAME;
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -70,13 +65,9 @@ const HeroWorkspaceSecondaryUploader = ({ uri }) => {
           }),
         200,
       );
-      toast({
-        description: "تصویر با موفقیت تغییر یافت",
-      });
+      toast.success("تصویر با موفقیت تغییر یافت");
     } catch (error) {
-      toast({
-        description: "خطایی رخ داد. لطفا مجددا سعی کنید",
-      });
+      toast.error("خطایی رخ داد. لطفا مجددا سعی کنید");
     }
 
     setIsUploading(false);

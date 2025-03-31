@@ -3,7 +3,7 @@
 import { submitForm } from "@/actions/form/page-formfield";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/hooks/use-toast";
+import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
 import { loadFont } from "@/utils/loadFont";
 import { useEffect, useState, useRef } from "react";
@@ -71,19 +71,14 @@ const FormFieldDefault = (props) => {
     // Time-based human verification (minimum 3 seconds)
     const submitTime = Date.now() - formStartTime;
     if (submitTime < 3000) {
-      toast({
-        description: "لطفاً زمان بیشتری را برای پر کردن فرم صرف کنید",
-        variant: "destructive",
-      });
+      toast.success("لطفاً زمان بیشتری را برای پر کردن فرم صرف کنید");
+
       return;
     }
 
     // Math question verification
     if (parseInt(formData.mathAnswer) !== mathQuestion.answer) {
-      toast({
-        description: "پاسخ ریاضی نادرست است. لطفاً دوباره تلاش کنید",
-        variant: "destructive",
-      });
+      toast.error("پاسخ شما نادرست است. لطفاً دوباره تلاش کنید");
       generateMathQuestion();
       return;
     }
@@ -97,19 +92,13 @@ const FormFieldDefault = (props) => {
       });
 
       if (result.success) {
-        toast({ description: "فرم با موفقیت ثبت شد" });
+        toast.success("فرم با موفقیت ثبت شد");
         setIsSubmitted(true);
       } else {
-        toast({
-          description: result.error || "خطا در ارسال فرم",
-          variant: "destructive",
-        });
+        toast.error(result.error || "خطا در ارسال فرم");
       }
     } catch (error) {
-      toast({
-        description: "خطا در ارسال فرم",
-        variant: "destructive",
-      });
+      toast.error("خطا در ارسال فرم");
     }
   };
 

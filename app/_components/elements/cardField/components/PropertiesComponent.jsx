@@ -1,5 +1,7 @@
 "use client";
 
+import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
+import { ShinyButton } from "@/app/_components/common/button/shiny-button";
 import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementCardLayoutFormField from "@/app/_components/common/form/element-properties/element-card-layout-formfield";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
@@ -11,20 +13,8 @@ import ElementScheduleFormField from "@/app/_components/common/form/element-prop
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
 import { ElementThemeController } from "@/app/_components/controller/element-theme-controller";
-import { Form } from "@/components/ui/form";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { toast } from "@/hooks/use-toast";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
-import { cardFieldSchems } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import CryptoJS from "crypto-js";
-import { Check, ChevronLeft, TrashIcon } from "lucide-react";
-import dynamic from "next/dynamic";
-import { Suspense, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { ShinyButton } from "@/app/_components/common/button/shiny-button";
+import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -32,9 +22,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
-import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
-import { Button } from "@/components/ui/button";
+import { Form } from "@/components/ui/form";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
+import CryptoJS from "crypto-js";
+import { Check, ChevronLeft, TrashIcon } from "lucide-react";
+import dynamic from "next/dynamic";
+import { Suspense, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 const ImageUploaderField = dynamic(
   () =>
@@ -149,9 +147,7 @@ function PropertiesComponent({ elementInstance }) {
       },
     };
 
-    toast({
-      description: "تغییرات با موفقیت اعمال شد",
-    });
+    toast.success("تغییرات با موفقیت اعمال شد");
 
     dispatch({ type: "page/updateElement", payload });
 

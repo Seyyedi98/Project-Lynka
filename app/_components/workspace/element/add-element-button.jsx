@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { toast } from "@/hooks/use-toast";
+import toast from "react-hot-toast";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { idGenerator } from "@/lib/id-generator";
@@ -49,9 +49,7 @@ const AddElementButton = ({ pageElement }) => {
           element: newElement,
           applyPageTheme,
         };
-        toast({
-          description: "بلوک جدید ایجاد شد",
-        });
+        toast.success("بلوک جدید ایجاد شد");
         dispatch({ type: "page/addElement", payload });
       }}
       ref={isDesktop ? draggable.setNodeRef : null}
