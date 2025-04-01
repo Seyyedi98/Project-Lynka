@@ -1,6 +1,7 @@
 "use client";
 import {
   BellDot,
+  ChevronDown,
   HelpCircle,
   KeyIcon,
   LoaderIcon,
@@ -8,16 +9,16 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
-import { LogoutButton } from "../../auth/logout-button";
 import { useCurrentUser } from "../../../../hooks/useCurrentUser";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import ToggleDarkmode from "../../common/button/toggle-darkmode";
 
 const DashboardHeading = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -57,27 +58,34 @@ const DashboardHeading = ({ children }) => {
 
       <div className="ml-2 flex items-center justify-center gap-4 text-sm">
         <span className="flex cursor-pointer items-center justify-center">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent hover:text-white">
-                  {user ? user.name : <LoaderIcon className="animate-spin" />}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent dir="rtl">
-                  <NavigationMenuLink className="flex items-center gap-1 px-2 hover:text-primary">
-                    <UserCircleIcon className="h-5 w-5" />
-                    <div className="w-40 p-2">پروفایل</div>
-                  </NavigationMenuLink>
-                  <LogoutButton className="">
-                    <NavigationMenuLink className="flex items-center px-2 hover:text-primary">
-                      <KeyIcon className="h-5 w-5" />
-                      <div className="w-40 p-2">خروج</div>
-                    </NavigationMenuLink>
-                  </LogoutButton>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <div className="flex items-center justify-center gap-2">
+                <ChevronDown className="flex h-6 w-6" />
+                {user ? user.name : <LoaderIcon className="animate-spin" />}
+                <UserCircleIcon className="flex h-6 w-6" />
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel className="flex items-center justify-center">
+                <div className="">پروفایل</div>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <UserCircleIcon className="mt-1 h-5 w-5" />
+                <div className="w-40 p-2">پروفایل</div>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <UserCircleIcon className="mt-1 h-5 w-5" />
+                <div className="w-40 p-2">حالت تاریک</div>
+                <ToggleDarkmode />
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <KeyIcon className="mt-1 h-5 w-5" />
+                <div className="w-40 p-2">خروج</div>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </span>
       </div>
     </div>

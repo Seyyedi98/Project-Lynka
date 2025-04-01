@@ -1,12 +1,10 @@
 import Image from "next/image";
-import ThemeSwitcher from "../_components/common/button/ThemeSwitcher";
 const backgroundLight = "/bg_wave.svg";
 const backgroundGray = "/bg_wave_gray.svg";
 
 const layout = ({ children }) => {
   return (
     <div className="bg-main-gradient">
-      <ThemeSwitcher className="fixed left-0 top-0" />
       <Image
         className="pointer-events-none absolute z-20 hidden object-cover object-center lg:block"
         fill

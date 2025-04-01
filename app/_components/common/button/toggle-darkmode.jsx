@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Toggle } from "rsuite";
 
-const ThemeSwitcher = (className) => {
+const ToggleDarkmode = (className) => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState();
 
@@ -24,11 +24,7 @@ const ThemeSwitcher = (className) => {
   if (!mounted) return null;
 
   return (
-    <div
-      className="col-span-full mb-3 flex w-[99%] items-center justify-between space-x-2 rounded-md border border-primary/50 p-4 py-6"
-      {...className}
-    >
-      <Label htmlFor="theme-toggle">حالت تاریک</Label>
+    <div className="" {...className}>
       <Toggle
         checked={theme === "dark" ? true : false}
         onChange={toggleTheme}
@@ -40,4 +36,4 @@ const ThemeSwitcher = (className) => {
   );
 };
 
-export default ThemeSwitcher;
+export default ToggleDarkmode;
