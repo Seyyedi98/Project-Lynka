@@ -58,8 +58,8 @@ const ThemesList = ({ themes, isSilver, handleThemeUpdate, className }) => {
             <div
               key={el.value}
               className={cn(
-                `flex cursor-pointer items-center justify-center rounded-full border-2 border-border px-4 py-1 text-base`,
-                category === el.title && "bg-primary text-white",
+                `flex cursor-pointer items-center justify-center rounded-full border-2 border-primary px-4 py-1 text-base`,
+                category === el.title && "bg-primary text-primary-foreground",
               )}
               onClick={() => setCategory(el.title)}
             >
@@ -92,7 +92,7 @@ const ThemesList = ({ themes, isSilver, handleThemeUpdate, className }) => {
                 >
                   <div className="relative aspect-[2/3] w-full">
                     {loadingImages[theme.name] !== false && (
-                      <div className="absolute inset-0 animate-pulse bg-gray-300"></div>
+                      <div className="absolute inset-0 animate-pulse bg-muted"></div>
                     )}
                     <Image
                       fill
@@ -127,15 +127,15 @@ const ThemesList = ({ themes, isSilver, handleThemeUpdate, className }) => {
             <div className="flex h-full flex-col">
               <DialogTitle></DialogTitle>
               {selectedTheme && (
-                <div className="flex h-full flex-col overflow-hidden rounded-xl bg-background shadow-lg">
+                <div className="flex h-full flex-col overflow-hidden rounded-xl bg-card shadow-lg">
                   <div className="relative flex-1 overflow-hidden">
-                    <div className="bg-background-200/20 absolute inset-0 flex items-center justify-center">
+                    <div className="absolute inset-0 flex items-center justify-center bg-accent/20">
                       <div className="relative h-full w-full">
                         <Image
                           src="/album.jpg"
                           alt="theme preview"
                           fill
-                          className="object-contain transition-all duration-300" /* Changed to contain */
+                          className="object-contain transition-all duration-300"
                           sizes="(max-width: 768px) 100vw, 800px"
                         />
                       </div>
@@ -147,7 +147,7 @@ const ThemesList = ({ themes, isSilver, handleThemeUpdate, className }) => {
                     <div className="flex gap-2 p-4">
                       <Button
                         onClick={handleSelectTheme}
-                        className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 py-4 text-lg font-medium text-white shadow-lg shadow-indigo-500/20 transition-all hover:scale-[1.02] hover:from-indigo-700 hover:to-purple-700"
+                        className="w-full bg-gradient-to-r from-primary to-secondary py-4 text-lg font-medium text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:scale-[1.02] hover:from-primary-hover hover:to-secondary"
                         size="lg"
                       >
                         انتخاب تم
@@ -155,9 +155,9 @@ const ThemesList = ({ themes, isSilver, handleThemeUpdate, className }) => {
                       </Button>
                       <button
                         onClick={() => setIsModalOpen(false)}
-                        className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-md border border-gray-200 bg-white/80 backdrop-blur-sm transition-all hover:-translate-x-0.5 hover:bg-white hover:shadow-md"
+                        className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-md border border-border bg-card-light/80 backdrop-blur-sm transition-all hover:-translate-x-0.5 hover:bg-card-light hover:shadow-md"
                       >
-                        <ArrowLeft className="h-6 w-6 text-gray-600" />
+                        <ArrowLeft className="h-6 w-6 text-foreground" />
                       </button>
                     </div>
                   </div>
