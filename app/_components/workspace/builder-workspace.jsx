@@ -11,7 +11,6 @@ import {
 import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { memo, useCallback, useMemo, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import BackButtonWithConfirmation from "../common/button/back-button-confirmation";
 import PageUrl from "../common/button/page-url";
 import SavePageBtn from "../common/button/PrimaryButton/save-page-button";
 import {
@@ -26,6 +25,7 @@ import EditorSidebar from "../layout/navbar/editor-sidebar";
 import PreviewPageContainer from "../preview/preview-page-container";
 import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
+import BackButtonWithConfirmation from "../common/button/NavigationButton/back-button-confirmation";
 
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 const MemoizedEditorSidebar = memo(EditorSidebar);

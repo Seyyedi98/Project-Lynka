@@ -3,7 +3,7 @@ import { colors, gradient, pattern } from "@/data/colors";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SquareButton from "../../common/button/square-button";
+import SquareButton from "../../common/button/PrimaryButton/square-button";
 import PageBgImageForm from "../../common/form/page-bg-image-form";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";

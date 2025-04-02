@@ -1,6 +1,6 @@
 "use client";
 
-import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
+import DeleteElementBtn from "@/app/_components/common/button/PrimaryButton/delete-element-button";
 import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
 import ElementhrefFormField from "@/app/_components/common/form/element-properties/element-href-formfield";
 import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";

@@ -1,5 +1,5 @@
 import { Label } from "@/components/ui/label";
-import ToggleDarkmode from "../../common/button/toggle-darkmode";
+import ToggleDarkmode from "../../common/button/PrimaryButton/toggle-darkmode";
 
 const WorkspaceSettings = () => {
   return (

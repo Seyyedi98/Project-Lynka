@@ -1,12 +1,12 @@
 "use client";
 
-import { ShinyButton } from "@/app/_components/common/button/shiny-button";
+import { ShinyButton } from "@/app/_components/common/button/PrimaryButton/shiny-button";
 import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
-import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
+import ElementThemeSelector from "@/app/_components/elements_theme/element-theme-selector";
 import {
   Dialog,
   DialogContent,

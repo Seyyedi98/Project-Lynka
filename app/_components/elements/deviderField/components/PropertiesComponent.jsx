@@ -7,12 +7,12 @@ import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
-import { ShinyButton } from "@/app/_components/common/button/shiny-button";
+import DeleteElementBtn from "@/app/_components/common/button/PrimaryButton/delete-element-button";
+import { ShinyButton } from "@/app/_components/common/button/PrimaryButton/shiny-button";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
-import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
+import ElementThemeSelector from "@/app/_components/elements_theme/element-theme-selector";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,

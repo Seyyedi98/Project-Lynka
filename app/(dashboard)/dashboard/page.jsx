@@ -1,7 +1,5 @@
-import { getPageAnalytics } from "@/actions/page/analytics";
 import { getUserPageData } from "@/actions/page/page";
-import CreatePageButton from "@/app/_components/common/button/new-page-btn";
-import AnalyticsWidget from "@/app/_components/common/card/analytics-widget";
+import CreatePageButton from "@/app/_components/common/button/PrimaryButton/new-page-btn";
 import BlogWidget from "@/app/_components/common/card/blog-widget";
 import DashboardDataCard from "@/app/_components/common/card/dashboard-data-card";
 import Carousel from "@/app/_components/common/carousel";
@@ -73,12 +71,12 @@ const Dashboard = async () => {
         </div>
 
         {/* Pages List */}
-        <div className="col-span-full h-fit overflow-hidden rounded-lg bg-card/50 backdrop-blur-lg">
+        <div className="z-[2] col-span-full h-fit rounded-lg bg-card/50 backdrop-blur-lg">
           <PagesList pages={allPages} />
           <div className="relative flex justify-center py-3 transition-colors duration-200">
             <div className="absolute top-0 mx-auto h-[1px] w-[95%] bg-primary" />
             <CreatePageButton>
-              <div className="group relative mx-auto flex cursor-pointer gap-1 text-sm text-primary transition-colors duration-200 hover:text-secondary">
+              <div className="group relative mx-auto my-2 flex cursor-pointer gap-1 text-sm text-primary transition-colors duration-200 hover:text-secondary">
                 <div className="absolute -bottom-1 right-1/2 h-[1px] w-0 bg-secondary transition-all group-hover:w-1/2" />
                 <div className="absolute -bottom-1 left-1/2 h-[1px] w-0 bg-secondary transition-all group-hover:w-1/2" />
                 ایجاد صفحه جدید

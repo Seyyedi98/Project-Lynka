@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
-import ChevronButton from "./button/chevron-button";
+import ChevronButton from "./button/NavigationButton/chevron-button";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 

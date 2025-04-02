@@ -1,14 +1,14 @@
 "use client";
 
-import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
-import { ShinyButton } from "@/app/_components/common/button/shiny-button";
-import SquareButton from "@/app/_components/common/button/square-button";
+import DeleteElementBtn from "@/app/_components/common/button/PrimaryButton/delete-element-button";
+import { ShinyButton } from "@/app/_components/common/button/PrimaryButton/shiny-button";
+import SquareButton from "@/app/_components/common/button/PrimaryButton/square-button";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import PageFieldValueSlider from "@/app/_components/common/form/element-properties/page-slider-formfield";
 import Divider from "@/app/_components/common/shared/devider";
-import HeroThemeSelector from "@/app/_components/theme/hero-theme-selector";
+import HeroThemeSelector from "@/app/_components/elements_theme/hero-theme-selector";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -133,11 +133,7 @@ function PropertiesComponent({ elementInstance, isSilver }) {
               className="flex h-full flex-col gap-2 text-text"
               onSubmit={form.handleSubmit(applyChanges)}
             >
-              <Tabs
-                dir="rtl"
-                defaultValue={element.extraAttributes.heroType}
-                className=""
-              >
+              <Tabs dir="rtl" defaultValue="content" className="">
                 <TabsList className="mb-2">
                   <TabsTrigger value="content">محتوا</TabsTrigger>
                   <TabsTrigger value="design">استایل</TabsTrigger>

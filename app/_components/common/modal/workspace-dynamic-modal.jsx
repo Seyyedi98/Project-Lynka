@@ -11,17 +11,17 @@ import {
   DrawerTrigger,
 } from "@/app/_components/common/modal/drawer";
 import { Button } from "@/components/ui/button";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { isSpecificModalOpen } from "@/store/modalSlice";
+import { DialogTitle } from "@radix-ui/react-dialog";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { isSpecificModalOpen } from "@/store/modalSlice";
-import { DialogTitle } from "@radix-ui/react-dialog";
-import { useDispatch, useSelector } from "react-redux";
+} from "./diolog";
 
 export function WorkspaceDynamicModal({
   children,

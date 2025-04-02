@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../modal/diolog";
+} from "../../modal/diolog";
 import { useState } from "react";
 
 const BackButtonWithConfirmation = ({ url, children }) => {

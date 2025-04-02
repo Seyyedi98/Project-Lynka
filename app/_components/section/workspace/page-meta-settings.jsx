@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import SquareButton from "../../common/button/square-button";
+import SquareButton from "../../common/button/PrimaryButton/square-button";
 import MetaDescriptionForm from "../../common/form/meta-description-form";
 import MetaFaviconForm from "../../common/form/meta-favicon-form";
 import MetaImageForm from "../../common/form/meta-image-form";

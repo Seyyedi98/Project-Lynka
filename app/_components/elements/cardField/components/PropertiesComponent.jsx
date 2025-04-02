@@ -1,7 +1,7 @@
 "use client";
 
-import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
-import { ShinyButton } from "@/app/_components/common/button/shiny-button";
+import DeleteElementBtn from "@/app/_components/common/button/PrimaryButton/delete-element-button";
+import { ShinyButton } from "@/app/_components/common/button/PrimaryButton/shiny-button";
 import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementCardLayoutFormField from "@/app/_components/common/form/element-properties/element-card-layout-formfield";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
@@ -13,7 +13,7 @@ import ElementScheduleFormField from "@/app/_components/common/form/element-prop
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
 import { ElementThemeController } from "@/app/_components/controller/element-theme-controller";
-import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
+import ElementThemeSelector from "@/app/_components/elements_theme/element-theme-selector";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,

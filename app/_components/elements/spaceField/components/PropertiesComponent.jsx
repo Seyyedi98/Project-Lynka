@@ -1,6 +1,6 @@
 "use client";
 
-import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
+import DeleteElementBtn from "@/app/_components/common/button/PrimaryButton/delete-element-button";
 import PageFieldValueSlider from "@/app/_components/common/form/element-properties/page-slider-formfield";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";

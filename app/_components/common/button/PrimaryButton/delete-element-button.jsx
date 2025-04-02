@@ -11,7 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../modal/diolog";
+} from "../../modal/diolog";
 
 const DeleteElementBtn = ({ id, children }) => {
   const dispatch = useDispatch();

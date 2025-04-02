@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 import { FormError } from "../common/message/form-error";
 import { FormSuccess } from "../common/message/form-success";
 import { Input } from "rsuite";
-import ArrowRightButton from "../common/button/arrow-right-button";
+import ArrowRightButton from "../common/button/NavigationButton/arrow-right-button";
 import { ArrowRight, LoaderIcon } from "lucide-react";
 import Link from "next/link";
 

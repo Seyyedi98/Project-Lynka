@@ -18,7 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import ToggleDarkmode from "../../common/button/toggle-darkmode";
+import ToggleDarkmode from "../../common/button/PrimaryButton/toggle-darkmode";
 
 const DashboardHeading = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
