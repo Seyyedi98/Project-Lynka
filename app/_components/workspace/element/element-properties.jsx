@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { TrashIcon } from "lucide-react";
-import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
-
+import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { PageElements } from "../../controller/page-elements-controller";
 import { PageHeroElement } from "../../elements/hero/page-hero-element";
 
 const ElementProperties = ({ element }) => {
+  const { isSilver } = useUserSubscription();
+
   let PropertiesForm;
   PropertiesForm = PageElements[element?.type]?.PropertiesComponent;
 
@@ -13,7 +12,7 @@ const ElementProperties = ({ element }) => {
 
   return (
     <div className="relative flex h-full flex-col justify-between">
-      <PropertiesForm elementInstance={element} />
+      <PropertiesForm elementInstance={element} isSilver={isSilver} />
     </div>
   );
 };

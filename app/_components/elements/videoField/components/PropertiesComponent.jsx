@@ -8,18 +8,15 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import toast from "react-hot-toast";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { Check, TrashIcon } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
-function PropertiesComponent({ elementInstance }) {
+function PropertiesComponent({ elementInstance, isSilver }) {
   const element = elementInstance;
   const dispatch = useDispatch();
-
-  const { isSilver } = useUserSubscription();
 
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),
@@ -58,7 +55,6 @@ function PropertiesComponent({ elementInstance }) {
           ...element.extraAttributes,
           theme,
           href,
-
           schedule: isSilver ? schedule : element.extraAttributes.schedule,
           scheduleStart: isSilver
             ? scheduleStart

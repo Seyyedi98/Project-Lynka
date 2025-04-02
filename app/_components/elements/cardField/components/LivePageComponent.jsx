@@ -2,7 +2,7 @@ import { getSubscriptionByUri } from "@/lib/auth/user-subscription";
 import moment from "moment-jalaali";
 import { ElementThemeController } from "../../../controller/element-theme-controller";
 
-export async function LivePageComponent({ elementInstance, uri }) {
+export async function LivePageComponent({ elementInstance, uri, isSilver }) {
   const element = elementInstance;
   const data = element.extraAttributes;
   const countdownDate = await data.countdownDate;
@@ -11,7 +11,6 @@ export async function LivePageComponent({ elementInstance, uri }) {
   const hour = date.getHours();
   const currentShamsiDate = moment().format("jYYYY-jMM-jDDTHH:mm:ss.SSSZ");
 
-  const { isSilver } = await getSubscriptionByUri(uri);
   const scheduledRender = isSilver
     ? data.schedule
       ? hour >= data.scheduleStart && hour < data.scheduleEnd

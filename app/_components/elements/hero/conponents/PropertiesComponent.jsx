@@ -20,20 +20,12 @@ import {
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import toast from "react-hot-toast";
 import { ChevronLeft, TrashIcon } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Suspense, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-
-const UploadButton = dynamic(
-  () => import("@/app/_components/common/input/workspace-hero-uploader"),
-);
-const UploadButtonSecondary = dynamic(
-  () =>
-    import("@/app/_components/common/input/workspace-hero-secondary-uploader"),
-);
 
 const ImageUploaderField = dynamic(
   () =>
@@ -46,7 +38,7 @@ const ImageUploaderField = dynamic(
   },
 );
 
-function PropertiesComponent({ elementInstance }) {
+function PropertiesComponent({ elementInstance, isSilver }) {
   const element = elementInstance;
   const dispatch = useDispatch();
 
@@ -141,7 +133,11 @@ function PropertiesComponent({ elementInstance }) {
               className="flex h-full flex-col gap-2 text-text"
               onSubmit={form.handleSubmit(applyChanges)}
             >
-              <Tabs dir="rtl" defaultValue="content" className="">
+              <Tabs
+                dir="rtl"
+                defaultValue={element.extraAttributes.heroType}
+                className=""
+              >
                 <TabsList className="mb-2">
                   <TabsTrigger value="content">محتوا</TabsTrigger>
                   <TabsTrigger value="design">استایل</TabsTrigger>
@@ -208,9 +204,6 @@ function PropertiesComponent({ elementInstance }) {
                   </div>
                   {category === "image" && (
                     <>
-                      {/* <HeroWorkspaceUploader /> */}
-                      {/* <UploadButton />
-                      <UploadButtonSecondary /> */}
                       <ImageUploaderField
                         value={form.watch("primaryImage")}
                         onChange={(value) =>

@@ -8,20 +8,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import toast from "react-hot-toast";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { idGenerator } from "@/lib/id-generator";
 import { cn } from "@/lib/utils";
 import { useDraggable } from "@dnd-kit/core";
 import { LockIcon, PlusIcon } from "lucide-react";
+import toast from "react-hot-toast";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { PageElements } from "../../controller/page-elements-controller";
 
-const AddElementButton = ({ pageElement }) => {
+const AddElementButton = ({ pageElement, isSilver }) => {
   const { label, icon: Icon } = pageElement.ElementAdderBtn;
   const isElPremium = pageElement.isPremium;
-  const { isSilver } = useUserSubscription();
   const canUserUseEl = isElPremium ? (isSilver ? true : false) : true;
 
   const dispatch = useDispatch();

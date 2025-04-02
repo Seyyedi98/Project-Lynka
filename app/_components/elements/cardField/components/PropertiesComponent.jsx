@@ -25,7 +25,6 @@ import {
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
 import CryptoJS from "crypto-js";
 import { Check, ChevronLeft, TrashIcon } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -45,11 +44,9 @@ const ImageUploaderField = dynamic(
   },
 );
 
-function PropertiesComponent({ elementInstance }) {
+function PropertiesComponent({ elementInstance, isSilver }) {
   const element = elementInstance;
   const dispatch = useDispatch();
-
-  const { isSilver } = useUserSubscription();
 
   const RenderElement =
     ElementThemeController[element.type][element.extraAttributes.theme][0];

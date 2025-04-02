@@ -11,6 +11,7 @@ import fetchWithRetry from "@/utils/fetchWithRetry";
 import getImageAddress from "@/utils/get-image-address";
 import parseJson from "@/utils/parseJSON";
 import { notFound } from "next/navigation";
+import { useMemo } from "react";
 
 // ✅ Dynamic Metadata Fetching with Error Handling
 export async function generateMetadata({ params }) {
@@ -138,7 +139,7 @@ const LivePage = async ({ params }) => {
         {page.loadingIcon && (
           <div
             className={cn(
-              `absolute z-[50] grid h-svh w-dvw animate-fade-in place-items-center bg-background opacity-100 transition-opacity`,
+              `absolute z-[50] grid h-svh w-dvw animate-fade-in place-items-center bg-slate-800 opacity-100 transition-opacity`,
               page && "pointer-events-none opacity-0",
             )}
           >
@@ -151,7 +152,7 @@ const LivePage = async ({ params }) => {
           <LivePageHero hero={hero} />
 
           {/* Content Section */}
-          <section className="mt-2 flex w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
+          <section className="flex w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
             <LivePageElements uri={uri} content={content} />
           </section>
         </main>

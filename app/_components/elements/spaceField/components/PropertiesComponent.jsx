@@ -5,13 +5,13 @@ import PageFieldValueSlider from "@/app/_components/common/form/element-properti
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
-import toast from "react-hot-toast";
 import { Check, TrashIcon } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
-function PropertiesComponent({ elementInstance }) {
+function PropertiesComponent({ elementInstance, isSilver }) {
   const element = elementInstance;
   const dispatch = useDispatch();
 

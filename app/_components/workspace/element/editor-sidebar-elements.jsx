@@ -1,7 +1,10 @@
+import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { PageElements } from "../../controller/page-elements-controller";
 import AddElementButton from "./add-element-button";
 
 const EditorSidebarElements = () => {
+  const { isSilver } = useUserSubscription();
+
   return (
     <div className="w-full">
       <p className="mb-6 place-self-center text-sm text-muted-foreground md:place-self-start md:p-4 md:text-white">
@@ -15,10 +18,22 @@ const EditorSidebarElements = () => {
             محتوای پایه
           </h3>
           <div className="grid grid-cols-1 gap-3">
-            <AddElementButton pageElement={PageElements.SocialsField} />
-            <AddElementButton pageElement={PageElements.TextField} />
-            <AddElementButton pageElement={PageElements.CardField} />
-            <AddElementButton pageElement={PageElements.ImageField} />
+            <AddElementButton
+              pageElement={PageElements.SocialsField}
+              isSilver={isSilver}
+            />
+            <AddElementButton
+              pageElement={PageElements.TextField}
+              isSilver={isSilver}
+            />
+            <AddElementButton
+              pageElement={PageElements.CardField}
+              isSilver={isSilver}
+            />
+            <AddElementButton
+              pageElement={PageElements.ImageField}
+              isSilver={isSilver}
+            />
           </div>
         </section>
 
@@ -28,8 +43,14 @@ const EditorSidebarElements = () => {
             چیدمان و ساختار
           </h3>
           <div className="grid grid-cols-1 gap-3">
-            <AddElementButton pageElement={PageElements.SpaceField} />
-            <AddElementButton pageElement={PageElements.DeviderField} />
+            <AddElementButton
+              pageElement={PageElements.SpaceField}
+              isSilver={isSilver}
+            />
+            <AddElementButton
+              pageElement={PageElements.DeviderField}
+              isSilver={isSilver}
+            />
           </div>
         </section>
 
@@ -37,10 +58,22 @@ const EditorSidebarElements = () => {
         <section>
           <h3 className="mb-3 text-sm font-semibold text-text/60">گالری‌ها</h3>
           <div className="grid grid-cols-1 gap-3">
-            <AddElementButton pageElement={PageElements.GalleryField} />
-            <AddElementButton pageElement={PageElements.CarouselField} />
-            <AddElementButton pageElement={PageElements.VideoField} />
-            <AddElementButton pageElement={PageElements.CountdownField} />
+            <AddElementButton
+              pageElement={PageElements.GalleryField}
+              isSilver={isSilver}
+            />
+            <AddElementButton
+              pageElement={PageElements.CarouselField}
+              isSilver={isSilver}
+            />
+            <AddElementButton
+              pageElement={PageElements.VideoField}
+              isSilver={isSilver}
+            />
+            <AddElementButton
+              pageElement={PageElements.CountdownField}
+              isSilver={isSilver}
+            />
           </div>
         </section>
 
@@ -48,8 +81,14 @@ const EditorSidebarElements = () => {
         <section>
           <h3 className="mb-3 text-sm text-text/60">ابزار های تعاملی</h3>
           <div className="grid grid-cols-1 gap-3">
-            <AddElementButton pageElement={PageElements.FormField} />
-            <AddElementButton pageElement={PageElements.FaqField} />
+            <AddElementButton
+              pageElement={PageElements.FormField}
+              isSilver={isSilver}
+            />
+            <AddElementButton
+              pageElement={PageElements.FaqField}
+              isSilver={isSilver}
+            />
           </div>
         </section>
 
@@ -57,9 +96,15 @@ const EditorSidebarElements = () => {
         <section>
           <h3 className="mb-3 text-sm font-semibold text-text/60">سرویس ها</h3>
           <div className="grid grid-cols-1 gap-3">
-            <AddElementButton pageElement={PageElements.RssField} />
-            <AddElementButton pageElement={PageElements.MapField} />
-            {/* <AddElementButton pageElement={PageElements.PostTrackerField} /> */}
+            <AddElementButton
+              pageElement={PageElements.RssField}
+              isSilver={isSilver}
+            />
+            <AddElementButton
+              pageElement={PageElements.MapField}
+              isSilver={isSilver}
+            />
+            {/* <AddElementButton pageElement={PageElements.PostTrackerField}  isSilver={isSilver}/> */}
           </div>
         </section>
       </div>

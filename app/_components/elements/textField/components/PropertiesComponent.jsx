@@ -3,12 +3,13 @@
 import PageFieldValueSlider from "@/app/_components/common/form/element-properties/page-slider-formfield";
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
-import toast from "react-hot-toast";
 import { Check, ChevronLeft, TrashIcon } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
+import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
 import { ShinyButton } from "@/app/_components/common/button/shiny-button";
 import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
@@ -19,6 +20,7 @@ import ElementScheduleFormField from "@/app/_components/common/form/element-prop
 import ElementTextAreaFormField from "@/app/_components/common/form/element-properties/element-textarea-formfield";
 import Divider from "@/app/_components/common/shared/devider";
 import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -27,15 +29,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
-import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
-import { Button } from "@/components/ui/button";
 
-function PropertiesComponent({ elementInstance }) {
+function PropertiesComponent({ elementInstance, isSilver }) {
   const element = elementInstance;
   const dispatch = useDispatch();
-
-  const { isSilver } = useUserSubscription();
 
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),

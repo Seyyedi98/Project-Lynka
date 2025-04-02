@@ -5,8 +5,6 @@ import { ShinyButton } from "@/app/_components/common/button/shiny-button";
 import ElementSocialsFormField from "@/app/_components/common/form/element-properties/element-add-socials-formfield";
 import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
-import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
-import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
 import Divider from "@/app/_components/common/shared/devider";
 import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
 import { Button } from "@/components/ui/button";
@@ -20,18 +18,15 @@ import {
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import toast from "react-hot-toast";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { Check, ChevronLeft, TrashIcon } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
-function PropertiesComponent({ elementInstance }) {
+function PropertiesComponent({ elementInstance, isSilver }) {
   const element = elementInstance;
   const dispatch = useDispatch();
-
-  const { isSilver } = useUserSubscription();
 
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),
@@ -39,11 +34,6 @@ function PropertiesComponent({ elementInstance }) {
       textColor: element.extraAttributes.textColor || "",
       bgColor: element.extraAttributes.bgColor || "",
       socials: element.extraAttributes.questions || [],
-      schedule: element.extraAttributes.schedule || false,
-      scheduleStart: element.extraAttributes.scheduleStart || "0",
-      scheduleEnd: element.extraAttributes.scheduleEnd || "0",
-      countdown: element.extraAttributes.countdown || false,
-      countdownDate: element.extraAttributes.countdownDate || "0",
     },
   });
 
@@ -52,20 +42,7 @@ function PropertiesComponent({ elementInstance }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const {
-      theme,
-      textColor,
-      bgColor,
-      borderRadius,
-      socials,
-      schedule,
-      scheduleStart,
-      scheduleEnd,
-      countdown,
-      countdownDate,
-    } = values;
-
-    console.log(socials);
+    const { theme, textColor, bgColor, borderRadius } = values;
 
     const payload = {
       id: element.id,
@@ -78,17 +55,6 @@ function PropertiesComponent({ elementInstance }) {
           socials,
           borderRadius,
           bgColor,
-          schedule: isSilver ? schedule : element.extraAttributes.schedule,
-          scheduleStart: isSilver
-            ? scheduleStart
-            : element.extraAttributes.scheduleStart,
-          scheduleEnd: isSilver
-            ? scheduleEnd
-            : element.extraAttributes.scheduleEnd,
-          countdown: isSilver ? countdown : element.extraAttributes.countdown,
-          countdownDate: isSilver
-            ? countdownDate
-            : element.extraAttributes.countdownDate,
         },
       },
     };
@@ -132,7 +98,6 @@ function PropertiesComponent({ elementInstance }) {
                 <TabsList className="mb-2">
                   <TabsTrigger value="content">محتوا</TabsTrigger>
                   <TabsTrigger value="design">طراحی</TabsTrigger>
-                  <TabsTrigger value="visibility">نمایش</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="content" className="flex flex-col gap-5">
@@ -159,27 +124,6 @@ function PropertiesComponent({ elementInstance }) {
                     label="رنگ پس زمینه"
                     fieldName="bgColor"
                   />
-                </TabsContent>
-
-                <TabsContent value="visibility" className="flex flex-col gap-4">
-                  {/* Schedule */}
-                  <div className="mt-6">
-                    <ElementScheduleFormField
-                      scheduleData={element.extraAttributes}
-                      form={form}
-                      isSilver={isSilver}
-                    />
-                  </div>
-
-                  {/* Countdown */}
-                  <div className="mt-6">
-                    <ElementCountdownFormField
-                      showToggle={true}
-                      countdownData={element.extraAttributes}
-                      form={form}
-                      isSilver={isSilver}
-                    />
-                  </div>
                 </TabsContent>
               </Tabs>
 

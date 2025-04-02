@@ -10,7 +10,6 @@ import ElementMapFormField from "@/app/_components/common/form/element-propertie
 import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
-import { ElementThemeController } from "@/app/_components/controller/element-theme-controller";
 import ElementThemeSelector from "@/app/_components/theme/element-theme-selector";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,21 +22,15 @@ import {
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import toast from "react-hot-toast";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { Check, ChevronLeft, TrashIcon } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
-function PropertiesComponent({ elementInstance }) {
+function PropertiesComponent({ elementInstance, isSilver }) {
   const element = elementInstance;
   const dispatch = useDispatch();
-
-  const { isSilver } = useUserSubscription();
-
-  const RenderElement =
-    ElementThemeController[element.type][element.extraAttributes.theme][0];
 
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),

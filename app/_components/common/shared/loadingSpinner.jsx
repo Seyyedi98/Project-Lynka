@@ -5,7 +5,7 @@ const LoadingSpinner = ({ elementInstances }) => {
   const RenderElement = LoadingController[data];
 
   return (
-    <div className="mt-4 h-fit w-fit animate-spin text-primary">
+    <div className="mt-4 h-fit w-fit text-primary">
       <RenderElement />
     </div>
   );

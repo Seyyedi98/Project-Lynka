@@ -32,10 +32,10 @@ const DeleteElementBtn = ({ id, children }) => {
     <div>
       <Dialog>
         <DialogTrigger asChild>{children}</DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="p-6 sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>حذف </DialogTitle>
-            <DialogDescription className="leading-6">
+            <DialogDescription className="pt-4 leading-6">
               با حذف این آیتم، تمامی اطلاعات مرتبط با آن نیز حذف خواهد شد. آیا
               اطمینان دارید؟
             </DialogDescription>

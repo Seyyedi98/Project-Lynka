@@ -1,16 +1,3 @@
-import { cn } from "@/lib/utils";
-import { GearIcon } from "@radix-ui/react-icons";
-import {
-  AppWindow,
-  ChartLine,
-  ChevronRight,
-  Droplet,
-  Layers,
-  UserRoundIcon,
-} from "lucide-react";
-import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
-import BackButtonWithConfirmation from "../../common/button/back-button-confirmation";
 import {
   Dialog,
   DialogContent,
@@ -18,12 +5,26 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
+import parseJson from "@/utils/parseJSON";
+import { GearIcon } from "@radix-ui/react-icons";
+import {
+  AppWindow,
+  ChartLine,
+  Droplet,
+  Layers,
+  UserRoundIcon,
+} from "lucide-react";
+import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
 import PageSettings from "../../workspace/page-settings";
+import getImageAddress from "@/utils/get-image-address";
 
 const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
   const data = useSelector((store) => store.page.hero);
   const dispatch = useDispatch();
-  const userImage = data?.extraAttributes?.primaryImage?.url;
+  const { key } = parseJson(data?.extraAttributes?.primaryImage);
+  const userImage = getImageAddress(key);
 
   return (
     <div className="fixed right-2 top-0 z-40 flex h-full w-16 items-center ring-0">

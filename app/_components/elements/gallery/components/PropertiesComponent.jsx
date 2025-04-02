@@ -2,7 +2,6 @@
 
 import DeleteElementBtn from "@/app/_components/common/button/delete-element-button";
 import { ShinyButton } from "@/app/_components/common/button/shiny-button";
-import ElementAddQuestionsFormField from "@/app/_components/common/form/element-properties/element-add-questions-formfield";
 import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
@@ -23,18 +22,15 @@ import {
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import toast from "react-hot-toast";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { Check, ChevronLeft, TrashIcon } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
-function PropertiesComponent({ elementInstance }) {
+function PropertiesComponent({ elementInstance, isSilver }) {
   const element = elementInstance;
   const dispatch = useDispatch();
-
-  const { isSilver } = useUserSubscription();
 
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),

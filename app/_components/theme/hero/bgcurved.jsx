@@ -26,6 +26,7 @@ const BgCurvedHero = ({ ...data }) => {
   const secondaryBgImage = secondaryImage
     ? getImageAddress(JSON.parse(secondaryImage).key)
     : "";
+
   const [loadedTitleFont, setLoadedTitleFont] = useState(null);
   const [loadedSubtitleFont, setLoadedSubtitleFont] = useState(null);
 

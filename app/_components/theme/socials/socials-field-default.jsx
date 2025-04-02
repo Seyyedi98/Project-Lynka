@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import socialPlatforms from "@/data/social-platforms";
 
 const SocialsFieldDefault = (props) => {
-  const { isSilver, socials } = props;
+  const { socials } = props;
 
   const handleSocialClick = (platform, userId) => {
     if (!userId) return;
@@ -29,15 +29,9 @@ const SocialsFieldDefault = (props) => {
 
   return (
     <div className="relative w-full">
-      {!isSilver && (
-        <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
-          برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
-        </div>
-      )}
       <div
         className={cn(
           `flex w-full flex-wrap items-center justify-center gap-2 rounded-md py-2`,
-          !isSilver && "opacity-70",
         )}
       >
         {socials?.map((social, index) => {
@@ -50,12 +44,11 @@ const SocialsFieldDefault = (props) => {
             <button
               key={index}
               onClick={() => handleSocialClick(social.platform, social.userId)}
-              disabled={!social.userId || !isSilver}
+              disabled={!social.userId}
               className={cn(
                 "flex h-8 w-8 items-center justify-center gap-1 rounded-full p-1 text-sm text-white transition-all",
                 "hover:scale-105 hover:shadow-md",
                 !social.userId && "opacity-50",
-                !isSilver && "cursor-not-allowed",
               )}
               style={{ background: platform.background }}
             >

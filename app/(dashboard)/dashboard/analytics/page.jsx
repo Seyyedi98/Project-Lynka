@@ -1,6 +1,6 @@
 "use client";
 
-import { getLinkAnalytics, getPageAnalytics } from "@/actions/page/analytics";
+import { getLinkAnalytics } from "@/actions/page/analytics";
 import { getUserPageData } from "@/actions/page/page";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { Loader2Icon } from "lucide-react";
