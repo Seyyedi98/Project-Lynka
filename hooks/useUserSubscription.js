@@ -37,8 +37,6 @@ export const useUserSubscription = () => {
     isSilver = false;
   }
 
-  console.log("session:", session, "isSilver", isSilver);
-
   return { subscriptionPlan, subscriptionDaysLeft, isSilver };
 };
 

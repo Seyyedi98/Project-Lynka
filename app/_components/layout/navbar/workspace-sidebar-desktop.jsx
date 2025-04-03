@@ -23,8 +23,8 @@ import getImageAddress from "@/utils/get-image-address";
 const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
   const data = useSelector((store) => store.page.hero);
   const dispatch = useDispatch();
-  const { key } = parseJson(data?.extraAttributes?.primaryImage);
-  const userImage = getImageAddress(key);
+  const key = parseJson(data?.extraAttributes?.primaryImage);
+  const userImage = key ? getImageAddress(key?.key) : null;
 
   return (
     <div className="fixed right-2 top-0 z-40 flex h-full w-16 items-center ring-0">

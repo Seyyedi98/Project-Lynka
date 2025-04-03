@@ -131,7 +131,7 @@ export default function ExpandableThemeGridCard({
       <motion.div
         layoutId={`theme-${theme.name}-${id}`}
         onClick={() => setIsModalOpen(true)}
-        className="h-[400px] w-[250px] cursor-pointer overflow-hidden rounded-xl border bg-card shadow-md transition-shadow duration-200 hover:shadow-xl"
+        className="h-[280px] w-[180px] cursor-pointer overflow-hidden rounded-xl border bg-card shadow-md transition-shadow duration-200 hover:shadow-xl"
       >
         <div className="flex h-full flex-col items-center justify-center">
           <div className="relative h-full w-full overflow-hidden rounded-t-xl border-b-2">

@@ -1,4 +1,8 @@
 export const themes = [
+  /////////////////////////////////////////////
+  /////////////////// Color ///////////////////
+  /////////////////////////////////////////////
+
   {
     name: "red",
     themeCategory: "color",
@@ -296,6 +300,30 @@ export const themes = [
     elementStyle: "default",
     elementColor: "#E73754",
     elementTextColor: "#ffffff",
+    borderRadius: "12px",
+    isPremium: false,
+  },
+
+  /////////////////////////////////////////////
+  /////////////////// Image ///////////////////
+  /////////////////////////////////////////////
+  {
+    name: "April",
+    themeCategory: "image",
+    backgroundType: "image",
+    backgroundColor: "#ffddda",
+    backgroundImage: '{"url":"/backgrounds/april-mobile.svgz","key":"no_key"}',
+    heroType: "image",
+    heroStyle: "transparent",
+    heroValue: "#ffddda",
+    heroTitleFont: "sahel",
+    heroSubtitleFont: "sahel",
+    heroTitleColor: "#4e3710",
+    heroSubtitleColor: "#4e3710",
+    isBackgroundAnimated: "false",
+    elementStyle: "default",
+    elementColor: "#ffddda",
+    elementTextColor: "#4e3710",
     borderRadius: "12px",
     isPremium: false,
   },

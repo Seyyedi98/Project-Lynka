@@ -82,6 +82,7 @@ const PageThemeSelector = () => {
 
   const handleThemeUpdate = (theme, isAllowedToApplyTheme) => {
     isAllowedToApplyTheme && updateThemeAndBackground({ theme });
+    console.log(isAllowedToApplyTheme);
 
     isAllowedToApplyTheme &&
       updateHeroStyle({
