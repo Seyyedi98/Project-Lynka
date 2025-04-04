@@ -93,6 +93,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
                   socials={element.extraAttributes?.socials} // socials
                   fields={element.extraAttributes?.fields} // contact form
                   slides={element.extraAttributes?.slides} // carousel
+                  image={element.extraAttributes?.slides} // image
                   images={element.extraAttributes?.images} // gallery
                   coords={element.extraAttributes?.coords} // map
                   isLive={false}

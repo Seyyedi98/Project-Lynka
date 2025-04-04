@@ -1,8 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { LoginButton } from "../_components/auth/login-button";
+import { useState, useEffect } from "react";
 import {
+  FiMenu,
+  FiX,
   FiLink,
   FiImage,
   FiMusic,
@@ -15,654 +16,475 @@ import {
   FiAward,
   FiUsers,
   FiTrendingUp,
+  FiArrowLeft,
 } from "react-icons/fi";
 
-export default function Page() {
+export default function LandingPage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeLink, setActiveLink] = useState(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleLinkClick = (index) => {
+    setActiveLink(index);
+    setTimeout(() => setIsMenuOpen(false), 500);
+  };
+
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "hsl(var(--background))",
-        fontFamily: "var(--font-yekan)",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      {/* Header */}
-      <header
-        style={{
-          padding: "1rem",
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 100,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          backgroundColor: "hsla(var(--background)/0.9)",
-          backdropFilter: "blur(10px)",
-        }}
+    <div className="font-yekan min-h-screen overflow-x-hidden bg-[hsl(var(--background))]">
+      {/* Navigation */}
+      <nav
+        className={`fixed z-50 w-full transition-all duration-500 ${isScrolled ? "bg-white/80 py-2 shadow-sm backdrop-blur-md" : "bg-transparent py-4"}`}
       >
-        <div
-          style={{
-            fontSize: "1.5rem",
-            fontWeight: "bold",
-            color: "hsl(var(--primary))",
-          }}
-        >
-          لینک‌بای
-        </div>
-        <LoginButton asChild>
-          <Button
-            style={{
-              backgroundColor: "hsl(var(--primary))",
-              color: "white",
-              padding: "0.5rem 1.5rem",
-              borderRadius: "0.5rem",
-              border: "none",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-            }}
+        <div className="container mx-auto flex items-center justify-between px-4">
+          <div className="text-2xl font-bold text-[hsl(var(--primary))]">
+            لینک‌پلاس
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden items-center gap-8 md:flex">
+            <a
+              href="#features"
+              className="text-[hsl(var(--text))] transition hover:text-[hsl(var(--primary))]"
+            >
+              امکانات
+            </a>
+            <a
+              href="#business"
+              className="text-[hsl(var(--text))] transition hover:text-[hsl(var(--primary))]"
+            >
+              برای کسب‌وکارها
+            </a>
+            <a
+              href="#personal"
+              className="text-[hsl(var(--text))] transition hover:text-[hsl(var(--primary))]"
+            >
+              برای افراد
+            </a>
+            <a
+              href="#testimonials"
+              className="text-[hsl(var(--text))] transition hover:text-[hsl(var(--primary))]"
+            >
+              نظرات کاربران
+            </a>
+            <LoginButton asChild>
+              <button className="rounded-lg bg-[hsl(var(--primary))] px-6 py-2 text-white transition hover:bg-[hsl(var(--primary-hover))]">
+                شروع کنید
+              </button>
+            </LoginButton>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="text-[hsl(var(--text))] md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <FiZap /> شروع کنید
-          </Button>
-        </LoginButton>
-      </header>
+            {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="fixed inset-0 z-40 bg-white/95 px-6 pt-20 backdrop-blur-lg md:hidden">
+            <div className="flex flex-col gap-6">
+              {[
+                { label: "امکانات", href: "#features" },
+                { label: "برای کسب‌وکارها", href: "#business" },
+                { label: "برای افراد", href: "#personal" },
+                { label: "نظرات کاربران", href: "#testimonials" },
+              ].map((item, index) => (
+                <a
+                  key={index}
+                  href={item.href}
+                  className={`py-3 text-2xl font-medium transition-all duration-300 ${activeLink === index ? "translate-x-2 text-[hsl(var(--primary))]" : "text-[hsl(var(--text))]"}`}
+                  onClick={() => handleLinkClick(index)}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <LoginButton asChild>
+                <button className="mt-8 rounded-lg bg-[hsl(var(--primary))] px-6 py-3 text-xl text-white">
+                  شروع کنید
+                </button>
+              </LoginButton>
+            </div>
+          </div>
+        )}
+      </nav>
 
       {/* Hero Section */}
-      <section
-        style={{
-          padding: "8rem 1rem 5rem",
-          position: "relative",
-          background:
-            "linear-gradient(135deg, hsla(var(--primary)/0.1), hsla(var(--secondary)/0.1))",
-        }}
-      >
-        {/* Kawaii Stickers */}
-        <div
-          style={{
-            position: "absolute",
-            top: "100px",
-            left: "5%",
-            fontSize: "2.5rem",
-            color: "#fbbf24",
-            animation: "float 4s ease-in-out infinite",
-          }}
-        >
-          <FiStar />
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            bottom: "80px",
-            right: "10%",
-            fontSize: "3rem",
-            color: "#f472b6",
-            animation: "float 5s ease-in-out infinite 0.5s",
-          }}
-        >
-          <FiHeart />
-        </div>
-
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "3rem",
-          }}
-        >
-          <div
-            style={{
-              textAlign: "center",
-              maxWidth: "800px",
-            }}
-          >
-            <h1
-              style={{
-                fontSize: "3rem",
-                fontWeight: "bold",
-                color: "hsl(var(--text))",
-                marginBottom: "1.5rem",
-                lineHeight: "1.2",
-              }}
-            >
+      <section className="pb-20 pt-32 md:pb-28 md:pt-40">
+        <div className="container mx-auto flex flex-col items-center gap-12 px-4 md:flex-row">
+          {/* Text Content */}
+          <div className="text-center md:w-1/2 md:text-right">
+            <h1 className="mb-6 text-4xl font-bold leading-tight text-[hsl(var(--text))] md:text-5xl">
               صفحه لینک{" "}
-              <span style={{ color: "hsl(var(--primary))" }}>جذاب</span> خودت رو
-              بساز!
+              <span className="text-[hsl(var(--primary))]">حرفه‌ای</span> خود را
+              بسازید
             </h1>
-
-            <p
-              style={{
-                fontSize: "1.5rem",
-                color: "hsl(var(--textLight))",
-                marginBottom: "2rem",
-                opacity: "0.9",
-              }}
-            >
-              همه لینک‌های مهم خود را در یک صفحه زیبا جمع کنید و با استیکرهای
-              بامزه شخصی‌سازی کنید
+            <p className="mb-8 text-xl text-[hsl(var(--textLight))] opacity-90">
+              تمام لینک‌های مهم خود را در یک صفحه زیبا و مدرن جمع‌آوری کنید و
+              تجربه‌ای بی‌نظیر برای مخاطبان خود ایجاد کنید
             </p>
-
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                gap: "1rem",
-                flexWrap: "wrap",
-              }}
-            >
+            <div className="flex justify-center gap-4 md:justify-start">
               <LoginButton asChild>
-                <Button
-                  style={{
-                    backgroundColor: "hsl(var(--primary))",
-                    color: "white",
-                    padding: "1rem 2rem",
-                    fontSize: "1.125rem",
-                    fontWeight: "bold",
-                    borderRadius: "0.5rem",
-                    border: "none",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    transition: "all 0.2s",
-                    minWidth: "200px",
-                  }}
-                >
+                <button className="flex items-center gap-2 rounded-lg bg-[hsl(var(--primary))] px-8 py-4 text-lg font-bold text-white hover:bg-[hsl(var(--primary-hover))]">
                   <FiZap /> شروع رایگان
-                </Button>
+                </button>
               </LoginButton>
-
-              <Button
-                style={{
-                  backgroundColor: "transparent",
-                  color: "hsl(var(--primary))",
-                  padding: "1rem 2rem",
-                  fontSize: "1.125rem",
-                  fontWeight: "bold",
-                  borderRadius: "0.5rem",
-                  border: "2px solid hsl(var(--primary))",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  transition: "all 0.2s",
-                  minWidth: "200px",
-                }}
-              >
-                <FiSmile /> نمونه صفحات
-              </Button>
+              <button className="flex items-center gap-2 rounded-lg border-2 border-[hsl(var(--primary))] px-8 py-4 text-lg font-bold text-[hsl(var(--primary))]">
+                <FiSmile /> دموی زنده
+              </button>
             </div>
           </div>
 
-          {/* Preview Card */}
-          <div
-            style={{
-              width: "100%",
-              maxWidth: "420px",
-              backgroundColor: "white",
-              borderRadius: "1.5rem",
-              overflow: "hidden",
-              boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)",
-              border: "2px solid hsl(var(--primary)/0.2)",
-              position: "relative",
-            }}
-          >
-            <div
-              style={{
-                height: "220px",
-                background:
-                  "linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary)))",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                position: "relative",
-              }}
-            >
-              <div
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  borderRadius: "50%",
-                  backgroundColor: "rgba(255, 255, 255, 0.2)",
-                  backdropFilter: "blur(5px)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "2.5rem",
-                  color: "white",
-                }}
-              >
-                👩‍🎨
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "1rem",
-                  right: "1rem",
-                  color: "white",
-                  fontSize: "2rem",
-                }}
-              >
-                <FiHeart />
-              </div>
-            </div>
-
-            <div style={{ padding: "1.5rem" }}>
-              {[
-                "اینستاگرام من",
-                "فروشگاه آنلاین",
-                "آخرین ویدیوها",
-                "حمایت مالی",
-              ].map((link, index) => (
-                <div
-                  key={index}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "1rem",
-                    padding: "1rem 1.5rem",
-                    backgroundColor:
-                      index % 2 === 0 ? "hsl(var(--muted))" : "white",
-                    borderRadius: "0.75rem",
-                    marginBottom: "0.75rem",
-                    cursor: "pointer",
-                    transition: "all 0.2s",
-                    border: "1px solid hsl(var(--border)/0.1)",
-                  }}
-                >
-                  {index % 3 === 0 ? (
-                    <FiHeart
-                      style={{
-                        color: "hsl(var(--primary))",
-                        fontSize: "1.5rem",
-                      }}
-                    />
-                  ) : index % 3 === 1 ? (
-                    <FiStar
-                      style={{
-                        color: "hsl(var(--primary))",
-                        fontSize: "1.5rem",
-                      }}
-                    />
-                  ) : (
-                    <FiSmile
-                      style={{
-                        color: "hsl(var(--primary))",
-                        fontSize: "1.5rem",
-                      }}
-                    />
-                  )}
-                  <span
-                    style={{
-                      color: "hsl(var(--text))",
-                      fontSize: "1.1rem",
-                    }}
-                  >
-                    {link}
-                  </span>
+          {/* Image Content */}
+          <div className="flex justify-center md:w-1/2">
+            <div className="relative w-full max-w-md">
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] opacity-20 blur-lg"></div>
+              <div className="relative overflow-hidden rounded-2xl border border-white/20 bg-white/80 shadow-xl backdrop-blur-sm">
+                <div className="relative flex h-48 items-center justify-center bg-gradient-to-r from-[hsl(var(--primary)/0.3)] to-[hsl(var(--secondary)/0.3)]">
+                  <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white/30 text-4xl text-white backdrop-blur-sm">
+                    👔
+                  </div>
                 </div>
-              ))}
+                <div className="space-y-3 p-6">
+                  {[
+                    "وبسایت رسمی",
+                    "شبکه‌های اجتماعی",
+                    "محصولات ما",
+                    "تماس با ما",
+                  ].map((link, index) => (
+                    <div
+                      key={index}
+                      className="flex cursor-pointer items-center gap-3 rounded-lg border border-white/30 bg-white/50 p-4 backdrop-blur-sm transition-colors hover:bg-white/70"
+                    >
+                      <FiLink
+                        className="text-[hsl(var(--primary))]"
+                        size={20}
+                      />
+                      <span className="text-[hsl(var(--text))]">{link}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section
-        style={{
-          padding: "4rem 1rem",
-          backgroundColor: "hsl(var(--secondaryBg))",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: "2rem",
-            textAlign: "center",
-          }}
-        >
-          {[
-            { number: "۱۰۰٬۰۰۰+", label: "کاربر فعال" },
-            { number: "۵۰۰٬۰۰۰+", label: "لینک ایجاد شده" },
-            { number: "۹۹٪", label: "رضایت کاربران" },
-            { number: "۲۴/۷", label: "پشتیبانی" },
-          ].map((stat, index) => (
-            <div
-              key={index}
-              style={{
-                padding: "1.5rem",
-                borderRadius: "1rem",
-                backgroundColor: "hsl(var(--card))",
-                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "2.5rem",
-                  fontWeight: "bold",
-                  color: "hsl(var(--primary))",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                {stat.number}
-              </div>
-              <div
-                style={{
-                  fontSize: "1.1rem",
-                  color: "hsl(var(--textLight))",
-                }}
-              >
-                {stat.label}
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
       {/* Features Section */}
       <section
-        style={{
-          padding: "6rem 1rem",
-          position: "relative",
-        }}
+        id="features"
+        className="relative bg-[hsl(var(--secondaryBg))] py-20"
       >
-        {/* Kawaii Sticker */}
-        <div
-          style={{
-            position: "absolute",
-            top: "100px",
-            right: "10%",
-            fontSize: "3rem",
-            color: "#f472b6",
-            animation: "float 6s ease-in-out infinite 1s",
-          }}
-        >
-          <FiHeart />
-        </div>
-
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-          }}
-        >
-          <div
-            style={{
-              textAlign: "center",
-              marginBottom: "4rem",
-            }}
-          >
-            <h2
-              style={{
-                fontSize: "2.5rem",
-                fontWeight: "bold",
-                color: "hsl(var(--text))",
-                marginBottom: "1rem",
-              }}
-            >
-              امکانات <span style={{ color: "hsl(var(--primary))" }}>ویژه</span>
+        <div className="container mx-auto px-4">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-[hsl(var(--text))] md:text-4xl">
+              امکانات{" "}
+              <span className="text-[hsl(var(--primary))]">منحصر به فرد</span>
             </h2>
-            <p
-              style={{
-                fontSize: "1.25rem",
-                color: "hsl(var(--textLight))",
-                maxWidth: "700px",
-                margin: "0 auto",
-              }}
-            >
-              هر چیزی که برای ساخت صفحه لینک زیبا نیاز دارید
+            <p className="mx-auto max-w-2xl text-xl text-[hsl(var(--textLight))]">
+              هر آنچه برای ساخت صفحه لینک حرفه‌ای نیاز دارید
             </p>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "2rem",
-            }}
-          >
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: <FiLink style={{ fontSize: "2rem" }} />,
-                title: "لینک‌های نامحدود",
-                desc: "هر تعداد لینک که نیاز دارید بدون محدودیت اضافه کنید",
-                color: "hsl(var(--primary))",
+                icon: <FiTrendingUp size={32} />,
+                title: "آنالیتیکس پیشرفته",
+                desc: "آمار دقیق بازدید از هر لینک و رفتار کاربران را بررسی کنید",
               },
               {
-                icon: <FiImage style={{ fontSize: "2rem" }} />,
-                title: "استیکرهای جذاب",
-                desc: "صدها استیکر بامزه برای تزیین صفحه لینک شما",
-                color: "#f472b6",
+                icon: <FiImage size={32} />,
+                title: "تم‌های حرفه‌ای",
+                desc: "ده‌ها تم زیبا و قابل تنظیم برای هر سلیقه‌ای",
               },
               {
-                icon: <FiTrendingUp style={{ fontSize: "2rem" }} />,
-                title: "آمار دقیق",
-                desc: "مشاهده تعداد کلیک‌ها و بازدیدهای هر لینک",
-                color: "hsl(var(--secondary))",
+                icon: <FiUsers size={32} />,
+                title: "مدیریت تیمی",
+                desc: "امکان همکاری چند نفر روی یک صفحه لینک",
               },
               {
-                icon: <FiUsers style={{ fontSize: "2rem" }} />,
-                title: "پروفایل سفارشی",
-                desc: "شخصی‌سازی کامل ظاهر پروفایل شما",
-                color: "#8b5cf6",
+                icon: <FiShoppingBag size={32} />,
+                title: "یکپارچه‌سازی",
+                desc: "اتصال به ابزارهای دیگر مانند گوگل آنالیتیکس",
               },
               {
-                icon: <FiAward style={{ fontSize: "2rem" }} />,
-                title: "طرح‌های ویژه",
-                desc: "طرح‌های حرفه‌ای برای کاربران خاص",
-                color: "#f59e0b",
+                icon: <FiAward size={32} />,
+                title: "سفارشی‌سازی پیشرفته",
+                desc: "امکان تغییر هر جزئیات از رنگ تا فونت و چیدمان",
               },
               {
-                icon: <FiShoppingBag style={{ fontSize: "2rem" }} />,
-                title: "فروشگاه آنلاین",
-                desc: "لینک مستقیم به محصولات و خدمات شما",
-                color: "#10b981",
+                icon: <FiLink size={32} />,
+                title: "لینک‌های هوشمند",
+                desc: "لینک‌های هوشمند با قابلیت زمان‌بندی و جغرافیا",
               },
             ].map((feature, index) => (
               <div
                 key={index}
-                style={{
-                  backgroundColor: "hsl(var(--card))",
-                  padding: "2rem",
-                  borderRadius: "1rem",
-                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                  borderTop: `4px solid ${feature.color}`,
-                  transition: "transform 0.3s",
-                  ":hover": {
-                    transform: "translateY(-5px)",
-                  },
-                }}
+                className="rounded-xl border border-white/30 bg-white/80 p-8 shadow-sm backdrop-blur-sm transition-all hover:shadow-md"
               >
-                <div
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    borderRadius: "1rem",
-                    backgroundColor: `${feature.color}20`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: feature.color,
-                    marginBottom: "1.5rem",
-                  }}
-                >
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[hsl(var(--primary)/0.1)] text-[hsl(var(--primary))]">
                   {feature.icon}
                 </div>
-                <h3
-                  style={{
-                    fontSize: "1.5rem",
-                    fontWeight: "bold",
-                    color: "hsl(var(--text))",
-                    marginBottom: "0.75rem",
-                  }}
-                >
+                <h3 className="mb-3 text-xl font-bold text-[hsl(var(--text))]">
                   {feature.title}
                 </h3>
-                <p
-                  style={{
-                    color: "hsl(var(--textLight))",
-                    lineHeight: "1.6",
-                  }}
-                >
-                  {feature.desc}
-                </p>
+                <p className="text-[hsl(var(--textLight))]">{feature.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section
-        style={{
-          padding: "6rem 1rem",
-          backgroundColor: "hsl(var(--secondaryBg))",
-          position: "relative",
-        }}
-      >
-        {/* Kawaii Sticker */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "100px",
-            left: "10%",
-            fontSize: "3rem",
-            color: "#fbbf24",
-            animation: "float 5s ease-in-out infinite 0.5s",
-          }}
-        >
-          <FiStar />
-        </div>
+      {/* Business Section */}
+      <section id="business" className="bg-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center gap-12 lg:flex-row">
+            {/* Image Content */}
+            <div className="flex justify-center lg:w-1/2">
+              <div className="relative w-full max-w-lg">
+                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] opacity-20 blur-lg"></div>
+                <div className="relative rounded-2xl border border-white/20 bg-[hsl(var(--secondaryBg))]/80 p-8 shadow-lg backdrop-blur-sm">
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      {
+                        icon: (
+                          <FiLink
+                            className="text-[hsl(var(--primary))]"
+                            size={24}
+                          />
+                        ),
+                        label: "وبسایت شرکت",
+                      },
+                      {
+                        icon: (
+                          <FiShoppingBag
+                            className="text-[hsl(var(--primary))]"
+                            size={24}
+                          />
+                        ),
+                        label: "فروشگاه آنلاین",
+                      },
+                      {
+                        icon: (
+                          <FiUsers
+                            className="text-[hsl(var(--primary))]"
+                            size={24}
+                          />
+                        ),
+                        label: "تیم ما",
+                      },
+                      {
+                        icon: (
+                          <FiYoutube
+                            className="text-[hsl(var(--primary))]"
+                            size={24}
+                          />
+                        ),
+                        label: "ویدیوهای آموزشی",
+                      },
+                    ].map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex h-full flex-col items-center justify-center gap-2 rounded-lg border border-white/30 bg-white p-4"
+                      >
+                        {item.icon}
+                        <span className="text-sm text-[hsl(var(--text))]">
+                          {item.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-          }}
-        >
-          <div
-            style={{
-              textAlign: "center",
-              marginBottom: "4rem",
-            }}
-          >
-            <h2
-              style={{
-                fontSize: "2.5rem",
-                fontWeight: "bold",
-                color: "hsl(var(--text))",
-                marginBottom: "1rem",
-              }}
-            >
-              نظرات{" "}
-              <span style={{ color: "hsl(var(--primary))" }}>کاربران</span>
-            </h2>
-            <p
-              style={{
-                fontSize: "1.25rem",
-                color: "hsl(var(--textLight))",
-                maxWidth: "700px",
-                margin: "0 auto",
-              }}
-            >
-              ببینید کاربران ما چه می‌گویند
-            </p>
+            {/* Text Content */}
+            <div className="text-center lg:w-1/2 lg:text-right">
+              <h2 className="mb-6 text-3xl font-bold text-[hsl(var(--text))] md:text-4xl">
+                راه‌حل ایده‌آل برای{" "}
+                <span className="text-[hsl(var(--primary))]">کسب‌وکارها</span>
+              </h2>
+              <p className="mb-8 text-xl text-[hsl(var(--textLight))]">
+                صفحه لینک اختصاصی کسب‌وکار شما می‌تواند به ابزاری قدرتمند برای
+                جذب مشتریان و هدایت آن‌ها به نقاط مختلف کسب‌وکار شما تبدیل شود.
+              </p>
+              <ul className="mb-8 space-y-4 text-right">
+                {[
+                  "نمایش حرفه‌ای محصولات و خدمات",
+                  "هدایت هوشمند مشتریان به نقاط مختلف",
+                  "آنالیز رفتار مخاطبان و مشتریان",
+                  "یکپارچه‌سازی با ابزارهای بازاریابی",
+                  "مدیریت چند شعبه و نمایندگی",
+                  "پشتیبانی از پرداخت‌های آنلاین",
+                ].map((item, index) => (
+                  <li
+                    key={index}
+                    className="flex items-center justify-end gap-2"
+                  >
+                    <span className="h-2 w-2 rounded-full bg-[hsl(var(--primary))]"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "2rem",
-            }}
-          >
+      {/* Personal Section */}
+      <section id="personal" className="bg-[hsl(var(--secondaryBg))] py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center gap-12 lg:flex-row">
+            {/* Text Content */}
+            <div className="text-center lg:w-1/2 lg:text-right">
+              <h2 className="mb-6 text-3xl font-bold text-[hsl(var(--text))] md:text-4xl">
+                صفحه لینک شخصی{" "}
+                <span className="text-[hsl(var(--primary))]">منحصر به فرد</span>
+              </h2>
+              <p className="mb-8 text-xl text-[hsl(var(--textLight))]">
+                برای هنرمندان، تولیدکنندگان محتوا، فریلنسرها و هر کسی که
+                می‌خواهد حضور آنلاین حرفه‌ای داشته باشد.
+              </p>
+              <ul className="mb-8 space-y-4 text-right">
+                {[
+                  "نمایش آثار و نمونه کارها",
+                  "لینک به شبکه‌های اجتماعی مختلف",
+                  "فروش محصولات و خدمات شخصی",
+                  "دریافت حمایت مالی از مخاطبان",
+                  "نمایش رزومه و مهارت‌ها",
+                  "برقراری ارتباط مستقیم با مخاطبان",
+                ].map((item, index) => (
+                  <li
+                    key={index}
+                    className="flex items-center justify-end gap-2"
+                  >
+                    <span className="h-2 w-2 rounded-full bg-[hsl(var(--primary))]"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Image Content */}
+            <div className="flex justify-center lg:w-1/2">
+              <div className="relative w-full max-w-lg">
+                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--secondary))] opacity-20 blur-lg"></div>
+                <div className="relative rounded-2xl border border-white/20 bg-white/80 p-8 shadow-lg backdrop-blur-sm">
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      {
+                        icon: (
+                          <FiMusic
+                            className="text-[hsl(var(--primary))]"
+                            size={24}
+                          />
+                        ),
+                        label: "آثار هنری",
+                      },
+                      {
+                        icon: (
+                          <FiYoutube
+                            className="text-[hsl(var(--primary))]"
+                            size={24}
+                          />
+                        ),
+                        label: "کانال یوتیوب",
+                      },
+                      {
+                        icon: (
+                          <FiHeart
+                            className="text-[hsl(var(--primary))]"
+                            size={24}
+                          />
+                        ),
+                        label: "حمایت مالی",
+                      },
+                      {
+                        icon: (
+                          <FiShoppingBag
+                            className="text-[hsl(var(--primary))]"
+                            size={24}
+                          />
+                        ),
+                        label: "فروشگاه من",
+                      },
+                    ].map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex h-full flex-col items-center justify-center gap-2 rounded-lg border border-white/20 bg-[hsl(var(--secondaryBg))] p-4"
+                      >
+                        {item.icon}
+                        <span className="text-sm text-[hsl(var(--text))]">
+                          {item.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section id="testimonials" className="bg-white py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="mb-12 text-center text-3xl font-bold text-[hsl(var(--text))] md:text-4xl">
+            نظرات <span className="text-[hsl(var(--primary))]">مشتریان ما</span>
+          </h2>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                name: "سارا محمدی",
-                role: "طراح گرافیک",
-                text: "صفحه لینک من واقعا عالی شده! همه لینک‌های مهمم در یک جا جمع شده و طراحی جذاب خیلی با سلیقه من سازگاره.",
-                avatar: "👩‍🎨",
+                name: "شرکت نوآوران",
+                role: "استارتاپ فناوری",
+                text: "صفحه لینک ما تبدیل به ویترین دیجیتال کسب‌وکارمان شده است. مشتریان به راحتی به تمام بخش‌های مورد نظرشان دسترسی پیدا می‌کنند.",
+                avatar: "🏢",
+              },
+              {
+                name: "نازنین محمدی",
+                role: "هنرمند دیجیتال",
+                text: "بهترین راه برای نمایش آثارم به مشتریان بین‌المللی. طراحی زیبا و امکانات کامل دقیقاً همان چیزی بود که نیاز داشتم.",
+                avatar: "🎨",
               },
               {
                 name: "علی رضایی",
-                role: "توسعه دهنده",
-                text: "بهترین سرویسی که برای لینک‌های اینستاگرامم استفاده کردم. آمار دقیق و طراحی حرفه‌ای داره.",
-                avatar: "👨‍💻",
-              },
-              {
-                name: "نازنین کریمی",
-                role: "بلاگر",
-                text: "دکمه‌های بامزه و استیکرهای جذاب واقعا صفحه من رو خاص کرده. مشترکام خیلی پسندیدن!",
-                avatar: "👩‍💻",
+                role: "مشاور بازاریابی",
+                text: "برای معرفی خدماتم به مشتریان جدید عالی است. آنالیتیکس پیشرفته به من کمک می‌کند بفهمم کدام لینک‌ها بیشترین بازدید را دارند.",
+                avatar: "📊",
               },
             ].map((testimonial, index) => (
               <div
                 key={index}
-                style={{
-                  backgroundColor: "hsl(var(--card))",
-                  padding: "2rem",
-                  borderRadius: "1rem",
-                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                  position: "relative",
-                }}
+                className="rounded-xl border border-white/30 bg-[hsl(var(--secondaryBg))]/80 p-8 shadow-sm backdrop-blur-sm"
               >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "-20px",
-                    right: "20px",
-                    width: "60px",
-                    height: "60px",
-                    borderRadius: "50%",
-                    backgroundColor: "hsl(var(--primary))",
-                    color: "white",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "2rem",
-                  }}
-                >
-                  {testimonial.avatar}
+                <div className="mb-4 flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[hsl(var(--primary)/0.1)] text-2xl">
+                    {testimonial.avatar}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-[hsl(var(--text))]">
+                      {testimonial.name}
+                    </h4>
+                    <p className="text-sm text-[hsl(var(--textLight))]">
+                      {testimonial.role}
+                    </p>
+                  </div>
                 </div>
-                <p
-                  style={{
-                    color: "hsl(var(--text))",
-                    fontStyle: "italic",
-                    lineHeight: "1.8",
-                    marginBottom: "1.5rem",
-                  }}
-                >
-                  {testimonial.text}
-                </p>
-                <div>
-                  <h4
-                    style={{
-                      fontWeight: "bold",
-                      color: "hsl(var(--text))",
-                      marginBottom: "0.25rem",
-                    }}
-                  >
-                    {testimonial.name}
-                  </h4>
-                  <p
-                    style={{
-                      color: "hsl(var(--textLight))",
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    {testimonial.role}
-                  </p>
-                </div>
+                <p className="text-[hsl(var(--text))]">{testimonial.text}</p>
               </div>
             ))}
           </div>
@@ -670,219 +492,74 @@ export default function Page() {
       </section>
 
       {/* CTA Section */}
-      <section
-        style={{
-          padding: "8rem 1rem",
-          background:
-            "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)))",
-          textAlign: "center",
-          color: "white",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        {/* Kawaii Stickers */}
-        <div
-          style={{
-            position: "absolute",
-            top: "50px",
-            left: "50px",
-            fontSize: "4rem",
-            color: "rgba(255, 255, 255, 0.2)",
-            animation: "float 6s ease-in-out infinite",
-          }}
-        >
-          <FiStar />
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            bottom: "50px",
-            right: "50px",
-            fontSize: "4rem",
-            color: "rgba(255, 255, 255, 0.2)",
-            animation: "float 7s ease-in-out infinite 1s",
-          }}
-        >
-          <FiHeart />
-        </div>
-
-        <div
-          style={{
-            maxWidth: "800px",
-            margin: "0 auto",
-            position: "relative",
-            zIndex: 1,
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "2.5rem",
-              fontWeight: "bold",
-              marginBottom: "1.5rem",
-            }}
-          >
-            آماده ساخت صفحه لینک خود هستید؟
-          </h2>
-          <p
-            style={{
-              fontSize: "1.25rem",
-              marginBottom: "2.5rem",
-              opacity: "0.9",
-            }}
-          >
-            همین حالا شروع کنید و در کمتر از ۲ دقیقه صفحه لینک زیبای خود را
-            بسازید
-          </p>
-
-          <LoginButton asChild>
-            <Button
-              style={{
-                backgroundColor: "white",
-                color: "hsl(var(--primary))",
-                padding: "1rem 2.5rem",
-                fontSize: "1.25rem",
-                fontWeight: "bold",
-                borderRadius: "0.75rem",
-                border: "none",
-                cursor: "pointer",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.75rem",
-                transition: "all 0.2s",
-                ":hover": {
-                  transform: "translateY(-2px)",
-                  boxShadow: "0 5px 15px rgba(0, 0, 0, 0.1)",
-                },
-              }}
-            >
-              <FiZap style={{ fontSize: "1.5rem" }} /> شروع رایگان
-            </Button>
-          </LoginButton>
+      <section className="bg-gradient-to-r from-[hsl(var(--primary)/0.8)] to-[hsl(var(--secondary)/0.8)] py-20 backdrop-blur-md">
+        <div className="container mx-auto px-4 text-center">
+          <div className="mx-auto max-w-4xl rounded-3xl border border-white/30 bg-white/20 p-12 backdrop-blur-lg">
+            <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
+              آماده ساخت صفحه لینک خود هستید؟
+            </h2>
+            <p className="mx-auto mb-8 max-w-2xl text-xl text-white/90">
+              همین حالا ثبت‌نام کنید و در کمتر از ۲ دقیقه صفحه لینک حرفه‌ای خود
+              را بسازید
+            </p>
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
+              <LoginButton asChild>
+                <button className="rounded-lg bg-white px-8 py-4 text-lg font-bold text-[hsl(var(--primary))] transition-all hover:bg-gray-100">
+                  شروع رایگان
+                </button>
+              </LoginButton>
+              <button className="rounded-lg border-2 border-white bg-transparent px-8 py-4 text-lg font-bold text-white transition-all hover:bg-white/10">
+                مشاهده دمو
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer
-        style={{
-          padding: "3rem 1rem",
-          backgroundColor: "hsl(var(--secondaryBg))",
-          textAlign: "center",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "1.5rem",
-              fontWeight: "bold",
-              color: "hsl(var(--primary))",
-              marginBottom: "1.5rem",
-            }}
-          >
-            لینک‌بای
+      <footer className="border-t border-white/20 bg-[hsl(var(--secondaryBg))]/80 py-12 backdrop-blur-sm">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center justify-between md:flex-row">
+            <div className="mb-6 text-2xl font-bold text-[hsl(var(--primary))] md:mb-0">
+              لینک‌پلاس
+            </div>
+            <div className="flex flex-wrap justify-center gap-6">
+              <a
+                href="#"
+                className="text-[hsl(var(--textLight))] transition hover:text-[hsl(var(--primary))]"
+              >
+                قوانین
+              </a>
+              <a
+                href="#"
+                className="text-[hsl(var(--textLight))] transition hover:text-[hsl(var(--primary))]"
+              >
+                حریم خصوصی
+              </a>
+              <a
+                href="#"
+                className="text-[hsl(var(--textLight))] transition hover:text-[hsl(var(--primary))]"
+              >
+                تماس با ما
+              </a>
+              <a
+                href="#"
+                className="text-[hsl(var(--textLight))] transition hover:text-[hsl(var(--primary))]"
+              >
+                سوالات متداول
+              </a>
+            </div>
           </div>
-          <p
-            style={{
-              color: "hsl(var(--textLight))",
-              marginBottom: "2rem",
-              maxWidth: "600px",
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
-            همه لینک‌های مهم شما در یک صفحه زیبا
-          </p>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "1.5rem",
-              marginBottom: "2rem",
-            }}
-          >
-            <a
-              href="#"
-              style={{
-                color: "hsl(var(--textLight))",
-                transition: "all 0.2s",
-                ":hover": {
-                  color: "hsl(var(--primary))",
-                },
-              }}
-            >
-              قوانین
-            </a>
-            <a
-              href="#"
-              style={{
-                color: "hsl(var(--textLight))",
-                transition: "all 0.2s",
-                ":hover": {
-                  color: "hsl(var(--primary))",
-                },
-              }}
-            >
-              حریم خصوصی
-            </a>
-            <a
-              href="#"
-              style={{
-                color: "hsl(var(--textLight))",
-                transition: "all 0.2s",
-                ":hover": {
-                  color: "hsl(var(--primary))",
-                },
-              }}
-            >
-              تماس با ما
-            </a>
-          </div>
-          <div
-            style={{
-              color: "hsl(var(--textLight))",
-              fontSize: "0.9rem",
-            }}
-          >
-            © {new Date().getFullYear()} لینک‌بای. تمام حقوق محفوظ است.
+          <div className="mt-8 text-center text-sm text-[hsl(var(--textLight))]">
+            © {new Date().getFullYear()} لینک‌پلاس. تمام حقوق محفوظ است.
           </div>
         </div>
       </footer>
-
-      {/* Global Styles */}
-      <style jsx global>{`
-        @keyframes float {
-          0% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-15px);
-          }
-          100% {
-            transform: translateY(0px);
-          }
-        }
-
-        @media (min-width: 768px) {
-          section:first-child > div {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            text-align: right;
-          }
-
-          section:first-child > div > div:first-child {
-            width: 50%;
-            max-width: none;
-            text-align: right;
-            padding-right: 2rem;
-          }
-        }
-      `}</style>
     </div>
   );
+}
+
+// Mock LoginButton component (replace with your actual implementation)
+function LoginButton({ asChild, children }) {
+  return children;
 }

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 
 export const useUserSubscription = () => {
   const session = useSession();
+  if (!session) return;
 
   const subscriptionPlan = session.data?.user?.subscriptionPlan;
   const subscriptionExpire = session.data?.user?.subscriptionExpire;
