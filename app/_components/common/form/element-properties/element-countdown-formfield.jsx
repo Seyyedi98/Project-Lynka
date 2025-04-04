@@ -15,7 +15,7 @@ import "rsuite/Toggle/styles/index.css";
 
 const ElementCountdownFormField = ({
   form,
-  isSilver,
+  isPremium,
   countdownData,
   showToggle,
 }) => {
@@ -64,7 +64,7 @@ const ElementCountdownFormField = ({
                   checked={field.value}
                   onChange={field.onChange}
                   aria-readonly
-                  disabled={!isSilver}
+                  disabled={!isPremium}
                   color="blue"
                 />
               </FormControl>
@@ -73,7 +73,7 @@ const ElementCountdownFormField = ({
         }
       />
 
-      {isSilver ? (
+      {isPremium ? (
         <AnimatePresence>
           {(isCountdownActive || !showToggle) && (
             <motion.div

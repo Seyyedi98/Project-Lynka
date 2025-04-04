@@ -3,7 +3,7 @@ import { PageElements } from "../../controller/page-elements-controller";
 import { PageHeroElement } from "../../elements/hero/page-hero-element";
 
 const ElementProperties = ({ element }) => {
-  const { isSilver } = useUserSubscription();
+  const { isPremium } = useUserSubscription();
 
   let PropertiesForm;
   PropertiesForm = PageElements[element?.type]?.PropertiesComponent;
@@ -12,7 +12,7 @@ const ElementProperties = ({ element }) => {
 
   return (
     <div className="relative flex h-full flex-col justify-between">
-      <PropertiesForm elementInstance={element} isSilver={isSilver} />
+      <PropertiesForm elementInstance={element} isPremium={isPremium} />
     </div>
   );
 };

@@ -8,7 +8,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
   const dispatch = useDispatch();
   const element = elementInstance;
   const elementType = elementInstance?.type;
-  const { isSilver } = useUserSubscription();
+  const { isPremium } = useUserSubscription();
 
   // Get array of current element theme
   const Themes = ElementThemeController[elementType];
@@ -22,7 +22,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
         {themesList.map((theme, index) => {
           const isPremiumTheme = Themes[theme][2].isPremium;
           const isAllowedToApplyTheme = isPremiumTheme
-            ? isSilver
+            ? isPremium
               ? true
               : false
             : true;
@@ -97,7 +97,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
                   images={element.extraAttributes?.images} // gallery
                   coords={element.extraAttributes?.coords} // map
                   isLive={false}
-                  isSilver={true}
+                  isPremium={true}
                 />
               </div>
             </div>

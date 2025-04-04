@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useState, useMemo } from "react";
 
 const GalleryFieldDefault = (props) => {
-  const { isSilver, images } = props;
+  const { isPremium, images } = props;
   const [loadedImages, setLoadedImages] = useState({});
 
   // Filter out invalid images
@@ -40,7 +40,7 @@ const GalleryFieldDefault = (props) => {
 
   return (
     <div className="relative w-full">
-      {!isSilver && (
+      {!isPremium && (
         <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
           برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
         </div>
@@ -49,7 +49,7 @@ const GalleryFieldDefault = (props) => {
         className={cn(
           `grid w-full gap-2 rounded-md py-2`,
           gridClass,
-          !isSilver && "opacity-70",
+          !isPremium && "opacity-70",
         )}
       >
         {validImages.length > 0 ? (

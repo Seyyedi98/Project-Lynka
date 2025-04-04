@@ -8,7 +8,7 @@ import { Accordion } from "rsuite";
 const FaqFieldDefault = (props) => {
   const {
     title,
-    isSilver,
+    isPremium,
     isLive,
     textColor,
     bgColor,
@@ -33,7 +33,7 @@ const FaqFieldDefault = (props) => {
 
   return (
     <div className="relative w-full">
-      {!isSilver && (
+      {!isPremium && (
         <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
           برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
         </div>
@@ -41,7 +41,7 @@ const FaqFieldDefault = (props) => {
       <div
         className={cn(
           `w-full text-wrap rounded-md py-2`,
-          !isSilver && "opacity-70",
+          !isPremium && "opacity-70",
         )}
       >
         <p

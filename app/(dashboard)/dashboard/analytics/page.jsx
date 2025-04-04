@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 const AnalyticsPanel = () => {
   const [analytics, setAnalytics] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { isSilver } = useUserSubscription();
+  const { isPremium } = useUserSubscription();
 
   useEffect(() => {
     const fetchAnalytics = async () => {

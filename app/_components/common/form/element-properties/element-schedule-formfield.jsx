@@ -11,7 +11,7 @@ import { fade } from "@/utils/animation/animation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Toggle } from "rsuite";
 
-const ElementScheduleFormField = ({ form, isSilver, scheduleData }) => {
+const ElementScheduleFormField = ({ form, isPremium, scheduleData }) => {
   let isScheduleActive = scheduleData.schedule;
   if (form.watch("schedule") !== undefined) {
     isScheduleActive = form.watch("schedule");
@@ -36,7 +36,7 @@ const ElementScheduleFormField = ({ form, isSilver, scheduleData }) => {
                 checked={field.value}
                 onChange={field.onChange}
                 aria-readonly
-                disabled={!isSilver}
+                disabled={!isPremium}
                 color="blue"
               />
             </FormControl>
@@ -44,7 +44,7 @@ const ElementScheduleFormField = ({ form, isSilver, scheduleData }) => {
         )}
       />
 
-      {isSilver ? (
+      {isPremium ? (
         <AnimatePresence>
           {isScheduleActive && (
             <motion.div

@@ -19,7 +19,7 @@ export async function generateMetadata({ params }) {
 
   const subscription = await getSubscriptionByUri(uri);
   if (!subscription) return;
-  const { isSilver } = subscription;
+  const { isPremium } = subscription;
 
   // TODO: run in background
   await increasePageView(uri);
@@ -32,13 +32,13 @@ export async function generateMetadata({ params }) {
       ? getImageAddress(parseJson(metadata?.favicon)?.key)
       : null;
     const metaImage =
-      isSilver && metadata?.metaImage
+      isPremium && metadata?.metaImage
         ? getImageAddress(parseJson(metadata?.metaImage)?.key)
         : null;
 
     return {
       title: metadata.metaTitle || "lynkaink",
-      description: isSilver ? metadata.metaDescription || "Welcome!" : "",
+      description: isPremium ? metadata.metaDescription || "Welcome!" : "",
       favicon: "null",
       // icons: [
       //   {
@@ -74,8 +74,8 @@ export async function generateMetadata({ params }) {
         },
       ],
       openGraph: {
-        title: isSilver ? metadata.metaTitle || "My Page" : "",
-        description: isSilver ? metadata.metaDescription || "Welcome!" : "",
+        title: isPremium ? metadata.metaTitle || "My Page" : "",
+        description: isPremium ? metadata.metaDescription || "Welcome!" : "",
         siteName: metadata.metaTitle,
         url: "https://link.liara.run",
         images: [
@@ -86,7 +86,7 @@ export async function generateMetadata({ params }) {
       twitter: {
         card: "summary_large_image",
         title: metadata.metaTitle,
-        description: isSilver ? metadata.metaDescription : "",
+        description: isPremium ? metadata.metaDescription : "",
         images: [metaImage],
       },
       robots: {

@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
-function PropertiesComponent({ elementInstance, isSilver }) {
+function PropertiesComponent({ elementInstance, isPremium }) {
   const element = elementInstance;
   const dispatch = useDispatch();
 

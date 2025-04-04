@@ -38,7 +38,7 @@ const ImageUploaderField = dynamic(
   },
 );
 
-function PropertiesComponent({ elementInstance, isSilver }) {
+function PropertiesComponent({ elementInstance, isPremium }) {
   const element = elementInstance;
   const dispatch = useDispatch();
 

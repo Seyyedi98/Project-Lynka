@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 
 const MetaDescriptionForm = ({ uri, description }) => {
   const [isPending, startTransition] = useTransition();
-  const { isSilver } = useUserSubscription();
+  const { isPremium } = useUserSubscription();
 
   const form = useForm({
     // resolver:zodResolver(),
@@ -26,7 +26,7 @@ const MetaDescriptionForm = ({ uri, description }) => {
   });
 
   function applyChanges(values) {
-    if (isSilver) {
+    if (isPremium) {
       startTransition(() => UpdatePageMetaDescription(uri, values));
     } else {
       throw console.error("You're not allowed to do this XD");
@@ -45,7 +45,7 @@ const MetaDescriptionForm = ({ uri, description }) => {
           your Lnk.Bio page on chats ( Instagram DM, WhatsApp, iMessage, etc).
         </h5>
       </div>
-      {isSilver ? (
+      {isPremium ? (
         <Form {...form}>
           <form
             className="flex flex-col gap-4"

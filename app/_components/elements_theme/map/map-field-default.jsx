@@ -16,7 +16,7 @@ const MapFieldDefault = (props) => {
     bgColor,
     borderRadius,
     font,
-    isSilver,
+    isPremium,
   } = props;
   const [latitude, longitude] = coords ? coords.split(",") : [null, null];
   const [loadedFont, setLoadedFont] = useState(null);
@@ -42,7 +42,7 @@ const MapFieldDefault = (props) => {
 
   return (
     <div className="relative w-full">
-      {!isSilver && (
+      {!isPremium && (
         <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
           برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
         </div>
@@ -61,7 +61,7 @@ const MapFieldDefault = (props) => {
           <div
             className={cn(
               `w-full text-nowrap rounded-md text-center`,
-              !isSilver && "opacity-70",
+              !isPremium && "opacity-70",
             )}
           >
             {title}

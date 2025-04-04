@@ -13,7 +13,7 @@ const categories = [
   { title: "image", value: "با تصویر زمینه" },
 ];
 
-const ThemesList = ({ themes, isSilver, handleThemeUpdate, className }) => {
+const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTheme, setSelectedTheme] = useState(null);
   const [loadingImages, setLoadingImages] = useState({});
@@ -26,7 +26,7 @@ const ThemesList = ({ themes, isSilver, handleThemeUpdate, className }) => {
 
   const handleThemeClick = (theme) => {
     const isAllowedToApplyTheme = theme.isPremium
-      ? isSilver
+      ? isPremium
         ? true
         : false
       : true;
@@ -73,7 +73,7 @@ const ThemesList = ({ themes, isSilver, handleThemeUpdate, className }) => {
         {filteredThemes(category)
           ? filteredThemes(category).map((theme) => {
               const isAllowedToApplyTheme = theme.isPremium
-                ? isSilver
+                ? isPremium
                   ? true
                   : false
                 : true;
@@ -110,7 +110,7 @@ const ThemesList = ({ themes, isSilver, handleThemeUpdate, className }) => {
                       <p className="line-clamp-1 text-sm font-medium text-white">
                         {theme.name}
                       </p>
-                      {theme.isPremium && !isSilver && (
+                      {theme.isPremium && !isPremium && (
                         <span className="mt-1 inline-block rounded-full bg-yellow-500/20 px-1.5 py-0.5 text-[10px] text-yellow-500">
                           Premium
                         </span>

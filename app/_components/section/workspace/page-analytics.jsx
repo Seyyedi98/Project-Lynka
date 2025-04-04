@@ -10,7 +10,7 @@ const PageAnalytics = () => {
   const [analytics, setAnalytics] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalViews, setTotalViews] = useState(0);
-  const { isSilver } = useUserSubscription();
+  const { isPremium } = useUserSubscription();
 
   useEffect(() => {
     const fetchAnalytics = async () => {
@@ -33,7 +33,7 @@ const PageAnalytics = () => {
   return (
     <div className="h-full">
       <div>Total Views: {totalViews}</div>
-      {isSilver ? (
+      {isPremium ? (
         <ul>
           {isLoading ? (
             <div>

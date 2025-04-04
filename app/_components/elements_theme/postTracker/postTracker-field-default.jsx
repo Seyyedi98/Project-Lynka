@@ -18,7 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 const PostTrackerFieldDefault = (props) => {
-  const { isSilver } = useUserSubscription();
+  const { isPremium } = useUserSubscription();
   const [loadedFont, setLoadedFont] = useState(null);
   const [trackingCode, setTrackingCode] = useState("");
   const [trackingResult, setTrackingResult] = useState(null);
@@ -91,7 +91,7 @@ const PostTrackerFieldDefault = (props) => {
 
   return (
     <div className="relative w-full">
-      {!isSilver && (
+      {!isPremium && (
         <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
           برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
         </div>
@@ -99,7 +99,7 @@ const PostTrackerFieldDefault = (props) => {
       <div
         className={cn(
           `w-full text-wrap rounded-md py-2`,
-          !isSilver && "opacity-70",
+          !isPremium && "opacity-70",
         )}
       >
         <Dialog>

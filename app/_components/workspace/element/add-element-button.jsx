@@ -17,10 +17,10 @@ import toast from "react-hot-toast";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { PageElements } from "../../controller/page-elements-controller";
 
-const AddElementButton = ({ pageElement, isSilver }) => {
+const AddElementButton = ({ pageElement, isPremium }) => {
   const { label, icon: Icon } = pageElement.ElementAdderBtn;
   const isElPremium = pageElement.isPremium;
-  const canUserUseEl = isElPremium ? (isSilver ? true : false) : true;
+  const canUserUseEl = isElPremium ? (isPremium ? true : false) : true;
 
   const dispatch = useDispatch();
   const elements = useSelector((state) => state.page.elements, shallowEqual);

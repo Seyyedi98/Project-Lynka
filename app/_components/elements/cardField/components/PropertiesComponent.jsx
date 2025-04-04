@@ -44,7 +44,7 @@ const ImageUploaderField = dynamic(
   },
 );
 
-function PropertiesComponent({ elementInstance, isSilver }) {
+function PropertiesComponent({ elementInstance, isPremium }) {
   const element = elementInstance;
   const dispatch = useDispatch();
 
@@ -113,7 +113,7 @@ function PropertiesComponent({ elementInstance, isSilver }) {
           layout:
             layout === "basic" || layout === "roundedImage"
               ? layout
-              : isSilver
+              : isPremium
                 ? layout
                 : element.extraAttributes.layout,
           image,
@@ -121,21 +121,21 @@ function PropertiesComponent({ elementInstance, isSilver }) {
           font,
           borderRadius,
           bgColor,
-          schedule: isSilver ? schedule : element.extraAttributes.schedule,
-          scheduleStart: isSilver
+          schedule: isPremium ? schedule : element.extraAttributes.schedule,
+          scheduleStart: isPremium
             ? scheduleStart
             : element.extraAttributes.scheduleStart,
-          scheduleEnd: isSilver
+          scheduleEnd: isPremium
             ? scheduleEnd
             : element.extraAttributes.scheduleEnd,
-          countdown: isSilver ? countdown : element.extraAttributes.countdown,
-          countdownDate: isSilver
+          countdown: isPremium ? countdown : element.extraAttributes.countdown,
+          countdownDate: isPremium
             ? countdownDate
             : element.extraAttributes.countdownDate,
-          isProtected: isSilver
+          isProtected: isPremium
             ? isProtected
             : element.extraAttributes.isProtected,
-          password: isSilver
+          password: isPremium
             ? element.extraAttributes.password !== password && password !== ""
               ? hashPassword(password)
               : element.extraAttributes.password
@@ -213,7 +213,7 @@ function PropertiesComponent({ elementInstance, isSilver }) {
                   <ElementCardLayoutFormField
                     form={form}
                     RenderElement={RenderElement}
-                    isSilver={isSilver}
+                    isPremium={isPremium}
                     element={element}
                   />
 
@@ -250,7 +250,7 @@ function PropertiesComponent({ elementInstance, isSilver }) {
                     <ElementScheduleFormField
                       scheduleData={element.extraAttributes}
                       form={form}
-                      isSilver={isSilver}
+                      isPremium={isPremium}
                     />
                   </div>
 
@@ -260,7 +260,7 @@ function PropertiesComponent({ elementInstance, isSilver }) {
                       showToggle={true}
                       countdownData={element.extraAttributes}
                       form={form}
-                      isSilver={isSilver}
+                      isPremium={isPremium}
                     />
                   </div>
 
@@ -269,7 +269,7 @@ function PropertiesComponent({ elementInstance, isSilver }) {
                     <ElementPasswordFormField
                       passwordData={element.extraAttributes}
                       form={form}
-                      isSilver={isSilver}
+                      isPremium={isPremium}
                     />
                   </div>
                 </TabsContent>

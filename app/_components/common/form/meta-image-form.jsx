@@ -17,7 +17,7 @@ const MetaImageUploader = dynamic(
 
 const MetaImageForm = ({ uri, image }) => {
   let metaImage = "";
-  const { isSilver } = useUserSubscription();
+  const { isPremium } = useUserSubscription();
   if (image) metaImage = getImageAddress(JSON.parse(image).key);
 
   return (
@@ -36,7 +36,7 @@ const MetaImageForm = ({ uri, image }) => {
           Customise the icon shown in the browser bar
         </h2>
       </div>
-      {isSilver ? (
+      {isPremium ? (
         <MetaImageUploader metaImage={image} uri={uri} />
       ) : (
         <p className="mt-4 text-center text-sm text-destructive">

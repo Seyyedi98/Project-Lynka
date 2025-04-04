@@ -12,12 +12,12 @@ import getImageAddress from "@/utils/get-image-address";
 import Image from "next/image";
 
 const CarouselFieldDefault = (props) => {
-  const { title, slides, bgColor, borderRadius, font, textColor, isSilver } =
+  const { title, slides, bgColor, borderRadius, font, textColor, isPremium } =
     props;
 
   return (
     <div className="relative w-full">
-      {!isSilver && (
+      {!isPremium && (
         <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
           برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
         </div>
@@ -25,7 +25,7 @@ const CarouselFieldDefault = (props) => {
       <div
         className={cn(
           `w-full overflow-hidden rounded-md py-2`,
-          !isSilver && "opacity-70",
+          !isPremium && "opacity-70",
         )}
       >
         <h4 style={{ color: textColor }} className="mb-4 text-center">

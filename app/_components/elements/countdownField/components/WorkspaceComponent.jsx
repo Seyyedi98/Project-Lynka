@@ -9,7 +9,7 @@ export const WorkspaceComponent = memo(function WorkspaceComponent({
   const element = elementInstance;
   const data = element.extraAttributes;
   const RenderedElement = ElementThemeController[element.type][data.theme][0];
-  const { isSilver } = useUserSubscription();
+  const { isPremium } = useUserSubscription();
 
-  return <RenderedElement isSilver={isSilver} {...data} />;
+  return <RenderedElement isPremium={isPremium} {...data} />;
 });

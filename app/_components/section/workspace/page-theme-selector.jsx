@@ -16,7 +16,7 @@ const PageThemeSelector = () => {
   const elements = useSelector((state) => state.page.elements, shallowEqual);
   const hero = useSelector((state) => state.page.hero);
   const prevTheme = useSelector((store) => store.page.theme);
-  const { isSilver } = useUserSubscription();
+  const { isPremium } = useUserSubscription();
 
   // Update the theme and background of the page based on the selected theme
   const updateElementStyle = ({
@@ -119,7 +119,7 @@ const PageThemeSelector = () => {
             <DialogDescription></DialogDescription>
 
             <ThemesList
-              isSilver={isSilver}
+              isPremium={isPremium}
               handleThemeUpdate={handleThemeUpdate}
               themes={themes}
             />

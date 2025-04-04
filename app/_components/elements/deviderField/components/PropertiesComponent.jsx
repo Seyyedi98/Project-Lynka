@@ -22,7 +22,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-function PropertiesComponent({ elementInstance, isSilver }) {
+function PropertiesComponent({ elementInstance, isPremium }) {
   const element = elementInstance;
   const dispatch = useDispatch();
 

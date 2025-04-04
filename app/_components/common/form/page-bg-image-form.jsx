@@ -18,7 +18,7 @@ const PageBgImageUploader = dynamic(
 
 const PageBgImageForm = ({ theme }) => {
   const { backgroundType, backgroundImage } = theme;
-  const { isSilver } = useUserSubscription();
+  const { isPremium } = useUserSubscription();
 
   const bgImage =
     backgroundType === "image" ? JSON.parse(backgroundImage) : null;
@@ -36,7 +36,7 @@ const PageBgImageForm = ({ theme }) => {
           />
         )}
       </div>
-      {isSilver ? (
+      {isPremium ? (
         <PageBgImageUploader theme={theme} bgImage={bgImage} uri={uri} />
       ) : (
         <p className="mt-4 text-sm text-destructive">

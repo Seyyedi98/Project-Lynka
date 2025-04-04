@@ -13,7 +13,7 @@ export const useUserSubscription = () => {
 
   const subscriptionPlan = session.data?.user?.subscriptionPlan;
   const subscriptionExpire = session.data?.user?.subscriptionExpire;
-  let isSilver;
+  let isPremium;
 
   const todayDate = new Date();
   const expiresDate = new Date(subscriptionExpire);
@@ -33,17 +33,15 @@ export const useUserSubscription = () => {
   // }, [subscriptionDaysLeft]);
 
   if (subscriptionPlan === "silver" && subscriptionDaysLeft > 0) {
-    isSilver = true;
-  } else {
-    isSilver = false;
-  }
+    isPremium = true;
+  } 
 
-  return { subscriptionPlan, subscriptionDaysLeft, isSilver };
+  return { subscriptionPlan, subscriptionDaysLeft, isPremium };
 };
 
 export const useSubscriptionByUri = (uri) => {
   const [subscriptionData, setSubscriptionData] = useState({});
-  const [isSilver, setIsSilver] = useState(false);
+  const [isPremium, setisPremium] = useState(false);
 
   useEffect(() => {
     const getSubscriptionData = async () => {
@@ -73,12 +71,12 @@ export const useSubscriptionByUri = (uri) => {
         subscriptionData.subscriptionPlan === "silver" &&
         subscriptionDaysLeft > 0
       ) {
-        setIsSilver(true);
+        setisPremium(true);
       } else {
-        setIsSilver(false);
+        setisPremium(false);
       }
     }
   }, [subscriptionData]);
 
-  return { subscriptionData, setSubscriptionData, isSilver };
+  return { subscriptionData, setSubscriptionData, isPremium };
 };

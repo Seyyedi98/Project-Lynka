@@ -3,7 +3,7 @@ import { PageElements } from "../../controller/page-elements-controller";
 import AddElementButton from "./add-element-button";
 
 const EditorSidebarElements = () => {
-  const { isSilver } = useUserSubscription();
+  const { isPremium } = useUserSubscription();
 
   return (
     <div className="w-full">
@@ -20,19 +20,19 @@ const EditorSidebarElements = () => {
           <div className="grid grid-cols-1 gap-3">
             <AddElementButton
               pageElement={PageElements.SocialsField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
             <AddElementButton
               pageElement={PageElements.TextField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
             <AddElementButton
               pageElement={PageElements.CardField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
             <AddElementButton
               pageElement={PageElements.ImageField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
           </div>
         </section>
@@ -45,11 +45,11 @@ const EditorSidebarElements = () => {
           <div className="grid grid-cols-1 gap-3">
             <AddElementButton
               pageElement={PageElements.SpaceField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
             <AddElementButton
               pageElement={PageElements.DeviderField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
           </div>
         </section>
@@ -60,19 +60,19 @@ const EditorSidebarElements = () => {
           <div className="grid grid-cols-1 gap-3">
             <AddElementButton
               pageElement={PageElements.GalleryField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
             <AddElementButton
               pageElement={PageElements.CarouselField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
             <AddElementButton
               pageElement={PageElements.VideoField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
             <AddElementButton
               pageElement={PageElements.CountdownField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
           </div>
         </section>
@@ -83,11 +83,11 @@ const EditorSidebarElements = () => {
           <div className="grid grid-cols-1 gap-3">
             <AddElementButton
               pageElement={PageElements.FormField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
             <AddElementButton
               pageElement={PageElements.FaqField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
           </div>
         </section>
@@ -98,13 +98,13 @@ const EditorSidebarElements = () => {
           <div className="grid grid-cols-1 gap-3">
             <AddElementButton
               pageElement={PageElements.RssField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
             <AddElementButton
               pageElement={PageElements.MapField}
-              isSilver={isSilver}
+              isPremium={isPremium}
             />
-            {/* <AddElementButton pageElement={PageElements.PostTrackerField}  isSilver={isSilver}/> */}
+            {/* <AddElementButton pageElement={PageElements.PostTrackerField}  isPremium={isPremium}/> */}
           </div>
         </section>
       </div>

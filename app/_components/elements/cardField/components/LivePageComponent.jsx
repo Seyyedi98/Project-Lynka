@@ -2,7 +2,7 @@ import { getSubscriptionByUri } from "@/lib/auth/user-subscription";
 import moment from "moment-jalaali";
 import { ElementThemeController } from "../../../controller/element-theme-controller";
 
-export async function LivePageComponent({ elementInstance, uri, isSilver }) {
+export async function LivePageComponent({ elementInstance, uri, isPremium }) {
   const element = elementInstance;
   const data = element.extraAttributes;
   const countdownDate = await data.countdownDate;
@@ -11,19 +11,19 @@ export async function LivePageComponent({ elementInstance, uri, isSilver }) {
   const hour = date.getHours();
   const currentShamsiDate = moment().format("jYYYY-jMM-jDDTHH:mm:ss.SSSZ");
 
-  const scheduledRender = isSilver
+  const scheduledRender = isPremium
     ? data.schedule
       ? hour >= data.scheduleStart && hour < data.scheduleEnd
       : true
     : true;
 
-  const countdownRender = isSilver
+  const countdownRender = isPremium
     ? data.countdown
       ? currentShamsiDate > countdownDate
       : true
     : true;
 
-  const protectedElement = isSilver ? data.isProtected : false;
+  const protectedElement = isPremium ? data.isProtected : false;
 
   const RenderedElement = ElementThemeController[element.type][data.theme][0];
   return countdownRender ? (
@@ -34,7 +34,7 @@ export async function LivePageComponent({ elementInstance, uri, isSilver }) {
         protectedElement={protectedElement}
         isPasswordsMatch
         isLive={true}
-        isSilver={isSilver}
+        isPremium={isPremium}
         {...data}
       />
     ) : null

@@ -38,7 +38,7 @@ const handleClick = async ({
 };
 
 const CardFieldDefault = (props) => {
-  const { isLive, font, layout, image, isSilver } = props;
+  const { isLive, font, layout, image, isPremium } = props;
   const [loadedFont, setLoadedFont] = useState(null);
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
@@ -66,7 +66,7 @@ const CardFieldDefault = (props) => {
   );
 
   // Workspace view for free and premium users && premium users live Page
-  if (isSilver || !isLive) {
+  if (isPremium || !isLive) {
     if (layout === "basic") return <Basic loadedFont={loadedFont} {...props} />;
     if (layout === "roundedImage" || !layout)
       return (
@@ -83,7 +83,7 @@ const CardFieldDefault = (props) => {
   }
 
   // Live page view for free users
-  if (!isSilver && isLive) {
+  if (!isPremium && isLive) {
     if (layout === "basic") return <Basic loadedFont={loadedFont} {...props} />;
     if (
       layout === "roundedImage" ||

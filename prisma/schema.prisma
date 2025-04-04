@@ -36,6 +36,7 @@ model User {
   subscriptionExpire      DateTime?
   accounts                Account[]
   twofactorConfiramtionId String?
+  Notification            Notification[]
 
   @@map("users")
 }
@@ -152,4 +153,23 @@ model FormSubmission {
   @@index([pageUri])
   @@index([createdAt])
   @@index([pageUri, formName]) // For querying specific forms
+}
+
+model Notification {
+  id         String    @id @default(cuid())
+  userId     String
+  type       String // "system", "message", "alert", etc.
+  title      String
+  body       String?
+  isRead     Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  readAt     DateTime?
+  actionUrl  String?
+  actionText String?   @default("")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, isRead])
+  @@index([createdAt])
 }

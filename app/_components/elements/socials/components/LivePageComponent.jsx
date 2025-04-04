@@ -1,6 +1,6 @@
 import { ElementThemeController } from "../../../controller/element-theme-controller";
 
-export async function LivePageComponent({ elementInstance, uri, isSilver }) {
+export async function LivePageComponent({ elementInstance, uri, isPremium }) {
   const element = elementInstance;
   const data = element.extraAttributes;
 
@@ -11,7 +11,7 @@ export async function LivePageComponent({ elementInstance, uri, isSilver }) {
       elementId={element.id}
       isPasswordsMatch
       isLive={true}
-      isSilver={isSilver}
+      isPremium={isPremium}
       {...data}
     />
   );

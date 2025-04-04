@@ -3,7 +3,7 @@ import { PageElements } from "../controller/page-elements-controller";
 import { getSubscriptionByUri } from "@/lib/auth/user-subscription";
 
 const LivePageElements = async ({ content, uri }) => {
-  const { isSilver } = getSubscriptionByUri(uri);
+  const { isPremium } = getSubscriptionByUri(uri);
 
   const elements = await Promise.all(
     content.map(async (element) => {
@@ -12,7 +12,7 @@ const LivePageElements = async ({ content, uri }) => {
       if (PageElement) {
         return (
           <PageElement
-            isSilver={isSilver}
+            isPremium={isPremium}
             uri={uri}
             key={element.id}
             elementInstance={element}

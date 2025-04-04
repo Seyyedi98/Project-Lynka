@@ -4,9 +4,9 @@ import { currentUser } from "@/lib/auth/get-user";
 import prisma from "@/lib/client";
 
 export const getSubscriptionData = async () => {
-  const session = await currentUser();
+  // const session = await currentUser();
   if (!session) return;
-
+  c;
   const data = await prisma.user.findUnique({
     where: {
       id: session.id,

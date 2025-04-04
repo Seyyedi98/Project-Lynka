@@ -23,7 +23,7 @@ const Dashboard = async () => {
   // );
 
   return (
-    <div className="relative flex w-full select-none pb-10">
+    <div className="relative mx-auto flex w-full max-w-7xl select-none pb-10">
       <h2 className="absolute right-4 top-40 pr-0 text-3xl text-white sm:mr-20 sm:pr-3">
         پنل کاربری
       </h2>

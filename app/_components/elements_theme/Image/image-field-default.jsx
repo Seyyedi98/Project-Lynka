@@ -5,12 +5,12 @@ import getImageAddress from "@/utils/get-image-address";
 import Image from "next/image";
 
 const ImageFieldDefault = (props) => {
-  const { borderRadius, isSilver, image } = props;
+  const { borderRadius, isPremium, image } = props;
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
   return (
     <div className="relative w-full">
-      {!isSilver && (
+      {!isPremium && (
         <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
           برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
         </div>
@@ -19,7 +19,7 @@ const ImageFieldDefault = (props) => {
         style={{ borderRadius: borderRadius }}
         className={cn(
           `flex w-full cursor-pointer flex-col items-start justify-center gap-2 overflow-hidden text-lg font-medium text-white shadow-lg`,
-          !isSilver && "opacity-70",
+          !isPremium && "opacity-70",
         )}
       >
         {imageUrl ? (

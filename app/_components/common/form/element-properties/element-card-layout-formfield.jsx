@@ -18,7 +18,7 @@ const layoutOptions = [
 
 const ElementCardLayoutFormField = ({
   form,
-  isSilver,
+  isPremium,
   RenderElement,
   element,
 }) => {
@@ -61,8 +61,8 @@ const ElementCardLayoutFormField = ({
               <div
                 className={cn(
                   "pointer-events-none mt-2 scale-95",
-                  !isSilver && field.value === "wideFullImage" && "opacity-40",
-                  !isSilver && field.value === "highFullImage" && "opacity-40",
+                  !isPremium && field.value === "wideFullImage" && "opacity-40",
+                  !isPremium && field.value === "highFullImage" && "opacity-40",
                 )}
               >
                 <RenderElement
@@ -70,7 +70,7 @@ const ElementCardLayoutFormField = ({
                   layout={field.value}
                 />
               </div>
-              {!isSilver &&
+              {!isPremium &&
                 (field.value === "wideFullImage" ||
                   field.value === "highFullImage") && (
                   <p className="-mt-4 mb-2 text-center text-sm text-destructive">

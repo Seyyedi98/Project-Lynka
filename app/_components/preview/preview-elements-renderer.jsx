@@ -6,7 +6,7 @@ import { useUserSubscription } from "@/hooks/useUserSubscription";
 
 const PreviewPageElements = () => {
   const elements = useSelector((state) => state.page.elements, shallowEqual);
-  const { isSilver } = useUserSubscription();
+  const { isPremium } = useUserSubscription();
 
   return (
     <>
@@ -17,7 +17,7 @@ const PreviewPageElements = () => {
           <PageElement
             key={element.id}
             elementInstance={element}
-            isSilver={isSilver}
+            isPremium={isPremium}
             // defaultValue={formValues.current[element.id]}
           />
         );

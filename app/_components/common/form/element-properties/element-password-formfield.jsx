@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 import { Toggle } from "rsuite";
 
-const ElementPasswordFormField = ({ form, isSilver, passwordData }) => {
+const ElementPasswordFormField = ({ form, isPremium, passwordData }) => {
   let isProtected = passwordData.isProtected;
   if (form.watch("password") !== undefined) {
     isProtected = form.watch("isProtected");
@@ -37,7 +37,7 @@ const ElementPasswordFormField = ({ form, isSilver, passwordData }) => {
                 checked={field.value}
                 onChange={field.onChange}
                 aria-readonly
-                disabled={!isSilver}
+                disabled={!isPremium}
                 color="blue"
               />
             </FormControl>
@@ -45,7 +45,7 @@ const ElementPasswordFormField = ({ form, isSilver, passwordData }) => {
         )}
       />
 
-      {isSilver ? (
+      {isPremium ? (
         <AnimatePresence>
           {isProtected && (
             <motion.div

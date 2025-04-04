@@ -26,7 +26,7 @@ const ImageUploaderField = dynamic(
   },
 );
 
-function PropertiesComponent({ elementInstance, isSilver }) {
+function PropertiesComponent({ elementInstance, isPremium }) {
   const element = elementInstance;
   const dispatch = useDispatch();
 
@@ -68,15 +68,15 @@ function PropertiesComponent({ elementInstance, isSilver }) {
           theme,
           image,
           borderRadius,
-          schedule: isSilver ? schedule : element.extraAttributes.schedule,
-          scheduleStart: isSilver
+          schedule: isPremium ? schedule : element.extraAttributes.schedule,
+          scheduleStart: isPremium
             ? scheduleStart
             : element.extraAttributes.scheduleStart,
-          scheduleEnd: isSilver
+          scheduleEnd: isPremium
             ? scheduleEnd
             : element.extraAttributes.scheduleEnd,
-          countdown: isSilver ? countdown : element.extraAttributes.countdown,
-          countdownDate: isSilver
+          countdown: isPremium ? countdown : element.extraAttributes.countdown,
+          countdownDate: isPremium
             ? countdownDate
             : element.extraAttributes.countdownDate,
         },
@@ -149,7 +149,7 @@ function PropertiesComponent({ elementInstance, isSilver }) {
                     <ElementScheduleFormField
                       scheduleData={element.extraAttributes}
                       form={form}
-                      isSilver={isSilver}
+                      isPremium={isPremium}
                     />
                   </div>
 
@@ -159,7 +159,7 @@ function PropertiesComponent({ elementInstance, isSilver }) {
                       showToggle={true}
                       countdownData={element.extraAttributes}
                       form={form}
-                      isSilver={isSilver}
+                      isPremium={isPremium}
                     />
                   </div>
                 </TabsContent>

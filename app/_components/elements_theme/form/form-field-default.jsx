@@ -16,7 +16,7 @@ const toPersianNumbers = (num) => {
 
 const FormFieldDefault = (props) => {
   const {
-    isSilver,
+    isPremium,
     fields = [],
     uri,
     elementId,
@@ -66,7 +66,7 @@ const FormFieldDefault = (props) => {
   const formId = `${uri}-${elementId}`;
 
   const onSubmit = async (formData) => {
-    if (!isSilver) return;
+    if (!isPremium) return;
 
     // Time-based human verification (minimum 3 seconds)
     const submitTime = Date.now() - formStartTime;
@@ -121,7 +121,7 @@ const FormFieldDefault = (props) => {
 
   return (
     <div className="relative w-full">
-      {!isSilver && (
+      {!isPremium && (
         <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
           برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
         </div>
@@ -131,7 +131,7 @@ const FormFieldDefault = (props) => {
         onSubmit={handleSubmit(onSubmit)}
         className={cn(
           `w-full text-wrap rounded-md py-2`,
-          !isSilver && "opacity-70",
+          !isPremium && "opacity-70",
         )}
       >
         <div
@@ -252,7 +252,7 @@ const FormFieldDefault = (props) => {
           })}
 
           {/* Math verification section */}
-          {isSilver && isLive && (
+          {isPremium && isLive && (
             <>
               <div className="mb-4">
                 <label className="mb-2 block text-sm font-medium">

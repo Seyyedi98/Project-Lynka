@@ -13,7 +13,7 @@ const RssFieldDefault = ({
   borderRadius,
   bgColor,
   isLive,
-  isSilver,
+  isPremium,
 }) => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
@@ -56,7 +56,7 @@ const RssFieldDefault = ({
 
   return (
     <div className="relative w-full">
-      {!isSilver && !isLive && (
+      {!isPremium && !isLive && (
         <div className="absolute left-1/2 top-1/2 z-10 w-3/4 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
           برای استفاده از فید rss، اشتراک ویژه خود را تمدید کنید
         </div>
@@ -64,11 +64,11 @@ const RssFieldDefault = ({
       <div
         className={cn(
           `w-full text-wrap rounded-md py-2`,
-          !isSilver && "opacity-70",
+          !isPremium && "opacity-70",
         )}
       >
         {href ? (
-          isSilver || !isLive ? (
+          isPremium || !isLive ? (
             error ? (
               <div className="text-red-500">خطا در دریافت اطلاعات فید</div>
             ) : (
