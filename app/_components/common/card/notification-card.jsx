@@ -1,5 +1,3 @@
-import React from "react";
-
 const NotificationCard = ({ notification }) => {
   return (
     <div className="flex items-start justify-between">
