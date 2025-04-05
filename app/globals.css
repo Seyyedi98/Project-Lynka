@@ -79,53 +79,52 @@ body {
   }
 
   .dark {
-    /* Color System */
-    /* Primary Colors */
+    /* Brand Colors */
     --primary: 207 90% 54%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary Colors */
-    --secondary: 172 100% 37%;
+    --secondary: 182 100% 38%;
     --secondary-foreground: 0 0% 100%;
 
     /* Backgrounds */
-    --background: 0 0% 11%;
-    --secondaryBg: 0 0 15%;
-    --background-gradient-from: 207 90% 30%;
-    --background-gradient-to: 172 80% 25%;
+    --background: 222 15% 10%;
+    --secondaryBg: 222 15% 13%;
+    --background-gradient-from: 207 90% 40%;
+    --background-gradient-to: 182 100% 28%;
 
     /* Cards */
-    --card: 0 0% 26%;
-    --card-light: 0 0% 16%;
-    --card-foreground: 248 0% 100%;
+    --card: 222 15% 14%;
+    --card-light: 222 15% 18%;
+    --card-foreground: 0 0% 100%;
 
     /* Text */
-    --text: 248 0% 100%;
-    --textLight: 248 0% 65%;
-    --foreground: 248 0% 100%;
+    --text: 0 0% 100%;
+    --textLight: 0 0% 70%;
+    --foreground: 0 0% 100%;
 
     /* UI Elements */
-    --input: 0 0% 30%;
-    --input-blue: 213 92% 85%;
-    --button: 0 0% 19%;
-    --border: 0 0% 19%;
-    --tab: 210 10% 25%;
-    --tab-active: 0 0% 11%;
+    --input: 222 15% 16%;
+    --input-blue: 207 90% 70%;
+    --button: 222 15% 18%;
+    --border: 222 10% 25%;
+    --tab: 207 90% 35%;
+    --tab-active: 182 100% 38%;
 
     /* Miscellaneous */
-    --icon: 248 0% 100%;
-    --icon-ight: 0 0% 30%;
-    --muted: 210 10% 25%;
-    --muted-foreground: 248 0% 65%;
-    --accent: 210 10% 25%;
-    --accent-foreground: 248 0% 95%;
-    --destructive: 0 50% 50%;
-    --destructive-foreground: 248 0% 100%;
-    --popover: 248 10% 5%;
-    --popover-foreground: 248 0% 100%;
-    --ring: 248 0% 10%;
+    --icon: 0 0% 100%;
+    --icon-light: 0 0% 60%;
+    --muted: 222 10% 25%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 207 90% 25%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --popover: 222 15% 10%;
+    --popover-foreground: 0 0% 100%;
+    --ring: 207 90% 40%;
 
-    /* Typography (same as light theme) */
+    /* Typography (same) */
     --font-geist-sans: "Geist Sans", sans-serif;
     --font-geist-mono: "Geist Mono", monospace;
     --font-yekan: "Yekan", sans-serif;
@@ -136,10 +135,10 @@ body {
     --font-tanha: "Tanha", sans-serif;
     --font-vazir: "Vazir", sans-serif;
 
-    /* Borders & Radius */
     --radius: 0.5rem;
   }
 }
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -162,29 +161,44 @@ a:focus {
 }
 
 /* Custom scrollbar */
-/* For WebKit browsers (Chrome, Safari, Edge) */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
+@layer base {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+  .dark ::-webkit-scrollbar-track {
+    background: hsl(222, 15%, 13%);
+  }
 
-::-webkit-scrollbar-thumb {
-  background: hsl(207 90% 54%);
-  border-radius: 10px;
-}
+  ::-webkit-scrollbar-track {
+    background: hsl(0, 0%, 98%);
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(207 90% 45%); /* Slightly darker on hover */
-}
+  .dark ::-webkit-scrollbar-thumb {
+    background: hsl(207, 90%, 45%);
+  }
 
-/* For Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: hsl(207 90% 54%) transparent;
+  ::-webkit-scrollbar-thumb {
+    background: hsl(207, 90%, 54%);
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: hsl(207, 90%, 38%);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(207, 90%, 45%);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(207, 90%, 54%) transparent;
+  }
+
+  .dark * {
+    scrollbar-color: hsl(207, 90%, 45%) hsl(222, 15%, 13%);
+  }
 }
 
 input::-webkit-outer-spin-button,

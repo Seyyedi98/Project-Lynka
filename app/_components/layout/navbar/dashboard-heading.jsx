@@ -1,17 +1,5 @@
 "use client";
-import {
-  BellDot,
-  ChevronDown,
-  HelpCircle,
-  LoaderIcon,
-  UserCircleIcon,
-  Settings,
-  LogOut,
-  Moon,
-  Sun,
-  Bell,
-} from "lucide-react";
-import { useEffect, useState } from "react";
+import { getNotifications } from "@/actions/notifications";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,13 +8,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
+import {
+  Bell,
+  ChevronDown,
+  HelpCircle,
+  LoaderIcon,
+  LogOut,
+  Moon,
+  Settings,
+  Sun,
+  UserCircleIcon,
+} from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
-import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { useEffect, useState } from "react";
 import ToggleDarkmode from "../../common/button/PrimaryButton/toggle-darkmode";
-import { getNotifications } from "@/actions/notifications";
 
-const DashboardHeading = ({ children }) => {
+const DashboardHeading = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [loadingNotifications, setLoadingNotifications] = useState(false);
@@ -34,10 +33,8 @@ const DashboardHeading = ({ children }) => {
   const { theme } = useTheme();
   const router = useRouter();
 
-  // Count unread notifications
   const unreadCount = notifications.filter((n) => !n.isRead).length;
 
-  // Fetch notifications using server action
   const fetchNotifications = async () => {
     try {
       setLoadingNotifications(true);
@@ -56,7 +53,6 @@ const DashboardHeading = ({ children }) => {
     if (user?.id) {
       fetchNotifications();
 
-      // Set up interval for periodic updates
       const interval = setInterval(fetchNotifications, 60000);
       return () => clearInterval(interval);
     }
