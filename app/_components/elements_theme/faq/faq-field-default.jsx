@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { loadFont } from "@/utils/loadFont";
+import { QuestionMarkCircledIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { Accordion } from "rsuite";
 
@@ -53,25 +54,34 @@ const FaqFieldDefault = (props) => {
         >
           {title}
         </p>
-        <Accordion
-          style={{
-            fontFamily: textFont ? `var(${textFont})` : "inherit",
-            color: textColor,
-          }}
-          className={cn(``, !isLive && "pointer-events-none")}
-        >
-          {questions.map((question, index) => {
-            return (
-              <Accordion.Panel
-                key={question.question}
-                header={question.question}
-                eventKey={index}
-              >
-                {question.answer}
-              </Accordion.Panel>
-            );
-          })}
-        </Accordion>
+        {questions.length > 0 ? (
+          <Accordion
+            style={{
+              fontFamily: textFont ? `var(${textFont})` : "inherit",
+              color: textColor,
+            }}
+            className={cn(``, !isLive && "pointer-events-none")}
+          >
+            {questions.map((question, index) => {
+              return (
+                <Accordion.Panel
+                  key={question.question}
+                  header={question.question}
+                  eventKey={index}
+                >
+                  {question.answer}
+                </Accordion.Panel>
+              );
+            })}
+          </Accordion>
+        ) : (
+          <div className="grid h-40 w-full place-content-center rounded-lg border-2 border-dashed border-black bg-white text-black">
+            <div className="flex flex-col items-center justify-center gap-2">
+              <QuestionMarkCircledIcon className="h-8 w-8" />
+              افزودن
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

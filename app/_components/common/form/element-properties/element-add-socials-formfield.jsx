@@ -4,6 +4,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogFooter,
 } from "@/components/ui/dialog";
 import {
   FormControl,
@@ -140,23 +141,36 @@ const ElementSocialsFormField = ({
 
           {/* Social Media Selection Modal */}
           <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-            <DialogContent>
+            <DialogContent className="rounded-lg border bg-background p-6 shadow-lg sm:max-w-[425px]">
               <DialogHeader>
-                <DialogTitle>انتخاب شبکه اجتماعی</DialogTitle>
+                <DialogTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  انتخاب شبکه اجتماعی
+                </DialogTitle>
               </DialogHeader>
-              <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+              <div className="grid max-h-[50svh] grid-cols-2 gap-3 overflow-y-scroll py-4">
                 {socialPlatforms.map((platform) => (
                   <Button
                     key={platform.value}
                     variant="outline"
-                    className="flex items-center gap-2 p-4"
+                    className="h-auto flex-col items-center justify-center gap-2 rounded-xl p-4 transition-all hover:bg-gray-50 hover:shadow-sm dark:hover:bg-gray-800"
                     onClick={() => addSocialMedia(platform.value)}
                   >
-                    <span className="text-2xl">{platform.icon}</span>
-                    <span>{platform.name}</span>
+                    <span className="text-3xl">{platform.icon}</span>
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      {platform.name}
+                    </span>
                   </Button>
                 ))}
               </div>
+              <DialogFooter className="pt-4">
+                <Button
+                  variant="ghost"
+                  onClick={() => setIsModalOpen(false)}
+                  className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+                >
+                  انصراف
+                </Button>
+              </DialogFooter>
             </DialogContent>
           </Dialog>
 

@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import getImageAddress from "@/utils/get-image-address";
+import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 
 const ImageFieldDefault = (props) => {
@@ -31,7 +32,12 @@ const ImageFieldDefault = (props) => {
             loading="lazy"
           />
         ) : (
-          "برای افزودن تصویر اینجا کلیک کنید"
+          <div className="grid h-40 w-full place-content-center rounded-lg border-2 border-dashed border-black bg-white text-black">
+            <div className="flex flex-col items-center justify-center gap-2">
+              <ImageIcon className="h-8 w-8" />
+              افزودن عکس
+            </div>
+          </div>
         )}
       </div>
     </div>

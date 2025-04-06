@@ -79,7 +79,7 @@ const MapSelector = ({ onSelectLocation, savedLocation }) => {
     });
 
     const customIcon = new Icon({
-      iconUrl: "https://img.icons8.com/ios/452/map-pin.png", // map pin PNG URL
+      iconUrl: "/mobile-earth.webp", // map pin PNG URL
       iconSize: [32, 32],
       iconAnchor: [16, 32],
       popupAnchor: [0, -32],
@@ -107,10 +107,7 @@ const MapSelector = ({ onSelectLocation, savedLocation }) => {
         style={{ height: "100%", width: "100%" }}
         ref={mapRef}
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-        />
+        <TileLayer url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" />
         <MapCenterUpdater />
         {userPosition && (
           <Marker position={[userPosition.lat, userPosition.lng]}>

@@ -4,6 +4,7 @@
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { cn } from "@/lib/utils";
 import { loadFont } from "@/utils/loadFont";
+import { MapIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const MapFieldDefault = (props) => {
@@ -47,7 +48,7 @@ const MapFieldDefault = (props) => {
           برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
         </div>
       )}
-      {latitude && longitude && (
+      {latitude && longitude ? (
         // title
         <div
           style={{
@@ -91,6 +92,13 @@ const MapFieldDefault = (props) => {
             >
               مسیریابی
             </button>
+          </div>
+        </div>
+      ) : (
+        <div className="grid h-40 w-full place-content-center rounded-lg border-2 border-dashed border-black bg-white text-black">
+          <div className="flex flex-col items-center justify-center gap-2">
+            <MapIcon className="h-8 w-8" />
+            انتخاب موقعیت
           </div>
         </div>
       )}

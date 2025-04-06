@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Loader2 as LoaderIcon } from "lucide-react";
+import { Loader2 as LoaderIcon, VideoIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const VideoFieldDefault = ({ href, isLive, isPremium }) => {
@@ -85,7 +85,12 @@ const VideoFieldDefault = ({ href, isLive, isPremium }) => {
             </div>
           ) : null
         ) : (
-          <p>آدرس وارد شده معتبر نمی باشد</p>
+          <div className="grid h-40 w-full place-content-center rounded-lg border-2 border-dashed border-black bg-white text-black">
+            <div className="flex flex-col items-center justify-center gap-2">
+              <VideoIcon className="h-8 w-8" />
+              آدرس وارد شده معتبر نمی باشد
+            </div>
+          </div>
         )}
       </div>
     </div>

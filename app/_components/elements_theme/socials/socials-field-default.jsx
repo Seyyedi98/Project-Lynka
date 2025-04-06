@@ -34,6 +34,11 @@ const SocialsFieldDefault = (props) => {
           `flex w-full flex-wrap items-center justify-center gap-2 rounded-md py-2`,
         )}
       >
+        {socials?.length === 0 && (
+          <div className="grid h-12 w-full place-content-center rounded-lg bg-primary text-white">
+            افزودن شبکه های اجتماعی
+          </div>
+        )}
         {socials?.map((social, index) => {
           const platform = socialPlatforms.find(
             (p) => p.value === social.platform,

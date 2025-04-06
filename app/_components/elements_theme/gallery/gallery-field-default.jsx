@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import getImageAddress from "@/utils/get-image-address";
+import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { useState, useMemo } from "react";
 
@@ -78,8 +79,11 @@ const GalleryFieldDefault = (props) => {
             </div>
           ))
         ) : (
-          <div className="col-span-full flex h-40 items-center justify-center text-gray-500">
-            هیچ تصویری وجود ندارد
+          <div className="grid h-40 w-full place-content-center rounded-lg border-2 border-dashed border-black bg-white text-black">
+            <div className="flex flex-col items-center justify-center gap-2">
+              <ImageIcon className="h-8 w-8" />
+              افزودن عکس
+            </div>
           </div>
         )}
       </div>

@@ -23,11 +23,11 @@ const EditorSidebarElements = () => {
               isPremium={isPremium}
             />
             <AddElementButton
-              pageElement={PageElements.TextField}
+              pageElement={PageElements.CardField}
               isPremium={isPremium}
             />
             <AddElementButton
-              pageElement={PageElements.CardField}
+              pageElement={PageElements.TextField}
               isPremium={isPremium}
             />
             <AddElementButton

@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { loadFont } from "@/utils/loadFont";
-import { Loader2Icon } from "lucide-react";
+import { Loader2Icon, Rss } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const RssFieldDefault = ({
@@ -142,7 +142,12 @@ const RssFieldDefault = ({
             )
           ) : null
         ) : (
-          "برای اتصال به rss اینجا کلیک کنید"
+          <div className="grid h-40 w-full place-content-center rounded-lg border-2 border-dashed border-black bg-white text-black">
+            <div className="flex flex-col items-center justify-center gap-2">
+              <Rss className="h-8 w-8" />
+              اتصال به rss
+            </div>
+          </div>
         )}
       </div>
     </div>

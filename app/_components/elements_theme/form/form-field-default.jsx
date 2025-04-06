@@ -122,7 +122,7 @@ const FormFieldDefault = (props) => {
   return (
     <div className="relative w-full">
       {!isPremium && (
-        <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-red-500 p-2 text-center text-white">
+        <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform rounded-md p-2 text-center text-white">
           برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
         </div>
       )}
@@ -143,6 +143,11 @@ const FormFieldDefault = (props) => {
           }}
           className="h-full w-full p-4"
         >
+          {fields.length === 0 && (
+            <div className="grid h-40 w-full place-content-center rounded-lg border-2 border-dashed border-black bg-white text-black">
+              افزودن فرم
+            </div>
+          )}
           {/* Your original form fields - completely preserved */}
           {fields.map((field, index) => {
             const fieldLabel = field?.label || `field_${index}`;
