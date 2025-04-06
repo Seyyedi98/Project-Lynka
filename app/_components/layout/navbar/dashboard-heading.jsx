@@ -50,7 +50,7 @@ const DashboardHeading = () => {
 
   return (
     <div
-      className={`fixed right-0 top-0 z-40 flex h-16 w-full items-center justify-between px-2 text-white transition-all duration-150 sm:pr-8 ${
+      className={`fixed right-0 top-0 z-40 flex h-16 w-full items-center justify-between px-2 text-white transition-all duration-150 sm:pr-4 ${
         isScrolled
           ? "bg-gradient-to-r from-[hsl(207,90%,54%)] to-[hsl(172,100%,37%)] shadow-lg"
           : "bg-transparent"

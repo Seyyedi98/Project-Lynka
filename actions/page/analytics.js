@@ -17,17 +17,33 @@ export async function trackClick(props) {
   }
 }
 
-export async function getLinkAnalytics(pageUri) {
+export async function getLinkAnalytics(pageUri, dateRange = "all") {
   try {
-    const analytics = await prisma.linkView.findMany({
-      where: {
-        pageUri,
-      },
+    const dateFilters = {
+      today: new Date(new Date().setHours(0, 0, 0, 0)),
+      lastweek: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+      lastmonth: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
+      last3month: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000),
+      last6month: new Date(Date.now() - 180 * 24 * 60 * 60 * 1000),
+      lastyear: new Date(Date.now() - 365 * 24 * 60 * 60 * 1000),
+      all: undefined,
+    };
+
+    const whereClause = {
+      pageUri,
+      ...(dateRange !== "all" && {
+        clickedAt: {
+          gte: dateFilters[dateRange],
+        },
+      }),
+    };
+
+    return await prisma.linkView.findMany({
+      where: whereClause,
       orderBy: {
         clickedAt: "desc",
       },
     });
-    return analytics;
   } catch (error) {
     console.error("Error fetching analytics:", error);
     return [];

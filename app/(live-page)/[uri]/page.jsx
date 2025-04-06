@@ -11,7 +11,6 @@ import fetchWithRetry from "@/utils/fetchWithRetry";
 import getImageAddress from "@/utils/get-image-address";
 import parseJson from "@/utils/parseJSON";
 import { notFound } from "next/navigation";
-import { useMemo } from "react";
 
 // ✅ Dynamic Metadata Fetching with Error Handling
 export async function generateMetadata({ params }) {

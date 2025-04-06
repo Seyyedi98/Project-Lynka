@@ -1,9 +1,9 @@
+import { getSubscriptionByUri } from "@/lib/auth/user-subscription";
 import { Suspense } from "react";
 import { PageElements } from "../controller/page-elements-controller";
-import { getSubscriptionByUri } from "@/lib/auth/user-subscription";
 
 const LivePageElements = async ({ content, uri }) => {
-  const { isPremium } = getSubscriptionByUri(uri);
+  const { isPremium } = await getSubscriptionByUri(uri);
 
   const elements = await Promise.all(
     content.map(async (element) => {
