@@ -6,23 +6,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  ChevronDown,
-  KeyIcon,
-  QrCode,
-  UserCircleIcon,
-  ViewIcon,
-} from "lucide-react";
+import { ChevronDown, QrCode, ViewIcon } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import PageQrCodeGenerator from "../../section/workspace/page-qrcode-generator";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "../modal/diolog";
 const PageUrl = () => {
   const { uri } = useParams();

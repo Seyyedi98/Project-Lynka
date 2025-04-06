@@ -5,8 +5,7 @@ import DashboardDataCard from "@/app/_components/common/card/dashboard-data-card
 import Carousel from "@/app/_components/common/carousel";
 import PagesList from "@/app/_components/section/dashboard-pages-list";
 import { currentUserSubscription } from "@/lib/auth/user-subscription";
-import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
-import { ApertureIcon, BadgeCheck, ChartSpline } from "lucide-react";
+import { ApertureIcon, BadgeCheck, ChartSpline, SheetIcon } from "lucide-react";
 
 const Dashboard = async () => {
   const allPages = await getUserPageData();
@@ -37,16 +36,20 @@ const Dashboard = async () => {
         {/* Cards */}
         <div className="col-span-2 flex h-60 flex-col gap-2 md:col-span-1 xl:h-80">
           <div className="flex h-full w-full gap-2">
-            <DashboardDataCard bgColor="#ec407a" text="پیام جدید" data="۱۲">
-              <EnvelopeClosedIcon className="h-20 w-20" />
+            <DashboardDataCard
+              bgColor="#ec407a"
+              text="صفحات فعال"
+              data={allPages.length}
+            >
+              <SheetIcon className="h-16 w-16" />
             </DashboardDataCard>
 
             <DashboardDataCard
               bgColor="#536dfe"
-              text=" بازدید ها"
+              text="تعداد بازدیدها"
               data={totalViews}
             >
-              <ChartSpline className="h-20 w-20" />
+              <ChartSpline className="h-16 w-16" />
             </DashboardDataCard>
           </div>
 
@@ -64,7 +67,11 @@ const Dashboard = async () => {
               <BadgeCheck className="h-20 w-20" />
             </DashboardDataCard>
 
-            <DashboardDataCard bgColor="#fb8c00" text="عنوان" data="۱۲">
+            <DashboardDataCard
+              bgColor="#fb8c00"
+              text="قرعه کشی های فعال"
+              data="۱۲"
+            >
               <ApertureIcon className="h-20 w-20" />
             </DashboardDataCard>
           </div>
@@ -75,7 +82,7 @@ const Dashboard = async () => {
           <PagesList pages={allPages} />
           <div className="relative flex justify-center py-3 transition-colors duration-200">
             <div className="absolute top-0 mx-auto h-[1px] w-[95%] bg-primary" />
-            <CreatePageButton>
+            <CreatePageButton allPages={allPages}>
               <div className="group relative mx-auto my-2 flex cursor-pointer gap-1 text-sm text-primary transition-colors duration-200 hover:text-secondary">
                 <div className="absolute -bottom-1 right-1/2 h-[1px] w-0 bg-secondary transition-all group-hover:w-1/2" />
                 <div className="absolute -bottom-1 left-1/2 h-[1px] w-0 bg-secondary transition-all group-hover:w-1/2" />

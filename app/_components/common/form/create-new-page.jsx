@@ -4,6 +4,7 @@ import { checkPageAvailable, newPageCreator } from "@/actions/page/page";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { cn } from "@/lib/utils";
 import { PageUriSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,13 +13,29 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
-const CreateNewPage = () => {
+const CreateNewPage = ({ allPages }) => {
+  const { isPremium } = useUserSubscription();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isChecking, setIsChecking] = useState(false);
   const [isAvailable, setIsAvailable] = useState(false);
+
+  const isPremiumPlus = false;
+
+  const canUserCreatePage = () => {
+    if (allPages.length < 1) {
+      return true;
+    }
+    if (allPages.length < 3 && isPremium) {
+      return true;
+    }
+    if (allPages.length < 100 && isPremiumPlus) {
+      return true;
+    }
+    return false;
+  };
 
   const form = useForm({
     resolver: zodResolver(PageUriSchema),

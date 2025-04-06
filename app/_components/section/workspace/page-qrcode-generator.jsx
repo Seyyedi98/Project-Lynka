@@ -37,7 +37,7 @@ const variantTranslations = {
   morse: "مورس",
 };
 
-const PageQrCodeGenerator = () => {
+const PageQrCodeGenerator = ({ target }) => {
   const { uri } = useParams();
   const [eyesVariant, setEyesVariant] = useState("fluid");
   const [bodyVariant, setBodyVariant] = useState("fluid");
@@ -45,7 +45,7 @@ const PageQrCodeGenerator = () => {
   const [bodyColor, setBodyColor] = useState("#8BD3E6"); // Minty blue
   const [bgColor, setBgColor] = useState("#F8F9FA"); // Light background
   const [displaySize, setDisplaySize] = useState(250);
-  const value = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${uri}`;
+  const value = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${uri || target}`;
   const qrCodeRef = useRef(null);
 
   useEffect(() => {

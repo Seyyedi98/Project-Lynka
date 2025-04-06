@@ -1,37 +1,18 @@
 "use client";
 import { getNotifications } from "@/actions/notifications";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
-import {
-  Bell,
-  ChevronDown,
-  HelpCircle,
-  LoaderIcon,
-  LogOut,
-  Moon,
-  Settings,
-  Sun,
-  UserCircleIcon,
-} from "lucide-react";
+import { HelpCircle } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import ToggleDarkmode from "../../common/button/PrimaryButton/toggle-darkmode";
+import DashboardHeadingDropdown from "./dashboard-heading-dropdown";
+import DashboardHeadingNotificationBell from "./dashboard-heading-norification-bell";
 
 const DashboardHeading = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [loadingNotifications, setLoadingNotifications] = useState(false);
   const user = useCurrentUser();
-  const { theme } = useTheme();
-  const router = useRouter();
 
   const unreadCount = notifications.filter((n) => !n.isRead).length;
 
@@ -70,93 +51,22 @@ const DashboardHeading = () => {
   return (
     <div
       className={`fixed right-0 top-0 z-40 flex h-16 w-full items-center justify-between px-2 text-white transition-all duration-150 sm:pr-8 ${
-        isScrolled ? "bg-main-gradient-2 shadow-lg" : "bg-transparent"
+        isScrolled
+          ? "bg-gradient-to-r from-[hsl(207,90%,54%)] to-[hsl(172,100%,37%)] shadow-lg"
+          : "bg-transparent"
       }`}
     >
       <div className="mr-16 flex items-center justify-center text-sm">
-        <button
-          onClick={() => router.push("/dashboard/notifications")}
-          className="relative rounded-full p-2 transition-colors hover:bg-white/10"
-          disabled={loadingNotifications}
-        >
-          {loadingNotifications ? (
-            <LoaderIcon className="h-6 w-6 animate-spin" />
-          ) : (
-            <>
-              <Bell className="h-6 w-6" />
-              {unreadCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs">
-                  {unreadCount}
-                </span>
-              )}
-            </>
-          )}
-        </button>
+        <DashboardHeadingNotificationBell
+          loadingNotifications={loadingNotifications}
+          unreadCount={unreadCount}
+        />
         <button className="rounded-full p-2 transition-colors hover:bg-white/10">
           <HelpCircle className="h-6 w-6" />
         </button>
       </div>
 
-      <div className="ml-2 flex items-center justify-center gap-4 text-sm">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button className="flex items-center gap-2 rounded-full p-1 pr-2 transition-colors hover:bg-white/10">
-              <div className="flex items-center">
-                <ChevronDown className="h-4 w-4 transition-transform duration-200" />
-                <span className="text-sm font-medium">
-                  {user ? (
-                    user.name
-                  ) : (
-                    <LoaderIcon className="h-4 w-4 animate-spin" />
-                  )}
-                </span>
-                <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
-                  <UserCircleIcon className="h-5 w-5" />
-                </div>
-              </div>
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            align="end"
-            className="min-w-[220px] rounded-xl bg-white/95 p-2 backdrop-blur-lg dark:bg-gray-800/95 dark:text-white"
-          >
-            <DropdownMenuLabel className="px-2 py-1.5 text-xs font-medium text-gray-500 dark:text-gray-400">
-              حساب کاربری
-            </DropdownMenuLabel>
-            <DropdownMenuItem className="cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
-              <UserCircleIcon className="mr-2 h-4 w-4" />
-              <span>پروفایل</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
-              <Settings className="mr-2 h-4 w-4" />
-              <span>تنظیمات</span>
-            </DropdownMenuItem>
-
-            <DropdownMenuSeparator className="mx-2 my-1 bg-gray-200 dark:bg-gray-700" />
-
-            <div className="px-2 py-1.5">
-              <div className="flex items-center justify-between rounded-lg px-2 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
-                <div className="flex items-center">
-                  {theme === "dark" ? (
-                    <Moon className="mr-2 h-4 w-4" />
-                  ) : (
-                    <Sun className="mr-2 h-4 w-4" />
-                  )}
-                  <span>حالت تاریک</span>
-                </div>
-                <ToggleDarkmode />
-              </div>
-            </div>
-
-            <DropdownMenuSeparator className="mx-2 my-1 bg-gray-200 dark:bg-gray-700" />
-
-            <DropdownMenuItem className="cursor-pointer rounded-lg px-2 py-2 text-sm text-red-600 focus:bg-red-50 dark:text-red-400 dark:focus:bg-red-900/30">
-              <LogOut className="mr-2 h-4 w-4" />
-              <span>خروج</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
+      <DashboardHeadingDropdown user={user} />
     </div>
   );
 };

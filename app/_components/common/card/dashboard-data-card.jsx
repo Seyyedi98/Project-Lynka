@@ -10,7 +10,7 @@ const DashboardDataCard = ({ children, bgColor, text, data }) => {
         <span className="text-2xl">{data}</span>
         <span className="text-lg">{text}</span>
       </div>
-      <div className="absolute bottom-2 left-4 flex flex-col text-white/50">
+      <div className="absolute bottom-2 left-2 flex flex-col text-white/50">
         {children}
       </div>
     </div>

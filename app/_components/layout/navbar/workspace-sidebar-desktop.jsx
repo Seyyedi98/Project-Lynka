@@ -6,19 +6,19 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import getImageAddress from "@/utils/get-image-address";
 import parseJson from "@/utils/parseJSON";
 import { GearIcon } from "@radix-ui/react-icons";
 import {
   AppWindow,
   ChartLine,
-  Droplet,
   Layers,
+  PaletteIcon,
   UserRoundIcon,
 } from "lucide-react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import PageSettings from "../../workspace/page-settings";
-import getImageAddress from "@/utils/get-image-address";
 
 const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
   const data = useSelector((store) => store.page.hero);
@@ -94,7 +94,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 selectedMenu === "theme" && "text-text",
               )}
             >
-              <Droplet className="" />
+              <PaletteIcon className="" />
             </li>
 
             <li
