@@ -112,9 +112,9 @@ model Page {
   owner           String?
   loadingIcon     String?
   metaTitle       String?
-  metaDescription String?  @db.TinyText
-  favicon         String?  @db.Text
-  metaImage       String?  @db.Text
+  metaDescription String?  @db.VarChar(300)
+  favicon         String?  @db.VarChar(300)
+  metaImage       String?  @db.VarChar(300)
   content         String   @db.MediumText
   views           Int      @default(0)
   isPremium       Boolean  @default(false)
@@ -122,6 +122,7 @@ model Page {
 
   User User? @relation(fields: [owner], references: [id], onDelete: Cascade)
 
+  @@index([owner])
   @@index([uri])
 }
 
@@ -133,7 +134,6 @@ model LinkView {
   clickedAt   DateTime @default(now())
 
   @@index([pageUri])
-  @@index([elementId])
   @@index([clickedAt])
 }
 
@@ -144,15 +144,8 @@ model FormSubmission {
   formData  Json
   createdAt DateTime @default(now())
 
-  // Metadata for analytics
-  ipAddress String?
-  userAgent String?
-  referrer  String?
-  country   String?
-
   @@index([pageUri])
   @@index([createdAt])
-  @@index([pageUri, formName]) // For querying specific forms
 }
 
 model Notification {

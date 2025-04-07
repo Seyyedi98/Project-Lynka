@@ -2,7 +2,15 @@
 
 import { getLinkAnalytics } from "@/actions/page/analytics";
 import { getUserPageData } from "@/actions/page/page";
-import PageAnalyticsChart from "@/app/_components/charts/page-analytics-chart";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
+import {
+  Loader2Icon,
+  Calendar,
+  BarChart2,
+  MousePointerClick,
+  Link as LinkIcon,
+} from "lucide-react";
+import { useEffect, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -10,21 +18,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
-import {
-  Calendar,
-  Link as LinkIcon,
-  Loader2Icon,
-  MousePointerClick,
-} from "lucide-react";
-import { useEffect, useState } from "react";
+import DashboardDataCard from "@/app/_components/common/card/dashboard-data-card";
 
 const AnalyticsPanel = () => {
   const [analytics, setAnalytics] = useState([]);
   const [pages, setPages] = useState([]);
   const [selectedPage, setSelectedPage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [dateRange, setDateRange] = useState("today");
+  const [dateRange, setDateRange] = useState("all");
   const { isPremium } = useUserSubscription();
 
   useEffect(() => {
@@ -71,7 +72,8 @@ const AnalyticsPanel = () => {
       {/* Header */}
       <div className="mb-8 flex items-center justify-between sm:mx-4 sm:mr-20 xl:pr-6">
         <div className="flex items-center space-x-3">
-          <h1 className="text-2xl font-bold text-white">آمار و تحلیل‌ها</h1>
+          <BarChart2 className="h-8 w-8 text-indigo-500" />
+          <h1 className="text-2xl font-bold text-text">آمار و تحلیل‌ها</h1>
         </div>
 
         {/* Filters */}
@@ -82,10 +84,11 @@ const AnalyticsPanel = () => {
               <LinkIcon className="h-5 w-5 text-gray-400" />
             </div>
             <Select value={selectedPage} onValueChange={setSelectedPage}>
-              <SelectTrigger className="w-full rounded-lg border border-border bg-card py-2 pl-10 pr-3 text-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm">
+              <SelectTrigger className="w-full rounded-lg border border-border bg-card py-2 pl-10 pr-3 text-text focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 <SelectValue placeholder="انتخاب صفحه" />
               </SelectTrigger>
               <SelectContent className="rounded-lg border border-border bg-card text-text">
+                <SelectItem value="all">همه صفحات</SelectItem>
                 {pages.map((page) => (
                   <SelectItem key={page.uri} value={page.uri}>
                     {page.title || page.uri}
@@ -105,16 +108,17 @@ const AnalyticsPanel = () => {
               onValueChange={setDateRange}
               disabled={!selectedPage}
             >
-              <SelectTrigger className="w-full rounded-lg border border-border bg-card py-2 pl-10 pr-3 text-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm">
+              <SelectTrigger className="w-full rounded-lg border border-border bg-card py-2 pl-10 pr-3 text-text focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 <SelectValue placeholder="انتخاب بازه زمانی" />
               </SelectTrigger>
               <SelectContent className="rounded-lg border border-border bg-card text-text">
                 <SelectItem value="today">امروز</SelectItem>
                 <SelectItem value="lastweek">هفته گذشته</SelectItem>
                 <SelectItem value="lastmonth">ماه گذشته</SelectItem>
-                <SelectItem value="last3month">سه ماه گذشته</SelectItem>
-                <SelectItem value="last6month">شش ماه گذشته</SelectItem>
+                <SelectItem value="last3month">۳ ماه گذشته</SelectItem>
+                <SelectItem value="last6month">۶ ماه گذشته</SelectItem>
                 <SelectItem value="lastyear">سال گذشته</SelectItem>
+                <SelectItem value="all">همه زمان‌ها</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -125,7 +129,7 @@ const AnalyticsPanel = () => {
         {/* Stats Cards - Only shown when a page is selected */}
         {selectedPage ? (
           <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-            <div className="rounded-xl bg-gradient-to-r from-primary to-indigo-600 p-6 shadow-lg">
+            <div className="rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 p-6 shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-indigo-100">
@@ -209,10 +213,60 @@ const AnalyticsPanel = () => {
             </div>
           ) : isLoading ? (
             <div className="flex h-64 items-center justify-center">
-              <Loader2Icon className="h-10 w-10 animate-spin text-primary" />
+              <Loader2Icon className="h-10 w-10 animate-spin text-indigo-500" />
             </div>
           ) : analytics.length > 0 ? (
-            <PageAnalyticsChart data={analytics} dateRange={dateRange} />
+            <div className="overflow-hidden rounded-lg border border-border">
+              <table className="min-w-full divide-y divide-gray-700">
+                <thead className="bg-gray-750">
+                  <tr>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-300"
+                    >
+                      المان
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-300"
+                    >
+                      تاریخ
+                    </th>
+                    {selectedPage === "all" && (
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-300"
+                      >
+                        صفحه
+                      </th>
+                    )}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-700 bg-card">
+                  {analytics.map((click) => {
+                    const clickDate = new Date(click.clickedAt);
+                    const dateString = clickDate.toLocaleDateString("fa-IR");
+
+                    return (
+                      <tr key={click.id} className="hover:bg-gray-750">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-text">
+                          {click.elementName}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-300">
+                          {dateString}
+                        </td>
+                        {selectedPage === "all" && (
+                          <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-300">
+                            {pages.find((p) => p.uri === click.pageUri)
+                              ?.title || click.pageUri}
+                          </td>
+                        )}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           ) : (
             <div className="flex h-64 items-center justify-center rounded-lg border-2 border-dashed border-border">
               <p className="text-gray-400">داده‌ای برای نمایش وجود ندارد</p>

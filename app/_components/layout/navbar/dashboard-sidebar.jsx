@@ -3,7 +3,12 @@
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { cn } from "@/lib/utils";
-import { ChartBar, LucideHome } from "lucide-react";
+import {
+  ChartBar,
+  ChartSplineIcon,
+  LucideHome,
+  NotepadTextIcon,
+} from "lucide-react";
 import { useState } from "react";
 import SidebarLink from "../../common/button/NavigationButton/sidebar-link";
 import HumbergerMenuBtn from "../../common/button/PrimaryButton/humberger-menu";
@@ -49,7 +54,7 @@ const DashboardSidebar = () => {
           title="آمار"
           path="/dashboard/analytics"
         >
-          <ChartBar className="h-6 w-6" />
+          <ChartSplineIcon className="h-6 w-6" />
         </SidebarLink>
 
         <SidebarLink
@@ -57,7 +62,7 @@ const DashboardSidebar = () => {
           title="بلاگ"
           path="/dashboard/blog"
         >
-          <ChartBar className="h-6 w-6" />
+          <NotepadTextIcon className="h-6 w-6" />
         </SidebarLink>
 
         <SidebarLink
