@@ -14,23 +14,43 @@ import { useUserSubscription } from "@/hooks/useUserSubscription";
 import {
   Calendar,
   Link as LinkIcon,
-  Loader2Icon,
+  Loader2,
   MousePointerClick,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { formItemAnimation, stagger } from "@/utils/animation/animation";
+
+const fade = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { duration: 0.3 },
+};
 
 const AnalyticsPanel = () => {
   const [analytics, setAnalytics] = useState([]);
   const [pages, setPages] = useState([]);
   const [selectedPage, setSelectedPage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isInitialLoading, setIsInitialLoading] = useState(false);
   const [dateRange, setDateRange] = useState("today");
   const { isPremium } = useUserSubscription();
 
   useEffect(() => {
     const fetchPages = async () => {
-      const allPages = await getUserPageData();
-      setPages(allPages);
+      try {
+        setIsInitialLoading(true);
+        const allPages = await getUserPageData();
+        setPages(allPages);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsInitialLoading(false);
+      }
     };
     fetchPages();
   }, []);
@@ -45,22 +65,27 @@ const AnalyticsPanel = () => {
       setIsLoading(true);
       let allAnalytics = [];
 
-      if (selectedPage === "all") {
-        const allPages = await getUserPageData();
-        for (const page of allPages) {
-          const data = await getLinkAnalytics(page.uri, dateRange);
-          allAnalytics.push(...data);
+      try {
+        if (selectedPage === "all") {
+          const allPages = await getUserPageData();
+          for (const page of allPages) {
+            const data = await getLinkAnalytics(page.uri, dateRange);
+            allAnalytics.push(...data);
+          }
+        } else {
+          const page = pages.find((p) => p.uri === selectedPage);
+          if (page) {
+            const data = await getLinkAnalytics(page.uri, dateRange);
+            allAnalytics = data;
+          }
         }
-      } else {
-        const page = pages.find((p) => p.uri === selectedPage);
-        if (page) {
-          const data = await getLinkAnalytics(page.uri, dateRange);
-          allAnalytics = data;
-        }
-      }
 
-      setAnalytics(allAnalytics);
-      setIsLoading(false);
+        setAnalytics(allAnalytics);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchAnalytics();
@@ -69,157 +94,211 @@ const AnalyticsPanel = () => {
   return (
     <div className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8">
       {/* Header */}
-      <div className="mb-8 flex items-center justify-between sm:mx-4 sm:mr-20 xl:pr-6">
-        <div className="flex items-center space-x-3">
-          <h1 className="text-2xl font-bold text-white">آمار و تحلیل‌ها</h1>
-        </div>
-
-        {/* Filters */}
-        <div className="flex gap-2 space-x-3">
-          {/* Page Selector */}
-          <div className="relative w-40">
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <LinkIcon className="h-5 w-5 text-gray-400" />
-            </div>
-            <Select value={selectedPage} onValueChange={setSelectedPage}>
-              <SelectTrigger className="w-full rounded-lg border border-border bg-card py-2 pl-10 pr-3 text-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm">
-                <SelectValue placeholder="انتخاب صفحه" />
-              </SelectTrigger>
-              <SelectContent className="rounded-lg border border-border bg-card text-text">
-                {pages.map((page) => (
-                  <SelectItem key={page.uri} value={page.uri}>
-                    {page.title || page.uri}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Date Range Selector - Disabled when no page is selected */}
-          <div className="relative w-40">
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <Calendar className="h-5 w-5 text-gray-400" />
-            </div>
-            <Select
-              value={dateRange}
-              onValueChange={setDateRange}
-              disabled={!selectedPage}
-            >
-              <SelectTrigger className="w-full rounded-lg border border-border bg-card py-2 pl-10 pr-3 text-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm">
-                <SelectValue placeholder="انتخاب بازه زمانی" />
-              </SelectTrigger>
-              <SelectContent className="rounded-lg border border-border bg-card text-text">
-                <SelectItem value="today">امروز</SelectItem>
-                <SelectItem value="lastweek">هفته گذشته</SelectItem>
-                <SelectItem value="lastmonth">ماه گذشته</SelectItem>
-                <SelectItem value="last3month">سه ماه گذشته</SelectItem>
-                <SelectItem value="last6month">شش ماه گذشته</SelectItem>
-                <SelectItem value="lastyear">سال گذشته</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
+      <div className="mb-8 sm:mx-4 sm:mr-20 xl:pr-6">
+        <motion.h1
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-3xl font-bold text-white md:text-4xl"
+        >
+          آمار و تحلیل‌ها
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="mt-2 text-muted-foreground"
+        >
+          مشاهده و تحلیل آمار کلیک‌های صفحات
+        </motion.p>
       </div>
 
-      <div className="sm:mx-4 sm:mr-20 xl:pr-6">
-        {/* Stats Cards - Only shown when a page is selected */}
-        {selectedPage ? (
-          <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-            <div className="rounded-xl bg-gradient-to-r from-primary to-indigo-600 p-6 shadow-lg">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-indigo-100">
-                    تعداد کلیک‌ها
-                  </p>
-                  <p className="mt-1 text-3xl font-semibold text-white">
-                    {analytics.length}
-                  </p>
-                </div>
-                <MousePointerClick className="h-8 w-8 text-indigo-200" />
-              </div>
-            </div>
+      {/* Filters Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="mb-6"
+      >
+        <Card className="border-0 bg-background/80 backdrop-blur-sm sm:mx-4 sm:mr-20 xl:pr-6">
+          <CardContent className="p-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="flex-1"></div>
 
-            <div className="rounded-xl bg-gradient-to-r from-pink-500 to-pink-600 p-6 shadow-lg">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-pink-100">
-                    میانگین کلیک در روز
-                  </p>
-                  <p className="mt-1 text-3xl font-semibold text-white">
-                    {dateRange === "today"
-                      ? analytics.length
-                      : Math.round(
-                          analytics.length /
-                            (dateRange === "lastweek"
-                              ? 7
-                              : dateRange === "lastmonth"
-                                ? 30
-                                : dateRange === "last3month"
-                                  ? 90
-                                  : dateRange === "last6month"
-                                    ? 180
-                                    : dateRange === "lastyear"
-                                      ? 365
-                                      : 1),
-                        )}
-                  </p>
-                </div>
-                <svg
-                  className="h-8 w-8 text-pink-200"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              <div className="flex items-center gap-3">
+                <Select
+                  value={dateRange}
+                  onValueChange={setDateRange}
+                  disabled={!selectedPage}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  />
-                </svg>
+                  <SelectTrigger className="w-48">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-4 w-4 text-muted-foreground" />
+                      <SelectValue placeholder="انتخاب بازه زمانی" />
+                    </div>
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="today">امروز</SelectItem>
+                    <SelectItem value="lastweek">هفته گذشته</SelectItem>
+                    <SelectItem value="lastmonth">ماه گذشته</SelectItem>
+                    <SelectItem value="last3month">سه ماه گذشته</SelectItem>
+                    <SelectItem value="last6month">شش ماه گذشته</SelectItem>
+                    <SelectItem value="lastyear">سال گذشته</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select value={selectedPage} onValueChange={setSelectedPage}>
+                  <SelectTrigger className="w-48">
+                    <div className="flex items-center gap-2">
+                      <LinkIcon className="h-4 w-4 text-muted-foreground" />
+                      <SelectValue placeholder="انتخاب صفحه" />
+                    </div>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {isInitialLoading ? (
+                      <div className="p-2 text-center text-sm text-muted-foreground">
+                        در حال بارگذاری صفحات...
+                      </div>
+                    ) : (
+                      pages.map((page) => (
+                        <SelectItem key={page.uri} value={page.uri}>
+                          {page.title || page.uri}
+                        </SelectItem>
+                      ))
+                    )}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
-          </div>
-        ) : (
-          <div className="mb-8 rounded-xl bg-card p-6 text-center shadow-lg">
-            <p className="text-gray-400">لطفاً یک صفحه را انتخاب کنید</p>
-          </div>
-        )}
+          </CardContent>
+        </Card>
+      </motion.div>
 
-        {/* Analytics List */}
-        <div className="rounded-xl bg-card p-6 shadow-lg">
-          <h2 className="mb-4 text-lg font-semibold text-text">
-            {selectedPage ? (
-              <>
-                جزئیات کلیک‌ها{" "}
-                {selectedPage !== "all"
-                  ? `برای ${pages.find((p) => p.uri === selectedPage)?.title || selectedPage}`
-                  : ""}
-              </>
-            ) : (
-              "برای مشاهده، لطفا صفحه را انتخاب کنید"
-            )}
-          </h2>
-
-          {!selectedPage ? (
-            <div className="flex h-64 items-center justify-center rounded-lg border-2 border-dashed border-border">
-              <p className="text-gray-400">
-                برای مشاهده، لطفا صفحه را انتخاب کنید
-              </p>
-            </div>
-          ) : isLoading ? (
-            <div className="flex h-64 items-center justify-center">
-              <Loader2Icon className="h-10 w-10 animate-spin text-primary" />
-            </div>
-          ) : analytics.length > 0 ? (
-            <PageAnalyticsChart data={analytics} dateRange={dateRange} />
-          ) : (
-            <div className="flex h-64 items-center justify-center rounded-lg border-2 border-dashed border-border">
-              <p className="text-gray-400">داده‌ای برای نمایش وجود ندارد</p>
-            </div>
-          )}
+      {/* Content */}
+      {isInitialLoading ? (
+        <div className="space-y-4 sm:mx-4 sm:mr-20 xl:pr-6">
+          {[...Array(3)].map((_, i) => (
+            <Skeleton key={i} className="h-20 w-full rounded-xl" />
+          ))}
         </div>
-      </div>
+      ) : (
+        <>
+          {/* Stats Cards - Only shown when a page is selected */}
+          {selectedPage ? (
+            <motion.div
+              {...fade}
+              className="mb-6 grid grid-cols-1 gap-6 sm:mx-4 sm:mr-20 sm:grid-cols-2 xl:pr-6"
+            >
+              <Card className="border-0 bg-gradient-to-r from-primary to-indigo-600">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-indigo-100">
+                        تعداد کلیک‌ها
+                      </p>
+                      <p className="mt-1 text-3xl font-semibold text-white">
+                        {analytics.length}
+                      </p>
+                    </div>
+                    <MousePointerClick className="h-8 w-8 text-indigo-200" />
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 bg-gradient-to-r from-pink-500 to-pink-600">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-pink-100">
+                        میانگین کلیک در روز
+                      </p>
+                      <p className="mt-1 text-3xl font-semibold text-white">
+                        {dateRange === "today"
+                          ? analytics.length
+                          : Math.round(
+                              analytics.length /
+                                (dateRange === "lastweek"
+                                  ? 7
+                                  : dateRange === "lastmonth"
+                                    ? 30
+                                    : dateRange === "last3month"
+                                      ? 90
+                                      : dateRange === "last6month"
+                                        ? 180
+                                        : dateRange === "lastyear"
+                                          ? 365
+                                          : 1),
+                            )}
+                      </p>
+                    </div>
+                    <svg
+                      className="h-8 w-8 text-pink-200"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                      />
+                    </svg>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ) : (
+            <motion.div
+              {...fade}
+              className="flex flex-col items-center justify-center py-16 text-center"
+            >
+              <div className="mb-4 rounded-full bg-muted/20 p-4">
+                <LinkIcon className="h-8 w-8 text-muted-foreground" />
+              </div>
+              <h3 className="mb-2 text-lg font-medium">
+                صفحه‌ای انتخاب نشده است
+              </h3>
+              <p className="text-muted-foreground">
+                لطفاً یک صفحه را از لیست انتخاب کنید تا آمار آن نمایش داده شود
+              </p>
+            </motion.div>
+          )}
+
+          {/* Analytics Chart */}
+          {selectedPage && (
+            <motion.div
+              {...fade}
+              className="overflow-hidden rounded-xl border border-muted/30 bg-card/80 shadow-sm backdrop-blur-sm sm:mx-4 sm:mr-20 xl:pr-6"
+            >
+              <CardHeader>
+                <CardTitle className="text-lg">
+                  {selectedPage !== "all"
+                    ? `جزئیات کلیک‌ها برای ${
+                        pages.find((p) => p.uri === selectedPage)?.title ||
+                        selectedPage
+                      }`
+                    : "جزئیات کلیک‌ها برای همه صفحات"}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                {isLoading ? (
+                  <div className="flex h-64 items-center justify-center">
+                    <Loader2 className="h-10 w-10 animate-spin text-primary" />
+                  </div>
+                ) : analytics.length > 0 ? (
+                  <PageAnalyticsChart data={analytics} dateRange={dateRange} />
+                ) : (
+                  <div className="flex h-64 items-center justify-center rounded-lg border-2 border-dashed border-border">
+                    <p className="text-muted-foreground">
+                      داده‌ای برای نمایش وجود ندارد
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </motion.div>
+          )}
+        </>
+      )}
     </div>
   );
 };

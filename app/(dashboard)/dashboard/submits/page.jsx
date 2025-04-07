@@ -1,0 +1,472 @@
+"use client";
+
+import { getSubmittedForms } from "@/actions/form/page-formfield";
+import { getUserPageData } from "@/actions/page/page";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { LinkIcon, Loader2, FilterIcon, AlertCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Skeleton } from "@/components/ui/skeleton";
+import { formItemAnimation, stagger } from "@/utils/animation/animation";
+
+const fade = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { duration: 0.3 },
+};
+
+export default function SubmitsPanel() {
+  const [forms, setForms] = useState([]);
+  const [pages, setPages] = useState([]);
+  const [selectedPage, setSelectedPage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isInitialLoading, setIsInitialLoading] = useState(false);
+  const [cursor, setCursor] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedForm, setSelectedForm] = useState(null);
+  const [formTitleFilter, setFormTitleFilter] = useState(null);
+  const [availableTitles, setAvailableTitles] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    const fetchPages = async () => {
+      try {
+        setIsInitialLoading(true);
+        const allPages = await getUserPageData();
+        setPages(allPages);
+      } catch (err) {
+        setError("Failed to load pages");
+        console.error(err);
+      } finally {
+        setIsInitialLoading(false);
+      }
+    };
+    fetchPages();
+  }, []);
+
+  useEffect(() => {
+    if (selectedPage) {
+      setForms([]);
+      setCursor(null);
+      setHasMore(true);
+      setFormTitleFilter(null);
+      fetchAvailableTitles();
+    }
+  }, [selectedPage]);
+
+  useEffect(() => {
+    if (selectedPage && (formTitleFilter || searchQuery)) {
+      setForms([]);
+      setCursor(null);
+      setHasMore(true);
+      loadSubmissions();
+    }
+  }, [formTitleFilter, searchQuery]);
+
+  const fetchAvailableTitles = async () => {
+    try {
+      const result = await getSubmittedForms({
+        uri: selectedPage,
+        limit: 100,
+        cursor: null,
+      });
+      if (result.success) {
+        const titles = [
+          ...new Set(result.data.map((f) => f.FormOccupiedTitle12)),
+        ].filter(Boolean);
+        setAvailableTitles(titles);
+      }
+    } catch (err) {
+      console.error("Failed to fetch form titles", err);
+    }
+  };
+
+  const loadSubmissions = async () => {
+    if (isLoading) return;
+    setIsLoading(true);
+    setError(null);
+    try {
+      const result = await getSubmittedForms({
+        uri: selectedPage,
+        limit: 10,
+        cursor,
+        formTitleFilter,
+        searchQuery,
+      });
+
+      if (result.success) {
+        setForms((prev) => {
+          const existingIds = new Set(prev.map((form) => form.id));
+          const newForms = result.data.filter(
+            (form) => !existingIds.has(form.id),
+          );
+          return [...prev, ...newForms];
+        });
+        setCursor(result.nextCursor);
+        setHasMore(result.nextCursor !== null);
+      } else {
+        setError(result.error || "Failed to load submissions");
+      }
+    } catch (err) {
+      setError(err.message || "An unexpected error occurred");
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getFormFields = () => {
+    const fields = new Set();
+    forms.forEach((form) => {
+      Object.keys(form).forEach((key) => {
+        if (!["id", "createdAt", "FormOccupiedTitle12"].includes(key)) {
+          fields.add(key);
+        }
+      });
+    });
+    return Array.from(fields);
+  };
+
+  const filteredForms = forms.filter((form) => {
+    if (!searchQuery) return true;
+    return Object.values(form).some((value) =>
+      String(value).toLowerCase().includes(searchQuery.toLowerCase()),
+    );
+  });
+
+  return (
+    <div className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8">
+      {/* Header */}
+      <div className="mb-8 sm:mx-4 sm:mr-20 xl:pr-6">
+        <motion.h1
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-3xl font-bold text-white md:text-4xl"
+        >
+          فرم های اطلاعاتی
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="mt-2 text-muted-foreground"
+        >
+          مدیریت و مشاهده تمام فرم‌های ارسال شده
+        </motion.p>
+      </div>
+
+      {/* Filters Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="mb-6"
+      >
+        <Card className="border-0 bg-background/80 backdrop-blur-sm sm:mx-4 sm:mr-20 xl:pr-6">
+          <CardContent className="p-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="flex-1">
+                <Input
+                  placeholder="جستجو در فرم‌ها..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="max-w-md"
+                />
+              </div>
+
+              <div className="flex items-center gap-3">
+                {selectedPage && availableTitles.length > 0 && (
+                  <Select
+                    value={formTitleFilter ?? undefined}
+                    onValueChange={setFormTitleFilter}
+                  >
+                    <SelectTrigger className="w-48">
+                      <div className="flex items-center gap-2">
+                        <FilterIcon className="h-4 w-4 text-muted-foreground" />
+                        <SelectValue placeholder="فیلتر عنوان فرم" />
+                      </div>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value={null}>همه فرم‌ها</SelectItem>
+                      {availableTitles.map((title) => (
+                        <SelectItem key={title} value={title}>
+                          {title}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+
+                <Select value={selectedPage} onValueChange={setSelectedPage}>
+                  <SelectTrigger className="w-48">
+                    <div className="flex items-center gap-2">
+                      <LinkIcon className="h-4 w-4 text-muted-foreground" />
+                      <SelectValue placeholder="انتخاب صفحه" />
+                    </div>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {isInitialLoading ? (
+                      <div className="p-2 text-center text-sm text-muted-foreground">
+                        در حال بارگذاری صفحات...
+                      </div>
+                    ) : (
+                      pages.map((page) => (
+                        <SelectItem key={page.uri} value={page.uri}>
+                          {page.title || page.uri}
+                        </SelectItem>
+                      ))
+                    )}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      {/* Content */}
+      {isInitialLoading ? (
+        <div className="space-y-4 sm:mx-4 sm:mr-20 xl:pr-6">
+          {[...Array(3)].map((_, i) => (
+            <Skeleton key={i} className="h-20 w-full rounded-xl" />
+          ))}
+        </div>
+      ) : (
+        <>
+          {/* Table View */}
+          {filteredForms.length > 0 && (
+            <motion.div
+              {...fade}
+              className="overflow-hidden rounded-xl border border-muted/30 bg-card/80 shadow-sm backdrop-blur-sm sm:mx-4 sm:mr-20 xl:pr-6"
+            >
+              <div className="overflow-x-auto">
+                <Table className="w-full text-sm">
+                  <TableHeader className="bg-muted/20">
+                    <TableRow>
+                      <TableHead className="min-w-[180px]">عنوان فرم</TableHead>
+                      {getFormFields()
+                        .slice(0, 3)
+                        .map((field) => (
+                          <TableHead key={field}>{field}</TableHead>
+                        ))}
+                      <TableHead className="min-w-[150px]">تاریخ ثبت</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody
+                    variants={stagger}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    {filteredForms.map((form) => (
+                      <motion.tr
+                        key={form.id}
+                        variants={formItemAnimation}
+                        className="group cursor-pointer border-t border-muted/20 transition-colors hover:bg-muted/10"
+                        onClick={() => setSelectedForm(form)}
+                      >
+                        <TableCell className="font-medium">
+                          <div className="flex items-center gap-2">
+                            {form.FormOccupiedTitle12 || "بدون عنوان"}
+                            {form.FormOccupiedTitle12 && (
+                              <Badge
+                                variant="outline"
+                                className="opacity-0 transition-opacity group-hover:opacity-100"
+                              >
+                                مشاهده
+                              </Badge>
+                            )}
+                          </div>
+                        </TableCell>
+                        {getFormFields()
+                          .slice(0, 3)
+                          .map((field) => (
+                            <TableCell
+                              key={field}
+                              className="max-w-[200px] truncate"
+                            >
+                              {form[field] || `-`}
+                            </TableCell>
+                          ))}
+                        <TableCell>
+                          <div className="text-muted-foreground">
+                            {new Date(form.createdAt).toLocaleString("fa-IR")}
+                          </div>
+                        </TableCell>
+                      </motion.tr>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </motion.div>
+          )}
+
+          {/* States */}
+          {!selectedPage && (
+            <motion.div
+              {...fade}
+              className="flex flex-col items-center justify-center py-16 text-center"
+            >
+              <div className="mb-4 rounded-full bg-muted/20 p-4">
+                <LinkIcon className="h-8 w-8 text-muted-foreground" />
+              </div>
+              <h3 className="mb-2 text-lg font-medium">
+                صفحه‌ای انتخاب نشده است
+              </h3>
+              <p className="text-muted-foreground">
+                لطفاً یک صفحه را از لیست انتخاب کنید تا فرم‌های آن نمایش داده
+                شوند
+              </p>
+            </motion.div>
+          )}
+
+          {selectedPage && filteredForms.length === 0 && !isLoading && (
+            <motion.div
+              {...fade}
+              className="flex flex-col items-center justify-center py-16 text-center"
+            >
+              <div className="mb-4 rounded-full bg-muted/20 p-4">
+                <FilterIcon className="h-8 w-8 text-muted-foreground" />
+              </div>
+              <h3 className="mb-2 text-lg font-medium">
+                {searchQuery || formTitleFilter
+                  ? "نتیجه‌ای یافت نشد"
+                  : "هیچ فرمی برای این صفحه ثبت نشده است"}
+              </h3>
+              <p className="text-muted-foreground">
+                {searchQuery
+                  ? "عبارت جستجو شده با هیچ فرمی مطابقت ندارد"
+                  : formTitleFilter
+                    ? "فرمی با این عنوان یافت نشد"
+                    : "هنوز فرمی برای این صفحه ارسال نشده است"}
+              </p>
+            </motion.div>
+          )}
+
+          {isLoading && (
+            <motion.div {...fade} className="flex justify-center py-8">
+              <Loader2 className="h-6 w-6 animate-spin text-primary" />
+            </motion.div>
+          )}
+
+          {hasMore && filteredForms.length > 0 && !isLoading && (
+            <motion.div {...fade} className="mt-6 text-center">
+              <Button
+                variant="outline"
+                onClick={loadSubmissions}
+                disabled={isLoading}
+                className="gap-2"
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    در حال بارگیری...
+                  </>
+                ) : (
+                  "بارگیری بیشتر"
+                )}
+              </Button>
+            </motion.div>
+          )}
+
+          {!hasMore && filteredForms.length > 0 && (
+            <motion.p
+              {...fade}
+              className="mt-6 text-center text-sm text-muted-foreground"
+            >
+              تمام فرم‌ها بارگذاری شدند • {filteredForms.length} فرم
+            </motion.p>
+          )}
+
+          {error && (
+            <motion.div
+              {...fade}
+              className="mt-6 rounded-lg border border-destructive/20 bg-destructive/10 p-4"
+            >
+              <div className="flex items-center gap-3 text-destructive">
+                <AlertCircle className="h-5 w-5" />
+                <div>
+                  <p className="font-medium">{error}</p>
+                  <Button
+                    variant="link"
+                    size="sm"
+                    onClick={loadSubmissions}
+                    className="h-auto p-0 text-destructive"
+                  >
+                    تلاش مجدد
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </>
+      )}
+
+      {/* Form Detail Dialog */}
+      <Dialog open={!!selectedForm} onOpenChange={() => setSelectedForm(null)}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <span>جزئیات فرم</span>
+              {selectedForm?.FormOccupiedTitle12 && (
+                <Badge variant="secondary">
+                  {selectedForm.FormOccupiedTitle12}
+                </Badge>
+              )}
+            </DialogTitle>
+            <DialogDescription>
+              {new Date(selectedForm?.createdAt).toLocaleString("fa-IR")}
+            </DialogDescription>
+          </DialogHeader>
+
+          {selectedForm && (
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {Object.entries(selectedForm).map(([key, value]) => {
+                  if (["id", "createdAt", "FormOccupiedTitle12"].includes(key))
+                    return null;
+                  return (
+                    <div key={key} className="space-y-1">
+                      <p className="text-sm font-medium text-muted-foreground">
+                        {key}:
+                      </p>
+                      <p className="rounded-md bg-muted/20 p-3 text-sm">
+                        {value || `بدون مقدار`}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}

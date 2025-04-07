@@ -15,7 +15,6 @@ import HumbergerMenuBtn from "../../common/button/PrimaryButton/humberger-menu";
 import { GearIcon } from "@radix-ui/react-icons";
 
 const DashboardSidebar = () => {
-  const user = useCurrentUser();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const ref = useOutsideClick(() => setIsSidebarOpen(false), true);
 
@@ -59,8 +58,8 @@ const DashboardSidebar = () => {
 
         <SidebarLink
           isExpanded={isSidebarOpen}
-          title="بلاگ"
-          path="/dashboard/blog"
+          title="فرم ها"
+          path="/dashboard/submits"
         >
           <NotepadTextIcon className="h-6 w-6" />
         </SidebarLink>

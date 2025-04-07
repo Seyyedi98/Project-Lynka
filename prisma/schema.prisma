@@ -138,11 +138,12 @@ model LinkView {
 }
 
 model FormSubmission {
-  id        String   @id @default(cuid())
-  pageUri   String
-  formName  String?
-  formData  Json
-  createdAt DateTime @default(now())
+  id                  String   @id @default(cuid())
+  pageUri             String
+  formName            String?
+  formData            Json
+  FormOccupiedTitle12 String?  @default("")
+  createdAt           DateTime @default(now())
 
   @@index([pageUri])
   @@index([createdAt])

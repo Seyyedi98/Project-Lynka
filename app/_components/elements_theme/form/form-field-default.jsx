@@ -19,6 +19,7 @@ const FormFieldDefault = (props) => {
     isPremium,
     fields = [],
     uri,
+    title,
     elementId,
     successMessage,
     textColor,
@@ -87,6 +88,7 @@ const FormFieldDefault = (props) => {
       const { mathAnswer, ...submissionData } = formData;
       const result = await submitForm({
         uri,
+        title,
         formId,
         formData: submissionData,
       });
@@ -144,14 +146,15 @@ const FormFieldDefault = (props) => {
           className="h-full w-full p-4"
         >
           {fields.length === 0 && (
-            <div className="grid h-40 w-full place-content-center rounded-lg border-2 border-dashed border-black bg-white text-black">
+            <div className="grid h-40 w-full place-content-center rounded-lg border-2 border-dashed border-black text-black">
               افزودن فرم
             </div>
           )}
           {/* Your original form fields - completely preserved */}
           {fields.map((field, index) => {
             const fieldLabel = field?.label || `field_${index}`;
-            const fieldName = `field_${index}_${String(fieldLabel).replace(/\s+/g, "_")}`;
+            // const fieldName = `field_${index}_${String(fieldLabel).replace(/\s+/g, "_")}`;
+            const fieldName = fieldLabel;
             const placeholder = field?.placeholder || "";
             const isRequired = Boolean(field?.required);
 
@@ -209,7 +212,6 @@ const FormFieldDefault = (props) => {
                     }}
                     {...fieldProps}
                     type="number"
-                    max={20}
                     placeholder={placeholder}
                     className="h-10 w-full rounded-md border border-white bg-transparent px-2"
                   />
@@ -270,7 +272,8 @@ const FormFieldDefault = (props) => {
                   {...register("mathAnswer", {
                     required: "لطفاً پاسخ را وارد کنید",
                     validate: (value) => {
-                      if (isNaN(value)) return "لطفاً عدد وارد کنید";
+                      if (isNaN(value))
+                        return "لطفا اعداد را به صورت انگلیسی وارد کنید";
                       return true;
                     },
                   })}
