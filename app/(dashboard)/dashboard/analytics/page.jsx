@@ -3,6 +3,7 @@
 import { getLinkAnalytics } from "@/actions/page/analytics";
 import { getUserPageData } from "@/actions/page/page";
 import PageAnalyticsChart from "@/app/_components/charts/page-analytics-chart";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -10,19 +11,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
+import { motion } from "framer-motion";
 import {
   Calendar,
   Link as LinkIcon,
   Loader2,
   MousePointerClick,
 } from "lucide-react";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { formItemAnimation, stagger } from "@/utils/animation/animation";
 
 const fade = {
   initial: { opacity: 0 },
@@ -37,7 +35,7 @@ const AnalyticsPanel = () => {
   const [selectedPage, setSelectedPage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isInitialLoading, setIsInitialLoading] = useState(false);
-  const [dateRange, setDateRange] = useState("today");
+  const [dateRange, setDateRange] = useState("lastmonth");
   const { isPremium } = useUserSubscription();
 
   useEffect(() => {
@@ -106,7 +104,7 @@ const AnalyticsPanel = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
-          className="mt-2 text-muted-foreground"
+          className="mt-4 text-white"
         >
           مشاهده و تحلیل آمار کلیک‌های صفحات
         </motion.p>
