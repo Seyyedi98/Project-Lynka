@@ -20,6 +20,7 @@ const TextFieldDefault = ({
           fontFamily: font,
           textAlign: textAlign,
           lineHeight: lineHeight,
+          whiteSpace: "pre-wrap", // Recognise \n for line break
         }}
       >
         {title || "برای ویرایش متن کلیک کنید"}

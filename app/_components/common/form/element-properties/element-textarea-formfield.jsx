@@ -5,8 +5,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 const ElementTextAreaFormField = ({ form, fieldName, placeholder }) => {
@@ -22,11 +20,6 @@ const ElementTextAreaFormField = ({ form, fieldName, placeholder }) => {
               {...field}
               className="h-20"
               placeholder={placeholder || "عنوان"}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.currentTarget.blur();
-                }
-              }}
             />
           </FormControl>
           <FormMessage />

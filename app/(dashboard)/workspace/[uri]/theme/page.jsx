@@ -14,7 +14,7 @@ const SelectThemePage = async ({ params }) => {
   if (page.theme) redirect(`/workspace/${uri}`);
 
   return (
-    <div className="bg-card">
+    <div className="h-full w-full bg-card">
       <InitialThemeSelector uri={uri} />;
     </div>
   );

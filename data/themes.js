@@ -312,7 +312,9 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#ffddda",
-    backgroundImage: '{"url":"/backgrounds/april-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/april-mobile.svgz","key":"no_key"}',
+    // backgroundImage: '{"url":"/backgrounds/april-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffddda",
@@ -332,7 +334,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#f6fcff",
-    backgroundImage: '{"url":"/backgrounds/august-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/august-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#f6fcff",
@@ -353,7 +356,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#f8eff7",
     backgroundImage:
-      '{"url":"/backgrounds/bangkok-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/bangkok-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#f8eff7",
@@ -373,7 +376,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#ffffff",
-    backgroundImage: '{"url":"/backgrounds/barber-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/barber-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffffff",
@@ -394,7 +398,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#f2bc3e",
     backgroundImage:
-      '{"url":"/backgrounds/barber2-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/barber2-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#f2bc3e",
@@ -414,7 +418,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#ffffff",
-    backgroundImage: '{"url":"/backgrounds/beach-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/beach-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffffff",
@@ -435,7 +440,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#fff1dd",
-    backgroundImage: '{"url":"/backgrounds/books-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/books-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#fff1dd",
@@ -455,7 +461,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#ffffff",
-    backgroundImage: '{"url":"/backgrounds/books2-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/books2-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffffff",
@@ -476,7 +483,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#000000",
     backgroundImage:
-      '{"url":"/backgrounds/broadway-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/broadway-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#000000",
@@ -496,7 +503,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#4fb2a8",
-    backgroundImage: '{"url":"/backgrounds/bugs-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/bugs-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#005b50",
@@ -517,7 +525,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#efdbd4",
     backgroundImage:
-      '{"url":"/backgrounds/butterflies-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/butterflies-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#cea9c8",
@@ -538,7 +546,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#efdbd4",
-    backgroundImage: '{"url":"/backgrounds/cat-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/cat-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#e8d0c6",
@@ -558,7 +567,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#f9f2ea",
-    backgroundImage: '{"url":"/backgrounds/cat2-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/cat2-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#f9f2ea",
@@ -579,7 +589,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#806c42",
-    backgroundImage: '{"url":"/backgrounds/cat3-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/cat3-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffd985",
@@ -600,7 +611,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#e3d1bb",
     backgroundImage:
-      '{"url":"/backgrounds/coffeelover-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/coffeelover-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#4b2008",
@@ -621,7 +632,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#fae8c8",
     backgroundImage:
-      '{"url":"/backgrounds/coffeelover2-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/coffeelover2-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#46190e",
@@ -642,7 +653,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#86493e",
     backgroundImage:
-      '{"url":"/backgrounds/cookies-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/cookies-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#290d1c",
@@ -663,7 +674,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#cbe4fe",
     backgroundImage:
-      '{"url":"/backgrounds/crystals-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/crystals-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffffff",
@@ -684,7 +695,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#d7d8ea",
     backgroundImage:
-      '{"url":"/backgrounds/crystals2-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/crystals2-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffffff",
@@ -704,7 +715,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#ffeceb",
-    backgroundImage: '{"url":"/backgrounds/cutie-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/cutie-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffffff",
@@ -725,7 +737,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#6a85bb",
     backgroundImage:
-      '{"url":"/backgrounds/december-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/december-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#e3e8f2",
@@ -745,7 +757,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#fdc253",
-    backgroundImage: '{"url":"/backgrounds/desert-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/desert-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#feefdc",
@@ -765,7 +778,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#cff1fe",
-    backgroundImage: '{"url":"/backgrounds/dog-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/dog-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffffff",
@@ -785,7 +799,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#ffeee1",
-    backgroundImage: '{"url":"/backgrounds/dog2-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/dog2-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffe4cf",
@@ -806,7 +821,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#485b8e",
-    backgroundImage: '{"url":"/backgrounds/earth-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/earth-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#6f8bdc",
@@ -828,7 +844,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#d0eaff",
     backgroundImage:
-      '{"url":"/backgrounds/february-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/february-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#6f8bdc",
@@ -850,7 +866,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#bdbb28",
     backgroundImage:
-      '{"url":"/backgrounds/fishing-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/fishing-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#bdf4f7",
@@ -872,7 +888,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#9cd9db",
     backgroundImage:
-      '{"url":"/backgrounds/fishing2-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/fishing2-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#e2efe7",
@@ -893,7 +909,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#e1bbf5",
-    backgroundImage: '{"url":"/backgrounds/forest-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/forest-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#8674f1",
@@ -915,7 +932,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#16214e",
     backgroundImage:
-      '{"url":"/backgrounds/forest2-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/forest2-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#080302",
@@ -937,7 +954,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#fae7de",
     backgroundImage:
-      '{"url":"/backgrounds/furniture-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/furniture-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#080302",
@@ -958,7 +975,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#968adc",
-    backgroundImage: '{"url":"/backgrounds/galaxy-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/galaxy-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#786a9c",
@@ -979,7 +997,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#c2aaa0",
-    backgroundImage: '{"url":"/backgrounds/goth-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/goth-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#f6f3f2",
@@ -1000,7 +1019,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#1e2630",
-    backgroundImage: '{"url":"/backgrounds/hacker-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/hacker-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#3e6c88",
@@ -1022,7 +1042,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#8be4ff",
     backgroundImage:
-      '{"url":"/backgrounds/haircare-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/haircare-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffc165",
@@ -1043,7 +1063,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#eef2cb",
-    backgroundImage: '{"url":"/backgrounds/hanoi-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/hanoi-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#fefeee",
@@ -1065,7 +1086,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#b5defe",
     backgroundImage:
-      '{"url":"/backgrounds/history-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/history-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffffff",
@@ -1086,7 +1107,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#ece5d9",
-    backgroundImage: '{"url":"/backgrounds/hocky-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/hocky-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#3d3d3d",
@@ -1107,7 +1129,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#f1e6dc",
-    backgroundImage: '{"url":"/backgrounds/home-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/home-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#f1e6dc",
@@ -1129,7 +1152,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#f9cac9",
     backgroundImage:
-      '{"url":"/backgrounds/hotsummer-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/hotsummer-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffffff",
@@ -1150,7 +1173,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#f07466",
-    backgroundImage: '{"url":"/backgrounds/hotel-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/hotel-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#5a1a2c",
@@ -1171,7 +1195,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#ffc04f",
-    backgroundImage: '{"url":"/backgrounds/hotel2-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/hotel2-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#3f2c13",
@@ -1193,7 +1218,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#ead8cd",
     backgroundImage:
-      '{"url":"/backgrounds/housing-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/housing-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#9c877b",
@@ -1215,7 +1240,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#deedff",
     backgroundImage:
-      '{"url":"/backgrounds/icehockey-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/icehockey-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#f9fcff",
@@ -1237,7 +1262,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#f2f2f8",
     backgroundImage:
-      '{"url":"/backgrounds/january-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/january-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#f5f5f9",
@@ -1258,7 +1283,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#a3e5fe",
-    backgroundImage: '{"url":"/backgrounds/july-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/july-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#dff6ff",
@@ -1279,7 +1305,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#c7edf5",
-    backgroundImage: '{"url":"/backgrounds/june-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/june-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#f3fcfd",
@@ -1300,7 +1327,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#c7edf5",
-    backgroundImage: '{"url":"/backgrounds/kids-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/kids-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#bf6d58",
@@ -1321,7 +1349,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#ae90ff",
-    backgroundImage: '{"url":"/backgrounds/kids2-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/kids2-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#352112",
@@ -1343,7 +1372,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#b7ddce",
     backgroundImage:
-      '{"url":"/backgrounds/kittens-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/kittens-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffeef5",
@@ -1364,7 +1393,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#5bf3f0",
-    backgroundImage: '{"url":"/backgrounds/march-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/march-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#e0fcfd",
@@ -1385,7 +1415,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#000000",
-    backgroundImage: '{"url":"/backgrounds/matrix-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/matrix-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#cccccc",
@@ -1406,7 +1437,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#85bffe",
-    backgroundImage: '{"url":"/backgrounds/may-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/may-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ddecff",
@@ -1429,7 +1461,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#0f3c81",
     backgroundImage:
-      '{"url":"/backgrounds/mechanics-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/mechanics-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#0f3c81",
@@ -1450,7 +1482,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#aa5469",
-    backgroundImage: '{"url":"/backgrounds/moon-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/moon-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ac8dbf",
@@ -1472,7 +1505,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#c6f2ef",
     backgroundImage:
-      '{"url":"/backgrounds/mountains-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/mountains-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ddf6f3",
@@ -1494,7 +1527,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#7c6764",
     backgroundImage:
-      '{"url":"/backgrounds/mountains2-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/mountains2-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#131d2a",
@@ -1516,7 +1549,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#24203a",
     backgroundImage:
-      '{"url":"/backgrounds/musicproducer-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/musicproducer-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#0f1020",
@@ -1538,7 +1571,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#2e0072",
     backgroundImage:
-      '{"url":"/backgrounds/nightsky-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/nightsky-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#663f9d",
@@ -1560,7 +1593,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#ffeeaf",
     backgroundImage:
-      '{"url":"/backgrounds/november-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/november-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#fff5db",
@@ -1582,7 +1615,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#ffeeaf",
     backgroundImage:
-      '{"url":"/backgrounds/nutrition-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/nutrition-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#fefefe",
@@ -1603,7 +1636,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#5ea3f8",
-    backgroundImage: '{"url":"/backgrounds/ocean-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/ocean-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffffff",
@@ -1625,7 +1659,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#f9cc90",
     backgroundImage:
-      '{"url":"/backgrounds/october-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/october-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffeed8",
@@ -1647,7 +1681,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#fcfaf8",
     backgroundImage:
-      '{"url":"/backgrounds/ornaments-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/ornaments-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#f8edde",
@@ -1669,7 +1703,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#414c5e",
     backgroundImage:
-      '{"url":"/backgrounds/paisley-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/paisley-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#2f3744",
@@ -1691,7 +1725,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#184237",
     backgroundImage:
-      '{"url":"/backgrounds/paisley2-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/paisley2-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#123028",
@@ -1713,7 +1747,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#fad38b",
     backgroundImage:
-      '{"url":"/backgrounds/palmtree-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/palmtree-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#fcffd2",
@@ -1735,7 +1769,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#ffead2",
     backgroundImage:
-      '{"url":"/backgrounds/pancakes-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/pancakes-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffffff",
@@ -1757,7 +1791,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#efdecc",
     backgroundImage:
-      '{"url":"/backgrounds/photography-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/photography-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#b2a776",
@@ -1778,7 +1812,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#acdc5b",
-    backgroundImage: '{"url":"/backgrounds/picnic-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/picnic-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#fbfffa",
@@ -1799,7 +1834,8 @@ export const themes = [
     themeCategory: "image",
     backgroundType: "image",
     backgroundColor: "#642558",
-    backgroundImage: '{"url":"/backgrounds/planet-mobile.svgz","key":"no_key"}',
+    backgroundImage:
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/planet-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#0d0017",
