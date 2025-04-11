@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { Dialog, DialogContent, DialogTitle } from "../../common/modal/diolog";
 import { Pagination } from "../../common/Pagination";
+import ThemePreviewRenderer from "../../preview/Theme-preview-renderer";
 
 const categories = [
   { title: "all", value: "همه", icon: null },
@@ -28,6 +29,15 @@ const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
   const [category, setCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+
+  // Initialize loading states for all themes
+  useEffect(() => {
+    const initialLoadingStates = {};
+    themes.forEach((theme) => {
+      initialLoadingStates[theme.name] = true;
+    });
+    setLoadingImages(initialLoadingStates);
+  }, [themes]);
 
   // Reset to page 1 when category changes
   useEffect(() => {
@@ -80,7 +90,7 @@ const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
 
   return (
     <div className="flex h-full w-full flex-col justify-center gap-6 pt-8">
-      {/* Category Tabs - Updated to match the style from PageBackgroundSettings */}
+      {/* Theme categories */}
       <div className="flex w-full items-center justify-between border-b border-border pb-4">
         <div className="flex w-full items-center justify-center gap-2 overflow-x-auto pb-1">
           {categories.map((tab) => (
@@ -101,7 +111,8 @@ const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 px-8 sm:grid-cols-3 sm:px-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+      {/* List of Themes */}
+      <div className="grid grid-cols-1 gap-6 px-8 sm:grid-cols-3 sm:px-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {currentThemes().map((theme) => {
           const isAllowedToApplyTheme = theme.isPremium
             ? isPremium
@@ -122,36 +133,34 @@ const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
               key={theme.name}
             >
               <div className="relative aspect-[2/3] w-full">
-                {loadingImages[theme.name] !== false && (
+                {loadingImages[theme.name] && (
                   <div className="absolute inset-0 animate-pulse bg-muted"></div>
                 )}
-                <Image
-                  fill
-                  alt="theme preview"
-                  src="/album.jpg"
-                  className={cn(
-                    "object-cover transition-all group-hover:brightness-90",
-                    loadingImages[theme.name] !== false && "invisible",
-                  )}
-                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 16vw"
-                  onLoadingComplete={() => handleImageLoad(theme.name)}
+                <ThemePreviewRenderer
+                  theme={theme}
+                  onLoad={() => handleImageLoad(theme.name)}
+                  style={{
+                    display: loadingImages[theme.name] ? "none" : "block",
+                  }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80"></div>
-                <div className="absolute bottom-3 left-3">
-                  <p className="line-clamp-1 text-sm font-medium text-white">
-                    {theme.name}
-                  </p>
-                  {theme.isPremium && !isPremium && (
-                    <span className="mt-1 inline-block rounded-full bg-yellow-500/20 px-1.5 py-0.5 text-[10px] text-yellow-500">
-                      Premium
-                    </span>
-                  )}
-                </div>
+                {!loadingImages[theme.name] && (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80"></div>
+                    <div className="absolute bottom-3 left-3">
+                      {theme.isPremium && !isPremium && (
+                        <span className="mt-1 inline-block rounded-full bg-yellow-500/20 px-1.5 py-0.5 text-[10px] text-yellow-500">
+                          پرمیوم
+                        </span>
+                      )}
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           );
         })}
 
+        {/* Preview specific theme */}
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
           <DialogContent className="h-[100dvh] rounded-none sm:h-[80vh] sm:rounded-lg">
             <div className="flex h-full flex-col">
@@ -160,16 +169,23 @@ const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
                 <div className="flex h-full flex-col overflow-hidden rounded-xl bg-card shadow-lg">
                   <div className="relative flex-1 overflow-hidden">
                     <div className="absolute inset-0 flex items-center justify-center bg-accent/20">
-                      <div className="relative h-full w-full">
-                        <Image
-                          src="/album.jpg"
-                          alt="theme preview"
-                          fill
-                          className="object-contain transition-all duration-300"
-                          sizes="(max-width: 768px) 100vw, 800px"
+                      <div className="relative h-full w-full max-w-sm">
+                        {loadingImages[selectedTheme.name] && (
+                          <div className="absolute inset-0 animate-pulse bg-muted"></div>
+                        )}
+                        <ThemePreviewRenderer
+                          theme={selectedTheme}
+                          onLoad={() => handleImageLoad(selectedTheme.name)}
+                          style={{
+                            display: loadingImages[selectedTheme.name]
+                              ? "none"
+                              : "block",
+                          }}
                         />
+                        {!loadingImages[selectedTheme.name] && (
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                        )}
                       </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     </div>
                   </div>
 

@@ -42,7 +42,7 @@ function PropertiesComponent({ elementInstance, isPremium }) {
   }, [element, form]);
 
   function applyChanges(values) {
-    const { theme, textColor, bgColor, borderRadius } = values;
+    const { theme, socials, textColor, bgColor, borderRadius } = values;
 
     const payload = {
       id: element.id,

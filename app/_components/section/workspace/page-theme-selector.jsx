@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { themes } from "@/data/themes";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
@@ -12,6 +13,7 @@ import {
 import ThemesList from "./themes-list";
 
 const PageThemeSelector = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const dispatch = useDispatch();
   const elements = useSelector((state) => state.page.elements, shallowEqual);
   const hero = useSelector((state) => state.page.hero);
@@ -73,12 +75,10 @@ const PageThemeSelector = () => {
     });
   };
 
-  // Set the overall theme
   const updateThemeAndBackground = ({ theme }) => {
     dispatch({ type: "page/setTheme", payload: theme });
   };
 
-  // Central function to handle theme update logic
   const handleThemeUpdate = (theme, isAllowedToApplyTheme) => {
     if (!isAllowedToApplyTheme) return;
 
@@ -99,10 +99,13 @@ const PageThemeSelector = () => {
       bgColor: theme.elementColor,
       borderRadius: theme.borderRadius,
     });
+
+    // Close the dialog after theme is selected
+    setIsDialogOpen(false);
   };
 
   return (
-    <Dialog>
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <button className="h-10 w-full rounded-md bg-primary text-sm font-medium text-white transition-colors duration-200 hover:bg-primary-hover">
           انتخاب تم صفحه

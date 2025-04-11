@@ -314,7 +314,6 @@ export const themes = [
     backgroundColor: "#ffddda",
     backgroundImage:
       '{"url":"https://storage.c2.liara.space/arklight/backgrounds/april-mobile.svgz","key":"no_key"}',
-    // backgroundImage: '{"url":"/backgrounds/april-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffddda",
@@ -462,7 +461,7 @@ export const themes = [
     backgroundType: "image",
     backgroundColor: "#ffffff",
     backgroundImage:
-      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/books2-mobile.svgz","key":"no_key"}',
+      '{"url":"https://storage.c2.liara.space/arklight/backgrounds/Books2-mobile.svgz","key":"no_key"}',
     heroType: "image",
     heroStyle: "transparent",
     heroValue: "#ffffff",
