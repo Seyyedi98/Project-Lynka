@@ -1,16 +1,24 @@
+// components/themes-list.jsx
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft, Gauge, ImageIcon, Palette, Sparkles } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { Dialog, DialogContent, DialogTitle } from "../../common/modal/diolog";
+import { Pagination } from "../../common/Pagination";
 
 const categories = [
-  { title: "all", value: "همه" },
-  { title: "color", value: "رنگی" },
-  { title: "gradient", value: "گرادیانت" },
-  { title: "image", value: "با تصویر زمینه" },
+  { title: "all", value: "همه", icon: null },
+  { title: "color", value: "رنگی", icon: <Palette className="h-4 w-4" /> },
+  { title: "gradient", value: "گرادیانت", icon: <Gauge className="h-4 w-4" /> },
+  {
+    title: "image",
+    value: "با تصویر زمینه",
+    icon: <ImageIcon className="h-4 w-4" />,
+  },
 ];
 
 const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
@@ -18,11 +26,27 @@ const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
   const [selectedTheme, setSelectedTheme] = useState(null);
   const [loadingImages, setLoadingImages] = useState({});
   const [category, setCategory] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+
+  // Reset to page 1 when category changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [category]);
 
   const filteredThemes = (category) => {
     if (category === "all") return themes;
     return themes.filter((theme) => theme.themeCategory === category);
   };
+
+  // Get current themes for the page
+  const currentThemes = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredThemes(category).slice(startIndex, endIndex);
+  };
+
+  const totalPages = Math.ceil(filteredThemes(category).length / itemsPerPage);
 
   const handleThemeClick = (theme) => {
     const isAllowedToApplyTheme = theme.isPremium
@@ -41,7 +65,6 @@ const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
     if (selectedTheme) {
       handleThemeUpdate(selectedTheme, true);
       setIsModalOpen(false);
-
       toast.success("تم جدید با موفقیت اعمال شد");
     }
   };
@@ -50,77 +73,84 @@ const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
     setLoadingImages((prev) => ({ ...prev, [themeName]: false }));
   };
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="flex h-full w-full flex-col justify-center gap-6 pt-8">
-      <div className="flex w-full items-center justify-center gap-2">
-        {categories.map((el) => {
-          return (
-            <div
-              key={el.value}
-              className={cn(
-                `flex cursor-pointer items-center justify-center rounded-full border-2 border-primary px-4 py-1 text-base`,
-                category === el.title && "bg-primary text-primary-foreground",
-              )}
-              onClick={() => setCategory(el.title)}
+      {/* Category Tabs - Updated to match the style from PageBackgroundSettings */}
+      <div className="flex w-full items-center justify-between border-b border-border pb-4">
+        <div className="flex w-full items-center justify-center gap-2 overflow-x-auto pb-1">
+          {categories.map((tab) => (
+            <Button
+              key={tab.title}
+              variant={category === tab.title ? "default" : "ghost"}
+              className={`flex shrink-0 items-center gap-2 rounded-[--radius] ${
+                category === tab.title
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:bg-accent"
+              }`}
+              onClick={() => setCategory(tab.title)}
             >
-              {el.value}
-            </div>
-          );
-        })}
+              {tab.icon}
+              {tab.value}
+            </Button>
+          ))}
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-6 px-8 sm:grid-cols-3 sm:px-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-        {filteredThemes(category)
-          ? filteredThemes(category).map((theme) => {
-              const isAllowedToApplyTheme = theme.isPremium
-                ? isPremium
-                  ? true
-                  : false
-                : true;
+        {currentThemes().map((theme) => {
+          const isAllowedToApplyTheme = theme.isPremium
+            ? isPremium
+              ? true
+              : false
+            : true;
 
-              return (
-                <div
+          return (
+            <div
+              className={cn(
+                "group relative h-full w-full overflow-hidden rounded-lg transition-all",
+                !isAllowedToApplyTheme
+                  ? "cursor-not-allowed opacity-60"
+                  : "cursor-pointer hover:scale-[1.03] hover:shadow-md",
+                className,
+              )}
+              onClick={() => handleThemeClick(theme)}
+              key={theme.name}
+            >
+              <div className="relative aspect-[2/3] w-full">
+                {loadingImages[theme.name] !== false && (
+                  <div className="absolute inset-0 animate-pulse bg-muted"></div>
+                )}
+                <Image
+                  fill
+                  alt="theme preview"
+                  src="/album.jpg"
                   className={cn(
-                    "group relative h-full w-full overflow-hidden rounded-lg transition-all",
-                    !isAllowedToApplyTheme
-                      ? "cursor-not-allowed opacity-60"
-                      : "cursor-pointer hover:scale-[1.03] hover:shadow-md",
-                    className,
+                    "object-cover transition-all group-hover:brightness-90",
+                    loadingImages[theme.name] !== false && "invisible",
                   )}
-                  onClick={() => handleThemeClick(theme)}
-                  key={theme.name}
-                >
-                  <div className="relative aspect-[2/3] w-full">
-                    {loadingImages[theme.name] !== false && (
-                      <div className="absolute inset-0 animate-pulse bg-muted"></div>
-                    )}
-                    <Image
-                      fill
-                      alt="theme preview"
-                      src="/album.jpg"
-                      className={cn(
-                        "object-cover transition-all group-hover:brightness-90",
-                        loadingImages[theme.name] !== false && "invisible",
-                      )}
-                      sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 16vw"
-                      onLoadingComplete={() => handleImageLoad(theme.name)}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80"></div>
-                    <div className="absolute bottom-3 left-3">
-                      <p className="line-clamp-1 text-sm font-medium text-white">
-                        {theme.name}
-                      </p>
-                      {theme.isPremium && !isPremium && (
-                        <span className="mt-1 inline-block rounded-full bg-yellow-500/20 px-1.5 py-0.5 text-[10px] text-yellow-500">
-                          Premium
-                        </span>
-                      )}
-                    </div>
-                  </div>
+                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 16vw"
+                  onLoadingComplete={() => handleImageLoad(theme.name)}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80"></div>
+                <div className="absolute bottom-3 left-3">
+                  <p className="line-clamp-1 text-sm font-medium text-white">
+                    {theme.name}
+                  </p>
+                  {theme.isPremium && !isPremium && (
+                    <span className="mt-1 inline-block rounded-full bg-yellow-500/20 px-1.5 py-0.5 text-[10px] text-yellow-500">
+                      Premium
+                    </span>
+                  )}
                 </div>
-              );
-            })
-          : "بارگزاری ناموفق"}
+              </div>
+            </div>
+          );
+        })}
 
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
           <DialogContent className="h-[100dvh] rounded-none sm:h-[80vh] sm:rounded-lg">
@@ -167,6 +197,16 @@ const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
           </DialogContent>
         </Dialog>
       </div>
+
+      {totalPages > 1 && (
+        <div className="mt-6 pb-8">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </div>
+      )}
     </div>
   );
 };

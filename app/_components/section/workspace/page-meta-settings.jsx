@@ -1,74 +1,80 @@
-"use clinet";
+"use client";
 
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import SquareButton from "../../common/button/PrimaryButton/square-button";
-import MetaDescriptionForm from "../../common/form/meta-description-form";
-import MetaFaviconForm from "../../common/form/meta-favicon-form";
-import MetaImageForm from "../../common/form/meta-image-form";
-import MetaTitleForm from "../../common/form/meta-title-form";
 import { Button } from "@/components/ui/button";
-import { submitToGoogleIndexing } from "@/actions/googleIndex";
-import { generateSitemap } from "@/actions/generateSitemap";
+import { Text, Image as ImageIcon, Search } from "lucide-react";
+import MetaTitleForm from "../../common/form/meta-title-form";
+import MetaImageForm from "../../common/form/meta-image-form";
+import GoogleIndexForm from "../../common/form/google-index-form";
 
 const PageMetaSettings = () => {
   const metadata = useSelector((store) => store.page.metadata);
-  const [category, setCategory] = useState("metaTitle");
+  const [activeTab, setActiveTab] = useState("metaTitle");
   const { uri } = useParams();
 
-  const onClick = async () => {
-    // const googleResult = await submitToGoogleIndexing(
-    //   `https://lynkaink.ir/pages/${uri}`,
-    // );
-
-    const sitemapResult = await generateSitemap();
-    console.log(sitemapResult);
-  };
+  const tabs = [
+    {
+      id: "metaTitle",
+      label: "عنوان",
+      icon: <Text className="h-4 w-4" />,
+      component: (
+        <MetaTitleForm
+          uri={uri}
+          description={metadata.metaDescription}
+          title={metadata.metaTitle}
+        />
+      ),
+    },
+    {
+      id: "metaImage",
+      label: "تصویر",
+      icon: <ImageIcon className="h-4 w-4" />,
+      component: (
+        <MetaImageForm
+          uri={uri}
+          favicon={metadata.favicon}
+          image={metadata.metaImage}
+        />
+      ),
+    },
+    {
+      id: "index",
+      label: "موتور جستجو",
+      icon: <Search className="h-4 w-4" />,
+      component: <GoogleIndexForm favicon={metadata.favicon} uri={uri} />,
+    },
+  ];
 
   return (
-    <>
-      <div className="flex items-center border-b-2 pb-4">
-        <Button onClick={onClick}>Index site</Button>
-        <SquareButton state={category} action={setCategory} rule="metaTitle">
-          عنوان
-        </SquareButton>
-        <SquareButton
-          state={category}
-          action={setCategory}
-          rule="metaDescription"
-        >
-          توضیحات
-        </SquareButton>
-        <SquareButton state={category} action={setCategory} rule="metaImage">
-          تصویر
-        </SquareButton>
-        <SquareButton state={category} action={setCategory} rule="favicon">
-          آیکون
-        </SquareButton>
+    <div className="w-full space-y-6">
+      {/* Tab Navigation */}
+      <div className="flex w-full items-center justify-between border-b border-border pb-4">
+        <div className="flex w-full items-center justify-between gap-2 overflow-x-auto pb-1">
+          {tabs.map((tab) => (
+            <Button
+              key={tab.id}
+              variant={activeTab === tab.id ? "default" : "ghost"}
+              className={`flex shrink-0 items-center gap-2 rounded-[--radius] ${
+                activeTab === tab.id
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:bg-accent"
+              }`}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              {tab.icon}
+              {tab.label}
+            </Button>
+          ))}
+        </div>
       </div>
 
-      <div className="max-w-sm">
-        {category === "metaTitle" ? (
-          <MetaTitleForm uri={uri} title={metadata.metaTitle} />
-        ) : null}
-
-        {category === "metaDescription" ? (
-          <MetaDescriptionForm
-            uri={uri}
-            description={metadata.metaDescription}
-          />
-        ) : null}
-
-        {category === "metaImage" ? (
-          <MetaImageForm image={metadata.metaImage} uri={uri} />
-        ) : null}
-
-        {category === "favicon" ? (
-          <MetaFaviconForm favicon={metadata.favicon} uri={uri} />
-        ) : null}
+      {/* Active Tab Content */}
+      <div className="w-full max-w-md">
+        {tabs.find((tab) => tab.id === activeTab)?.component}
       </div>
-    </>
+    </div>
   );
 };
 
