@@ -234,7 +234,7 @@ function PropertiesComponent({ elementInstance, isPremium }) {
                     <ImageUploaderField
                       value={form.watch("image")}
                       onChange={(value) => form.setValue("image", value)}
-                      label="پیش نمایش"
+                      label="تصویر کارت"
                       options={{
                         maxSizeMB: 0.2,
                         maxWidthOrHeight: 720,

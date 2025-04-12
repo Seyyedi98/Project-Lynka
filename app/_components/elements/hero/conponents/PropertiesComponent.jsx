@@ -20,7 +20,7 @@ import {
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronLeft, TrashIcon } from "lucide-react";
+import { Check, ChevronLeft, TrashIcon } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Suspense, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -205,7 +205,7 @@ function PropertiesComponent({ elementInstance, isPremium }) {
                         onChange={(value) =>
                           form.setValue("primaryImage", value)
                         }
-                        label="پیش نمایش"
+                        label="تصویر پروفایل"
                         options={{
                           maxSizeMB: 0.4,
                           maxWidthOrHeight: 720,
@@ -218,7 +218,7 @@ function PropertiesComponent({ elementInstance, isPremium }) {
                         onChange={(value) =>
                           form.setValue("secondaryImage", value)
                         }
-                        label="پیش نمایش"
+                        label="تصویر پس زمینه"
                         options={{
                           maxSizeMB: 0.4,
                           maxWidthOrHeight: 720,
@@ -248,6 +248,14 @@ function PropertiesComponent({ elementInstance, isPremium }) {
                   )}
                 </TabsContent>
               </Tabs>
+
+              {/* Mobile drawaer button */}
+              <button
+                type="submit"
+                className="absolute -top-16 right-2 flex cursor-pointer items-center justify-center rounded-full bg-green-500 p-2 duration-200 hover:bg-green-600 sm:right-0 md:hidden"
+              >
+                <Check className="h-4 w-4 text-white" />
+              </button>
 
               <div className="mt-auto">
                 <Dialog>
@@ -290,17 +298,6 @@ function PropertiesComponent({ elementInstance, isPremium }) {
                           <TrashIcon className="h-4 w-4 text-white" />
                         </span>
                       </Button>
-                    </DeleteElementBtn>
-                  )}
-
-                  {element?.type !== "HeroElement" && (
-                    <DeleteElementBtn id={element?.id}>
-                      <button
-                        variant="destructive"
-                        className="absolute -top-16 left-2 flex cursor-pointer items-center justify-center rounded-full bg-destructive p-2 duration-200 hover:bg-green-600 md:right-0 md:hidden"
-                      >
-                        <TrashIcon className="h-4 w-4 text-white" />
-                      </button>
                     </DeleteElementBtn>
                   )}
                 </div>

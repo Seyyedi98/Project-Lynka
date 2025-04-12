@@ -1,4 +1,3 @@
-// components/common/pagination.jsx
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";

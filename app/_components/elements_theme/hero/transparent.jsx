@@ -19,6 +19,7 @@ const TransparentHero = ({ ...data }) => {
   const primaryBgImage = primaryImage
     ? getImageAddress(JSON.parse(primaryImage).key)
     : "";
+
   const [loadedTitleFont, setLoadedTitleFont] = useState(null);
   const [loadedSubtitleFont, setLoadedSubtitleFont] = useState(null);
 

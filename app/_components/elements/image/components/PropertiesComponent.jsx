@@ -129,7 +129,7 @@ function PropertiesComponent({ elementInstance, isPremium }) {
                   <ImageUploaderField
                     value={form.watch("image")}
                     onChange={(value) => form.setValue("image", value)}
-                    label="پیش نمایش"
+                    label="تصویر"
                     options={{
                       maxSizeMB: 0.4,
                       maxWidthOrHeight: 720,

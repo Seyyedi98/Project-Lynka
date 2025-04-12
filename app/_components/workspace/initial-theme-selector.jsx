@@ -10,7 +10,7 @@ import { themes } from "@/data/themes";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Palette, Image as ImageIcon, Gauge, Sparkles } from "lucide-react";
-import { Pagination } from "../common/pagination";
+import { Pagination } from "../common/Pagination";
 
 const categories = [
   { title: "all", value: "همه", icon: <Sparkles className="h-4 w-4" /> },
