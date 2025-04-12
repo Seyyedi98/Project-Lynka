@@ -22,6 +22,7 @@ import PageSettings from "../../workspace/page-settings";
 
 const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
   const data = useSelector((store) => store.page.hero);
+  const selectedElement = useSelector((store) => store.page.selectedElement);
   const dispatch = useDispatch();
   const key = parseJson(data?.extraAttributes?.primaryImage);
   const userImage = key ? getImageAddress(key?.key) : null;
@@ -38,6 +39,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
                 selectedMenu === "theme" && "top-[141px]",
                 selectedMenu === "browser" && "top-[195px]",
                 selectedMenu === "analytics" && "top-[251px]",
+                selectedElement && "opacity-0",
               )}
             />
 
@@ -71,7 +73,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
               }}
               className={cn(
                 `translate-y-8 animate-fade-up cursor-pointer text-icon-light/70 opacity-0 duration-300`,
-                selectedMenu === "elements" && "text-text",
+                selectedMenu === "elements" && !selectedElement && "text-text",
               )}
             >
               <Layers className="" />
@@ -91,7 +93,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
               }}
               className={cn(
                 `translate-y-8 animate-fade-up cursor-pointer text-icon-light/70 opacity-0 delay-100 duration-300`,
-                selectedMenu === "theme" && "text-text",
+                selectedMenu === "theme" && !selectedElement && "text-text",
               )}
             >
               <PaletteIcon className="" />
@@ -111,7 +113,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
               }}
               className={cn(
                 `translate-y-8 animate-fade-up cursor-pointer text-icon-light/70 opacity-0 delay-200 duration-300`,
-                selectedMenu === "browser" && "text-text",
+                selectedMenu === "browser" && !selectedElement && "text-text",
               )}
             >
               <AppWindow className="" />
@@ -130,7 +132,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
               }}
               className={cn(
                 `translate-y-8 animate-fade-up cursor-pointer text-icon-light/70 opacity-0 delay-300 duration-300`,
-                selectedMenu === "analytics" && "text-text",
+                selectedMenu === "analytics" && !selectedElement && "text-text",
               )}
             >
               <ChartLine className="" />

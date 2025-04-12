@@ -192,7 +192,7 @@ const CreateNewPage = ({ allPages }) => {
               className="flex h-12 items-center justify-center gap-1 rounded-xl bg-gradient-to-r from-primary to-secondary text-sm font-medium text-primary-foreground shadow-lg transition-all duration-200 hover:from-primary-hover hover:to-secondary hover:shadow-primary/20 disabled:opacity-50 disabled:shadow-none"
             >
               {isPending ? (
-                <span className="flex items-center">
+                <span className="flex items-center gap-2">
                   <svg
                     className="-ml-1 mr-2 h-4 w-4 animate-spin text-white"
                     xmlns="http://www.w3.org/2000/svg"

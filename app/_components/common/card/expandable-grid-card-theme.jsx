@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { LoaderIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useId, useState } from "react";
+import ThemePreviewRenderer from "../../preview/Theme-preview-renderer";
 
 // theme : {image, name}
 export default function ExpandableThemeGridCard({
@@ -73,17 +74,10 @@ export default function ExpandableThemeGridCard({
                 className="h-4/5"
               >
                 {/* Modal open image */}
-                <Image
-                  // src={active.src}
-                  height={300}
-                  width={300}
-                  src="/album.jpg"
-                  alt={theme.name}
-                  className="h-full w-full object-cover object-center sm:rounded-tl-lg sm:rounded-tr-lg"
-                />
+                <ThemePreviewRenderer theme={theme} />
               </motion.div>
 
-              <div ref={ref} className="h-1/5">
+              <div className="h-1/5">
                 <div
                   className={cn(
                     `relative px-4 pt-4`,
@@ -125,13 +119,7 @@ export default function ExpandableThemeGridCard({
       >
         <div className="flex h-full flex-col items-center justify-center">
           <div className="relative h-full w-full overflow-hidden rounded-t-xl border-b-2">
-            <Image
-              fill
-              // src={active.src}
-              src="/album.jpg"
-              alt={theme.name}
-              className="object-cover object-center sm:rounded-tl-lg sm:rounded-tr-lg lg:h-80"
-            />
+            <ThemePreviewRenderer theme={theme} />
           </div>
         </div>
       </motion.div>
