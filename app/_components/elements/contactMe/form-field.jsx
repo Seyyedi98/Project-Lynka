@@ -12,6 +12,7 @@ const extraAttributes = {
   theme: "",
   font: "",
   textColor: "#ffffff",
+  borderColor: "#ffffff",
   bgColor: "",
   borderRadius: "",
   fields: [],

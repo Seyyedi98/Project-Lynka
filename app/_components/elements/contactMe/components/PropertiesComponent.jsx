@@ -39,6 +39,7 @@ function PropertiesComponent({ elementInstance, isPremium }) {
       successMessage: element.extraAttributes.successMessage || "",
       font: element.extraAttributes.font || "",
       textColor: element.extraAttributes.textColor || "",
+      borderColor: element.extraAttributes.borderColor || "",
       bgColor: element.extraAttributes.bgColor || "",
       fieldBorderRadius: element.extraAttributes.fieldBorderRadius || "",
       cardBorderRadius: element.extraAttributes.cardBorderRadius || "",
@@ -62,6 +63,7 @@ function PropertiesComponent({ elementInstance, isPremium }) {
       theme,
       textColor,
       bgColor,
+      borderColor,
       fieldBorderRadius,
       cardBorderRadius,
       fields,
@@ -87,6 +89,7 @@ function PropertiesComponent({ elementInstance, isPremium }) {
           font,
           fieldBorderRadius,
           cardBorderRadius,
+          borderColor,
           bgColor,
           schedule: isPremium ? schedule : element.extraAttributes.schedule,
           scheduleStart: isPremium
@@ -195,6 +198,13 @@ function PropertiesComponent({ elementInstance, isPremium }) {
                     form={form}
                     label="رنگ پس زمینه"
                     fieldName="bgColor"
+                  />
+
+                  {/* Border Color */}
+                  <ElementColorFormField
+                    form={form}
+                    label="رنگ حاشیه"
+                    fieldName="borderColor"
                   />
                 </TabsContent>
 

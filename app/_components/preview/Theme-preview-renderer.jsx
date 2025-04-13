@@ -4,8 +4,6 @@ import getImageAddress from "@/utils/get-image-address";
 import parseJson from "@/utils/parseJSON";
 import { useMemo } from "react";
 import { ElementThemeController } from "../controller/element-theme-controller";
-import SocialsFieldDefault from "../elements_theme/socials/socials-field-default";
-import TextFieldDefault from "../elements_theme/text/text-field-default";
 
 const ThemePreviewRenderer = ({ theme }) => {
   const {
@@ -114,7 +112,7 @@ const ThemePreviewRenderer = ({ theme }) => {
         <CardElementRender
           title="فروشگاه من"
           layout="highFullImage"
-          image='{"key":"800217089-6948.320093853493.jpg"}'
+          image='{"key":"800217089-10696.904317455173.jpg"}'
           textColor={elementTextColor}
           bgColor={elementColor}
           borderColor={borderColor}

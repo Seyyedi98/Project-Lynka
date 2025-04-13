@@ -24,6 +24,7 @@ const FormFieldDefault = (props) => {
     successMessage,
     textColor,
     bgColor,
+    borderColor,
     fieldBorderRadius,
     cardBorderRadius,
     font,
@@ -178,11 +179,12 @@ const FormFieldDefault = (props) => {
                     style={{
                       borderRadius: fieldBorderRadius,
                       fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+                      borderColor: borderColor,
                     }}
                     {...fieldProps}
                     max={200}
                     placeholder={placeholder}
-                    className="h-10 w-full rounded-md border border-white bg-transparent px-2"
+                    className="h-10 w-full rounded-md border bg-transparent px-2"
                   />
                   {formState.errors[fieldName] && (
                     <p className="mt-1 text-sm text-red-500">
@@ -209,11 +211,12 @@ const FormFieldDefault = (props) => {
                     style={{
                       borderRadius: fieldBorderRadius,
                       fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+                      borderColor: borderColor,
                     }}
                     {...fieldProps}
                     type="number"
                     placeholder={placeholder}
-                    className="h-10 w-full rounded-md border border-white bg-transparent px-2"
+                    className="h-10 w-full rounded-md border bg-transparent px-2"
                   />
                   {formState.errors[fieldName] && (
                     <p className="mt-1 text-sm text-red-500">
@@ -240,11 +243,12 @@ const FormFieldDefault = (props) => {
                     style={{
                       borderRadius: fieldBorderRadius,
                       fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+                      borderColor: borderColor,
                     }}
                     {...fieldProps}
                     max={999}
                     placeholder={placeholder}
-                    className="w-full rounded-md border border-white bg-transparent px-2"
+                    className="w-full rounded-md border bg-transparent px-2"
                   />
                   {formState.errors[fieldName] && (
                     <p className="mt-1 text-sm text-red-500">
@@ -264,11 +268,9 @@ const FormFieldDefault = (props) => {
               <div className="mb-4">
                 <label className="mb-2 block text-sm font-medium">
                   {`${mathQuestion.persianA} + ${mathQuestion.persianB} = ؟`}
-                  <span className="mr-2 text-xs text-gray-400">
-                    (برای تأیید انسان بودن)
-                  </span>
                 </label>
                 <input
+                  style={{ borderColor: borderColor }}
                   {...register("mathAnswer", {
                     required: "لطفاً پاسخ را وارد کنید",
                     validate: (value) => {
@@ -277,7 +279,7 @@ const FormFieldDefault = (props) => {
                       return true;
                     },
                   })}
-                  className="h-10 w-full rounded-md border border-white bg-transparent px-2"
+                  className="h-10 w-full rounded-md border bg-transparent px-2"
                 />
                 {formState.errors.mathAnswer && (
                   <p className="mt-1 text-sm text-red-500">

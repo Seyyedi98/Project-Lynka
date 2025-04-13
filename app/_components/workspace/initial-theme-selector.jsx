@@ -1,22 +1,22 @@
 "use client";
 
 import { UpdatePageContent, UpdatePageTheme } from "@/actions/page/page";
-import { useRouter } from "next/navigation";
-import { useTransition, useState, useEffect } from "react";
-import { PageHeroElement } from "../elements/hero/page-hero-element";
-import { idGenerator } from "@/lib/id-generator";
-import { themes } from "@/data/themes";
 import { Button } from "@/components/ui/button";
+import { themes } from "@/data/themes";
+import { idGenerator } from "@/lib/id-generator";
 import { cn } from "@/lib/utils";
 import {
-  Palette,
-  Image as ImageIcon,
-  Gauge,
-  Sparkles,
   ArrowLeft,
+  Gauge,
+  Image as ImageIcon,
+  Palette,
+  Sparkles,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState, useTransition } from "react";
 import { Pagination } from "../common/Pagination";
 import { Dialog, DialogContent, DialogTitle } from "../common/modal/diolog";
+import { PageHeroElement } from "../elements/hero/page-hero-element";
 import ThemePreviewRenderer from "../preview/Theme-preview-renderer";
 
 const categories = [
