@@ -1,10 +1,10 @@
 "use server";
 import { getUserByEmail, getUserById } from "@/data/user";
 import prisma from "@/lib/client";
-import { currentUser } from "@/lib/auth/get-user";
 import { sendVerificationEmail } from "@/lib/mail";
 import { generateVerificationToken } from "@/lib/auth/tokens";
 import bcrypt from "bcryptjs";
+import { currentUser } from "@/lib/auth/get-user";
 export const settings = async (values) => {
   const user = await currentUser();
 
@@ -28,13 +28,13 @@ export const settings = async (values) => {
     const existingUser = await getUserByEmail(values.email);
 
     if (existingUser && existingUser.id !== user.id) {
-      return { error: "Email allready in user." };
+      return { error: "این ایمیل قبلا استفاده شده است" };
     }
 
     const verficationToken = await generateVerificationToken(values.email);
     await sendVerificationEmail(verficationToken.email, verficationToken.token);
 
-    return { success: "Verification email sent!" };
+    return { success: "لینک تایید به ایمیل شما ارسال شد" };
   }
 
   if (values.password && values.newPassword && dbUser.password) {
@@ -44,10 +44,10 @@ export const settings = async (values) => {
     );
 
     if (!passwrdsMatch) {
-      return { error: "Incorret Password" };
+      return { error: "رمز عبور اشتباه است" };
     }
     if (values.password === values.newPassword) {
-      return { error: "Cant use tour current password" };
+      return { error: "لطفا رمز عبور دیگری انتخاب کنید" };
     }
 
     const hashedPassword = await bcrypt.hash(values.newPassword, 10);
@@ -65,5 +65,5 @@ export const settings = async (values) => {
     },
   });
 
-  return { success: "Settings Updated!" };
+  return { success: "پروفایل به روز رسانی شد" };
 };

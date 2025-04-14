@@ -15,9 +15,11 @@ import {
   Sun,
   UserCircleIcon,
 } from "lucide-react";
-import ToggleDarkmode from "../../common/button/PrimaryButton/toggle-darkmode";
-import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
+import ToggleDarkmode from "../../common/button/PrimaryButton/toggle-darkmode";
+import { LogoutButton } from "../../auth/logout-button";
+import Link from "next/link";
 
 const DashboardHeadingDropdown = ({ user }) => {
   const { theme } = useTheme();
@@ -50,14 +52,23 @@ const DashboardHeadingDropdown = ({ user }) => {
           <DropdownMenuLabel className="px-2 py-1.5 text-xs font-medium text-gray-500 dark:text-gray-400">
             حساب کاربری
           </DropdownMenuLabel>
-          <DropdownMenuItem className="cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
-            <UserCircleIcon className="mr-2 h-4 w-4" />
-            <span>پروفایل</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
-            <Settings className="mr-2 h-4 w-4" />
-            <span>تنظیمات</span>
-          </DropdownMenuItem>
+
+          <Link href="/dashboard/profile" className="flex items-center gap-2">
+            <DropdownMenuItem className="w-full cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
+              <UserCircleIcon className="mr-2 mt-1 h-4 w-4" />
+              <span>پروفایل</span>
+            </DropdownMenuItem>
+          </Link>
+
+          <Link
+            href="/dashboard/contact-us"
+            className="flex items-center gap-2"
+          >
+            <DropdownMenuItem className="w-full cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
+              <Settings className="mr-2 mt-1 h-4 w-4" />
+              <span>پشتیبانی</span>
+            </DropdownMenuItem>
+          </Link>
 
           <DropdownMenuSeparator className="mx-2 my-1 bg-gray-200 dark:bg-gray-700" />
 
@@ -78,8 +89,12 @@ const DashboardHeadingDropdown = ({ user }) => {
           <DropdownMenuSeparator className="mx-2 my-1 bg-gray-200 dark:bg-gray-700" />
 
           <DropdownMenuItem className="cursor-pointer rounded-lg px-2 py-2 text-sm text-red-600 focus:bg-red-50 dark:text-red-400 dark:focus:bg-red-900/30">
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>خروج</span>
+            <LogoutButton asChild>
+              <div className="flex items-center">
+                <LogOut className="mr-2 mt-1 h-4 w-4" />
+                <span>خروج</span>
+              </div>
+            </LogoutButton>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
