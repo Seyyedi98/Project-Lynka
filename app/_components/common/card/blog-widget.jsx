@@ -25,7 +25,7 @@ const BlogWidget = () => {
 
       <div className="mt-2 text-center">
         <button className="dark:text-primary-300/80 dark:hover:text-primary-300 text-sm font-medium text-primary/80 hover:text-primary">
-          مشاهده همه مطالب →
+          مشاهده همه مطالب ←
         </button>
       </div>
     </div>

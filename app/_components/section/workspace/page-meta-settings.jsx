@@ -51,7 +51,7 @@ const PageMetaSettings = () => {
     <div className="w-full space-y-6">
       {/* Tab Navigation */}
       <div className="flex w-full items-center justify-between border-b border-border pb-4">
-        <div className="flex w-full items-center justify-between gap-2 overflow-x-auto pb-1">
+        <div className="flex w-full items-center justify-center gap-4 overflow-x-auto pb-1">
           {tabs.map((tab) => (
             <Button
               key={tab.id}

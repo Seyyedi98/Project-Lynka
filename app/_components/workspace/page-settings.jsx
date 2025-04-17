@@ -8,8 +8,8 @@ import PageAnalytics from "../section/workspace/page-analytics";
 
 const PageSettings = () => {
   const [selectedTab, setSelectedTab] = useState("تنظیمات");
-  const MobileTabItems = ["تنظیمات", "لودینگ", "آمار"];
-  const DesktopTabItems = ["تنظیمات"];
+  const MobileTabItems = ["تنظیمات", "لودینگ"];
+  const DesktopTabItems = ["تنظیمات", "لودینگ"];
 
   return (
     <div className="pt-1">
@@ -29,7 +29,7 @@ const PageSettings = () => {
             `absolute bottom-0 border border-primary transition-all duration-300`,
             selectedTab === MobileTabItems[0] && "right-[3px] w-[60px]",
             selectedTab === MobileTabItems[1] && "right-[81.5px] w-[60px]",
-            selectedTab === MobileTabItems[2] && "right-[160px] w-[60px]",
+            // selectedTab === MobileTabItems[2] && "right-[160px] w-[60px]",
           )}
         />
       </ul>
@@ -38,7 +38,6 @@ const PageSettings = () => {
       <div className="mt-4 text-right transition-all duration-200 md:hidden">
         {selectedTab === MobileTabItems[0] && <WorkspaceSettings />}
         {selectedTab === MobileTabItems[1] && <PageLoadingSettings />}
-        {selectedTab === MobileTabItems[2] && <PageAnalytics />}
       </div>
 
       {/* Desktop Tap */}
@@ -65,8 +64,8 @@ const PageSettings = () => {
       {/* Desktop Menu */}
       <div className="mt-4 hidden text-right transition-all duration-200 md:block">
         {selectedTab === DesktopTabItems[0] && <WorkspaceSettings />}
-        {/* {selectedTab === DesktopTabItems[1] && <PageLoadingSettings />}
-        {selectedTab === DesktopTabItems[2] && <div>analytics</div>} */}
+        {selectedTab === DesktopTabItems[1] && <PageLoadingSettings />}
+        {/* {selectedTab === DesktopTabItems[2] && <div>analytics</div>} */}
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ const WorkspaceSidebarMobile = () => {
           <WorkspaceDynamicModal
             mode="allDrawer"
             modalId="browser"
-            title="مرورگر و سوشیال مدیا"
+            title="مشخصات صفحه"
             trigger={
               <button className="rounded-full p-2 transition hover:bg-muted">
                 <AppWindow className="h-6 w-6 text-foreground" />
