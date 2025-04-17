@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { IconBrandGoogleAnalytics } from "@tabler/icons-react";
+import { IconBrandGoogle, IconBrandGoogleAnalytics } from "@tabler/icons-react";
 import React from "react";
 import { signIn } from "next-auth/react";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
@@ -12,15 +12,14 @@ const Social = () => {
   };
 
   return (
-    <div className="flex w-full items-center gap-x-2">
-      <Button
-        size="lg"
-        className="w-full"
-        variant="outlie"
+    <div className="flex h-10 w-full items-center gap-x-2">
+      <button
         onClick={() => onClick("google")}
+        className="flex w-full items-center justify-center gap-2 rounded-md border border-border px-4 py-2 transition-colors hover:bg-gray-50"
       >
-        <IconBrandGoogleAnalytics className="h-5 w-5" />
-      </Button>
+        <IconBrandGoogle className="h-5 w-5" />
+        <span>ورود با گوگل</span>
+      </button>
     </div>
   );
 };

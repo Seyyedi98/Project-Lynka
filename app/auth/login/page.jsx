@@ -4,7 +4,7 @@ import { CredentialsLoginForm } from "@/app/_components/auth/credentials-login-f
 import { MobileLoginForm } from "@/app/_components/auth/mobile-login-form";
 import Social from "@/app/_components/auth/social";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -22,7 +22,7 @@ const Login = () => {
           >
             <div className="absolute -bottom-1 right-0 h-[1px] w-0 bg-secondary transition-all group-hover:w-full" />
             حساب کاربری ندارید؟
-            <ArrowRight className="mt-1 h-4 w-4" />
+            <ArrowLeft className="mt-1 h-4 w-4" />
           </Link>
           <p>Logo</p>
         </span>
@@ -55,7 +55,9 @@ const Login = () => {
         <div className="mt-8 w-full max-w-md px-4">
           {selectedTab === "email" && <CredentialsLoginForm />}
           {selectedTab === "mobile" && <MobileLoginForm />}
-          <Social />
+          <div className="mt-4">
+            <Social />
+          </div>
         </div>
       </div>
       <div className="hidden h-full w-full place-items-center text-4xl text-white lg:grid">

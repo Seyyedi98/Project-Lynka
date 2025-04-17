@@ -13,18 +13,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { NewPasswordSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { CardWrapper } from "../layout/card-wrapper";
 import { FormError } from "../common/message/form-error";
 import { FormSuccess } from "../common/message/form-success";
+import { LoaderIcon } from "react-hot-toast";
 
 export const CredentialsNewPasswordForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const token = searchParams.get("token");
 
@@ -42,46 +43,58 @@ export const CredentialsNewPasswordForm = () => {
       newPassword(values, token).then((data) => {
         setError(data?.error);
         setSuccess(data?.success);
+        if (data.success === "رمز عبور تغییر یافت") {
+          router.push("/dashboard/auth/login");
+        }
       });
     });
   };
 
   return (
-    <CardWrapper
-      headerLabel="رمز عبور خود را وارد کنید"
-      backButtonLabel="بازگشت به صفحه ی ورود"
-      backButtonHref="/auth/login"
-    >
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="space-y-4">
-            {/* Email field */}
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>رمز عبور</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      placeholder="رمز عبور"
-                      type="password"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <FormError message={error} />
-          <FormSuccess message={success} />
-          <Button disabled={isPending} type="submit" className="w-full">
-            تغییر رمز عبور
-          </Button>
-        </form>
-      </Form>
-    </CardWrapper>
+    <Form {...form}>
+      <form
+        dir="ltr"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-6"
+      >
+        <div className="space-y-4">
+          {/* Email field */}
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                {/* <FormLabel>رمز عبور</FormLabel> */}
+                <FormControl>
+                  <Input
+                    {...field}
+                    disabled={isPending}
+                    className="text-center"
+                    placeholder="رمز جدید"
+                    type="password"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <FormError message={error} />
+        <FormSuccess message={success} />
+        <Button
+          disabled={isPending}
+          type="submit"
+          variant="default"
+          className="w-full"
+          size="md"
+        >
+          {isPending ? (
+            <LoaderIcon className="mx-10 animate-spin" />
+          ) : (
+            " تغییر رمز عبور"
+          )}
+        </Button>
+      </form>
+    </Form>
   );
 };

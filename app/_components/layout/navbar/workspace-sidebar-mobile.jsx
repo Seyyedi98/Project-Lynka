@@ -6,9 +6,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { GearIcon } from "@radix-ui/react-icons";
-import { AppWindow, Palette, PlusIcon } from "lucide-react";
+import { AppWindow, ChartLine, Palette, PlusIcon } from "lucide-react";
 
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
+import PageAnalytics from "../../section/workspace/page-analytics";
 import PageDataSettingsContainer from "../../section/workspace/page-data-settings-container";
 import PageStyleSettingsContainer from "../../section/workspace/page-style-settings-container";
 import EditorSidebarElements from "../../workspace/element/editor-sidebar-elements";
@@ -73,11 +74,11 @@ const WorkspaceSidebarMobile = () => {
             title="آمار"
             trigger={
               <button className="rounded-full p-2 transition hover:bg-muted">
-                <AppWindow className="h-6 w-6 text-foreground" />
+                <ChartLine className="h-6 w-6 text-foreground" />
               </button>
             }
           >
-            <PageDataSettingsContainer />
+            <PageAnalytics />
           </WorkspaceDynamicModal>
         </li>
 

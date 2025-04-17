@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/input-otp";
 import { LoginSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, Loader } from "lucide-react";
+import { ArrowLeft, Loader } from "lucide-react";
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -117,7 +117,7 @@ export const CredentialsLoginForm = () => {
                     >
                       <div className="absolute -bottom-1 right-0 h-[1px] w-0 bg-secondary transition-all group-hover:w-full" />
                       رمز عبور خود را فراموش کرده اید؟
-                      <ArrowRight className="mt-0.5 h-4 w-4" />
+                      <ArrowLeft className="mt-0.5 h-4 w-4" />
                     </Link>
                     <FormMessage />
                   </FormItem>
