@@ -11,7 +11,7 @@ export default function Error({ error, reset }) {
       document
         .getElementById("error-card")
         .classList.add("opacity-0", "scale-95");
-      setTimeout(() => router.push("/"), 300); // Navigate after fade-out completes
+      // setTimeout(() => router.push("/"), 300); // Navigate after fade-out completes
     }, 5000); // Hide after 5 seconds
 
     return () => clearTimeout(timer);
