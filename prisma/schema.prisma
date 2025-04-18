@@ -167,3 +167,11 @@ model Notification {
   @@index([userId, isRead])
   @@index([createdAt])
 }
+
+model PageReports {
+  id         String    @id @default(cuid())
+  uri        String
+  createdAt  DateTime  @default(now())
+  readAt     DateTime?
+  reportText String
+}

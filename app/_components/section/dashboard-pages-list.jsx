@@ -34,11 +34,8 @@ const PagesList = ({ pages, onDelete, onShowQr }) => {
             <TableHeader className="text-textLight bg-muted/50 text-sm font-semibold">
               <TableRow>
                 <TableHead className="min-w-[120px] text-start">نام</TableHead>
-                <TableHead className="min-w-[100px] text-center">
+                <TableHead className="min-w-[50px] text-center">
                   بازدید
-                </TableHead>
-                <TableHead className="min-w-[120px] text-center">
-                  وضعیت
                 </TableHead>
                 <TableHead className="min-w-[180px] text-end">عملیات</TableHead>
               </TableRow>
@@ -54,11 +51,6 @@ const PagesList = ({ pages, onDelete, onShowQr }) => {
                   </TableCell>
                   <TableCell className="text-textLight text-center">
                     {page.views}
-                  </TableCell>
-                  <TableCell className="text-center">
-                    <span className="inline-block rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700 dark:bg-green-900/40 dark:text-green-300">
-                      فعال
-                    </span>
                   </TableCell>
                   <TableCell>
                     <div className="flex justify-end gap-2">

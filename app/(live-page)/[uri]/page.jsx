@@ -1,4 +1,5 @@
 import { getPageMetadata, increasePageView } from "@/actions/page/page";
+import LivePageMenu from "@/app/_components/common/button/live-page-menu";
 import LoadingSpinner from "@/app/_components/common/shared/loadingSpinner";
 import LivePageBackground from "@/app/_components/live-page/live-page-background";
 import LivePageElements from "@/app/_components/live-page/live-page-elements-render";
@@ -146,7 +147,9 @@ const LivePage = async ({ params }) => {
           </div>
         )}
 
-        <main className="flex w-full flex-col items-center overflow-y-auto pb-20 [scrollbar-width:none]">
+        <main className="relative flex w-full flex-col items-center overflow-y-auto pb-20 [scrollbar-width:none]">
+          <LivePageMenu  uri={uri}/>
+
           {/* Hero Section */}
           <LivePageHero hero={hero} />
 

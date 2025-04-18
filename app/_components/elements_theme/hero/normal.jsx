@@ -28,8 +28,6 @@ const NormalHero = ({ ...data }) => {
     ? getImageAddress(JSON.parse(secondaryImage).key)
     : "";
 
-  console.log();
-
   const [loadedTitleFont, setLoadedTitleFont] = useState(null);
   const [loadedSubtitleFont, setLoadedSubtitleFont] = useState(null);
 

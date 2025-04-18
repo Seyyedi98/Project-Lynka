@@ -6,17 +6,11 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import {
-  IconBrandFacebook,
-  IconBrandLinkedin,
-  IconBrandTwitter,
-  IconBrandWhatsapp,
-} from "@tabler/icons-react";
-import {
-  DialogTrigger,
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "../modal/diolog";
 
 export function ShareButton({ url, children, inDropdown = false, ...props }) {
