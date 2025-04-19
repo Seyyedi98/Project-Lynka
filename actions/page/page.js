@@ -39,7 +39,7 @@ export const newPageCreator = async (uri) => {
     });
     return page;
   }
-  return { message: "error " };
+  return { message: "error" };
 };
 
 export const getUserPages = async () => {
@@ -82,8 +82,6 @@ export const getUserPageData = async () => {
 
   return data.page;
 };
-
-
 
 // Get preview page data by URI (without user validation)
 export const getPageDataByUri = async (uri) => {

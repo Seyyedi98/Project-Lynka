@@ -1,18 +1,17 @@
 "use client";
 
-import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { cn } from "@/lib/utils";
 import {
-  ChartBar,
   ChartSplineIcon,
+  ClipboardPenIcon,
+  LibraryIcon,
   LucideHome,
-  NotepadTextIcon,
+  Settings,
 } from "lucide-react";
 import { useState } from "react";
 import SidebarLink from "../../common/button/NavigationButton/sidebar-link";
 import HumbergerMenuBtn from "../../common/button/PrimaryButton/humberger-menu";
-import { GearIcon } from "@radix-ui/react-icons";
 
 const DashboardSidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -61,7 +60,7 @@ const DashboardSidebar = () => {
           title="فرم ها"
           path="/dashboard/submits"
         >
-          <NotepadTextIcon className="h-6 w-6" />
+          <ClipboardPenIcon className="h-6 w-6" />
         </SidebarLink>
 
         <SidebarLink
@@ -69,7 +68,7 @@ const DashboardSidebar = () => {
           title="راهنما"
           path="/dashboard/docs"
         >
-          <ChartBar className="h-6 w-6" />
+          <LibraryIcon className="h-6 w-6" />
         </SidebarLink>
 
         <SidebarLink
@@ -77,7 +76,7 @@ const DashboardSidebar = () => {
           title="تنظیمات"
           path="/dashboard/settings"
         >
-          <GearIcon className="h-6 w-6" />
+          <Settings className="h-6 w-6" />
         </SidebarLink>
       </div>
     </nav>

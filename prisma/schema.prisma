@@ -173,5 +173,13 @@ model PageReports {
   uri        String
   createdAt  DateTime  @default(now())
   readAt     DateTime?
-  reportText String
+  reportText String    @db.VarChar(500)
+}
+
+model contactUsMessages {
+  id        String   @id @default(cuid())
+  userId    String
+  createdAt DateTime @default(now())
+  title     String
+  message   String   @db.VarChar(500)
 }

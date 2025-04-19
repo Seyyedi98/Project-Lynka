@@ -1,3 +1,5 @@
+import { markRead } from "@/actions/notifications";
+
 const NotificationCard = ({ notification }) => {
   return (
     <div className="flex items-start justify-between">
@@ -16,7 +18,7 @@ const NotificationCard = ({ notification }) => {
         <button
           onClick={(e) => {
             e.stopPropagation();
-            handleMarkAsRead(notification.id);
+            markRead(notification.id);
           }}
           className="text-xs text-blue-600 hover:underline"
         >

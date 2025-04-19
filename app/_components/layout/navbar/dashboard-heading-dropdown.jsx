@@ -8,8 +8,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   ChevronDown,
+  HeadsetIcon,
   LoaderIcon,
   LogOut,
+  MailIcon,
   Moon,
   Settings,
   Sun,
@@ -61,11 +63,21 @@ const DashboardHeadingDropdown = ({ user }) => {
           </Link>
 
           <Link
+            href="/dashboard/notifications"
+            className="flex items-center gap-2"
+          >
+            <DropdownMenuItem className="w-full cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
+              <MailIcon className="mr-2 mt-1 h-4 w-4" />
+              <span>پیام ها</span>
+            </DropdownMenuItem>
+          </Link>
+
+          <Link
             href="/dashboard/contact-us"
             className="flex items-center gap-2"
           >
             <DropdownMenuItem className="w-full cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
-              <Settings className="mr-2 mt-1 h-4 w-4" />
+              <HeadsetIcon className="mr-2 mt-1 h-4 w-4" />
               <span>پشتیبانی</span>
             </DropdownMenuItem>
           </Link>

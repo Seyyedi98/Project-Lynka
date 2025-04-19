@@ -6,7 +6,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, QrCode, ShareIcon, ViewIcon } from "lucide-react";
+import { ChevronDown, QrCode, Share2, ShareIcon, ViewIcon } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import PageQrCodeGenerator from "../../section/workspace/page-qrcode-generator";
@@ -66,7 +66,7 @@ const PageUrl = () => {
               inDropdown={true}
             >
               <div className="flex h-12 w-full cursor-pointer items-center rounded-md px-2 transition-colors duration-150 hover:bg-accent/30 hover:backdrop-blur-sm">
-                <ShareIcon className="h-4 w-4" />
+                <Share2 className="h-4 w-4" />
                 <div className="w-40 p-2">اشتراک گذاری صفحه</div>
               </div>
             </ShareButton>

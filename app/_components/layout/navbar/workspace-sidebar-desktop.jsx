@@ -8,12 +8,12 @@ import {
 import { cn } from "@/lib/utils";
 import getImageAddress from "@/utils/get-image-address";
 import parseJson from "@/utils/parseJSON";
-import { GearIcon } from "@radix-ui/react-icons";
 import {
   AppWindow,
   ChartLine,
   Layers,
   PaletteIcon,
+  Settings,
   UserRoundIcon,
 } from "lucide-react";
 import Image from "next/image";
@@ -142,7 +142,7 @@ const WorkspaceSidebatDesktop = ({ selectedMenu, setSelectedMenu }) => {
           <div className="flex flex-col items-center justify-center gap-4">
             <Dialog>
               <DialogTrigger asChild>
-                <GearIcon className="h-7 w-7 cursor-pointer" />
+                <Settings className="h-7 w-7 cursor-pointer" />
               </DialogTrigger>
               <DialogContent className="">
                 <DialogTitle className="hidden"></DialogTitle>

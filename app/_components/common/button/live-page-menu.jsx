@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";
-import { submitReport } from "@/actions/pageReport";
+import { submitReport } from "@/actions/page-report";
 
 const LivePageMenu = ({ uri }) => {
   const url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${uri}`;

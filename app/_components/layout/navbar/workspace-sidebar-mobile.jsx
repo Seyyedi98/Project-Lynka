@@ -5,8 +5,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { GearIcon } from "@radix-ui/react-icons";
-import { AppWindow, ChartLine, Palette, PlusIcon } from "lucide-react";
+import {
+  AppWindow,
+  ChartLine,
+  Palette,
+  PlusIcon,
+  Settings,
+} from "lucide-react";
 
 import { WorkspaceDynamicModal } from "../../common/modal/workspace-dynamic-modal";
 import PageAnalytics from "../../section/workspace/page-analytics";
@@ -87,7 +92,7 @@ const WorkspaceSidebarMobile = () => {
           <Dialog>
             <DialogTrigger asChild>
               <button className="rounded-full p-2 transition hover:bg-muted">
-                <GearIcon className="h-6 w-6 text-foreground" />
+                <Settings className="h-6 w-6 text-foreground" />
               </button>
             </DialogTrigger>
             <DialogContent>

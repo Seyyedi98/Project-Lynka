@@ -178,6 +178,7 @@ export default function SubmitsPanel() {
       <SubmitsHeader
         pages={pages}
         searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
         availableTitles={availableTitles}
         isInitialLoading={isInitialLoading}
         selectedPage={selectedPage}

@@ -121,3 +121,14 @@ export const cardFieldSchems = z.object({
   secondaryImage: z.any(),
   style: z.any(),
 });
+
+export const contactMeFormSchema = z.object({
+  title: z
+    .string()
+    .min(2, { message: "عنوان باید حداقل ۲ کاراکتر باشد" })
+    .max(50, { message: "عنوان نمی‌تواند بیشتر از ۵۰ کاراکتر باشد" }),
+  message: z
+    .string()
+    .min(10, { message: "پیام باید حداقل ۱۰ کاراکتر باشد" })
+    .max(500, { message: "پیام نمی‌تواند بیشتر از ۵۰۰ کاراکتر باشد" }),
+});

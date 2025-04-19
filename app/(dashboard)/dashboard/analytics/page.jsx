@@ -154,7 +154,7 @@ const AnalyticsPanel = () => {
                   <SelectContent>
                     {isInitialLoading ? (
                       <div className="p-2 text-center text-sm text-muted-foreground">
-                        در حال بارگذاری صفحات...
+                        در حال بارگذاری صفحات ...
                       </div>
                     ) : (
                       pages.map((page) => (

@@ -8,12 +8,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { motion } from "framer-motion";
-import { FilterIcon, LinkIcon } from "lucide-react";
+import { FilterIcon, LinkIcon, SearchIcon } from "lucide-react";
+import { useState } from "react";
 
 const SubmitsHeader = (props) => {
   const {
     pages,
     searchQuery,
+    setSearchQuery,
     availableTitles,
     isInitialLoading,
     selectedPage,
@@ -21,7 +23,6 @@ const SubmitsHeader = (props) => {
     formTitleFilter,
     setFormTitleFilter,
   } = props;
-
 
   return (
     <motion.div
@@ -33,12 +34,14 @@ const SubmitsHeader = (props) => {
       <Card className="border-0 bg-background/80 backdrop-blur-sm sm:mx-4 sm:mr-20 xl:pr-6">
         <CardContent className="p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="flex-1">
+            <div className="relative flex-1">
+              <SearchIcon className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
+
               <Input
                 placeholder="جستجو در فرم‌ها..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="max-w-md"
+                className="max-w-md pl-4 pr-10"
               />
             </div>
 
@@ -75,7 +78,7 @@ const SubmitsHeader = (props) => {
                 <SelectContent>
                   {isInitialLoading ? (
                     <div className="p-2 text-center text-sm text-muted-foreground">
-                      در حال بارگذاری صفحات...
+                      در حال بارگذاری صفحات ...
                     </div>
                   ) : (
                     pages.map((page) => (
