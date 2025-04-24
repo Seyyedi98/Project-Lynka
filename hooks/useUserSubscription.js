@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  getSubscriptionDataByUri,
-  updatesubscriptionPlan,
-} from "@/actions/auth/subscription";
+import { getSubscriptionDataByUri } from "@/actions/auth/subscription";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
@@ -34,7 +31,7 @@ export const useUserSubscription = () => {
 
   if (subscriptionPlan === "silver" && subscriptionDaysLeft > 0) {
     isPremium = true;
-  } 
+  }
 
   return { subscriptionPlan, subscriptionDaysLeft, isPremium };
 };

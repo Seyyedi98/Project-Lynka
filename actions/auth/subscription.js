@@ -23,6 +23,8 @@ export const getSubscriptionDataByUri = async (uri) => {
     select: { User: true },
   });
 
+  if (!userId) return;
+
   const { subscriptionPlan, subscriptionExpire } = userId.User;
 
   return { subscriptionPlan, subscriptionExpire };

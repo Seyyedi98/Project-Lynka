@@ -30,7 +30,7 @@ export async function GET(req) {
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
 }

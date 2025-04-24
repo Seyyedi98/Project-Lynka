@@ -27,7 +27,7 @@ const Login = () => {
           <p>Logo</p>
         </span>
 
-        <h2 className="mt-6 text-4xl text-primary">ورود</h2>
+        <h2 className="mb-4 mt-20 text-4xl text-white">ورود</h2>
         <div className="relative mt-8 flex cursor-pointer items-center justify-center gap-10 text-base font-thin text-text-light">
           <span
             className={cn(
