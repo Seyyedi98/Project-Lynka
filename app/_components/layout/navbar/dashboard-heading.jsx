@@ -2,8 +2,6 @@
 import { getNotifications } from "@/actions/notifications";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { HelpCircle } from "lucide-react";
-import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import DashboardHeadingDropdown from "./dashboard-heading-dropdown";
 import DashboardHeadingNotificationBell from "./dashboard-heading-norification-bell";

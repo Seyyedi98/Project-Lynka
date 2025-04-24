@@ -3,6 +3,7 @@
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
+import { LogIn } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -65,7 +66,7 @@ export default function Navbar() {
           {session.status !== "unauthenticated" ? (
             <Link
               href="/dashboard"
-              className="hidden rounded-full bg-primary px-5 py-2 text-white transition hover:bg-primary/70 hover:text-white md:flex"
+              className="hidden transform items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-2.5 font-medium text-primary-foreground shadow-sm transition-all duration-200 hover:scale-[1.02] hover:from-primary-hover hover:to-[hsl(182,100%,28%)] hover:shadow-md active:scale-95 md:flex"
             >
               پنل مدیریت
             </Link>
@@ -73,9 +74,10 @@ export default function Navbar() {
             <div className="flex gap-2">
               <Link
                 href="/auth/login"
-                className="hidden rounded-lg bg-primary px-4 py-2 text-white transition hover:bg-primary/70 hover:text-white md:flex"
+                className="hidden transform items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-2.5 font-medium text-primary-foreground shadow-sm transition-all duration-200 hover:scale-[1.02] hover:from-primary-hover hover:to-[hsl(182,100%,28%)] hover:shadow-md active:scale-95 md:flex"
               >
-                ورود
+                <span>ورود</span>
+                <LogIn className="h-4 w-4" />
               </Link>
             </div>
           )}
@@ -115,9 +117,24 @@ export default function Navbar() {
                   {item.label}
                 </a>
               ))}
-              <button className="mt-2 w-full rounded-full bg-primary px-5 py-2 text-white transition hover:bg-blue-700">
-                Start Now
-              </button>
+              {session.status !== "unauthenticated" ? (
+                <Link
+                  href="/dashboard"
+                  className="mt-4 flex w-full transform items-center justify-center gap-1 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-3 text-center font-medium text-primary-foreground shadow-sm transition-all duration-200 hover:scale-[1.02] hover:from-primary-hover hover:to-[hsl(182,100%,28%)] hover:shadow-md active:scale-95"
+                >
+                  پنل مدیریت
+                </Link>
+              ) : (
+                <div className="flex gap-2">
+                  <Link
+                    href="/auth/login"
+                    className="mt-4 flex w-full transform items-center justify-center gap-1 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-3 text-center font-medium text-primary-foreground shadow-sm transition-all duration-200 hover:scale-[1.02] hover:from-primary-hover hover:to-[hsl(182,100%,28%)] hover:shadow-md active:scale-95"
+                  >
+                    <span>ورود</span>
+                    <LogIn className="h-4 w-4" />
+                  </Link>
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

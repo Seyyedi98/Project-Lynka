@@ -13,19 +13,16 @@ import {
   LogOut,
   MailIcon,
   Moon,
-  Settings,
   Sun,
   UserCircleIcon,
 } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
-import ToggleDarkmode from "../../common/button/PrimaryButton/toggle-darkmode";
-import { LogoutButton } from "../../auth/logout-button";
 import Link from "next/link";
+import { LogoutButton } from "../../auth/logout-button";
+import ToggleDarkmode from "../../common/button/PrimaryButton/toggle-darkmode";
 
 const DashboardHeadingDropdown = ({ user }) => {
   const { theme } = useTheme();
-  const w = useRouter();
 
   return (
     <div className="ml-2 flex items-center justify-center gap-4 text-sm">
