@@ -9,17 +9,17 @@ import {
   FiUsers,
   FiYoutube,
 } from "react-icons/fi";
-import LandingPageNavbar from "../_components/landing/navbar";
+import LandingPageFeatures from "../_components/landing/section/features";
 import LandingPageHero from "../_components/landing/section/hero";
+import LandingPageNavbar from "../_components/landing/navbar";
 
 export default function LandingPage() {
   return (
-    <div className="font-yekan min-h-screen overflow-x-hidden bg-[hsl(var(--background))]">
+    <div className="font-yekan relative min-h-screen overflow-x-hidden bg-[hsl(var(--background))]">
       <LandingPageNavbar />
-
       <LandingPageHero />
-
-      {/* Features Section */}
+      <LandingPageFeatures />
+      Features Section
       <section
         id="features"
         className="relative bg-[hsl(var(--secondaryBg))] py-20"
@@ -84,7 +84,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* Business Section */}
       <section id="business" className="bg-white py-20">
         <div className="container mx-auto px-4">
@@ -179,7 +178,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-[hsl(var(--primary)/0.8)] to-[hsl(var(--secondary)/0.8)] py-20">
         <div className="container mx-auto px-4 text-center">
@@ -204,7 +202,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="border-t border-white/20 bg-[hsl(var(--secondaryBg))]/80 py-12 backdrop-blur-sm">
         <div className="container mx-auto px-4">

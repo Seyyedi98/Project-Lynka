@@ -1,10 +1,17 @@
 "use client";
 
 import { logout } from "@/actions/auth/logout";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export const LogoutButton = ({ children, mode = "redirect", asChild }) => {
-  const onClick = () => {
-    logout();
+  const { update } = useSession();
+  const router = useRouter();
+
+  const onClick = async () => {
+    await logout();
+    await update();
+    router.refresh();
   };
 
   if (mode === "modal") {

@@ -20,8 +20,10 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { LogoutButton } from "../../auth/logout-button";
 import ToggleDarkmode from "../../common/button/PrimaryButton/toggle-darkmode";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 
-const DashboardHeadingDropdown = ({ user }) => {
+const DashboardHeadingDropdown = () => {
+  const user = useCurrentUser();
   const { theme } = useTheme();
 
   return (
@@ -46,7 +48,7 @@ const DashboardHeadingDropdown = ({ user }) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="end"
-          className="min-w-[220px] rounded-xl bg-white/95 p-2 backdrop-blur-lg dark:bg-gray-800/95 dark:text-white"
+          className="ml-2 min-w-[220px] rounded-xl bg-white/95 p-2 backdrop-blur-lg dark:bg-gray-800/95 dark:text-white"
         >
           <DropdownMenuLabel className="px-2 py-1.5 text-xs font-medium text-gray-500 dark:text-gray-400">
             حساب کاربری

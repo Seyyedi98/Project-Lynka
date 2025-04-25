@@ -1,106 +1,140 @@
 "use client";
 
-import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
-import { LogIn } from "lucide-react";
+import { LogIn, Menu, X } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FiMenu, FiX } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
 
-export default function Navbar() {
+export default function LandingPageNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const session = useSession();
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMenuOpen && !event.target.closest(".mobile-menu-container")) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="fixed left-0 right-0 top-4 z-50 flex justify-center"
-    >
-      <nav
-        className={cn(
-          `w-[95%] max-w-6xl rounded-2xl px-5 py-4 pr-6 transition-all duration-300`,
-          isOpen && !isScrolled ? "bg-white/20 backdrop-blur-sm" : "",
-          isScrolled ? "bg-white/20 shadow-lg backdrop-blur-sm" : "",
-        )}
+    <>
+      <div
+        className={`fixed right-0 top-0 z-40 flex h-16 w-full px-2 text-white transition-all duration-200 sm:pr-4 ${
+          isScrolled || isMenuOpen
+            ? "bg-gradient-to-r from-[rgba(32,148,243,0.9)] to-[rgba(0,189,164,0.9)] shadow-lg backdrop-blur-sm"
+            : "bg-transparent"
+        }`}
+        style={{
+          transition: "background 0.3s ease, box-shadow 0.3s ease",
+        }}
       >
-        <div className="flex items-center justify-between">
-          {/* LOGO */}
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 sm:px-1">
+          {/* Logo */}
           <Link
             href="/"
-            className="text-xl font-bold text-primary hover:text-primary"
+            className="ml-4 text-xl font-bold text-white transition-opacity duration-300 hover:text-white hover:opacity-90"
           >
             لینکا
           </Link>
 
-          {/* Desktop Menu NAV Links */}
-          <ul className="hidden items-center gap-6 text-sm font-medium text-gray-800 md:flex">
+          {/* Navigation Links - Hidden on mobile */}
+          <div className="hidden items-center gap-6 text-sm font-medium md:flex">
             {[
               { label: "خانه", href: "/" },
               { label: "بلاگ", href: "/blog" },
               { label: "قیمت ها", href: "/pricing" },
               { label: "تماس با ما", href: "/contact-us" },
             ].map((item, index) => (
-              <li key={index}>
-                <a
-                  href={`#${item.href.toLowerCase()}`}
-                  className="transition hover:text-primary"
-                >
-                  {item.label}
-                </a>
-              </li>
+              <Link
+                key={index}
+                href={item.href}
+                className="text-white/80 transition-all duration-300 hover:scale-105 hover:text-white"
+              >
+                {item.label}
+              </Link>
             ))}
-          </ul>
+          </div>
 
-          {/* LOGIN || DASHBOARD BTN */}
-          {session.status !== "unauthenticated" ? (
-            <Link
-              href="/dashboard"
-              className="hidden transform items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-2.5 font-medium text-primary-foreground shadow-sm transition-all duration-200 hover:scale-[1.02] hover:from-primary-hover hover:to-[hsl(182,100%,28%)] hover:shadow-md active:scale-95 md:flex"
-            >
-              پنل مدیریت
-            </Link>
-          ) : (
-            <div className="flex gap-2">
+          {/* Desktop Login Button - Hidden on mobile */}
+          <div className="hidden items-center gap-4 md:flex">
+            {session.status !== "unauthenticated" ? (
+              <Link
+                href="/dashboard"
+                className="flex transform items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all duration-300 hover:text-slate-900 hover:shadow-md active:scale-95"
+              >
+                <span>پنل کاربری</span>
+                <LogIn className="h-4 w-4" />
+              </Link>
+            ) : (
               <Link
                 href="/auth/login"
-                className="hidden transform items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-2.5 font-medium text-primary-foreground shadow-sm transition-all duration-200 hover:scale-[1.02] hover:from-primary-hover hover:to-[hsl(182,100%,28%)] hover:shadow-md active:scale-95 md:flex"
+                className="flex transform items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all duration-300 hover:text-primary hover:shadow-md active:scale-95"
               >
                 <span>ورود</span>
                 <LogIn className="h-4 w-4" />
               </Link>
-            </div>
-          )}
+            )}
+          </div>
 
-          {/* Mobile Toggle */}
+          {/* Mobile menu button - Always visible on mobile */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-gray-700 md:hidden"
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Menu"
           >
-            {isOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+            {isMenuOpen ? (
+              <X className="h-6 w-6 text-white" />
+            ) : (
+              <Menu className="h-6 w-6 text-white" />
+            )}
           </button>
         </div>
+      </div>
 
-        {/* Mobile Menu with animation */}
-        <AnimatePresence>
-          {isOpen && (
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="mobile-menu-container fixed right-0 top-16 z-30 w-full bg-gradient-to-r from-[rgba(32,148,243,0.95)] to-[rgba(0,189,164,0.95)] shadow-lg backdrop-blur-sm md:hidden"
+          >
             <motion.div
-              key="mobile-menu"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="overflow-hidden rounded-xl p-4 text-sm text-gray-800 md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.2 }}
+              className="flex flex-col items-center gap-6 overflow-y-auto pb-6 pt-4"
+              style={{ maxHeight: "calc(100vh - 4rem)" }}
             >
               {[
                 { label: "خانه", href: "/" },
@@ -108,37 +142,53 @@ export default function Navbar() {
                 { label: "قیمت ها", href: "/pricing" },
                 { label: "تماس با ما", href: "/contact-us" },
               ].map((item, index) => (
-                <a
+                <motion.div
                   key={index}
-                  href={`#${item.href.toLowerCase()}`}
-                  className="block py-1 transition hover:text-primary"
-                  onClick={() => setIsOpen(false)}
+                  initial={{ x: 20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.1 + index * 0.05 }}
+                  className="w-full px-6"
                 >
-                  {item.label}
-                </a>
+                  <Link
+                    href={item.href}
+                    className="block w-full py-3 text-center text-lg text-white/80 transition-all duration-300 hover:bg-white/10 hover:text-white"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
               ))}
-              {session.status !== "unauthenticated" ? (
-                <Link
-                  href="/dashboard"
-                  className="mt-4 flex w-full transform items-center justify-center gap-1 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-3 text-center font-medium text-primary-foreground shadow-sm transition-all duration-200 hover:scale-[1.02] hover:from-primary-hover hover:to-[hsl(182,100%,28%)] hover:shadow-md active:scale-95"
-                >
-                  پنل مدیریت
-                </Link>
-              ) : (
-                <div className="flex gap-2">
+
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="mt-2 w-full px-6"
+              >
+                {session.status !== "unauthenticated" ? (
+                  <Link
+                    href="/dashboard"
+                    className="flex transform items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all duration-300 hover:text-slate-900 hover:shadow-md active:scale-95"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <span>پنل کاربری</span>
+                    <LogIn className="h-4 w-4" />
+                  </Link>
+                ) : (
                   <Link
                     href="/auth/login"
-                    className="mt-4 flex w-full transform items-center justify-center gap-1 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-3 text-center font-medium text-primary-foreground shadow-sm transition-all duration-200 hover:scale-[1.02] hover:from-primary-hover hover:to-[hsl(182,100%,28%)] hover:shadow-md active:scale-95"
+                    className="flex transform items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all duration-300 hover:text-primary hover:shadow-md active:scale-95"
+                    onClick={() => setIsMenuOpen(false)}
                   >
                     <span>ورود</span>
                     <LogIn className="h-4 w-4" />
                   </Link>
-                </div>
-              )}
+                )}
+              </motion.div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-    </motion.header>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

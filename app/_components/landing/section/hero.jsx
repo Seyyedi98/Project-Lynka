@@ -1,111 +1,162 @@
-import { FiArrowRight, FiLink, FiSmile, FiZap } from "react-icons/fi";
-import { LoginButton } from "../../auth/login-button";
+"use client";
+
+import { motion } from "framer-motion";
+import { Globe, Link2, Share2, Sparkles, Users } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
+const floatVariants = {
+  initial: { opacity: 0, y: -20, scale: 0.8 },
+  animate: (i) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      delay: 0.4 + i * 0.2,
+      type: "spring",
+      stiffness: 100,
+    },
+  }),
+};
+
+const floatingIcons = [
+  { icon: Link2, top: "10%", left: "5%" },
+  { icon: Share2, top: "20%", left: "85%" },
+  { icon: Users, top: "70%", left: "10%" },
+  { icon: Globe, top: "80%", left: "80%" },
+  { icon: Sparkles, top: "50%", left: "50%" },
+];
+
+// Text animation variants
+const textVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.2 + i * 0.1,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  }),
+};
+
+const underlineVariants = {
+  hidden: { scaleX: 0, originX: 1 },
+  visible: {
+    scaleX: 1,
+    transition: {
+      delay: 0.4,
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const buttonVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.6,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
 
 const LandingPageHero = () => {
   return (
-    <section className="bg-white py-20 pt-32">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-8">
-          {/* Text Content */}
-          <div className="flex-1 text-center lg:text-right">
-            <h1 className="text-4xl font-bold leading-tight text-gray-900 md:text-5xl lg:text-6xl">
-              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                لینک‌های هوشمند
-              </span>{" "}
-              برای کسب‌وکار شما
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 md:text-xl">
-              تمام لینک‌های مهم خود را در یک صفحه مدرن و بهینه جمع‌آوری کنید و
-              تجربه‌ای حرفه‌ای برای مخاطبان خود ایجاد نمایید
-            </p>
+    <section className="relative overflow-hidden bg-gradient-to-br from-[hsl(207,90%,54%)] to-[hsl(172,100%,37%)] py-24 transition-colors duration-300 md:py-32">
+      {/* Wave SVG at the bottom */}
+      <div className="absolute inset-x-0 bottom-0">
+        <svg
+          viewBox="0 0 224 12"
+          fill="currentColor"
+          className="-mb-1 w-full text-white"
+          preserveAspectRatio="none"
+        >
+          <path d="M0,0 C48.8902582,6.27314026 86.2235915,9.40971039 112,9.40971039 C137.776408,9.40971039 175.109742,6.27314026 224,0 L224,12.0441132 L0,12.0441132 L0,0 Z" />
+        </svg>
+      </div>
 
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
-              <LoginButton asChild>
-                <button className="flex items-center gap-2 rounded-full bg-blue-600 px-8 py-3.5 text-lg font-semibold text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-700 hover:shadow-blue-500/30">
-                  <FiZap className="shrink-0" />
-                  شروع رایگان
-                </button>
-              </LoginButton>
-              <button className="flex items-center gap-2 rounded-full border border-gray-300 bg-white px-8 py-3.5 text-lg font-semibold text-gray-800 transition-all hover:border-blue-400 hover:text-blue-600">
-                <FiSmile className="shrink-0" />
-                مشاهده دمو
-              </button>
-            </div>
+      <div className="container mx-auto mt-12 flex flex-col-reverse items-center gap-16 px-4 md:flex-row">
+        {/* Text content */}
+        <div className="w-full text-right md:w-1/2">
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            className="mb-6 text-center text-4xl font-bold leading-relaxed text-white md:text-right md:text-3xl lg:text-4xl xl:text-5xl"
+          >
+            <motion.span variants={textVariants} className="block">
+              همه‌ی محتوای شما، در یک‌جا
+            </motion.span>
+            <br className="hidden md:block" />
+            <motion.span
+              variants={textVariants}
+              custom={1}
+              className="relative inline-block md:mt-4"
+            >
+              به سادگی و زیبایی
+              <motion.div
+                variants={underlineVariants}
+                className="h-1 w-full rounded-full bg-white/30 md:mt-4"
+                initial="hidden"
+                animate="visible"
+              />
+            </motion.span>
+          </motion.h1>
 
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-4 text-sm lg:justify-start">
-              <div className="flex items-center gap-3 rounded-full bg-gray-50 px-4 py-2">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3].map((item) => (
-                    <div
-                      key={item}
-                      className="h-8 w-8 rounded-full border-2 border-white bg-gray-200"
-                    />
-                  ))}
-                </div>
-                <span className="text-gray-600">+100 کسب‌وکار فعال</span>
-              </div>
+          <motion.p
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            custom={1.5}
+            className="mb-10 max-w-md text-lg leading-7 text-white/90 sm:leading-4 md:text-xl"
+          >
+            تمام لینک‌ها، شبکه‌های اجتماعی، محصولات و خدمات‌تان را در یک صفحه‌ی
+            زیبا و اختصاصی به نمایش بگذارید.
+          </motion.p>
 
-              <div className="flex items-center gap-2 rounded-full bg-gray-50 px-4 py-2">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-green-100">
-                  <svg
-                    className="h-3 w-3 text-green-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <span className="text-gray-600">راه‌حل مورد اعتماد</span>
-              </div>
-            </div>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={buttonVariants}
+            className="items-center gap-4"
+          >
+            <Link
+              href="/dashboard"
+              className="focus:shadow-outline inline-flex h-12 w-full items-center justify-center rounded-lg bg-white px-6 font-medium tracking-wide text-[hsl(207,90%,54%)] shadow-md transition duration-200 hover:bg-white/90 focus:outline-none md:w-auto"
+            >
+              رایگان شروع کنید
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Preview and floating components */}
+        <div className="relative flex w-full items-center justify-center md:w-1/2">
+          <div className="relative h-[520px] w-[260px]">
+            <Image
+              src="/images/mobile-preview.png"
+              alt="پیش‌نمایش موبایل"
+              fill
+              className="rounded-2xl object-cover shadow-2xl"
+            />
           </div>
-
-          {/* Preview Card */}
-          <div className="flex-1">
-            <div className="relative mx-auto max-w-md">
-              <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl">
-                <div className="flex h-12 items-center border-b border-gray-200 px-4">
-                  <div className="flex gap-2">
-                    <div className="h-3 w-3 rounded-full bg-red-500"></div>
-                    <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-                    <div className="h-3 w-3 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-                <div className="flex h-48 items-center justify-center bg-gray-50">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blue-50 text-3xl text-blue-500">
-                    👔
-                  </div>
-                </div>
-                <div className="space-y-3 p-6">
-                  {[
-                    "وبسایت رسمی",
-                    "شبکه‌های اجتماعی",
-                    "محصولات و خدمات",
-                    "تماس با ما",
-                  ].map((link, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-3 rounded-lg border border-gray-200 bg-white p-3 transition-all hover:border-blue-300 hover:shadow-sm"
-                    >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-blue-500">
-                        <FiLink size={16} />
-                      </div>
-                      <span className="text-sm font-medium text-gray-800">
-                        {link}
-                      </span>
-                      <FiArrowRight className="mr-auto text-gray-400" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          {floatingIcons.map(({ icon: Icon, top, left }, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full bg-white/90 p-3 text-[hsl(207,90%,54%)] shadow-md backdrop-blur-sm"
+              style={{ top, left }}
+              variants={floatVariants}
+              initial="initial"
+              animate="animate"
+              custom={i}
+            >
+              <Icon className="h-5 w-5" />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
