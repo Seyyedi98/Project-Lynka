@@ -12,14 +12,19 @@ import {
 import LandingPageFeatures from "../_components/landing/section/features";
 import LandingPageHero from "../_components/landing/section/hero";
 import LandingPageNavbar from "../_components/landing/navbar";
+import LandingPageAudience from "../_components/landing/section/audience";
 
 export default function LandingPage() {
   return (
     <div className="font-yekan relative min-h-screen overflow-x-hidden bg-[hsl(var(--background))]">
       <LandingPageNavbar />
+
       <LandingPageHero />
+
       <LandingPageFeatures />
-      Features Section
+
+      <LandingPageAudience />
+
       <section
         id="features"
         className="relative bg-[hsl(var(--secondaryBg))] py-20"

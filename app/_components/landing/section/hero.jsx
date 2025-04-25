@@ -69,7 +69,6 @@ const buttonVariants = {
 const LandingPageHero = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[hsl(207,90%,54%)] to-[hsl(172,100%,37%)] py-24 transition-colors duration-300 md:py-32">
-      {/* Wave SVG at the bottom */}
       <div className="absolute inset-x-0 bottom-0">
         <svg
           viewBox="0 0 224 12"
@@ -82,7 +81,6 @@ const LandingPageHero = () => {
       </div>
 
       <div className="container mx-auto mt-12 flex flex-col-reverse items-center gap-16 px-4 md:flex-row">
-        {/* Text content */}
         <div className="w-full text-right md:w-1/2">
           <motion.h1
             initial="hidden"
@@ -113,7 +111,7 @@ const LandingPageHero = () => {
             animate="visible"
             variants={textVariants}
             custom={1.5}
-            className="mb-10 max-w-md text-lg leading-7 text-white/90 sm:leading-4 md:text-xl"
+            className="mb-10 max-w-md text-center text-lg leading-7 text-white/90 sm:text-right sm:leading-4 md:text-xl"
           >
             تمام لینک‌ها، شبکه‌های اجتماعی، محصولات و خدمات‌تان را در یک صفحه‌ی
             زیبا و اختصاصی به نمایش بگذارید.
@@ -138,7 +136,7 @@ const LandingPageHero = () => {
         <div className="relative flex w-full items-center justify-center md:w-1/2">
           <div className="relative h-[520px] w-[260px]">
             <Image
-              src="/images/mobile-preview.png"
+              src="/mobile-earth.webp"
               alt="پیش‌نمایش موبایل"
               fill
               className="rounded-2xl object-cover shadow-2xl"
