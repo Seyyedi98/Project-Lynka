@@ -13,6 +13,7 @@ import LandingPageFeatures from "../_components/landing/section/features";
 import LandingPageHero from "../_components/landing/section/hero";
 import LandingPageNavbar from "../_components/landing/navbar";
 import LandingPageAudience from "../_components/landing/section/audience";
+import LivePageAllowsToSection from "../_components/landing/section/interactive-features";
 
 export default function LandingPage() {
   return (
@@ -21,9 +22,11 @@ export default function LandingPage() {
 
       <LandingPageHero />
 
-      <LandingPageFeatures />
+      {/* <LandingPageFeatures /> */}
 
       <LandingPageAudience />
+
+      <LivePageAllowsToSection />
 
       <section
         id="features"
