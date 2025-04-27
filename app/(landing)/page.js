@@ -9,10 +9,10 @@ import {
   FiUsers,
   FiYoutube,
 } from "react-icons/fi";
-import LandingPageFeatures from "../_components/landing/section/features";
-import LandingPageHero from "../_components/landing/section/hero";
 import LandingPageNavbar from "../_components/landing/navbar";
 import LandingPageAudience from "../_components/landing/section/audience";
+import EasyUseLandingPageSection from "../_components/landing/section/easyuse";
+import LandingPageHero from "../_components/landing/section/hero";
 import LivePageAllowsToSection from "../_components/landing/section/interactive-features";
 
 export default function LandingPage() {
@@ -27,6 +27,8 @@ export default function LandingPage() {
       <LandingPageAudience />
 
       <LivePageAllowsToSection />
+
+      <EasyUseLandingPageSection />
 
       <section
         id="features"

@@ -52,7 +52,7 @@ const InteractiveFeaturesSection = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-[#0f172a] py-16">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-8 lg:flex-row">
           {/* Right side - accordion */}
@@ -60,11 +60,11 @@ const InteractiveFeaturesSection = () => {
             {sections.map((section, index) => (
               <div
                 key={section.id}
-                className="shadow-xs group overflow-hidden rounded-lg bg-white"
+                className="overflow-hidden rounded-lg bg-[#1e293b] shadow-sm"
               >
                 <button
                   onClick={() => handleAccordionClick(index)}
-                  className="flex w-full items-center justify-between p-5 transition-colors hover:bg-gray-50 focus:outline-none"
+                  className="flex w-full items-center justify-between p-5 hover:bg-[#334155] focus:outline-none"
                 >
                   <div className="flex items-center">
                     <motion.div
@@ -78,16 +78,16 @@ const InteractiveFeaturesSection = () => {
                           initial={{ scale: 0.8 }}
                           animate={{ scale: 1 }}
                           transition={{ type: "spring", stiffness: 500 }}
-                          className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-primary bg-primary/10"
+                          className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-[#3b82f6] bg-[#1e40af]"
                         >
-                          <span className="text-xs font-medium text-primary">
+                          <span className="text-xs font-medium text-white">
                             {index + 1}
                           </span>
                         </motion.div>
                       ) : (
                         <motion.div
                           whileHover={{ scale: 1.1 }}
-                          className="flex h-2 w-2 items-center justify-center rounded-full border-2 border-gray-300 transition-all group-hover:border-primary"
+                          className="flex h-2 w-2 items-center justify-center rounded-full border-2 border-[#64748b] hover:border-[#3b82f6]"
                         >
                           <span className="text-xs text-transparent">
                             {index + 1}
@@ -96,10 +96,10 @@ const InteractiveFeaturesSection = () => {
                       )}
                     </motion.div>
                     <h3
-                      className={`pr-3 text-right text-lg font-medium transition-colors ${
+                      className={`pr-3 text-right text-lg font-medium ${
                         activeAccordion === index
-                          ? "text-black"
-                          : "text-primary group-hover:text-black"
+                          ? "text-white"
+                          : "text-[#94a3b8] hover:text-white"
                       }`}
                     >
                       {section.title}
@@ -131,7 +131,7 @@ const InteractiveFeaturesSection = () => {
                         duration: 0.3,
                         ease: [0.16, 1, 0.3, 1],
                       }}
-                      className="px-5 text-right text-[0.95rem] leading-relaxed text-gray-600"
+                      className="mb-4 px-5 text-right text-[0.95rem] leading-relaxed text-[#cbd5e1]"
                     >
                       {section.content}
                     </motion.div>
@@ -144,7 +144,7 @@ const InteractiveFeaturesSection = () => {
           {/* Left side - Mobile preview */}
           <div className="w-full lg:w-1/2">
             <div className="relative mx-auto max-w-xs">
-              <div className="rounded-xl border-2 border-gray-200 bg-white p-1 shadow-sm">
+              <div className="rounded-xl border-2 border-[#334155] bg-[#1e293b] p-1 shadow-sm">
                 <div
                   ref={imageContainerRef}
                   className="h-[32rem] w-full overflow-hidden rounded-lg"
@@ -153,7 +153,7 @@ const InteractiveFeaturesSection = () => {
                     {sections.map((section, index) => (
                       <div
                         key={section.id}
-                        className="flex h-1/5 w-full items-center justify-center bg-gradient-to-br from-blue-50 to-green-50"
+                        className="flex h-1/5 w-full items-center justify-center bg-gradient-to-br from-[#1e3a8a] to-[#0f766e]"
                         style={{ height: "20%" }}
                       >
                         <motion.div
@@ -168,10 +168,10 @@ const InteractiveFeaturesSection = () => {
                           }}
                           className="w-full p-6 text-center"
                         >
-                          <h3 className="mb-3 text-xl font-bold text-gray-800">
+                          <h3 className="mb-3 text-xl font-bold text-white">
                             {section.title}
                           </h3>
-                          <p className="text-gray-600">{section.content}</p>
+                          <p className="text-[#cbd5e1]">{section.content}</p>
                         </motion.div>
                       </div>
                     ))}
