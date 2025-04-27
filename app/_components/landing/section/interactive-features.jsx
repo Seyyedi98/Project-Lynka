@@ -55,6 +55,92 @@ const InteractiveFeaturesSection = () => {
     <section className="bg-gray-50 py-16">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-8 lg:flex-row">
+          {/* Right side - accordion */}
+          <div className="w-full space-y-1 lg:w-1/2">
+            {sections.map((section, index) => (
+              <div
+                key={section.id}
+                className="shadow-xs group overflow-hidden rounded-lg bg-white"
+              >
+                <button
+                  onClick={() => handleAccordionClick(index)}
+                  className="flex w-full items-center justify-between p-5 transition-colors hover:bg-gray-50 focus:outline-none"
+                >
+                  <div className="flex items-center">
+                    <motion.div
+                      className="relative ml-3 flex h-6 w-6 items-center justify-center"
+                      animate={{
+                        scale: activeAccordion === index ? 1.1 : 1,
+                      }}
+                    >
+                      {activeAccordion === index ? (
+                        <motion.div
+                          initial={{ scale: 0.8 }}
+                          animate={{ scale: 1 }}
+                          transition={{ type: "spring", stiffness: 500 }}
+                          className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-primary bg-primary/10"
+                        >
+                          <span className="text-xs font-medium text-primary">
+                            {index + 1}
+                          </span>
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          whileHover={{ scale: 1.1 }}
+                          className="flex h-2 w-2 items-center justify-center rounded-full border-2 border-gray-300 transition-all group-hover:border-primary"
+                        >
+                          <span className="text-xs text-transparent">
+                            {index + 1}
+                          </span>
+                        </motion.div>
+                      )}
+                    </motion.div>
+                    <h3
+                      className={`pr-3 text-right text-lg font-medium transition-colors ${
+                        activeAccordion === index
+                          ? "text-black"
+                          : "text-primary group-hover:text-black"
+                      }`}
+                    >
+                      {section.title}
+                    </h3>
+                  </div>
+                </button>
+
+                <AnimatePresence mode="wait">
+                  {activeAccordion === index && (
+                    <motion.div
+                      initial={{
+                        opacity: 0,
+                        height: 0,
+                        paddingTop: 0,
+                        paddingBottom: 0,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        paddingTop: "0.5rem",
+                        paddingBottom: "1.5rem",
+                      }}
+                      exit={{
+                        opacity: 0,
+                        height: 0,
+                        paddingTop: 0,
+                        paddingBottom: 0,
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                      className="px-5 text-right text-[0.95rem] leading-relaxed text-gray-600"
+                    >
+                      {section.content}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+
           {/* Left side - Mobile preview */}
           <div className="w-full lg:w-1/2">
             <div className="relative mx-auto max-w-xs">
@@ -93,93 +179,6 @@ const InteractiveFeaturesSection = () => {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Right side - Smooth accordion */}
-          <div className="w-full space-y-1 lg:w-1/2">
-            {sections.map((section, index) => (
-              <div
-                key={section.id}
-                className="shadow-xs overflow-hidden rounded-lg bg-white"
-              >
-                <button
-                  onClick={() => handleAccordionClick(index)}
-                  className="flex w-full items-center justify-between p-5 transition-colors hover:bg-gray-50 focus:outline-none"
-                >
-                  <div className="flex items-center">
-                    <motion.div
-                      className="relative ml-3 flex h-6 w-6 items-center justify-center"
-                      animate={{
-                        scale: activeAccordion === index ? 1.1 : 1,
-                      }}
-                    >
-                      {activeAccordion === index ? (
-                        <motion.div
-                          initial={{ scale: 0.8 }}
-                          animate={{ scale: 1 }}
-                          transition={{ type: "spring", stiffness: 500 }}
-                          className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-primary bg-primary/10"
-                        >
-                          <span className="text-xs font-medium text-primary">
-                            {index + 1}
-                          </span>
-                        </motion.div>
-                      ) : (
-                        <motion.div
-                          whileHover={{ scale: 1.1 }}
-                          className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-gray-300 transition-all group-hover:border-primary"
-                        >
-                          <span className="text-xs text-transparent">
-                            {index + 1}
-                          </span>
-                        </motion.div>
-                      )}
-                    </motion.div>
-                    <h3
-                      className={`pr-3 text-right text-lg font-medium transition-colors ${
-                        activeAccordion === index
-                          ? "text-primary"
-                          : "text-gray-800 group-hover:text-black"
-                      }`}
-                    >
-                      {section.title}
-                    </h3>
-                  </div>
-                </button>
-
-                <AnimatePresence mode="wait">
-                  {activeAccordion === index && (
-                    <motion.div
-                      initial={{
-                        opacity: 0,
-                        height: 0,
-                        paddingTop: 0,
-                        paddingBottom: 0,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        height: "auto",
-                        paddingTop: "0.5rem",
-                        paddingBottom: "1.5rem",
-                      }}
-                      exit={{
-                        opacity: 0,
-                        height: 0,
-                        paddingTop: 0,
-                        paddingBottom: 0,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                      className="px-5 text-right text-[0.95rem] leading-relaxed text-gray-600"
-                    >
-                      {section.content}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
           </div>
         </div>
       </div>
