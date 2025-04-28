@@ -80,7 +80,7 @@ const imageVariants = {
   }),
 };
 
-const LandingPageFeatures = () => {
+const LandingPageFeatures2 = () => {
   return (
     <section className="bg-white py-20 md:py-32">
       <div className="container mx-auto flex flex-col gap-24 px-4">
@@ -146,4 +146,4 @@ const LandingPageFeatures = () => {
   );
 };
 
-export default LandingPageFeatures;
+export default LandingPageFeatures2;

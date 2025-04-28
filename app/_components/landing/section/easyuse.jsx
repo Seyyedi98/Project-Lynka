@@ -7,15 +7,15 @@ import { Smartphone, Code, Palette, Laptop } from "lucide-react";
 const features = [
   {
     title: "بدون نیاز به طراح و برنامه‌نویس",
-    icon: <Palette className="h-5 w-5 text-primary" />,
+    icon: <Palette className="h-6 w-6 text-primary" />,
   },
   {
     title: "نیاز به مهارت خاصی ندارد",
-    icon: <Code className="h-5 w-5 text-primary" />,
+    icon: <Code className="h-6 w-6 text-primary" />,
   },
   {
     title: "از موبایل یا کامپیوتر",
-    icon: <Laptop className="h-5 w-5 text-primary" />,
+    icon: <Laptop className="h-6 w-6 text-primary" />,
   },
 ];
 
@@ -50,20 +50,20 @@ const CreateSection = () => {
   }, []);
 
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white py-32">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-12 lg:flex-row">
-          {/* سمت راست - محتوا */}
+          {/* Right side content*/}
           <div className="w-full lg:w-1/2">
-            <div className="mx-auto max-w-md text-right lg:mx-0 lg:mr-auto">
-              <h2 className="mb-3 text-3xl font-bold text-gray-900">
+            <div className="max-w-md">
+              <h2 className="mb-8 text-4xl font-bold text-gray-900">
                 راحت‌تر از آنچه فکر می‌کنید
               </h2>
-              <p className="mb-8 text-lg text-gray-600">
-                تنها در چند دقیقه تاپلینک خود را بسازید.
+              <p className="mb-8 text-nowrap text-2xl text-gray-600">
+                تنها در چند دقیقه صفحه اختصاصی خود را بسازید.
               </p>
 
-              <div className="mb-8 space-y-4">
+              <div className="mb-8 space-y-4 text-xl">
                 {features.map((feature, index) => (
                   <motion.div
                     key={index}
@@ -71,10 +71,10 @@ const CreateSection = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 + 0.3 }}
                     viewport={{ once: true }}
-                    className="flex items-start gap-3"
+                    className="flex items-center gap-3"
                   >
-                    <div className="mt-0.5">{feature.icon}</div>
-                    <p className="text-gray-700">{feature.title}</p>
+                    <div className="mt-2">{feature.icon}</div>
+                    <p className="text-slate-500">{feature.title}</p>
                   </motion.div>
                 ))}
               </div>
@@ -84,7 +84,7 @@ const CreateSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
                 viewport={{ once: true }}
-                className="flex justify-end"
+                className="flex justify-start"
               >
                 <button className="rounded-lg bg-primary px-8 py-3 font-medium text-white shadow-md transition-all hover:scale-[1.02] hover:shadow-lg">
                   همین حالا شروع کنید
@@ -93,7 +93,7 @@ const CreateSection = () => {
             </div>
           </div>
 
-          {/* سمت چپ - تصویر با متن متحرک */}
+          {/* Left side image*/}
           <div className="w-full lg:w-1/2">
             <div className="relative">
               {/* کانتینر تصویر */}
@@ -112,7 +112,7 @@ const CreateSection = () => {
                 </AnimatePresence>
               </div>
 
-              {/* متن متحرک */}
+              {/* text bubble*/}
               <AnimatePresence>
                 {showText && (
                   <motion.div

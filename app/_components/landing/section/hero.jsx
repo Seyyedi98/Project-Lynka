@@ -113,8 +113,9 @@ const LandingPageHero = () => {
             custom={1.5}
             className="mb-10 max-w-md text-center text-lg leading-7 text-white/90 sm:text-right sm:leading-4 md:text-xl"
           >
-            تمام لینک‌ها، شبکه‌های اجتماعی، محصولات و خدمات‌تان را در یک صفحه‌ی
-            زیبا و اختصاصی به نمایش بگذارید.
+            لینک‌ها، شبکه‌های اجتماعی، محصولات و خدماتتان را در یک صفحه‌ی
+            اختصاصی و زیبا گردآوری کنید و به بهترین شکل به مخاطبانتان نمایش
+            دهید.
           </motion.p>
 
           <motion.div

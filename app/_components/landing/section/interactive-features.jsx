@@ -7,31 +7,33 @@ const sections = [
   {
     id: "feature1",
     title: "طراحی زیبا و مدرن",
-    content: "صفحه‌ای زیبا و حرفه‌ای برای نمایش تمام محتوای خود داشته باشید.",
+    content: "یه صفحه شیک و حرفه‌ای بساز که همه چیزت رو جذاب نشون بده!",
     imageSection: 0,
   },
   {
     id: "feature2",
     title: "ادغام با شبکه‌های اجتماعی",
-    content: "تمام پلتفرم‌های خود را در یکجا به مخاطبان نشان دهید.",
+    content: "همه شبکه‌هات رو یه جا بچین و راحت به مخاطبات معرفی کن!",
     imageSection: 1,
   },
   {
     id: "feature3",
     title: "فروش مستقیم",
-    content: "محصولات و خدمات خود را مستقیماً به فروش برسانید.",
+    content:
+      "محصولات و خدماتت رو بدون واسطه به مشتریا بفروش و درآمدتو بیشتر کن!",
     imageSection: 2,
   },
   {
     id: "feature4",
     title: "تحلیل پیشرفته",
-    content: "از رفتار مخاطبان خود آگاه شوید و عملکرد را بهبود بخشید.",
+    content: "رفتار کاربرات رو زیر نظر بگیر و صفحه‌تو هوشمندتر کن!",
     imageSection: 3,
   },
   {
     id: "feature5",
     title: "سفارشی‌سازی آسان",
-    content: "ظاهر صفحه را به سلیقه خود تغییر دهید.",
+    content:
+      "هر چیزی که دوست داری، از رنگ و فونت گرفته تا چیدمان صفحه، راحت تغییر بده!",
     imageSection: 4,
   },
 ];
@@ -52,7 +54,7 @@ const InteractiveFeaturesSection = () => {
   };
 
   return (
-    <section className="bg-[#0f172a] py-16">
+    <section className="bg-[#0f172a] py-32">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-8 lg:flex-row">
           {/* Right side - accordion */}
