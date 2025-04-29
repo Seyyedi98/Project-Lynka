@@ -2,15 +2,36 @@
 
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { useTransition } from "react";
-import { submitToGoogleIndexing } from "@/actions/googleIndex";
+import { useEffect, useState, useTransition } from "react";
+import { isPageIndexed, submitToGoogleIndexing } from "@/actions/googleIndex";
 import { generateSitemap } from "@/actions/generateSitemap";
 import toast from "react-hot-toast";
 
 const GoogleIndexForm = ({ uri }) => {
   const [isPending, startTransition] = useTransition();
+  const [isPageSubmitted, setIsPageSubmitted] = useState();
+  const [loadingPageData, setLoadingPageData] = useState(true);
+
+  useEffect(() => {
+    async function checkIfPageIndexed() {
+      try {
+        setLoadingPageData(true);
+        const data = await isPageIndexed(uri);
+        if (data) setIsPageSubmitted(data.googleIndexed);
+        setLoadingPageData(false);
+      } catch (error) {
+        console.error(error);
+        setLoadingPageData(false);
+      } finally {
+        setLoadingPageData(false);
+      }
+    }
+
+    checkIfPageIndexed();
+  }, [uri]);
 
   const handleSubmit = async () => {
+    if (isPageSubmitted) return;
     try {
       startTransition(async () => {
         // Submit to Google Indexing
@@ -46,27 +67,36 @@ const GoogleIndexForm = ({ uri }) => {
         </p>
       </div>
 
-      <div className="mt-6 flex justify-center">
-        <Button
-          onClick={handleSubmit}
-          disabled={isPending}
-          className="w-full max-w-xs"
-        >
-          {isPending ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              در حال ارسال...
-            </>
-          ) : (
-            "ارسال به گوگل و به‌روزرسانی نقشه سایت"
-          )}
-        </Button>
-      </div>
-
-      <div className="mt-6 rounded-lg bg-secondary p-4 text-sm text-muted-foreground">
-        <p className="text-center">
-          این عمل ممکن است چند دقیقه طول بکشد. لطفاً صبر کنید.
-        </p>
+      <div className="grid h-full w-full place-content-center">
+        {loadingPageData ? (
+          <Loader2 className="mt-12 animate-spin" />
+        ) : isPageSubmitted ? (
+          "شما قبلا صفحه خود را ثبت کرده اید"
+        ) : (
+          <>
+            <div className="mt-6 flex justify-center">
+              <Button
+                onClick={handleSubmit}
+                disabled={isPending}
+                className="w-full max-w-xs"
+              >
+                {isPending ? (
+                  <>
+                    در حال ارسال...
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  </>
+                ) : (
+                  "ارسال به گوگل و به‌روزرسانی نقشه سایت"
+                )}
+              </Button>
+            </div>
+            <div className="mt-6 rounded-lg bg-secondary p-4 text-sm text-white">
+              <p className="text-center">
+                این عمل ممکن است چند دقیقه طول بکشد. لطفاً صبر کنید.
+              </p>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

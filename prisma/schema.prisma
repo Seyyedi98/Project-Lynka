@@ -119,6 +119,7 @@ model Page {
   views           Int      @default(0)
   isPremium       Boolean  @default(false)
   theme           String?  @db.Text
+  googleIndexed   Boolean  @default(false)
 
   User User? @relation(fields: [owner], references: [id], onDelete: Cascade)
 

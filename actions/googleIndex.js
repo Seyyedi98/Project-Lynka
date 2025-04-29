@@ -1,4 +1,5 @@
 "use server";
+import prisma from "@/lib/client";
 import { google } from "googleapis";
 
 export async function submitToGoogleIndexing(url) {
@@ -26,4 +27,15 @@ export async function submitToGoogleIndexing(url) {
       error: "Error submitting URL to Google Indexing API",
     };
   }
+}
+
+export async function isPageIndexed(uri) {
+  const isIndexed = prisma.page.findUnique({
+    where: {
+      uri,
+    },
+    select: { googleIndexed: true },
+  });
+
+  return isIndexed;
 }
