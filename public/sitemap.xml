@@ -2,29 +2,36 @@
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       
         <url>
-          <loc>https://lynkaink.ir/pages/admin</loc>
-          <lastmod>2025-04-29T18:43:59.649Z</lastmod>
+          <loc>https://lynka.ir/pages/admin</loc>
+          <lastmod>2025-05-02T18:01:25.055Z</lastmod>
           <changefreq>daily</changefreq>
           <priority>0.8</priority>
         </url>
       
         <url>
-          <loc>https://lynkaink.ir/pages/mypage</loc>
-          <lastmod>2025-04-29T18:43:59.649Z</lastmod>
+          <loc>https://lynka.ir/pages/mahdiyehhhh</loc>
+          <lastmod>2025-05-02T18:01:25.055Z</lastmod>
           <changefreq>daily</changefreq>
           <priority>0.8</priority>
         </url>
       
         <url>
-          <loc>https://lynkaink.ir/pages/semoa</loc>
-          <lastmod>2025-04-29T18:43:59.649Z</lastmod>
+          <loc>https://lynka.ir/pages/mypage</loc>
+          <lastmod>2025-05-02T18:01:25.055Z</lastmod>
           <changefreq>daily</changefreq>
           <priority>0.8</priority>
         </url>
       
         <url>
-          <loc>https://lynkaink.ir/pages/seyyedi</loc>
-          <lastmod>2025-04-29T18:43:59.649Z</lastmod>
+          <loc>https://lynka.ir/pages/semoa</loc>
+          <lastmod>2025-05-02T18:01:25.055Z</lastmod>
+          <changefreq>daily</changefreq>
+          <priority>0.8</priority>
+        </url>
+      
+        <url>
+          <loc>https://lynka.ir/pages/seyyedi</loc>
+          <lastmod>2025-05-02T18:01:25.055Z</lastmod>
           <changefreq>daily</changefreq>
           <priority>0.8</priority>
         </url>

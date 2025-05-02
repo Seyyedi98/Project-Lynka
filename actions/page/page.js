@@ -6,7 +6,11 @@ import prisma from "@/lib/client";
 import { PageUriSchema } from "@/schemas";
 
 export const getAllPages = async () => {
-  const page = await prisma.page.findMany();
+  const page = await prisma.page.findMany({
+    select: {
+      uri: true,
+    },
+  });
   return page;
 };
 
@@ -341,4 +345,25 @@ export async function increasePageView(uri) {
   });
 
   return { success: "Page view has been increased" };
+}
+
+export async function setIsPageIndexed(uri) {
+  const page = await prisma.page.findUnique({
+    where: {
+      uri,
+    },
+  });
+
+  if (!page) return { error: "Page not found!" };
+
+  await prisma.page.update({
+    where: {
+      uri,
+    },
+    data: {
+      googleIndexed: true,
+    },
+  });
+
+  return { success: "Page has been indexed" };
 }

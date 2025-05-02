@@ -1,10 +1,11 @@
 "use client";
 
+import { generateSitemap } from "@/actions/generateSitemap";
+import { isPageIndexed } from "@/actions/googleIndex";
+import { setIsPageIndexed } from "@/actions/page/page";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState, useTransition } from "react";
-import { isPageIndexed, submitToGoogleIndexing } from "@/actions/googleIndex";
-import { generateSitemap } from "@/actions/generateSitemap";
 import toast from "react-hot-toast";
 
 const GoogleIndexForm = ({ uri }) => {
@@ -35,20 +36,23 @@ const GoogleIndexForm = ({ uri }) => {
     try {
       startTransition(async () => {
         // Submit to Google Indexing
-        const googleResult = await submitToGoogleIndexing(
-          `https://lynkaink.ir/pages/${uri}`,
-        );
+        // const googleResult = await submitToGoogleIndexing(
+        //   `https://lynka.ir/pages/${uri}`,
+        // );
 
-        if (googleResult?.success) {
-          toast.success("درخواست ایندکس به گوگل ارسال شد");
-        } else {
-          toast.error("خطا در ارسال به گوگل");
-        }
+        // if (googleResult?.success) {
+        //   toast.success("درخواست ایندکس به گوگل ارسال شد");
+        // } else {
+        //   console.log(googleResult);
+        //   toast.error("خطا در ارسال به گوگل");
+        // }
 
         // Generate sitemap
         const sitemapResult = await generateSitemap();
         if (sitemapResult?.success) {
           toast.success("نقشه سایت با موفقیت به‌روزرسانی شد");
+          await setIsPageIndexed(uri);
+          setIsPageSubmitted(true);
         } else {
           toast.error("خطا در به‌روزرسانی نقشه سایت");
         }
@@ -71,7 +75,7 @@ const GoogleIndexForm = ({ uri }) => {
         {loadingPageData ? (
           <Loader2 className="mt-12 animate-spin" />
         ) : isPageSubmitted ? (
-          "شما قبلا صفحه خود را ثبت کرده اید"
+          <p className="mt-4">شما قبلا صفحه خود را ثبت کرده اید</p>
         ) : (
           <>
             <div className="mt-6 flex justify-center">
