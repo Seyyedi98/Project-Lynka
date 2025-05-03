@@ -90,9 +90,9 @@ const PageBuilder = ({ page }) => {
       </div>
     );
 
-  return (
+    return (
     <DndContext sensors={sensors}>
-      <BuilderWorkspace />
+      <BuilderWorkspace  />
       <DragOverlyWrapper />
     </DndContext>
   );

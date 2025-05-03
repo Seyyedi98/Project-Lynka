@@ -1,11 +1,9 @@
-// components/themes-list.jsx
 "use client";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, Gauge, ImageIcon, Palette, Sparkles } from "lucide-react";
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Dialog, DialogContent, DialogTitle } from "../../common/modal/diolog";
 import { Pagination } from "../../common/Pagination";
@@ -14,7 +12,6 @@ import ThemePreviewRenderer from "../../preview/Theme-preview-renderer";
 const categories = [
   { title: "all", value: "همه", icon: null },
   { title: "color", value: "رنگی", icon: <Palette className="h-4 w-4" /> },
-  { title: "gradient", value: "گرادیانت", icon: <Gauge className="h-4 w-4" /> },
   {
     title: "image",
     value: "با تصویر زمینه",
@@ -49,7 +46,6 @@ const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
     return themes.filter((theme) => theme.themeCategory === category);
   };
 
-  // Get current themes for the page
   const currentThemes = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -132,7 +128,7 @@ const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
               onClick={() => handleThemeClick(theme)}
               key={theme.name}
             >
-              <div className="relative aspect-[2/3] w-full">
+              <div className="relative aspect-[3/5] w-full sm:aspect-[2/3]">
                 {loadingImages[theme.name] && (
                   <div className="absolute inset-0 animate-pulse bg-muted"></div>
                 )}

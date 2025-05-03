@@ -1,3 +1,4 @@
+import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { idGenerator } from "@/lib/id-generator";
 import { cn } from "@/lib/utils";
 import { selectIsAnyMenuOpen } from "@/store/modalSlice";
@@ -11,8 +12,10 @@ import {
 import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { memo, useCallback, useMemo, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import BackButtonWithConfirmation from "../common/button/NavigationButton/back-button-confirmation";
 import PageUrl from "../common/button/page-url";
 import SavePageBtn from "../common/button/PrimaryButton/save-page-button";
+import BuyPremiumModal from "../common/modal/buy-premium-modal";
 import {
   Dialog,
   DialogContent,
@@ -25,7 +28,6 @@ import EditorSidebar from "../layout/navbar/editor-sidebar";
 import PreviewPageContainer from "../preview/preview-page-container";
 import WorkspaceHeroWrapper from "./element/workplace-hero-wrapper";
 import WorkspaceElementWrapper from "./element/workspace-element-wrapper";
-import BackButtonWithConfirmation from "../common/button/NavigationButton/back-button-confirmation";
 
 const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 const MemoizedEditorSidebar = memo(EditorSidebar);
@@ -34,6 +36,8 @@ const BuilderWorkspace = () => {
   const dispatch = useDispatch();
   const [activeDragItem, setActiveDragItem] = useState(null);
   const isAnyMenuOpen = useSelector(selectIsAnyMenuOpen);
+  const { isPremium } = useUserSubscription();
+  const [isbuyPremiumModalOpen, setBuyPremiumModalOpen] = useState(!isPremium);
 
   const { hero, theme, elements } = useSelector(
     (state) => ({
@@ -153,6 +157,30 @@ const BuilderWorkspace = () => {
 
   return (
     <>
+      <BuyPremiumModal
+        isbuyPremiumModalOpen={isbuyPremiumModalOpen}
+        setBuyPremiumModalOpen={setBuyPremiumModalOpen}
+      >
+        <p className="mb-1 mt-3 text-right text-sm leading-7 text-white sm:text-base">
+          <span className="my-1 flex items-center">
+            <span className="ml-2">•</span>
+            <span>دسترسی نامحدود به تمامی بلوک‌ها و ابزارهای حرفه‌ای</span>
+          </span>
+          <span className="my-1 flex items-center">
+            <span className="ml-2">•</span>
+            <span>امکانات پیشرفته شخصی‌سازی برای طراحی منحصر به فرد</span>
+          </span>
+          <span className="my-1 flex items-center">
+            <span className="ml-2">•</span>
+            <span>تم‌های اختصاصی و مدرن برای هر سلیقه‌ای</span>
+          </span>
+          <span className="my-1 flex items-center">
+            <span className="ml-2">•</span>
+            <span>ده‌ها ویژگی ویژه و امکانات انحصاری</span>
+          </span>
+          همین امروز به جمع کاربران پریمیوم بپیوندید!
+        </p>
+      </BuyPremiumModal>
       <div
         className={cn(
           `h-svh w-full bg-background duration-500`,

@@ -22,7 +22,6 @@ import ThemePreviewRenderer from "../preview/Theme-preview-renderer";
 const categories = [
   { title: "all", value: "همه", icon: <Sparkles className="h-4 w-4" /> },
   { title: "color", value: "رنگی", icon: <Palette className="h-4 w-4" /> },
-  { title: "gradient", value: "گرادیانت", icon: <Gauge className="h-4 w-4" /> },
   {
     title: "image",
     value: "تصویر زمینه",

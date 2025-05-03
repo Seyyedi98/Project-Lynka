@@ -75,7 +75,7 @@ const ThemePreviewRenderer = ({ theme }) => {
           : imageBgStyle
       }
     >
-      <div className="pointer-events-none -translate-y-20 scale-[40%]">
+      <div className="pointer-events-none -translate-y-20 scale-[75%] pt-12 sm:scale-[40%] sm:pt-0">
         <HeroElementRender
           // title="عنوان"
           //   subtitle={subtitle}
@@ -86,7 +86,7 @@ const ThemePreviewRenderer = ({ theme }) => {
           subtitleColor={heroSubtitleColor}
         />
       </div>
-      <div className="pointer-events-none -translate-y-[175px] scale-[50%]">
+      <div className="pointer-events-none -translate-y-[175px] scale-[70%] sm:scale-[50%]">
         <SocialsElementRender
           socials={socials}
           textColor={elementTextColor}
@@ -97,7 +97,7 @@ const ThemePreviewRenderer = ({ theme }) => {
           textAlign="center"
         />
       </div>
-      <div className="pointer-events-none -translate-y-[180px] scale-[65%]">
+      <div className="pointer-events-none -translate-y-[180px] scale-[80%] sm:scale-[65%]">
         <TextElementRender
           title="فروشگاه من"
           textColor={elementTextColor}
@@ -108,7 +108,7 @@ const ThemePreviewRenderer = ({ theme }) => {
           textAlign="center"
         />
       </div>
-      <div className="pointer-events-none -translate-y-[210px] scale-[65%]">
+      <div className="pointer-events-none -translate-y-[210px] scale-[80%] sm:scale-[65%]">
         <CardElementRender
           title="فروشگاه من"
           layout="highFullImage"

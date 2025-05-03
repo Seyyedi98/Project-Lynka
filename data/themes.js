@@ -21,7 +21,7 @@ export const themes = [
     elementColor: "#EE4540",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
-    isPremium: true,
+    isPremium: false,
   },
   {
     name: "pink",
@@ -41,7 +41,7 @@ export const themes = [
     elementColor: "#F2A490",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
-    isPremium: true,
+    isPremium: false,
   },
   {
     name: "nature",
@@ -61,7 +61,7 @@ export const themes = [
     elementColor: "#598901",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
-    isPremium: true,
+    isPremium: false,
   },
   {
     name: "blue",
@@ -81,7 +81,7 @@ export const themes = [
     elementColor: "#FF1684",
     elementTextColor: "#FFFFFF",
     borderRadius: "20px",
-    isPremium: true,
+    isPremium: false,
   },
   {
     name: "fire",

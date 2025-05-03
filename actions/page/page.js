@@ -87,6 +87,7 @@ export const getUserPageData = async () => {
   return data.page;
 };
 
+// TODO: called frequently
 // Get preview page data by URI (without user validation)
 export const getPageDataByUri = async (uri) => {
   const page = await prisma.page.findUnique({
@@ -100,6 +101,7 @@ export const getPageDataByUri = async (uri) => {
   return page;
 };
 
+// TODO: called frequently
 export const getWorkspacePageDataByUri = async (uri) => {
   const user = await currentUser();
   if (!user) return;
