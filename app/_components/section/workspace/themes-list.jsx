@@ -122,13 +122,13 @@ const ThemesList = ({ themes, isPremium, handleThemeUpdate, className }) => {
                 "group relative h-full w-full overflow-hidden rounded-lg transition-all",
                 !isAllowedToApplyTheme
                   ? "cursor-not-allowed opacity-60"
-                  : "cursor-pointer hover:scale-[1.03] hover:shadow-md",
+                  : "cursor-pointer hover:shadow-md",
                 className,
               )}
               onClick={() => handleThemeClick(theme)}
               key={theme.name}
             >
-              <div className="relative aspect-[3/5] w-full sm:aspect-[2/3]">
+              <div className="relative aspect-[3/5] w-full sm:aspect-[3/5]">
                 {loadingImages[theme.name] && (
                   <div className="absolute inset-0 animate-pulse bg-muted"></div>
                 )}
