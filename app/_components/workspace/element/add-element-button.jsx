@@ -1,23 +1,14 @@
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { idGenerator } from "@/lib/id-generator";
 import { cn } from "@/lib/utils";
 import { useDraggable } from "@dnd-kit/core";
 import { LockIcon, PlusIcon } from "lucide-react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { PageElements } from "../../controller/page-elements-controller";
 import BuyPremiumModal from "../../common/modal/buy-premium-modal";
-import { useState } from "react";
+import { PageElements } from "../../controller/page-elements-controller";
 
 const AddElementButton = ({ pageElement, isPremium }) => {
   const { label, icon: Icon } = pageElement.ElementAdderBtn;

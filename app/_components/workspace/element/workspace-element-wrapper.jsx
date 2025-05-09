@@ -4,7 +4,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { useDispatch, useSelector } from "react-redux";
 import { PageElements } from "../../controller/page-elements-controller";
 
-const WorkspaceElementWrapper = ({ element }) => {
+const WorkspaceElementWrapper = ({ element, isPremium }) => {
   const dispatch = useDispatch();
   const selectedElement = useSelector((store) => store.page.selectedElement);
 
@@ -48,7 +48,7 @@ const WorkspaceElementWrapper = ({ element }) => {
           "pointer-events-none relative flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 opacity-100 transition-all duration-200",
         )}
       >
-        <PageElement elementInstance={element} />
+        <PageElement elementInstance={element} isPremium={isPremium} />
       </div>
     </div>
   );

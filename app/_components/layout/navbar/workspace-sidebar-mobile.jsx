@@ -20,7 +20,7 @@ import PageStyleSettingsContainer from "../../section/workspace/page-style-setti
 import EditorSidebarElements from "../../workspace/element/editor-sidebar-elements";
 import PageSettings from "../../workspace/page-settings";
 
-const WorkspaceSidebarMobile = () => {
+const WorkspaceSidebarMobile = ({ isPremium }) => {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background/95 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] backdrop-blur-lg">
       <ul className="flex items-center justify-between px-6 py-3">
@@ -67,7 +67,7 @@ const WorkspaceSidebarMobile = () => {
               </button>
             }
           >
-            <EditorSidebarElements />
+            <EditorSidebarElements isPremium={isPremium} />
           </WorkspaceDynamicModal>
         </li>
 

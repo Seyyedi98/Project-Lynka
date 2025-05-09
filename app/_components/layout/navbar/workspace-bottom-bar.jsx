@@ -60,7 +60,7 @@ const WorkspaceBottomBar = ({ isDesktop }) => {
               }
               title="لیست بلوک ها"
             >
-              <EditorSidebarElements />
+              <EditorSidebarElements isPremium={isPremium} />
             </WorkspaceDynamicModal>
           </div>
         )}

@@ -12,7 +12,7 @@ import ElementProperties from "../../workspace/element/element-properties";
 import WorkspaceSidebatDesktop from "./workspace-sidebar-desktop";
 import WorkspaceSidebarMobile from "./workspace-sidebar-mobile";
 
-const EditorSidebar = () => {
+const EditorSidebar = ({ isPremium }) => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const dispatch = useDispatch();
   const selectedElement = useSelector((state) => state.page.selectedElement);
@@ -69,7 +69,9 @@ const EditorSidebar = () => {
                 variants={fadeSlideUp}
                 className="w-full max-w-xs md:mt-10"
               >
-                {selectedMenu === "elements" && <EditorSidebarElements />}
+                {selectedMenu === "elements" && (
+                  <EditorSidebarElements isPremium={isPremium} />
+                )}
                 {selectedMenu === "theme" && (
                   <PageStyleSettingsContainer
                     setPageBackground={setPageBackground}

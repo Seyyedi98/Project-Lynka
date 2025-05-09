@@ -1,4 +1,4 @@
-import { useUserSubscription } from "@/hooks/useUserSubscription";
+import { currentUserSubscription } from "@/lib/auth/user-subscription";
 import { idGenerator } from "@/lib/id-generator";
 import { cn } from "@/lib/utils";
 import { selectIsAnyMenuOpen } from "@/store/modalSlice";
@@ -10,7 +10,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
-import { memo, useCallback, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import BackButtonWithConfirmation from "../common/button/NavigationButton/back-button-confirmation";
 import PageUrl from "../common/button/page-url";
@@ -36,8 +36,17 @@ const BuilderWorkspace = () => {
   const dispatch = useDispatch();
   const [activeDragItem, setActiveDragItem] = useState(null);
   const isAnyMenuOpen = useSelector(selectIsAnyMenuOpen);
-  const { isPremium } = useUserSubscription();
-  const [isbuyPremiumModalOpen, setBuyPremiumModalOpen] = useState(!isPremium);
+  const [isPremium, setIsPremium] = useState();
+  const [isbuyPremiumModalOpen, setBuyPremiumModalOpen] = useState();
+
+  useEffect(() => {
+    const checkPremiumUser = async () => {
+      const { isPremium } = await currentUserSubscription();
+      setIsPremium(isPremium);
+      setBuyPremiumModalOpen(!isPremium);
+    };
+    checkPremiumUser();
+  }, []);
 
   const { hero, theme, elements } = useSelector(
     (state) => ({
@@ -188,7 +197,7 @@ const BuilderWorkspace = () => {
         )}
       >
         <div className="relative flex h-full w-full transition-all duration-500">
-          <MemoizedEditorSidebar />
+          <MemoizedEditorSidebar isPremium={isPremium} />
 
           <div
             className="relative h-full w-full overflow-hidden md:grid md:place-content-center"
@@ -275,6 +284,7 @@ const BuilderWorkspace = () => {
               >
                 {elements.map((element) => (
                   <MemoizedWorkspaceElementWrapper
+                    isPremium={isPremium}
                     element={element}
                     key={element.id}
                   />

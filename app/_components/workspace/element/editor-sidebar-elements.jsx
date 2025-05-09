@@ -1,10 +1,8 @@
-import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { PageElements } from "../../controller/page-elements-controller";
 import AddElementButton from "./add-element-button";
 
-const EditorSidebarElements = () => {
-  const { isPremium } = useUserSubscription();
-
+const EditorSidebarElements = ({ isPremium }) => {
+  console.log(isPremium);
   return (
     <div className="w-full">
       <p className="mb-6 place-self-center text-sm text-muted-foreground md:place-self-start md:p-4 md:text-white">

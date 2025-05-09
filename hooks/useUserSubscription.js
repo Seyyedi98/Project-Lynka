@@ -8,7 +8,7 @@ export const useUserSubscription = () => {
   const session = useSession({ required: true });
   if (!session) return;
 
-  const subscriptionPlan = session.data?.user?.subscriptionPlan;
+  let subscriptionPlan = session.data?.user?.subscriptionPlan;
   const subscriptionExpire = session.data?.user?.subscriptionExpire;
   let isPremium;
 
