@@ -150,10 +150,11 @@ function PropertiesComponent({ elementInstance, isPremium }) {
 
                 <TabsContent value="content" className="flex flex-col gap-5">
                   {/* Title */}
-                  <ElementTitleFormField form={form} />
+                  <ElementTitleFormField placeholder="عنوان فرم" form={form} />
 
                   {/* Success Message */}
                   <ElementTitleFormField
+                    placeholder="پیام"
                     form={form}
                     fieldName="successMessage"
                     description="پیامی که پس از ثبت موفقیت آمیز فرم برای کاربران نمایش داده خواهد شد"

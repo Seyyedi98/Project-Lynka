@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 export const useUserSubscription = () => {
-  const session = useSession();
+  const session = useSession({ required: true });
   if (!session) return;
 
   const subscriptionPlan = session.data?.user?.subscriptionPlan;

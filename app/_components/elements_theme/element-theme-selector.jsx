@@ -84,6 +84,52 @@ const ElementThemeSelector = ({ elementInstance }) => {
                   theme={element.extraAttributes?.theme}
                   bgColor={element.extraAttributes?.bgColor}
                   textColor={element.extraAttributes?.element}
+                  title="عنوان"
+                  subtitleDescription="توضیحات بیشتر"
+                  font={element.extraAttributes?.font}
+                  borderRadius={element.extraAttributes?.borderRadius}
+                  href={element.extraAttributes?.href}
+                  countdownDate="1404-12-31T20:34:16.000Z"
+                  questions={[
+                    { question: "سوال اول", answer: "پاسخ اول" },
+                    { question: "سوال دوم", answer: "پاسخ دوم" },
+                  ]} //faq
+                  socials={[
+                    { platform: "telegram", userId: "seyyedi" },
+                    { platform: "youtube", userId: "seyyedi" },
+                    { platform: "instagram", userId: "seyyedi" },
+                    { platform: "github", userId: "seyyedi" },
+                  ]} // socials
+                  fields={[
+                    {
+                      type: "text",
+                      label: "شماره تماس",
+                      required: false,
+                      placeholder: "0914...",
+                    },
+                    {
+                      type: "textarea",
+                      label: "توضیحات",
+                      required: false,
+                      placeholder: "...",
+                    },
+                  ]} // contact form
+                  slides={element.extraAttributes?.slides} // carousel
+                  image={element.extraAttributes?.slides} // image
+                  images={element.extraAttributes?.images} // gallery
+                  coords={
+                    element.extraAttributes?.coords ||
+                    "38.07409248693424,46.29629876442778"
+                  } // map
+                  isLive={false}
+                  isPremium={true}
+                  layout="basic"
+                />
+                {console.log(element.extraAttributes)}
+                {/* <RenderedElement
+                  theme={element.extraAttributes?.theme}
+                  bgColor={element.extraAttributes?.bgColor}
+                  textColor={element.extraAttributes?.element}
                   title={element.extraAttributes?.title}
                   font={element.extraAttributes?.font}
                   borderRadius={element.extraAttributes?.borderRadius}
@@ -98,7 +144,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
                   coords={element.extraAttributes?.coords} // map
                   isLive={false}
                   isPremium={true}
-                />
+                /> */}
               </div>
             </div>
           );

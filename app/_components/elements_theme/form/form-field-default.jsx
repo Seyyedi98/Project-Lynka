@@ -137,6 +137,9 @@ const FormFieldDefault = (props) => {
           !isPremium && "opacity-70",
         )}
       >
+        <div style={{ color: textColor }} className="mb-2 text-center text-lg">
+          {title}
+        </div>
         <div
           style={{
             borderRadius: cardBorderRadius,
