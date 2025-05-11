@@ -28,7 +28,7 @@ export const checkPageAvailable = async (uri) => {
 };
 
 export const newPageCreator = async (uri) => {
-  const user = currentUser();
+  const user = await currentUser();
   if (!user) return { error: "شما به این بخش دسترسی ندارید" };
 
   const validationResult = PageUriSchema.safeParse(uri);
@@ -44,6 +44,33 @@ export const newPageCreator = async (uri) => {
     return page;
   }
   return { message: "error" };
+};
+
+export const deletePage = async (uri) => {
+  try {
+    const user = await currentUser();
+    if (!user) return { error: "شما به این بخش دسترسی ندارید" };
+
+    const targetPage = await prisma.page.findUnique({
+      where: {
+        uri,
+      },
+    });
+
+    if (targetPage.owner !== user.id) return { error: "Unauthorized access" };
+
+    await prisma.page.delete({
+      where: {
+        uri,
+        owner: user.id,
+      },
+    });
+
+    return { success: "صفحه پاک شد" };
+  } catch (error) {
+    console.error("Error deleting page:", error);
+    return { error: "خطا در حذف صفحه" };
+  }
 };
 
 export const getUserPages = async () => {

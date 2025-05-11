@@ -69,6 +69,7 @@ const Carousel = ({ showArrows }) => {
         </div>
       )}
 
+      {/* <AnimatePresence> */}
       <AnimatePresence mode="wait">
         {/* Slider Content */}
         <motion.div

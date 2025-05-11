@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { LayoutTemplate, Eye, Pencil, Trash2, QrCode } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -10,6 +8,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Eye, LayoutTemplate, Pencil, QrCode, Trash2 } from "lucide-react";
+import Link from "next/link";
+import DeletePage from "../common/form/delete-page";
 import {
   Dialog,
   DialogContent,
@@ -17,9 +18,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../common/modal/diolog";
+import { WorkspaceDynamicModal } from "../common/modal/workspace-dynamic-modal";
 import PageQrCodeGenerator from "./workspace/page-qrcode-generator";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
-const PagesList = ({ pages, onDelete, onShowQr }) => {
+const PagesList = ({ pages, onShowQr }) => {
+  const [openQrModal, setOpenQrModal] = useState(false);
+  const [currentPageUri, setCurrentPageUri] = useState("");
+
+  const handleShowQr = (uri) => {
+    setCurrentPageUri(uri);
+    setOpenQrModal(true);
+    onShowQr?.(uri);
+  };
+
   return (
     <section className="h-full w-full overflow-auto p-4 sm:overflow-visible md:px-6">
       {/* Header */}
@@ -74,15 +87,18 @@ const PagesList = ({ pages, onDelete, onShowQr }) => {
                       </Link>
 
                       {/* QR Code */}
-                      <Dialog>
-                        <DialogTrigger>
-                          <div
-                            onClick={() => onShowQr?.(page.uri)}
+                      <Dialog
+                        open={openQrModal && currentPageUri === page.uri}
+                        onOpenChange={setOpenQrModal}
+                      >
+                        <DialogTrigger asChild>
+                          <button
+                            onClick={() => handleShowQr(page.uri)}
                             title="کد QR"
                             className="rounded-md p-2 text-icon-light transition hover:bg-muted hover:text-[hsl(var(--primary))]"
                           >
                             <QrCode className="h-4 w-4" />
-                          </div>
+                          </button>
                         </DialogTrigger>
                         <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 overflow-y-scroll p-0">
                           <DialogHeader>
@@ -93,13 +109,30 @@ const PagesList = ({ pages, onDelete, onShowQr }) => {
                       </Dialog>
 
                       {/* Delete */}
-                      {/* <button
-                        onClick={() => onDelete?.(page.uri)}
-                        title="حذف"
-                        className="rounded-md p-2 text-icon-light transition hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30"
+                      <WorkspaceDynamicModal
+                        mode="mobileDrawer"
+                        delay={400}
+                        modalId={`deletePage-${page.uri}`}
+                        trigger={
+                          <button
+                            title="حذف"
+                            className="cursor-pointer rounded-md p-2 text-icon-light transition hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </button>
+                        }
                       >
-                        <Trash2 className="h-4 w-4" />
-                      </button> */}
+                        <AnimatePresence>
+                          <DeletePage
+                            page={page.uri}
+                            onClose={() =>
+                              document
+                                .getElementById(`deletePage-${page.uri}`)
+                                ?.close()
+                            }
+                          />
+                        </AnimatePresence>
+                      </WorkspaceDynamicModal>
                     </div>
                   </TableCell>
                 </TableRow>
