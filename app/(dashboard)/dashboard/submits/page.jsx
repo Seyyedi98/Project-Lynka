@@ -21,9 +21,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { formItemAnimation, stagger } from "@/utils/animation/animation";
 import { motion } from "framer-motion";
-import { AlertCircle, FilterIcon, LinkIcon, Loader2 } from "lucide-react";
+import {
+  AlertCircle,
+  FilterIcon,
+  LinkIcon,
+  Loader2,
+  Crown,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 
 const fade = {
@@ -46,8 +53,11 @@ export default function SubmitsPanel() {
   const [formTitleFilter, setFormTitleFilter] = useState(null);
   const [availableTitles, setAvailableTitles] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const { isPremium, isLoading: isPremiumLoading } = useUserSubscription();
 
   useEffect(() => {
+    if (!isPremiumLoading && !isPremium) return;
+
     const fetchPages = async () => {
       try {
         setIsInitialLoading(true);
@@ -61,9 +71,10 @@ export default function SubmitsPanel() {
       }
     };
     fetchPages();
-  }, []);
+  }, [isPremium, isPremiumLoading]);
 
   useEffect(() => {
+    if (!isPremiumLoading && !isPremium) return;
     if (selectedPage) {
       setForms([]);
       setCursor(null);
@@ -71,16 +82,17 @@ export default function SubmitsPanel() {
       setFormTitleFilter(null);
       fetchAvailableTitles();
     }
-  }, [selectedPage]);
+  }, [selectedPage, isPremium, isPremiumLoading]);
 
   useEffect(() => {
+    if (!isPremiumLoading && !isPremium) return;
     if (selectedPage && (formTitleFilter || searchQuery)) {
       setForms([]);
       setCursor(null);
       setHasMore(true);
       loadSubmissions();
     }
-  }, [formTitleFilter, searchQuery]);
+  }, [formTitleFilter, searchQuery, isPremium, isPremiumLoading]);
 
   const fetchAvailableTitles = async () => {
     try {
@@ -153,6 +165,52 @@ export default function SubmitsPanel() {
     );
   });
 
+  // Loading state while checking premium status
+  if (isPremiumLoading) {
+    return (
+      <div className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8">
+        <div className="flex h-64 items-center justify-center">
+          <Loader2 className="h-10 w-10 animate-spin text-primary" />
+        </div>
+      </div>
+    );
+  }
+
+  // If not premium, show upgrade message
+  if (!isPremium) {
+    return (
+      <div className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8">
+        <div className="mb-8 sm:mx-4 sm:mr-20 xl:pr-6">
+          <motion.h1
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-3xl font-bold text-white md:text-4xl"
+          >
+            فرم های اطلاعاتی
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="mt-4 text-white"
+          >
+            مدیریت و مشاهده تمام فرم‌های ارسال شده
+          </motion.p>
+        </div>
+        <div className="flex flex-col items-center justify-center py-16 text-center">
+          <div className="mb-4 rounded-full bg-muted/20 p-4">
+            <Crown className="h-8 w-8 text-muted-foreground" />
+          </div>
+          <h3 className="mb-2 text-lg font-medium">نیاز به اشتراک پریمیوم</h3>
+          <p className="text-muted-foreground">
+            برای دسترسی به فرم‌های ارسال شده، لطفاً اشتراک پریمیوم تهیه کنید
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Premium user content
   return (
     <div className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8">
       {/* Header */}

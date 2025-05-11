@@ -1,32 +1,27 @@
-import { getPageAnalytics } from "@/actions/page/analytics";
-import { getUserPageData } from "@/actions/page/page";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
-import { Loader2Icon } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useEffect, useState, useTransition } from "react";
 
 const PageAnalytics = () => {
-  const [isPending, startTransition] = useTransition();
-  const [pageViews, setPageViews] = useState("");
+  // const [isPending, startTransition] = useTransition();
+  // const [pageViews, setPageViews] = useState("");
   const { isPremium } = useUserSubscription();
-  const { uri } = useParams();
+  // const { uri } = useParams();
 
-  useEffect(() => {
-    startTransition(() => {
-      getUserPageData().then((data) => {
-        const pageData = data.find((item) => item.uri === uri);
-        setPageViews(pageData?.views || 0);
-      });
-    });
-  }, [uri]);
+  // useEffect(() => {
+  //   startTransition(() => {
+  //     getUserPageData().then((data) => {
+  //       const pageData = data.find((item) => item.uri === uri);
+  //       setPageViews(pageData?.views || 0);
+  //     });
+  //   });
+  // }, [uri]);
 
   return (
     <div className="h-full w-full">
-      <div className="mb-6 flex items-center gap-1 py-4 text-lg">
+      {/* <div className="mb-6 flex items-center gap-1 py-4 text-lg">
         <span>تعداد کل بازدید های این صفحه:</span>{" "}
         {isPending ? <Loader2Icon className="animate-spin" /> : pageViews}
-      </div>
+      </div> */}
       {isPremium ? (
         <Link
           target="_blank"

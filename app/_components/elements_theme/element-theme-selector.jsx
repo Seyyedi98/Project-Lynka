@@ -125,7 +125,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
                   isPremium={true}
                   layout="basic"
                 />
-                {console.log(element.extraAttributes)}
+                {/* {console.log(element.extraAttributes)} */}
                 {/* <RenderedElement
                   theme={element.extraAttributes?.theme}
                   bgColor={element.extraAttributes?.bgColor}

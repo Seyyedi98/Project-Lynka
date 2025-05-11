@@ -9,6 +9,7 @@ const ImageFieldDefault = (props) => {
   const { borderRadius, isPremium, image } = props;
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
+
   return (
     <div className="relative w-full">
       {!isPremium && (

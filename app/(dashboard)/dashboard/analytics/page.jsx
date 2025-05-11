@@ -36,9 +36,11 @@ const AnalyticsPanel = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isInitialLoading, setIsInitialLoading] = useState(false);
   const [dateRange, setDateRange] = useState("lastmonth");
-  const { isPremium } = useUserSubscription();
+  const { isPremium, isLoading: isPremiumLoading } = useUserSubscription();
 
   useEffect(() => {
+    if (!isPremiumLoading && !isPremium) return;
+
     const fetchPages = async () => {
       try {
         setIsInitialLoading(true);
@@ -51,9 +53,11 @@ const AnalyticsPanel = () => {
       }
     };
     fetchPages();
-  }, []);
+  }, [isPremium, isPremiumLoading]);
 
   useEffect(() => {
+    if (!isPremiumLoading && !isPremium) return;
+
     const fetchAnalytics = async () => {
       if (!selectedPage) {
         setAnalytics([]);
@@ -87,7 +91,51 @@ const AnalyticsPanel = () => {
     };
 
     fetchAnalytics();
-  }, [dateRange, selectedPage, pages]);
+  }, [dateRange, selectedPage, pages, isPremium, isPremiumLoading]);
+
+  if (isPremiumLoading) {
+    return (
+      <div className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8">
+        <div className="flex h-64 items-center justify-center">
+          <Loader2 className="h-10 w-10 animate-spin text-primary" />
+        </div>
+      </div>
+    );
+  }
+
+  if (!isPremium) {
+    return (
+      <div className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-center py-16 text-center">
+          <div className="mb-4 rounded-full bg-muted/20 p-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-8 w-8 text-muted-foreground"
+            >
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+              <path d="M4 22h16" />
+              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+            </svg>
+          </div>
+          <h3 className="mb-2 text-lg font-medium">نیاز به اشتراک پریمیوم</h3>
+          <p className="text-muted-foreground">
+            برای دسترسی به آمار و تحلیل‌ها، لطفاً اشتراک پریمیوم تهیه کنید
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8">

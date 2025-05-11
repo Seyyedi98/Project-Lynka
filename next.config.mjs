@@ -3,11 +3,10 @@ const nextConfig = {
   images: {
     domains: [
       "arklight.storage.c2.liara.space",
-      "c465756.parspack.net", // ✅ Your bucket domain
+      "c465756.parspack.net", // bucket domain
     ],
   },
 
-  // Optional: only needed if you're importing local .svgz files
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svgz$/,

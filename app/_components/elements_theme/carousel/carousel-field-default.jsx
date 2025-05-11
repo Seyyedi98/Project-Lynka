@@ -45,6 +45,7 @@ const CarouselFieldDefault = (props) => {
                         src={getImageAddress(JSON.parse(slide.image).key)}
                         className="object-cover"
                         priority={index === 0} // Preload first image
+                        sizes="(max-width: 768px) 100vw"
                       />
                     )}
                     <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/30 p-4">

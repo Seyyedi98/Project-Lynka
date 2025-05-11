@@ -6,7 +6,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
-import { PlusCircleIcon, XIcon, CheckIcon } from "lucide-react";
+import { CheckIcon, XIcon } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
@@ -45,7 +45,7 @@ const ElementAddGalleyImageFormField = ({ form, fieldName }) => {
     const newImages = [...currentImages];
     newImages[index] = { image: value };
 
-    // Filter out empty images immediately
+    // Filter empty images
     const filteredImages = newImages.filter(
       (item) => item.image && item.image !== "",
     );
@@ -62,14 +62,14 @@ const ElementAddGalleyImageFormField = ({ form, fieldName }) => {
     }
   };
 
-  // Get the current images for display (including the empty one if being added)
+  // Get the current images and show
   const displayImages = () => {
     const currentImages = form.getValues("images") || [];
     // If the form has an empty image, show it (for UI purposes)
     if (currentImages.some((item) => !item.image || item.image === "")) {
       return currentImages;
     }
-    // Otherwise, show the current images plus an empty one if we want to allow addition
+    // else, show the current images and add image at the end
     return [...currentImages, { image: "" }];
   };
 

@@ -64,6 +64,7 @@ const GalleryFieldDefault = (props) => {
                   <span className="text-gray-500">در حال بارگزاری</span>
                 </div>
               )}
+
               <Image
                 src={getImageAddress(image.key)}
                 alt={`Gallery image ${index + 1}`}
@@ -74,7 +75,7 @@ const GalleryFieldDefault = (props) => {
                 width={300}
                 height={300}
                 quality={80}
-                onLoadingComplete={() => handleImageLoad(index)}
+                onLoad={() => handleImageLoad(index)}
               />
             </div>
           ))
