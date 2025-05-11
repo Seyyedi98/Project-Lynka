@@ -8,36 +8,26 @@ import { redirect } from "next/navigation";
 const EditorPage = async ({ params }) => {
   const { uri } = await params;
 
-  try {
-    const [user, page] = await Promise.all([
-      currentUser(),
-      getWorkspacePageDataByUri(uri).catch(() => null),
-    ]);
+  const [user, page] = await Promise.all([
+    currentUser(),
+    getWorkspacePageDataByUri(uri).catch(() => null),
+  ]);
 
-    if (!page) {
-      return (
-        <div className="grid h-screen w-screen place-content-center">
-          <ConnectionLost />
-        </div>
-      );
-    }
-
-    if (page && page.owner !== user?.id) return <NotFound />;
-
-    if (!page.theme) {
-      redirect(`${uri}/theme`);
-    }
-
-    return <PageBuilder page={page} />;
-  } catch (error) {
-    console.error("Error in EditorPage:", error);
+  if (!page) {
     return (
-      <div className="p-4 text-center">
-        <h2>خطایی رخ داده</h2>
-        <p>لطفا مجددا سعی کنید</p>
+      <div className="grid h-screen w-screen place-content-center">
+        <ConnectionLost />
       </div>
     );
   }
+
+  if (page && page.owner !== user?.id) return <NotFound />;
+
+  if (!page.theme) {
+    redirect(`${uri}/theme`);
+  }
+
+  return <PageBuilder page={page} />;
 };
 
 export default EditorPage;

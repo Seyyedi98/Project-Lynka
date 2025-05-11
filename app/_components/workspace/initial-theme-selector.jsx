@@ -167,8 +167,8 @@ const InitialThemeSelector = ({ uri }) => {
           {currentThemes().map((theme) => (
             <div
               className={cn(
-                "group relative h-[320px] w-full overflow-hidden rounded-lg transition-all",
-                "cursor-pointer hover:scale-[1.03] hover:shadow-md",
+                "group relative h-[450px] w-full overflow-hidden rounded-lg transition-all",
+                "cursor-pointer hover:shadow-md",
               )}
               onClick={() => handleThemeClick(theme)}
               key={theme.name}
