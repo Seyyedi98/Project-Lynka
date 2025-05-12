@@ -56,6 +56,7 @@ export async function getSubmittedForms({
       select: {
         id: true,
         formData: true,
+        formName: true,
         createdAt: true,
         FormOccupiedTitle12: true,
       },
@@ -69,6 +70,7 @@ export async function getSubmittedForms({
       data: items.map((item) => ({
         id: item.id,
         ...item.formData,
+        formName: item.formName,
         createdAt: item.createdAt,
         FormOccupiedTitle12: item.FormOccupiedTitle12,
       })),

@@ -264,13 +264,19 @@ export default function SubmitsPanel() {
                 <Table className="w-full text-sm">
                   <TableHeader className="bg-muted/20">
                     <TableRow>
-                      <TableHead className="min-w-[180px]">عنوان فرم</TableHead>
+                      <TableHead className="min-w-[180px] text-right">
+                        عنوان فرم
+                      </TableHead>
                       {getFormFields()
                         .slice(0, 3)
                         .map((field) => (
-                          <TableHead key={field}>{field}</TableHead>
+                          <TableHead className="text-right" key={field}>
+                            {field}
+                          </TableHead>
                         ))}
-                      <TableHead className="min-w-[150px]">تاریخ ثبت</TableHead>
+                      <TableHead className="min-w-[150px] text-right">
+                        تاریخ ثبت
+                      </TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody
