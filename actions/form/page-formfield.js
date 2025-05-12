@@ -46,7 +46,7 @@ export async function getSubmittedForms({
     const submissions = await prisma.formSubmission.findMany({
       where: {
         pageUri: uri,
-        ...(formTitleFilter && { FormOccupiedTitle12: formTitleFilter }),
+        ...(formTitleFilter && { formName: formTitleFilter }),
       },
       take: limit + 1,
       ...(cursor && { cursor: { id: cursor } }),

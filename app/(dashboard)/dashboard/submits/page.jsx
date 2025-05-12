@@ -103,7 +103,7 @@ export default function SubmitsPanel() {
       });
       if (result.success) {
         const titles = [
-          ...new Set(result.data.map((f) => f.FormOccupiedTitle12)),
+          ...new Set(result.data.map((form) => form.formName)),
         ].filter(Boolean);
         setAvailableTitles(titles);
       }
@@ -235,6 +235,7 @@ export default function SubmitsPanel() {
       {/* heading section */}
       <SubmitsHeader
         pages={pages}
+        forms={forms}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         availableTitles={availableTitles}
@@ -269,11 +270,14 @@ export default function SubmitsPanel() {
                       </TableHead>
                       {getFormFields()
                         .slice(0, 3)
-                        .map((field) => (
-                          <TableHead className="text-right" key={field}>
-                            {field}
-                          </TableHead>
-                        ))}
+                        .map((field) => {
+                          if (field !== "formName")
+                            return (
+                              <TableHead className="text-right" key={field}>
+                                {field}
+                              </TableHead>
+                            );
+                        })}
                       <TableHead className="min-w-[150px] text-right">
                         تاریخ ثبت
                       </TableHead>
@@ -306,14 +310,17 @@ export default function SubmitsPanel() {
                         </TableCell>
                         {getFormFields()
                           .slice(0, 3)
-                          .map((field) => (
-                            <TableCell
-                              key={field}
-                              className="max-w-[200px] truncate"
-                            >
-                              {form[field] || `-`}
-                            </TableCell>
-                          ))}
+                          .map((field) => {
+                            if (field !== "formName")
+                              return (
+                                <TableCell
+                                  key={field}
+                                  className="max-w-[200px] truncate"
+                                >
+                                  {form[field] || `-`}
+                                </TableCell>
+                              );
+                          })}
                         <TableCell>
                           <div className="text-muted-foreground">
                             {new Date(form.createdAt).toLocaleString("fa-IR")}

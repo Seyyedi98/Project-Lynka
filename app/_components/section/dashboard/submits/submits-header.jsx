@@ -13,6 +13,7 @@ import { FilterIcon, LinkIcon, SearchIcon } from "lucide-react";
 const SubmitsHeader = (props) => {
   const {
     pages,
+    forms,
     searchQuery,
     setSearchQuery,
     availableTitles,
@@ -22,6 +23,14 @@ const SubmitsHeader = (props) => {
     formTitleFilter,
     setFormTitleFilter,
   } = props;
+
+
+  const getFormTitle = (formName) => {
+    // const targetForm = forms.map((form) => form.formName === formName);
+    // return targetForm.FormOccupiedTitle12;
+  };
+
+  getFormTitle("seyyedi-23182281805");
 
   return (
     <motion.div
@@ -77,7 +86,7 @@ const SubmitsHeader = (props) => {
                 <SelectContent>
                   {isInitialLoading ? (
                     <div className="p-2 text-center text-sm text-muted-foreground">
-                      در حال بارگذاری صفحات ...
+                      ...در حال بارگزاری صفحات
                     </div>
                   ) : (
                     pages.map((page) => (
