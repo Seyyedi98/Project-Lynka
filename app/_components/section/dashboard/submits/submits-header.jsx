@@ -24,7 +24,6 @@ const SubmitsHeader = (props) => {
     setFormTitleFilter,
   } = props;
 
-
   const getFormTitle = (formName) => {
     // const targetForm = forms.map((form) => form.formName === formName);
     // return targetForm.FormOccupiedTitle12;
@@ -66,10 +65,10 @@ const SubmitsHeader = (props) => {
                     </div>
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value={null}>همه فرم‌ها</SelectItem>
+                    {/* <SelectItem value={null}>همه فرم‌ها</SelectItem> */}
                     {availableTitles.map((title) => (
                       <SelectItem key={title} value={title}>
-                        {title}
+                        {title.split("-")[1]}
                       </SelectItem>
                     ))}
                   </SelectContent>

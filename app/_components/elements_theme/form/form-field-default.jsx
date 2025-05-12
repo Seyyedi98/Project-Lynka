@@ -65,7 +65,7 @@ const FormFieldDefault = (props) => {
     fetchFont();
   }, [font]);
 
-  const formId = `${uri}-${elementId}`;
+  const formId = `${uri}-${title}-${elementId}`;
 
   const onSubmit = async (formData) => {
     if (!isPremium) return;
