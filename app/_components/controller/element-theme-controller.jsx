@@ -1,5 +1,5 @@
 import CardFieldDefault from "../elements_theme/card/card-field-default";
-import CardFieldMinimal from "../elements_theme/card/card-field-minimal";
+import CardFieldMinimal from "../elements_theme/card/card-field-luxary";
 import SpaceFieldDefault from "../elements_theme/space/space-field-default";
 import DeviderFieldDefault from "../elements_theme/devider/devider-field-default";
 import CountdownFieldDefault from "../elements_theme/countdown/countdown-field-default";
@@ -21,7 +21,7 @@ export const ElementThemeController = {
   },
   CardField: {
     default: [CardFieldDefault, { type: "color" }, { isPremium: false }],
-    minimal: [CardFieldMinimal, { type: "color" }, { isPremium: true }],
+    lixary: [CardFieldMinimal, { type: "color" }, { isPremium: true }],
   },
   SpaceField: {
     default: [SpaceFieldDefault, { type: "color" }, { isPremium: false }],

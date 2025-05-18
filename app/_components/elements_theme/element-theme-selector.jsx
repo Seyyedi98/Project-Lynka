@@ -126,25 +126,6 @@ const ElementThemeSelector = ({ elementInstance }) => {
                   layout="basic"
                 />
                 {/* {console.log(element.extraAttributes)} */}
-                {/* <RenderedElement
-                  theme={element.extraAttributes?.theme}
-                  bgColor={element.extraAttributes?.bgColor}
-                  textColor={element.extraAttributes?.element}
-                  title={element.extraAttributes?.title}
-                  font={element.extraAttributes?.font}
-                  borderRadius={element.extraAttributes?.borderRadius}
-                  href={element.extraAttributes?.href}
-                  countdownDate={element.extraAttributes?.countdownDate}
-                  questions={element.extraAttributes?.questions} //faq
-                  socials={element.extraAttributes?.socials} // socials
-                  fields={element.extraAttributes?.fields} // contact form
-                  slides={element.extraAttributes?.slides} // carousel
-                  image={element.extraAttributes?.slides} // image
-                  images={element.extraAttributes?.images} // gallery
-                  coords={element.extraAttributes?.coords} // map
-                  isLive={false}
-                  isPremium={true}
-                /> */}
               </div>
             </div>
           );

@@ -1,12 +1,12 @@
 "use client";
 
-import { updateElementClicked } from "@/actions/page/element";
 import { cn } from "@/lib/utils";
-import GetUserAgentData from "@/utils/getUserAgent";
+import getImageAddress from "@/utils/get-image-address";
 import { loadFont } from "@/utils/loadFont";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import ProtectedPagePasswordCheck from "../../section/livepage-password-check";
+import { trackClick } from "@/actions/page/analytics";
 
 const handleClick = async ({
   setIsModalOpen,
@@ -17,20 +17,16 @@ const handleClick = async ({
   isLive,
   title,
 }) => {
-  // Get User-Agent
-  const userAgent = await GetUserAgentData();
-
   if (protectedElement) {
     await setIsModalOpen(true);
   } else {
     if (isLive) {
       window.open(`http://${href}`, "_blank");
 
-      updateElementClicked({
-        uri,
+      trackClick({
+        pageUri: uri,
+        elementName: title,
         elementId,
-        title,
-        userAgent,
       }).catch((error) => {
         console.error("Failed to update analytics data:", error);
       });
@@ -38,9 +34,10 @@ const handleClick = async ({
   }
 };
 
-const CardFieldMinimal = (props) => {
+const CardFieldToon = (props) => {
   const { isLive, font, layout, image, isPremium } = props;
   const [loadedFont, setLoadedFont] = useState(null);
+  const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
   useEffect(() => {
     const fetchFont = async () => {
@@ -57,12 +54,12 @@ const CardFieldMinimal = (props) => {
 
   const bgImageStyle = useMemo(
     () => ({
-      backgroundImage: image ? `url(${JSON.parse(image).url})` : "",
+      backgroundImage: image ? `url(${imageUrl})` : "",
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
     }),
-    [image],
+    [image, imageUrl],
   );
 
   // Workspace view for free and premium users && premium users live Page
@@ -101,7 +98,7 @@ const CardFieldMinimal = (props) => {
   }
 };
 
-export default CardFieldMinimal;
+export default CardFieldToon;
 
 const Basic = ({
   title,
@@ -118,10 +115,17 @@ const Basic = ({
   elementId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
       <a
-        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
+        style={{
+          backgroundColor: bgColor,
+          borderRadius: borderRadius,
+          border: "3px solid #000",
+          boxShadow: "0 4px 0 #000",
+          transition: "transform 0.2s ease, filter 0.2s ease",
+        }}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -136,36 +140,37 @@ const Basic = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 text-lg font-medium text-white shadow-lg`,
-          !isLive || (href === "" && "pointer-events-none"),
+          `flex h-20 w-full flex-col items-center justify-center gap-2 p-4 text-xl font-extrabold text-white transition-all duration-200 ease-in-out`,
+          !isLive || href === ""
+            ? "pointer-events-none"
+            : "cursor-pointer hover:scale-[1.04] hover:brightness-110 active:scale-100",
         )}
       >
         <p
           style={{
             fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-            color: textColor,
+            color: textColor || "#fff",
+            textShadow: "2px 2px #000",
           }}
+          className="text-center"
         >
           {title}
         </p>
       </a>
 
-      <div
-        className={cn(
-          `absolute right-0 top-0 hidden h-svh w-full`,
-          isModalOpen && "block",
-        )}
-      >
-        <ProtectedPagePasswordCheck
-          uri={uri}
-          elementId={elementId}
-          title={title}
-          href={href}
-          password={password}
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-        />
-      </div>
+      {isModalOpen && (
+        <div className="absolute right-0 top-0 h-svh w-full">
+          <ProtectedPagePasswordCheck
+            uri={uri}
+            elementId={elementId}
+            title={title}
+            href={href}
+            password={password}
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+          />
+        </div>
+      )}
     </>
   );
 };
@@ -190,7 +195,13 @@ const RoundedImage = ({
   return (
     <>
       <a
-        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
+        style={{
+          backgroundColor: bgColor,
+          borderRadius: borderRadius,
+          border: "3px solid #000",
+          boxShadow: "0 4px 0 #000",
+          transition: "transform 0.2s ease, filter 0.2s ease",
+        }}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -205,10 +216,20 @@ const RoundedImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `flex h-28 w-full cursor-pointer items-center justify-start gap-4 p-2 px-4 text-lg font-medium text-white shadow-lg`,
-          !isLive || (href === "" && "pointer-events-none"),
+          `flex h-28 w-full items-center justify-start gap-4 p-2 px-4 text-lg font-medium text-white transition-all duration-200 ease-in-out`,
+          !isLive || href === ""
+            ? "pointer-events-none"
+            : "cursor-pointer hover:scale-[1.04] hover:brightness-110 active:scale-100",
         )}
       >
+        <div
+          className={cn(
+            `h-20 w-20 rounded-xl`,
+            !image && "border-2 border-dashed border-white",
+          )}
+          style={bgImageStyle}
+        />
+
         <div>
           <p
             style={{
@@ -229,13 +250,6 @@ const RoundedImage = ({
             {title}
           </p>
         </div>
-        <div
-          className={cn(
-            `h-20 w-20 rounded-xl`,
-            !image && "border-2 border-dashed border-white",
-          )}
-          style={bgImageStyle}
-        />
       </a>
 
       <div
@@ -274,10 +288,18 @@ const WideFullImage = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const imageUrl = image && getImageAddress(JSON.parse(image).key);
+
   return (
     <>
       <a
-        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
+        style={{
+          backgroundColor: bgColor,
+          borderRadius: borderRadius,
+          border: "3px solid #000",
+          boxShadow: "0 4px 0 #000",
+          transition: "transform 0.2s ease, filter 0.2s ease",
+        }}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -292,17 +314,20 @@ const WideFullImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `relative flex h-28 w-full cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden p-2 text-lg font-medium text-white shadow-lg`,
-          !isLive || (href === "" && "pointer-events-none"),
+          `relative flex h-28 w-full flex-col items-center justify-center gap-2 overflow-hidden p-2 text-lg font-medium text-white transition-all duration-200 ease-in-out`,
+          !isLive || href === ""
+            ? "pointer-events-none"
+            : "cursor-pointer hover:scale-[1.04] hover:brightness-110 active:scale-100",
         )}
       >
-        {image && (
+        {imageUrl && (
           <Image
             className="absolute right-0 top-0 z-10 h-28 object-cover"
             height={360}
             width={720}
             alt="card Image"
-            src={JSON.parse(image).url}
+            src={imageUrl}
+            loading="lazy"
           />
         )}
         <p
@@ -350,11 +375,18 @@ const HighFullImage = ({
   elementId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
   return (
     <>
       <a
-        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
+        style={{
+          backgroundColor: bgColor,
+          borderRadius: borderRadius,
+          border: "3px solid #000",
+          boxShadow: "0 4px 0 #000",
+          transition: "transform 0.2s ease, filter 0.2s ease",
+        }}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -369,17 +401,20 @@ const HighFullImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `flex w-full cursor-pointer flex-col items-start justify-center gap-2 overflow-hidden text-lg font-medium text-white shadow-lg`,
-          !isLive || (href === "" && "pointer-events-none"),
-          !image && "h-48",
+          `flex w-full flex-col items-start justify-center gap-2 overflow-hidden text-lg font-medium text-white transition-all duration-200 ease-in-out`,
+          !isLive || href === ""
+            ? "pointer-events-none"
+            : "cursor-pointer hover:scale-[1.04] hover:brightness-110 active:scale-100",
+          !imageUrl && "h-48",
         )}
       >
-        {image && (
+        {imageUrl && (
           <Image
             height={720}
             width={720}
             alt="card Image"
-            src={JSON.parse(image).url}
+            src={imageUrl}
+            loading="lazy"
           />
         )}
         <p
