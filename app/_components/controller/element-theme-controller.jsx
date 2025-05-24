@@ -1,5 +1,5 @@
 import CardFieldDefault from "../elements_theme/card/card-field-default";
-import CardFieldMinimal from "../elements_theme/card/card-field-luxary";
+import CardFieldMinimal from "../elements_theme/card/card-field-toon";
 import SpaceFieldDefault from "../elements_theme/space/space-field-default";
 import DeviderFieldDefault from "../elements_theme/devider/devider-field-default";
 import CountdownFieldDefault from "../elements_theme/countdown/countdown-field-default";
@@ -14,6 +14,7 @@ import CarouselFieldDefault from "../elements_theme/carousel/carousel-field-defa
 import PostTrackerFieldDefault from "../elements_theme/postTracker/postTracker-field-default";
 import FormFieldDefault from "../elements_theme/form/form-field-default";
 import GalleryFieldDefault from "../elements_theme/gallery/gallery-field-default";
+import CardFieldGlow from "../elements_theme/card/card-field-glow";
 
 export const ElementThemeController = {
   SocialsField: {
@@ -21,7 +22,8 @@ export const ElementThemeController = {
   },
   CardField: {
     default: [CardFieldDefault, { type: "color" }, { isPremium: false }],
-    lixary: [CardFieldMinimal, { type: "color" }, { isPremium: true }],
+    cartoon: [CardFieldMinimal, { type: "color" }, { isPremium: true }],
+    glow: [CardFieldGlow, { type: "color" }, { isPremium: true }],
   },
   SpaceField: {
     default: [SpaceFieldDefault, { type: "color" }, { isPremium: false }],
