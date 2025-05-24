@@ -15,6 +15,7 @@ import PostTrackerFieldDefault from "../elements_theme/postTracker/postTracker-f
 import FormFieldDefault from "../elements_theme/form/form-field-default";
 import GalleryFieldDefault from "../elements_theme/gallery/gallery-field-default";
 import CardFieldGlow from "../elements_theme/card/card-field-glow";
+import CardFieldSketch from "../elements_theme/card/card-field-sketch";
 
 export const ElementThemeController = {
   SocialsField: {
@@ -24,6 +25,7 @@ export const ElementThemeController = {
     default: [CardFieldDefault, { type: "color" }, { isPremium: false }],
     cartoon: [CardFieldMinimal, { type: "color" }, { isPremium: true }],
     glow: [CardFieldGlow, { type: "color" }, { isPremium: true }],
+    sketch: [CardFieldSketch, { type: "color" }, { isPremium: true }],
   },
   SpaceField: {
     default: [SpaceFieldDefault, { type: "color" }, { isPremium: false }],

@@ -1,6 +1,5 @@
 "use client";
 
-import styles from "./card-field-glow.module.css";
 import { cn } from "@/lib/utils";
 import getImageAddress from "@/utils/get-image-address";
 import { loadFont } from "@/utils/loadFont";
@@ -140,7 +139,25 @@ const Basic = ({
           }
         `}
       </style>
-      <button className="glow-button w-full">
+      <button
+        onClick={() =>
+          handleClick({
+            setIsModalOpen,
+            href,
+            protectedElement,
+            uri,
+            elementId,
+            title,
+            isLive,
+          })
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(
+          `button glow-button flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 text-lg font-medium text-white shadow-lg`,
+          !isLive || (href === "" && "pointer-events-none"),
+        )}
+      >
         <p
           style={{
             fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",

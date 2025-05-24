@@ -75,10 +75,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
                 <p>نیازمند اشتراک ویژه</p>
               </div>
               <div
-                className={cn(
-                  "pointer-events-none",
-                  !isAllowedToApplyTheme ? "opacity-60" : "",
-                )}
+                className={cn("", !isAllowedToApplyTheme ? "opacity-60" : "")}
               >
                 <RenderedElement
                   theme={element.extraAttributes?.theme}
