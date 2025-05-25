@@ -1,21 +1,23 @@
-import CardFieldDefault from "../elements_theme/card/card-field-default";
-import CardFieldMinimal from "../elements_theme/card/card-field-toon";
-import SpaceFieldDefault from "../elements_theme/space/space-field-default";
-import DeviderFieldDefault from "../elements_theme/devider/devider-field-default";
-import CountdownFieldDefault from "../elements_theme/countdown/countdown-field-default";
-import TextFieldDefault from "../elements_theme/text/text-field-default";
-import VideoFieldDefault from "../elements_theme/video/video-field-default";
-import RssFieldDefault from "../elements_theme/rss/rss-field-default";
-import FaqFieldDefault from "../elements_theme/faq/faq-field-default";
-import SocialsFieldDefault from "../elements_theme/socials/socials-field-default";
-import MapFieldDefault from "../elements_theme/map/map-field-default";
 import ImageFieldDefault from "../elements_theme/Image/image-field-default";
-import CarouselFieldDefault from "../elements_theme/carousel/carousel-field-default";
-import PostTrackerFieldDefault from "../elements_theme/postTracker/postTracker-field-default";
-import FormFieldDefault from "../elements_theme/form/form-field-default";
-import GalleryFieldDefault from "../elements_theme/gallery/gallery-field-default";
+import CardFieldDefault from "../elements_theme/card/card-field-default";
 import CardFieldGlow from "../elements_theme/card/card-field-glow";
 import CardFieldSketch from "../elements_theme/card/card-field-sketch";
+import CardFieldSlice from "../elements_theme/card/card-field-slice";
+import CardFieldMinimal from "../elements_theme/card/card-field-toon";
+import CardFieldWindows from "../elements_theme/card/card-field-windows";
+import CarouselFieldDefault from "../elements_theme/carousel/carousel-field-default";
+import CountdownFieldDefault from "../elements_theme/countdown/countdown-field-default";
+import DeviderFieldDefault from "../elements_theme/devider/devider-field-default";
+import FaqFieldDefault from "../elements_theme/faq/faq-field-default";
+import FormFieldDefault from "../elements_theme/form/form-field-default";
+import GalleryFieldDefault from "../elements_theme/gallery/gallery-field-default";
+import MapFieldDefault from "../elements_theme/map/map-field-default";
+import PostTrackerFieldDefault from "../elements_theme/postTracker/postTracker-field-default";
+import RssFieldDefault from "../elements_theme/rss/rss-field-default";
+import SocialsFieldDefault from "../elements_theme/socials/socials-field-default";
+import SpaceFieldDefault from "../elements_theme/space/space-field-default";
+import TextFieldDefault from "../elements_theme/text/text-field-default";
+import VideoFieldDefault from "../elements_theme/video/video-field-default";
 
 export const ElementThemeController = {
   SocialsField: {
@@ -26,6 +28,8 @@ export const ElementThemeController = {
     cartoon: [CardFieldMinimal, { type: "color" }, { isPremium: true }],
     glow: [CardFieldGlow, { type: "color" }, { isPremium: true }],
     sketch: [CardFieldSketch, { type: "color" }, { isPremium: true }],
+    windows: [CardFieldWindows, { type: "color" }, { isPremium: true }],
+    neon: [CardFieldSlice, { type: "color" }, { isPremium: true }],
   },
   SpaceField: {
     default: [SpaceFieldDefault, { type: "color" }, { isPremium: false }],

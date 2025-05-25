@@ -34,7 +34,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
             <div
               key={(index, theme)}
               className={cn(
-                `relative scale-[0.85] transition-all duration-200 hover:scale-[0.87] hover:shadow-xl`,
+                `relative scale-[0.85] overflow-hidden rounded-lg p-8 transition-all duration-200 hover:scale-[0.87] hover:shadow-xl`,
                 !isAllowedToApplyTheme
                   ? "pointer-events-none"
                   : "cursor-pointer",
