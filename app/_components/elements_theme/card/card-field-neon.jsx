@@ -34,7 +34,7 @@ const handleClick = async ({
   }
 };
 
-const CardFieldWindows = (props) => {
+const CardFieldNeon = (props) => {
   const { isLive, font, layout, image, isPremium } = props;
   const [loadedFont, setLoadedFont] = useState(null);
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
@@ -98,7 +98,7 @@ const CardFieldWindows = (props) => {
   }
 };
 
-export default CardFieldWindows;
+export default CardFieldNeon;
 
 const Basic = ({
   title,
@@ -195,7 +195,6 @@ const Basic = ({
         }
         target="_blank"
         rel="noopener noreferrer"
-        disabled={href === ""}
       >
         <span
           style={{

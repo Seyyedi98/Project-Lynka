@@ -162,7 +162,6 @@ const Basic = ({
         }
         target="_blank"
         rel="noopener noreferrer"
-        disabled={href === ""}
         className={cn(
           `windows_btn flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
