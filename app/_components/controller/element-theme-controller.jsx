@@ -1,5 +1,6 @@
 import ImageFieldDefault from "../elements_theme/Image/image-field-default";
 import CardFieldDefault from "../elements_theme/card/card-field-default";
+import CardFieldGlitch from "../elements_theme/card/card-field-glitch";
 import CardFieldGlow from "../elements_theme/card/card-field-glow";
 import CardFieldSketch from "../elements_theme/card/card-field-sketch";
 import CardFieldSlice from "../elements_theme/card/card-field-slice";
@@ -30,6 +31,7 @@ export const ElementThemeController = {
     sketch: [CardFieldSketch, { type: "color" }, { isPremium: true }],
     windows: [CardFieldWindows, { type: "color" }, { isPremium: true }],
     neon: [CardFieldSlice, { type: "color" }, { isPremium: true }],
+    glitch: [CardFieldGlitch, { type: "color" }, { isPremium: true }],
   },
   SpaceField: {
     default: [SpaceFieldDefault, { type: "color" }, { isPremium: false }],

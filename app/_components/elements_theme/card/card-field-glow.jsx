@@ -259,15 +259,6 @@ const RoundedImage = ({
           >
             {title}
           </p>
-          <p
-            style={{
-              fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-              color: textColor || "#fff",
-            }}
-            className="text-wrap text-sm"
-          >
-            {title}
-          </p>
         </div>
       </button>
       <div
