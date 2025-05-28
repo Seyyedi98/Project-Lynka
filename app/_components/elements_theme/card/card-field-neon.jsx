@@ -560,7 +560,7 @@ const HighFullImage = ({
           />
         )}
         <span
-          className="px-3 pb-2"
+          className="px-3 py-1 pb-2"
           style={{
             fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
           }}

@@ -766,7 +766,7 @@ const HighFullImage = ({
             loading="lazy"
           />
         )}
-        <p className="px-3 pb-2">{title}</p>
+        <p className="px-3 py-1">{title}</p>
       </button>
       <div
         className={cn(
