@@ -34,7 +34,7 @@ const handleClick = async ({
   }
 };
 
-const CardFieldToon2 = (props) => {
+const CardFieldAqua = (props) => {
   const { isLive, font, layout, image, isPremium } = props;
   const [loadedFont, setLoadedFont] = useState(null);
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
@@ -98,7 +98,7 @@ const CardFieldToon2 = (props) => {
   }
 };
 
-export default CardFieldToon2;
+export default CardFieldAqua;
 
 const Basic = ({
   title,
@@ -120,66 +120,72 @@ const Basic = ({
     <>
       <style>
         {`
-          .toon-button {
-            position: relative;
+          .aqua-button {
             display: inline-block;
+            transition: all 0.2s ease-in;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            color: ${textColor || "#090909"};
+            padding: 0.7em 1.7em;
             cursor: pointer;
-            outline: none;
-            border: 0;
-            vertical-align: middle;
-            text-decoration: none;
-            font-family: inherit;
-            font-size: 15px;
+            font-size: 18px;
+            border-radius: ${borderRadius || "0.5em"};
+            background: ${bgColor || "#e8e8e8"};
+            border: 1px solid ${bgColor || "#e8e8e8"};
             width: 100%;
             text-align: center;
+            margin-bottom: 1rem;
           }
 
-          .toon-button-inner {
-            font-weight: 600;
-            color: ${textColor || "#382b22"};
-            text-transform: uppercase;
-            padding: 1.25em 2em;
-            background: ${bgColor || "#fff0f0"};
-            border: 2px solid #b18597;
-            border-radius: ${borderRadius || "0.75em"};
-            transform-style: preserve-3d;
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
-            position: relative;
-            display: block;
+          .aqua-button:active {
+            color: #666;
           }
 
-          .toon-button-inner::before {
+          .aqua-button:before {
+            content: "";
             position: absolute;
-            content: '';
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #f9c4d2;
-            border-radius: inherit;
-           
-            transform: translate3d(0, 0.75em, -1em);
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+            left: 50%;
+            transform: translateX(-50%) scaleY(1) scaleX(1.25);
+            top: 100%;
+            width: 140%;
+            height: 180%;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            display: block;
+            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+            z-index: -1;
           }
 
-          .toon-button:hover .toon-button-inner {
-            background: #ffe9e9;
-            transform: translate(0, 0.25em);
+          .aqua-button:after {
+            content: "";
+            position: absolute;
+            left: 55%;
+            transform: translateX(-50%) scaleY(1) scaleX(1.45);
+            top: 180%;
+            width: 160%;
+            height: 190%;
+            border-radius: 50%;
+            display: block;
+            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+            z-index: -1;
           }
 
-          .toon-button:hover .toon-button-inner::before {
-            transform: translate3d(0, 0.50em, -1em);
+          .aqua-button:hover {
+            color: #ffffff;
+            border: 1px solid #009087;
           }
 
-          .toon-button:active .toon-button-inner {
-            background: #ffe9e9;
-            transform: translate(0em, 0.75em);
+          .aqua-button:hover:before {
+            top: -35%;
+            background-color: #009087;
+            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
           }
 
-          .toon-button:active .toon-button-inner::before {
-            transform: translate3d(0, 0em, -1em);
+          .aqua-button:hover:after {
+            top: -45%;
+            background-color: #009087;
+            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
           }
         `}
       </style>
@@ -198,20 +204,17 @@ const Basic = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `toon-button mb-4`,
+          `aqua-button`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
-        <span className="toon-button-inner">
-          <p
-            style={{
-              fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-              position: "relative",
-            }}
-          >
-            {title}
-          </p>
-        </span>
+        <p
+          style={{
+            fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+          }}
+        >
+          {title}
+        </p>
       </button>
 
       {isModalOpen && (
@@ -252,71 +255,76 @@ const RoundedImage = ({
     <>
       <style>
         {`
-          .toon-button-rounded {
-            position: relative;
+          .aqua-button-rounded {
             display: inline-block;
-            cursor: pointer;
-            outline: none;
-            border: 0;
-            vertical-align: middle;
-            text-decoration: none;
-            font-family: inherit;
-            font-size: 15px;
-            width: 100%;
-          }
-
-          .toon-button-rounded-inner {
-            font-weight: 600;
-            color: ${textColor || "#382b22"};
-            text-transform: uppercase;
-            padding: 1.25em 2em;
-            background: ${bgColor || "#fff0f0"};
-            border: 2px solid #b18597;
-            border-radius: ${borderRadius || "0.75em"};
-            transform-style: preserve-3d;
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+            transition: all 0.2s ease-in;
             position: relative;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            min-height: 112px;
-          }
-
-          .toon-button-rounded-inner::before {
-            position: absolute;
-            content: '';
+            overflow: hidden;
+            z-index: 1;
+            color: ${textColor || "#090909"};
+            padding: 0.7em 1.7em;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: ${borderRadius || "0.5em"};
+            background: ${bgColor || "#e8e8e8"};
+            border: 1px solid ${bgColor || "#e8e8e8"};
             width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #f9c4d2;
-            border-radius: inherit;
-            transform: translate3d(0, 0.75em, -1em);
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+            text-align: left;
+            margin-bottom: 1rem;
           }
 
-          .toon-button-rounded:hover .toon-button-rounded-inner {
-            background: #ffe9e9;
-            transform: translate(0, 0.25em);
+          .aqua-button-rounded:active {
+            color: #666;
           }
 
-          .toon-button-rounded:hover .toon-button-rounded-inner::before {
-            transform: translate3d(0, 0.50em, -1em);
+          .aqua-button-rounded:before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) scaleY(1) scaleX(1.25);
+            top: 100%;
+            width: 140%;
+            height: 180%;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            display: block;
+            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+            z-index: -1;
           }
 
-          .toon-button-rounded:active .toon-button-rounded-inner {
-            background: #ffe9e9;
-            transform: translate(0em, 0.75em);
+          .aqua-button-rounded:after {
+            content: "";
+            position: absolute;
+            left: 55%;
+            transform: translateX(-50%) scaleY(1) scaleX(1.45);
+            top: 180%;
+            width: 160%;
+            height: 190%;
+            background-color: #009087;
+            border-radius: 50%;
+            display: block;
+            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+            z-index: -1;
           }
 
-          .toon-button-rounded:active .toon-button-rounded-inner::before {
-            box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
-            transform: translate3d(0, 0, -1em);
+          .aqua-button-rounded:hover {
+            color: #ffffff;
+            border: 1px solid #009087;
           }
 
-          .toon-button-image {
+          .aqua-button-rounded:hover:before {
+            top: -35%;
+            background-color: #009087;
+            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+          }
+
+          .aqua-button-rounded:hover:after {
+            top: -45%;
+            background-color: #009087;
+            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+          }
+
+          .aqua-button-image {
             height: 80px;
             width: 80px;
             min-width: 80px;
@@ -324,6 +332,12 @@ const RoundedImage = ({
             overflow: hidden;
             position: relative;
             z-index: 1;
+          }
+
+          .aqua-button-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
           }
         `}
       </style>
@@ -342,14 +356,14 @@ const RoundedImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `toon-button-rounded mb-2`,
+          `aqua-button-rounded`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
-        <span className="toon-button-rounded-inner">
+        <div className="aqua-button-content">
           <div
             className={cn(
-              "toon-button-image",
+              "aqua-button-image",
               image
                 ? ""
                 : `border-2 border-dashed border-[${textColor || "#382b22"}]`,
@@ -359,13 +373,11 @@ const RoundedImage = ({
           <p
             style={{
               fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-              position: "relative",
-              zIndex: 1,
             }}
           >
             {title}
           </p>
-        </span>
+        </div>
       </button>
       <div
         className={cn(
@@ -408,79 +420,90 @@ const WideFullImage = ({
     <>
       <style>
         {`
-          .toon-button-wide {
-            position: relative;
+          .aqua-button-wide {
             display: inline-block;
-            cursor: pointer;
-            outline: none;
-            border: 0;
-            vertical-align: middle;
-            text-decoration: none;
-            font-family: inherit;
-            font-size: 15px;
-            width: 100%;
-          }
-
-          .toon-button-wide-inner {
-            font-weight: 600;
-            color: ${textColor || "#382b22"};
-            text-transform: uppercase;
-            padding: 1.25em 2em;
-            background: ${bgColor || "#fff0f0"};
-            border: 2px solid #b18597;
-            border-radius: ${borderRadius || "0.75em"};
-            transform-style: preserve-3d;
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+            transition: all 0.2s ease-in;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            height: 112px;
-          }
-
-          .toon-button-wide-inner::before {
-            position: absolute;
-            content: '';
+            overflow: hidden;
+            z-index: 1;
+            color: ${textColor || "#090909"};
+            padding: 0;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: ${borderRadius || "0.5em"};
+            background: ${bgColor || "#e8e8e8"};
+            border: 1px solid ${bgColor || "#e8e8e8"};
             width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #f9c4d2;
-            border-radius: inherit;
-            transform: translate3d(0, 0.75em, -1em);
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+            margin-bottom: 1rem;
           }
 
-          .toon-button-wide:hover .toon-button-wide-inner {
-            background: #ffe9e9;
-            transform: translate(0, 0.25em);
+          .aqua-button-wide:active {
+            color: #666;
           }
 
-          .toon-button-wide:hover .toon-button-wide-inner::before {
-            transform: translate3d(0, 0.5em, -1em);
-          }
-
-          .toon-button-wide:active .toon-button-wide-inner {
-            background: #ffe9e9;
-            transform: translate(0em, 0.75em);
-          }
-
-          .toon-button-wide:active .toon-button-wide-inner::before {
-            transform: translate3d(0, 0, -1em);
-          }
-
-          .toon-button-wide-image {
+          .aqua-button-wide:before {
+            content: "";
             position: absolute;
-            right: 0;
-            top: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleY(1) scaleX(1.25);
+            top: 100%;
+            width: 140%;
+            height: 180%;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            display: block;
+            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+            z-index: -1;
+          }
+
+          .aqua-button-wide:after {
+            content: "";
+            position: absolute;
+            left: 55%;
+            transform: translateX(-50%) scaleY(1) scaleX(1.45);
+            top: 180%;
+            width: 160%;
+            height: 190%;
+            background-color: #009087;
+            border-radius: 50%;
+            display: block;
+            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+            z-index: -1;
+          }
+
+          .aqua-button-wide:hover {
+            color: #ffffff;
+            border: 1px solid #009087;
+          }
+
+          .aqua-button-wide:hover:before {
+            top: -35%;
+            background-color: #009087;
+            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+          }
+
+          .aqua-button-wide:hover:after {
+            top: -45%;
+            background-color: #009087;
+            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+          }
+
+          .aqua-button-wide-image {
+            position: relative;
             z-index: 10;
             height: 112px;
             object-fit: cover;
             width: 100%;
+          }
+
+          .aqua-button-wide-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            z-index: 20;
+            text-align: center;
           }
         `}
       </style>
@@ -497,33 +520,31 @@ const WideFullImage = ({
           })
         }
         target="_blank"
-        rel="noopener noreferrer mb-2"
+        rel="noopener noreferrer "
         className={cn(
-          `toon-button-wide`,
+          `aqua-button-wide`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
-        <span className="toon-button-wide-inner">
-          {imageUrl && (
-            <Image
-              className="toon-button-wide-image rounded-lg"
-              height={360}
-              width={720}
-              alt="card Image"
-              src={imageUrl}
-              loading="lazy"
-            />
-          )}
+        {imageUrl && (
+          <Image
+            className="aqua-button-wide-image rounded-lg"
+            height={360}
+            width={720}
+            alt="card Image"
+            src={imageUrl}
+            loading="lazy"
+          />
+        )}
+        <div className="aqua-button-wide-title">
           <p
             style={{
               fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-              position: "relative",
-              zIndex: 20,
             }}
           >
             {title}
           </p>
-        </span>
+        </div>
       </a>
       <div
         className={cn(
@@ -566,73 +587,83 @@ const HighFullImage = ({
     <>
       <style>
         {`
-          .toon-button-high {
-            position: relative;
+          .aqua-button-high {
             display: inline-block;
-            cursor: pointer;
-            outline: none;
-            border: 0;
-            vertical-align: middle;
-            text-decoration: none;
-            font-family: inherit;
-            font-size: 15px;
-            width: 100%;
-          }
-
-          .toon-button-high-inner {
-            font-weight: 600;
-            color: ${textColor || "#382b22"};
-            text-transform: uppercase;
-            background: ${bgColor || "#fff0f0"};
-            border: 2px solid #b18597;
-            border-radius: ${borderRadius || "0.75em"};
-            transform-style: preserve-3d;
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+            transition: all 0.2s ease-in;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-            min-height: 192px;
-          }
-
-          .toon-button-high-inner::before {
-            position: absolute;
-            content: '';
+            overflow: hidden;
+            z-index: 1;
+            color: ${textColor || "#090909"};
+            padding: 0;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: ${borderRadius || "0.5em"};
+            background: ${bgColor || "#e8e8e8"};
+            border: 1px solid ${bgColor || "#e8e8e8"};
             width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #f9c4d2;
-            border-radius: inherit;
-            transform: translate3d(0, 0.75em, -1em);
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+            margin-bottom: 1rem;
           }
 
-          .toon-button-high:hover .toon-button-high-inner {
-            background: #ffe9e9;
-            transform: translate(0, 0.25em);
+          .aqua-button-high:active {
+            color: #666;
           }
 
-          .toon-button-high:hover .toon-button-high-inner::before {
-            transform: translate3d(0, 0.5em, -1em);
+          .aqua-button-high:before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) scaleY(1) scaleX(1.25);
+            top: 100%;
+            width: 140%;
+            height: 180%;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            display: block;
+            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+            z-index: -1;
           }
 
-          .toon-button-high:active .toon-button-high-inner {
-            background: #ffe9e9;
-            transform: translate(0em, 0.75em);
+          .aqua-button-high:after {
+            content: "";
+            position: absolute;
+            left: 55%;
+            transform: translateX(-50%) scaleY(1) scaleX(1.45);
+            top: 180%;
+            width: 160%;
+            height: 190%;
+            background-color: #009087;
+            border-radius: 50%;
+            display: block;
+            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+            z-index: -1;
           }
 
-          .toon-button-high:active .toon-button-high-inner::before {
-            transform: translate3d(0, 0, -1em);
+          .aqua-button-high:hover {
+            color: #ffffff;
+            border: 1px solid #009087;
           }
 
-          .toon-button-high-image {
+          .aqua-button-high:hover:before {
+            top: -35%;
+            background-color: #009087;
+            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+          }
+
+          .aqua-button-high:hover:after {
+            top: -45%;
+            background-color: #009087;
+            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+          }
+
+          .aqua-button-high-image {
             width: 100%;
             position: relative;
             z-index: 10;
+          }
+
+          .aqua-button-high-title {
+            padding: 1rem;
+            z-index: 20;
           }
         `}
       </style>
@@ -651,33 +682,30 @@ const HighFullImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `toon-button-high mb-`,
+          `aqua-button-high`,
           !isLive || (href === "" && "pointer-events-none"),
           !imageUrl && "min-h-48",
         )}
       >
-        <span className="toon-button-high-inner">
-          {imageUrl && (
-            <Image
-              className="toon-button-high-image rounded-t-lg"
-              height={720}
-              width={720}
-              alt="card Image"
-              src={imageUrl}
-              loading="lazy"
-            />
-          )}
+        {imageUrl && (
+          <Image
+            className="aqua-button-high-image rounded-t-lg"
+            height={720}
+            width={720}
+            alt="card Image"
+            src={imageUrl}
+            loading="lazy"
+          />
+        )}
+        <div className="aqua-button-high-title">
           <p
-            className="px-3 pb-2"
             style={{
               fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-              position: "relative",
-              zIndex: 20,
             }}
           >
             {title}
           </p>
-        </span>
+        </div>
       </a>
       <div
         className={cn(

@@ -1,4 +1,5 @@
 import ImageFieldDefault from "../elements_theme/Image/image-field-default";
+import CardFieldAqua from "../elements_theme/card/card-field-aqua";
 import CardFieldDashed from "../elements_theme/card/card-field-dashed";
 import CardFieldDefault from "../elements_theme/card/card-field-default";
 import CardFieldGlitch from "../elements_theme/card/card-field-glitch";
@@ -38,6 +39,7 @@ export const ElementThemeController = {
     hexa: [CardFieldHexa, { type: "color" }, { isPremium: true }],
     dashed: [CardFieldDashed, { type: "color" }, { isPremium: true }],
     toon2: [CardFieldToon2, { type: "color" }, { isPremium: true }],
+    aqua: [CardFieldAqua, { type: "color" }, { isPremium: true }],
   },
   SpaceField: {
     default: [SpaceFieldDefault, { type: "color" }, { isPremium: false }],
