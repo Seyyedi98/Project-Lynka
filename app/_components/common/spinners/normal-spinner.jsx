@@ -3,7 +3,7 @@ import React from "react";
 
 const NormalSpinner = () => {
   return (
-    <div>
+    <div className="animate-spin text-white">
       <Loader2 />
     </div>
   );
