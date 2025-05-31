@@ -2,6 +2,7 @@ import ImageFieldDefault from "../elements_theme/Image/image-field-default";
 import CardFieldAqua from "../elements_theme/card/card-field-aqua";
 import CardFieldDashed from "../elements_theme/card/card-field-dashed";
 import CardFieldDefault from "../elements_theme/card/card-field-default";
+import CardFieldFlat from "../elements_theme/card/card-field-flat";
 import CardFieldGlitch from "../elements_theme/card/card-field-glitch";
 import CardFieldGlow from "../elements_theme/card/card-field-glow";
 import CardFieldHexa from "../elements_theme/card/card-field-hexa";
@@ -9,6 +10,7 @@ import CardFieldNeon from "../elements_theme/card/card-field-neon";
 import CardFieldSketch from "../elements_theme/card/card-field-sketch";
 import CardFieldMinimal from "../elements_theme/card/card-field-toon";
 import CardFieldToon2 from "../elements_theme/card/card-field-toon2";
+import CardFieldWind from "../elements_theme/card/card-field-wind";
 import CardFieldWindows from "../elements_theme/card/card-field-windows";
 import CarouselFieldDefault from "../elements_theme/carousel/carousel-field-default";
 import CountdownFieldDefault from "../elements_theme/countdown/countdown-field-default";
@@ -40,6 +42,8 @@ export const ElementThemeController = {
     dashed: [CardFieldDashed, { type: "color" }, { isPremium: true }],
     toon2: [CardFieldToon2, { type: "color" }, { isPremium: true }],
     aqua: [CardFieldAqua, { type: "color" }, { isPremium: true }],
+    flat: [CardFieldFlat, { type: "color" }, { isPremium: true }],
+    wind: [CardFieldWind, { type: "color" }, { isPremium: true }],
   },
   SpaceField: {
     default: [SpaceFieldDefault, { type: "color" }, { isPremium: false }],
