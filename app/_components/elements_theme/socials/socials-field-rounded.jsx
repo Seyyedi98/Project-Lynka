@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import socialPlatforms from "@/data/social-platforms";
 import { motion } from "framer-motion";
 
-const SocialsFieldDefault = (props) => {
+const SocialsFieldRounded = (props) => {
   const { socials, isLive, bgColor, borderRadius } = props;
 
   const handleSocialClick = (platform, userId) => {
@@ -13,17 +13,14 @@ const SocialsFieldDefault = (props) => {
     const platformConfig = socialPlatforms.find((p) => p.value === platform);
     if (!platformConfig) return;
 
-    // Try to open app first
     if (platformConfig.urlPrefix) {
       const appUrl = `${platformConfig.urlPrefix}${userId}`;
       window.location.href = appUrl;
 
-      // Fallback to web after delay if app didn't open
       setTimeout(() => {
         window.location.href = `${platformConfig.webPrefix}${userId}`;
       }, 500);
     } else {
-      // Directly open web if no app scheme
       window.open(`${platformConfig.webPrefix}${userId}`, "_blank");
     }
   };
@@ -66,7 +63,7 @@ const SocialsFieldDefault = (props) => {
                 }
                 disabled={!social.userId}
                 className={cn(
-                  "group relative flex h-10 w-10 items-center justify-center rounded-xl p-2 text-white transition-all",
+                  "group relative flex h-12 w-12 items-center justify-center rounded-full p-2 text-white transition-all",
                   "hover:shadow-lg hover:ring-2 hover:ring-white/50",
                   !social.userId && "opacity-40 grayscale",
                 )}
@@ -75,7 +72,7 @@ const SocialsFieldDefault = (props) => {
                   boxShadow: `0 4px 6px -1px ${platform.background}20, 0 2px 4px -2px ${platform.background}20`,
                 }}
               >
-                <span className="text-xl transition-transform group-hover:scale-110">
+                <span className="text-2xl transition-transform group-hover:scale-110">
                   {platform.icon}
                 </span>
               </motion.button>
@@ -87,4 +84,4 @@ const SocialsFieldDefault = (props) => {
   );
 };
 
-export default SocialsFieldDefault;
+export default SocialsFieldRounded;

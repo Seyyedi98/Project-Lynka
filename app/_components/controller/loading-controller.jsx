@@ -9,6 +9,7 @@ import SpinnerGaming from "../common/spinners/spinner-gaming";
 import SpinnerHeart from "../common/spinners/spinner-heart";
 import SpinnerLine1 from "../common/spinners/spinner-line1";
 import SpinnerRunningSquare from "../common/spinners/spinner-running-square";
+import PencilSpinner from "../elements_theme/card/card-field-pen";
 
 export const LoadingController = {
   basic: NormalSpinner,
@@ -16,7 +17,7 @@ export const LoadingController = {
   bb8: BB8,
   runningSquare: SpinnerRunningSquare,
   book: SpinnerBook,
-  // pen: SpinnerPen,
+  pen: PencilSpinner,
   line1: SpinnerLine1,
   cross: SpinnerCrossLine,
   bar: SpinnerBar,

@@ -21,7 +21,13 @@ import GalleryFieldDefault from "../elements_theme/gallery/gallery-field-default
 import MapFieldDefault from "../elements_theme/map/map-field-default";
 import PostTrackerFieldDefault from "../elements_theme/postTracker/postTracker-field-default";
 import RssFieldDefault from "../elements_theme/rss/rss-field-default";
+import SocialsFieldAero from "../elements_theme/socials/socials-field-aero";
 import SocialsFieldDefault from "../elements_theme/socials/socials-field-default";
+import SocialsFieldGlitch from "../elements_theme/socials/socials-field-glitch";
+import SocialsFieldMacOS from "../elements_theme/socials/socials-field-macos";
+import SocialsFieldRounded from "../elements_theme/socials/socials-field-rounded";
+import SocialsFieldWindows from "../elements_theme/socials/socials-field-windows";
+import SocialsFieldWindows95 from "../elements_theme/socials/socials-field-windows95";
 import SpaceFieldDefault from "../elements_theme/space/space-field-default";
 import TextFieldDefault from "../elements_theme/text/text-field-default";
 import VideoFieldDefault from "../elements_theme/video/video-field-default";
@@ -29,13 +35,19 @@ import VideoFieldDefault from "../elements_theme/video/video-field-default";
 export const ElementThemeController = {
   SocialsField: {
     default: [SocialsFieldDefault, { type: "color" }, { isPremium: false }],
+    rounded: [SocialsFieldRounded, { type: "color" }, { isPremium: false }],
+    windows: [SocialsFieldWindows, { type: "color" }, { isPremium: false }],
+    windows95: [SocialsFieldWindows95, { type: "color" }, { isPremium: false }],
+    macos: [SocialsFieldMacOS, { type: "color" }, { isPremium: false }],
+    aero: [SocialsFieldAero, { type: "color" }, { isPremium: false }],
+    glitch: [SocialsFieldGlitch, { type: "color" }, { isPremium: false }],
   },
   CardField: {
     default: [CardFieldDefault, { type: "color" }, { isPremium: false }],
     cartoon: [CardFieldMinimal, { type: "color" }, { isPremium: true }],
     glow: [CardFieldGlow, { type: "color" }, { isPremium: true }],
     sketch: [CardFieldSketch, { type: "color" }, { isPremium: true }],
-    windows: [CardFieldWindows, { type: "color" }, { isPremium: true }],
+    windows95: [CardFieldWindows, { type: "color" }, { isPremium: true }],
     neon: [CardFieldNeon, { type: "color" }, { isPremium: true }],
     glitch: [CardFieldGlitch, { type: "color" }, { isPremium: true }],
     hexa: [CardFieldHexa, { type: "color" }, { isPremium: true }],
