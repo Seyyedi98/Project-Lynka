@@ -26,7 +26,7 @@ const SocialsFieldWindows = (props) => {
   };
 
   return (
-    <div className="relative my-4 flex w-full justify-center">
+    <div className="relative my-1 flex w-full justify-center">
       <div className="inline-flex items-center justify-center rounded-full border border-gray-700 bg-gray-800/90 px-2 py-1 shadow-lg backdrop-blur-md">
         {socials?.length === 0 ? (
           <motion.div

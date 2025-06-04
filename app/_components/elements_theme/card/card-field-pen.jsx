@@ -1,3 +1,5 @@
+"use client";
+
 const PencilSpinner = () => {
   return (
     <div className="pencil-container">
