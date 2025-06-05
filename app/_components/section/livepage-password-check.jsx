@@ -47,8 +47,9 @@ const ProtectedPagePasswordCheck = ({
           animate="animate"
           exit="exit"
           variants={fade}
-          className="relative z-20 h-full w-full bg-main-gradient-light"
+          className="fixed left-0 top-0 z-20 h-full w-full bg-main-gradient-light"
         >
+          {/* back button */}
           <span
             onClick={() => setIsModalOpen(false)}
             className="absolute left-4 top-4 cursor-pointer transition-transform duration-150 hover:scale-125"
