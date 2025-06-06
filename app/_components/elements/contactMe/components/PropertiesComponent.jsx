@@ -150,7 +150,11 @@ function PropertiesComponent({ elementInstance, isPremium }) {
 
                 <TabsContent value="content" className="flex flex-col gap-5">
                   {/* Title */}
-                  <ElementTitleFormField placeholder="عنوان فرم" form={form} />
+                  <ElementTitleFormField
+                    placeholder="عنوان فرم"
+                    form={form}
+                    description="عنوان فرم برای شناسایی اطلاعات ثبت‌شده استفاده می‌شود. در صورت تغییر عنوان، پاسخ‌ها در لیستی با نام جدید ذخیره خواهند شد"
+                  />
 
                   {/* Success Message */}
                   <ElementTitleFormField

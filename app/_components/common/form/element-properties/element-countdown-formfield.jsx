@@ -21,7 +21,7 @@ const ElementCountdownFormField = ({
 }) => {
   const { countdownDate, countdown } = countdownData;
 
-  // Convert the Miladi countdownDate to Shamsi
+  // Adjust date for timezone offset
   const adjustedCountdownDate = new Date(countdownDate);
   adjustedCountdownDate.setHours(adjustedCountdownDate.getHours() - 3);
   adjustedCountdownDate.setMinutes(adjustedCountdownDate.getMinutes() - 26);
@@ -29,7 +29,6 @@ const ElementCountdownFormField = ({
   const [startDate, setStartDate] = useState(adjustedCountdownDate);
 
   const handleChange = (date) => {
-    // Convert the selected Miladi date to Shamsi
     const shamsiDate = moment(date).format("jYYYY/jMM/jDD HH:mm");
     const adjustedDate = new Date(date);
     adjustedDate.setHours(adjustedDate.getHours() + 3);
@@ -51,23 +50,30 @@ const ElementCountdownFormField = ({
         name="countdown"
         render={({ field }) =>
           showToggle && (
-            <FormItem className="flex flex-row items-center justify-between rounded-md border p-3 shadow-sm">
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="schedule-toggle">شمارش معکوس</Label>
-                <p className="text-textLight text-wrap text-xs">
-                  بلوک تا تاریخ مشخض شده پنهان می ماند
-                </p>
+            <FormItem className="flex flex-col gap-2 rounded-xl border px-4 py-3 shadow-sm">
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-1">
+                  <Label
+                    className="text-sm font-medium"
+                    htmlFor="schedule-toggle"
+                  >
+                    نمایش از تاریخ
+                  </Label>
+                  <p className="text-xs text-muted-foreground">
+                    بلوک تا تاریخ مشخص‌شده پنهان می‌ماند.
+                  </p>
+                </div>
+                <FormControl>
+                  <Toggle
+                    dir="rtl"
+                    checked={field.value}
+                    onChange={field.onChange}
+                    aria-readonly
+                    disabled={!isPremium}
+                    color="blue"
+                  />
+                </FormControl>
               </div>
-              <FormControl>
-                <Toggle
-                  dir="rtl"
-                  checked={field.value}
-                  onChange={field.onChange}
-                  aria-readonly
-                  disabled={!isPremium}
-                  color="blue"
-                />
-              </FormControl>
             </FormItem>
           )
         }
@@ -82,13 +88,16 @@ const ElementCountdownFormField = ({
               animate="animate"
               exit="exit"
               variants={fade}
-              className="mt-2 flex items-center justify-center gap-4"
+              className="mt-4"
             >
               <FormField
                 control={form.control}
                 name="countdownDate"
                 render={({ field }) => (
                   <FormItem className="w-full">
+                    <Label className="mb-1 block text-sm font-medium">
+                      انتخاب تاریخ شروع نمایش
+                    </Label>
                     <FormControl>
                       <DateInput
                         {...field}
@@ -97,6 +106,7 @@ const ElementCountdownFormField = ({
                         dir="ltr"
                         format="yyyy/MM/dd HH:mm"
                         placeholder="دقیقه:ساعت  روز/ماه/سال"
+                        className="w-full rounded-md border px-3 py-2 text-sm"
                       />
                     </FormControl>
                     <FormMessage />
@@ -107,9 +117,9 @@ const ElementCountdownFormField = ({
           )}
         </AnimatePresence>
       ) : (
-        <p className="mt-2 text-sm text-destructive">
-          برای استفاده ای این قابلیت به اشتراک ویژه نیاز دارید
-        </p>
+        <div className="mt-4 rounded-md border border-destructive bg-destructive/10 px-4 py-2 text-sm text-destructive">
+          برای استفاده از این قابلیت به اشتراک ویژه نیاز دارید.
+        </div>
       )}
     </>
   );
