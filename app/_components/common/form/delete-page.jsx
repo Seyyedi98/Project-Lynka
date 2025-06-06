@@ -66,16 +66,19 @@ const DeletePage = ({ page, onClose }) => {
         <div className="w-full">
           <div dir="ltr" className="flex flex-col gap-4">
             <div className="relative flex items-center">
-              <div className="absolute left-3 flex items-center">
+              <div className="absolute right-3 flex items-center">
+                <span
+                  dir="rtl"
+                  className="mr-2 text-sm font-medium text-muted-foreground"
+                >
+                  برای حذف، تایپ کنید {page}:
+                </span>
                 <span
                   className={cn(
                     "h-2.5 w-2.5 rounded-full",
                     isConfirmed ? "bg-green-500" : "bg-muted-foreground",
                   )}
                 />
-                <span className="ml-2 text-sm font-medium text-muted-foreground">
-                  برای حذف، تایپ کنید:
-                </span>
               </div>
               <FormField
                 control={form.control}
@@ -91,7 +94,7 @@ const DeletePage = ({ page, onClose }) => {
                             e.preventDefault();
                           }
                         }}
-                        className="h-12 rounded-xl border-2 bg-card pl-[150px] text-sm font-medium text-foreground transition-all duration-200 focus:border-red-500 focus:ring-0"
+                        className="h-12 rounded-xl border-2 bg-card pr-[180px] text-sm font-medium text-foreground transition-all duration-200 focus:border-red-500 focus:ring-0"
                       />
                     </FormControl>
                   </FormItem>
