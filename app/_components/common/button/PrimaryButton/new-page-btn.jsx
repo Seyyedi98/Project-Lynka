@@ -3,7 +3,7 @@
 import CreateNewPage from "../../form/create-new-page";
 import { WorkspaceDynamicModal } from "../../modal/workspace-dynamic-modal";
 
-const CreatePageButton = ({ children }) => {
+const CreatePageButton = ({ children, allPages }) => {
   return (
     <div className="relative">
       <WorkspaceDynamicModal
@@ -12,7 +12,7 @@ const CreatePageButton = ({ children }) => {
         modalId="createNewPage"
         trigger={children}
       >
-        <CreateNewPage />
+        <CreateNewPage allPages={allPages} />
       </WorkspaceDynamicModal>
     </div>
   );

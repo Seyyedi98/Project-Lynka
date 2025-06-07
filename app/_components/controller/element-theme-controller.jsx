@@ -55,7 +55,6 @@ export const ElementThemeController = {
     toon2: [CardFieldToon2, { type: "color" }, { isPremium: true }],
     aqua: [CardFieldAqua, { type: "color" }, { isPremium: true }],
     flat: [CardFieldFlat, { type: "color" }, { isPremium: true }],
-    wind: [CardFieldWind, { type: "color" }, { isPremium: true }],
   },
   SpaceField: {
     default: [SpaceFieldDefault, { type: "color" }, { isPremium: false }],
