@@ -78,17 +78,17 @@ const ThemePreviewRenderer = ({ theme }) => {
       <div className="pointer-events-none -translate-y-20 scale-[75%] pt-12 sm:scale-[40%] sm:pt-0">
         <HeroElementRender
           // title="عنوان"
-          //   subtitle={subtitle}
-          //   primaryImage={primaryImage}
+          // subtitle={subtitle}
+          // primaryImage={primaryImage}
           titleFont={heroTitleFont}
           subtitleFont={heroSubtitleFont}
           titleColor={heroTitleColor}
           subtitleColor={heroSubtitleColor}
         />
       </div>
-      <div className="pointer-events-none -translate-y-[175px] scale-[70%] sm:scale-[50%]">
-        <SocialsElementRender
-          socials={socials}
+      <div className="pointer-events-none -translate-y-[175px] scale-[80%] sm:scale-[65%]">
+        <TextElementRender
+          title="صفحه من"
           textColor={elementTextColor}
           bgColor={elementColor}
           borderColor={borderColor}
