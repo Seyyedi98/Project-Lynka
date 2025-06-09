@@ -46,23 +46,22 @@ export const CredentialsLoginForm = () => {
     setError("");
     setSuccess("");
     startTransition(async () => {
-      login(values)
-        .then((data) => {
-          if (data?.error) {
-            // form.reset();
-            setError(data.error);
-          }
+      login(values).then((data) => {
+        if (data?.error) {
+          // form.reset();
+          setError(data.error);
+        }
 
-          if (data?.success) {
-            // form.reset();
-            setSuccess(data.success);
-          }
+        if (data?.success) {
+          // form.reset();
+          setSuccess(data.success);
+        }
 
-          if (data?.twoFactor) {
-            setShowTwoFactor(true);
-          }
-        })
-        .catch(() => setError("Something went wrong 123123"));
+        if (data?.twoFactor) {
+          setShowTwoFactor(true);
+        }
+      });
+      // .catch(() => setError("Something went wrong"));
     });
   };
 
