@@ -5,6 +5,7 @@ import { MobileLoginForm } from "@/app/_components/auth/mobile-login-form";
 import Social from "@/app/_components/auth/social";
 import { cn } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -24,7 +25,13 @@ const Login = () => {
             حساب کاربری ندارید؟
             <ArrowLeft className="mt-1 h-4 w-4" />
           </Link>
-          <p>Logo</p>
+          <Image
+            className="-translate-y-1.5"
+            width={50}
+            height={70}
+            src="/logo.webp"
+            alt="lynka logo"
+          />
         </span>
 
         <h2 className="mb-4 mt-20 text-4xl text-white">ورود</h2>

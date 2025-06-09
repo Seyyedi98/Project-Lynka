@@ -62,7 +62,7 @@ export const CredentialsLoginForm = () => {
             setShowTwoFactor(true);
           }
         })
-        .catch(() => setError("Something went wrong"));
+        .catch(() => setError("Something went wrong 123123"));
     });
   };
 

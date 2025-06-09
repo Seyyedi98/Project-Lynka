@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function LandingPageNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -63,7 +64,7 @@ export default function LandingPageNavbar() {
             href="/"
             className="ml-4 text-xl font-bold text-white transition-opacity duration-300 hover:text-white hover:opacity-90"
           >
-            لینکا
+            <Image width={80} height={120} src="/logo.webp" alt="lynka logo" />
           </Link>
 
           {/* Navigation Links - Hidden on mobile */}
