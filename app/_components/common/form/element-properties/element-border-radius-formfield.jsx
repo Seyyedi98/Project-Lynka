@@ -14,7 +14,7 @@ const borderRadiusList = [
   { id: "medium", value: "8px" },
   { id: "large", value: "12px" },
   { id: "xlarge", value: "16px" },
-  { id: "xxlarge", value: "24px" },
+  { id: "xxlarge", value: "100px" },
 ];
 
 const ElementBorderRadiusFormField = ({ form, fieldName, label }) => {

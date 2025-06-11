@@ -11,7 +11,7 @@ import SpinnerLine1 from "../common/spinners/spinner-line1";
 import SpinnerRunningSquare from "../common/spinners/spinner-running-square";
 import PencilSpinner from "../elements_theme/card/card-field-pen";
 
-export const c = {
+export const LoadingController = {
   basic: NormalSpinner,
   normal: PinWheelSpinner,
   bb8: BB8,

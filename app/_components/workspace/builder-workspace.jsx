@@ -9,7 +9,13 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
+import {
+  ArrowDown,
+  ChevronLeft,
+  ChevronRight,
+  Eye,
+  PlusIcon,
+} from "lucide-react";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import BackButtonWithConfirmation from "../common/button/NavigationButton/back-button-confirmation";
@@ -273,9 +279,22 @@ const BuilderWorkspace = () => {
               </div>
 
               {elements?.length === 0 && (
-                <p className="flex items-center justify-center text-xl font-medium text-gray-500">
-                  Add some blocks to start!
-                </p>
+                <div className="flex h-full w-full flex-col items-center justify-center">
+                  {/* Desktop message */}
+                  <p className="mx-4 hidden items-center justify-center text-xl font-medium text-gray-500 md:flex">
+                    یک بلوک را از فهرست کناری انتخاب کنید یا آن را مستقیماً به
+                    این صفحه بکشید.
+                  </p>
+
+                  {/* Mobile message */}
+                  <p className="flex items-center justify-center text-xl font-medium text-gray-500 md:hidden">
+                    برای افزودن اولین بلوک، دکمه
+                    <span className="mx-1 rounded-full bg-gray-200">
+                      <PlusIcon />
+                    </span>
+                    را لمس کنید.
+                  </p>
+                </div>
               )}
 
               <SortableContext
