@@ -1,0 +1,67 @@
+"use client";
+
+import { cn } from "@/lib/utils";
+import socialPlatforms from "@/data/social-platforms";
+import { motion } from "framer-motion";
+
+const SocialsFieldSmallCircle = (props) => {
+  const { socials, isLive } = props;
+
+  const handleSocialClick = (platform, userId) => {
+    if (!userId || !isLive) return;
+
+    const platformConfig = socialPlatforms.find((p) => p.value === platform);
+    if (!platformConfig) return;
+
+    if (platformConfig.urlPrefix) {
+      const appUrl = `${platformConfig.urlPrefix}${userId}`;
+      window.location.href = appUrl;
+
+      setTimeout(() => {
+        window.location.href = `${platformConfig.webPrefix}${userId}`;
+      }, 500);
+    } else {
+      window.open(`${platformConfig.webPrefix}${userId}`, "_blank");
+    }
+  };
+
+  if (!socials || socials.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="relative flex w-full flex-wrap items-center justify-center gap-3 p-3">
+      {socials?.map((social, index) => {
+        const platform = socialPlatforms.find(
+          (p) => p.value === social.platform,
+        );
+        if (!platform) return null;
+
+        return (
+          <motion.button
+            key={`${social.platform}-${index}`}
+            whileHover={{ scale: 1.15, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "tween", duration: 0.1 }}
+            onClick={() => handleSocialClick(social.platform, social.userId)}
+            disabled={!social.userId}
+            className={cn(
+              "group relative flex h-10 w-10 items-center justify-center rounded-full p-2 text-white transition-all",
+              !social.userId && "opacity-40 grayscale",
+            )}
+            style={{
+              background: platform.background,
+              boxShadow: `0 6px 12px -2px ${platform.background}40`,
+            }}
+          >
+            <span className="text-xl transition-transform group-hover:scale-110">
+              {platform.icon}
+            </span>
+          </motion.button>
+        );
+      })}
+    </div>
+  );
+};
+
+export default SocialsFieldSmallCircle;

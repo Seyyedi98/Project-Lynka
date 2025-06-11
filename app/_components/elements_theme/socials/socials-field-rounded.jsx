@@ -32,6 +32,7 @@ const SocialsFieldRounded = (props) => {
           style={{ borderRadius: borderRadius }}
           initial={{ opacity: 0.8, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: "tween", duration: 0.15 }}
           className="grid h-16 w-full place-content-center border border-dashed border-gray-300 bg-gradient-to-r from-gray-100 to-gray-50 dark:border-gray-700 dark:from-gray-800 dark:to-gray-900"
         >
           <p className="flex items-center gap-2 font-medium text-gray-500 dark:text-gray-400">
@@ -42,6 +43,7 @@ const SocialsFieldRounded = (props) => {
       ) : (
         <motion.div
           layout
+          transition={{ type: "tween", duration: 0.15 }}
           style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
           className={cn(
             `flex w-full flex-wrap items-center justify-center gap-3 p-3`,
@@ -58,6 +60,7 @@ const SocialsFieldRounded = (props) => {
                 key={`${social.platform}-${index}`}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ type: "tween", duration: 0.1 }}
                 onClick={() =>
                   handleSocialClick(social.platform, social.userId)
                 }
