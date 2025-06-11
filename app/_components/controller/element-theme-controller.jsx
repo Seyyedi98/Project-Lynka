@@ -25,6 +25,8 @@ import SocialsFieldAero from "../elements_theme/socials/socials-field-aero";
 import SocialsFieldDefault from "../elements_theme/socials/socials-field-default";
 import SocialsFieldGlitch from "../elements_theme/socials/socials-field-glitch";
 import SocialsFieldMacOS from "../elements_theme/socials/socials-field-macos";
+import SocialsFieldOnlyIconCustom from "../elements_theme/socials/socials-field-onlyIcon-custom";
+import SocialsFieldOnlyIcon from "../elements_theme/socials/socials-field-onlyIcon";
 import SocialsFieldRounded from "../elements_theme/socials/socials-field-rounded";
 import SocialsFieldSmallCircle from "../elements_theme/socials/socials-field-smallCircle";
 import SocialsFieldWindows from "../elements_theme/socials/socials-field-windows";
@@ -37,6 +39,12 @@ export const ElementThemeController = {
   SocialsField: {
     default: [SocialsFieldDefault, { type: "color" }, { isPremium: false }],
     small: [SocialsFieldSmallCircle, { type: "color" }, { isPremium: false }],
+    simple: [SocialsFieldOnlyIcon, { type: "color" }, { isPremium: false }],
+    simpleCustom: [
+      SocialsFieldOnlyIconCustom,
+      { type: "color" },
+      { isPremium: false },
+    ],
     rounded: [SocialsFieldRounded, { type: "color" }, { isPremium: false }],
     windows: [SocialsFieldWindows, { type: "color" }, { isPremium: false }],
     windows95: [SocialsFieldWindows95, { type: "color" }, { isPremium: false }],

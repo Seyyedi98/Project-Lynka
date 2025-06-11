@@ -50,8 +50,8 @@ const socialPlatforms = [
   {
     name: "Instagram",
     icon: <InstagramLogoIcon />,
-    background:
-      "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
+    background: "#dc2743",
+    // "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
     value: "instagram",
     urlPrefix: "instagram://user?username=",
     webPrefix: "https://instagram.com/",
