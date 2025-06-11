@@ -33,7 +33,9 @@ const ElementTitleFormField = ({
             />
           </FormControl>
           {description && (
-            <FormDescription className="text-xs">{description}</FormDescription>
+            <FormDescription className="text-xs leading-5">
+              {description}
+            </FormDescription>
           )}
           <FormMessage />
         </FormItem>

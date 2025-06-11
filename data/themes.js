@@ -21,6 +21,8 @@ export const themes = [
     elementColor: "#EE4540",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
   {
@@ -41,6 +43,8 @@ export const themes = [
     elementColor: "#F2A490",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
   {
@@ -61,6 +65,8 @@ export const themes = [
     elementColor: "#598901",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
   {
@@ -81,6 +87,8 @@ export const themes = [
     elementColor: "#FF1684",
     elementTextColor: "#FFFFFF",
     borderRadius: "20px",
+    cardBorderRadius: "20px",
+    fieldBorderRadius: "20px",
     isPremium: false,
   },
   {
@@ -101,6 +109,8 @@ export const themes = [
     elementColor: "#FC122C",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
   {
@@ -121,6 +131,8 @@ export const themes = [
     elementColor: "#F15F4E",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
   {
@@ -141,6 +153,8 @@ export const themes = [
     elementColor: "#FFCF04",
     elementTextColor: "#FFFFFF",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
   {
@@ -161,6 +175,8 @@ export const themes = [
     elementColor: "#F2C6F2",
     elementTextColor: "#000000",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
   {
@@ -181,6 +197,8 @@ export const themes = [
     elementColor: "#A0C0FF",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
   {
@@ -201,6 +219,8 @@ export const themes = [
     elementColor: "#FAA7B8",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
   {
@@ -221,6 +241,8 @@ export const themes = [
     elementColor: "#E4007C",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
   {
@@ -241,6 +263,8 @@ export const themes = [
     elementColor: "#8FC93A",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
   {
@@ -261,6 +285,8 @@ export const themes = [
     elementColor: "#85D0CC",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
   {
@@ -281,6 +307,8 @@ export const themes = [
     elementColor: "#FF6238",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
   {
@@ -301,6 +329,8 @@ export const themes = [
     elementColor: "#E73754",
     elementTextColor: "#ffffff",
     borderRadius: "12px",
+    cardBorderRadius: "12px",
+    fieldBorderRadius: "12px",
     isPremium: false,
   },
 
@@ -326,6 +356,8 @@ export const themes = [
     elementColor: "#fff2f1",
     elementTextColor: "#4e3710",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -347,6 +379,8 @@ export const themes = [
     elementColor: "#f6fcff",
     elementTextColor: "#335157",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -368,6 +402,8 @@ export const themes = [
     elementColor: "#f8eff7",
     elementTextColor: "#523a4e",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -389,6 +425,8 @@ export const themes = [
     elementColor: "#ffffff",
     elementTextColor: "#30394a",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -410,6 +448,8 @@ export const themes = [
     elementColor: "#f2bc3e",
     elementTextColor: "#3f3f3f",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -431,6 +471,8 @@ export const themes = [
     elementColor: "#ffffff",
     elementTextColor: "#6b3950",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -453,6 +495,8 @@ export const themes = [
     elementColor: "#fff1dd",
     elementTextColor: "#003545",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -474,6 +518,8 @@ export const themes = [
     elementColor: "#ffffff",
     elementTextColor: "#201e1e",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -495,6 +541,8 @@ export const themes = [
     elementColor: "#000000",
     elementTextColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -516,6 +564,8 @@ export const themes = [
     elementColor: "#005b50",
     elementTextColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -537,6 +587,8 @@ export const themes = [
     elementColor: "#cea9c8",
     elementTextColor: "#69463a",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -559,6 +611,8 @@ export const themes = [
     elementColor: "#f2e9f1",
     elementTextColor: "#4b496b",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -580,6 +634,8 @@ export const themes = [
     elementColor: "#ffc044",
     elementTextColor: "#33271d",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -602,6 +658,8 @@ export const themes = [
     elementColor: "#ffd985",
     elementTextColor: "#806c42",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -623,6 +681,8 @@ export const themes = [
     elementColor: "#4b2008",
     elementTextColor: "#e3d1bb",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -644,6 +704,8 @@ export const themes = [
     elementColor: "#46190e",
     elementTextColor: "#e3d1bb",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -665,6 +727,8 @@ export const themes = [
     elementColor: "#290d1c",
     elementTextColor: "#e6f0ff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -686,6 +750,8 @@ export const themes = [
     elementColor: "#ffffff",
     elementTextColor: "#587aa0",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -707,6 +773,8 @@ export const themes = [
     elementColor: "#ffffff",
     elementTextColor: "#4c4871",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -728,6 +796,8 @@ export const themes = [
     elementColor: "#ffffff",
     elementTextColor: "#74372d",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -749,6 +819,8 @@ export const themes = [
     elementColor: "#e3e8f2",
     elementTextColor: "#161737",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -770,6 +842,8 @@ export const themes = [
     elementColor: "#feefdc",
     elementTextColor: "#161737",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -791,6 +865,8 @@ export const themes = [
     elementColor: "#ffffff",
     elementTextColor: "#36416e",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -813,6 +889,8 @@ export const themes = [
     elementTextColor: "#73665e",
     borderColor: "#7c6d64",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -835,6 +913,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#6f8bdc",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -857,6 +937,8 @@ export const themes = [
     elementTextColor: "#2e363c",
     borderColor: "#fefcfa",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -879,6 +961,8 @@ export const themes = [
     elementTextColor: "#1a252e",
     borderColor: "#bdf4f7",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -901,6 +985,8 @@ export const themes = [
     elementTextColor: "#716962",
     borderColor: "#e2efe7",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -923,6 +1009,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#8674f1",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -945,6 +1033,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#080302",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -967,6 +1057,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#080302",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -989,6 +1081,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#786a9c",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1011,6 +1105,8 @@ export const themes = [
     elementTextColor: "#42123a",
     borderColor: "#f6f3f2",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1033,6 +1129,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#3e6c88",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1055,6 +1153,8 @@ export const themes = [
     elementTextColor: "#40311a",
     borderColor: "#ffc165",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1077,6 +1177,8 @@ export const themes = [
     elementTextColor: "#435d3d",
     borderColor: "#fefeee",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1099,6 +1201,8 @@ export const themes = [
     elementTextColor: "#435d3d",
     borderColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1121,6 +1225,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#3d3d3d",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1143,6 +1249,8 @@ export const themes = [
     elementTextColor: "#4e3322",
     borderColor: "#f1e6dc",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1165,6 +1273,8 @@ export const themes = [
     elementTextColor: "#bf6d58",
     borderColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1187,6 +1297,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#5a1a2c",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1209,6 +1321,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#3f2c13",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1231,6 +1345,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#9c877b",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1253,6 +1369,8 @@ export const themes = [
     elementTextColor: "#6b737d",
     borderColor: "#f9fcff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1275,6 +1393,8 @@ export const themes = [
     elementTextColor: "#303e5c",
     borderColor: "#f5f5f9",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1297,6 +1417,8 @@ export const themes = [
     elementTextColor: "#082a51",
     borderColor: "#dff6ff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1319,6 +1441,8 @@ export const themes = [
     elementTextColor: "#444240",
     borderColor: "#f3fcfd",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1341,6 +1465,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#bf6d58",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1363,6 +1489,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#352112",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1385,6 +1513,8 @@ export const themes = [
     elementTextColor: "#5c4647",
     borderColor: "#ffeef5",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1407,6 +1537,8 @@ export const themes = [
     elementTextColor: "#0a3130",
     borderColor: "#e0fcfd",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1429,6 +1561,8 @@ export const themes = [
     elementTextColor: "#003e00",
     borderColor: "#cccccc",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1451,6 +1585,8 @@ export const themes = [
     elementTextColor: "#1a2533",
     borderColor: "#ddecff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1474,6 +1610,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1496,6 +1634,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#ac8dbf",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1518,6 +1658,8 @@ export const themes = [
     elementTextColor: "#175166",
     borderColor: "#ddf6f3",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1540,6 +1682,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#131d2a",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1562,6 +1706,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#0f1020",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1584,6 +1730,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#663f9d",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1606,6 +1754,8 @@ export const themes = [
     elementTextColor: "#372f1b",
     borderColor: "#fff5db",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1628,6 +1778,8 @@ export const themes = [
     elementTextColor: "#141414",
     borderColor: "#fefefe",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1650,6 +1802,8 @@ export const themes = [
     elementTextColor: "#295ba3",
     borderColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1672,6 +1826,8 @@ export const themes = [
     elementTextColor: "#5c3c2d",
     borderColor: "#ffeed8",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1694,6 +1850,8 @@ export const themes = [
     elementTextColor: "#896253",
     borderColor: "#f8edde",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1716,6 +1874,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#2f3744",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1738,6 +1898,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#123028",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1760,6 +1922,8 @@ export const themes = [
     elementTextColor: "#0a0a04",
     borderColor: "#fcffd2",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1782,6 +1946,8 @@ export const themes = [
     elementTextColor: "#463428",
     borderColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1804,6 +1970,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#b2a776",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1826,6 +1994,8 @@ export const themes = [
     elementTextColor: "#243526",
     borderColor: "#fbfffa",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1848,6 +2018,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#0d0017",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1870,6 +2042,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#1f5b85",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1892,6 +2066,8 @@ export const themes = [
     elementTextColor: "#452b31",
     borderColor: "#ffb86a",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1914,6 +2090,8 @@ export const themes = [
     elementTextColor: "#512411",
     borderColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1936,6 +2114,8 @@ export const themes = [
     elementTextColor: "#2d2928",
     borderColor: "#f5f0e5",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1958,6 +2138,8 @@ export const themes = [
     elementTextColor: "#bd7a17",
     borderColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -1980,6 +2162,8 @@ export const themes = [
     elementTextColor: "#000000",
     borderColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2002,6 +2186,8 @@ export const themes = [
     elementTextColor: "#203854",
     borderColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2024,6 +2210,8 @@ export const themes = [
     elementTextColor: "#523831",
     borderColor: "#cfeceb",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2046,6 +2234,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#b33f38",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2068,6 +2258,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#7679b2",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2090,6 +2282,8 @@ export const themes = [
     elementTextColor: "#26465f",
     borderColor: "#fdfbeb",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2112,6 +2306,8 @@ export const themes = [
     elementTextColor: "#26465f",
     borderColor: "#74484a",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2134,6 +2330,8 @@ export const themes = [
     elementTextColor: "#332727",
     borderColor: "#e7d2c6",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2156,6 +2354,8 @@ export const themes = [
     elementTextColor: "#202122",
     borderColor: "#fab040",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2178,6 +2378,8 @@ export const themes = [
     elementTextColor: "#201e1b",
     borderColor: "#feefe2",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2200,6 +2402,8 @@ export const themes = [
     elementTextColor: "#3a3d3e",
     borderColor: "#eefbfd",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2223,6 +2427,8 @@ export const themes = [
     elementTextColor: "#233345",
     borderColor: "#faf9fc",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2245,6 +2451,8 @@ export const themes = [
     elementTextColor: "#233345",
     borderColor: "#faf9fc",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2267,6 +2475,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#16111d",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2289,6 +2499,8 @@ export const themes = [
     elementTextColor: "#655778",
     borderColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2311,6 +2523,8 @@ export const themes = [
     elementTextColor: "#3d3448",
     borderColor: "rgba(255,255,255,0.7)",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2333,6 +2547,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#46180c",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2355,6 +2571,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#000000",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2377,6 +2595,8 @@ export const themes = [
     elementTextColor: "#000000",
     borderColor: "#ffd95e",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2399,6 +2619,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#141724",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2421,6 +2643,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#080330",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2443,6 +2667,8 @@ export const themes = [
     elementTextColor: "#2e383d",
     borderColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2465,6 +2691,8 @@ export const themes = [
     elementTextColor: "#473535",
     borderColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2487,6 +2715,8 @@ export const themes = [
     elementTextColor: "#020808",
     borderColor: "#ffffff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2509,6 +2739,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#000000",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2531,6 +2763,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#000000",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2553,6 +2787,8 @@ export const themes = [
     elementTextColor: "#362f3b",
     borderColor: "#f3cb31",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2575,6 +2811,8 @@ export const themes = [
     elementTextColor: "#ffffff",
     borderColor: "#182153",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2597,6 +2835,8 @@ export const themes = [
     elementTextColor: "#012949",
     borderColor: "#e2f6ff",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
   {
@@ -2619,6 +2859,8 @@ export const themes = [
     elementTextColor: "#ebddaa",
     borderColor: "#810c17",
     borderRadius: "16px",
+    cardBorderRadius: "16px",
+    fieldBorderRadius: "16px",
     isPremium: true,
   },
 ];

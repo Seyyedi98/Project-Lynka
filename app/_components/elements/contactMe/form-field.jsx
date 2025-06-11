@@ -15,6 +15,8 @@ const extraAttributes = {
   borderColor: "#ffffff",
   bgColor: "",
   borderRadius: "",
+  cardBorderRadius: "",
+  fieldBorderRadius: "",
   fields: [],
   schedule: false,
   scheduleStart: "0",

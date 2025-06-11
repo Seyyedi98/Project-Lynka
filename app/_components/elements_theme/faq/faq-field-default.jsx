@@ -50,7 +50,7 @@ const FaqFieldDefault = (props) => {
             fontFamily: textFont ? `var(${textFont})` : "inherit",
             color: textColor,
           }}
-          className="text-center text-text"
+          className="mb-2 text-center text-text"
         >
           {title}
         </p>

@@ -34,7 +34,7 @@ const SocialsFieldWindows = (props) => {
             animate={{ opacity: 1 }}
             className="px-4 py-2 text-gray-400"
           >
-            No social links added
+            افزودن شبکه‌های اجتماعی
           </motion.div>
         ) : (
           <motion.div layout className="flex items-center gap-1">

@@ -39,7 +39,7 @@ const SocialsFieldDefault = (props) => {
         >
           <p className="flex items-center gap-2 font-medium text-gray-500 dark:text-gray-400">
             <span className="i-lucide-plus-circle text-lg" />
-            Add social networks
+            افزودن شبکه‌های اجتماعی
           </p>
         </motion.div>
       ) : (

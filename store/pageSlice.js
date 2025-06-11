@@ -41,6 +41,8 @@ const pageSlice = createSlice({
           textColor: state.theme?.elementTextColor,
           bgColor: state.theme?.elementColor,
           borderRadius: state.theme?.borderRadius,
+          cardBorderRadius: state.theme?.cardBorderRadius,
+          fieldBorderRadius: state.theme?.cardBorderRadius,
         };
       }
 

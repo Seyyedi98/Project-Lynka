@@ -91,7 +91,7 @@ const SocialsFieldGaming = (props) => {
             animate={{ opacity: 1 }}
             className="px-4 py-2 text-sm font-medium text-gray-600"
           >
-            CONNECT WITH ME
+            افزودن شبکه‌های اجتماعی
           </motion.div>
         ) : (
           <motion.div layout className="flex items-center gap-4">
