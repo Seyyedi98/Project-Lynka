@@ -79,7 +79,7 @@ const MapSelector = ({ onSelectLocation, savedLocation }) => {
     });
 
     const customIcon = new Icon({
-      iconUrl: "/mobile-earth.webp", // map pin PNG URL
+      iconUrl: "/icons/marker.png", // map pin PNG URL
       iconSize: [32, 32],
       iconAnchor: [16, 32],
       popupAnchor: [0, -32],

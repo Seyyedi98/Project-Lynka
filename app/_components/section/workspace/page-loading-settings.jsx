@@ -42,7 +42,7 @@ const PageLoadingSettings = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
+      <div className="grid grid-cols-3 gap-4 overflow-y-scroll sm:grid-cols-4">
         {/* No Loading Option */}
         <div
           onClick={() => changeLoadingIcon(null)}

@@ -76,7 +76,7 @@ const MapFieldDefault = (props) => {
           />
 
           {/* navigate */}
-          <div className="mt-1 flex">
+          <div className="mt-1 flex items-center justify-center">
             <div className="mt-1 flex w-full flex-col justify-start gap-1">
               <div className="text-wrap text-sm">
                 <span>{subtitleTitle}</span>
