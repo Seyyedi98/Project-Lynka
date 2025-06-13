@@ -31,7 +31,7 @@ const EditorSidebar = ({ isPremium }) => {
 
   // Mobile Device
   if (!isDesktop && !selectedElement) {
-    return <WorkspaceSidebarMobile />;
+    return <WorkspaceSidebarMobile isPremium={isPremium} />;
   }
 
   // Desktop

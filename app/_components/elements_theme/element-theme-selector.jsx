@@ -17,7 +17,7 @@ const ElementThemeSelector = ({ elementInstance }) => {
   const themesList = Object.keys(Themes);
 
   return (
-    <div>
+    <div className="overflow-scroll">
       <div className="grid grid-cols-1 justify-start gap-2 px-2 pt-12 sm:grid-cols-2 xl:grid-cols-3">
         {themesList.map((theme, index) => {
           const isPremiumTheme = Themes[theme][2].isPremium;
