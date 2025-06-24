@@ -18,6 +18,11 @@ enum UserRole {
   USER
 }
 
+enum purchaseType {
+  subscription
+  refund
+}
+
 model User {
   id                      String                 @id @default(cuid())
   phoneNumber             String?                @unique
@@ -37,6 +42,7 @@ model User {
   accounts                Account[]
   twofactorConfiramtionId String?
   Notification            Notification[]
+  Ttransactions           Transactions[]
 
   @@map("users")
 }
@@ -193,4 +199,20 @@ model blog {
   view        Int
   images      String   @db.VarChar(500)
   postData    String   @db.VarChar(10000)
+}
+
+model Transactions {
+  id          String       @id @default(cuid())
+  userId      String
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount      Float        @default(0.0)
+  status      String       @default("pending") // "pending", "completed", "failed", "refunded"
+  type        purchaseType
+  requestDate DateTime     @default(now())
+  processedAt DateTime?
+  successDate DateTime?
+  failureDate DateTime?
+  refundDate  DateTime?
+
+  @@index([userId])
 }
