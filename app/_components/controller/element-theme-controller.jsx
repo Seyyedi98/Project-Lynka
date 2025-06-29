@@ -34,6 +34,7 @@ import SocialsFieldWindows95 from "../elements_theme/socials/socials-field-windo
 import SpaceFieldDefault from "../elements_theme/space/space-field-default";
 import TextFieldDefault from "../elements_theme/text/text-field-default";
 import VideoFieldDefault from "../elements_theme/video/video-field-default";
+import FaqFieldWindows95 from "../elements_theme/faq/faq-field-windows95";
 
 export const ElementThemeController = {
   SocialsField: {
@@ -86,6 +87,7 @@ export const ElementThemeController = {
   },
   FaqField: {
     default: [FaqFieldDefault, { type: "color" }, { isPremium: true }],
+    windows95: [FaqFieldWindows95, { type: "color" }, { isPremium: true }],
   },
   MapField: {
     default: [MapFieldDefault, { type: "color" }, { isPremium: true }],
