@@ -6,6 +6,7 @@ import CardFieldFlat from "../elements_theme/card/card-field-flat";
 import CardFieldGlitch from "../elements_theme/card/card-field-glitch";
 import CardFieldGlow from "../elements_theme/card/card-field-glow";
 import CardFieldHexa from "../elements_theme/card/card-field-hexa";
+import CardFieldLiquidGlass from "../elements_theme/card/card-field-liquidGlass";
 import CardFieldNeon from "../elements_theme/card/card-field-neon";
 import CardFieldSketch from "../elements_theme/card/card-field-sketch";
 import CardFieldMinimal from "../elements_theme/card/card-field-toon";
@@ -35,6 +36,8 @@ import SocialsFieldWindows from "../elements_theme/socials/socials-field-windows
 import SocialsFieldWindows95 from "../elements_theme/socials/socials-field-windows95";
 import SpaceFieldDefault from "../elements_theme/space/space-field-default";
 import TextFieldDefault from "../elements_theme/text/text-field-default";
+import TextFieldLiquidGlass from "../elements_theme/text/text-field-liquidGlass";
+import TextFieldWindows95 from "../elements_theme/text/text-field-windows95";
 import VideoFieldDefault from "../elements_theme/video/video-field-default";
 
 export const ElementThemeController = {
@@ -67,6 +70,7 @@ export const ElementThemeController = {
     toon2: [CardFieldToon2, { type: "color" }, { isPremium: true }],
     aqua: [CardFieldAqua, { type: "color" }, { isPremium: true }],
     flat: [CardFieldFlat, { type: "color" }, { isPremium: true }],
+    liquidGlass: [CardFieldLiquidGlass, { type: "color" }, { isPremium: true }],
   },
   SpaceField: {
     default: [SpaceFieldDefault, { type: "color" }, { isPremium: false }],
@@ -79,6 +83,12 @@ export const ElementThemeController = {
   },
   TextField: {
     default: [TextFieldDefault, { type: "color" }, { isPremium: false }],
+    liquidGlass: [
+      TextFieldLiquidGlass,
+      { type: "color" },
+      { isPremium: false },
+    ],
+    windows95: [TextFieldWindows95, { type: "color" }, { isPremium: false }],
   },
   VideoField: {
     default: [VideoFieldDefault, { type: "color" }, { isPremium: true }],
