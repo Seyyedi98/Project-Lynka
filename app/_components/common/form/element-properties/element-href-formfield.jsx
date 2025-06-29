@@ -14,23 +14,19 @@ const ElementhrefFormField = ({ form, message, fieldName }) => {
       name={fieldName || "href"}
       render={({ field }) => (
         <FormItem>
-          {/* <FormLabel>آدرس</FormLabel> */}
-
           <div>
             <FormControl>
               <Input
                 dir="ltr"
                 {...field}
                 placeholder="http://url..."
-                onKeyDown={(e) => {
-                  // Prevent space key
-                  if (e.key === " ") {
-                    e.preventDefault();
-                  }
-                  // Handle Enter key
-                  if (e.key === "Enter") {
-                    e.currentTarget.blur();
-                  }
+                onChange={(e) => {
+                  const value = e.target.value;
+                  field.onChange(value);
+                }}
+                onBlur={(e) => {
+                  const value = e.target.value.replace(/^https?:\/\//i, "");
+                  field.onChange(value);
                 }}
               />
             </FormControl>

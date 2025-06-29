@@ -60,7 +60,9 @@ const PagesList = ({ pages, onShowQr }) => {
                   className="border-b border-border/40 hover:bg-accent/30"
                 >
                   <TableCell className="text-start font-medium">
-                    {page.uri}
+                    <Link href={`/workspace/${page.uri}`} title="ویرایش">
+                      {page.uri}
+                    </Link>
                   </TableCell>
                   <TableCell className="text-textLight text-center">
                     {page.views}
