@@ -22,6 +22,7 @@ import FormFieldDefault from "../elements_theme/form/form-field-default";
 import FormFieldWindows95 from "../elements_theme/form/form-field-windows95";
 import GalleryFieldDefault from "../elements_theme/gallery/gallery-field-default";
 import MapFieldDefault from "../elements_theme/map/map-field-default";
+import MapFieldWindows95 from "../elements_theme/map/map-field-windows95";
 import PostTrackerFieldDefault from "../elements_theme/postTracker/postTracker-field-default";
 import RssFieldDefault from "../elements_theme/rss/rss-field-default";
 import SocialsFieldAero from "../elements_theme/socials/socials-field-aero";
@@ -103,6 +104,7 @@ export const ElementThemeController = {
   },
   MapField: {
     default: [MapFieldDefault, { type: "color" }, { isPremium: true }],
+    windows95: [MapFieldWindows95, { type: "color" }, { isPremium: true }],
   },
   ImageField: {
     default: [ImageFieldDefault, { type: "color" }, { isPremium: true }],
