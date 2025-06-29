@@ -10,13 +10,15 @@ import CardFieldNeon from "../elements_theme/card/card-field-neon";
 import CardFieldSketch from "../elements_theme/card/card-field-sketch";
 import CardFieldMinimal from "../elements_theme/card/card-field-toon";
 import CardFieldToon2 from "../elements_theme/card/card-field-toon2";
-import CardFieldWind from "../elements_theme/card/card-field-wind";
 import CardFieldWindows from "../elements_theme/card/card-field-windows";
 import CarouselFieldDefault from "../elements_theme/carousel/carousel-field-default";
 import CountdownFieldDefault from "../elements_theme/countdown/countdown-field-default";
 import DeviderFieldDefault from "../elements_theme/devider/devider-field-default";
 import FaqFieldDefault from "../elements_theme/faq/faq-field-default";
+import FaqFieldToon from "../elements_theme/faq/faq-field-toon";
+import FaqFieldWindows95 from "../elements_theme/faq/faq-field-windows95";
 import FormFieldDefault from "../elements_theme/form/form-field-default";
+import FormFieldWindows95 from "../elements_theme/form/form-field-windows95";
 import GalleryFieldDefault from "../elements_theme/gallery/gallery-field-default";
 import MapFieldDefault from "../elements_theme/map/map-field-default";
 import PostTrackerFieldDefault from "../elements_theme/postTracker/postTracker-field-default";
@@ -25,8 +27,8 @@ import SocialsFieldAero from "../elements_theme/socials/socials-field-aero";
 import SocialsFieldDefault from "../elements_theme/socials/socials-field-default";
 import SocialsFieldGlitch from "../elements_theme/socials/socials-field-glitch";
 import SocialsFieldMacOS from "../elements_theme/socials/socials-field-macos";
-import SocialsFieldOnlyIconCustom from "../elements_theme/socials/socials-field-onlyIcon-custom";
 import SocialsFieldOnlyIcon from "../elements_theme/socials/socials-field-onlyIcon";
+import SocialsFieldOnlyIconCustom from "../elements_theme/socials/socials-field-onlyIcon-custom";
 import SocialsFieldRounded from "../elements_theme/socials/socials-field-rounded";
 import SocialsFieldSmallCircle from "../elements_theme/socials/socials-field-smallCircle";
 import SocialsFieldWindows from "../elements_theme/socials/socials-field-windows";
@@ -34,7 +36,6 @@ import SocialsFieldWindows95 from "../elements_theme/socials/socials-field-windo
 import SpaceFieldDefault from "../elements_theme/space/space-field-default";
 import TextFieldDefault from "../elements_theme/text/text-field-default";
 import VideoFieldDefault from "../elements_theme/video/video-field-default";
-import FaqFieldWindows95 from "../elements_theme/faq/faq-field-windows95";
 
 export const ElementThemeController = {
   SocialsField: {
@@ -88,6 +89,7 @@ export const ElementThemeController = {
   FaqField: {
     default: [FaqFieldDefault, { type: "color" }, { isPremium: true }],
     windows95: [FaqFieldWindows95, { type: "color" }, { isPremium: true }],
+    toon: [FaqFieldToon, { type: "color" }, { isPremium: true }],
   },
   MapField: {
     default: [MapFieldDefault, { type: "color" }, { isPremium: true }],
@@ -106,5 +108,6 @@ export const ElementThemeController = {
   },
   FormField: {
     default: [FormFieldDefault, { type: "color" }, { isPremium: true }],
+    windows95: [FormFieldWindows95, { type: "color" }, { isPremium: true }],
   },
 };

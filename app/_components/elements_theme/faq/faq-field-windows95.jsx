@@ -58,7 +58,7 @@ const FaqFieldDefault = (props) => {
           style={{
             backgroundColor: win95Colors.buttonFace,
             border: "2px solid",
-            borderColor: `${win95Colors.lightBorder} ${win95Colors.darkBorder} ${win95Colors.darkBorder} ${win95Colors.lightBorder}`,
+            borderColor: `${win95Colors.lightBorder} ${win95Colors.darkBorder}`,
             boxShadow: `1px 1px 0px 0px ${win95Colors.darkerBorder}`,
             color: win95Colors.buttonText,
             padding: "3px 12px",
@@ -84,7 +84,7 @@ const FaqFieldDefault = (props) => {
             backgroundColor: win95Colors.buttonFace,
             padding: "4px 8px",
             border: "2px solid",
-            borderColor: `${win95Colors.lightBorder} ${win95Colors.darkBorder} ${win95Colors.darkBorder} ${win95Colors.lightBorder}`,
+            borderColor: `${win95Colors.lightBorder} ${win95Colors.darkBorder}`,
             boxShadow: `1px 1px 0px 0px ${win95Colors.darkerBorder}`,
             borderRadius: borderRadius,
             marginBottom: "8px",
@@ -125,7 +125,7 @@ const FaqFieldDefault = (props) => {
                         fontWeight: "bold",
                         fontSize: "12px",
                         border: "1px solid",
-                        borderColor: `${win95Colors.lightBorder} ${win95Colors.darkBorder} ${win95Colors.darkBorder} ${win95Colors.lightBorder}`,
+                        borderColor: `${win95Colors.lightBorder} ${win95Colors.darkBorder}`,
                         margin: "2px",
                       }}
                     >
@@ -164,7 +164,7 @@ const FaqFieldDefault = (props) => {
               placeContent: "center",
               backgroundColor: win95Colors.buttonFace,
               border: "2px solid",
-              borderColor: `${win95Colors.lightBorder} ${win95Colors.darkBorder} ${win95Colors.darkBorder} ${win95Colors.lightBorder}`,
+              borderColor: `${win95Colors.lightBorder} ${win95Colors.darkBorder}`,
               boxShadow: `inset 1px 1px 0px 1px ${win95Colors.darkerBorder}`,
               borderRadius: borderRadius,
               color: win95Colors.buttonText,
