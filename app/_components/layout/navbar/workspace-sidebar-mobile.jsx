@@ -25,7 +25,7 @@ const WorkspaceSidebarMobile = ({ isPremium }) => {
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background/95 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] backdrop-blur-lg">
       <ul className="flex items-center justify-between px-6 py-3">
         {/* Style Settings */}
-        <li className="translate-y-4 animate-fade-up opacity-0 delay-100 duration-300">
+        <li className="translate-y-4 animate-fade-up opacity-0 delay-500 duration-300">
           <WorkspaceDynamicModal
             mode="allDrawer"
             modalId="style"
@@ -40,7 +40,7 @@ const WorkspaceSidebarMobile = ({ isPremium }) => {
         </li>
 
         {/* Browser & Social Media */}
-        <li className="translate-y-4 animate-fade-up opacity-0 delay-200 duration-300">
+        <li className="translate-y-4 animate-fade-up opacity-0 delay-300 duration-300">
           <WorkspaceDynamicModal
             mode="allDrawer"
             modalId="browser"
@@ -56,7 +56,7 @@ const WorkspaceSidebarMobile = ({ isPremium }) => {
         </li>
 
         {/* Add Element */}
-        <li className="translate-y-4 animate-fade-up opacity-0 delay-300 duration-300">
+        <li className="translate-y-4 animate-fade-up opacity-0 delay-100 duration-300">
           <WorkspaceDynamicModal
             mode="allDrawer"
             modalId="elements"
@@ -72,7 +72,7 @@ const WorkspaceSidebarMobile = ({ isPremium }) => {
         </li>
 
         {/* Analytics */}
-        <li className="delay-400 translate-y-4 animate-fade-up opacity-0 duration-300">
+        <li className="translate-y-4 animate-fade-up opacity-0 delay-300 duration-300">
           <WorkspaceDynamicModal
             mode="allDrawer"
             modalId="analytics"

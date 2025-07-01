@@ -1,3 +1,5 @@
+"use client";
+
 const TextFieldLiquidGlass = ({
   title,
   textColor = "white",
