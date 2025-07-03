@@ -6,6 +6,7 @@ import EasyUseLandingPageSection from "../_components/landing/section/easyuse";
 import LandingPageFeatures from "../_components/landing/section/grid-featured";
 import LandingPageHero from "../_components/landing/section/hero";
 import LivePageAllowsToSection from "../_components/landing/section/interactive-features";
+import PricingSection from "../_components/landing/section/pricing";
 
 export default function LandingPage() {
   return (
@@ -19,6 +20,8 @@ export default function LandingPage() {
       <LivePageAllowsToSection />
 
       <EasyUseLandingPageSection />
+
+      <PricingSection />
 
       <LandingPageFeatures />
 

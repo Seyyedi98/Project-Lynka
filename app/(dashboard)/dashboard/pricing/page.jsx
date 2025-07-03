@@ -4,9 +4,26 @@ import { purchase } from "@/actions/transactions/transactions";
 import { Button } from "@/components/ui/button";
 import { PLANS } from "@/data/prices";
 import { motion } from "framer-motion";
-import { Gem, Crown, Zap } from "lucide-react";
+import {
+  Gem,
+  Check,
+  Zap,
+  Rocket,
+  Eye,
+  Pencil,
+  QrCode,
+  Trash2,
+} from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const fade = {
   initial: { opacity: 0 },
@@ -15,17 +32,33 @@ const fade = {
 };
 
 export default function Pricing() {
-  const [selectedDuration, setSelectedDuration] = useState(1);
-  const [selectedPlan, setSelectedPlan] = useState(PLANS[0].id);
+  const [selectedDuration, setSelectedDuration] = useState(3); // Default to 3 months
   const [isPurchasing, setIsPurchasing] = useState(false);
+  const premiumPlan = PLANS.find((p) => p.id === "silver");
 
-  const calculateDiscountPrice = (price, duration) => {
-    return (price * 0.9 * duration).toLocaleString("fa-IR");
+  // Calculate prices based on duration
+  const getPremiumPrice = () => {
+    const basePrice = 100000; // Monthly price
+    switch (selectedDuration) {
+      case 1:
+        return basePrice;
+      case 3:
+        return basePrice * 3 * 0.9; // 10% discount for 3 months
+      case 6:
+        return basePrice * 6 * 0.85; // 15% discount for 6 months
+      default:
+        return basePrice * 3;
+    }
   };
 
-  const getPlanPrice = (planId) => {
-    return planId === "silver" ? 100000 : 200000;
-  };
+  const features = [
+    { name: "تعداد صفحات", free: "۱ صفحه", premium: "۳ صفحه" },
+    { name: "تم‌های مختلف", free: "۱ تم", premium: "تم‌های نامحدود" },
+    { name: "شخصی‌سازی بلوک‌ها", free: "—", premium: "✓" },
+    { name: "زمان‌بندی محتوا", free: "—", premium: "✓" },
+    { name: "ساخت فرم", free: "—", premium: "✓" },
+    { name: "گزارش‌گیری فرم‌ها", free: "—", premium: "✓" },
+  ];
 
   return (
     <div className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8">
@@ -34,219 +67,184 @@ export default function Pricing() {
         <motion.h1
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-3xl font-bold text-text md:text-4xl"
+          className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl"
         >
-          ارتقاء به اشتراک ویژه
+          {premiumPlan.name}
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
-          className="mt-4 text-text/80"
+          className="mt-4 text-gray-600 dark:text-gray-300"
         >
           امکانات ویژه برای نیازهای حرفه‌ای شما
         </motion.p>
       </div>
 
-      {/* Plan Selection */}
-      {/* <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="mb-8"
-      >
-        <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-sm backdrop-blur-lg sm:mx-4 sm:mr-20 xl:pr-6">
-          <h3 className="mb-4 text-xl font-bold text-text">نوع اشتراک</h3>
-          <div className="flex gap-3">
-            {PLANS.map((plan) => (
-              <Button
-                key={plan.id}
-                variant={selectedPlan === plan.id ? "default" : "outline"}
-                onClick={() => setSelectedPlan(plan.id)}
-                className={`flex-1 border-white/20 bg-white/5 hover:bg-white/10 ${
-                  plan.id === "gold" ? "hover:bg-amber-500/10" : ""
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  {plan.id === "gold" ? (
-                    <Crown className="h-5 w-5 text-amber-400" />
-                  ) : (
-                    <Gem className="h-5 w-5 text-gray-300" />
-                  )}
-                  {plan.name}
-                </div>
-              </Button>
-            ))}
-          </div>
-        </div>
-      </motion.div> */}
-
-      {/* Plan Content */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        className="grid gap-6 sm:mx-4 sm:mr-20 xl:pr-6"
-      >
-        {/* Features Card */}
+      {/* Pricing Cards */}
+      <div className="grid gap-6 sm:mx-4 sm:mr-20 lg:grid-cols-2 xl:pr-6">
+        {/* Free Plan */}
         <motion.div
-          {...fade}
-          className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur-lg"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="flex flex-col rounded-xl border border-gray-200 bg-white/90 p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800/90"
         >
-          <div className="flex h-full flex-col">
-            <div className="mb-6 flex items-center gap-3">
-              {selectedPlan === "gold" ? (
-                <>
-                  <Crown className="h-8 w-8 text-amber-400" />
-                  <h3 className="text-2xl font-bold text-text">
-                    {PLANS.find((p) => p.id === selectedPlan).name}
-                  </h3>
-                </>
-              ) : (
-                <>
-                  <Gem className="h-8 w-8 text-text/80" />
-                  <h3 className="text-2xl font-bold text-text">
-                    {PLANS.find((p) => p.id === selectedPlan).name}
-                  </h3>
-                </>
-              )}
-            </div>
-
-            <div className="my-4 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-            <ul className="space-y-3">
-              {PLANS.find((p) => p.id === selectedPlan).features.map(
-                (feature, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 + index * 0.1 }}
-                    className="flex items-start gap-3"
-                  >
-                    <Zap className="h-5 w-5 flex-shrink-0 text-primary" />
-                    <span className="text-text/90">{feature}</span>
-                  </motion.li>
-                ),
-              )}
-            </ul>
+          <div className="flex items-center gap-3">
+            <Gem className="h-7 w-7 text-blue-500" />
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+              رایگان
+            </h3>
           </div>
+          <div className="my-4 flex items-baseline gap-1">
+            <span className="text-3xl font-bold text-gray-900 dark:text-white">
+              ۰
+            </span>
+            <span className="text-gray-500 dark:text-gray-400">تومان</span>
+          </div>
+          <ul className="mb-6 space-y-3">
+            <li className="flex items-start gap-3">
+              <Check className="mt-0.5 h-5 w-5 text-green-500" />
+              <span className="text-gray-700 dark:text-gray-300">
+                ۱ صفحه شخصی
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <Check className="mt-0.5 h-5 w-5 text-green-500" />
+              <span className="text-gray-700 dark:text-gray-300">
+                ۱ تم پایه
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <Check className="mt-0.5 h-5 w-5 text-green-500" />
+              <span className="text-gray-700 dark:text-gray-300">
+                بلوک‌های اصلی
+              </span>
+            </li>
+          </ul>
+          <Button
+            variant="outline"
+            className="mt-auto border-gray-300 bg-white hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700"
+            asChild
+          >
+            <Link href="/signup">شروع رایگان</Link>
+          </Button>
         </motion.div>
 
-        {/* Duration Selection */}
+        {/* Premium Plan */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.2 }}
+          className="flex flex-col rounded-xl border border-gray-200 bg-white/90 p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800/90"
         >
-          <div className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-sm backdrop-blur-lg">
-            <h3 className="mb-4 text-xl font-bold text-text">
-              مدت زمان اشتراک
-            </h3>
-            <div className="flex gap-3">
+          <div className="flex items-center gap-3">
+            <Rocket className="h-7 w-7 text-primary" />
+            <div className="flex items-center gap-2">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                {premiumPlan.name}
+              </h3>
+            </div>
+          </div>
+
+          {/* Price Display */}
+          <div className="my-2 flex items-baseline gap-1">
+            <span className="text-3xl font-bold text-gray-900 dark:text-white">
+              {getPremiumPrice().toLocaleString("fa-IR")}
+            </span>
+            <span className="text-gray-500 dark:text-gray-400">تومان</span>
+            {selectedDuration > 1 && (
+              <span className="ml-2 text-sm text-green-500">
+                ({selectedDuration === 3 ? "۱۰%" : "۱۵%"} تخفیف)
+              </span>
+            )}
+          </div>
+
+          <ul className="mb-6 space-y-3">
+            {premiumPlan.features.slice(0, 5).map((feature, index) => (
+              <li key={index} className="flex items-start gap-3">
+                <Zap className="mt-0.5 h-5 w-5 text-primary" />
+                <span className="text-gray-700 dark:text-gray-300">
+                  {feature}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Duration Selector */}
+          <div className="my-3">
+            <div className="grid grid-cols-3 gap-2">
               {[1, 3, 6].map((duration) => (
-                <Button
+                <button
                   key={duration}
-                  variant={
-                    selectedDuration === duration ? "default" : "outline"
-                  }
                   onClick={() => setSelectedDuration(duration)}
-                  className="flex-1"
+                  className={`rounded-lg py-2 text-sm font-medium transition-colors ${
+                    selectedDuration === duration
+                      ? "bg-primary text-white"
+                      : "bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+                  }`}
                 >
                   {duration} ماه
-                </Button>
+                </button>
               ))}
             </div>
           </div>
-        </motion.div>
 
-        {/* Pricing Card */}
-        <motion.div
-          {...fade}
-          className="rounded-xl border border-muted/30 bg-card/80 p-6 shadow-lg backdrop-blur-sm"
+          <Button
+            className="mt-auto bg-primary hover:bg-primary/90"
+            onClick={() => purchase(selectedDuration)}
+            disabled={isPurchasing}
+          >
+            {isPurchasing ? "در حال پردازش..." : `خرید ${premiumPlan.name}`}
+          </Button>
+        </motion.div>
+      </div>
+
+      {/* Feature Comparison Table */}
+      <div className="mt-12 sm:mx-4 sm:mr-20 xl:pr-6">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="mb-6 text-2xl font-bold text-gray-900 dark:text-white"
         >
-          <div className="flex h-full flex-col justify-between">
-            <div>
-              <h3 className="mb-6 text-2xl font-bold text-text">
-                خلاصه پرداخت
-              </h3>
+          مقایسه امکانات
+        </motion.h2>
 
-              <div className="space-y-4">
-                {/* <div className="flex items-center justify-between">
-                  <span className="text-text">نوع اشتراک:</span>
-                  <span className="font-medium text-text">
-                    {PLANS.find((p) => p.id === selectedPlan).name}
-                  </span>
-                </div> */}
-
-                <div className="flex items-center justify-between">
-                  <span className="text-text">مدت زمان:</span>
-                  <span className="font-medium text-text">
-                    {selectedDuration} ماه
-                  </span>
-                </div>
-
-                <div className="my-4 h-px w-full bg-gradient-to-r from-transparent via-muted/30 to-transparent" />
-
-                {selectedDuration > 1 && (
-                  <div className="flex items-center justify-between">
-                    <span className="text-text">قیمت اصلی:</span>
-                    <span className="text-muted-foreground line-through">
-                      {(
-                        getPlanPrice(selectedPlan) * selectedDuration
-                      ).toLocaleString("fa-IR")}{" "}
-                      تومان
-                    </span>
-                  </div>
-                )}
-
-                <div className="flex items-center justify-between">
-                  <span className="text-text">تخفیف:</span>
-                  <span className="font-medium text-green-400 [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
-                    {selectedDuration > 1 ? "10%" : "ندارد"}
-                  </span>
-                </div>
-
-                <div className="my-4 h-px w-full bg-gradient-to-r from-transparent via-muted/30 to-transparent" />
-
-                <div className="flex items-center justify-between">
-                  <span className="text-lg text-text">مبلغ قابل پرداخت:</span>
-                  <span className="text-2xl font-bold text-text">
-                    {selectedDuration > 1
-                      ? calculateDiscountPrice(
-                          getPlanPrice(selectedPlan),
-                          selectedDuration,
-                        )
-                      : (
-                          getPlanPrice(selectedPlan) * selectedDuration
-                        ).toLocaleString("fa-IR")}{" "}
-                    تومان
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <Button
-              className={`mt-8 w-full gap-2 text-lg ${
-                selectedPlan === "gold"
-                  ? "bg-amber-600/90 hover:bg-amber-600"
-                  : "bg-primary/90 hover:bg-primary"
-              }`}
-              size="lg"
-              disabled={isPurchasing}
-              asChild
-            >
-              <Link href="/dashboard/purchase">
-                {isPurchasing ? (
-                  <>در حال انتقال به درگاه پرداخت...</>
-                ) : (
-                  `خرید ${PLANS.find((p) => p.id === selectedPlan).name}`
-                )}
-              </Link>
-            </Button>
-          </div>
-        </motion.div>
-      </motion.div>
+        <div className="rounded-lg border border-gray-200 bg-white/90 p-3 shadow-sm dark:border-gray-700 dark:bg-gray-800/90">
+          <Table dir="rtl">
+            <TableHeader className="text-textLight text-sm font-semibold">
+              <TableRow>
+                <TableHead className="min-w-[120px] text-start"></TableHead>
+                <TableHead className="min-w-[50px] text-center">
+                  رایگان
+                </TableHead>
+                <TableHead className="min-w-[50px] text-center">
+                  {premiumPlan.name}
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {features.map((feature) => (
+                <TableRow
+                  key={feature.name}
+                  className="border-b border-border/40 hover:bg-accent/30"
+                >
+                  <TableCell className="text-start font-medium">
+                    {feature.name}
+                  </TableCell>
+                  <TableCell className="text-textLight text-center">
+                    {feature.free}
+                  </TableCell>
+                  <TableCell className="text-center text-primary">
+                    {feature.premium}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
     </div>
   );
 }
