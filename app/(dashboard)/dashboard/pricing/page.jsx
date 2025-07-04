@@ -1,21 +1,6 @@
 "use client";
 
-import { purchase } from "@/actions/transactions/transactions";
 import { Button } from "@/components/ui/button";
-import { PLANS } from "@/data/prices";
-import { motion } from "framer-motion";
-import {
-  Gem,
-  Check,
-  Zap,
-  Rocket,
-  Eye,
-  Pencil,
-  QrCode,
-  Trash2,
-} from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -24,19 +9,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
-const fade = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  transition: { duration: 0.3 },
-};
+import { PLANS } from "@/data/prices";
+import { motion } from "framer-motion";
+import { Check, Gem, Rocket, Zap } from "lucide-react";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { useState } from "react";
 
 export default function Pricing() {
   const [selectedDuration, setSelectedDuration] = useState(3); // Default to 3 months
   const [isPurchasing, setIsPurchasing] = useState(false);
   const premiumPlan = PLANS.find((p) => p.id === "silver");
 
-  // Calculate prices based on duration
   const getPremiumPrice = () => {
     const basePrice = 100000; // Monthly price
     switch (selectedDuration) {
@@ -53,11 +37,15 @@ export default function Pricing() {
 
   const features = [
     { name: "تعداد صفحات", free: "۱ صفحه", premium: "۳ صفحه" },
-    { name: "تم‌های مختلف", free: "۱ تم", premium: "تم‌های نامحدود" },
-    { name: "شخصی‌سازی بلوک‌ها", free: "—", premium: "✓" },
+    {
+      name: "دسترسی نامحدود به تم ها",
+      free: "۱ تم",
+      premium: "تم‌های نامحدود",
+    },
+    { name: "شخصی‌سازی  پیشرفته بلوک‌ها", free: "—", premium: "✓" },
     { name: "زمان‌بندی محتوا", free: "—", premium: "✓" },
     { name: "ساخت فرم", free: "—", premium: "✓" },
-    { name: "گزارش‌گیری فرم‌ها", free: "—", premium: "✓" },
+    { name: "گزارش‌ گیری", free: "—", premium: "✓" },
   ];
 
   return (
@@ -67,7 +55,7 @@ export default function Pricing() {
         <motion.h1
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl"
+          className="text-3xl font-bold text-white"
         >
           {premiumPlan.name}
         </motion.h1>
@@ -75,7 +63,7 @@ export default function Pricing() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
-          className="mt-4 text-gray-600 dark:text-gray-300"
+          className="mt-4 text-white"
         >
           امکانات ویژه برای نیازهای حرفه‌ای شما
         </motion.p>
@@ -96,13 +84,8 @@ export default function Pricing() {
               رایگان
             </h3>
           </div>
-          <div className="my-4 flex items-baseline gap-1">
-            <span className="text-3xl font-bold text-gray-900 dark:text-white">
-              ۰
-            </span>
-            <span className="text-gray-500 dark:text-gray-400">تومان</span>
-          </div>
-          <ul className="mb-6 space-y-3">
+
+          <ul className="my-6 space-y-3">
             <li className="flex items-start gap-3">
               <Check className="mt-0.5 h-5 w-5 text-green-500" />
               <span className="text-gray-700 dark:text-gray-300">
@@ -112,7 +95,7 @@ export default function Pricing() {
             <li className="flex items-start gap-3">
               <Check className="mt-0.5 h-5 w-5 text-green-500" />
               <span className="text-gray-700 dark:text-gray-300">
-                ۱ تم پایه
+                تم های پایه
               </span>
             </li>
             <li className="flex items-start gap-3">
@@ -122,13 +105,6 @@ export default function Pricing() {
               </span>
             </li>
           </ul>
-          <Button
-            variant="outline"
-            className="mt-auto border-gray-300 bg-white hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700"
-            asChild
-          >
-            <Link href="/signup">شروع رایگان</Link>
-          </Button>
         </motion.div>
 
         {/* Premium Plan */}
@@ -190,12 +166,12 @@ export default function Pricing() {
             </div>
           </div>
 
-          <Button
-            className="mt-auto bg-primary hover:bg-primary/90"
-            onClick={() => purchase(selectedDuration)}
-            disabled={isPurchasing}
-          >
-            {isPurchasing ? "در حال پردازش..." : `خرید ${premiumPlan.name}`}
+          <Button asChild className="mt-auto bg-primary hover:bg-primary/90">
+            <Link
+              href={`/purchase/price?plan=silver&duration=${selectedDuration}`}
+            >
+              خرید
+            </Link>
           </Button>
         </motion.div>
       </div>

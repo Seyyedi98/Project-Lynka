@@ -4,7 +4,7 @@ export const PLANS = [
   {
     id: "silver",
     name: "اشتراک ویژه",
-    price: "۱۰۰۰۰۰ تومان",
+    price: "100000",
     features: [
       "ساخت حداکثر ۳ صفحه",
       "استفاده از تم های گوناگون",

@@ -1,56 +1,65 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
-import { Rocket, Zap, Check, Star } from "lucide-react";
-
-const pricingPlans = [
-  {
-    name: "رایگان",
-    price: "۰",
-    duration: "",
-    description: "برای شروع و آشنایی با سرویس",
-    features: ["۱ صفحه شخصی", "۱ تم پایه", "بلوک‌های اصلی", "پشتیبانی ایمیل"],
-    cta: "شروع رایگان",
-    popular: false,
-    icon: <Star className="h-6 w-6 text-blue-400" />,
-  },
-  {
-    name: "حرفه‌ای",
-    price: "۱۰۰,۰۰۰",
-    duration: "/ماه",
-    description: "تمام امکانات پیشرفته",
-    features: [
-      "۳ صفحه شخصی",
-      "تم‌های نامحدود",
-      "بلوک‌های پیشرفته",
-      "گزارش‌گیری کامل",
-      "پشتیبانی ۲۴/۷",
-    ],
-    cta: "خرید اشتراک",
-    popular: true,
-    icon: <Rocket className="h-6 w-6 text-primary" />,
-  },
-  {
-    name: "سازمانی",
-    price: "تماس",
-    duration: "",
-    description: "راه‌حل سفارشی برای کسب‌وکارها",
-    features: [
-      "صفحات نامحدود",
-      "تم‌های سفارشی",
-      "پشتیبانی اختصاصی",
-      "ابزارهای پیشرفته",
-      "هماهنگی با نیازهای شما",
-    ],
-    cta: "درخواست مشاوره",
-    popular: false,
-    icon: <Zap className="h-6 w-6 text-purple-500" />,
-  },
-];
+import { Rocket, Check, Star } from "lucide-react";
+import Link from "next/link";
 
 const PricingSection = () => {
+  const [selectedDuration, setSelectedDuration] = useState(3); // Default to 3 months
   const [hoveredPlan, setHoveredPlan] = useState(null);
+
+  const calculatePremiumPrice = (duration) => {
+    const monthlyPrice = 100000;
+    switch (duration) {
+      case 1:
+        return monthlyPrice;
+      case 3:
+        return monthlyPrice * 3 * 0.9; // 10% discount
+      case 6:
+        return monthlyPrice * 6 * 0.85; // 15% discount
+      default:
+        return monthlyPrice * 3;
+    }
+  };
+
+  const pricingPlans = [
+    {
+      name: "رایگان",
+      price: "",
+      duration: "",
+      description: "",
+      features: [
+        "ایجاد ۱ صفحه",
+        "شخصی سازی ظاهر صفحه",
+        "استفاده از بلوک های پایه",
+      ],
+      cta: "شروع رایگان",
+      popular: false,
+      icon: <Star className="h-6 w-6 text-blue-400" />,
+    },
+    {
+      name: "حرفه‌ای",
+      price: calculatePremiumPrice(selectedDuration).toLocaleString("fa-IR"),
+      duration: "",
+      description: "تمام امکانات پیشرفته",
+      features: [
+        "ساخت حداکثر ۳ صفحه",
+        "استفاده از تم های گوناگون",
+        "دسترسی به بلوک های پیشرفته",
+        "شخصی سازی بلوک ها",
+        "زمان بندی نمایش محتوا",
+        "ایجاد فرم",
+        "گزارش گیری از فرم ها",
+        "مشاهده آمار کاربران",
+        "ثبت در گوگل",
+        "شخصی سازی لینک صفحه شخصی شما در شبکه های اجتماعی",
+      ],
+      cta: "خرید اشتراک",
+      popular: true,
+      icon: <Rocket className="h-6 w-6 text-primary" />,
+    },
+  ];
 
   return (
     <section className="bg-gradient-to-b from-white to-gray-50 py-24 dark:from-gray-900 dark:to-gray-800">
@@ -64,15 +73,15 @@ const PricingSection = () => {
           className="mb-16 text-center"
         >
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white md:text-5xl">
-            قیمت‌گذاری ساده و شفاف
+            انتخاب پلن مناسب
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-300">
-            پلن مناسب برای هر نیازی
+            امکانات ویژه برای نیازهای شما
           </p>
         </motion.div>
 
         {/* Pricing Cards */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
           {pricingPlans.map((plan, index) => (
             <motion.div
               key={plan.name}
@@ -88,12 +97,6 @@ const PricingSection = () => {
                   : "border-gray-200"
               } ${hoveredPlan === index ? "scale-[1.03] shadow-xl" : ""}`}
             >
-              {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-medium text-white">
-                  پرفروش
-                </div>
-              )}
-
               <div className="mb-6 flex items-center gap-3">
                 <div className="rounded-lg bg-primary/10 p-2">{plan.icon}</div>
                 <div>
@@ -103,17 +106,6 @@ const PricingSection = () => {
                   <p className="text-gray-500 dark:text-gray-400">
                     {plan.description}
                   </p>
-                </div>
-              </div>
-
-              <div className="mb-6">
-                <div className="flex items-end gap-1">
-                  <span className="text-4xl font-bold text-gray-900 dark:text-white">
-                    {plan.price}
-                  </span>
-                  <span className="text-gray-500 dark:text-gray-400">
-                    {plan.duration}
-                  </span>
                 </div>
               </div>
 
@@ -135,56 +127,58 @@ const PricingSection = () => {
                 ))}
               </ul>
 
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="mt-auto"
-              >
-                <button
-                  className={`w-full rounded-lg py-3 font-medium transition-all ${
-                    plan.popular
-                      ? "bg-primary text-white hover:bg-primary/90"
-                      : "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
-                  }`}
-                >
-                  {plan.cta}
-                </button>
-              </motion.div>
+              {/* Price */}
+              <div className="mb-6 flex w-full items-center gap-1 text-center">
+                <span className="text-4xl font-bold text-gray-900 dark:text-white">
+                  {plan.price}
+                </span>
+                {plan.popular && selectedDuration === 1 && (
+                  <span className="text-gray-500 dark:text-gray-400">/ماه</span>
+                )}
+                {plan.popular && selectedDuration > 1 && (
+                  <span className="text-sm text-green-500">
+                    ({selectedDuration === 3 ? "۱۰%" : "۱۵%"} تخفیف)
+                  </span>
+                )}
+              </div>
+
+              {/* Duration Selector */}
+              {plan.popular && (
+                <div className="mb-4">
+                  <h4 className="mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    مدت زمان اشتراک
+                  </h4>
+                  <div className="grid grid-cols-3 gap-2">
+                    {[1, 3, 6].map((duration) => (
+                      <motion.button
+                        key={duration}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setSelectedDuration(duration)}
+                        className={`rounded-lg py-2 text-sm font-medium transition-colors ${
+                          selectedDuration === duration
+                            ? "bg-primary text-white"
+                            : "bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+                        }`}
+                      >
+                        {duration} ماه
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
-
-        {/* FAQ Section */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
           viewport={{ once: true }}
-          className="mx-auto mt-20 max-w-4xl rounded-2xl bg-white/50 p-8 backdrop-blur-sm dark:bg-gray-800/50"
+          className="mt-8 flex w-full justify-center"
         >
-          <h3 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
-            سوالات متداول
-          </h3>
-          <div className="space-y-4">
-            {[
-              "آیا می‌توانم پلن خود را بعداً تغییر دهم؟",
-              "آیا امکان بازگشت وجه وجود دارد؟",
-              "چگونه می‌توانم ارتقاء پیدا کنم؟",
-            ].map((question, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + i * 0.1 }}
-                viewport={{ once: true }}
-                className="rounded-lg border border-gray-200 p-4 dark:border-gray-700"
-              >
-                <h4 className="font-medium text-gray-900 dark:text-white">
-                  {question}
-                </h4>
-              </motion.div>
-            ))}
-          </div>
+          <button className="w-full rounded-lg bg-primary px-8 py-3 font-medium text-white shadow-md transition-all hover:scale-[1.02] hover:shadow-lg">
+            <Link href="/auth/login">همین حالا شروع کنید</Link>
+          </button>
         </motion.div>
       </div>
     </section>

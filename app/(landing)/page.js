@@ -21,10 +21,9 @@ export default function LandingPage() {
 
       <EasyUseLandingPageSection />
 
-      <PricingSection />
-
       <LandingPageFeatures />
 
+      <PricingSection />
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-[hsl(var(--primary)/0.8)] to-[hsl(var(--secondary)/0.8)] py-20">
         <div className="container mx-auto px-4 text-center">

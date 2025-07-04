@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Smartphone, Code, Palette, Laptop } from "lucide-react";
+import Link from "next/link";
 
 const features = [
   {
@@ -87,7 +88,7 @@ const CreateSection = () => {
                 className="flex justify-start"
               >
                 <button className="rounded-lg bg-primary px-8 py-3 font-medium text-white shadow-md transition-all hover:scale-[1.02] hover:shadow-lg">
-                  همین حالا شروع کنید
+                  <Link href="/auth/login">همین حالا شروع کنید</Link>
                 </button>
               </motion.div>
             </div>
