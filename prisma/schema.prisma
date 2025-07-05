@@ -202,17 +202,21 @@ model blog {
 }
 
 model Transactions {
-  id          String       @id @default(cuid())
-  userId      String
-  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  amount      Float        @default(0.0)
-  status      String       @default("pending") // "pending", "completed", "failed", "refunded"
-  type        purchaseType
-  requestDate DateTime     @default(now())
-  processedAt DateTime?
-  successDate DateTime?
-  failureDate DateTime?
-  refundDate  DateTime?
+  id               String       @id @default(cuid())
+  userId           String
+  user             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount           Float        @default(0.0)
+  status           String       @default("pending") // "pending", "completed", "failed", "refunded"
+  type             purchaseType
+  subscriptionPlan String?
+  duration         String?
+  email            String?
+  phoneNumber      String?
+  requestDate      DateTime     @default(now())
+  processedAt      DateTime?
+  successDate      DateTime?
+  failureDate      DateTime?
+  refundDate       DateTime?
 
   @@index([userId])
 }

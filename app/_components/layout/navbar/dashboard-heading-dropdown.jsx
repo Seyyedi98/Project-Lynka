@@ -21,6 +21,7 @@ import Link from "next/link";
 import { LogoutButton } from "../../auth/logout-button";
 import ToggleDarkmode from "../../common/button/PrimaryButton/toggle-darkmode";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { IconMoneybag } from "@tabler/icons-react";
 
 const DashboardHeadingDropdown = () => {
   const user = useCurrentUser();
@@ -58,6 +59,16 @@ const DashboardHeadingDropdown = () => {
             <DropdownMenuItem className="w-full cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
               <UserCircleIcon className="mr-2 mt-1 h-4 w-4" />
               <span>پروفایل</span>
+            </DropdownMenuItem>
+          </Link>
+
+          <Link
+            href="/dashboard/transactions"
+            className="flex items-center gap-2"
+          >
+            <DropdownMenuItem className="w-full cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
+              <IconMoneybag className="mr-2 mt-1 h-4 w-4" />
+              <span>تراکنش ها</span>
             </DropdownMenuItem>
           </Link>
 
