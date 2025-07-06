@@ -57,7 +57,7 @@ const LivePageMenu = ({ uri }) => {
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <div className="absolute right-5 top-5 grid h-10 w-10 cursor-pointer place-items-center rounded-full bg-white/50 transition-colors duration-200 hover:bg-white/90">
+        <div className="fixed right-5 top-5 z-50 grid h-10 w-10 cursor-pointer place-items-center rounded-full bg-white/50 transition-colors duration-200 hover:bg-white/90">
           <div className="flex gap-0">
             <DotIcon />
             <DotIcon className="-mr-4" />

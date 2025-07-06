@@ -43,6 +43,7 @@ const DashboardSidebar = () => {
           isExpanded={isSidebarOpen}
           title="پنل کاربری"
           path="/dashboard"
+          setIsSidebarOpen={setIsSidebarOpen}
         >
           <LucideHome className="h-6 w-6" />
         </SidebarLink>
@@ -51,6 +52,7 @@ const DashboardSidebar = () => {
           isExpanded={isSidebarOpen}
           title="آمار"
           path="/dashboard/analytics"
+          setIsSidebarOpen={setIsSidebarOpen}
         >
           <ChartSplineIcon className="h-6 w-6" />
         </SidebarLink>
@@ -59,6 +61,7 @@ const DashboardSidebar = () => {
           isExpanded={isSidebarOpen}
           title="فرم ها"
           path="/dashboard/submits"
+          setIsSidebarOpen={setIsSidebarOpen}
         >
           <ClipboardPenIcon className="h-6 w-6" />
         </SidebarLink>
@@ -67,6 +70,7 @@ const DashboardSidebar = () => {
           isExpanded={isSidebarOpen}
           title="راهنما"
           path="/dashboard/docs"
+          setIsSidebarOpen={setIsSidebarOpen}
         >
           <LibraryIcon className="h-6 w-6" />
         </SidebarLink>
@@ -75,6 +79,7 @@ const DashboardSidebar = () => {
           isExpanded={isSidebarOpen}
           title="تنظیمات"
           path="/dashboard/settings"
+          setIsSidebarOpen={setIsSidebarOpen}
         >
           <Settings className="h-6 w-6" />
         </SidebarLink>

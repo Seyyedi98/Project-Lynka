@@ -34,24 +34,52 @@ const RssFieldDefault = ({
   }, [font]);
 
   useEffect(() => {
-    if (href) {
-      setLoading(true);
-      fetch(`/api/rss?url=${encodeURIComponent(href.trim())}`)
-        .then((res) => {
-          if (!res.ok) throw new Error("Failed to fetch RSS feed");
-          return res.json();
-        })
-        .then((data) => {
-          setPosts(data.posts.slice(0, 5));
-          setError(null);
-        })
-        .catch((err) => {
-          setError(err.message);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
+    if (!href) return;
+
+    const fetchRssFeed = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Validate and format the URL
+        let formattedUrl = href.trim();
+
+        // Add protocol if missing (default to https)
+        if (
+          !formattedUrl.startsWith("http://") &&
+          !formattedUrl.startsWith("https://")
+        ) {
+          formattedUrl = `https://${formattedUrl}`;
+        }
+
+        // Validate URL format
+        try {
+          new URL(formattedUrl);
+        } catch (e) {
+          throw new Error("Invalid URL format");
+        }
+
+        const response = await fetch(
+          `/api/rss?url=${encodeURIComponent(formattedUrl)}`,
+        );
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(errorText || "Failed to fetch RSS feed");
+        }
+
+        const data = await response.json();
+        setPosts(data.posts?.slice(0, 5) || []);
+      } catch (err) {
+        console.error("RSS fetch error:", err);
+        setError(err.message || "Error fetching RSS feed");
+        setPosts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRssFeed();
   }, [href]);
 
   return (
@@ -70,7 +98,7 @@ const RssFieldDefault = ({
         {href ? (
           isPremium || !isLive ? (
             error ? (
-              <div className="text-red-500">خطا در دریافت اطلاعات فید</div>
+              <div className="text-red-500">{error}</div>
             ) : (
               <ul className="list-none space-y-2 pl-0">
                 <h4
@@ -83,7 +111,7 @@ const RssFieldDefault = ({
                   <div className="flex h-16 w-full items-center justify-center">
                     <Loader2Icon className="h-8 w-8 animate-spin text-gray-500" />
                   </div>
-                ) : (
+                ) : posts.length > 0 ? (
                   posts.map((post, index) => (
                     <li key={index} className="w-full">
                       {isLive ? (
@@ -113,7 +141,6 @@ const RssFieldDefault = ({
                         </a>
                       ) : (
                         <div
-                          rel="noopener noreferrer"
                           style={{
                             backgroundColor: bgColor,
                             borderRadius: borderRadius,
@@ -137,6 +164,10 @@ const RssFieldDefault = ({
                       )}
                     </li>
                   ))
+                ) : (
+                  <div className="text-center text-gray-500">
+                    No posts found in RSS feed
+                  </div>
                 )}
               </ul>
             )

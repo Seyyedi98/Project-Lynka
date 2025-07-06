@@ -4,13 +4,20 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const SidebarLink = ({ children, isExpanded, title, path }) => {
+const SidebarLink = ({
+  children,
+  isExpanded,
+  setIsSidebarOpen,
+  title,
+  path,
+}) => {
   const pathname = usePathname();
 
   return (
     <Link
       style={{ textDecoration: "none" }}
       href={path}
+      onClick={() => setIsSidebarOpen(false)}
       className={cn(
         `group/color w-[90%] cursor-pointer rounded-l-sm py-4`,
         pathname === path

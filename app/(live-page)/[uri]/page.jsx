@@ -148,7 +148,9 @@ const LivePage = async ({ params }) => {
         )}
 
         <main className="relative flex w-full flex-col items-center overflow-y-auto pb-20 [scrollbar-width:none]">
-          <LivePageMenu uri={uri} />
+          <div className="relative">
+            <LivePageMenu uri={uri} />
+          </div>
 
           {/* Hero Section */}
           <LivePageHero hero={hero} />

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { themes } from "@/data/themes";
-import { useUserSubscription } from "@/hooks/useUserSubscription";
+import { currentUserSubscription } from "@/lib/auth/user-subscription";
+import { useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import {
   Dialog,
@@ -11,7 +11,6 @@ import {
   DialogTrigger,
 } from "../../common/modal/diolog";
 import ThemesList from "./themes-list";
-import { currentUserSubscription } from "@/lib/auth/user-subscription";
 
 const PageThemeSelector = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
