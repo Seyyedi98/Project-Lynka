@@ -136,7 +136,6 @@ const Basic = ({
   text-transform: uppercase;
   letter-spacing: 2px;
   padding: 5px 30px;
-  border-radius: ${borderRadius};
 }
 
 .windows_btn:active {
@@ -231,7 +230,6 @@ const RoundedImage = ({
   text-transform: uppercase;
   letter-spacing: 2px;
   padding: 5px 30px;
-  border-radius: ${borderRadius};
 }
 
 .windows_btn:active {
@@ -244,7 +242,7 @@ const RoundedImage = ({
 `}
       </style>
       <button
-        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
+        style={{}}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -341,7 +339,6 @@ const WideFullImage = ({
   text-transform: uppercase;
   letter-spacing: 2px;
   padding: 5px 30px;
-  border-radius: ${borderRadius};
 }
 
 .windows_btn:active {
@@ -354,7 +351,7 @@ const WideFullImage = ({
 `}
       </style>
       <button
-        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
+        style={{}}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -432,92 +429,109 @@ const HighFullImage = ({
 
   return (
     <>
-      <style>
-        {`
-.windows_btn {
-  font-family: inherit;
-  border: none;
-  outline: 1px dotted rgb(37, 37, 37);
-  outline-offset: -4px;
-  cursor: pointer;
-  background: hsl(0deg 0% 75%);
-  box-shadow:
-    inset -1px -1px #292929,
-    inset 1px 1px #fff,
-    inset -2px -2px rgb(158, 158, 158),
-    inset 2px 2px #ffffff;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 15px 30px 5px 30px;
-  border-radius: ${borderRadius};
-}
+      <div className="w-full border-2 border-b-gray-600 border-l-gray-300 border-r-gray-600 border-t-gray-300 bg-gray-300 p-px shadow-[1px_1px_0_0_#000]">
+        {/* Title bar */}
+        <div className="bg-gradient-to-r from-blue-900 to-blue-700 px-2 py-1 text-sm font-bold text-white">
+          {title || "Image"}
+        </div>
 
-.windows_btn:active {
-  box-shadow:
-    inset -1px -1px #fff,
-    inset 1px 1px #292929,
-    inset -2px -2px #ffffff,
-    inset 2px 2px rgb(158, 158, 158);
-}
-`}
-      </style>
-      <button
-        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
-        onClick={() =>
-          handleClick({
-            setIsModalOpen,
-            href,
-            protectedElement,
-            uri,
-            elementId,
-            title,
-            isLive,
-          })
-        }
-        target="_blank"
-        rel="noopener noreferrer"
-        className={cn(
-          `windows_btn flex w-full cursor-pointer flex-col items-start justify-center gap-2 overflow-hidden text-lg font-medium text-white shadow-lg`,
-          !isLive || (href === "" && "pointer-events-none"),
-          !imageUrl && "h-48",
-        )}
-      >
-        {imageUrl && (
-          <Image
-            height={720}
-            width={720}
-            alt="card Image"
-            src={imageUrl}
-            loading="lazy"
-          />
-        )}
-        <p
-          className="px-3 pb-2"
-          style={{
-            fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-            color: textColor,
-          }}
+        {/* Content area */}
+        <button
+          onClick={() =>
+            handleClick({
+              setIsModalOpen,
+              href,
+              protectedElement,
+              uri,
+              elementId,
+              title,
+              isLive,
+            })
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+          disabled={!isLive || href === ""}
+          className={cn(
+            "relative w-full overflow-hidden border-2 border-b-gray-300 border-l-gray-600 border-r-gray-300 border-t-gray-600",
+            "hover:border-blue-900 focus:border-blue-900",
+            !isLive || (href === "" && "pointer-events-none"),
+            !imageUrl && "h-48 bg-gray-300",
+          )}
         >
-          {title}
-        </p>
-      </button>
-      <div
-        className={cn(
-          `absolute right-0 top-0 hidden h-svh w-full`,
-          isModalOpen && "block",
-        )}
-      >
-        <ProtectedPagePasswordCheck
-          uri={uri}
-          elementId={elementId}
-          title={title}
-          href={href}
-          password={password}
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-        />
+          {imageUrl ? (
+            <>
+              <Image
+                height={720}
+                width={720}
+                alt="card Image"
+                src={imageUrl}
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+              <div
+                className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-blue-900/80 to-transparent p-2"
+                style={{
+                  fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+                  color: textColor || "white",
+                }}
+              >
+                {title}
+              </div>
+            </>
+          ) : (
+            <p
+              className="p-4"
+              style={{
+                fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+                color: textColor || "black",
+              }}
+            >
+              {title}
+            </p>
+          )}
+        </button>
       </div>
+
+      {/* Password modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="w-full max-w-md border-2 border-b-gray-600 border-l-gray-300 border-r-gray-600 border-t-gray-300 bg-gray-300">
+            {/* Modal title bar */}
+            <div className="flex items-center justify-between bg-gradient-to-r from-blue-900 to-blue-700 px-2 py-1 font-bold text-white">
+              <span>Password Required</span>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="flex h-4 w-4 items-center justify-center bg-gray-300 font-bold text-black"
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Modal body */}
+            <div className="bg-white p-4">
+              <ProtectedPagePasswordCheck
+                uri={uri}
+                elementId={elementId}
+                title={title}
+                href={href}
+                password={password}
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+              />
+            </div>
+
+            {/* Modal footer */}
+            <div className="flex justify-end bg-gray-300 p-2">
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="border-2 border-b-gray-600 border-l-gray-300 border-r-gray-600 border-t-gray-300 px-3 py-1 text-sm font-bold hover:border-blue-900"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

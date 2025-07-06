@@ -91,7 +91,6 @@ const FaqFieldWindows95 = (props) => {
                 backgroundColor: win95Colors.windowBackground,
                 border: "2px solid",
                 borderColor: `${win95Colors.darkBorder} ${win95Colors.lightBorder} ${win95Colors.lightBorder} ${win95Colors.darkBorder}`,
-                borderRadius: borderRadius,
               }}
               className={cn(``, !isLive && "pointer-events-none")}
             >
@@ -152,7 +151,6 @@ const FaqFieldWindows95 = (props) => {
                 border: "2px solid",
                 borderColor: `${win95Colors.lightBorder} ${win95Colors.darkBorder}`,
                 boxShadow: `inset 1px 1px 0px 1px ${win95Colors.darkerBorder}`,
-                borderRadius: borderRadius,
                 color: win95Colors.buttonText,
               }}
             >
