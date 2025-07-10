@@ -44,3 +44,40 @@ export async function getUserData(searchType, searchTerm) {
 
   return users;
 }
+
+export const updateUserSubscription = async ({
+  userId,
+  subscriptionPlan,
+  days,
+}) => {
+  const admin = await currentUser();
+  if (!admin || admin.id !== process.env.ADMIN_ID || admin.role !== "ADMIN") {
+    return;
+  }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  let startingDate;
+
+  if (user.subscriptionPlan !== "bronze") {
+    startingDate = user.subscriptionExpire;
+  } else {
+    startingDate = new Date();
+  }
+
+  const date = new Date(startingDate);
+  date.setDate(date.getDate() + days);
+
+  // updateSubscriptionData({ subscriptionPlan: "silver", days: 30 });
+
+  await prisma.user.update({
+    where: {
+      id: user.id,
+    },
+    data: { subscriptionPlan, subscriptionExpire: date },
+  });
+};

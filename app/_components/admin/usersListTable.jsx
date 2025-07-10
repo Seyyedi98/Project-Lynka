@@ -1,5 +1,5 @@
-import { updateSubscriptionData } from "@/actions/subscription";
-import { useState } from "react";
+import { updateUserSubscription } from "@/actions/admin/user-management";
+import { useState, useTransition } from "react";
 
 const TabButton = ({ active, onClick, children }) => {
   return (
@@ -22,10 +22,14 @@ const UserDetailsTab = ({
   setPremiumDays,
   onAddPremium,
   onBanUser,
+  updatingUserSubscription,
 }) => {
   const subscriptionRemaining = Math.floor(
     (user.subscriptionExpire.getTime() - Date.now()) / (1000 * 60 * 60 * 24),
   );
+
+  // TODO: change later if add gold tier
+  const subscriptionPlan = "silver";
 
   return (
     <div>
@@ -72,9 +76,10 @@ const UserDetailsTab = ({
             <span>Days</span>
             <button
               className="h-8 border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-4 font-medium shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000]"
-              onClick={onAddPremium}
+              onClick={() => onAddPremium(user, subscriptionPlan, premiumDays)}
+              disabled={updatingUserSubscription}
             >
-              Add
+              {updatingUserSubscription ? "Adding..." : "Add"}
             </button>
           </div>
           <button
@@ -182,6 +187,7 @@ const UserDetailsModal = ({
   onAddPremium,
   onBanUser,
   onPageAction,
+  updatingUserSubscription,
 }) => {
   const [activeTab, setActiveTab] = useState("details");
 
@@ -230,6 +236,7 @@ const UserDetailsModal = ({
               setPremiumDays={setPremiumDays}
               onAddPremium={onAddPremium}
               onBanUser={onBanUser}
+              updatingUserSubscription={updatingUserSubscription}
             />
           )}
           {activeTab === "pages" && (
@@ -260,6 +267,7 @@ const ResultsTable = ({ users, isLoading }) => {
   const [premiumDays, setPremiumDays] = useState(30);
   const [userPages, setUserPages] = useState([]);
   const [userTransactions, setUserTransactions] = useState([]);
+  const [isPending, startTransition] = useTransition();
 
   // Mock data functions
   const fetchUserPages = (userId) => {
@@ -321,8 +329,10 @@ const ResultsTable = ({ users, isLoading }) => {
     setShowUserDetails(true);
   };
 
-  const handleAddPremium = async () => {
-    await updateSubscriptionData();
+  const handleAddPremium = (user, subscriptionPlan, days) => {
+    startTransition(async () => {
+      await updateUserSubscription({ userId: user.id, subscriptionPlan, days });
+    });
   };
 
   const handleBanUser = () => {
@@ -391,6 +401,7 @@ const ResultsTable = ({ users, isLoading }) => {
           onAddPremium={handleAddPremium}
           onBanUser={handleBanUser}
           onPageAction={handlePageAction}
+          updatingUserSubscription={isPending}
         />
       )}
     </>
