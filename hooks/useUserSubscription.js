@@ -1,9 +1,10 @@
 "use client";
 
-import { getSubscriptionDataByUri } from "@/actions/auth/subscription";
+import { getSubscriptionDataByUri } from "@/actions/subscription";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
+// Check if user is premium
 export const useUserSubscription = () => {
   const session = useSession({ required: true });
   if (!session) return;
@@ -36,6 +37,7 @@ export const useUserSubscription = () => {
   return { subscriptionPlan, subscriptionDaysLeft, isPremium };
 };
 
+// Check if uri owner has premium
 export const useSubscriptionByUri = (uri) => {
   const [subscriptionData, setSubscriptionData] = useState({});
   const [isPremium, setisPremium] = useState(false);
