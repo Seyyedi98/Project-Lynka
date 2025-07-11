@@ -17,7 +17,7 @@ const NavItem = ({ children, target, icon }) => {
       } border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf]`}
     >
       <span className="text-lg">{icon}</span>
-      <span>{children}</span>
+      <span className="hidden md:block">{children}</span>
     </Link>
   );
 };

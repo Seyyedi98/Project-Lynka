@@ -19,7 +19,7 @@ const ControlCenter = async () => {
   }
 
   return (
-    <div className="pb-10 pr-0 md:pr-64">
+    <div className="pb-10 pr-16 md:pr-64">
       {/* Window Title Bar */}
       <header className="sticky top-0 z-10 flex h-8 items-center justify-between bg-[#000080] px-2 text-white md:hidden">
         <div className="flex items-center">

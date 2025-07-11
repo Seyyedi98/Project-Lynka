@@ -98,21 +98,21 @@ const UserPagesTab = ({ pages, onPageAction }) => {
   return (
     <div>
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="font-bold">صفحات ایجاد شده توسط کاربر</h3>
-        <span className="text-sm">تعداد: {pages.length}</span>
+        <h3 className="font-bold">User Pages</h3>
+        <span className="text-sm">Count: {pages.length}</span>
       </div>
       <div className="border-2 border-b-[#000000] border-l-[#dfdfdf] border-r-[#000000] border-t-[#dfdfdf]">
         <div className="flex bg-[#000080] text-white">
-          <div className="w-1/4 p-2">نام صفحه</div>
-          <div className="w-1/4 p-2">آدرس</div>
-          <div className="w-1/4 p-2">عملیات</div>
+          <div className="w-1/4 p-2">Title</div>
+          <div className="w-1/4 p-2">Address</div>
+          <div className="w-1/4 p-2">Actions</div>
         </div>
         {pages.map((page) => (
           <div
             key={page.id}
             className="flex border-t border-t-[#808080] hover:bg-[#e0e0e0]"
           >
-            <div className="w-1/4 p-2">{page.name}</div>
+            <div className="w-1/4 p-2">{page.title}</div>
             <div className="w-1/4 p-2">{page.url}</div>
             <div className="flex w-1/4 gap-1 p-2">
               <button
@@ -194,7 +194,7 @@ const UserDetailsModal = ({
   return (
     <div
       dir="ltr"
-      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
     >
       <div className="w-[700px] border-2 border-b-[#dfdfdf] border-l-[#808080] border-r-[#dfdfdf] border-t-[#808080] bg-[#c0c0c0] shadow-[2px_2px_0px_0px_#000000]">
         {/* Modal Title Bar */}
@@ -267,28 +267,30 @@ const ResultsTable = ({ users, isLoading }) => {
   const [premiumDays, setPremiumDays] = useState(30);
   const [userPages, setUserPages] = useState([]);
   const [userTransactions, setUserTransactions] = useState([]);
-  const [isPending, startTransition] = useTransition();
+  const [isPendingSubscription, startTransitionSubscription] = useTransition();
+  const [isPendingPages, startTransitionPages] = useTransition();
+  const [isPendingTransactions, startTransitionTransactions] = useTransition();
 
   // Mock data functions
   const fetchUserPages = (userId) => {
     return [
       {
         id: 1,
-        name: "صفحه اصلی",
+        title: "صفحه اصلی",
         url: "/home",
         createdAt: "1402/05/15",
         visits: 1243,
       },
       {
         id: 2,
-        name: "وبلاگ",
+        title: "وبلاگ",
         url: "/blog",
         createdAt: "1402/06/22",
         visits: 567,
       },
       {
         id: 3,
-        name: "گالری",
+        title: "گالری",
         url: "/gallery",
         createdAt: "1402/07/10",
         visits: 892,
@@ -330,7 +332,7 @@ const ResultsTable = ({ users, isLoading }) => {
   };
 
   const handleAddPremium = (user, subscriptionPlan, days) => {
-    startTransition(async () => {
+    startTransitionSubscription(async () => {
       await updateUserSubscription({ userId: user.id, subscriptionPlan, days });
     });
   };
@@ -401,7 +403,7 @@ const ResultsTable = ({ users, isLoading }) => {
           onAddPremium={handleAddPremium}
           onBanUser={handleBanUser}
           onPageAction={handlePageAction}
-          updatingUserSubscription={isPending}
+          updatingUserSubscription={isPendingSubscription}
         />
       )}
     </>

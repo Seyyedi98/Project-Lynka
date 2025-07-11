@@ -63,14 +63,14 @@ export const updateUserSubscription = async ({
 
   let startingDate;
 
-  if (user.subscriptionPlan !== "bronze") {
-    startingDate = user.subscriptionExpire;
-  } else {
+  if (user.subscriptionExpire && user.subscriptionExpire < new Date()) {
     startingDate = new Date();
+  } else {
+    startingDate = user.subscriptionExpire;
   }
 
   const date = new Date(startingDate);
-  date.setDate(date.getDate() + days);
+  date.setDate(date.getDate() + Number(days));
 
   // updateSubscriptionData({ subscriptionPlan: "silver", days: 30 });
 
