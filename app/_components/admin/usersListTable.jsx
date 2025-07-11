@@ -3,6 +3,7 @@ import { updateUserSubscription } from "@/actions/admin/user-management";
 import { getUserPagesByUserId } from "@/actions/page/page";
 import { getUserTransactionsByUserId } from "@/actions/transactions/transactionsList";
 import { useState, useTransition } from "react";
+import AdminSendMessageModal from "./adminSendMessage";
 
 const TabButton = ({ active, onClick, children }) => {
   return (
@@ -221,7 +222,7 @@ const UserDetailsModal = ({
   return (
     <div
       dir="ltr"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      className="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50"
     >
       <div className="w-[700px] border-2 border-b-[#dfdfdf] border-l-[#808080] border-r-[#dfdfdf] border-t-[#808080] bg-[#c0c0c0] shadow-[2px_2px_0px_0px_#000000]">
         {/* Modal Title Bar */}
@@ -289,6 +290,7 @@ const UserDetailsModal = ({
 const ResultsTable = ({ users, isLoading }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [showUserDetails, setShowUserDetails] = useState(false);
+  const [showSendMessage, setShowSendMessage] = useState(false);
   const [premiumDays, setPremiumDays] = useState(30);
   const [userPages, setUserPages] = useState([]);
   const [userTransactions, setUserTransactions] = useState([]);
@@ -360,12 +362,20 @@ const ResultsTable = ({ users, isLoading }) => {
               {user.subscriptionPlan === "silver" ? "✅" : "❌"}
             </div>
             <div className="w-1/6 p-2">
-              <button
-                className="border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-2 text-sm shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000]"
-                onClick={() => handleDetailsClick(user)}
-              >
-                جزئیات
-              </button>
+              <div className="flex gap-1">
+                <button
+                  className="border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-2 text-sm shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000]"
+                  onClick={() => handleDetailsClick(user)}
+                >
+                  Details
+                </button>
+                <button
+                  className="border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-2 text-sm shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000]"
+                  onClick={() => setShowSendMessage(true)}
+                >
+                  SendMessage
+                </button>
+              </div>
             </div>
           </div>
         ))}
@@ -383,6 +393,13 @@ const ResultsTable = ({ users, isLoading }) => {
           onAddPremium={handleAddPremium}
           onBanUser={handleBanUser}
           updatingUserSubscription={isPendingSubscription}
+        />
+      )}
+
+      {showSendMessage && selectedUser && (
+        <AdminSendMessageModal
+          user={selectedUser}
+          onClose={() => setShowSendMessage(false)}
         />
       )}
     </>

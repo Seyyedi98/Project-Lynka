@@ -1,12 +1,12 @@
-import { motion } from "framer-motion";
-import { Bell, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import NotificationCard from "@/app/_components/common/card/notification-card";
+import { Button } from "@/components/ui/button";
 import {
   fade,
   loadingFade,
   notificationItem,
 } from "@/utils/animation/animation";
+import { motion } from "framer-motion";
+import { Bell, Loader2 } from "lucide-react";
 
 export default function NotificationList({
   notifications,

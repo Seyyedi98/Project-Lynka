@@ -169,10 +169,10 @@ model Notification {
   actionText String?   @default("")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // @@index([userId, isRead])
+  // @@index([createdAt])
 
   @@index([userId])
-  @@index([userId, isRead])
-  @@index([createdAt])
 }
 
 model PageReports {

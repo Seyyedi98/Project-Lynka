@@ -1,11 +1,3 @@
-import { AnimatePresence, motion } from "framer-motion";
-import {
-  ArrowLeft,
-  Bell,
-  CheckCircle2,
-  ChevronRight,
-  Circle,
-} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   contentFade,
@@ -14,6 +6,14 @@ import {
   mobileDetail,
   staggeredFade,
 } from "@/utils/animation/animation";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ArrowLeft,
+  Bell,
+  CheckCircle2,
+  ChevronRight,
+  Circle,
+} from "lucide-react";
 
 export default function NotificationDetail({
   selectedNotification,
@@ -144,6 +144,7 @@ export default function NotificationDetail({
                   <Button variant="default" asChild className="w-full">
                     <a
                       href={selectedNotification.actionUrl}
+                      target="_blank"
                       className="inline-flex items-center justify-center gap-2"
                     >
                       {selectedNotification.actionText || "مشاهده"}

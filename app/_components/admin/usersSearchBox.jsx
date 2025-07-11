@@ -14,7 +14,7 @@ const SearchBox = ({
       <input
         type="text"
         className="h-8 flex-1 border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] px-2 outline-none"
-        placeholder="عبارت جستجو..."
+        placeholder="Start typing..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
@@ -37,7 +37,7 @@ const SearchBox = ({
         onClick={handleSearch}
         disabled={isLoading}
       >
-        {isLoading ? "در حال جستجو..." : "جستجو"}
+        {isLoading ? "Searching" : "Search"}
       </button>
     </div>
   );
