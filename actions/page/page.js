@@ -90,6 +90,15 @@ export const getUserPages = async () => {
   return data.page;
 };
 
+export const getUserPagesByUserId = async (userId) => {
+  const data = await prisma.user.findUnique({
+    where: { id: userId },
+    include: { page: true },
+  });
+
+  return data.page;
+};
+
 export const getUserPageData = async () => {
   const user = await currentUser();
   if (!user) return;

@@ -25,3 +25,20 @@ export const getTransactions = async () => {
     return [];
   }
 };
+
+export const getUserTransactionsByUserId = async (userId) => {
+  try {
+    const transactions = await prisma.transactions.findMany({
+      where: {
+        userId: userId,
+      },
+      orderBy: {
+        requestDate: "desc",
+      },
+    });
+    return transactions;
+  } catch (error) {
+    console.error("Error fetching transactions:", error);
+    return [];
+  }
+};

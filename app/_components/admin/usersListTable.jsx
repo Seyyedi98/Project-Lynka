@@ -1,4 +1,7 @@
+import { removePageByUri } from "@/actions/admin/page-management";
 import { updateUserSubscription } from "@/actions/admin/user-management";
+import { getUserPagesByUserId } from "@/actions/page/page";
+import { getUserTransactionsByUserId } from "@/actions/transactions/transactionsList";
 import { useState, useTransition } from "react";
 
 const TabButton = ({ active, onClick, children }) => {
@@ -94,7 +97,8 @@ const UserDetailsTab = ({
   );
 };
 
-const UserPagesTab = ({ pages, onPageAction }) => {
+const UserPagesTab = ({ pages }) => {
+  const [isPendingDeletePage, startsTransitionDeletePage] = useTransition();
   return (
     <div>
       <div className="mb-4 flex items-center justify-between">
@@ -104,34 +108,40 @@ const UserPagesTab = ({ pages, onPageAction }) => {
       <div className="border-2 border-b-[#000000] border-l-[#dfdfdf] border-r-[#000000] border-t-[#dfdfdf]">
         <div className="flex bg-[#000080] text-white">
           <div className="w-1/4 p-2">Title</div>
-          <div className="w-1/4 p-2">Address</div>
           <div className="w-1/4 p-2">Actions</div>
         </div>
         {pages.map((page) => (
           <div
-            key={page.id}
+            key={page.uri}
             className="flex border-t border-t-[#808080] hover:bg-[#e0e0e0]"
           >
-            <div className="w-1/4 p-2">{page.title}</div>
-            <div className="w-1/4 p-2">{page.url}</div>
+            <div className="w-1/4 p-2">{page.uri}</div>
             <div className="flex w-1/4 gap-1 p-2">
               <button
                 className="border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-2 text-xs shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000]"
-                onClick={() => onPageAction(page.id, "ban")}
+                onClick={() => {}}
               >
-                مسدود
+                Ban
               </button>
               <button
                 className="border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-2 text-xs shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000]"
-                onClick={() => onPageAction(page.id, "delete")}
+                onClick={() =>
+                  startsTransitionDeletePage(() => removePageByUri(page.uri))
+                }
+                disabled={isPendingDeletePage}
               >
-                حذف
+                Delete
               </button>
               <button
                 className="border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-2 text-xs shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000]"
-                onClick={() => onPageAction(page.id, "view")}
+                onClick={() =>
+                  window.open(
+                    `${process.env.NEXT_PUBLIC_APP_URL}/${page.uri}`,
+                    "_blank",
+                  )
+                }
               >
-                مشاهده
+                Preview
               </button>
             </div>
           </div>
@@ -145,34 +155,52 @@ const UserTransactionsTab = ({ transactions }) => {
   return (
     <div>
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="font-bold">تاریخچه تراکنش‌ها</h3>
-        <span className="text-sm">تعداد: {transactions.length}</span>
+        <h3 className="font-bold">Transactions History</h3>
+        <span className="text-sm">Count: {transactions.length}</span>
       </div>
-      <div className="border-2 border-b-[#000000] border-l-[#dfdfdf] border-r-[#000000] border-t-[#dfdfdf]">
-        <div className="flex bg-[#000080] text-white">
-          <div className="w-1/4 p-2">مبلغ</div>
-          <div className="w-1/4 p-2">نوع</div>
-          <div className="w-1/4 p-2">تاریخ</div>
-          <div className="w-1/4 p-2">وضعیت</div>
+
+      {transactions.length === 0 ? (
+        <div className="border-2 border-b-[#000000] border-l-[#dfdfdf] border-r-[#000000] border-t-[#dfdfdf] p-4 text-center">
+          No Transactions
         </div>
-        {transactions.map((transaction) => (
-          <div
-            key={transaction.id}
-            className="flex border-t border-t-[#808080] hover:bg-[#e0e0e0]"
-          >
-            <div className="w-1/4 p-2">{transaction.amount}</div>
-            <div className="w-1/4 p-2">{transaction.type}</div>
-            <div className="w-1/4 p-2">{transaction.date}</div>
-            <div className="w-1/4 p-2">
-              <span
-                className={`${transaction.status === "موفق" ? "text-green-600" : "text-red-600"}`}
-              >
-                {transaction.status}
-              </span>
-            </div>
+      ) : (
+        <div className="border-2 border-b-[#000000] border-l-[#dfdfdf] border-r-[#000000] border-t-[#dfdfdf]">
+          <div className="flex bg-[#000080] text-white">
+            <div className="w-1/4 p-2">Price</div>
+            <div className="w-1/4 p-2">duration</div>
+            <div className="w-1/4 p-2">Request Date</div>
+            <div className="w-1/4 p-2">وضعیت</div>
           </div>
-        ))}
-      </div>
+          {transactions.map((transaction) => (
+            <div
+              key={transaction.id}
+              className="flex border-t border-t-[#808080] hover:bg-[#e0e0e0]"
+            >
+              <div className="w-1/4 p-2">{transaction.amount}</div>
+              <div className="w-1/4 p-2">
+                {transaction.duration}
+                {" Months"}
+              </div>
+              <div className="w-1/4 p-2">
+                {transaction.requestDate.toLocaleDateString("fa-IR")}
+              </div>
+              <div className="w-1/4 p-2">
+                <span
+                  className={` ${
+                    transaction.status === "completed"
+                      ? "text-green-600"
+                      : transaction.status === "pending"
+                        ? "text-cyan-500"
+                        : "text-red-600"
+                  } `}
+                >
+                  {transaction.status}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
@@ -186,7 +214,6 @@ const UserDetailsModal = ({
   setPremiumDays,
   onAddPremium,
   onBanUser,
-  onPageAction,
   updatingUserSubscription,
 }) => {
   const [activeTab, setActiveTab] = useState("details");
@@ -239,9 +266,7 @@ const UserDetailsModal = ({
               updatingUserSubscription={updatingUserSubscription}
             />
           )}
-          {activeTab === "pages" && (
-            <UserPagesTab pages={pages} onPageAction={onPageAction} />
-          )}
+          {activeTab === "pages" && <UserPagesTab pages={pages} />}
           {activeTab === "transactions" && (
             <UserTransactionsTab transactions={transactions} />
           )}
@@ -271,63 +296,24 @@ const ResultsTable = ({ users, isLoading }) => {
   const [isPendingPages, startTransitionPages] = useTransition();
   const [isPendingTransactions, startTransitionTransactions] = useTransition();
 
-  // Mock data functions
   const fetchUserPages = (userId) => {
-    return [
-      {
-        id: 1,
-        title: "صفحه اصلی",
-        url: "/home",
-        createdAt: "1402/05/15",
-        visits: 1243,
-      },
-      {
-        id: 2,
-        title: "وبلاگ",
-        url: "/blog",
-        createdAt: "1402/06/22",
-        visits: 567,
-      },
-      {
-        id: 3,
-        title: "گالری",
-        url: "/gallery",
-        createdAt: "1402/07/10",
-        visits: 892,
-      },
-    ];
+    startTransitionPages(async () => {
+      const pages = await getUserPagesByUserId(userId);
+      setUserPages(pages);
+    });
   };
 
   const fetchUserTransactions = (userId) => {
-    return [
-      {
-        id: 1,
-        amount: "50,000 تومان",
-        type: "شارژ حساب",
-        date: "1402/06/05",
-        status: "موفق",
-      },
-      {
-        id: 2,
-        amount: "150,000 تومان",
-        type: "خرید اشتراک",
-        date: "1402/05/20",
-        status: "موفق",
-      },
-      {
-        id: 3,
-        amount: "25,000 تومان",
-        type: "شارژ حساب",
-        date: "1402/04/12",
-        status: "ناموفق",
-      },
-    ];
+    startTransitionTransactions(async () => {
+      const transactions = await getUserTransactionsByUserId(userId);
+      setUserTransactions(transactions);
+    });
   };
 
   const handleDetailsClick = (user) => {
     setSelectedUser(user);
-    setUserPages(fetchUserPages(user.id));
-    setUserTransactions(fetchUserTransactions(user.id));
+    fetchUserPages(user.id);
+    fetchUserTransactions(user.id);
     setShowUserDetails(true);
   };
 
@@ -341,17 +327,11 @@ const ResultsTable = ({ users, isLoading }) => {
     alert(`User ${selectedUser.name} banned`);
   };
 
-  const handlePageAction = (pageId, action) => {
-    alert(`${action} page ${pageId}`);
-  };
-
   if (isLoading) return null;
 
-  if (users.length === 0) {
+  if (users.length === 0 || !users) {
     return (
-      <div className="flex justify-center p-4 text-gray-600">
-        کاربری یافت نشد
-      </div>
+      <div className="flex justify-center p-4 text-gray-600">No Users</div>
     );
   }
 
@@ -361,10 +341,10 @@ const ResultsTable = ({ users, isLoading }) => {
         {/* Main Table Header */}
         <div className="flex bg-[#000080] text-white">
           <div className="w-1/6 p-2">Username</div>
-          <div className="w-1/6 p-2">ایمیل</div>
-          <div className="w-1/6 p-2">شماره موبایل</div>
-          <div className="w-1/6 p-2">حساب ویژه</div>
-          <div className="w-1/6 p-2">عملیات</div>
+          <div className="w-1/6 p-2">Email</div>
+          <div className="w-1/6 p-2">Phone Number</div>
+          <div className="w-1/6 p-2">Has Premium</div>
+          <div className="w-1/6 p-2">Actions</div>
         </div>
 
         {/* Main Table Rows */}
@@ -402,7 +382,6 @@ const ResultsTable = ({ users, isLoading }) => {
           setPremiumDays={setPremiumDays}
           onAddPremium={handleAddPremium}
           onBanUser={handleBanUser}
-          onPageAction={handlePageAction}
           updatingUserSubscription={isPendingSubscription}
         />
       )}
