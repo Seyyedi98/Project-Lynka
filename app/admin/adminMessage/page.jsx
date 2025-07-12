@@ -1,10 +1,24 @@
 "use client";
 
-import { getContactMessages } from "@/actions/contact-us";
+import { getContactMessages, deleteContactMessage } from "@/actions/contact-us";
 import React, { useState, useEffect } from "react";
 
 // Modal component
-const MessageModal = ({ message, onClose }) => {
+const MessageModal = ({ message, onClose, onDelete }) => {
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      await onDelete(message.id);
+      onClose();
+    } catch (error) {
+      console.error("Failed to delete message:", error);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <div
       dir="ltr"
@@ -29,7 +43,14 @@ const MessageModal = ({ message, onClose }) => {
           <div dir="rtl" className="mb-4 border-t border-gray-300 pt-2">
             <p className="whitespace-pre-wrap">{message.message}</p>
           </div>
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-2">
+            <button
+              className="h-8 border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-4 font-medium shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000] disabled:opacity-50"
+              onClick={handleDelete}
+              disabled={isDeleting}
+            >
+              {isDeleting ? "Deleting..." : "Delete"}
+            </button>
             <button
               className="h-8 border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-4 font-medium shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000]"
               onClick={onClose}
@@ -86,6 +107,21 @@ const AdminMessages = () => {
 
   const closeMessageModal = () => {
     setSelectedMessage(null);
+  };
+
+  const handleDeleteMessage = async (messageId) => {
+    try {
+      await deleteContactMessage(messageId);
+      // Remove the deleted message from the local state
+      setMessages(messages.filter((msg) => msg.id !== messageId));
+      // If we're on the last page and it's now empty, go to previous page
+      if (messages.length === 1 && currentPage > 1) {
+        setCurrentPage(currentPage - 1);
+      }
+    } catch (error) {
+      console.error("Failed to delete message:", error);
+      throw error;
+    }
   };
 
   return (
@@ -179,7 +215,11 @@ const AdminMessages = () => {
 
       {/* Message Modal */}
       {selectedMessage && (
-        <MessageModal message={selectedMessage} onClose={closeMessageModal} />
+        <MessageModal
+          message={selectedMessage}
+          onClose={closeMessageModal}
+          onDelete={handleDeleteMessage}
+        />
       )}
     </div>
   );

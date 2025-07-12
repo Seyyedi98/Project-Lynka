@@ -37,3 +37,15 @@ export async function getContactMessages(page = 1, perPage = 12) {
     throw error;
   }
 }
+
+export async function deleteContactMessage(messageId) {
+  try {
+    await prisma.contactUsMessages.delete({
+      where: { id: messageId },
+    });
+    return { success: true };
+  } catch (error) {
+    console.error("Error deleting message:", error);
+    throw error;
+  }
+}
