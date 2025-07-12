@@ -1,152 +1,185 @@
 "use client";
 
-import { createNotification } from "@/actions/notifications";
-import React, { useState } from "react";
+import { getContactMessages } from "@/actions/contact-us";
+import React, { useState, useEffect } from "react";
+
+// Modal component
+const MessageModal = ({ message, onClose }) => {
+  return (
+    <div
+      dir="ltr"
+      className="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50"
+    >
+      <div className="w-80 border-2 border-b-[#dfdfdf] border-l-[#808080] border-r-[#dfdfdf] border-t-[#808080] bg-[#c0c0c0] shadow-[2px_2px_0px_0px_#000000]">
+        <div className="flex h-6 items-center justify-between bg-gradient-to-r from-[#000080] to-[#1084d0] px-2 text-white">
+          <span className="text-sm">User Message</span>
+          <button className="font-bold text-white" onClick={onClose}>
+            ×
+          </button>
+        </div>
+
+        <div className="border-2 border-b-[#ffffff] border-l-[#808080] border-r-[#ffffff] border-t-[#808080] bg-white p-4">
+          <div className="mb-4">
+            <h3 className="font-bold">{message.title}</h3>
+            <p className="text-xs text-gray-500">User ID: {message.userId}</p>
+            <p className="text-xs text-gray-500">
+              {new Date(message.createdAt).toLocaleString("En-ir")}
+            </p>
+          </div>
+          <div dir="rtl" className="mb-4 border-t border-gray-300 pt-2">
+            <p className="whitespace-pre-wrap">{message.message}</p>
+          </div>
+          <div className="flex justify-end">
+            <button
+              className="h-8 border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-4 font-medium shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000]"
+              onClick={onClose}
+            >
+              بستن
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const AdminMessages = () => {
-  const [userId, setUserId] = useState("");
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [actionText, setActionText] = useState("");
-  const [actionUrl, setActionUrl] = useState("");
-  const [isSending, setIsSending] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedMessage, setSelectedMessage] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSending(true);
-
+  const fetchMessages = async (page = 1) => {
+    setIsLoading(true);
     try {
-      await createNotification(userId, {
-        type: "system",
-        title,
-        body,
-        actionUrl,
-        actionText,
-      });
-      setShowSuccess(true);
-      // Clear form
-      setUserId("");
-      setTitle("");
-      setBody("");
-      setActionText("");
-      setActionUrl("");
+      const { messages: fetchedMessages, totalPages: pages } =
+        await getContactMessages(page);
+      setMessages(fetchedMessages);
+      setTotalPages(pages);
     } catch (error) {
-      console.error("Failed to send message:", error);
+      console.error("Failed to fetch messages:", error);
     } finally {
-      setIsSending(false);
+      setIsLoading(false);
     }
   };
 
-  return (
-    <div className="mr-16 p-2 md:mr-64">
-      <div className="border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] shadow-[inset_1px_1px_0px_0px_#000000]">
-        {/* Window Title */}
-        <div className="flex h-6 items-center bg-gradient-to-r from-[#000080] to-[#1084d0] px-2 text-white">
-          <span className="text-sm">مدیریت پیام‌ها</span>
-        </div>
+  useEffect(() => {
+    fetchMessages(currentPage);
+  }, [currentPage]);
 
-        {/* Content */}
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const openMessageModal = (message) => {
+    setSelectedMessage(message);
+  };
+
+  const closeMessageModal = () => {
+    setSelectedMessage(null);
+  };
+
+  return (
+    <div dir="ltr" className="mr-16 p-2 md:mr-64">
+      <div className="border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] shadow-[inset_1px_1px_0px_0px_#000000]">
+        {/* Title */}
+        <div className="flex h-6 items-center bg-gradient-to-r from-[#000080] to-[#1084d0] px-2 text-white">
+          <span className="text-sm">Reports</span>
+        </div>
         <div className="p-4">
           <div className="mb-6">
-            <h1 className="text-xl font-bold">ارسال پیام سیستم</h1>
-            <p className="text-gray-600">پیام‌های ارسالی به کاربران</p>
+            <h1 className="text-xl font-bold">Messages</h1>
+            <p className="text-gray-600">Messages users sent</p>
           </div>
 
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label className="mb-1 block">User ID:</label>
-              <input
-                type="text"
-                className="w-full border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-white p-2 outline-none"
-                value={userId}
-                onChange={(e) => setUserId(e.target.value)}
-                required
-              />
+          {isLoading ? (
+            <div className="flex justify-center p-8">
+              <p>Loading...</p>
             </div>
-
-            <div className="mb-4">
-              <label className="mb-1 block">عنوان پیام:</label>
-              <input
-                type="text"
-                className="w-full border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-white p-2 outline-none"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
+          ) : messages.length === 0 ? (
+            <div className="flex justify-center p-8">
+              <p>No Reports found!</p>
             </div>
+          ) : (
+            <>
+              <div className="border-2 border-b-[#000000] border-l-[#dfdfdf] border-r-[#000000] border-t-[#dfdfdf]">
+                {/* Main Table Header */}
+                <div className="flex bg-[#000080] text-white">
+                  <div className="w-1/4 p-2">Title</div>
+                  <div className="w-1/4 p-2">UID</div>
+                  <div className="w-1/4 p-2">Date</div>
+                  <div className="w-1/4 p-2">Actions</div>
+                </div>
 
-            <div className="mb-4">
-              <label className="mb-1 block">متن پیام:</label>
-              <textarea
-                className="w-full border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-white p-2 outline-none"
-                rows="5"
-                value={body}
-                onChange={(e) => setBody(e.target.value)}
-                required
-              />
-            </div>
+                {/* Main Table Rows */}
+                {messages.map((message) => (
+                  <div
+                    key={message.id}
+                    className="flex border-t border-t-[#808080] hover:bg-[#e0e0e0]"
+                  >
+                    <div className="w-1/4 p-2">{message.title || "-"}</div>
+                    <div
+                      className="w-1/4 cursor-pointer p-2 text-sm hover:underline"
+                      onClick={() => {
+                        navigator.clipboard.writeText(message.userId);
+                      }}
+                      title="Click to copy User ID"
+                    >
+                      {message.userId || "-"}
+                    </div>
+                    <div className="w-1/4 p-2 text-sm">
+                      {new Date(message.createdAt).toLocaleDateString("Fa-ir")}
+                    </div>
+                    <div className="w-1/4 p-2">
+                      <div className="flex gap-1">
+                        <button
+                          className="border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-2 text-sm shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000]"
+                          onClick={() => openMessageModal(message)}
+                        >
+                          View
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-            <div className="mb-4">
-              <label className="mb-1 block">متن دکمه اقدام (اختیاری):</label>
-              <input
-                type="text"
-                className="w-full border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-white p-2 outline-none"
-                value={actionText}
-                onChange={(e) => setActionText(e.target.value)}
-              />
-            </div>
-
-            <div className="mb-6">
-              <label className="mb-1 block">لینک اقدام (اختیاری):</label>
-              <input
-                type="text"
-                className="w-full border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-white p-2 outline-none"
-                value={actionUrl}
-                onChange={(e) => setActionUrl(e.target.value)}
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="h-8 border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-4 font-medium shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000]"
-              disabled={isSending}
-            >
-              {isSending ? "در حال ارسال..." : "ارسال پیام"}
-            </button>
-          </form>
+              <div className="mt-4 flex items-center justify-between">
+                <button
+                  className="h-8 border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-4 font-medium shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000] disabled:opacity-50"
+                  onClick={handlePrevPage}
+                  disabled={currentPage === 1}
+                >
+                  قبلی
+                </button>
+                <span>
+                  صفحه {currentPage} از {totalPages}
+                </span>
+                <button
+                  className="h-8 border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-4 font-medium shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000] disabled:opacity-50"
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                >
+                  بعدی
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
 
-      {/* Success Dialog */}
-      {showSuccess && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="w-80 border-2 border-b-[#dfdfdf] border-l-[#808080] border-r-[#dfdfdf] border-t-[#808080] bg-[#c0c0c0] shadow-[2px_2px_0px_0px_#000000]">
-            {/* Dialog Title Bar */}
-            <div className="flex h-6 items-center justify-between bg-gradient-to-r from-[#000080] to-[#1084d0] px-2 text-white">
-              <span className="text-sm">پیام ارسال شد</span>
-              <button
-                className="font-bold text-white"
-                onClick={() => setShowSuccess(false)}
-              >
-                ×
-              </button>
-            </div>
-
-            {/* Dialog Content */}
-            <div className="border-2 border-b-[#ffffff] border-l-[#808080] border-r-[#ffffff] border-t-[#808080] bg-white p-4">
-              <p className="mb-4">پیام شما با موفقیت ارسال شد.</p>
-              <div className="flex justify-end">
-                <button
-                  className="h-8 border-2 border-b-[#808080] border-l-[#dfdfdf] border-r-[#808080] border-t-[#dfdfdf] bg-[#c0c0c0] px-4 font-medium shadow-[1px_1px_0px_0px_#000000] active:shadow-[inset_1px_1px_0px_0px_#000000]"
-                  onClick={() => setShowSuccess(false)}
-                >
-                  تایید
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Message Modal */}
+      {selectedMessage && (
+        <MessageModal message={selectedMessage} onClose={closeMessageModal} />
       )}
     </div>
   );

@@ -1,5 +1,6 @@
 import NavItem from "@/app/_components/admin/adminNavItem";
 import { currentUser } from "@/lib/auth/get-user";
+import { ReplyIcon } from "lucide-react";
 import {
   FaBlog,
   FaChartLine,
@@ -35,6 +36,9 @@ const layout = ({ children }) => {
             </NavItem>
             <NavItem target="adminMessage" icon={<FaEnvelope />}>
               Messages
+            </NavItem>
+            <NavItem target="reports" icon={<ReplyIcon />}>
+              Reports
             </NavItem>
             <NavItem target="blogManagement" icon={<FaBlog />}>
               Blog
