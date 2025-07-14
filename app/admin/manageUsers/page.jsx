@@ -7,8 +7,6 @@ import React, { useState } from "react";
 
 // Main Component
 const ManageUsers = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchType, setSearchType] = useState("uri");
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,7 +18,7 @@ const ManageUsers = () => {
     { value: "name", label: "Username" },
   ];
 
-  const handleSearch = async () => {
+  const handleSearch = async (searchType, searchTerm) => {
     if (!searchTerm.trim()) return;
 
     setIsLoading(true);
@@ -32,6 +30,10 @@ const ManageUsers = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleReset = () => {
+    setUsers([]);
   };
 
   const fetchUsers = async (type, term) => {
@@ -55,13 +57,12 @@ const ManageUsers = () => {
           </div>
 
           <SearchBox
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            searchType={searchType}
-            setSearchType={setSearchType}
-            handleSearch={handleSearch}
-            isLoading={isLoading}
             searchTypes={searchTypes}
+            defaultSearchType="uri"
+            placeholder="Search users..."
+            onSearch={handleSearch}
+            onReset={handleReset}
+            isLoading={isLoading}
           />
 
           <ResultsTable users={users} isLoading={isLoading} />

@@ -5,6 +5,7 @@ import {
   FaBlog,
   FaChartLine,
   FaEnvelope,
+  FaMoneyBill,
   FaSearch,
   FaUsers,
 } from "react-icons/fa";
@@ -43,8 +44,8 @@ const layout = ({ children }) => {
             <NavItem target="blogManagement" icon={<FaBlog />}>
               Blog
             </NavItem>
-            <NavItem target="adminAnalytics" icon={<FaChartLine />}>
-              آمارها
+            <NavItem target="adminTransactions" icon={<FaMoneyBill />}>
+              Transactions
             </NavItem>
             <NavItem target="adminSettings" icon={<MdSettings />}>
               تنظیمات

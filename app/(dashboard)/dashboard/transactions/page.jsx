@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { getTransactions } from "@/actions/transactions/transactionsList";
+import { getUserTransactions } from "@/actions/transactions/transactionsList";
 
 export default function TransactionsPage() {
   const [transactions, setTransactions] = useState([]);
@@ -19,7 +19,7 @@ export default function TransactionsPage() {
 
   const fetchTransactions = async () => {
     try {
-      const data = await getTransactions();
+      const data = await getUserTransactions();
       setTransactions(data);
     } catch (error) {
       console.error("Failed to fetch transactions:", error);
