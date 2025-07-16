@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import { PageUriSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronLeft, Lock, Sparkles } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
@@ -256,7 +256,10 @@ const CreateNewPage = ({ allPages }) => {
               : "برای دسترسی به امکان ساخت صفحات بیشتر، می‌ توانید حساب خود را ارتقا دهید."}
           </p>
           {!isPremium && (
-            <Button className="mt-4 bg-gradient-to-r from-primary to-secondary">
+            <Button
+              onClick={() => redirect("/dashboard/pricing")}
+              className="mt-4 bg-gradient-to-r from-primary to-secondary"
+            >
               خرید اشتراک ویژه
             </Button>
           )}

@@ -6,6 +6,7 @@ import Carousel from "@/app/_components/common/carousel";
 import PagesList from "@/app/_components/section/dashboard-pages-list";
 import { currentUserSubscription } from "@/lib/auth/user-subscription";
 import { ApertureIcon, BadgeCheck, ChartSpline, SheetIcon } from "lucide-react";
+import Link from "next/link";
 
 const Dashboard = async () => {
   const allPages = await getUserPageData();
@@ -76,6 +77,14 @@ const Dashboard = async () => {
             </DashboardDataCard>
           </div>
         </div>
+
+        {subscriptionPlan && subscriptionDaysLeft === 0 && (
+          <Link className="col-span-2" href="/dashboard/pricing">
+            <div className="flex h-12 w-full cursor-pointer items-center justify-center rounded-md bg-[#ec407a] text-lg text-white">
+              خرید اشتراک پرمیوم
+            </div>
+          </Link>
+        )}
 
         {/* Pages List */}
         <div className="z-[2] col-span-full h-fit rounded-lg bg-card/50 backdrop-blur-lg">

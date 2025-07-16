@@ -47,24 +47,26 @@ export default function PurchaseForm({ plan, duration, price }) {
         mobile,
       );
 
-      if (!transactionRes.ok) throw new Error("خطا در ایجاد تراکنش");
+      console.log(transactionRes);
 
-      const transaction = await transactionRes.json();
+      if (!transactionRes.success) throw new Error("خطا در ایجاد تراکنش");
+
+      // const transaction = await transactionRes.json();
 
       // Now create payment with Zibal
-      const paymentRes = await fetch("/api/payment", {
-        method: "POST",
-        body: JSON.stringify({
-          amount: price,
-          transactionId: transaction.id,
-          callbackUrl: `${window.location.origin}/purchase/verify`, // verification endpoint
-        }),
-      });
+      // const paymentRes = await fetch("/api/payment", {
+      //   method: "POST",
+      //   body: JSON.stringify({
+      //     amount: price,
+      //     transactionId: transaction.id,
+      //     callbackUrl: `${window.location.origin}/purchase/verify`, // verification endpoint
+      //   }),
+      // });
 
-      if (!paymentRes.ok) throw new Error("خطا در اتصال به درگاه پرداخت");
+      // if (!paymentRes.ok) throw new Error("خطا در اتصال به درگاه پرداخت");
 
-      const { paymentUrl } = await paymentRes.json();
-      window.location.href = paymentUrl; // Redirect to Zibal payment page
+      // const { paymentUrl } = await paymentRes.json();
+      // window.location.href = paymentUrl; // Redirect to Zibal payment page
     } catch (error) {
       setErrors({ submit: error.message });
       setIsSubmitting(false);

@@ -106,6 +106,23 @@ const AnalyticsPanel = () => {
   if (!isPremium) {
     return (
       <div className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8">
+        <div className="mb-8 sm:mx-4 sm:mr-20 xl:pr-6">
+          <motion.h1
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-3xl font-bold text-white md:text-4xl"
+          >
+            آمار و تحلیل‌ها
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="mt-4 text-white"
+          >
+            مشاهده و تحلیل آمار کلیک‌های صفحات{" "}
+          </motion.p>
+        </div>
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <div className="mb-4 rounded-full bg-muted/20 p-4">
             <svg

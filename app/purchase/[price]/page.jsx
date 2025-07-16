@@ -18,12 +18,12 @@ const getPrice = (plan, duration) => {
       case "6":
         return basePrice * 6 * 0.85;
       default:
-        return basePrice * 3;
+        return basePrice * 999999999999;
     }
   };
 
   const months = parseInt(duration);
-  if (isNaN(months)) throw new Error("مدت زمان باید عدد باشد");
+  if (isNaN(months)) throw new Error("مدت زمان معتبر نیست");
   if (!prices[plan]) throw new Error("پلن انتخاب شده معتبر نیست");
   return getPremiumPrice(prices[plan].price);
 };

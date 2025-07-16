@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CircleAlert } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { redirect } from "next/navigation";
 
 export default function BuyPremiumModal({
   modalSize = "lg",
@@ -57,7 +58,7 @@ export default function BuyPremiumModal({
                   </button>
                   <button
                     onClick={() => {
-                      router.push("/purchase/premium");
+                      redirect("/dashboard/pricing");
                       setBuyPremiumModalOpen(false);
                     }}
                     className="w-full rounded bg-white py-2 font-semibold text-indigo-600 transition-opacity hover:opacity-80"
