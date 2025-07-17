@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useUserSubscription } from "@/hooks/useUserSubscription";
 import { Loader2 } from "lucide-react";
+import { redirect } from "next/navigation";
 import { useTransition } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -186,7 +187,11 @@ const MetaSettingsForm = ({ uri, title, description }) => {
             <p className="text-destructive">
               برای استفاده از این قابلیت به اشتراک ویژه نیاز دارید
             </p>
-            <Button variant="outline" className="mt-3">
+            <Button
+              onClick={() => redirect("/dashboard/pricing")}
+              variant="outline"
+              className="mt-3"
+            >
               ارتقاء به نسخه ویژه
             </Button>
           </div>

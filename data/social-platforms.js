@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import {
   InstagramLogoIcon,
   LinkedInLogoIcon,
@@ -12,11 +13,23 @@ import {
   IconBrandWechat,
   IconBrandWhatsapp,
 } from "@tabler/icons-react";
-import { FacebookIcon, VibrateIcon, YoutubeIcon } from "lucide-react";
+import { FacebookIcon, YoutubeIcon } from "lucide-react";
+import {
+  FaDiscord,
+  FaFacebook,
+  FaFacebookMessenger,
+  FaGithub,
+  FaInstagram,
+  FaLine,
+  FaLinkedin,
+  FaSignal,
+  FaSkype,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
 
 const socialPlatforms = [
   {
-    name: "Telegram",
     icon: <IconBrandTelegram />,
     background: "#0088cc",
     value: "telegram",
@@ -26,30 +39,42 @@ const socialPlatforms = [
   {
     name: "WhatsApp",
     icon: <IconBrandWhatsapp />,
-    background: "#25D366",
+    background: "#25D326",
     value: "whatsapp",
     urlPrefix: "whatsapp://send?phone=",
     webPrefix: "https://wa.me/",
   },
   {
     name: "Bale",
-    icon: <IconBrandTelegram />, // You'll need to create or find this icon
-    background: "#2A5F8A",
+    icon: (
+      <img
+        src="/icons/socials/bale.svg"
+        alt="Bale"
+        style={{ width: "32px", height: "32px" }}
+      />
+    ),
+    background: "#e3e3e3",
     value: "bale",
     urlPrefix: "bale://",
     webPrefix: "https://bale.ai/",
   },
   {
     name: "Soroush",
-    icon: <IconBrandTelegram />, // You'll need to create or find this icon
-    background: "#5C45BA",
+    icon: (
+      <img
+        src="/icons/socials/soroush.svg"
+        alt="Bale"
+        style={{ width: "32px", height: "32px" }}
+      />
+    ),
+    background: "#2A5F8A",
     value: "soroush",
     urlPrefix: "soroush://",
     webPrefix: "https://splus.ir/",
   },
   {
     name: "Instagram",
-    icon: <InstagramLogoIcon />,
+    icon: <FaInstagram />,
     background: "#dc2743",
     // "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
     value: "instagram",
@@ -58,7 +83,7 @@ const socialPlatforms = [
   },
   {
     name: "Twitter",
-    icon: <TwitterLogoIcon />,
+    icon: <FaTwitter />,
     background: "#1DA1F2",
     value: "twitter",
     urlPrefix: "twitter://user?screen_name=",
@@ -66,7 +91,7 @@ const socialPlatforms = [
   },
   {
     name: "LinkedIn",
-    icon: <LinkedInLogoIcon />,
+    icon: <FaLinkedin />,
     background: "#0077b5",
     value: "linkedin",
     urlPrefix: "linkedin://profile/",
@@ -74,7 +99,7 @@ const socialPlatforms = [
   },
   {
     name: "Facebook",
-    icon: <FacebookIcon />,
+    icon: <FaFacebook />,
     background: "#1877f2",
     value: "facebook",
     urlPrefix: "fb://profile/",
@@ -82,7 +107,7 @@ const socialPlatforms = [
   },
   {
     name: "Facebook Messenger",
-    icon: <IconBrandMessenger />,
+    icon: <FaFacebookMessenger />,
     background: "#006AFF",
     value: "messenger",
     urlPrefix: "fb-messenger://user/",
@@ -90,7 +115,7 @@ const socialPlatforms = [
   },
   {
     name: "YouTube",
-    icon: <YoutubeIcon />,
+    icon: <FaYoutube />,
     background: "#ff0000",
     value: "youtube",
     urlPrefix: "vnd.youtube://channel/",
@@ -98,7 +123,7 @@ const socialPlatforms = [
   },
   {
     name: "Discord",
-    icon: <IconBrandDiscord />,
+    icon: <FaDiscord />,
     background: "#5865F2",
     value: "discord",
     urlPrefix: "discord://",
@@ -106,31 +131,16 @@ const socialPlatforms = [
   },
   {
     name: "Skype",
-    icon: <IconBrandTelegram />, // add icon
+    icon: <FaSkype />, // add icon
     background: "#00AFF0",
     value: "skype",
     urlPrefix: "skype:",
     webPrefix: "https://web.skype.com/",
   },
-  {
-    name: "Kik",
-    icon: <IconBrandTelegram />, // You'll need to create or find this icon
-    background: "#82CE23",
-    value: "kik",
-    urlPrefix: "kik://",
-    webPrefix: "https://www.kik.com/",
-  },
-  {
-    name: "Viber",
-    icon: <VibrateIcon />,
-    background: "#7360F2",
-    value: "viber",
-    urlPrefix: "viber://chat?number=",
-    webPrefix: "https://chats.viber.com/",
-  },
+
   {
     name: "Line",
-    icon: <IconBrandLine />,
+    icon: <FaLine />,
     background: "#00C300",
     value: "line",
     urlPrefix: "line://",
@@ -138,7 +148,7 @@ const socialPlatforms = [
   },
   {
     name: "Eitaa",
-    icon: <IconBrandTelegram />, // You'll need to create or find this icon
+    icon: <IconBrandTelegram />,
     background: "#00AEEF",
     value: "eitaa",
     urlPrefix: "eitaa://",
@@ -146,7 +156,7 @@ const socialPlatforms = [
   },
   {
     name: "Gap",
-    icon: <IconBrandTelegram />, // You'll need to create or find this icon
+    icon: <IconBrandTelegram />,
     background: "#00B0B9",
     value: "gap",
     urlPrefix: "gap://",
@@ -154,7 +164,7 @@ const socialPlatforms = [
   },
   {
     name: "Rubika",
-    icon: <IconBrandTelegram />, // You'll need to create or find this icon
+    icon: <IconBrandTelegram />,
     background: "#D72F4E",
     value: "rubika",
     urlPrefix: "rubika://",
@@ -162,7 +172,7 @@ const socialPlatforms = [
   },
   {
     name: "GitHub",
-    icon: <IconBrandGithub />,
+    icon: <FaGithub />,
     background: "#181717",
     value: "github",
     urlPrefix: "github://user/",
@@ -170,7 +180,7 @@ const socialPlatforms = [
   },
   {
     name: "Signal",
-    icon: <IconBrandTelegram />, // add icon later
+    icon: <FaSignal />, // add icon later
     background: "#2592E9",
     value: "signal",
     urlPrefix: "sgnl://",
