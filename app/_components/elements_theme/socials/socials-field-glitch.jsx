@@ -114,16 +114,13 @@ const SocialsFieldGaming = (props) => {
                   }
                   className={cn(
                     "social-glitch relative flex h-14 w-14 items-center justify-center rounded-lg p-2 transition-all duration-300",
-                    !isLive && "pointer-events-none opacity-50",
+                    !social.userId && "pointer-events-none opacity-50",
                   )}
                   style={{
                     color: platform.background,
                   }}
                 >
                   <span className="text-2xl">{platform.icon}</span>
-                  {isLive && (
-                    <span className="absolute -bottom-1 -right-1 h-3 w-3 animate-pulse rounded-full border-2 border-white bg-cyan-400" />
-                  )}
                 </motion.button>
               );
             })}

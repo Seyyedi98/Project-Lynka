@@ -39,7 +39,7 @@ const SocialsFieldMacOS = (props) => {
             افزودن شبکه‌های اجتماعی
           </motion.div>
         ) : (
-          <motion.div layout className="flex items-end gap-2">
+          <motion.div layout className="flex items-center justify-center">
             {socials?.map((social, index) => {
               const platform = socialPlatforms.find(
                 (p) => p.value === social.platform,
@@ -57,9 +57,11 @@ const SocialsFieldMacOS = (props) => {
                   onClick={() =>
                     handleSocialClick(social.platform, social.userId)
                   }
+                  disabled={!social.userId}
                   className={cn(
                     "rounded-2xl p-2 transition-all duration-300 ease-out",
                     "focus:outline-none",
+                    !social.userId && "opacity-40 grayscale",
                   )}
                   style={{
                     color: platform.background,

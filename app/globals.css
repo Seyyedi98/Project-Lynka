@@ -73,6 +73,10 @@ body {
     --font-shabnam: "Shabnam", sans-serif;
     --font-tanha: "Tanha", sans-serif;
     --font-vazir: "Vazir", sans-serif;
+    --font-afsoon: "afsoon", sans-serif;
+    --font-aref: "aref", sans-serif;
+    --font-flow: "flow", sans-serif;
+    --font-morvarid: "morvarid", sans-serif;
 
     /* Borders & Radius */
     --radius: 0.5rem;

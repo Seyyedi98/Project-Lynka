@@ -55,7 +55,7 @@ const SocialsFieldWindows = (props) => {
                   className={cn(
                     "relative flex flex-col items-center justify-center rounded p-2",
                     "transition-all duration-200 ease-out",
-                    !social.userId || !isLive
+                    !social.userId
                       ? "opacity-40 grayscale"
                       : "hover:bg-gray-700/50",
                   )}

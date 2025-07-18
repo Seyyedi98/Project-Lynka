@@ -1,19 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import {
-  InstagramLogoIcon,
-  LinkedInLogoIcon,
-  TwitterLogoIcon,
-} from "@radix-ui/react-icons";
-import {
-  IconBrandDiscord,
-  IconBrandGithub,
-  IconBrandLine,
-  IconBrandMessenger,
-  IconBrandTelegram,
-  IconBrandWechat,
-  IconBrandWhatsapp,
-} from "@tabler/icons-react";
-import { FacebookIcon, YoutubeIcon } from "lucide-react";
+import { IconBrandWechat, IconBrandWhatsapp } from "@tabler/icons-react";
 import {
   FaDiscord,
   FaFacebook,
@@ -22,15 +8,15 @@ import {
   FaInstagram,
   FaLine,
   FaLinkedin,
-  FaSignal,
   FaSkype,
+  FaTelegramPlane,
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
 
 const socialPlatforms = [
   {
-    icon: <IconBrandTelegram />,
+    icon: <FaTelegramPlane />,
     background: "#0088cc",
     value: "telegram",
     urlPrefix: "tg://resolve?domain=",
@@ -39,7 +25,7 @@ const socialPlatforms = [
   {
     name: "WhatsApp",
     icon: <IconBrandWhatsapp />,
-    background: "#25D326",
+    background: "#25D206",
     value: "whatsapp",
     urlPrefix: "whatsapp://send?phone=",
     webPrefix: "https://wa.me/",
@@ -50,7 +36,7 @@ const socialPlatforms = [
       <img
         src="/icons/socials/bale.svg"
         alt="Bale"
-        style={{ width: "32px", height: "32px" }}
+        style={{ width: "20px", height: "20px" }}
       />
     ),
     background: "#e3e3e3",
@@ -64,7 +50,7 @@ const socialPlatforms = [
       <img
         src="/icons/socials/soroush.svg"
         alt="Bale"
-        style={{ width: "32px", height: "32px" }}
+        style={{ width: "20px", height: "20px" }}
       />
     ),
     background: "#2A5F8A",
@@ -148,24 +134,37 @@ const socialPlatforms = [
   },
   {
     name: "Eitaa",
-    icon: <IconBrandTelegram />,
-    background: "#00AEEF",
+    icon: (
+      <img
+        src="/icons/socials/eitaa.svg"
+        alt="Bale"
+        style={{ width: "20px", height: "20px" }}
+      />
+    ),
+    background: "#e3e3e3",
     value: "eitaa",
     urlPrefix: "eitaa://",
     webPrefix: "https://eitaa.com/",
   },
-  {
-    name: "Gap",
-    icon: <IconBrandTelegram />,
-    background: "#00B0B9",
-    value: "gap",
-    urlPrefix: "gap://",
-    webPrefix: "https://gap.im/",
-  },
+  // {
+  //   name: "Gap",
+  //   icon: <IconBrandTelegram />,
+  //   background: "#00B0B9",
+  //   value: "gap",
+  //   urlPrefix: "gap://",
+  //   webPrefix: "https://gap.im/",
+  // },
   {
     name: "Rubika",
-    icon: <IconBrandTelegram />,
-    background: "#D72F4E",
+    icon: (
+      <img
+        src="/icons/socials/rubika.svg"
+        alt="Bale"
+        style={{ width: "20px", height: "20px" }}
+      />
+    ),
+    background: "#7db5ff",
+    // background: "#D72F4E",
     value: "rubika",
     urlPrefix: "rubika://",
     webPrefix: "https://rubika.ir/",
@@ -180,7 +179,13 @@ const socialPlatforms = [
   },
   {
     name: "Signal",
-    icon: <FaSignal />, // add icon later
+    icon: (
+      <img
+        src="/icons/socials/signal.svg"
+        alt="Bale"
+        style={{ width: "20px", height: "20px" }}
+      />
+    ),
     background: "#2592E9",
     value: "signal",
     urlPrefix: "sgnl://",

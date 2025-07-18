@@ -37,7 +37,10 @@ const SocialsFieldWindows95 = (props) => {
             افزودن شبکه‌های اجتماعی
           </motion.div>
         ) : (
-          <motion.div layout className="flex items-center gap-0">
+          <motion.div
+            layout
+            className="flex w-full flex-wrap items-center gap-0"
+          >
             {socials?.map((social, index) => {
               const platform = socialPlatforms.find(
                 (p) => p.value === social.platform,
@@ -57,7 +60,7 @@ const SocialsFieldWindows95 = (props) => {
                     "border-2 border-b-gray-600 border-l-gray-300 border-r-gray-600 border-t-gray-300",
                     "active:border-b-gray-300 active:border-l-gray-600 active:border-r-gray-300 active:border-t-gray-600",
                     "transition-all duration-75 ease-linear",
-                    !social.userId || !isLive
+                    !social.userId
                       ? "opacity-60 grayscale"
                       : "bg-[#c0c0c0] hover:bg-[#d0d0d0]",
                   )}

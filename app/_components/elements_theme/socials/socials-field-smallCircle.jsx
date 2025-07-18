@@ -54,7 +54,7 @@ const SocialsFieldSmallCircle = (props) => {
               boxShadow: `0 6px 12px -2px ${platform.background}40`,
             }}
           >
-            <span className="text-xl transition-transform group-hover:scale-110">
+            <span className="text-3xl transition-transform group-hover:scale-110">
               {platform.icon}
             </span>
           </motion.button>

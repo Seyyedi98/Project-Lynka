@@ -8,6 +8,10 @@ export const fontsList = [
   { fontName: "شبنم", fontValue: "shabnam" },
   { fontName: "تنها", fontValue: "tanha" },
   { fontName: "وزیر", fontValue: "vazir" },
+  { fontName: "افسون", fontValue: "afsoon" },
+  { fontName: "عارف", fontValue: "aref" },
+  { fontName: "مروارید", fontValue: "morvarid" },
+  { fontName: "جریان", fontValue: "flow" },
 ];
 
 export const geistSans = localFont({
@@ -86,4 +90,48 @@ export const vazir = localFont({
     },
   ],
   variable: "--font-vazir",
+});
+
+export const afsoon = localFont({
+  src: [
+    {
+      path: "./afsoon/afsoon.woff",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  variable: "--font-afsoon",
+});
+
+export const aref = localFont({
+  src: [
+    {
+      path: "./aref/aref.woff",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  variable: "--font-aref",
+});
+
+export const flow = localFont({
+  src: [
+    {
+      path: "./flow/flow.woff",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  variable: "--font-flow",
+});
+
+export const morvarid = localFont({
+  src: [
+    {
+      path: "./morvarid/morvarid.woff",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  variable: "--font-morvarid",
 });

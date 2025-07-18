@@ -75,7 +75,7 @@ const SocialsFieldDefault = (props) => {
                   boxShadow: `0 4px 6px -1px ${platform.background}20, 0 2px 4px -2px ${platform.background}20`,
                 }}
               >
-                <span className="text-xl transition-transform group-hover:scale-110">
+                <span className="text-3xl transition-transform group-hover:scale-110">
                   {platform.icon}
                 </span>
               </motion.button>

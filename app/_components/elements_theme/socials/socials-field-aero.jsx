@@ -40,7 +40,10 @@ const SocialsFieldAero = (props) => {
             افزودن شبکه‌های اجتماعی
           </motion.div>
         ) : (
-          <motion.div layout className="flex items-center gap-4">
+          <motion.div
+            layout
+            className="flex flex-wrap items-center justify-center gap-4"
+          >
             {socials?.map((social, index) => {
               const platform = socialPlatforms.find(
                 (p) => p.value === social.platform,
@@ -63,7 +66,7 @@ const SocialsFieldAero = (props) => {
                     "relative flex h-14 w-14 items-center justify-center rounded-lg",
                     "border border-gray-500/30 bg-gray-700/50",
                     "transition-all duration-300 ease-out",
-                    !social.userId || !isLive
+                    !social.userId
                       ? "opacity-50 grayscale"
                       : "hover:bg-gray-600/60 active:bg-gray-700/70",
                   )}
@@ -75,9 +78,6 @@ const SocialsFieldAero = (props) => {
                   <span className="text-2xl text-white drop-shadow-md">
                     {platform.icon}
                   </span>
-                  {isLive && social.userId && (
-                    <div className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-blue-400 ring-2 ring-gray-800/80" />
-                  )}
                 </motion.button>
               );
             })}
