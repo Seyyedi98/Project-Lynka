@@ -7,15 +7,15 @@ import Link from "next/link";
 
 const features = [
   {
-    title: "بدون نیاز به طراح و برنامه‌نویس",
+    title: "بدون نیاز به طراحی یا کدنویسی",
     icon: <Palette className="h-6 w-6 text-primary" />,
   },
   {
-    title: "نیاز به مهارت خاصی ندارد",
+    title: "بدون نیاز به مهارت یا تجربه خاص",
     icon: <Code className="h-6 w-6 text-primary" />,
   },
   {
-    title: "از موبایل یا کامپیوتر",
+    title: "قابل استفاده با موبایل یا لپ‌تاپ",
     icon: <Laptop className="h-6 w-6 text-primary" />,
   },
 ];
@@ -56,12 +56,12 @@ const CreateSection = () => {
         <div className="flex flex-col items-center gap-12 lg:flex-row">
           {/* Right side content*/}
           <div className="w-full lg:w-1/2">
-            <div className="max-w-md">
-              <h2 className="mb-8 text-4xl font-bold text-gray-900">
-                راحت‌تر از آنچه فکر می‌کنید
+            <div className="mx-2 max-w-md">
+              <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 sm:text-right sm:text-4xl">
+                ساخت صفحه شخصی، ساده‌تر از همیشه
               </h2>
-              <p className="mb-8 text-nowrap text-2xl text-gray-600">
-                تنها در چند دقیقه صفحه اختصاصی خود را بسازید.
+              <p className="mb-8 text-2xl text-gray-600 sm:text-nowrap">
+                فقط در چند دقیقه،سایت خودتو بساز و منتشر کن!
               </p>
 
               <div className="mb-8 space-y-4 text-xl">
@@ -88,7 +88,7 @@ const CreateSection = () => {
                 className="flex justify-start"
               >
                 <button className="rounded-lg bg-primary px-8 py-3 font-medium text-white shadow-md transition-all hover:scale-[1.02] hover:shadow-lg">
-                  <Link href="/auth/login">همین حالا شروع کنید</Link>
+                  <Link href="/auth/login">همه چیز آماده‌ست، فقط شروع کن!</Link>
                 </button>
               </motion.div>
             </div>

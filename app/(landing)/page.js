@@ -1,5 +1,6 @@
 "use client";
 
+import { redirect } from "next/navigation";
 import LandingPageNavbar from "../_components/landing/navbar";
 import LandingPageAudience from "../_components/landing/section/audience";
 import EasyUseLandingPageSection from "../_components/landing/section/easyuse";
@@ -36,13 +37,11 @@ export default function LandingPage() {
               را بسازید
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <LoginButton asChild>
-                <button className="rounded-full bg-white px-8 py-3 text-lg font-bold text-[hsl(var(--primary))] shadow-lg transition-all hover:bg-gray-100">
-                  شروع رایگان
-                </button>
-              </LoginButton>
-              <button className="rounded-full border-2 border-white bg-transparent px-8 py-3 text-lg font-bold text-white transition-all hover:bg-white/10">
-                مشاهده دمو
+              <button
+                onClick={() => redirect("/auth/login")}
+                className="rounded-full bg-white px-8 py-3 text-lg font-bold text-[hsl(var(--primary))] shadow-lg transition-all hover:bg-gray-100"
+              >
+                شروع رایگان
               </button>
             </div>
           </div>
@@ -77,15 +76,10 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="mt-8 text-center text-sm text-[hsl(var(--textLight))]">
-            © {new Date().getFullYear()} لینک‌پلاس. تمام حقوق محفوظ است.
+            © {new Date().getFullYear()} لینکا. تمام حقوق محفوظ است.
           </div>
         </div>
       </footer>
     </div>
   );
-}
-
-// Mock LoginButton component (replace with your actual implementation)
-function LoginButton({ asChild, children }) {
-  return children;
 }

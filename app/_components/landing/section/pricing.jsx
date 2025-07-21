@@ -10,14 +10,14 @@ const PricingSection = () => {
   const [hoveredPlan, setHoveredPlan] = useState(null);
 
   const calculatePremiumPrice = (duration) => {
-    const monthlyPrice = 100000;
+    const monthlyPrice = 90000;
     switch (duration) {
       case 1:
         return monthlyPrice;
       case 3:
-        return monthlyPrice * 3 * 0.9; // 10% discount
+        return 220000; // 20% deiscount
       case 6:
-        return monthlyPrice * 6 * 0.85; // 15% discount
+        return 390000; // 30% deiscount
       default:
         return monthlyPrice * 3;
     }
@@ -30,9 +30,9 @@ const PricingSection = () => {
       duration: "",
       description: "",
       features: [
-        "ایجاد ۱ صفحه",
-        "شخصی سازی ظاهر صفحه",
-        "استفاده از بلوک های پایه",
+        "ساخت یک صفحه اختصاصی",
+        "امکان شخصی‌سازی ظاهر صفحه",
+        "دسترسی به بلوک‌های پایه",
       ],
       cta: "شروع رایگان",
       popular: false,
@@ -42,18 +42,19 @@ const PricingSection = () => {
       name: "حرفه‌ای",
       price: calculatePremiumPrice(selectedDuration).toLocaleString("fa-IR"),
       duration: "",
-      description: "تمام امکانات پیشرفته",
+      description: "دسترسی کامل به تمام امکانات پیشرفته",
       features: [
-        "ساخت حداکثر ۳ صفحه",
-        "استفاده از تم های گوناگون",
-        "دسترسی به بلوک های پیشرفته",
-        "شخصی سازی بلوک ها",
-        "زمان بندی نمایش محتوا",
-        "ایجاد فرم",
-        "گزارش گیری از فرم ها",
-        "مشاهده آمار کاربران",
-        "ثبت در گوگل",
-        "شخصی سازی لینک صفحه شخصی شما در شبکه های اجتماعی",
+        "ساخت تا ۳ صفحه هم‌زمان",
+        "استفاده از قالب‌های متنوع",
+        "دسترسی به بلوک‌های پیشرفته",
+        "سفارشی‌سازی کامل بلوک‌ها",
+        "زمان‌بندی برای نمایش محتوا",
+        "امکان گذاشتن رمز عبور برای لینک‌ها",
+        "ساخت فرم های اطلاعاتی",
+        "دریافت و تحلیل پاسخ‌های فرم",
+        "مشاهده آمار کلیک کاربران",
+        "ایندکس شدن در گوگل",
+        "شخصی‌ سازی لینک صفحه شما برای شبکه‌های اجتماعی",
       ],
       cta: "خرید اشتراک",
       popular: true,
@@ -100,7 +101,7 @@ const PricingSection = () => {
               <div className="mb-6 flex items-center gap-3">
                 <div className="rounded-lg bg-primary/10 p-2">{plan.icon}</div>
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <h3 className="mb-1 text-2xl font-bold text-gray-900 dark:text-white">
                     {plan.name}
                   </h3>
                   <p className="text-gray-500 dark:text-gray-400">
@@ -137,7 +138,7 @@ const PricingSection = () => {
                 )}
                 {plan.popular && selectedDuration > 1 && (
                   <span className="text-sm text-green-500">
-                    ({selectedDuration === 3 ? "۱۰%" : "۱۵%"} تخفیف)
+                    ({selectedDuration === 3 ? "۲۰%" : "۳۰%"} تخفیف)
                   </span>
                 )}
               </div>

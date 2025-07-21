@@ -27,7 +27,6 @@ const floatingIcons = [
   { icon: Sparkles, top: "50%", left: "50%" },
 ];
 
-// Text animation variants
 const textVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i = 0) => ({
@@ -85,10 +84,10 @@ const LandingPageHero = () => {
           <motion.h1
             initial="hidden"
             animate="visible"
-            className="mb-6 text-center text-4xl font-bold leading-relaxed text-white md:text-right md:text-3xl lg:text-4xl xl:text-5xl"
+            className="mb-4 text-center text-5xl font-bold leading-relaxed text-white md:text-right md:text-3xl lg:text-4xl xl:text-5xl"
           >
-            <motion.span variants={textVariants} className="block">
-              همه‌ی محتوای شما، در یک‌جا
+            <motion.span variants={textVariants} className="block text-4xl">
+              تمام محتوای شما، در یک صفحه
             </motion.span>
             <br className="hidden md:block" />
             <motion.span
@@ -96,7 +95,7 @@ const LandingPageHero = () => {
               custom={1}
               className="relative inline-block md:mt-4"
             >
-              به سادگی و زیبایی
+              ساده، زیبا و حرفه‌ای
               <motion.div
                 variants={underlineVariants}
                 className="h-1 w-full rounded-full bg-white/30 md:mt-4"
@@ -111,11 +110,10 @@ const LandingPageHero = () => {
             animate="visible"
             variants={textVariants}
             custom={1.5}
-            className="mb-10 max-w-md text-center text-lg leading-7 text-white/90 sm:text-right sm:leading-4 md:text-xl"
+            className="mb-10 max-w-md text-center text-lg leading-7 text-white/90 sm:text-right md:text-xl"
           >
-            لینک‌ها، شبکه‌های اجتماعی، محصولات و خدماتتان را در یک صفحه‌ی
-            اختصاصی و زیبا گردآوری کنید و به بهترین شکل به مخاطبانتان نمایش
-            دهید.
+            لینک‌ها، شبکه‌های اجتماعی، محصولات و خدمات خود را در یک صفحه اختصاصی
+            و جذاب گرد هم آورید تا همیشه حرفه‌ای دیده شوید.
           </motion.p>
 
           <motion.div
@@ -128,12 +126,11 @@ const LandingPageHero = () => {
               href="/dashboard"
               className="focus:shadow-outline inline-flex h-12 w-full items-center justify-center rounded-lg bg-white px-6 font-medium tracking-wide text-[hsl(207,90%,54%)] shadow-md transition duration-200 hover:bg-white/90 focus:outline-none md:w-auto"
             >
-              رایگان شروع کنید
+              شروع رایگان
             </Link>
           </motion.div>
         </div>
 
-        {/* Preview and floating components */}
         <div className="relative flex w-full items-center justify-center md:w-1/2">
           <div className="relative h-[520px] w-[260px]">
             <Image

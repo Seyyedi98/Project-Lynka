@@ -16,56 +16,45 @@ const tabs = [
     id: "creators",
     number: "۰۲",
     title: "افراد محبوب",
-    subtitle: "محتوا سازان و اینفلوئنسرها",
+    subtitle: "اینفلوئنسر",
   },
-  {
-    id: "stores",
-    number: "۰۳",
-    title: "برندها",
-    subtitle: "کالاها و فروشگاه‌ها",
-  },
-  {
-    id: "everyone",
-    number: "۰۴",
-    title: "فریلنسرها",
-    subtitle: "همه افراد",
-  },
+  { id: "stores", number: "۰۳", title: "برندها", subtitle: "فروشگاه‌ها" },
+  { id: "everyone", number: "۰۴", title: "فریلنسرها", subtitle: "همه افراد" },
 ];
 
 const slides = [
   {
     id: "services",
-    categories: ["خدمات خانگی و کسب‌وکار", "مراسمات", "آموزش"],
-    title: "مشتری بیشتر، فروش بیشتر تو",
+    categories: ["خدمات خانگی", "مراسم", "آموزش"],
+    title: "مشتری بیشتر، فروش بیشتر",
     description:
-      "اجازه بده مشتریات راحت بهت پیام بدن، سوال بپرسن و مستقیم پرداخت کنن!",
+      "اجازه بده مشتری‌هات مستقیم پیام بدن، سوال بپرسن و پرداخت کنن.",
     cta: "شروع کن",
     images: ["/images/service-1.png", "/images/service-2.png"],
   },
   {
     id: "creators",
-    categories: ["بلاگرها", "مربیان", "ستاره‌های در حال رشد"],
-    title: "درباره خودت بگو و محبوب‌تر شو",
-    description: "مخاطبات رو به لینکای مهمت هدایت کن، بازدیدتو ببر بالا !",
+    categories: ["بلاگر", "مربی", "ستاره"],
+    title: "پر رنگ‌تر شو، محبوب‌تر شو",
+    description: "مخاطبات رو به لینکای مهمت هدایت کن و بازدیدتو افزایش بده.",
     cta: "رشد کن",
     images: ["/images/creator-1.png", "/images/creator-2.png"],
   },
   {
     id: "stores",
-    categories: ["تولیدکنندگان", "فروشگاه‌های محلی", "صنعتگران"],
-    title: "خرید رو برای مشتریات آسون کن",
+    categories: ["فروشگاه محلی", "تولیدکننده", "صنعتگر"],
+    title: "خرید رو ساده کن",
     description:
-      "بدون نیاز به طراح یا برنامه‌نویس، تو کمتر از ۲۰ دقیقه صفحه شخصی خودتو بساز!",
-    cta: "شروع فروش",
+      "بدون نیاز به طراح، صفحه‌ت رو در کمتر از ۲۰ دقیقه ساخته و فروشت رو شروع کن!",
+    cta: "فروش شروع کن",
     images: ["/images/store-1.png", "/images/store-2.png"],
   },
   {
     id: "everyone",
-    categories: ["هنرمندان و علاقه‌مندان"],
-    title: "خودت و هنر‌هات رو به دنیا نشون بده",
-    description:
-      "دستاورد‌هاتو با بقیه به اشتراک بذار و کلی فالوور جدید جذب کن!",
-    cta: "نمایش کارها",
+    categories: ["هنرمند", "علاقه‌مند"],
+    title: "هنر و تو، در مرکز توجه",
+    description: "دستاورد‌هاتو به اشتراک بذار و فالوور جدید جذب کن.",
+    cta: "نمایش بده",
     images: ["/images/everyone-1.png", "/images/everyone-2.png"],
   },
 ];
@@ -74,25 +63,20 @@ const LandingPageAudience = () => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [autoSlide, setAutoSlide] = useState(true);
 
-  // Auto slide every 10 seconds
   useEffect(() => {
     if (!autoSlide) return;
-
     const interval = setInterval(() => {
-      const currentIndex = tabs.findIndex((tab) => tab.id === activeTab);
-      const nextIndex = (currentIndex + 1) % tabs.length;
-      setActiveTab(tabs[nextIndex].id);
+      const idx = tabs.findIndex((t) => t.id === activeTab);
+      setActiveTab(tabs[(idx + 1) % tabs.length].id);
     }, 10000);
-
     return () => clearInterval(interval);
   }, [activeTab, autoSlide]);
 
-  const currentSlide = slides.find((slide) => slide.id === activeTab);
+  const slide = slides.find((s) => s.id === activeTab);
 
   return (
     <section className="bg-white pb-32 pt-20">
       <div className="container mx-auto px-4">
-        {/* Tabs */}
         <div className="flex border-b border-gray-200">
           {tabs.map((tab) => (
             <button
@@ -103,9 +87,7 @@ const LandingPageAudience = () => {
               }}
               className="relative flex-1 py-4 text-center"
             >
-              <div className="text-xs font-medium text-gray-500">
-                {tab.number}
-              </div>
+              <div className="text-xs text-gray-500">{tab.number}</div>
               <div className="text-lg font-medium text-gray-900">
                 {tab.subtitle}
               </div>
@@ -120,7 +102,6 @@ const LandingPageAudience = () => {
           ))}
         </div>
 
-        {/* Slide Content */}
         <div className="mt-12">
           <AnimatePresence mode="wait">
             <motion.div
@@ -131,23 +112,21 @@ const LandingPageAudience = () => {
               transition={{ duration: 0.3 }}
               className="flex flex-col items-center gap-12 md:flex-row"
             >
-              {/* Text Content */}
               <div className="w-full md:w-1/2">
                 <motion.div
                   initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.1, duration: 0.6 }}
+                  className="mb-4 flex flex-wrap gap-2"
                 >
-                  <div className="mb-4 flex flex-wrap gap-2">
-                    {currentSlide?.categories.map((category, index) => (
-                      <span
-                        key={index}
-                        className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700"
-                      >
-                        {category}
-                      </span>
-                    ))}
-                  </div>
+                  {slide.categories.map((c, i) => (
+                    <span
+                      key={i}
+                      className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700"
+                    >
+                      {c}
+                    </span>
+                  ))}
                 </motion.div>
 
                 <motion.h2
@@ -156,7 +135,7 @@ const LandingPageAudience = () => {
                   transition={{ delay: 0.2, duration: 0.6 }}
                   className="mb-4 text-3xl font-bold text-gray-900"
                 >
-                  {currentSlide?.title}
+                  {slide.title}
                 </motion.h2>
 
                 <motion.div
@@ -172,7 +151,7 @@ const LandingPageAudience = () => {
                   transition={{ delay: 0.4, duration: 0.6 }}
                   className="mb-8 text-lg text-gray-600"
                 >
-                  {currentSlide?.description}
+                  {slide.description}
                 </motion.p>
 
                 <motion.div
@@ -182,14 +161,13 @@ const LandingPageAudience = () => {
                 >
                   <Link
                     href="/dashboard"
-                    className="inline-block rounded-lg bg-gradient-to-r from-[hsl(207,90%,54%)] to-[hsl(172,100%,37%)] px-6 py-3 font-medium text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                    className="inline-block rounded-lg bg-gradient-to-r from-[hsl(207,90%,54%)] to-[hsl(172,100%,37%)] px-6 py-3 text-white shadow-lg hover:scale-105"
                   >
-                    {currentSlide?.cta}
+                    {slide.cta}
                   </Link>
                 </motion.div>
               </div>
 
-              {/* Image Content */}
               <div className="relative w-full md:w-1/2">
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -197,33 +175,27 @@ const LandingPageAudience = () => {
                   transition={{ duration: 0.6 }}
                   className="relative h-[500px] w-full"
                 >
-                  {currentSlide?.images.map((image, index) => (
+                  {slide.images.map((img, idx) => (
                     <motion.div
-                      key={index}
+                      key={idx}
                       initial={{ y: 20, opacity: 0, scale: 0.95 }}
                       animate={{ y: 0, opacity: 1, scale: 1 }}
                       transition={{
-                        delay: 0.3 + index * 0.15,
+                        delay: 0.3 + idx * 0.15,
                         duration: 0.6,
                         type: "spring",
                         damping: 10,
                         stiffness: 100,
                       }}
-                      className={`absolute w-64 ${index === 0 ? "left-0 top-0 z-0 h-4/5 w-4/5" : "bottom-0 right-0 z-10 h-4/5 w-4/5"}`}
-                      style={{
-                        transformStyle: "preserve-3d",
-                      }}
+                      className={`absolute ${idx === 0 ? "left-0 top-0 z-0" : "bottom-0 right-0 z-10"} h-4/5 w-4/5`}
                     >
                       <div className="h-full w-full overflow-hidden rounded-2xl border-2 border-white shadow-2xl">
                         <Image
-                          src={image}
+                          src={img}
                           alt=""
                           width={270}
                           height={480}
                           className="h-full w-64 object-cover"
-                          style={{
-                            aspectRatio: "9/16",
-                          }}
                         />
                       </div>
                     </motion.div>

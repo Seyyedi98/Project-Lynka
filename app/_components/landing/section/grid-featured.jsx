@@ -8,6 +8,7 @@ import {
   FiGlobe,
   FiUsers,
   FiSettings,
+  FiLock,
 } from "react-icons/fi";
 
 const LandingPageFeatures = () => {
@@ -35,10 +36,9 @@ const LandingPageFeatures = () => {
         "اگه یه صفحه برات کمه، چندتا صفحه دیگه بساز و راحت به همدیگه وصلشون کن!",
     },
     {
-      icon: <FiZap className="h-8 w-8" />,
-      title: "عکس و فیلم",
-      description:
-        "با اضافه کردن عکس و ویدیوهای جذاب، صفحه‌تو زنده‌تر و پرانرژی‌تر کن!",
+      icon: <FiLock className="h-8 w-8" />,
+      title: "لینک رمزدار",
+      description: "روی لینکات رمز بذار و فقط افراد خاص بهش دسترسی داشته باشن!",
     },
     {
       icon: <FiGlobe className="h-8 w-8" />,

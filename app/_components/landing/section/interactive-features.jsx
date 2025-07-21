@@ -6,34 +6,33 @@ import { useRef, useState } from "react";
 const sections = [
   {
     id: "feature1",
-    title: "طراحی زیبا و مدرن",
-    content: "یه صفحه شیک و حرفه‌ای بساز که همه چیزت رو جذاب نشون بده!",
+    title: "طراحی شیک و حرفه‌ای",
+    content:
+      "یه کارت دیجیتال جذاب بساز که کسب و کارت رو به بهترین شکل نشون بده.",
     imageSection: 0,
   },
   {
     id: "feature2",
-    title: "ادغام با شبکه‌های اجتماعی",
-    content: "همه شبکه‌هات رو یه جا بچین و راحت به مخاطبات معرفی کن!",
+    title: "اتصال به شبکه‌های اجتماعی",
+    content: "تمام لینک‌هات رو یکجا بچین و راحت مخاطبات ارتباط برقرار کن.",
     imageSection: 1,
   },
   {
     id: "feature3",
-    title: "فروش مستقیم",
-    content:
-      "محصولات و خدماتت رو بدون واسطه به مشتریا بفروش و درآمدتو بیشتر کن!",
+    title: "فروش مستقیم بدون واسطه",
+    content: "کاربرهات رو مستقیم به محصولاتت هدایت کن و درآمدت رو افزایش بده.",
     imageSection: 2,
   },
   {
     id: "feature4",
-    title: "تحلیل پیشرفته",
-    content: "رفتار کاربرات رو زیر نظر بگیر و صفحه‌تو هوشمندتر کن!",
+    title: "تحلیل رفتار کاربران",
+    content: "رفتار بازدیدکننده‌هات رو بررسی کن.",
     imageSection: 3,
   },
   {
     id: "feature5",
-    title: "سفارشی‌سازی آسان",
-    content:
-      "هر چیزی که دوست داری، از رنگ و فونت گرفته تا چیدمان صفحه، راحت تغییر بده!",
+    title: "سفارشی‌سازی کامل",
+    content: "رنگ، فونت، چیدمان و هر چیزی که بخوای رو به سبک خودت تنظیم کن.",
     imageSection: 4,
   },
 ];
@@ -133,7 +132,7 @@ const InteractiveFeaturesSection = () => {
                         duration: 0.3,
                         ease: [0.16, 1, 0.3, 1],
                       }}
-                      className="mb-4 px-5 text-right text-[0.95rem] leading-relaxed text-[#cbd5e1]"
+                      className="mb-8 px-5 text-right text-[0.95rem] leading-relaxed text-[#cbd5e1] sm:mb-4"
                     >
                       {section.content}
                     </motion.div>

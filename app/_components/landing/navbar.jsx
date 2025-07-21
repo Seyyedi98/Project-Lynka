@@ -72,8 +72,8 @@ export default function LandingPageNavbar() {
             {[
               { label: "خانه", href: "/" },
               { label: "بلاگ", href: "/blog" },
-              { label: "قیمت ها", href: "/pricing" },
-              { label: "تماس با ما", href: "/contact-us" },
+              // { label: "قیمت ها", href: "/pricing" },
+              // { label: "تماس با ما", href: "/contact-us" },
             ].map((item, index) => (
               <Link
                 key={index}
@@ -140,8 +140,8 @@ export default function LandingPageNavbar() {
               {[
                 { label: "خانه", href: "/" },
                 { label: "بلاگ", href: "/blog" },
-                { label: "قیمت ها", href: "/pricing" },
-                { label: "تماس با ما", href: "/contact-us" },
+                // { label: "قیمت ها", href: "/pricing" },
+                // { label: "تماس با ما", href: "/contact-us" },
               ].map((item, index) => (
                 <motion.div
                   key={index}

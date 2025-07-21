@@ -78,7 +78,7 @@ const DashboardSidebar = () => {
         <SidebarLink
           isExpanded={isSidebarOpen}
           title="تنظیمات"
-          path="/dashboard/settings"
+          path="/dashboard/profile"
           setIsSidebarOpen={setIsSidebarOpen}
         >
           <Settings className="h-6 w-6" />
