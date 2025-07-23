@@ -24,6 +24,7 @@ import GalleryFieldDefault from "../elements_theme/gallery/gallery-field-default
 import MapFieldDefault from "../elements_theme/map/map-field-default";
 import MapFieldWindows95 from "../elements_theme/map/map-field-windows95";
 import PostTrackerFieldDefault from "../elements_theme/postTracker/postTracker-field-default";
+import ProductFieldDefault from "../elements_theme/product/default/product-field-default";
 import RssFieldDefault from "../elements_theme/rss/rss-field-default";
 import SocialsFieldAero from "../elements_theme/socials/socials-field-aero";
 import SocialsFieldDefault from "../elements_theme/socials/socials-field-default";
@@ -72,6 +73,9 @@ export const ElementThemeController = {
     aqua: [CardFieldAqua, { type: "color" }, { isPremium: true }],
     flat: [CardFieldFlat, { type: "color" }, { isPremium: true }],
     liquidGlass: [CardFieldLiquidGlass, { type: "color" }, { isPremium: true }],
+  },
+  ProductField: {
+    default: [ProductFieldDefault, { type: "color" }, { isPremium: true }],
   },
   SpaceField: {
     default: [SpaceFieldDefault, { type: "color" }, { isPremium: false }],

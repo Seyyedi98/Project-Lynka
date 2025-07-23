@@ -51,6 +51,17 @@ const EditorSidebarElements = ({ isPremium }) => {
           </div>
         </section>
 
+        {/* فروشگاه */}
+        <section>
+          <h3 className="mb-3 text-sm font-semibold text-text/60">فروشگاه</h3>
+          <div className="grid grid-cols-1 gap-3">
+            <AddElementButton
+              pageElement={PageElements.ProductField}
+              isPremium={isPremium}
+            />
+          </div>
+        </section>
+
         {/* مجموعه‌های رسانه‌ای */}
         <section>
           <h3 className="mb-3 text-sm font-semibold text-text/60">گالری‌ها</h3>

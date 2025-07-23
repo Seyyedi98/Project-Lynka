@@ -58,7 +58,7 @@ const UserDetailsTab = ({
                 Subscription Expires:{" "}
                 {user.subscriptionPlan === "silver"
                   ? subscriptionRemaining
-                  : "-"}
+                  : "0"}
                 {" Days"}
               </div>
             )}
