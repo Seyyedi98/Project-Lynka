@@ -3,10 +3,10 @@
 import bcrypt from "bcryptjs";
 
 import { getUserByEmail } from "@/data/user";
-import prisma from "@/lib/client";
-import { RegisterSchema } from "@/schemas";
 import { generateVerificationToken } from "@/lib/auth/tokens";
+import prisma from "@/lib/client";
 import { sendVerificationEmail } from "@/lib/mail";
+import { RegisterSchema } from "@/schemas";
 
 export const register = async (values) => {
   // server side values validation

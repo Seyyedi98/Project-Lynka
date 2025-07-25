@@ -20,7 +20,8 @@ export default auth((req) => {
   // Define routes that should exclude (page)/[uri]
   const isExcludedRoute =
     nextUrl.pathname.startsWith("/dashboard") ||
-    nextUrl.pathname.startsWith("/workspace");
+    nextUrl.pathname.startsWith("/workspace") ||
+    nextUrl.pathname.startsWith("/succeed");
 
   // Ensure (page)/[uri] only renders when no other specific routes match
   const isDynamicRoute =

@@ -13,6 +13,8 @@ export const NewVerificationForm = () => {
   const [success, setSuccess] = useState();
   const searchParams = useSearchParams();
 
+  console.log(error, success);
+
   const token = searchParams.get("token");
 
   const onSubmit = useCallback(() => {
@@ -24,23 +26,24 @@ export const NewVerificationForm = () => {
       .catch(() => {
         setError("Something wenst wrong!");
       });
-  }, [token]); // removed: data, success from dependencies
+  }, [token, data, success]); // removed: data, success from dependencies
 
   useEffect(() => {
     onSubmit();
   }, [onSubmit]);
 
   return (
-    <CardWrapper
-      headerLabel="ایمیل خود را تایید کنید"
-      backButtonLabel="بازگشت به صفحه ی ورود"
-      backButtonHref="auth/login"
-    >
-      <div className="mt-8 flex flex-col items-center gap-8">
-        {!success && !error && <BeatLoader />}
-        <FormSuccess message={success} />
-        {!success && <FormError message={error} />}
+    <main className="grid h-full w-full place-items-center px-2">
+      <div className="mx-2 w-full max-w-2xl rounded-lg bg-card p-12">
+        <div className="flex flex-col items-center">
+          <p className="mb-2 text-center text-[15px] font-light text-text-light">
+            تایید ایمیل
+          </p>
+          {!success && !error && <BeatLoader />}
+          <FormSuccess message={success} />
+          {!success && <FormError message={error} />}
+        </div>
       </div>
-    </CardWrapper>
+    </main>
   );
 };

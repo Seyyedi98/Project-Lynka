@@ -4,7 +4,7 @@ import React from "react";
 
 const ResetPage = () => {
   return (
-    <main className="grid h-full w-full place-items-center">
+    <main className="grid h-full w-full place-items-center px-2">
       <div className="mx-2 w-full max-w-2xl rounded-lg bg-card p-12">
         <div className="flex flex-col items-center">
           <p className="mb-4 self-end text-left">

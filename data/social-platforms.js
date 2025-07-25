@@ -16,6 +16,7 @@ import {
 
 const socialPlatforms = [
   {
+    name: "Telegram",
     icon: <FaTelegramPlane />,
     background: "#0088cc",
     value: "telegram",
