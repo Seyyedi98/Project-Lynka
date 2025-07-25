@@ -167,13 +167,13 @@ const InitialThemeSelector = ({ uri }) => {
           {currentThemes().map((theme) => (
             <div
               className={cn(
-                "group relative h-[450px] w-full overflow-hidden rounded-lg transition-all",
+                "group relative h-full w-full overflow-hidden rounded-lg transition-all",
                 "cursor-pointer hover:shadow-md",
               )}
               onClick={() => handleThemeClick(theme)}
               key={theme.name}
             >
-              <div className="relative h-full w-full">
+              <div className="relative aspect-[3/5] w-full sm:aspect-[3/5]">
                 {loadingImages[theme.name] && (
                   <div className="absolute inset-0 animate-pulse bg-muted"></div>
                 )}
