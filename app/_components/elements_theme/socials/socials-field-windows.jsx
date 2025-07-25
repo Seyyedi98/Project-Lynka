@@ -29,13 +29,15 @@ const SocialsFieldWindows = (props) => {
     <div className="relative my-1 flex w-full justify-center">
       <div className="inline-flex items-center justify-center rounded-full border border-gray-700 bg-gray-800/90 px-2 py-1 shadow-lg backdrop-blur-md">
         {socials?.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0.8 }}
-            animate={{ opacity: 1 }}
-            className="px-4 py-2 text-gray-400"
+          <div
+            style={{ borderRadius: borderRadius }}
+            className="grid h-16 w-full place-content-center border border-dashed border-gray-300 bg-gradient-to-r from-gray-100 to-gray-50 dark:border-gray-700 dark:from-gray-800 dark:to-gray-900"
           >
-            افزودن شبکه‌های اجتماعی
-          </motion.div>
+            <p className="flex items-center gap-2 font-medium text-gray-500 dark:text-gray-400">
+              <span className="i-lucide-plus-circle text-lg" />
+              افزودن شبکه‌های اجتماعی
+            </p>
+          </div>
         ) : (
           <motion.div layout className="flex items-center gap-1">
             {socials?.map((social, index) => {

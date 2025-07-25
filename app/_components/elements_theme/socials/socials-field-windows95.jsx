@@ -29,13 +29,7 @@ const SocialsFieldWindows95 = (props) => {
     <div className="relative my-1 flex w-full justify-center">
       <div className="inline-flex items-center justify-center border-2 border-b-gray-600 border-l-gray-300 border-r-gray-600 border-t-gray-300 bg-[#c0c0c0] p-0.5 shadow-[inset_1px_1px_0px_0px_#ffffff]">
         {socials?.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0.8 }}
-            animate={{ opacity: 1 }}
-            className="px-4 py-2 text-gray-800"
-          >
-            افزودن شبکه‌های اجتماعی
-          </motion.div>
+          <div className="px-4 py-2 text-gray-800">افزودن شبکه‌های اجتماعی</div>
         ) : (
           <motion.div
             layout

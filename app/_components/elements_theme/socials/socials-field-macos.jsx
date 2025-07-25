@@ -31,13 +31,9 @@ const SocialsFieldMacOS = (props) => {
         className="inline-flex items-end border border-gray-300/20 bg-gray-200/30 p-3 shadow-lg backdrop-blur-md"
       >
         {socials?.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0.9 }}
-            animate={{ opacity: 1 }}
-            className="px-4 py-2 text-sm font-medium text-gray-500"
-          >
+          <div className="px-4 py-2 text-sm font-medium text-gray-500">
             افزودن شبکه‌های اجتماعی
-          </motion.div>
+          </div>
         ) : (
           <motion.div layout className="flex items-center justify-center">
             {socials?.map((social, index) => {

@@ -86,13 +86,9 @@ const SocialsFieldGaming = (props) => {
         className="inline-flex items-center border border-gray-200 bg-gradient-to-br from-gray-50 to-gray-100 p-3 shadow-lg"
       >
         {socials?.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0.9 }}
-            animate={{ opacity: 1 }}
-            className="px-4 py-2 text-sm font-medium text-gray-600"
-          >
+          <div className="px-4 py-2 text-sm font-medium text-gray-600">
             افزودن شبکه‌های اجتماعی
-          </motion.div>
+          </div>
         ) : (
           <motion.div layout className="flex items-center gap-4">
             {socials?.map((social, index) => {

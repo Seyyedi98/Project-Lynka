@@ -28,18 +28,15 @@ const SocialsFieldRounded = (props) => {
   return (
     <div className="relative w-full">
       {socials?.length === 0 ? (
-        <motion.div
+        <div
           style={{ borderRadius: borderRadius }}
-          initial={{ opacity: 0.8, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ type: "tween", duration: 0.15 }}
           className="grid h-16 w-full place-content-center border border-dashed border-gray-300 bg-gradient-to-r from-gray-100 to-gray-50 dark:border-gray-700 dark:from-gray-800 dark:to-gray-900"
         >
           <p className="flex items-center gap-2 font-medium text-gray-500 dark:text-gray-400">
             <span className="i-lucide-plus-circle text-lg" />
             افزودن شبکه‌های اجتماعی
           </p>
-        </motion.div>
+        </div>
       ) : (
         <motion.div
           layout

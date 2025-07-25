@@ -28,10 +28,7 @@ const SocialsFieldDefault = (props) => {
   return (
     <div className="relative w-full">
       {socials?.length === 0 ? (
-        <motion.div
-          style={{ borderRadius: borderRadius }}
-          initial={{ opacity: 0.8, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
+        <div
           transition={{ type: "tween", duration: 0.15 }}
           className="grid h-16 w-full place-content-center border border-dashed border-gray-300 bg-gradient-to-r from-gray-100 to-gray-50 dark:border-gray-700 dark:from-gray-800 dark:to-gray-900"
         >
@@ -39,7 +36,7 @@ const SocialsFieldDefault = (props) => {
             <span className="i-lucide-plus-circle text-lg" />
             افزودن شبکه‌های اجتماعی
           </p>
-        </motion.div>
+        </div>
       ) : (
         <motion.div
           layout

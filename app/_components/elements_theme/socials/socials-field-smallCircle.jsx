@@ -5,7 +5,7 @@ import socialPlatforms from "@/data/social-platforms";
 import { motion } from "framer-motion";
 
 const SocialsFieldSmallCircle = (props) => {
-  const { socials, isLive } = props;
+  const { socials, isLive, bgColor, borderRadius } = props;
 
   const handleSocialClick = (platform, userId) => {
     if (!userId || !isLive) return;
@@ -26,7 +26,17 @@ const SocialsFieldSmallCircle = (props) => {
   };
 
   if (!socials || socials.length === 0) {
-    return null;
+    return (
+      <div
+        style={{ borderRadius: borderRadius }}
+        className="grid h-16 w-full place-content-center border border-dashed border-gray-300 bg-gradient-to-r from-gray-100 to-gray-50 dark:border-gray-700 dark:from-gray-800 dark:to-gray-900"
+      >
+        <p className="flex items-center gap-2 font-medium text-gray-500 dark:text-gray-400">
+          <span className="i-lucide-plus-circle text-lg" />
+          افزودن شبکه‌های اجتماعی
+        </p>
+      </div>
+    );
   }
 
   return (

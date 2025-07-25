@@ -32,13 +32,9 @@ const SocialsFieldAero = (props) => {
         className="inline-flex items-center justify-center border border-gray-500/30 bg-gray-800/60 p-4 shadow-lg backdrop-blur-md"
       >
         {socials?.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0.8 }}
-            animate={{ opacity: 1 }}
-            className="px-4 py-2 font-light text-gray-300"
-          >
+          <div className="px-4 py-2 font-light text-gray-300">
             افزودن شبکه‌های اجتماعی
-          </motion.div>
+          </div>
         ) : (
           <motion.div
             layout
