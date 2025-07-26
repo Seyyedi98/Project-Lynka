@@ -1,7 +1,6 @@
 import useFilterTheme from "@/hooks/useFilterTheme";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SquareButton from "../common/button/PrimaryButton/square-button";
 import { HeroController } from "../controller/hero-controller";
 
 const HeroThemeSelector = () => {

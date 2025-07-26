@@ -92,7 +92,7 @@ const BgFadeHero = ({ ...data }) => {
         </div>
       )}
 
-      <div className="z-20 mt-[250px] flex h-full flex-col gap-4 px-3">
+      <div className="z-20 mt-[300px] flex h-full flex-col gap-4 px-3">
         <h2
           style={{
             fontFamily: loadedTitleFont ? `var(${loadedTitleFont})` : "inherit",
@@ -109,7 +109,7 @@ const BgFadeHero = ({ ...data }) => {
               : "inherit",
             color: subtitleColor,
           }}
-          className="w-full max-w-sm pb-4 text-right indent-2 text-lg font-thin text-white"
+          className="w-full max-w-sm pb-4 text-center indent-2 text-lg font-thin text-white"
         >
           {subtitle}
         </h4>

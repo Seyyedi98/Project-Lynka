@@ -67,7 +67,7 @@ const NormalHero = ({ ...data }) => {
   }, [titleFont, subtitleFont]);
 
   return (
-    <div className="relative flex w-full flex-col items-center justify-center gap-4 overflow-hidden pt-8">
+    <div className="relative flex w-full flex-col items-center justify-center gap-4 overflow-hidden pt-20">
       <div
         className="absolute right-0 top-0 -mt-2 h-full w-full"
         style={heroType === "color" ? colorBgStyle : imageBgStyle}
