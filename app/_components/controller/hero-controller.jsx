@@ -6,6 +6,7 @@ import BubbleHero from "../elements_theme/hero/bubbles";
 import CardHero from "../elements_theme/hero/card";
 import CollageHero from "../elements_theme/hero/collage";
 import NormalHero from "../elements_theme/hero/normal";
+import StandardHero from "../elements_theme/hero/standardHero";
 import TransparentHero from "../elements_theme/hero/transparent";
 
 export const HeroController = {
@@ -13,6 +14,7 @@ export const HeroController = {
   curved: [BgCurvedHero, { type: "color" }],
   bgFade: [BgFadeHero, { type: "image" }],
   normal: [NormalHero, { type: "color" }],
+  normalSm: [StandardHero, { type: "color" }],
   basic: [BasicHero, { type: "color" }],
   bubbles: [BubbleHero, { type: "color" }],
   card: [CardHero, { type: "color" }],

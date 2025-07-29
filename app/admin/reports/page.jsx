@@ -45,7 +45,7 @@ const ReportModal = ({ report, onClose, onDelete }) => {
           </div>
 
           <div className="mb-4 border-t border-gray-300 pt-2">
-            <p className="font-bold">Details:</p>
+            <p className="font-bold">Message:</p>
             <p className="whitespace-pre-wrap">{report.reportText}</p>
           </div>
 
@@ -79,6 +79,8 @@ export default function UserReports() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedReport, setSelectedReport] = useState(null);
   const [copiedId, setCopiedId] = useState("");
+
+  console.log(reports);
 
   const fetchReports = async (page = 1) => {
     setIsLoading(true);
@@ -150,7 +152,15 @@ export default function UserReports() {
                     key={report.id}
                     className="flex border-t border-t-[#808080] hover:bg-[#e0e0e0]"
                   >
-                    <div className="w-1/6 cursor-pointer p-2 text-sm hover:underline">
+                    <div
+                      onClick={() =>
+                        window.open(
+                          `${process.env.NEXT_PUBLIC_WEBSITE_URL}${report.uri}`,
+                          "_blank",
+                        )
+                      }
+                      className="w-1/6 cursor-pointer p-2 text-sm hover:underline"
+                    >
                       {report.uri}
                     </div>
                     <div className="w-1/6 cursor-pointer p-2 text-sm hover:underline">

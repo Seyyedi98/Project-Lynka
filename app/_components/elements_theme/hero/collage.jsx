@@ -53,7 +53,7 @@ const CollageHero = ({ ...data }) => {
 
   return (
     <div
-      className="relative mb-4 flex w-full items-center justify-center overflow-hidden py-12 md:py-20"
+      className="relative mb-4 flex w-full items-center justify-center overflow-hidden pb-8 pt-12"
       style={backgroundStyle}
     >
       <div className="grid w-full max-w-2xl grid-cols-2 gap-4 px-4 md:gap-8">
@@ -99,7 +99,7 @@ const CollageHero = ({ ...data }) => {
         </div>
 
         {/* Bottom Row */}
-        <div className="col-span-2 mt-8 flex flex-row items-center justify-around gap-4">
+        <div className="col-span-2 flex flex-row items-center justify-around gap-4">
           <div dir="rtl" className="text-right">
             <h2
               style={{
