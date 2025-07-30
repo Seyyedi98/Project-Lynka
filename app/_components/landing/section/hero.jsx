@@ -134,8 +134,8 @@ const LandingPageHero = () => {
         <div className="relative flex w-full items-center justify-center md:w-1/2">
           <div className="relative h-[520px] w-[260px]">
             <Image
-              src="/mobile-earth.webp"
-              alt="پیش‌نمایش موبایل"
+              src="https://arklight.storage.c2.liara.space/preview/preview-coffee.webp"
+              alt="پیش‌ نمایش موبایل"
               fill
               className="rounded-2xl object-cover shadow-2xl"
             />

@@ -91,7 +91,7 @@ const ThemePreviewRenderer = ({ theme }) => {
           title="صفحه من"
           textColor={elementTextColor}
           bgColor={elementColor}
-          borderColor={borderColor}
+          // borderColor={borderColor}
           borderRadius={borderRadius}
           lineHeight={2}
           textAlign="center"
@@ -102,7 +102,7 @@ const ThemePreviewRenderer = ({ theme }) => {
           title="فروشگاه من"
           textColor={elementTextColor}
           bgColor={elementColor}
-          borderColor={borderColor}
+          // borderColor={borderColor}
           borderRadius={borderRadius}
           lineHeight={2}
           textAlign="center"
@@ -115,7 +115,7 @@ const ThemePreviewRenderer = ({ theme }) => {
           image='{"key":"800217089-10696.904317455173.jpg"}'
           textColor={elementTextColor}
           bgColor={elementColor}
-          borderColor={borderColor}
+          // borderColor={borderColor}
           borderRadius={borderRadius}
           lineHeight={2}
           textAlign="center"

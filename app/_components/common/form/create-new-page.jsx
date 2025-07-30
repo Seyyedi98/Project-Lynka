@@ -22,7 +22,7 @@ const CreateNewPage = ({ allPages }) => {
   const [isChecking, setIsChecking] = useState(false);
   const [isAvailable, setIsAvailable] = useState(false);
 
-  const isPremiumPlus = false;
+  const isPremiumPlus = true;
 
   const canUserCreatePage = () => {
     if (allPages.length < 1) {

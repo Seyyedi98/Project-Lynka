@@ -11,6 +11,7 @@ import CardFieldNeon from "../elements_theme/card/card-field-neon";
 import CardFieldSketch from "../elements_theme/card/card-field-sketch";
 import CardFieldMinimal from "../elements_theme/card/card-field-toon";
 import CardFieldToon2 from "../elements_theme/card/card-field-toon2";
+import CardFieldTransparent from "../elements_theme/card/card-field-transparent";
 import CardFieldWindows from "../elements_theme/card/card-field-windows";
 import CarouselFieldDefault from "../elements_theme/carousel/carousel-field-default";
 import CountdownFieldDefault from "../elements_theme/countdown/countdown-field-default";
@@ -19,6 +20,7 @@ import FaqFieldDefault from "../elements_theme/faq/faq-field-default";
 import FaqFieldToon from "../elements_theme/faq/faq-field-toon";
 import FaqFieldWindows95 from "../elements_theme/faq/faq-field-windows95";
 import FormFieldDefault from "../elements_theme/form/form-field-default";
+import FormFieldTransparent from "../elements_theme/form/form-field-transparent";
 import FormFieldWindows95 from "../elements_theme/form/form-field-windows95";
 import GalleryFieldDefault from "../elements_theme/gallery/gallery-field-default";
 import MapFieldDefault from "../elements_theme/map/map-field-default";
@@ -61,6 +63,11 @@ export const ElementThemeController = {
   },
   CardField: {
     default: [CardFieldDefault, { type: "color" }, { isPremium: false }],
+    transparent: [
+      CardFieldTransparent,
+      { type: "color" },
+      { isPremium: false },
+    ],
     cartoon: [CardFieldMinimal, { type: "color" }, { isPremium: true }],
     glow: [CardFieldGlow, { type: "color" }, { isPremium: true }],
     sketch: [CardFieldSketch, { type: "color" }, { isPremium: true }],
@@ -124,6 +131,7 @@ export const ElementThemeController = {
   },
   FormField: {
     default: [FormFieldDefault, { type: "color" }, { isPremium: true }],
+    transparent: [FormFieldTransparent, { type: "color" }, { isPremium: true }],
     windows95: [FormFieldWindows95, { type: "color" }, { isPremium: true }],
   },
 };

@@ -14,7 +14,7 @@ const toPersianNumbers = (num) => {
   return num.toString().replace(/\d/g, (d) => persianDigits[d]);
 };
 
-const FormFieldDefault = (props) => {
+const FormFieldTransparent = (props) => {
   const {
     isPremium,
     fields = [],
@@ -23,7 +23,7 @@ const FormFieldDefault = (props) => {
     elementId,
     successMessage,
     textColor,
-    bgColor,
+
     borderColor,
     fieldBorderRadius,
     cardBorderRadius,
@@ -110,8 +110,10 @@ const FormFieldDefault = (props) => {
       <div
         style={{
           borderRadius: cardBorderRadius,
-          backgroundColor: bgColor,
           color: textColor,
+          "::placeholder": {
+            color: textColor,
+          },
           fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
         }}
         className="w-full rounded-md p-6 text-center"
@@ -143,14 +145,13 @@ const FormFieldDefault = (props) => {
         <div
           style={{
             borderRadius: cardBorderRadius,
-            backgroundColor: bgColor,
             color: textColor,
             fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
           }}
-          className="h-full w-full p-4"
+          className="h-full w-full"
         >
           {fields.length === 0 && (
-            <div className="grid h-40 w-full place-content-center rounded-lg border-2 border-dashed border-black text-black">
+            <div className="grid h-40 w-full place-content-center rounded-lg border-[3px] border-dashed border-black text-black">
               افزودن فرم
             </div>
           )}
@@ -169,9 +170,18 @@ const FormFieldDefault = (props) => {
             if (field?.type === "text") {
               return (
                 <div key={fieldName} className="mb-4">
+                  <style>
+                    {`
+      input::placeholder {
+        color: ${textColor};
+        opacity: 1; /* Firefox reduces opacity by default */
+      }
+    `}
+                  </style>
                   <label
                     style={{
                       color: textColor,
+
                       fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
                     }}
                     className="mb-2 mr-1 block text-sm font-medium"
@@ -187,7 +197,7 @@ const FormFieldDefault = (props) => {
                     {...fieldProps}
                     max={200}
                     placeholder={placeholder}
-                    className="h-10 w-full rounded-md border bg-transparent px-2"
+                    className="h-12 w-full rounded-md border-[2px] bg-transparent px-2"
                   />
                   {formState.errors[fieldName] && (
                     <p className="mt-1 text-sm text-red-500">
@@ -204,6 +214,7 @@ const FormFieldDefault = (props) => {
                   <label
                     style={{
                       color: textColor,
+
                       fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
                     }}
                     className="mb-2 mr-1 block text-sm font-medium"
@@ -219,7 +230,7 @@ const FormFieldDefault = (props) => {
                     {...fieldProps}
                     type="number"
                     placeholder={placeholder}
-                    className="h-10 w-full rounded-md border bg-transparent px-2"
+                    className="h-12 w-full rounded-md border-2 bg-transparent px-2"
                   />
                   {formState.errors[fieldName] && (
                     <p className="mt-1 text-sm text-red-500">
@@ -233,9 +244,18 @@ const FormFieldDefault = (props) => {
             if (field?.type === "textarea") {
               return (
                 <div key={fieldName} className="mb-4">
+                  <style>
+                    {`
+      input::placeholder {
+        color: ${textColor};
+        opacity: 1; /* Firefox reduces opacity by default */
+      }
+    `}
+                  </style>
                   <label
                     style={{
                       color: textColor,
+
                       fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
                     }}
                     className="mb-2 mr-1 block text-sm font-medium"
@@ -251,7 +271,7 @@ const FormFieldDefault = (props) => {
                     {...fieldProps}
                     max={999}
                     placeholder={placeholder}
-                    className="w-full rounded-md border bg-transparent px-2"
+                    className="w-full rounded-md border-2 bg-transparent px-2"
                   />
                   {formState.errors[fieldName] && (
                     <p className="mt-1 text-sm text-red-500">
@@ -310,4 +330,4 @@ const FormFieldDefault = (props) => {
   );
 };
 
-export default FormFieldDefault;
+export default FormFieldTransparent;

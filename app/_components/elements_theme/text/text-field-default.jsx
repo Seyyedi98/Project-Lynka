@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 const TextFieldDefault = ({
   title,
   textColor,
@@ -10,8 +12,15 @@ const TextFieldDefault = ({
 }) => {
   return (
     <div
-      className="w-full text-wrap rounded-md px-3 py-2"
-      style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
+      className={cn(
+        `w-full text-wrap rounded-md px-3 py-2`,
+        borderColor && "border-2",
+      )}
+      style={{
+        backgroundColor: bgColor,
+        borderRadius: borderRadius,
+        borderColor: borderColor,
+      }}
     >
       <p
         style={{
@@ -19,6 +28,7 @@ const TextFieldDefault = ({
           color: textColor,
           fontFamily: font,
           textAlign: textAlign,
+
           lineHeight: lineHeight,
           whiteSpace: "pre-wrap", // Recognise \n for line break
         }}

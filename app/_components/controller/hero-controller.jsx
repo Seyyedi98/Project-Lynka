@@ -14,7 +14,7 @@ export const HeroController = {
   curved: [BgCurvedHero, { type: "color" }],
   bgFade: [BgFadeHero, { type: "image" }],
   normal: [NormalHero, { type: "color" }],
-  normalSm: [StandardHero, { type: "color" }],
+  standard: [StandardHero, { type: "color" }],
   basic: [BasicHero, { type: "color" }],
   bubbles: [BubbleHero, { type: "color" }],
   card: [CardHero, { type: "color" }],
