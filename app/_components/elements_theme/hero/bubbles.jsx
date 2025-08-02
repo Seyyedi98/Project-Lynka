@@ -204,7 +204,7 @@ const BubbleHero = ({ ...data }) => {
               : "inherit",
             color: subtitleColor || "#ffffff",
           }}
-          className="w-full max-w-sm pb-4 text-lg font-thin text-white"
+          className="w-full max-w-sm text-wrap pb-4 text-lg font-thin text-white"
         >
           {subtitle}
         </h4>

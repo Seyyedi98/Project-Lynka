@@ -29,7 +29,7 @@ const UserDetailsTab = ({
   updatingUserSubscription,
 }) => {
   const subscriptionRemaining = Math.floor(
-    (user.subscriptionExpire.getTime() - Date.now()) / (1000 * 60 * 60 * 24),
+    (user?.subscriptionExpire?.getTime() - Date.now()) / (1000 * 60 * 60 * 24),
   );
 
   // TODO: change later if add gold tier

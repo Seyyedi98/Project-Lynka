@@ -102,17 +102,17 @@ const Dashboard = async () => {
         </div>
 
         {/* Blog */}
-        <div className="col-span-2 h-60 rounded-lg bg-secondaryBg/50 backdrop-blur-lg md:col-span-1">
+        {/* <div className="col-span-2 h-60 rounded-lg bg-secondaryBg/50 backdrop-blur-lg md:col-span-1">
           <BlogWidget />
-        </div>
+        </div> */}
 
         {/* Analytics */}
-        <div className="col-span-2 h-60 rounded-lg bg-secondaryBg/50 backdrop-blur-lg md:col-span-1">
-          {/* <AnalyticsWidget
+        {/* <div className="col-span-2 h-60 rounded-lg bg-secondaryBg/50 backdrop-blur-lg md:col-span-1">
+          <AnalyticsWidget
             pages={allPages}
             elementsAnalytics={elementsAnalytics}
-          /> */}
-        </div>
+          />
+        </div> */}
       </main>
     </div>
   );

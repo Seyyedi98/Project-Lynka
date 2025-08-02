@@ -42,13 +42,20 @@ const StandardHero = ({ ...data }) => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         height: `${topSectionHeight}px`,
+        filter: `brightness(${1 - imageBrightness / 100})`,
       };
     }
     return {
       backgroundColor: heroValue,
       height: `${topSectionHeight}px`,
     };
-  }, [heroType, heroValue, secondaryBgImage, topSectionHeight]);
+  }, [
+    heroType,
+    heroValue,
+    secondaryBgImage,
+    topSectionHeight,
+    imageBrightness,
+  ]);
 
   useEffect(() => {
     const fetchFont = async () => {
@@ -72,7 +79,7 @@ const StandardHero = ({ ...data }) => {
 
       {/* Profile Image Container*/}
       <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="relative h-24 w-24 overflow-hidden rounded-full border-4 border-white bg-white">
+        <div className="relative h-28 w-28 overflow-hidden rounded-full border-4 border-white bg-white">
           {primaryBgImage ? (
             <Image
               priority
@@ -83,7 +90,7 @@ const StandardHero = ({ ...data }) => {
             />
           ) : (
             <div className="grid h-full w-full place-content-center bg-gray-200">
-              <ImageIcon className="h-10 w-10 text-gray-500" />
+              <ImageIcon className="h-12 w-12 text-gray-500" />
             </div>
           )}
         </div>
@@ -111,7 +118,7 @@ const StandardHero = ({ ...data }) => {
                 : "inherit",
               color: subtitleColor,
             }}
-            className="text-center text-base font-normal opacity-90"
+            className="w-full text-wrap text-center text-base font-normal opacity-90"
           >
             {subtitle}
           </h4>
