@@ -87,13 +87,13 @@ const BgCurvedHero = ({ ...data }) => {
         )}
       </div>
 
-      <div className="z-20 mt-56 flex h-full flex-col items-center gap-4 px-3">
+      <div className="z-20 mt-56 flex h-full flex-col items-center gap-3 px-3">
         <h2
           style={{
             fontFamily: loadedTitleFont ? `var(${loadedTitleFont})` : "inherit",
             color: titleColor,
           }}
-          className="z-10 text-3xl text-white"
+          className="z-10 mt-3 text-3xl text-white"
         >
           {title}
         </h2>
@@ -104,7 +104,7 @@ const BgCurvedHero = ({ ...data }) => {
               : "inherit",
             color: subtitleColor,
           }}
-          className="z-10 h-full w-full max-w-sm text-wrap pb-4 text-center text-lg font-thin text-white"
+          className="z-10 h-full w-full max-w-sm text-wrap text-center text-lg font-thin text-white"
         >
           {subtitle}
         </h4>

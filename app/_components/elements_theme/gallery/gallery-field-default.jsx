@@ -7,7 +7,8 @@ import Image from "next/image";
 import { useState, useMemo, useEffect } from "react";
 
 const GalleryFieldDefault = (props) => {
-  const { isPremium, images } = props;
+  console.log(props);
+  const { isPremium, images, borderRadius } = props;
   const [loadedImages, setLoadedImages] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
   const [fullscreenLoading, setFullscreenLoading] = useState(false);
@@ -31,7 +32,7 @@ const GalleryFieldDefault = (props) => {
     setLoadedImages((prev) => ({ ...prev, [index]: true }));
   };
 
-  // Determine grid columns based on image count
+  // Determine grid columns based on image count - Almost not wirking :(
   const gridClass = useMemo(() => {
     if (!validImages.length) return "grid-cols-1";
 
@@ -109,7 +110,8 @@ const GalleryFieldDefault = (props) => {
           validImages.map((image, index) => (
             <div
               key={index}
-              className="relative aspect-square overflow-hidden rounded-md transition-transform hover:scale-105 hover:cursor-pointer"
+              style={{ borderRadius: borderRadius }}
+              className="relative aspect-square overflow-hidden transition-transform hover:scale-105 hover:cursor-pointer"
               onClick={() => handleImageClick(image, index)}
             >
               {!loadedImages[index] && (

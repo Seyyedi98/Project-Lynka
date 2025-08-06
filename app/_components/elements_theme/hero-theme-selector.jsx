@@ -2,6 +2,7 @@ import useFilterTheme from "@/hooks/useFilterTheme";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HeroController } from "../controller/hero-controller";
+import Image from "next/image";
 
 const HeroThemeSelector = () => {
   const dispatch = useDispatch();
@@ -47,8 +48,15 @@ const HeroThemeSelector = () => {
                 );
               }}
             >
-              <div className="h-96 w-60 cursor-pointer bg-gray-500 transition-transform duration-200 hover:scale-105">
-                {theme}
+              <div className="w-60 cursor-pointer bg-gray-500 transition-transform duration-200 hover:scale-105">
+                {/* {theme} */}
+                <Image
+                  height={400}
+                  width={200}
+                  alt="hero preview"
+                  src={`/preview/heroes/${theme}.webp`}
+                  className="w-full"
+                />
               </div>
             </div>
           );

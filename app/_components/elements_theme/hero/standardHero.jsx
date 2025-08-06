@@ -74,12 +74,12 @@ const StandardHero = ({ ...data }) => {
 
   return (
     <div className="relative w-full" style={{ height: `${height}px` }}>
-      {/*Background Image */}
+      {/*Bg Image */}
       <div className="w-full" style={backgroundStyle} />
 
-      {/* Profile Image Container*/}
+      {/* Primary Image */}
       <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="relative h-28 w-28 overflow-hidden rounded-full border-4 border-white bg-white">
+        <div className="relative h-32 w-32 overflow-hidden rounded-full border-4 border-white bg-white">
           {primaryBgImage ? (
             <Image
               priority
@@ -106,7 +106,7 @@ const StandardHero = ({ ...data }) => {
             fontFamily: loadedTitleFont ? `var(${loadedTitleFont})` : "inherit",
             color: titleColor,
           }}
-          className="mt-8 text-center text-2xl font-bold"
+          className="mt-16 text-center text-2xl font-bold"
         >
           {title}
         </h2>

@@ -30,7 +30,9 @@ const slides = [
     description:
       "اجازه بده مشتری‌هات مستقیم پیام بدن، سوال بپرسن و پرداخت کنن.",
     cta: "شروع کن",
-    images: ["/images/service-1.png", "/images/service-2.png"],
+    images: [
+      "https://arklight.storage.c2.liara.space/preview/preview-shop.webp",
+    ],
   },
   {
     id: "creators",
@@ -38,7 +40,7 @@ const slides = [
     title: "پر رنگ‌تر شو، محبوب‌تر شو",
     description: "مخاطبات رو به لینکای مهمت هدایت کن و بازدیدتو افزایش بده.",
     cta: "رشد کن",
-    images: ["/images/creator-1.png", "/images/creator-2.png"],
+    images: ["/images/creator-1.png"],
   },
   {
     id: "stores",
@@ -47,7 +49,9 @@ const slides = [
     description:
       "بدون نیاز به طراح، صفحه‌ت رو در کمتر از ۲۰ دقیقه ساخته و فروشت رو شروع کن!",
     cta: "فروش شروع کن",
-    images: ["/images/store-1.png", "/images/store-2.png"],
+    images: [
+      "https://arklight.storage.c2.liara.space/preview/preview-shop.webp",
+    ],
   },
   {
     id: "everyone",
@@ -55,7 +59,7 @@ const slides = [
     title: "هنر و تو، در مرکز توجه",
     description: "دستاورد‌هاتو به اشتراک بذار و فالوور جدید جذب کن.",
     cta: "نمایش بده",
-    images: ["/images/everyone-1.png", "/images/everyone-2.png"],
+    images: ["/images/everyone-1.png"],
   },
 ];
 
@@ -189,7 +193,7 @@ const LandingPageAudience = () => {
                       }}
                       className={`absolute ${idx === 0 ? "left-0 top-0 z-0" : "bottom-0 right-0 z-10"} h-4/5 w-4/5`}
                     >
-                      <div className="h-full w-full overflow-hidden rounded-2xl border-2 border-white shadow-2xl">
+                      <div className="w-full">
                         <Image
                           src={img}
                           alt=""

@@ -51,13 +51,13 @@ const BasicHero = ({ ...data }) => {
     <div className="relative flex w-full flex-col items-center justify-center gap-4 overflow-hidden pt-8">
       <div className="absolute right-0 top-0 -mt-2 h-full w-full" />
 
-      <div className="z-20 mb-6 mt-10 flex h-full flex-col items-center gap-4 px-3">
+      <div className="z-20 mt-10 flex h-full flex-col items-center gap-4 px-3">
         <h2
           style={{
             fontFamily: loadedTitleFont ? `var(${loadedTitleFont})` : "inherit",
             color: titleColor,
           }}
-          className="text-3xl text-white"
+          className="mb-2 text-3xl font-bold text-white"
         >
           {title}
         </h2>
