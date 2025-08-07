@@ -35,7 +35,10 @@ const Register = () => {
 
         <h2 className="mb-4 mt-20 text-4xl text-white">عضویت</h2>
 
-        <div className="relative mt-8 flex cursor-pointer items-center justify-center gap-10 text-base font-thin text-text-light">
+        <p className="relative mt-8 flex items-center justify-center gap-10 text-lg font-thin text-primary">
+          عضویت
+        </p>
+        {/* <div className="relative mt-8 flex cursor-pointer items-center justify-center gap-10 text-base font-thin text-text-light">
           <span
             className={cn(
               `absolute bottom-0 h-[4px] translate-y-3 bg-secondary transition-all duration-300`,
@@ -57,7 +60,7 @@ const Register = () => {
           >
             با شماره موبایل
           </p>
-        </div>
+        </div> */}
 
         <div className="mt-8 w-full max-w-md px-4">
           {selectedTab === "email" && <CredentialsRegisterForm />}

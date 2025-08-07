@@ -31,7 +31,7 @@ const slides = [
       "اجازه بده مشتری‌هات مستقیم پیام بدن، سوال بپرسن و پرداخت کنن.",
     cta: "شروع کن",
     images: [
-      "https://arklight.storage.c2.liara.space/preview/preview-shop.webp",
+      "https://arklight.storage.c2.liara.space/preview/preview-coffee.webp",
     ],
   },
   {
@@ -40,7 +40,9 @@ const slides = [
     title: "پر رنگ‌تر شو، محبوب‌تر شو",
     description: "مخاطبات رو به لینکای مهمت هدایت کن و بازدیدتو افزایش بده.",
     cta: "رشد کن",
-    images: ["/images/creator-1.png"],
+    images: [
+      "https://arklight.storage.c2.liara.space/preview/preview-photography.webp",
+    ],
   },
   {
     id: "stores",
@@ -59,7 +61,9 @@ const slides = [
     title: "هنر و تو، در مرکز توجه",
     description: "دستاورد‌هاتو به اشتراک بذار و فالوور جدید جذب کن.",
     cta: "نمایش بده",
-    images: ["/images/everyone-1.png"],
+    images: [
+      "https://arklight.storage.c2.liara.space/preview/preview-vlog.webp",
+    ],
   },
 ];
 

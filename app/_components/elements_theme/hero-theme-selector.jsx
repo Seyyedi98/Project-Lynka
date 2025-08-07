@@ -48,8 +48,7 @@ const HeroThemeSelector = () => {
                 );
               }}
             >
-              <div className="w-60 cursor-pointer bg-gray-500 transition-transform duration-200 hover:scale-105">
-                {/* {theme} */}
+              <div className="h-[470px] w-60 cursor-pointer overflow-hidden bg-gray-500 transition-transform duration-200 hover:scale-105">
                 <Image
                   height={400}
                   width={200}

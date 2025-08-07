@@ -140,7 +140,7 @@ const LandingPageHero = () => {
               className="rounded-2xl object-cover shadow-2xl"
             />
           </div>
-          {floatingIcons.map(({ icon: Icon, top, left }, i) => (
+          {/* {floatingIcons.map(({ icon: Icon, top, left }, i) => (
             <motion.div
               key={i}
               className="absolute rounded-full bg-white/90 p-3 text-[hsl(207,90%,54%)] shadow-md backdrop-blur-sm"
@@ -152,7 +152,7 @@ const LandingPageHero = () => {
             >
               <Icon className="h-5 w-5" />
             </motion.div>
-          ))}
+          ))} */}
         </div>
       </div>
     </section>
