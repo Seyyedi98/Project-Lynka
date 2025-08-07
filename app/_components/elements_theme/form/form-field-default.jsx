@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { loadFont } from "@/utils/loadFont";
 import { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
+import generateMathQuestion from "@/lib/generateMathQuestion";
 
 const toPersianNumbers = (num) => {
   const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
@@ -39,21 +40,10 @@ const FormFieldDefault = (props) => {
   const formRef = useRef(null);
 
   // Generate math question
-  const generateMathQuestion = () => {
-    const a = Math.floor(Math.random() * 9) + 1;
-    const b = Math.floor(Math.random() * 9) + 1;
-    setMathQuestion({
-      a,
-      b,
-      answer: a + b,
-      persianA: toPersianNumbers(a),
-      persianB: toPersianNumbers(b),
-    });
-    setValue("mathAnswer", "");
-  };
+  const MathQuestion = generateMathQuestion();
 
   useEffect(() => {
-    generateMathQuestion();
+    MathQuestion();
     const fetchFont = async () => {
       try {
         const fontVariable = await loadFont(font);
@@ -81,7 +71,7 @@ const FormFieldDefault = (props) => {
     // Math question verification
     if (parseInt(formData.mathAnswer) !== mathQuestion.answer) {
       toast.error("پاسخ شما نادرست است. لطفاً دوباره تلاش کنید");
-      generateMathQuestion();
+      MathQuestion();
       return;
     }
 

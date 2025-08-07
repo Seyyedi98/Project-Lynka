@@ -112,7 +112,7 @@ const ThemePreviewRenderer = ({ theme }) => {
         <CardElementRender
           title="فروشگاه من"
           layout="highFullImage"
-          image='{"key":"800217089-10696.904317455173.jpg"}'
+          image='{"key":"preview.webp"}'
           textColor={elementTextColor}
           bgColor={elementColor}
           // borderColor={borderColor}
