@@ -27,10 +27,6 @@ const EditorSidebarElements = ({ isPremium }) => {
               pageElement={PageElements.TextField}
               isPremium={isPremium}
             />
-            <AddElementButton
-              pageElement={PageElements.ImageField}
-              isPremium={isPremium}
-            />
           </div>
         </section>
 
@@ -64,8 +60,14 @@ const EditorSidebarElements = ({ isPremium }) => {
 
         {/* مجموعه‌های رسانه‌ای */}
         <section>
-          <h3 className="mb-3 text-sm font-semibold text-text/60">گالری‌ها</h3>
+          <h3 className="mb-3 text-sm font-semibold text-text/60">
+            چند رسانه ای
+          </h3>
           <div className="grid grid-cols-1 gap-3">
+            <AddElementButton
+              pageElement={PageElements.ImageField}
+              isPremium={isPremium}
+            />
             <AddElementButton
               pageElement={PageElements.GalleryField}
               isPremium={isPremium}
@@ -95,6 +97,10 @@ const EditorSidebarElements = ({ isPremium }) => {
             />
             <AddElementButton
               pageElement={PageElements.FaqField}
+              isPremium={isPremium}
+            />{" "}
+            <AddElementButton
+              pageElement={PageElements.LotteryField}
               isPremium={isPremium}
             />
           </div>

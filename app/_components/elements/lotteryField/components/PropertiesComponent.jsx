@@ -2,14 +2,15 @@
 
 import DeleteElementBtn from "@/app/_components/common/button/PrimaryButton/delete-element-button";
 import { ShinyButton } from "@/app/_components/common/button/PrimaryButton/shiny-button";
-import ElementAddContactFormFormField from "@/app/_components/common/form/element-properties/element-add-contactform-field-formfield";
 import ElementBorderRadiusFormField from "@/app/_components/common/form/element-properties/element-border-radius-formfield";
 import ElementColorFormField from "@/app/_components/common/form/element-properties/element-color-formfield";
 import ElementCountdownFormField from "@/app/_components/common/form/element-properties/element-countdown-formfield";
 import ElementFontFormField from "@/app/_components/common/form/element-properties/element-font-formfield";
+import ElementPasswordFormField from "@/app/_components/common/form/element-properties/element-password-formfield";
 import ElementScheduleFormField from "@/app/_components/common/form/element-properties/element-schedule-formfield";
 import ElementTitleFormField from "@/app/_components/common/form/element-properties/element-title-formfield";
 import Divider from "@/app/_components/common/shared/devider";
+import { ElementThemeController } from "@/app/_components/controller/element-theme-controller";
 import ElementThemeSelector from "@/app/_components/elements_theme/element-theme-selector";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,33 +23,44 @@ import {
 import { Form } from "@/components/ui/form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import CryptoJS from "crypto-js";
 import { Check, ChevronLeft, TrashIcon } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import LotteryList from "./lotteryList";
 
 function PropertiesComponent({ elementInstance, isPremium }) {
   const element = elementInstance;
   const dispatch = useDispatch();
 
+  const RenderElement =
+    ElementThemeController[element.type][element.extraAttributes.theme][0];
+
+  const hashPassword = (password) => {
+    const hashedPassword = CryptoJS.SHA256(password).toString();
+    return hashedPassword;
+  };
+
   const form = useForm({
     // resolver: zodResolver(cardFieldSchems),
     defaultValues: {
       title: element.extraAttributes.title || "",
-      successMessage: element.extraAttributes.successMessage || "",
       font: element.extraAttributes.font || "",
       textColor: element.extraAttributes.textColor || "",
-      borderColor: element.extraAttributes.borderColor || "",
+      lotteryId: element.extraAttributes.lotteryId || "",
       bgColor: element.extraAttributes.bgColor || "",
-      fieldBorderRadius: element.extraAttributes.fieldBorderRadius || "",
+      borderRadius: element.extraAttributes.borderRadius || "",
+      borderColor: element.extraAttributes.borderColor || "",
       cardBorderRadius: element.extraAttributes.cardBorderRadius || "",
-      fields: element.extraAttributes.fields || [],
       schedule: element.extraAttributes.schedule || false,
       scheduleStart: element.extraAttributes.scheduleStart || "0",
       scheduleEnd: element.extraAttributes.scheduleEnd || "0",
       countdown: element.extraAttributes.countdown || false,
       countdownDate: element.extraAttributes.countdownDate || "0",
+      isProtected: element.extraAttributes.isProtected || false,
+      password: "",
     },
   });
 
@@ -59,20 +71,21 @@ function PropertiesComponent({ elementInstance, isPremium }) {
   function applyChanges(values) {
     const {
       title,
-      successMessage,
       theme,
       textColor,
-      bgColor,
-      borderColor,
-      fieldBorderRadius,
-      cardBorderRadius,
-      fields,
       font,
+      bgColor,
+      borderRadius,
+      borderColor,
+      cardBorderRadius,
+      lotteryId,
       schedule,
       scheduleStart,
       scheduleEnd,
       countdown,
       countdownDate,
+      isProtected,
+      password,
     } = values;
 
     const payload = {
@@ -82,14 +95,13 @@ function PropertiesComponent({ elementInstance, isPremium }) {
         extraAttributes: {
           ...element.extraAttributes,
           title,
-          successMessage,
           theme,
           textColor,
-          fields,
           font,
-          fieldBorderRadius,
-          cardBorderRadius,
+          borderRadius,
           borderColor,
+          cardBorderRadius,
+          lotteryId,
           bgColor,
           schedule: isPremium ? schedule : element.extraAttributes.schedule,
           scheduleStart: isPremium
@@ -102,6 +114,14 @@ function PropertiesComponent({ elementInstance, isPremium }) {
           countdownDate: isPremium
             ? countdownDate
             : element.extraAttributes.countdownDate,
+          isProtected: isPremium
+            ? isProtected
+            : element.extraAttributes.isProtected,
+          password: isPremium
+            ? element.extraAttributes.password !== password && password !== ""
+              ? hashPassword(password)
+              : element.extraAttributes.password
+            : element.extraAttributes.password,
         },
       },
     };
@@ -137,7 +157,6 @@ function PropertiesComponent({ elementInstance, isPremium }) {
         >
           <div className="h-full w-full">
             <form
-              // onBlur={form.handleSubmit(applyChanges)}
               className="flex h-full flex-col gap-5 text-text/90"
               onSubmit={form.handleSubmit(applyChanges)}
             >
@@ -150,25 +169,7 @@ function PropertiesComponent({ elementInstance, isPremium }) {
 
                 <TabsContent value="content" className="flex flex-col gap-5">
                   {/* Title */}
-                  <ElementTitleFormField
-                    placeholder="عنوان فرم"
-                    form={form}
-                    description="عنوان فرم برای شناسایی اطلاعات ثبت‌شده استفاده می‌شود. در صورت تغییر عنوان، پاسخ‌ها در لیستی با نام جدید ذخیره خواهند شد"
-                  />
-
-                  {/* Success Message */}
-                  <ElementTitleFormField
-                    placeholder="پیام"
-                    form={form}
-                    fieldName="successMessage"
-                    description="پیامی که پس از ثبت موفقیت آمیز فرم برای کاربران نمایش داده خواهد شد"
-                  />
-
-                  {/* Fields */}
-                  <ElementAddContactFormFormField
-                    fieldName="fields"
-                    form={form}
-                  />
+                  <ElementTitleFormField form={form} />
 
                   <Divider className="mt-4 opacity-50" />
 
@@ -181,6 +182,10 @@ function PropertiesComponent({ elementInstance, isPremium }) {
                     label="رنگ متن"
                     fieldName="textColor"
                   />
+
+                  <Divider className="mt-4 opacity-50" />
+
+                  <LotteryList form={form} />
                 </TabsContent>
 
                 <TabsContent value="design" className="flex flex-col gap-4">
@@ -194,7 +199,7 @@ function PropertiesComponent({ elementInstance, isPremium }) {
                   {/* Fields Border radius */}
                   <ElementBorderRadiusFormField
                     form={form}
-                    fieldName="fieldBorderRadius"
+                    fieldName="borderRadius"
                     label="زاویه فیلد ها"
                   />
 
@@ -230,6 +235,15 @@ function PropertiesComponent({ elementInstance, isPremium }) {
                     <ElementCountdownFormField
                       showToggle={true}
                       countdownData={element.extraAttributes}
+                      form={form}
+                      isPremium={isPremium}
+                    />
+                  </div>
+
+                  {/* Password */}
+                  <div className="mt-6">
+                    <ElementPasswordFormField
+                      passwordData={element.extraAttributes}
                       form={form}
                       isPremium={isPremium}
                     />

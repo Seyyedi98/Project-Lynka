@@ -43,6 +43,7 @@ model User {
   twofactorConfiramtionId String?
   Notification            Notification[]
   Ttransactions           Transactions[]
+  lotteries               Lottery[]
 
   @@map("users")
 }
@@ -219,4 +220,33 @@ model Transactions {
   refundDate       DateTime?
 
   @@index([userId])
+}
+
+model Lottery {
+  id          String              @id @default(cuid())
+  userId      String
+  name        String
+  slug        String              @unique
+  winnerCount Int                 @default(1)
+  isActive    Boolean             @default(true)
+  winners     Json?
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  endedAt     DateTime?
+  user        User                @relation(fields: [userId], references: [id])
+  submissions LotterySubmission[]
+
+  @@index([userId])
+}
+
+model LotterySubmission {
+  id          String   @id @default(cuid())
+  lotteryId   String
+  firstName   String
+  lastName    String
+  contactInfo String
+  createdAt   DateTime @default(now())
+  lottery     Lottery  @relation(fields: [lotteryId], references: [id])
+
+  @@index([lotteryId])
 }

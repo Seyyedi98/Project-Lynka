@@ -3,12 +3,11 @@
 import { submitForm } from "@/actions/form/page-formfield";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
 import { loadFont } from "@/utils/loadFont";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import generateMathQuestion from "@/lib/generateMathQuestion";
+import toast from "react-hot-toast";
 
 const toPersianNumbers = (num) => {
   const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
@@ -40,7 +39,18 @@ const FormFieldDefault = (props) => {
   const formRef = useRef(null);
 
   // Generate math question
-  const MathQuestion = generateMathQuestion();
+  const MathQuestion = () => {
+    const a = Math.floor(Math.random() * 9) + 1;
+    const b = Math.floor(Math.random() * 9) + 1;
+    setMathQuestion({
+      a,
+      b,
+      answer: a + b,
+      persianA: toPersianNumbers(a),
+      persianB: toPersianNumbers(b),
+    });
+    setValue("mathAnswer", "");
+  };
 
   useEffect(() => {
     MathQuestion();

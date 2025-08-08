@@ -23,6 +23,7 @@ import FormFieldDefault from "../elements_theme/form/form-field-default";
 import FormFieldTransparent from "../elements_theme/form/form-field-transparent";
 import FormFieldWindows95 from "../elements_theme/form/form-field-windows95";
 import GalleryFieldDefault from "../elements_theme/gallery/gallery-field-default";
+import LotteryFieldDefault from "../elements_theme/lottery/lottery-field-default";
 import MapFieldDefault from "../elements_theme/map/map-field-default";
 import MapFieldWindows95 from "../elements_theme/map/map-field-windows95";
 import PostTrackerFieldDefault from "../elements_theme/postTracker/postTracker-field-default";
@@ -133,5 +134,8 @@ export const ElementThemeController = {
     default: [FormFieldDefault, { type: "color" }, { isPremium: true }],
     transparent: [FormFieldTransparent, { type: "color" }, { isPremium: true }],
     windows95: [FormFieldWindows95, { type: "color" }, { isPremium: true }],
+  },
+  LotteryField: {
+    default: [LotteryFieldDefault, { type: "color" }, { isPremium: true }],
   },
 };

@@ -6,6 +6,7 @@ import { DeviderFieldFormElement } from "../elements/deviderField/devider-field"
 import { FaqFieldFormElement } from "../elements/faq/faq-field";
 import { GalleryFieldFormElement } from "../elements/gallery/gallery-field";
 import { ImageFieldFormElement } from "../elements/image/image-field";
+import { LotteryFieldElement } from "../elements/lotteryField/lottery-field";
 import { MapFieldFormElement } from "../elements/map/map-field";
 import { PostTrackerFieldFormElement } from "../elements/postTracker/postTracker-field";
 import { ProductFieldFormElement } from "../elements/product/product-field";
@@ -32,4 +33,5 @@ export const PageElements = {
   CarouselField: CarouselFieldFormElement,
   PostTrackerField: PostTrackerFieldFormElement,
   FormField: FormFieldFormElement,
+  LotteryField: LotteryFieldElement,
 };
