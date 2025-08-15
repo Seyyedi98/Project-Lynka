@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const tabs = [
   {
@@ -11,15 +12,29 @@ const tabs = [
     number: "۰۱",
     title: "خدمات خانگی و کسب‌وکار",
     subtitle: "خدمات",
+    gradient: "from-blue-500 to-cyan-400",
   },
   {
     id: "creators",
     number: "۰۲",
     title: "افراد محبوب",
     subtitle: "اینفلوئنسر",
+    gradient: "from-pink-500 to-rose-400",
   },
-  { id: "stores", number: "۰۳", title: "برندها", subtitle: "فروشگاه‌ها" },
-  { id: "everyone", number: "۰۴", title: "فریلنسرها", subtitle: "همه افراد" },
+  {
+    id: "stores",
+    number: "۰۳",
+    title: "برندها",
+    subtitle: "فروشگاه‌ها",
+    gradient: "from-purple-500 to-violet-400",
+  },
+  {
+    id: "everyone",
+    number: "۰۴",
+    title: "فریلنسرها",
+    subtitle: "همه افراد",
+    gradient: "from-emerald-500 to-teal-400",
+  },
 ];
 
 const slides = [
@@ -70,6 +85,9 @@ const slides = [
 const LandingPageAudience = () => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [autoSlide, setAutoSlide] = useState(true);
+  const activeGradient =
+    tabs.find((tab) => tab.id === activeTab)?.gradient ||
+    "from-blue-500 to-cyan-400";
 
   useEffect(() => {
     if (!autoSlide) return;
@@ -83,7 +101,7 @@ const LandingPageAudience = () => {
   const slide = slides.find((s) => s.id === activeTab);
 
   return (
-    <section className="bg-white pb-32 pt-20">
+    <section className="bg-white pb-32 pt-16">
       <div className="container mx-auto px-4">
         <div className="flex border-b border-gray-200">
           {tabs.map((tab) => (
@@ -93,16 +111,20 @@ const LandingPageAudience = () => {
                 setActiveTab(tab.id);
                 setAutoSlide(false);
               }}
-              className="relative flex-1 py-4 text-center"
+              className="relative flex-1 py-6 text-center transition-colors hover:bg-gray-50"
             >
-              <div className="text-xs text-gray-500">{tab.number}</div>
-              <div className="text-lg font-medium text-gray-900">
+              <div className="text-xs font-medium text-gray-500">
+                {tab.number}
+              </div>
+              <div
+                className={`text-lg font-semibold ${activeTab === tab.id ? "text-gray-900" : "text-gray-600"}`}
+              >
                 {tab.subtitle}
               </div>
               {activeTab === tab.id && (
                 <motion.div
                   layoutId="tabIndicator"
-                  className="absolute bottom-0 left-0 right-0 h-1 bg-[hsl(207,90%,54%)]"
+                  className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${tab.gradient}`}
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
@@ -110,14 +132,14 @@ const LandingPageAudience = () => {
           ))}
         </div>
 
-        <div className="mt-12">
+        <div className="mt-16">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
               className="flex flex-col items-center gap-12 md:flex-row"
             >
               <div className="w-full md:w-1/2">
@@ -125,15 +147,18 @@ const LandingPageAudience = () => {
                   initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.1, duration: 0.6 }}
-                  className="mb-4 flex flex-wrap gap-2"
+                  className="mb-6 flex flex-wrap gap-2"
                 >
                   {slide.categories.map((c, i) => (
-                    <span
+                    <motion.span
                       key={i}
-                      className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700"
+                      initial={{ scale: 0.8 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.1 + i * 0.1 }}
+                      className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700"
                     >
                       {c}
-                    </span>
+                    </motion.span>
                   ))}
                 </motion.div>
 
@@ -141,7 +166,7 @@ const LandingPageAudience = () => {
                   initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
-                  className="mb-4 text-3xl font-bold text-gray-900"
+                  className="mb-6 text-4xl font-bold text-gray-900"
                 >
                   {slide.title}
                 </motion.h2>
@@ -150,14 +175,14 @@ const LandingPageAudience = () => {
                   initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                  className="mb-6 h-px w-20 bg-gray-300"
+                  className={`mb-8 h-1 w-20 bg-gradient-to-r ${activeGradient}`}
                 />
 
                 <motion.p
                   initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
-                  className="mb-8 text-lg text-gray-600"
+                  className="mb-10 text-lg leading-relaxed text-gray-600"
                 >
                   {slide.description}
                 </motion.p>
@@ -167,12 +192,12 @@ const LandingPageAudience = () => {
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.6 }}
                 >
-                  <Link
-                    href="/dashboard"
-                    className="inline-block rounded-lg bg-gradient-to-r from-[hsl(207,90%,54%)] to-[hsl(172,100%,37%)] px-6 py-3 text-white shadow-lg hover:scale-105"
+                  <Button
+                    asChild
+                    className={`rounded-lg bg-gradient-to-r ${activeGradient} px-8 py-6 text-lg font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
                   >
-                    {slide.cta}
-                  </Link>
+                    <Link href="/dashboard">{slide.cta}</Link>
+                  </Button>
                 </motion.div>
               </div>
 

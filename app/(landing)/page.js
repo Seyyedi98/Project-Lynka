@@ -24,17 +24,16 @@ export default function LandingPage() {
 
       <LandingPageFeatures />
 
-      <PricingSection />
+      {/* <PricingSection /> */}
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-[hsl(var(--primary)/0.8)] to-[hsl(var(--secondary)/0.8)] py-20">
+      <section className="bg-main-gradient py-20">
         <div className="container mx-auto px-4 text-center">
           <div className="mx-auto max-w-4xl rounded-2xl border border-white/30 bg-white/20 p-12 backdrop-blur-lg">
             <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
               آماده ساخت صفحه لینک خود هستید؟
             </h2>
             <p className="mx-auto mb-8 max-w-2xl text-xl text-white/90">
-              همین حالا ثبت‌نام کنید و در کمتر از ۲ دقیقه صفحه لینک حرفه‌ای خود
-              را بسازید
+              همین حالا ثبت نام کنید و در کمتر از ۲ دقیقه صفحه‌ی خود را بسازید
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <button

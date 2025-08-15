@@ -22,6 +22,7 @@ module.exports = {
         text: {
           DEFAULT: "hsl(var(--text))",
           light: "hsl(var(--textLight))",
+          title: "hsl(var(--title))",
         },
         background: {
           DEFAULT: "hsl(var(--background))",

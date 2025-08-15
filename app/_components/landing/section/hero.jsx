@@ -1,73 +1,93 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Globe, Link2, Share2, Sparkles, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-const floatVariants = {
-  initial: { opacity: 0, y: -20, scale: 0.8 },
-  animate: (i) => ({
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      delay: 0.4 + i * 0.2,
-      type: "spring",
-      stiffness: 100,
-    },
-  }),
-};
-
-const floatingIcons = [
-  { icon: Link2, top: "10%", left: "5%" },
-  { icon: Share2, top: "20%", left: "85%" },
-  { icon: Users, top: "70%", left: "10%" },
-  { icon: Globe, top: "80%", left: "80%" },
-  { icon: Sparkles, top: "50%", left: "50%" },
-];
-
-const textVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.2 + i * 0.1,
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  }),
-};
-
-const underlineVariants = {
-  hidden: { scaleX: 0, originX: 1 },
-  visible: {
-    scaleX: 1,
-    transition: {
-      delay: 0.4,
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-
-const buttonVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.6,
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  },
-};
+import { Button } from "@/components/ui/button";
 
 const LandingPageHero = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
+
+  const floatVariants = {
+    initial: { opacity: 0, y: -20, scale: 0.8 },
+    animate: (i) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        delay: 0.4 + i * 0.2,
+        type: "spring",
+        stiffness: 100,
+      },
+    }),
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 0.2 + i * 0.1,
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    }),
+  };
+
+  const underlineVariants = {
+    hidden: { scaleX: 0, originX: 1 },
+    visible: {
+      scaleX: 1,
+      transition: {
+        delay: 0.4,
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 0.6,
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[hsl(207,90%,54%)] to-[hsl(172,100%,37%)] py-24 transition-colors duration-300 md:py-32">
+    <section
+      ref={containerRef}
+      className="relative overflow-hidden bg-main-gradient py-32 transition-colors duration-300 md:py-32 lg:py-56"
+      // className="relative overflow-hidden bg-gradient-to-br from-[hsl(172,100%,37%)] to-[hsl(207,90%,54%)] py-32 transition-colors duration-300 md:py-32 lg:py-56"
+    >
+      {/* Parallax Background */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{ y }}
+      >
+        <Image
+          src="/bg_wave.svg"
+          alt="background"
+          fill
+          className="object-cover object-center"
+        />
+      </motion.div>
+
+      {/* Bottom wave */}
       <div className="absolute inset-x-0 bottom-0">
         <svg
           viewBox="0 0 224 12"
@@ -79,26 +99,22 @@ const LandingPageHero = () => {
         </svg>
       </div>
 
-      <div className="container mx-auto mt-12 flex flex-col-reverse items-center gap-16 px-4 md:flex-row">
-        <div className="w-full text-right md:w-1/2">
+      <div className="container mx-auto flex flex-col items-center px-4">
+        <div className="w-full max-w-3xl text-center">
           <motion.h1
             initial="hidden"
             animate="visible"
-            className="mb-4 text-center text-5xl font-bold leading-relaxed text-white md:text-right md:text-3xl lg:text-4xl xl:text-5xl"
+            className="mb-6 text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl"
           >
-            <motion.span variants={textVariants} className="block text-4xl">
-              تمام محتوای شما، در یک صفحه
-            </motion.span>
-            <br className="hidden md:block" />
             <motion.span
               variants={textVariants}
               custom={1}
-              className="relative inline-block md:mt-4"
+              className="relative mt-4 inline-block"
             >
-              ساده، زیبا و حرفه‌ای
+              صفحه شخصی خودت رو بساز
               <motion.div
                 variants={underlineVariants}
-                className="h-1 w-full rounded-full bg-white/30 md:mt-4"
+                className="mx-auto mt-4 h-1 rounded-full bg-white/30 md:mt-8"
                 initial="hidden"
                 animate="visible"
               />
@@ -110,7 +126,7 @@ const LandingPageHero = () => {
             animate="visible"
             variants={textVariants}
             custom={1.5}
-            className="mb-10 max-w-md text-center text-lg leading-7 text-white/90 sm:text-right md:text-xl"
+            className="mx-auto mb-8 mt-8 text-lg leading-8 text-white/90 md:mt-12 md:text-xl"
           >
             لینک‌ها، شبکه‌های اجتماعی، محصولات و خدمات خود را در یک صفحه اختصاصی
             و جذاب گرد هم آورید تا همیشه حرفه‌ای دیده شوید.
@@ -120,39 +136,14 @@ const LandingPageHero = () => {
             initial="hidden"
             animate="visible"
             variants={buttonVariants}
-            className="items-center gap-4"
+            className="mt-12 flex justify-center"
           >
-            <Link
-              href="/dashboard"
-              className="focus:shadow-outline inline-flex h-12 w-full items-center justify-center rounded-lg bg-white px-6 font-medium tracking-wide text-[hsl(207,90%,54%)] shadow-md transition duration-200 hover:bg-white/90 focus:outline-none md:w-auto"
-            >
-              شروع رایگان
+            <Link href="/dashboard">
+              <Button variant="transparentWhite" className="h-14 px-8 text-lg">
+                همین الان شروع کن!
+              </Button>
             </Link>
           </motion.div>
-        </div>
-
-        <div className="relative flex w-full items-center justify-center md:w-1/2">
-          <div className="relative h-[520px] w-[260px]">
-            <Image
-              src="https://arklight.storage.c2.liara.space/preview/preview-coffee.webp"
-              alt="پیش‌ نمایش موبایل"
-              fill
-              className="rounded-2xl object-cover shadow-2xl"
-            />
-          </div>
-          {/* {floatingIcons.map(({ icon: Icon, top, left }, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-full bg-white/90 p-3 text-[hsl(207,90%,54%)] shadow-md backdrop-blur-sm"
-              style={{ top, left }}
-              variants={floatVariants}
-              initial="initial"
-              animate="animate"
-              custom={i}
-            >
-              <Icon className="h-5 w-5" />
-            </motion.div>
-          ))} */}
         </div>
       </div>
     </section>

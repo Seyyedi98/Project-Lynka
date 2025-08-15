@@ -37,60 +37,64 @@ export default function LandingPageNavbar() {
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
 
     return () => {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [isMenuOpen]);
 
   return (
     <>
-      <div
-        className={`fixed right-0 top-0 z-40 flex h-16 w-full px-2 text-white transition-all duration-200 sm:pr-4 ${
+      <nav
+        className={`fixed right-0 top-0 z-50 w-full px-4 transition-all duration-500 ${
           isScrolled || isMenuOpen
-            ? "bg-gradient-to-r from-[rgba(32,148,243,0.9)] to-[rgba(0,189,164,0.9)] shadow-lg backdrop-blur-sm"
+            ? "bg-transparent shadow-lg backdrop-blur-sm"
             : "bg-transparent"
         }`}
-        style={{
-          transition: "background 0.3s ease, box-shadow 0.3s ease",
-        }}
       >
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 sm:px-1">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between">
           {/* Logo */}
           <Link
             href="/"
-            className="ml-4 text-xl font-bold text-white transition-opacity duration-300 hover:text-white hover:opacity-90"
+            className="z-50 transition-opacity duration-300 hover:opacity-90"
           >
-            <Image width={80} height={120} src="/logo.webp" alt="lynka logo" />
+            <Image
+              width={80}
+              height={120}
+              src="/logo.webp"
+              alt="lynka logo"
+              className="h-auto w-20"
+            />
           </Link>
 
-          {/* Navigation Links - Hidden on mobile */}
-          <div className="hidden items-center gap-6 text-sm font-medium md:flex">
+          {/* Desktop Navigation */}
+          <div className="hidden items-center gap-8 text-sm font-medium md:flex">
             {[
               { label: "خانه", href: "/" },
               { label: "بلاگ", href: "/blog" },
-              // { label: "قیمت ها", href: "/pricing" },
-              // { label: "تماس با ما", href: "/contact-us" },
             ].map((item, index) => (
               <Link
                 key={index}
                 href={item.href}
-                className="text-white/80 transition-all duration-300 hover:scale-105 hover:text-white"
+                className="text-white/90 transition-all duration-200 hover:scale-105 hover:text-white"
               >
                 {item.label}
               </Link>
             ))}
           </div>
 
-          {/* Desktop Login Button - Hidden on mobile */}
-          <div className="hidden items-center gap-4 md:flex">
+          {/* Desktop Auth Button */}
+          <div className="hidden md:block">
             {session.status !== "unauthenticated" ? (
               <Link
                 href="/dashboard"
-                className="flex transform items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all duration-300 hover:text-slate-900 hover:shadow-md active:scale-95"
+                className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all hover:bg-white/95 hover:shadow-md"
               >
                 <span>پنل کاربری</span>
                 <LogIn className="h-4 w-4" />
@@ -98,7 +102,7 @@ export default function LandingPageNavbar() {
             ) : (
               <Link
                 href="/auth/login"
-                className="flex transform items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all duration-300 hover:text-primary hover:shadow-md active:scale-95"
+                className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all hover:bg-white/95 hover:shadow-md"
               >
                 <span>ورود</span>
                 <LogIn className="h-4 w-4" />
@@ -106,9 +110,9 @@ export default function LandingPageNavbar() {
             )}
           </div>
 
-          {/* Mobile menu button - Always visible on mobile */}
+          {/* Mobile Menu Button */}
           <button
-            className="md:hidden"
+            className="z-50 rounded-full p-2 transition-all hover:bg-white/10 md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Menu"
           >
@@ -119,77 +123,72 @@ export default function LandingPageNavbar() {
             )}
           </button>
         </div>
-      </div>
 
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="mobile-menu-container fixed right-0 top-16 z-30 w-full bg-gradient-to-r from-[rgba(32,148,243,0.95)] to-[rgba(0,189,164,0.95)] shadow-lg backdrop-blur-sm md:hidden"
-          >
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.2 }}
-              className="flex flex-col items-center gap-6 overflow-y-auto pb-6 pt-4"
-              style={{ maxHeight: "calc(100vh - 4rem)" }}
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ type: "spring", damping: 25 }}
+              className="mobile-menu-container fixed left-0 top-0 z-40 h-screen w-full bg-gradient-to-b from-[rgba(32,148,243,0.98)] to-[rgba(0,189,164,0.98)] pt-20 backdrop-blur-lg"
             >
-              {[
-                { label: "خانه", href: "/" },
-                { label: "بلاگ", href: "/blog" },
-                // { label: "قیمت ها", href: "/pricing" },
-                // { label: "تماس با ما", href: "/contact-us" },
-              ].map((item, index) => (
+              <div className="flex h-full flex-col items-center justify-between pb-20">
+                <div className="flex w-full flex-col items-center gap-2 px-6">
+                  {[
+                    { label: "خانه", href: "/" },
+                    { label: "بلاگ", href: "/blog" },
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ x: 20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: 0.1 + index * 0.1 }}
+                      className="w-full"
+                    >
+                      <Link
+                        href={item.href}
+                        className="block w-full rounded-lg py-4 text-center text-xl font-medium text-white transition-all hover:bg-white/10"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+
                 <motion.div
-                  key={index}
-                  initial={{ x: 20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.1 + index * 0.05 }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.3 }}
                   className="w-full px-6"
                 >
-                  <Link
-                    href={item.href}
-                    className="block w-full py-3 text-center text-lg text-white/80 transition-all duration-300 hover:bg-white/10 hover:text-white"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
+                  {session.status !== "unauthenticated" ? (
+                    <Link
+                      href="/dashboard"
+                      className="flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3.5 text-lg font-medium text-primary shadow-lg transition-all hover:bg-white/95"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <span>پنل کاربری</span>
+                      <LogIn className="h-5 w-5" />
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/auth/login"
+                      className="flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3.5 text-lg font-medium text-primary shadow-lg transition-all hover:bg-white/95"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <span>ورود</span>
+                      <LogIn className="h-5 w-5" />
+                    </Link>
+                  )}
                 </motion.div>
-              ))}
-
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="mt-2 w-full px-6"
-              >
-                {session.status !== "unauthenticated" ? (
-                  <Link
-                    href="/dashboard"
-                    className="flex transform items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all duration-300 hover:text-slate-900 hover:shadow-md active:scale-95"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <span>پنل کاربری</span>
-                    <LogIn className="h-4 w-4" />
-                  </Link>
-                ) : (
-                  <Link
-                    href="/auth/login"
-                    className="flex transform items-center justify-center gap-2 rounded-lg bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all duration-300 hover:text-primary hover:shadow-md active:scale-95"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <span>ورود</span>
-                    <LogIn className="h-4 w-4" />
-                  </Link>
-                )}
-              </motion.div>
+              </div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+      </nav>
     </>
   );
 }

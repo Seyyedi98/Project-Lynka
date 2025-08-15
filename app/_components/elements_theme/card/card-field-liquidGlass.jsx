@@ -341,7 +341,7 @@ const LiquidGlassRoundedImage = ({
 
         <div
           className={cn(
-            `h-20 w-20 overflow-hidden rounded-xl`,
+            `h-20 w-20 overflow-hidden`,
             !image && "border-2 border-dashed border-white/30",
           )}
           style={{
@@ -349,6 +349,7 @@ const LiquidGlassRoundedImage = ({
             border: "1px solid rgba(255, 255, 255, 0.2)",
             backdropFilter: "blur(15px)",
             zIndex: 10,
+            borderRadius: borderRadius,
           }}
         />
 

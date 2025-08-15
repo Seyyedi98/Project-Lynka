@@ -62,14 +62,14 @@ const LandingPageFeatures = () => {
   return (
     <section className="py-16" style={{ backgroundColor: "#f8fafc" }}>
       <div className="container mx-auto px-4">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2
-            className="text-3xl font-bold sm:text-4xl"
-            style={{ color: "#1e293b" }}
-          >
-            ویژگی‌های منحصر به فرد
-          </h2>
-          <p className="mt-4 text-lg" style={{ color: "#64748b" }}>
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <div className="relative inline-block">
+            <h2 className="text-text-title mb-4 text-4xl font-bold">
+              ویژگی‌های منحصر به فرد
+            </h2>
+            <div className="bg-text-title mx-auto mt-6 h-1 w-1/2 rounded-full"></div>
+          </div>
+          <p className="mt-8 text-lg font-medium text-primary">
             تمام آنچه برای رشد کسب‌وکار آنلاین خود نیاز دارید
           </p>
         </div>
