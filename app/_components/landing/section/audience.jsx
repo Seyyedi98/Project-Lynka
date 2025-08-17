@@ -46,7 +46,7 @@ const slides = [
       "اجازه بده مشتری‌هات مستقیم پیام بدن، سوال بپرسن و پرداخت کنن.",
     cta: "شروع کن",
     images: [
-      "https://arklight.storage.c2.liara.space/preview/preview-coffee.webp",
+      "https://arklight.storage.c2.liara.space/preview/triple-mockup-1.webp",
     ],
   },
   {
@@ -67,7 +67,7 @@ const slides = [
       "بدون نیاز به طراح، صفحه‌ت رو در کمتر از ۲۰ دقیقه ساخته و فروشت رو شروع کن!",
     cta: "فروش شروع کن",
     images: [
-      "https://arklight.storage.c2.liara.space/preview/preview-shop.webp",
+      "https://arklight.storage.c2.liara.space/preview/preview-coffee.webp",
     ],
   },
   {
@@ -101,7 +101,7 @@ const LandingPageAudience = () => {
   const slide = slides.find((s) => s.id === activeTab);
 
   return (
-    <section className="bg-white pb-32 pt-16">
+    <section className="bg-white pb-16 pt-16">
       <div className="container mx-auto px-4">
         <div className="flex border-b border-gray-200">
           {tabs.map((tab) => (
@@ -220,15 +220,16 @@ const LandingPageAudience = () => {
                         damping: 10,
                         stiffness: 100,
                       }}
-                      className={`absolute ${idx === 0 ? "left-0 top-0 z-0" : "bottom-0 right-0 z-10"} h-4/5 w-4/5`}
+                      className={`absolute ${idx === 0 ? "left-0 top-0 z-0" : "bottom-0 right-0 z-10"} h-full w-full`}
                     >
-                      <div className="w-full">
+                      <div className="relative h-full w-full">
                         <Image
                           src={img}
                           alt=""
-                          width={270}
-                          height={480}
-                          className="h-full w-64 object-cover"
+                          fill
+                          className="object-contain"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          priority={idx === 0}
                         />
                       </div>
                     </motion.div>

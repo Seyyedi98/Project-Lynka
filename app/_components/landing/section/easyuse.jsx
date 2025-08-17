@@ -21,9 +21,9 @@ const features = [
 ];
 
 const images = [
-  "/mobile-earth.webp",
-  "/mobile-earth.webp",
-  "/mobile-earth.webp",
+  "https://arklight.storage.c2.liara.space/preview/preview-dnd.webp",
+  "https://arklight.storage.c2.liara.space/preview/preview-dnd.webp",
+  "https://arklight.storage.c2.liara.space/preview/preview-dnd.webp",
 ];
 
 const textVariants = {

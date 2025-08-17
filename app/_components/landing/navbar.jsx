@@ -82,7 +82,12 @@ export default function LandingPageNavbar() {
               <Link
                 key={index}
                 href={item.href}
-                className="text-white/90 transition-all duration-200 hover:scale-105 hover:text-white"
+                className={
+                  (`transition-all duration-200 hover:scale-105`,
+                  isScrolled
+                    ? "text-primary/90 hover:text-primary"
+                    : "text-white/90 hover:text-white")
+                }
               >
                 {item.label}
               </Link>
@@ -167,7 +172,7 @@ export default function LandingPageNavbar() {
                   {session.status !== "unauthenticated" ? (
                     <Link
                       href="/dashboard"
-                      className="flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3.5 text-lg font-medium text-primary shadow-lg transition-all hover:bg-white/95"
+                      className="mb-8 flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3.5 text-lg font-medium text-primary shadow-lg transition-all hover:bg-white/95"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <span>پنل کاربری</span>

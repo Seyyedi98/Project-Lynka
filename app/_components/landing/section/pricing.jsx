@@ -170,17 +170,6 @@ const PricingSection = () => {
             </motion.div>
           ))}
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-8 flex w-full justify-center"
-        >
-          <button className="w-full rounded-lg bg-primary px-8 py-3 font-medium text-white shadow-md transition-all hover:scale-[1.02] hover:shadow-lg">
-            <Link href="/auth/login">همین حالا شروع کنید</Link>
-          </button>
-        </motion.div>
       </div>
     </section>
   );

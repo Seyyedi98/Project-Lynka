@@ -42,6 +42,7 @@ import SocialsFieldWindows95 from "../elements_theme/socials/socials-field-windo
 import SpaceFieldDefault from "../elements_theme/space/space-field-default";
 import TextFieldDefault from "../elements_theme/text/text-field-default";
 import TextFieldLiquidGlass from "../elements_theme/text/text-field-liquidGlass";
+import TextFieldTransparent from "../elements_theme/text/text-field-transparent";
 import TextFieldWindows95 from "../elements_theme/text/text-field-windows95";
 import VideoFieldDefault from "../elements_theme/video/video-field-default";
 
@@ -58,7 +59,7 @@ export const ElementThemeController = {
     rounded: [SocialsFieldRounded, { type: "color" }, { isPremium: false }],
     windows: [SocialsFieldWindows, { type: "color" }, { isPremium: true }],
     windows95: [SocialsFieldWindows95, { type: "color" }, { isPremium: true }],
-    macos: [SocialsFieldMacOS, { type: "color" }, { isPremium: true }],
+    liquidGlass: [SocialsFieldMacOS, { type: "color" }, { isPremium: true }],
     aero: [SocialsFieldAero, { type: "color" }, { isPremium: true }],
     glitch: [SocialsFieldGlitch, { type: "color" }, { isPremium: true }],
   },
@@ -96,6 +97,11 @@ export const ElementThemeController = {
   },
   TextField: {
     default: [TextFieldDefault, { type: "color" }, { isPremium: false }],
+    transparent: [
+      TextFieldTransparent,
+      { type: "color" },
+      { isPremium: false },
+    ],
     liquidGlass: [
       TextFieldLiquidGlass,
       { type: "color" },

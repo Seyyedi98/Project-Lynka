@@ -8,6 +8,8 @@ import LandingPageFeatures from "../_components/landing/section/grid-featured";
 import LandingPageHero from "../_components/landing/section/hero";
 import LivePageAllowsToSection from "../_components/landing/section/interactive-features";
 import PricingSection from "../_components/landing/section/pricing";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function LandingPage() {
   return (
@@ -24,7 +26,8 @@ export default function LandingPage() {
 
       <LandingPageFeatures />
 
-      {/* <PricingSection /> */}
+      <PricingSection />
+
       {/* CTA Section */}
       <section className="bg-main-gradient py-20">
         <div className="container mx-auto px-4 text-center">
@@ -74,6 +77,21 @@ export default function LandingPage() {
               </a>
             </div>
           </div>
+          {/* <a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=605868&Code=3lF0KZtRnH1EnHWZ9ildmBWtPqvn6Vxf'><img referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=605868&Code=3lF0KZtRnH1EnHWZ9ildmBWtPqvn6Vxf' alt='' style='cursor:pointer' code='3lF0KZtRnH1EnHWZ9ildmBWtPqvn6Vxf'></a> */}
+
+          <Link
+            href="https://trustseal.enamad.ir/?id=605868&Code=3lF0KZtRnH1EnHWZ9ildmBWtPqvn6Vxf"
+            target="_blank"
+            referrerPolicy="origin"
+          >
+            <Image
+              src="https://trustseal.enamad.ir/logo.aspx?id=605868&Code=3lF0KZtRnH1EnHWZ9ildmBWtPqvn6Vxf"
+              alt="e-namad"
+              width={120}
+              height={120}
+              loading="lazy"
+            />
+          </Link>
           <div className="mt-8 text-center text-sm text-[hsl(var(--textLight))]">
             © {new Date().getFullYear()} لینکا. تمام حقوق محفوظ است.
           </div>

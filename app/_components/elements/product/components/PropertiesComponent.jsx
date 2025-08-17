@@ -314,7 +314,7 @@ function PropertiesComponent({ elementInstance, isPremium }) {
             </button>
 
             <div className="mt-auto">
-              <Dialog>
+              {/* <Dialog>
                 <DialogTrigger asChild>
                   <ShinyButton
                     className="mt-4 h-14 w-full bg-button hover:bg-card-light"
@@ -331,7 +331,7 @@ function PropertiesComponent({ elementInstance, isPremium }) {
                   <DialogDescription className="hidden"></DialogDescription>
                   <ElementThemeSelector elementInstance={element} />
                 </DialogContent>
-              </Dialog>
+              </Dialog> */}
 
               {/* Desktop sidebar button */}
               <button

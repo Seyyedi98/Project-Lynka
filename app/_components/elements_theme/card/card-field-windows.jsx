@@ -62,7 +62,6 @@ const CardFieldWindows = (props) => {
     [image, imageUrl],
   );
 
-  // Workspace view for free and premium users && premium users live Page
   if (isPremium || !isLive) {
     if (layout === "basic") return <Basic loadedFont={loadedFont} {...props} />;
     if (layout === "roundedImage" || !layout)
@@ -79,7 +78,6 @@ const CardFieldWindows = (props) => {
       return <HighFullImage loadedFont={loadedFont} {...props} />;
   }
 
-  // Live page view for free users
   if (!isPremium && isLive) {
     if (layout === "basic") return <Basic loadedFont={loadedFont} {...props} />;
     if (
@@ -104,7 +102,6 @@ const Basic = ({
   title,
   href,
   isLive,
-  bgColor,
   textColor,
   loadedFont,
   image,
@@ -118,35 +115,6 @@ const Basic = ({
 
   return (
     <>
-      <style>
-        {`
-.windows_btn {
-  font-family: inherit;
-  border: none;
-  outline: 1px dotted rgb(37, 37, 37);
-  outline-offset: -4px;
-  cursor: pointer;
-  background: hsl(0deg 0% 75%);
-  box-shadow:
-    inset -1px -1px #292929,
-    inset 1px 1px #fff,
-    inset -2px -2px rgb(158, 158, 158),
-    inset 2px 2px #ffffff;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 5px 30px;
-}
-
-.windows_btn:active {
-  box-shadow:
-    inset -1px -1px #fff,
-    inset 1px 1px #292929,
-    inset -2px -2px #ffffff,
-    inset 2px 2px rgb(158, 158, 158);
-}
-`}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -162,14 +130,14 @@ const Basic = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `windows_btn flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 text-lg font-medium text-white shadow-lg`,
+          `flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 bg-[#c0c0c0] p-2 text-lg font-medium text-black shadow-[inset_-1px_-1px_#000,inset_1px_1px_#fff,inset_-2px_-2px_#808080,inset_2px_2px_#dfdfdf] active:shadow-[inset_-1px_-1px_#fff,inset_1px_1px_#000,inset_-2px_-2px_#dfdfdf,inset_2px_2px_#808080]`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
         <p
           style={{
             fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-            color: textColor,
+            color: textColor || "#000",
           }}
         >
           {title}
@@ -197,7 +165,6 @@ const RoundedImage = ({
   title,
   href,
   isLive,
-  bgColor,
   textColor,
   loadedFont,
   image,
@@ -212,37 +179,7 @@ const RoundedImage = ({
 
   return (
     <>
-      <style>
-        {`
-.windows_btn {
-  font-family: inherit;
-  border: none;
-  outline: 1px dotted rgb(37, 37, 37);
-  outline-offset: -4px;
-  cursor: pointer;
-  background: hsl(0deg 0% 75%);
-  box-shadow:
-    inset -1px -1px #292929,
-    inset 1px 1px #fff,
-    inset -2px -2px rgb(158, 158, 158),
-    inset 2px 2px #ffffff;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 5px 30px;
-}
-
-.windows_btn:active {
-  box-shadow:
-    inset -1px -1px #fff,
-    inset 1px 1px #292929,
-    inset -2px -2px #ffffff,
-    inset 2px 2px rgb(158, 158, 158);
-}
-`}
-      </style>
       <button
-        style={{}}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -257,7 +194,7 @@ const RoundedImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `windows_btn flex h-28 w-full cursor-pointer items-center justify-start gap-4 p-2 px-4 text-lg font-medium text-white shadow-lg`,
+          `flex h-28 w-full cursor-pointer items-center justify-start gap-4 bg-[#c0c0c0] p-2 px-4 text-lg font-medium text-black shadow-[inset_-1px_-1px_#000,inset_1px_1px_#fff,inset_-2px_-2px_#808080,inset_2px_2px_#dfdfdf] active:shadow-[inset_-1px_-1px_#fff,inset_1px_1px_#000,inset_-2px_-2px_#dfdfdf,inset_2px_2px_#808080]`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
@@ -273,7 +210,7 @@ const RoundedImage = ({
           <p
             style={{
               fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-              color: textColor,
+              color: textColor || "#000",
             }}
           >
             {title}
@@ -305,7 +242,6 @@ const WideFullImage = ({
   title,
   href,
   isLive,
-  bgColor,
   textColor,
   loadedFont,
   image,
@@ -316,42 +252,11 @@ const WideFullImage = ({
   elementId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
   return (
     <>
-      <style>
-        {`
-.windows_btn {
-  font-family: inherit;
-  border: none;
-  outline: 1px dotted rgb(37, 37, 37);
-  outline-offset: -4px;
-  cursor: pointer;
-  background: hsl(0deg 0% 75%);
-  box-shadow:
-    inset -1px -1px #292929,
-    inset 1px 1px #fff,
-    inset -2px -2px rgb(158, 158, 158),
-    inset 2px 2px #ffffff;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 5px 30px;
-}
-
-.windows_btn:active {
-  box-shadow:
-    inset -1px -1px #fff,
-    inset 1px 1px #292929,
-    inset -2px -2px #ffffff,
-    inset 2px 2px rgb(158, 158, 158);
-}
-`}
-      </style>
       <button
-        style={{}}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -366,7 +271,7 @@ const WideFullImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `windows_btn relative flex h-28 w-full cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden p-2 text-lg font-medium text-white shadow-lg`,
+          `relative flex h-28 w-full cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden bg-[#c0c0c0] p-2 text-lg font-medium text-black shadow-[inset_-1px_-1px_#000,inset_1px_1px_#fff,inset_-2px_-2px_#808080,inset_2px_2px_#dfdfdf] active:shadow-[inset_-1px_-1px_#fff,inset_1px_1px_#000,inset_-2px_-2px_#dfdfdf,inset_2px_2px_#808080]`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
@@ -384,7 +289,7 @@ const WideFullImage = ({
           className="z-10"
           style={{
             fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-            color: textColor,
+            color: textColor || "#000",
           }}
         >
           {title}
@@ -414,7 +319,6 @@ const HighFullImage = ({
   title,
   href,
   isLive,
-  bgColor,
   textColor,
   loadedFont,
   image,
@@ -430,12 +334,10 @@ const HighFullImage = ({
   return (
     <>
       <div className="w-full border-2 border-b-gray-600 border-l-gray-300 border-r-gray-600 border-t-gray-300 bg-gray-300 p-px shadow-[1px_1px_0_0_#000]">
-        {/* Title bar */}
         <div className="bg-gradient-to-r from-blue-900 to-blue-700 px-2 py-1 text-sm font-bold text-white">
           {title || "Image"}
         </div>
 
-        {/* Content area */}
         <button
           onClick={() =>
             handleClick({
@@ -452,10 +354,9 @@ const HighFullImage = ({
           rel="noopener noreferrer"
           disabled={!isLive || href === ""}
           className={cn(
-            "relative w-full overflow-hidden border-2 border-b-gray-300 border-l-gray-600 border-r-gray-300 border-t-gray-600",
-            "hover:border-blue-900 focus:border-blue-900",
+            "relative w-full overflow-hidden border-2 border-b-gray-300 border-l-gray-600 border-r-gray-300 border-t-gray-600 bg-[#c0c0c0] shadow-[inset_-1px_-1px_#000,inset_1px_1px_#fff,inset_-2px_-2px_#808080,inset_2px_2px_#dfdfdf] active:shadow-[inset_-1px_-1px_#fff,inset_1px_1px_#000,inset_-2px_-2px_#dfdfdf,inset_2px_2px_#808080]",
             !isLive || (href === "" && "pointer-events-none"),
-            !imageUrl && "h-48 bg-gray-300",
+            !imageUrl && "h-48",
           )}
         >
           {imageUrl ? (
@@ -492,11 +393,9 @@ const HighFullImage = ({
         </button>
       </div>
 
-      {/* Password modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
           <div className="w-full max-w-md border-2 border-b-gray-600 border-l-gray-300 border-r-gray-600 border-t-gray-300 bg-gray-300">
-            {/* Modal title bar */}
             <div className="flex items-center justify-between bg-gradient-to-r from-blue-900 to-blue-700 px-2 py-1 font-bold text-white">
               <span>Password Required</span>
               <button
@@ -507,7 +406,6 @@ const HighFullImage = ({
               </button>
             </div>
 
-            {/* Modal body */}
             <div className="bg-white p-4">
               <ProtectedPagePasswordCheck
                 uri={uri}
@@ -520,7 +418,6 @@ const HighFullImage = ({
               />
             </div>
 
-            {/* Modal footer */}
             <div className="flex justify-end bg-gray-300 p-2">
               <button
                 onClick={() => setIsModalOpen(false)}

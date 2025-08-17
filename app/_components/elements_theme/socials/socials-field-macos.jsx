@@ -28,14 +28,17 @@ const SocialsFieldMacOS = (props) => {
     <div className="my-2 flex w-full justify-center">
       <div
         style={{ borderRadius: borderRadius }}
-        className="inline-flex items-end border border-gray-300/20 bg-gray-200/30 p-3 shadow-lg backdrop-blur-md"
+        className="inline-flex w-full border border-gray-300/20 bg-gray-200/30 p-1 shadow-lg backdrop-blur-md"
       >
         {socials?.length === 0 ? (
           <div className="px-4 py-2 text-sm font-medium text-gray-500">
             افزودن شبکه‌های اجتماعی
           </div>
         ) : (
-          <motion.div layout className="flex items-center justify-center">
+          <motion.div
+            layout
+            className="flex w-full items-center justify-center"
+          >
             {socials?.map((social, index) => {
               const platform = socialPlatforms.find(
                 (p) => p.value === social.platform,

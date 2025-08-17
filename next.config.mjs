@@ -4,6 +4,7 @@ const nextConfig = {
     domains: [
       "arklight.storage.c2.liara.space",
       "c465756.parspack.net", // bucket domain
+      "trustseal.enamad.ir", //enemad
     ],
   },
 

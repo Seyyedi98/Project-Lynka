@@ -114,7 +114,7 @@ const ProductCard = ({
                   >
                     قیمت:{" "}
                     <span className="text-xl line-through opacity-70">
-                      {price.toLocaleString("fa-IR")}
+                      {price?.toLocaleString("fa-IR")}
                     </span>
                   </motion.span>
                   <motion.span
@@ -149,7 +149,7 @@ const ProductCard = ({
               >
                 قیمت:{" "}
                 <span className="text-xl font-bold">
-                  {price.toLocaleString("fa-IR")}{" "}
+                  {price?.toLocaleString("fa-IR")}{" "}
                 </span>
                 تومان
               </motion.span>

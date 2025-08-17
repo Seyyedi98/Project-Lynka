@@ -21,7 +21,7 @@ const DashboardSidebar = () => {
     <nav ref={ref} className={cn(`relative z-50 h-full`)}>
       <div
         className={cn(
-          `fixed top-4 z-40 transition-all duration-200 sm:hidden xl:hidden`,
+          `fixed top-3 z-40 transition-all duration-200 sm:top-4 sm:hidden xl:hidden`,
           isSidebarOpen ? "left-4 sm:hidden" : "right-4",
         )}
       >
