@@ -16,6 +16,27 @@ export default function PurchaseForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
+  const validateForm = (formData) => {
+    const newErrors = {};
+    const mobile = formData.get("mobile");
+
+    if (!mobile) {
+      newErrors.mobile = "شماره موبایل الزامی است";
+    } else if (!/^09\d{9}$/.test(mobile)) {
+      newErrors.mobile = "شماره موبایل معتبر نیست";
+    }
+
+    if (!formData.get("firstName")) {
+      newErrors.firstName = "نام الزامی است";
+    }
+
+    if (!formData.get("lastName")) {
+      newErrors.lastName = "نام خانوادگی الزامی است";
+    }
+
+    return newErrors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -28,15 +49,19 @@ export default function PurchaseForm({
     formData.append("duration", duration);
     formData.append("price", price.toString());
 
+    // Validate form
+    const formErrors = validateForm(formData);
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       // Call server action
       const result = await handlePurchase(formData);
 
       if (result.success) {
-        // Redirect to payment page or show success
-        // if (result.paymentUrl) {
-        //   window.location.href = result.paymentUrl;
-        // }
         alert(result.message);
         router.push("/dashboard");
       } else {
@@ -76,7 +101,7 @@ export default function PurchaseForm({
 
       {/* فرم اطلاعات شخصی */}
       <form onSubmit={handleSubmit} className="space-y-4">
-        <h2 className="text-lg font-semibold">اطلاعات شخصی</h2>
+        <h2 className="text-lg font-semibold"> مشخصات</h2>
 
         {errors.submit && (
           <p className="text-sm text-red-500">{errors.submit}</p>
@@ -110,32 +135,24 @@ export default function PurchaseForm({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="email">ایمیل (اختیاری)</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            className={errors.contact ? "border-red-500" : ""}
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="mobile">شماره موبایل (اختیاری)</Label>
+          <Label htmlFor="mobile">شماره موبایل </Label>
           <Input
             id="mobile"
             name="mobile"
             type="tel"
             dir="ltr"
-            className={errors.contact ? "border-red-500" : ""}
+            required
+            className={errors.mobile ? "border-red-500" : ""}
           />
-          {errors.contact && (
-            <p className="text-sm text-red-500">{errors.contact}</p>
+          {errors.mobile && (
+            <p className="text-sm text-red-500">{errors.mobile}</p>
           )}
         </div>
 
-        <p className="text-sm text-gray-500">
-          لطفا حداقل یکی از فیلدهای ایمیل یا موبایل را پر کنید
-        </p>
+        <div className="space-y-2">
+          <Label htmlFor="email">ایمیل (اختیاری)</Label>
+          <Input id="email" name="email" type="email" />
+        </div>
 
         <Button
           type="submit"
