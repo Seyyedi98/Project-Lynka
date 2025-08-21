@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function PurchaseForm({
   plan,
@@ -14,7 +13,6 @@ export default function PurchaseForm({
 }) {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const router = useRouter();
 
   const validateForm = (formData) => {
     const newErrors = {};
@@ -62,8 +60,8 @@ export default function PurchaseForm({
       const result = await handlePurchase(formData);
 
       if (result.success) {
-        alert(result.message);
-        router.push("/dashboard");
+        // Redirect to payment gateway
+        window.location.href = result.paymentUrl;
       } else {
         setErrors({ submit: result.error });
       }

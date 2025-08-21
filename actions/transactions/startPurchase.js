@@ -2,7 +2,6 @@
 
 import { currentUser } from "@/lib/auth/get-user";
 import prisma from "@/lib/client";
-import { redirect } from "next/navigation";
 
 // Initialize Zibal payment
 async function initZibalPayment(
@@ -28,7 +27,7 @@ async function initZibalPayment(
       }),
     });
 
-    console.log(response);
+    // console.log(response);
 
     const data = await response.json();
 
@@ -89,7 +88,6 @@ export async function startPurchase(formData) {
     }
 
     // Create transaction with pending status
-
     const transaction = await prisma.transactions.create({
       data: {
         userId: user.id,
@@ -115,15 +113,18 @@ export async function startPurchase(formData) {
       mobile,
       description,
     );
-
+    //
     console.log(paymentInit);
 
     if (!paymentInit.success) {
       return { success: false, error: paymentInit.message };
     }
 
-    // Redirect to payment page
-    redirect(paymentInit.paymentUrl);
+    return {
+      success: true,
+      paymentUrl: paymentInit.paymentUrl,
+      message: "در حال انتقال به درگاه پرداخت...",
+    };
   } catch (error) {
     console.error("Purchase error:", error);
     return { success: false, error: "خطا در ایجاد تراکنش" };
