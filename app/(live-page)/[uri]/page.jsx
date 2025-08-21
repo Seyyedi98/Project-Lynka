@@ -147,7 +147,7 @@ const LivePage = async ({ params }) => {
           </div>
         )}
 
-        <main className="relative flex w-full flex-col items-center overflow-y-auto pb-20 [scrollbar-width:none]">
+        <main className="relative flex w-full flex-col items-center overflow-y-auto pb-2 [scrollbar-width:none]">
           <div className="relative">
             <LivePageMenu uri={uri} />{" "}
           </div>
@@ -159,6 +159,17 @@ const LivePage = async ({ params }) => {
           <section className="flex w-[90%] max-w-[400px] flex-col items-center justify-start gap-4">
             <LivePageElements uri={uri} content={content} />
           </section>
+
+          <footer className="mt-8 w-[90%] max-w-[400px] bg-white py-3 text-center text-black">
+            ساخته شده توسط{" "}
+            <a
+              href="www.lynka.ir"
+              alt="lynka"
+              className="text-primary transition-all duration-500 hover:text-primary/60"
+            >
+              لینکا
+            </a>
+          </footer>
         </main>
       </LivePageBackground>
     </>

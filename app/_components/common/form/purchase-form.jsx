@@ -1,14 +1,20 @@
 "use client";
 
-import { startPurchase } from "@/actions/transactions/startPurchase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function PurchaseForm({ plan, duration, price }) {
+export default function PurchaseForm({
+  plan,
+  duration,
+  price,
+  handlePurchase,
+}) {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,59 +22,29 @@ export default function PurchaseForm({ plan, duration, price }) {
     setErrors({});
 
     const formData = new FormData(e.target);
-    const email = formData.get("email");
-    const mobile = formData.get("mobile");
 
-    // Validate form
-    const newErrors = {};
-    if (!email && !mobile) {
-      newErrors.contact = "حداقل یکی از فیلدهای ایمیل یا موبایل باید پر شود";
-    }
-    if (!formData.get("firstName")) {
-      newErrors.firstName = "نام الزامی است";
-    }
-    if (!formData.get("lastName")) {
-      newErrors.lastName = "نام خانوادگی الزامی است";
-    }
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      setIsSubmitting(false);
-      return;
-    }
+    // Add plan, duration, and price to form data
+    formData.append("plan", plan);
+    formData.append("duration", duration);
+    formData.append("price", price.toString());
 
     try {
-      // Create transaction in database
-      const transactionRes = await startPurchase(
-        price,
-        plan,
-        duration,
-        email,
-        mobile,
-      );
+      // Call server action
+      const result = await handlePurchase(formData);
 
-      console.log(transactionRes);
-
-      if (!transactionRes.success) throw new Error("خطا در ایجاد تراکنش");
-
-      // const transaction = await transactionRes.json();
-
-      // Now create payment with Zibal
-      // const paymentRes = await fetch("/api/payment", {
-      //   method: "POST",
-      //   body: JSON.stringify({
-      //     amount: price,
-      //     transactionId: transaction.id,
-      //     callbackUrl: `${window.location.origin}/purchase/verify`, // verification endpoint
-      //   }),
-      // });
-
-      // if (!paymentRes.ok) throw new Error("خطا در اتصال به درگاه پرداخت");
-
-      // const { paymentUrl } = await paymentRes.json();
-      // window.location.href = paymentUrl; // Redirect to Zibal payment page
+      if (result.success) {
+        // Redirect to payment page or show success
+        // if (result.paymentUrl) {
+        //   window.location.href = result.paymentUrl;
+        // }
+        alert(result.message);
+        router.push("/dashboard");
+      } else {
+        setErrors({ submit: result.error });
+      }
     } catch (error) {
       setErrors({ submit: error.message });
+    } finally {
       setIsSubmitting(false);
     }
   };

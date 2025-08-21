@@ -3,6 +3,7 @@
 import PurchaseForm from "@/app/_components/common/form/purchase-form";
 import { PLANS } from "@/data/prices";
 import Link from "next/link";
+import { startPurchase } from "@/actions/transactions/startPurchase";
 
 const getPrice = (plan, duration) => {
   const prices = {
@@ -27,6 +28,78 @@ const getPrice = (plan, duration) => {
   if (!prices[plan]) throw new Error("پلن انتخاب شده معتبر نیست");
   return getPremiumPrice(prices[plan].price);
 };
+
+// Server action to handle form submission
+async function handlePurchase(formData) {
+  "use server";
+
+  const email = formData.get("email");
+  const mobile = formData.get("mobile");
+  const firstName = formData.get("firstName");
+  const lastName = formData.get("lastName");
+  const plan = formData.get("plan");
+  const duration = formData.get("duration");
+  const price = formData.get("price");
+
+  // Validate form data
+  if (!firstName) {
+    return { success: false, error: "نام الزامی است" };
+  }
+
+  if (!lastName) {
+    return { success: false, error: "نام خانوادگی الزامی است" };
+  }
+
+  if (!email && !mobile) {
+    return {
+      success: false,
+      error: "حداقل یکی از فیلدهای ایمیل یا موبایل باید پر شود",
+    };
+  }
+
+  try {
+    // Create transaction in database
+    const transactionRes = await startPurchase(
+      parseFloat(price),
+      plan,
+      duration,
+      email,
+      mobile,
+      firstName,
+      lastName,
+    );
+
+    if (!transactionRes.success) {
+      return { success: false, error: "خطا در ایجاد تراکنش" };
+    }
+
+    // Create payment with Zibal (server-side)
+    // const paymentRes = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/payment`, {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     amount: price,
+    //     transactionId: transactionRes.transaction.id,
+    //     callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/purchase/verify`,
+    //   }),
+    // });
+
+    // if (!paymentRes.ok) {
+    //   return { success: false, error: "خطا در اتصال به درگاه پرداخت" };
+    // }
+
+    // const { paymentUrl } = await paymentRes.json();
+
+    // For demonstration, we'll return a success message
+    // In reality, you would return the payment URL
+    return {
+      success: true,
+      message: "پرداخت با موفقیت آغاز شد",
+      // paymentUrl: paymentUrl
+    };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+}
 
 export default async function Purchase({ searchParams }) {
   const { plan, duration } = await searchParams;
@@ -55,11 +128,12 @@ export default async function Purchase({ searchParams }) {
           </Link>
         </div>
 
-        <PurchaseForm plan={plan} duration={duration} price={price} />
-
-        <p className="mt-4 text-center text-sm text-gray-500">
-          اطلاعات شما به صورت امن ذخیره می‌شود
-        </p>
+        <PurchaseForm
+          plan={plan}
+          duration={duration}
+          price={price}
+          handlePurchase={handlePurchase}
+        />
       </div>
     );
   } catch (error) {
@@ -67,9 +141,7 @@ export default async function Purchase({ searchParams }) {
       <div className="mx-auto max-w-md rounded-xl bg-white p-6 shadow-md">
         <h1 className="mb-4 text-2xl font-bold text-red-600">خطا</h1>
         <p>{error.message}</p>
-        <p className="mt-4 text-sm text-gray-500">
-          پلن‌های معتبر: نقره‌ای، طلایی، پلاتینیوم
-        </p>
+        <p className="mt-4 text-sm text-gray-500">پلن نامعتبر </p>
       </div>
     );
   }
