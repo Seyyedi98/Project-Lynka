@@ -116,73 +116,23 @@ const Basic = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const buttonStyle = {
+    fontWeight: "600",
+    color: textColor || "#382b22",
+    textTransform: "uppercase",
+    padding: "1.25em 2em",
+    background: bgColor || "#fff0f0",
+    border: "2px solid #b18597",
+    borderRadius: borderRadius || "0.75em",
+    transformStyle: "preserve-3d",
+    transition:
+      "transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1)",
+    position: "relative",
+    display: "block",
+  };
+
   return (
     <>
-      <style>
-        {`
-          .toon-button {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            outline: none;
-            border: 0;
-            vertical-align: middle;
-            text-decoration: none;
-            font-family: inherit;
-            font-size: 15px;
-            width: 100%;
-            text-align: center;
-          }
-
-          .toon-button-inner {
-            font-weight: 600;
-            color: ${textColor || "#382b22"};
-            text-transform: uppercase;
-            padding: 1.25em 2em;
-            background: ${bgColor || "#fff0f0"};
-            border: 2px solid #b18597;
-            border-radius: ${borderRadius || "0.75em"};
-            transform-style: preserve-3d;
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
-            position: relative;
-            display: block;
-          }
-
-          .toon-button-inner::before {
-            position: absolute;
-            content: '';
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #f9c4d2;
-            border-radius: inherit;
-           
-            transform: translate3d(0, 0.75em, -1em);
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
-          }
-
-          .toon-button:hover .toon-button-inner {
-            background: #ffe9e9;
-            transform: translate(0, 0.25em);
-          }
-
-          .toon-button:hover .toon-button-inner::before {
-            transform: translate3d(0, 0.50em, -1em);
-          }
-
-          .toon-button:active .toon-button-inner {
-            background: #ffe9e9;
-            transform: translate(0em, 0.75em);
-          }
-
-          .toon-button:active .toon-button-inner::before {
-            transform: translate3d(0, 0em, -1em);
-          }
-        `}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -198,11 +148,11 @@ const Basic = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `toon-button mb-4`,
+          `toon-button-basic mb-4`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
-        <span className="toon-button-inner">
+        <span className="toon-button-inner" style={buttonStyle}>
           <p
             style={{
               fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
@@ -248,85 +198,26 @@ const RoundedImage = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const buttonStyle = {
+    fontWeight: "600",
+    color: textColor || "#382b22",
+    textTransform: "uppercase",
+    padding: "1.25em 2em",
+    background: bgColor || "#fff0f0",
+    border: "2px solid #b18597",
+    borderRadius: borderRadius || "0.75em",
+    transformStyle: "preserve-3d",
+    transition:
+      "transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1)",
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    gap: "1rem",
+    minHeight: "112px",
+  };
+
   return (
     <>
-      <style>
-        {`
-          .toon-button-rounded {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            outline: none;
-            border: 0;
-            vertical-align: middle;
-            text-decoration: none;
-            font-family: inherit;
-            font-size: 15px;
-            width: 100%;
-          }
-
-          .toon-button-rounded-inner {
-            font-weight: 600;
-            color: ${textColor || "#382b22"};
-            text-transform: uppercase;
-            padding: 1.25em 2em;
-            background: ${bgColor || "#fff0f0"};
-            border: 2px solid #b18597;
-            border-radius: ${borderRadius || "0.75em"};
-            transform-style: preserve-3d;
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            min-height: 112px;
-          }
-
-          .toon-button-rounded-inner::before {
-            position: absolute;
-            content: '';
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #f9c4d2;
-            border-radius: inherit;
-            transform: translate3d(0, 0.75em, -1em);
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
-          }
-
-          .toon-button-rounded:hover .toon-button-rounded-inner {
-            background: #ffe9e9;
-            transform: translate(0, 0.25em);
-          }
-
-          .toon-button-rounded:hover .toon-button-rounded-inner::before {
-            transform: translate3d(0, 0.50em, -1em);
-          }
-
-          .toon-button-rounded:active .toon-button-rounded-inner {
-            background: #ffe9e9;
-            transform: translate(0em, 0.75em);
-          }
-
-          .toon-button-rounded:active .toon-button-rounded-inner::before {
-            box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
-            transform: translate3d(0, 0, -1em);
-          }
-
-          .toon-button-image {
-            height: 80px;
-            width: 80px;
-            min-width: 80px;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            z-index: 1;
-          }
-        `}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -346,7 +237,7 @@ const RoundedImage = ({
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
-        <span className="toon-button-rounded-inner">
+        <span className="toon-button-rounded-inner" style={buttonStyle}>
           <div
             className={cn(
               "toon-button-image",
@@ -354,7 +245,16 @@ const RoundedImage = ({
                 ? ""
                 : `border-2 border-dashed border-[${textColor || "#382b22"}]`,
             )}
-            style={bgImageStyle}
+            style={{
+              ...bgImageStyle,
+              height: "80px",
+              width: "80px",
+              minWidth: "80px",
+              borderRadius: "8px",
+              overflow: "hidden",
+              position: "relative",
+              zIndex: 1,
+            }}
           />
           <p
             style={{
@@ -404,86 +304,28 @@ const WideFullImage = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
+  const buttonStyle = {
+    fontWeight: "600",
+    color: textColor || "#382b22",
+    textTransform: "uppercase",
+    padding: "1.25em 2em",
+    background: bgColor || "#fff0f0",
+    border: "2px solid #b18597",
+    borderRadius: borderRadius || "0.75em",
+    transformStyle: "preserve-3d",
+    transition:
+      "transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1)",
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "0.5rem",
+    height: "112px",
+  };
+
   return (
     <>
-      <style>
-        {`
-          .toon-button-wide {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            outline: none;
-            border: 0;
-            vertical-align: middle;
-            text-decoration: none;
-            font-family: inherit;
-            font-size: 15px;
-            width: 100%;
-          }
-
-          .toon-button-wide-inner {
-            font-weight: 600;
-            color: ${textColor || "#382b22"};
-            text-transform: uppercase;
-            padding: 1.25em 2em;
-            background: ${bgColor || "#fff0f0"};
-            border: 2px solid #b18597;
-            border-radius: ${borderRadius || "0.75em"};
-            transform-style: preserve-3d;
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            height: 112px;
-          }
-
-          .toon-button-wide-inner::before {
-            position: absolute;
-            content: '';
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #f9c4d2;
-            border-radius: inherit;
-            transform: translate3d(0, 0.75em, -1em);
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
-          }
-
-          .toon-button-wide:hover .toon-button-wide-inner {
-            background: #ffe9e9;
-            transform: translate(0, 0.25em);
-          }
-
-          .toon-button-wide:hover .toon-button-wide-inner::before {
-            transform: translate3d(0, 0.5em, -1em);
-          }
-
-          .toon-button-wide:active .toon-button-wide-inner {
-            background: #ffe9e9;
-            transform: translate(0em, 0.75em);
-          }
-
-          .toon-button-wide:active .toon-button-wide-inner::before {
-            transform: translate3d(0, 0, -1em);
-          }
-
-          .toon-button-wide-image {
-            position: absolute;
-            right: 0;
-            top: 0;
-            z-index: 10;
-            height: 112px;
-            object-fit: cover;
-            width: 100%;
-          }
-        `}
-      </style>
       <a
         onClick={() =>
           handleClick({
@@ -503,7 +345,7 @@ const WideFullImage = ({
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
-        <span className="toon-button-wide-inner">
+        <span className="toon-button-wide-inner" style={buttonStyle}>
           {imageUrl && (
             <Image
               className="toon-button-wide-image rounded-lg"
@@ -562,80 +404,26 @@ const HighFullImage = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
+  const buttonStyle = {
+    fontWeight: "600",
+    color: textColor || "#382b22",
+    textTransform: "uppercase",
+    background: bgColor || "#fff0f0",
+    border: "2px solid #b18597",
+    borderRadius: borderRadius || "0.75em",
+    transformStyle: "preserve-3d",
+    transition:
+      "transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1)",
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    minHeight: "192px",
+  };
+
   return (
     <>
-      <style>
-        {`
-          .toon-button-high {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            outline: none;
-            border: 0;
-            vertical-align: middle;
-            text-decoration: none;
-            font-family: inherit;
-            font-size: 15px;
-            width: 100%;
-          }
-
-          .toon-button-high-inner {
-            font-weight: 600;
-            color: ${textColor || "#382b22"};
-            text-transform: uppercase;
-            background: ${bgColor || "#fff0f0"};
-            border: 2px solid #b18597;
-            border-radius: ${borderRadius || "0.75em"};
-            transform-style: preserve-3d;
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-            min-height: 192px;
-          }
-
-          .toon-button-high-inner::before {
-            position: absolute;
-            content: '';
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #f9c4d2;
-            border-radius: inherit;
-            transform: translate3d(0, 0.75em, -1em);
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
-          }
-
-          .toon-button-high:hover .toon-button-high-inner {
-            background: #ffe9e9;
-            transform: translate(0, 0.25em);
-          }
-
-          .toon-button-high:hover .toon-button-high-inner::before {
-            transform: translate3d(0, 0.5em, -1em);
-          }
-
-          .toon-button-high:active .toon-button-high-inner {
-            background: #ffe9e9;
-            transform: translate(0em, 0.75em);
-          }
-
-          .toon-button-high:active .toon-button-high-inner::before {
-            transform: translate3d(0, 0, -1em);
-          }
-
-          .toon-button-high-image {
-            width: 100%;
-            position: relative;
-            z-index: 10;
-          }
-        `}
-      </style>
       <a
         onClick={() =>
           handleClick({
@@ -656,7 +444,7 @@ const HighFullImage = ({
           !imageUrl && "min-h-48",
         )}
       >
-        <span className="toon-button-high-inner">
+        <span className="toon-button-high-inner" style={buttonStyle}>
           {imageUrl && (
             <Image
               className="toon-button-high-image rounded-t-lg"

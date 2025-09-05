@@ -223,3 +223,682 @@ input[type="number"] {
 input:focus {
   outline: none;
 }
+
+/* /////////////////////// */
+/* Glitch card field style */
+/* /////////////////////// */
+
+.btn-glitch-basic,
+.btn-glitch-rounded,
+.btn-glitch-wide,
+.btn-glitch-high {
+  position: relative;
+}
+
+.btn-glitch-after {
+  --slice-0: inset(50% 50% 50% 50%);
+  --slice-1: inset(80% -6px 0 0);
+  --slice-2: inset(50% -6px 30% 0);
+  --slice-3: inset(10% -6px 85% 0);
+  --slice-4: inset(40% -6px 43% 0);
+  --slice-5: inset(80% -6px 5% 0);
+
+  content: attr(data-content);
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 3%,
+    #00e6f6 3%,
+    #00e6f6 5%,
+    var(--bg-color) 5%
+  );
+  text-shadow:
+    -3px -3px 0px #f8f005,
+    3px 3px 0px #00e6f6;
+  clip-path: var(--slice-0);
+}
+
+.btn-glitch-basic:hover .btn-glitch-after,
+.btn-glitch-rounded:hover .btn-glitch-after,
+.btn-glitch-wide:hover .btn-glitch-after,
+.btn-glitch-high:hover .btn-glitch-after {
+  animation: 1s glitch;
+  animation-timing-function: steps(2, end);
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: var(--slice-1);
+    transform: translate(-20px, -10px);
+  }
+
+  10% {
+    clip-path: var(--slice-3);
+    transform: translate(10px, 10px);
+  }
+
+  20% {
+    clip-path: var(--slice-1);
+    transform: translate(-10px, 10px);
+  }
+
+  30% {
+    clip-path: var(--slice-3);
+    transform: translate(0px, 5px);
+  }
+
+  40% {
+    clip-path: var(--slice-2);
+    transform: translate(-5px, 0px);
+  }
+
+  50% {
+    clip-path: var(--slice-3);
+    transform: translate(5px, 0px);
+  }
+
+  60% {
+    clip-path: var(--slice-4);
+    transform: translate(5px, 10px);
+  }
+
+  70% {
+    clip-path: var(--slice-2);
+    transform: translate(-10px, 10px);
+  }
+
+  80% {
+    clip-path: var(--slice-5);
+    transform: translate(20px, -10px);
+  }
+
+  90% {
+    clip-path: var(--slice-1);
+    transform: translate(-10px, 0px);
+  }
+
+  100% {
+    clip-path: var(--slice-1);
+    transform: translate(0);
+  }
+}
+
+/* ////////////////////////// */
+/* ///// Neon cardfield style */
+/* ////////////////////////// */
+
+.shiny-button-basic::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glow-spread-color);
+  filter: blur(2em);
+  opacity: 0.7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+}
+
+.shiny-button-basic:hover {
+  color: var(--btn-color) !important;
+  background-color: var(--glow-color) !important;
+  box-shadow:
+    0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color) !important;
+}
+
+.shiny-button-basic:active {
+  box-shadow:
+    0 0 0.6em 0.25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color) !important;
+}
+
+.shiny-button-basic:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.shiny-button-rounded-image:hover {
+  color: var(--btn-color) !important;
+  background-color: var(--glow-color) !important;
+  box-shadow:
+    0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color) !important;
+}
+
+.shiny-button-rounded-image:active {
+  box-shadow:
+    0 0 0.6em 0.25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color) !important;
+}
+
+.shiny-button-wide-full-image::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glow-spread-color);
+  filter: blur(2em);
+  opacity: 0.7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+}
+
+.shiny-button-wide-full-image:hover {
+  color: var(--btn-color) !important;
+  background-color: var(--glow-color) !important;
+  box-shadow:
+    0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color) !important;
+}
+
+.shiny-button-wide-full-image:active {
+  box-shadow:
+    0 0 0.6em 0.25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color) !important;
+}
+
+.shiny-button-high-full-image:hover {
+  color: var(--btn-color) !important;
+  background-color: var(--glow-color) !important;
+  box-shadow:
+    0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color) !important;
+}
+
+.shiny-button-high-full-image:active {
+  box-shadow:
+    0 0 0.6em 0.25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color) !important;
+}
+
+/* ////////////////////////// */
+/* ///// Hexa cardfield style */
+/* ////////////////////////// */
+
+.btn-hexa-basic,
+.btn-hexa-rounded,
+.btn-hexa-wide,
+.btn-hexa-high {
+  --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
+  --border-width: 0.125em;
+  --curve-size: 0.5em;
+  --blur: 30px;
+  --bg: #080312;
+
+  color: var(--color);
+  cursor: pointer;
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  place-content: center;
+  border: 0;
+  text-transform: uppercase;
+  transition: color 250ms;
+}
+
+.btn-hexa-rounded {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1em;
+  text-transform: none;
+}
+
+.btn-hexa-wide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-transform: none;
+}
+
+.btn-hexa-high {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  text-transform: none;
+}
+
+.btn-hexa-basic::after,
+.btn-hexa-basic::before,
+.btn-hexa-rounded::after,
+.btn-hexa-rounded::before,
+.btn-hexa-wide::after,
+.btn-hexa-wide::before,
+.btn-hexa-high::after,
+.btn-hexa-high::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.btn-hexa-basic::before,
+.btn-hexa-rounded::before,
+.btn-hexa-wide::before,
+.btn-hexa-high::before {
+  background: var(--border-color);
+  background-size: 300% 300%;
+  animation: move-bg7234 5s ease infinite;
+  z-index: -2;
+}
+
+@keyframes move-bg7234 {
+  0% {
+    background-position: 31% 0%;
+  }
+
+  50% {
+    background-position: 70% 100%;
+  }
+
+  100% {
+    background-position: 31% 0%;
+  }
+}
+
+.btn-hexa-basic::after,
+.btn-hexa-rounded::after,
+.btn-hexa-wide::after,
+.btn-hexa-high::after {
+  background: var(--bg);
+  z-index: -1;
+  clip-path: polygon(
+    var(--border-width) calc(var(--curve-size) + var(--border-width) * 0.5),
+    calc(var(--curve-size) + var(--border-width) * 0.5) var(--border-width),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width))
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+      calc(100% - var(--border-width)),
+    var(--border-width) calc(100% - var(--border-width))
+  );
+  transition: clip-path 500ms;
+}
+
+.btn-hexa-basic:where(:hover, :focus)::after,
+.btn-hexa-rounded:where(:hover, :focus)::after,
+.btn-hexa-wide:where(:hover, :focus)::after,
+.btn-hexa-high:where(:hover, :focus)::after {
+  clip-path: polygon(
+    calc(100% - var(--border-width))
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width))
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+      calc(100% - var(--border-width)),
+    calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+      calc(100% - var(--border-width))
+  );
+  transition: 200ms;
+}
+
+.btn-hexa-basic:where(:hover, :focus),
+.btn-hexa-rounded:where(:hover, :focus),
+.btn-hexa-wide:where(:hover, :focus),
+.btn-hexa-high:where(:hover, :focus) {
+  color: #fff;
+}
+
+/* //////////////////////////// */
+/* ///// Dashed cardfield style */
+/* //////////////////////////// */
+.btn-dashed-basic,
+.btn-dashed-rounded,
+.btn-dashed-wide,
+.btn-dashed-high {
+  position: relative;
+  transition: 0.4s;
+}
+
+.btn-dashed-basic:hover,
+.btn-dashed-rounded:hover {
+  transition: 0.4s;
+  background-color: transparent !important;
+}
+
+.btn-dashed-wide:hover,
+.btn-dashed-high:hover {
+  background-color: transparent !important;
+  color: var(--hover-color) !important;
+}
+
+/* For the wide and high full image variants, we need to handle the hover state differently */
+.btn-dashed-wide:hover::before,
+.btn-dashed-high:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 5px dashed var(--hover-color);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* //////////////////////////// */
+/* ///// toon2 cardfield style */
+/* //////////////////////////// */
+/* Toon button styles */
+.toon-button-basic,
+.toon-button-rounded,
+.toon-button-wide,
+.toon-button-high {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.toon-button-basic {
+  text-align: center;
+}
+
+.toon-button-rounded {
+  text-align: left;
+}
+
+.toon-button-wide,
+.toon-button-high {
+  text-align: center;
+}
+
+.toon-button-inner,
+.toon-button-rounded-inner,
+.toon-button-wide-inner,
+.toon-button-high-inner {
+  position: relative;
+}
+
+.toon-button-inner::before,
+.toon-button-rounded-inner::before,
+.toon-button-wide-inner::before,
+.toon-button-high-inner::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f9c4d2;
+  border-radius: inherit;
+  transform: translate3d(0, 0.75em, -1em);
+  transition:
+    transform 150ms cubic-bezier(0, 0, 0.58, 1),
+    box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+.toon-button-basic:hover .toon-button-inner,
+.toon-button-rounded:hover .toon-button-rounded-inner,
+.toon-button-wide:hover .toon-button-wide-inner,
+.toon-button-high:hover .toon-button-high-inner {
+  background: #ffe9e9 !important;
+  transform: translate(0, 0.25em);
+}
+
+.toon-button-basic:hover .toon-button-inner::before,
+.toon-button-rounded:hover .toon-button-rounded-inner::before,
+.toon-button-wide:hover .toon-button-wide-inner::before,
+.toon-button-high:hover .toon-button-high-inner::before {
+  transform: translate3d(0, 0.5em, -1em);
+}
+
+.toon-button-basic:active .toon-button-inner,
+.toon-button-rounded:active .toon-button-rounded-inner,
+.toon-button-wide:active .toon-button-wide-inner,
+.toon-button-high:active .toon-button-high-inner {
+  background: #ffe9e9 !important;
+  transform: translate(0em, 0.75em);
+}
+
+.toon-button-basic:active .toon-button-inner::before,
+.toon-button-rounded:active .toon-button-rounded-inner::before,
+.toon-button-wide:active .toon-button-wide-inner::before,
+.toon-button-high:active .toon-button-high-inner::before {
+  transform: translate3d(0, 0, -1em);
+}
+
+/* Specific styles for wide image */
+.toon-button-wide-image {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  height: 112px;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Specific styles for high image */
+.toon-button-high-image {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+/* //////////////////////////// */
+/* ///// Aqua cardfield style */
+/* //////////////////////////// */
+.aqua-button-basic,
+.aqua-button-rounded,
+.aqua-button-wide,
+.aqua-button-high {
+  display: inline-block;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.aqua-button-basic:active,
+.aqua-button-rounded:active,
+.aqua-button-wide:active,
+.aqua-button-high:active {
+  color: #666 !important;
+}
+
+.aqua-button-basic::before,
+.aqua-button-rounded::before,
+.aqua-button-wide::before,
+.aqua-button-high::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.aqua-button-basic::after,
+.aqua-button-rounded::after,
+.aqua-button-wide::after,
+.aqua-button-high::after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: #009087;
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.aqua-button-basic:hover,
+.aqua-button-rounded:hover,
+.aqua-button-wide:hover,
+.aqua-button-high:hover {
+  color: #ffffff !important;
+  border: 1px solid #009087 !important;
+}
+
+.aqua-button-basic:hover::before,
+.aqua-button-rounded:hover::before,
+.aqua-button-wide:hover::before,
+.aqua-button-high:hover::before {
+  top: -35%;
+  background-color: #009087;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.aqua-button-basic:hover::after,
+.aqua-button-rounded:hover::after,
+.aqua-button-wide:hover::after,
+.aqua-button-high:hover::after {
+  top: -45%;
+  background-color: #009087;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+/* Specific styles for rounded image variant */
+.aqua-button-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Specific styles for wide image variant */
+.aqua-button-wide-image {
+  position: relative;
+  z-index: 10;
+  height: 112px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.aqua-button-wide-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  z-index: 20;
+  text-align: center;
+}
+
+/* Specific styles for high image variant */
+.aqua-button-high-image {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.aqua-button-high-title {
+  padding: 1rem;
+  z-index: 20;
+}
+
+/* //////////////////////////// */
+/* ///// Flat cardfield style */
+/* //////////////////////////// */
+/* Flat button styles */
+.button-flat-basic,
+.button-flat-rounded,
+.button-flat-wide,
+.button-flat-high {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button-flat-basic:active,
+.button-flat-rounded:active,
+.button-flat-wide:active,
+.button-flat-high:active {
+  color: white !important;
+  box-shadow: 0 0.2rem #dfd9d9 !important;
+  transform: translateY(0.2rem);
+}
+
+.button-flat-basic:hover:not(:disabled),
+.button-flat-rounded:hover:not(:disabled),
+.button-flat-wide:hover:not(:disabled),
+.button-flat-high:hover:not(:disabled) {
+  background: var(--hover-color, lightcoral) !important;
+  color: white !important;
+  text-shadow: 0 0.1rem #bcb4b4;
+}
+
+.button-flat-basic:disabled,
+.button-flat-rounded:disabled,
+.button-flat-wide:disabled,
+.button-flat-high:disabled {
+  cursor: auto;
+  color: grey !important;
+}
+
+/* Specific styles for rounded image variant */
+.button-flat-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Specific styles for wide image variant */
+.button-flat-wide-image {
+  position: relative;
+  z-index: 10;
+  height: 112px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.button-flat-wide-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  z-index: 20;
+  text-align: center;
+}
+
+/* Specific styles for high image variant */
+.button-flat-high-image {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.button-flat-high-title {
+  padding: 1rem;
+  z-index: 20;
+}

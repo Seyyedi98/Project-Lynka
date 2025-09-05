@@ -116,79 +116,20 @@ const Basic = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const buttonStyle = {
+    color: textColor || "#090909",
+    padding: "0.7em 1.7em",
+    fontSize: "18px",
+    borderRadius: borderRadius || "0.5em",
+    background: bgColor || "#e8e8e8",
+    border: `1px solid ${bgColor || "#e8e8e8"}`,
+    width: "100%",
+    textAlign: "center",
+    marginBottom: "1rem",
+  };
+
   return (
     <>
-      <style>
-        {`
-          .aqua-button {
-            display: inline-block;
-            transition: all 0.2s ease-in;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            color: ${textColor || "#090909"};
-            padding: 0.7em 1.7em;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: ${borderRadius || "0.5em"};
-            background: ${bgColor || "#e8e8e8"};
-            border: 1px solid ${bgColor || "#e8e8e8"};
-            width: 100%;
-            text-align: center;
-            margin-bottom: 1rem;
-          }
-
-          .aqua-button:active {
-            color: #666;
-          }
-
-          .aqua-button:before {
-            content: "";
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%) scaleY(1) scaleX(1.25);
-            top: 100%;
-            width: 140%;
-            height: 180%;
-            background-color: rgba(0, 0, 0, 0.05);
-            border-radius: 50%;
-            display: block;
-            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
-            z-index: -1;
-          }
-
-          .aqua-button:after {
-            content: "";
-            position: absolute;
-            left: 55%;
-            transform: translateX(-50%) scaleY(1) scaleX(1.45);
-            top: 180%;
-            width: 160%;
-            height: 190%;
-            border-radius: 50%;
-            display: block;
-            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
-            z-index: -1;
-          }
-
-          .aqua-button:hover {
-            color: #ffffff;
-            border: 1px solid #009087;
-          }
-
-          .aqua-button:hover:before {
-            top: -35%;
-            background-color: #009087;
-            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-          }
-
-          .aqua-button:hover:after {
-            top: -45%;
-            background-color: #009087;
-            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-          }
-        `}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -204,9 +145,10 @@ const Basic = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `aqua-button`,
+          `aqua-button-basic`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
+        style={buttonStyle}
       >
         <p
           style={{
@@ -251,96 +193,20 @@ const RoundedImage = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const buttonStyle = {
+    color: textColor || "#090909",
+    padding: "0.7em 1.7em",
+    fontSize: "18px",
+    borderRadius: borderRadius || "0.5em",
+    background: bgColor || "#e8e8e8",
+    border: `1px solid ${bgColor || "#e8e8e8"}`,
+    width: "100%",
+    textAlign: "left",
+    marginBottom: "1rem",
+  };
+
   return (
     <>
-      <style>
-        {`
-          .aqua-button-rounded {
-            display: inline-block;
-            transition: all 0.2s ease-in;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            color: ${textColor || "#090909"};
-            padding: 0.7em 1.7em;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: ${borderRadius || "0.5em"};
-            background: ${bgColor || "#e8e8e8"};
-            border: 1px solid ${bgColor || "#e8e8e8"};
-            width: 100%;
-            text-align: left;
-            margin-bottom: 1rem;
-          }
-
-          .aqua-button-rounded:active {
-            color: #666;
-          }
-
-          .aqua-button-rounded:before {
-            content: "";
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%) scaleY(1) scaleX(1.25);
-            top: 100%;
-            width: 140%;
-            height: 180%;
-            background-color: rgba(0, 0, 0, 0.05);
-            border-radius: 50%;
-            display: block;
-            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
-            z-index: -1;
-          }
-
-          .aqua-button-rounded:after {
-            content: "";
-            position: absolute;
-            left: 55%;
-            transform: translateX(-50%) scaleY(1) scaleX(1.45);
-            top: 180%;
-            width: 160%;
-            height: 190%;
-            background-color: #009087;
-            border-radius: 50%;
-            display: block;
-            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
-            z-index: -1;
-          }
-
-          .aqua-button-rounded:hover {
-            color: #ffffff;
-            border: 1px solid #009087;
-          }
-
-          .aqua-button-rounded:hover:before {
-            top: -35%;
-            background-color: #009087;
-            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-          }
-
-          .aqua-button-rounded:hover:after {
-            top: -45%;
-            background-color: #009087;
-            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-          }
-
-          .aqua-button-image {
-            height: 80px;
-            width: 80px;
-            min-width: 80px;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            z-index: 1;
-          }
-
-          .aqua-button-content {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-          }
-        `}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -359,6 +225,7 @@ const RoundedImage = ({
           `aqua-button-rounded`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
+        style={buttonStyle}
       >
         <div className="aqua-button-content">
           <div
@@ -368,7 +235,16 @@ const RoundedImage = ({
                 ? ""
                 : `border-2 border-dashed border-[${textColor || "#382b22"}]`,
             )}
-            style={bgImageStyle}
+            style={{
+              ...bgImageStyle,
+              height: "80px",
+              width: "80px",
+              minWidth: "80px",
+              borderRadius: "8px",
+              overflow: "hidden",
+              position: "relative",
+              zIndex: 1,
+            }}
           />
           <p
             style={{
@@ -416,97 +292,19 @@ const WideFullImage = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
+  const buttonStyle = {
+    color: textColor || "#090909",
+    padding: "0",
+    fontSize: "18px",
+    borderRadius: borderRadius || "0.5em",
+    background: bgColor || "#e8e8e8",
+    border: `1px solid ${bgColor || "#e8e8e8"}`,
+    width: "100%",
+    marginBottom: "1rem",
+  };
+
   return (
     <>
-      <style>
-        {`
-          .aqua-button-wide {
-            display: inline-block;
-            transition: all 0.2s ease-in;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            color: ${textColor || "#090909"};
-            padding: 0;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: ${borderRadius || "0.5em"};
-            background: ${bgColor || "#e8e8e8"};
-            border: 1px solid ${bgColor || "#e8e8e8"};
-            width: 100%;
-            margin-bottom: 1rem;
-          }
-
-          .aqua-button-wide:active {
-            color: #666;
-          }
-
-          .aqua-button-wide:before {
-            content: "";
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%) scaleY(1) scaleX(1.25);
-            top: 100%;
-            width: 140%;
-            height: 180%;
-            background-color: rgba(0, 0, 0, 0.05);
-            border-radius: 50%;
-            display: block;
-            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
-            z-index: -1;
-          }
-
-          .aqua-button-wide:after {
-            content: "";
-            position: absolute;
-            left: 55%;
-            transform: translateX(-50%) scaleY(1) scaleX(1.45);
-            top: 180%;
-            width: 160%;
-            height: 190%;
-            background-color: #009087;
-            border-radius: 50%;
-            display: block;
-            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
-            z-index: -1;
-          }
-
-          .aqua-button-wide:hover {
-            color: #ffffff;
-            border: 1px solid #009087;
-          }
-
-          .aqua-button-wide:hover:before {
-            top: -35%;
-            background-color: #009087;
-            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-          }
-
-          .aqua-button-wide:hover:after {
-            top: -45%;
-            background-color: #009087;
-            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-          }
-
-          .aqua-button-wide-image {
-            position: relative;
-            z-index: 10;
-            height: 112px;
-            object-fit: cover;
-            width: 100%;
-          }
-
-          .aqua-button-wide-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem;
-            z-index: 20;
-            text-align: center;
-          }
-        `}
-      </style>
       <a
         onClick={() =>
           handleClick({
@@ -525,6 +323,7 @@ const WideFullImage = ({
           `aqua-button-wide`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
+        style={buttonStyle}
       >
         {imageUrl && (
           <Image
@@ -583,90 +382,19 @@ const HighFullImage = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
+  const buttonStyle = {
+    color: textColor || "#090909",
+    padding: "0",
+    fontSize: "18px",
+    borderRadius: borderRadius || "0.5em",
+    background: bgColor || "#e8e8e8",
+    border: `1px solid ${bgColor || "#e8e8e8"}`,
+    width: "100%",
+    marginBottom: "1rem",
+  };
+
   return (
     <>
-      <style>
-        {`
-          .aqua-button-high {
-            display: inline-block;
-            transition: all 0.2s ease-in;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            color: ${textColor || "#090909"};
-            padding: 0;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: ${borderRadius || "0.5em"};
-            background: ${bgColor || "#e8e8e8"};
-            border: 1px solid ${bgColor || "#e8e8e8"};
-            width: 100%;
-            margin-bottom: 1rem;
-          }
-
-          .aqua-button-high:active {
-            color: #666;
-          }
-
-          .aqua-button-high:before {
-            content: "";
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%) scaleY(1) scaleX(1.25);
-            top: 100%;
-            width: 140%;
-            height: 180%;
-            background-color: rgba(0, 0, 0, 0.05);
-            border-radius: 50%;
-            display: block;
-            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
-            z-index: -1;
-          }
-
-          .aqua-button-high:after {
-            content: "";
-            position: absolute;
-            left: 55%;
-            transform: translateX(-50%) scaleY(1) scaleX(1.45);
-            top: 180%;
-            width: 160%;
-            height: 190%;
-            background-color: #009087;
-            border-radius: 50%;
-            display: block;
-            transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
-            z-index: -1;
-          }
-
-          .aqua-button-high:hover {
-            color: #ffffff;
-            border: 1px solid #009087;
-          }
-
-          .aqua-button-high:hover:before {
-            top: -35%;
-            background-color: #009087;
-            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-          }
-
-          .aqua-button-high:hover:after {
-            top: -45%;
-            background-color: #009087;
-            transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-          }
-
-          .aqua-button-high-image {
-            width: 100%;
-            position: relative;
-            z-index: 10;
-          }
-
-          .aqua-button-high-title {
-            padding: 1rem;
-            z-index: 20;
-          }
-        `}
-      </style>
       <a
         onClick={() =>
           handleClick({
@@ -686,6 +414,7 @@ const HighFullImage = ({
           !isLive || (href === "" && "pointer-events-none"),
           !imageUrl && "min-h-48",
         )}
+        style={buttonStyle}
       >
         {imageUrl && (
           <Image

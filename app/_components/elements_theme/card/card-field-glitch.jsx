@@ -116,108 +116,23 @@ const Basic = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const buttonStyle = {
+    padding: "16px 20px",
+    fontSize: "18px",
+    background: `linear-gradient(45deg, transparent 5%, ${bgColor} 5%)`,
+    border: "0",
+    color: "#fff",
+    letterSpacing: "3px",
+    lineHeight: "1",
+    boxShadow: "6px 0px 0px #00e6f6",
+    outline: "transparent",
+    position: "relative",
+    width: "100%",
+    textAlign: "center",
+  };
+
   return (
     <>
-      <style>
-        {`
-.btn__glitch,
-.btn__glitch::after {
-  padding: 16px 20px;
-  font-size: 18px;
-  background: linear-gradient(45deg, transparent 5%, ${bgColor} 5%);
-  border: 0;
-  color: #fff;
-  letter-spacing: 3px;
-  line-height: 1;
-  box-shadow: 6px 0px 0px #00e6f6;
-  outline: transparent;
-  position: relative;
-  width: 100%;
-  text-align: center;
-}
-
-.btn__glitch::after {
-  --slice-0: inset(50% 50% 50% 50%);
-  --slice-1: inset(80% -6px 0 0);
-  --slice-2: inset(50% -6px 30% 0);
-  --slice-3: inset(10% -6px 85% 0);
-  --slice-4: inset(40% -6px 43% 0);
-  --slice-5: inset(80% -6px 5% 0);
-  content: "${title}";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, ${bgColor} 5%);
-  text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
-  clip-path: var(--slice-0);
-}
-
-.btn__glitch:hover::after {
-  animation: 1s glitch;
-  animation-timing-function: steps(2, end);
-}
-
-@keyframes glitch {
-  0% {
-    clip-path: var(--slice-1);
-    transform: translate(-20px, -10px);
-  }
-
-  10% {
-    clip-path: var(--slice-3);
-    transform: translate(10px, 10px);
-  }
-
-  20% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 10px);
-  }
-
-  30% {
-    clip-path: var(--slice-3);
-    transform: translate(0px, 5px);
-  }
-
-  40% {
-    clip-path: var(--slice-2);
-    transform: translate(-5px, 0px);
-  }
-
-  50% {
-    clip-path: var(--slice-3);
-    transform: translate(5px, 0px);
-  }
-
-  60% {
-    clip-path: var(--slice-4);
-    transform: translate(5px, 10px);
-  }
-
-  70% {
-    clip-path: var(--slice-2);
-    transform: translate(-10px, 10px);
-  }
-
-  80% {
-    clip-path: var(--slice-5);
-    transform: translate(20px, -10px);
-  }
-
-  90% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 0px);
-  }
-
-  100% {
-    clip-path: var(--slice-1);
-    transform: translate(0);
-  }
-}
-`}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -233,15 +148,21 @@ const Basic = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `btn__glitch flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 text-lg font-medium text-white shadow-lg`,
+          `btn-glitch-basic flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
         style={{
           fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
           color: textColor,
+          ...buttonStyle,
         }}
       >
         {title}
+        <span
+          className="btn-glitch-after"
+          data-content={title}
+          style={{ "--bg-color": bgColor }}
+        ></span>
       </button>
 
       {isModalOpen && (
@@ -278,108 +199,23 @@ const RoundedImage = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const buttonStyle = {
+    padding: "16px 20px",
+    fontSize: "18px",
+    background: `linear-gradient(45deg, transparent 5%, ${bgColor} 5%)`,
+    border: "0",
+    color: "#fff",
+    letterSpacing: "3px",
+    lineHeight: "1",
+    boxShadow: "6px 0px 0px #00e6f6",
+    outline: "transparent",
+    position: "relative",
+    width: "100%",
+    textAlign: "center",
+  };
+
   return (
     <>
-      <style>
-        {`
-.btn__glitch,
-.btn__glitch::after {
-  padding: 16px 20px;
-  font-size: 18px;
-  background: linear-gradient(45deg, transparent 5%, ${bgColor} 5%);
-  border: 0;
-  color: #fff;
-  letter-spacing: 3px;
-  line-height: 1;
-  box-shadow: 6px 0px 0px #00e6f6;
-  outline: transparent;
-  position: relative;
-  width: 100%;
-  text-align: center;
-}
-
-.btn__glitch::after {
-  --slice-0: inset(50% 50% 50% 50%);
-  --slice-1: inset(80% -6px 0 0);
-  --slice-2: inset(50% -6px 30% 0);
-  --slice-3: inset(10% -6px 85% 0);
-  --slice-4: inset(40% -6px 43% 0);
-  --slice-5: inset(80% -6px 5% 0);
-  content: "${title}";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, ${bgColor} 5%);
-  text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
-  clip-path: var(--slice-0);
-}
-
-.btn__glitch:hover::after {
-  animation: 1s glitch;
-  animation-timing-function: steps(2, end);
-}
-
-@keyframes glitch {
-  0% {
-    clip-path: var(--slice-1);
-    transform: translate(-20px, -10px);
-  }
-
-  10% {
-    clip-path: var(--slice-3);
-    transform: translate(10px, 10px);
-  }
-
-  20% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 10px);
-  }
-
-  30% {
-    clip-path: var(--slice-3);
-    transform: translate(0px, 5px);
-  }
-
-  40% {
-    clip-path: var(--slice-2);
-    transform: translate(-5px, 0px);
-  }
-
-  50% {
-    clip-path: var(--slice-3);
-    transform: translate(5px, 0px);
-  }
-
-  60% {
-    clip-path: var(--slice-4);
-    transform: translate(5px, 10px);
-  }
-
-  70% {
-    clip-path: var(--slice-2);
-    transform: translate(-10px, 10px);
-  }
-
-  80% {
-    clip-path: var(--slice-5);
-    transform: translate(20px, -10px);
-  }
-
-  90% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 0px);
-  }
-
-  100% {
-    clip-path: var(--slice-1);
-    transform: translate(0);
-  }
-}
-`}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -395,13 +231,14 @@ const RoundedImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `btn__glitch flex h-28 w-full cursor-pointer items-center justify-start gap-4 p-2 px-4 text-lg font-medium text-white shadow-lg`,
+          `btn-glitch-rounded flex h-28 w-full cursor-pointer items-center justify-start gap-4 p-2 px-4 text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
         style={{
           fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
           color: textColor,
           borderRadius: borderRadius,
+          ...buttonStyle,
         }}
       >
         <div
@@ -415,6 +252,11 @@ const RoundedImage = ({
         <div>
           <p>{title}</p>
         </div>
+        <span
+          className="btn-glitch-after"
+          data-content={title}
+          style={{ "--bg-color": bgColor }}
+        ></span>
       </button>
 
       <div
@@ -452,111 +294,25 @@ const WideFullImage = ({
   elementId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
+
+  const buttonStyle = {
+    padding: "16px 20px",
+    fontSize: "18px",
+    background: `linear-gradient(45deg, transparent 5%, ${bgColor} 5%)`,
+    border: "0",
+    color: "#fff",
+    letterSpacing: "3px",
+    lineHeight: "1",
+    boxShadow: "6px 0px 0px #00e6f6",
+    outline: "transparent",
+    position: "relative",
+    width: "100%",
+    textAlign: "center",
+  };
 
   return (
     <>
-      <style>
-        {`
-.btn__glitch,
-.btn__glitch::after {
-  padding: 16px 20px;
-  font-size: 18px;
-  background: linear-gradient(45deg, transparent 5%, ${bgColor} 5%);
-  border: 0;
-  color: #fff;
-  letter-spacing: 3px;
-  line-height: 1;
-  box-shadow: 6px 0px 0px #00e6f6;
-  outline: transparent;
-  position: relative;
-  width: 100%;
-  text-align: center;
-}
-
-.btn__glitch::after {
-  --slice-0: inset(50% 50% 50% 50%);
-  --slice-1: inset(80% -6px 0 0);
-  --slice-2: inset(50% -6px 30% 0);
-  --slice-3: inset(10% -6px 85% 0);
-  --slice-4: inset(40% -6px 43% 0);
-  --slice-5: inset(80% -6px 5% 0);
-  content: "${title}";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, ${bgColor} 5%);
-  text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
-  clip-path: var(--slice-0);
-}
-
-.btn__glitch:hover::after {
-  animation: 1s glitch;
-  animation-timing-function: steps(2, end);
-}
-
-@keyframes glitch {
-  0% {
-    clip-path: var(--slice-1);
-    transform: translate(-20px, -10px);
-  }
-
-  10% {
-    clip-path: var(--slice-3);
-    transform: translate(10px, 10px);
-  }
-
-  20% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 10px);
-  }
-
-  30% {
-    clip-path: var(--slice-3);
-    transform: translate(0px, 5px);
-  }
-
-  40% {
-    clip-path: var(--slice-2);
-    transform: translate(-5px, 0px);
-  }
-
-  50% {
-    clip-path: var(--slice-3);
-    transform: translate(5px, 0px);
-  }
-
-  60% {
-    clip-path: var(--slice-4);
-    transform: translate(5px, 10px);
-  }
-
-  70% {
-    clip-path: var(--slice-2);
-    transform: translate(-10px, 10px);
-  }
-
-  80% {
-    clip-path: var(--slice-5);
-    transform: translate(20px, -10px);
-  }
-
-  90% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 0px);
-  }
-
-  100% {
-    clip-path: var(--slice-1);
-    transform: translate(0);
-  }
-}
-`}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -572,13 +328,14 @@ const WideFullImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `btn__glitch relative flex h-28 w-full cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden p-2 text-lg font-medium text-white shadow-lg`,
+          `btn-glitch-wide relative flex h-28 w-full cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden p-2 text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
         style={{
           fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
           color: textColor,
           borderRadius: borderRadius,
+          ...buttonStyle,
         }}
       >
         {imageUrl && (
@@ -592,6 +349,11 @@ const WideFullImage = ({
           />
         )}
         <p className="z-10">{title}</p>
+        <span
+          className="btn-glitch-after"
+          data-content={title}
+          style={{ "--bg-color": bgColor }}
+        ></span>
       </button>
       <div
         className={cn(
@@ -630,108 +392,23 @@ const HighFullImage = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
+  const buttonStyle = {
+    padding: "16px 20px",
+    fontSize: "18px",
+    background: `linear-gradient(45deg, transparent 5%, ${bgColor} 5%)`,
+    border: "0",
+    color: "#fff",
+    letterSpacing: "3px",
+    lineHeight: "1",
+    boxShadow: "6px 0px 0px #00e6f6",
+    outline: "transparent",
+    position: "relative",
+    width: "100%",
+    textAlign: "center",
+  };
+
   return (
     <>
-      <style>
-        {`
-.btn__glitch,
-.btn__glitch::after {
-  padding: 16px 20px;
-  font-size: 18px;
-  background: linear-gradient(45deg, transparent 5%, ${bgColor} 5%);
-  border: 0;
-  color: #fff;
-  letter-spacing: 3px;
-  line-height: 1;
-  box-shadow: 6px 0px 0px #00e6f6;
-  outline: transparent;
-  position: relative;
-  width: 100%;
-  text-align: center;
-}
-
-.btn__glitch::after {
-  --slice-0: inset(50% 50% 50% 50%);
-  --slice-1: inset(80% -6px 0 0);
-  --slice-2: inset(50% -6px 30% 0);
-  --slice-3: inset(10% -6px 85% 0);
-  --slice-4: inset(40% -6px 43% 0);
-  --slice-5: inset(80% -6px 5% 0);
-  content: "${title}";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, ${bgColor} 5%);
-  text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
-  clip-path: var(--slice-0);
-}
-
-.btn__glitch:hover::after {
-  animation: 1s glitch;
-  animation-timing-function: steps(2, end);
-}
-
-@keyframes glitch {
-  0% {
-    clip-path: var(--slice-1);
-    transform: translate(-20px, -10px);
-  }
-
-  10% {
-    clip-path: var(--slice-3);
-    transform: translate(10px, 10px);
-  }
-
-  20% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 10px);
-  }
-
-  30% {
-    clip-path: var(--slice-3);
-    transform: translate(0px, 5px);
-  }
-
-  40% {
-    clip-path: var(--slice-2);
-    transform: translate(-5px, 0px);
-  }
-
-  50% {
-    clip-path: var(--slice-3);
-    transform: translate(5px, 0px);
-  }
-
-  60% {
-    clip-path: var(--slice-4);
-    transform: translate(5px, 10px);
-  }
-
-  70% {
-    clip-path: var(--slice-2);
-    transform: translate(-10px, 10px);
-  }
-
-  80% {
-    clip-path: var(--slice-5);
-    transform: translate(20px, -10px);
-  }
-
-  90% {
-    clip-path: var(--slice-1);
-    transform: translate(-10px, 0px);
-  }
-
-  100% {
-    clip-path: var(--slice-1);
-    transform: translate(0);
-  }
-}
-`}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -747,7 +424,7 @@ const HighFullImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `btn__glitch flex w-full cursor-pointer flex-col items-start justify-center gap-2 overflow-hidden text-lg font-medium text-white shadow-lg`,
+          `btn-glitch-high flex w-full cursor-pointer flex-col items-start justify-center gap-2 overflow-hidden text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
           !imageUrl && "h-48",
         )}
@@ -755,6 +432,7 @@ const HighFullImage = ({
           fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
           color: textColor,
           borderRadius: borderRadius,
+          ...buttonStyle,
         }}
       >
         {imageUrl && (
@@ -767,6 +445,11 @@ const HighFullImage = ({
           />
         )}
         <p className="px-3 py-1">{title}</p>
+        <span
+          className="btn-glitch-after"
+          data-content={title}
+          style={{ "--bg-color": bgColor }}
+        ></span>
       </button>
       <div
         className={cn(

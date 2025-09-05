@@ -116,41 +116,26 @@ const Basic = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const buttonStyle = {
+    backgroundColor: bgColor || "#00BFA6",
+    padding: "14px 40px",
+    color: textColor || "#fff",
+    textTransform: "uppercase",
+    cursor: "pointer",
+    borderRadius: borderRadius || "10px",
+    border: `5px dashed ${bgColor || "#00BFA6"}`,
+    boxShadow:
+      "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+    transition: ".4s",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "64px",
+  };
+
   return (
     <>
-      <style>
-        {`
-    .btn {
-      background-color: ${bgColor || "#00BFA6"};
-      padding: 14px 40px;
-      color: ${textColor || "#fff"};
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: ${borderRadius || "10px"};
-      border: 5px dashed ${bgColor || "#00BFA6"};
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-      transition: .4s;
-      width: 100%; 
-      display: flex; 
-      justify-content: center;
-      align-items: center;
-      height: 64px; 
-    }
-
-    .btn span:last-child {
-      display: none;
-    }
-
-    .btn:hover {
-      transition: .4s;
-      border: 5px dashed ${bgColor || "#00BFA6"};
-      background-color: transparent;
-      color: ${bgColor || "#00BFA6"};
-    }
-
-
-    `}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -165,7 +150,11 @@ const Basic = ({
         }
         target="_blank"
         rel="noopener noreferrer"
-        className={cn(`btn`, !isLive || (href === "" && "pointer-events-none"))}
+        className={cn(
+          `btn-dashed-basic`,
+          !isLive || (href === "" && "pointer-events-none"),
+        )}
+        style={buttonStyle}
       >
         <p
           style={{
@@ -211,53 +200,26 @@ const RoundedImage = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const buttonStyle = {
+    backgroundColor: bgColor || "#00BFA6",
+    padding: "14px 20px",
+    color: textColor || "#fff",
+    textTransform: "uppercase",
+    cursor: "pointer",
+    borderRadius: borderRadius || "10px",
+    border: `5px dashed ${bgColor || "#00BFA6"}`,
+    boxShadow:
+      "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+    transition: ".4s",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    gap: "1rem",
+    minHeight: "112px",
+  };
+
   return (
     <>
-      <style>
-        {`
-          .btn-rounded {
-            background-color: ${bgColor || "#00BFA6"};
-            padding: 14px 20px; /* Adjusted padding for image */
-            color: ${textColor || "#fff"};
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: ${borderRadius || "10px"};
-            border: 5px dashed ${bgColor || "#00BFA6"};
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-            transition: .4s;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            min-height: 112px;
-          }
-
-          .btn-rounded .image-container-rounded {
-            height: 80px;
-            width: 80px;
-            min-width: 80px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: ${image ? "none" : `2px dashed ${textColor || "#fff"}`};
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-          }
-
-          .btn-rounded span:last-child {
-            display: none;
-          }
-
-          .btn-rounded:hover {
-            transition: .4s;
-            border: 5px dashed ${bgColor || "#00BFA6"};
-            background-color: transparent;
-            color: ${bgColor || "#00BFA6"};
-          }
-
-     
-        `}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -273,12 +235,24 @@ const RoundedImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `btn-rounded`,
+          `btn-dashed-rounded`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
         disabled={!isLive || href === ""}
+        style={buttonStyle}
       >
-        <div className="image-container-rounded" style={bgImageStyle} />
+        <div
+          className="image-container-rounded"
+          style={{
+            ...bgImageStyle,
+            height: "80px",
+            width: "80px",
+            minWidth: "80px",
+            borderRadius: "8px",
+            overflow: "hidden",
+            border: image ? "none" : `2px dashed ${textColor || "#fff"}`,
+          }}
+        />
         <p
           style={{
             fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
@@ -323,13 +297,16 @@ const WideFullImage = ({
   elementId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
   return (
     <>
       <a
-        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
+        style={{
+          backgroundColor: bgColor,
+          borderRadius: borderRadius,
+          border: `5px dashed ${bgColor}`,
+        }}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -344,7 +321,7 @@ const WideFullImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `relative flex h-28 w-full cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden p-2 text-lg font-medium text-white shadow-lg`,
+          `btn-dashed-wide relative flex h-28 w-full cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden p-2 text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
@@ -408,7 +385,11 @@ const HighFullImage = ({
   return (
     <>
       <a
-        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
+        style={{
+          backgroundColor: bgColor,
+          borderRadius: borderRadius,
+          border: `5px dashed ${bgColor}`,
+        }}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -423,7 +404,7 @@ const HighFullImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `flex w-full cursor-pointer flex-col items-start justify-center gap-2 overflow-hidden text-lg font-medium text-white shadow-lg`,
+          `btn-dashed-high flex w-full cursor-pointer flex-col items-start justify-center gap-2 overflow-hidden text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
           !imageUrl && "h-48",
         )}

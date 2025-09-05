@@ -116,43 +116,21 @@ const Basic = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const buttonStyle = {
+    backgroundColor: bgColor || "#eee",
+    border: "none",
+    padding: "1rem",
+    fontSize: "1rem",
+    width: "100%",
+    borderRadius: borderRadius || "1rem",
+    color: textColor || "lightcoral",
+    boxShadow: "0 0.4rem #dfd9d9",
+    marginBottom: "1rem",
+    textAlign: "center",
+  };
+
   return (
     <>
-      <style>
-        {`
-          .button__flat {
-            background-color: ${bgColor || "#eee"};
-            border: none;
-            padding: 1rem;
-            font-size: 1rem;
-            width: 100%;
-            border-radius: ${borderRadius || "1rem"};
-            color: ${textColor || "lightcoral"};
-            box-shadow: 0 0.4rem #dfd9d9;
-            cursor: pointer;
-            margin-bottom: 1rem;
-            text-align: center;
-            transition: all 0.2s;
-          }
-
-          .button__flat:active {
-            color: white;
-            box-shadow: 0 0.2rem #dfd9d9;
-            transform: translateY(0.2rem);
-          }
-
-          .button__flat:hover:not(:disabled) {
-            background: ${textColor || "lightcoral"};
-            color: white;
-            text-shadow: 0 0.1rem #bcb4b4;
-          }
-
-          .button__flat:disabled {
-            cursor: auto;
-            color: grey;
-          }
-        `}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -168,9 +146,10 @@ const Basic = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `button__flat`,
+          `button-flat-basic`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
+        style={buttonStyle}
       >
         <p
           style={{
@@ -215,58 +194,20 @@ const RoundedImage = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const buttonStyle = {
+    backgroundColor: bgColor || "#eee",
+    border: "none",
+    padding: "1rem",
+    fontSize: "1rem",
+    width: "100%",
+    borderRadius: borderRadius || "1rem",
+    color: textColor || "lightcoral",
+    boxShadow: "0 0.4rem #dfd9d9",
+    marginBottom: "1rem",
+  };
+
   return (
     <>
-      <style>
-        {`
-          .button__flat-rounded {
-            background-color: ${bgColor || "#eee"};
-            border: none;
-            padding: 1rem;
-            font-size: 1rem;
-            width: 100%;
-            border-radius: ${borderRadius || "1rem"};
-            color: ${textColor || "lightcoral"};
-            box-shadow: 0 0.4rem #dfd9d9;
-            cursor: pointer;
-            margin-bottom: 1rem;
-            transition: all 0.2s;
-          }
-
-          .button__flat-rounded:active {
-            color: white;
-            box-shadow: 0 0.2rem #dfd9d9;
-            transform: translateY(0.2rem);
-          }
-
-          .button__flat-rounded:hover:not(:disabled) {
-            background: ${textColor || "lightcoral"};
-            color: white;
-            text-shadow: 0 0.1rem #bcb4b4;
-          }
-
-          .button__flat-rounded:disabled {
-            cursor: auto;
-            color: grey;
-          }
-
-          .button__flat-image {
-            height: 80px;
-            width: 80px;
-            min-width: 80px;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            z-index: 1;
-          }
-
-          .button__flat-content {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-          }
-        `}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -282,19 +223,29 @@ const RoundedImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `button__flat-rounded`,
+          `button-flat-rounded`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
+        style={buttonStyle}
       >
-        <div className="button__flat-content">
+        <div className="button-flat-content">
           <div
             className={cn(
-              "button__flat-image",
+              "button-flat-image",
               image
                 ? ""
                 : `border-2 border-dashed border-[${textColor || "#382b22"}]`,
             )}
-            style={bgImageStyle}
+            style={{
+              ...bgImageStyle,
+              height: "80px",
+              width: "80px",
+              minWidth: "80px",
+              borderRadius: "8px",
+              overflow: "hidden",
+              position: "relative",
+              zIndex: 1,
+            }}
           />
           <p
             style={{
@@ -342,62 +293,20 @@ const WideFullImage = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
+  const buttonStyle = {
+    backgroundColor: bgColor || "#eee",
+    border: "none",
+    padding: "0",
+    fontSize: "1rem",
+    width: "100%",
+    borderRadius: borderRadius || "1rem",
+    color: textColor || "lightcoral",
+    boxShadow: "0 0.4rem #dfd9d9",
+    marginBottom: "1rem",
+  };
+
   return (
     <>
-      <style>
-        {`
-          .button__flat-wide {
-            background-color: ${bgColor || "#eee"};
-            border: none;
-            padding: 0;
-            font-size: 1rem;
-            width: 100%;
-            border-radius: ${borderRadius || "1rem"};
-            color: ${textColor || "lightcoral"};
-            box-shadow: 0 0.4rem #dfd9d9;
-            cursor: pointer;
-            margin-bottom: 1rem;
-            transition: all 0.2s;
-            position: relative;
-            overflow: hidden;
-          }
-
-          .button__flat-wide:active {
-            color: white;
-            box-shadow: 0 0.2rem #dfd9d9;
-            transform: translateY(0.2rem);
-          }
-
-          .button__flat-wide:hover:not(:disabled) {
-            background: ${textColor || "lightcoral"};
-            color: white;
-            text-shadow: 0 0.1rem #bcb4b4;
-          }
-
-          .button__flat-wide:disabled {
-            cursor: auto;
-            color: grey;
-          }
-
-          .button__flat-wide-image {
-            position: relative;
-            z-index: 10;
-            height: 112px;
-            object-fit: cover;
-            width: 100%;
-          }
-
-          .button__flat-wide-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem;
-            z-index: 20;
-            text-align: center;
-          }
-        `}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -413,13 +322,14 @@ const WideFullImage = ({
         target="_blank"
         rel="noopener noreferrer "
         className={cn(
-          `button__flat-wide`,
+          `button-flat-wide`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
+        style={buttonStyle}
       >
         {imageUrl && (
           <Image
-            className="button__flat-wide-image rounded-lg"
+            className="button-flat-wide-image rounded-lg"
             height={360}
             width={720}
             alt="card Image"
@@ -427,7 +337,7 @@ const WideFullImage = ({
             loading="lazy"
           />
         )}
-        <div className="button__flat-wide-title grid h-full place-items-center">
+        <div className="button-flat-wide-title grid h-full place-items-center">
           <p
             style={{
               fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
@@ -474,55 +384,20 @@ const HighFullImage = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
+  const buttonStyle = {
+    backgroundColor: bgColor || "#eee",
+    border: "none",
+    padding: "0",
+    fontSize: "1rem",
+    width: "100%",
+    borderRadius: borderRadius || "1rem",
+    color: textColor || "lightcoral",
+    boxShadow: "0 0.4rem #dfd9d9",
+    marginBottom: "1rem",
+  };
+
   return (
     <>
-      <style>
-        {`
-          .button__flat-high {
-            background-color: ${bgColor || "#eee"};
-            border: none;
-            padding: 0;
-            font-size: 1rem;
-            width: 100%;
-            border-radius: ${borderRadius || "1rem"};
-            color: ${textColor || "lightcoral"};
-            box-shadow: 0 0.4rem #dfd9d9;
-            cursor: pointer;
-            margin-bottom: 1rem;
-            transition: all 0.2s;
-            position: relative;
-            overflow: hidden;
-          }
-
-          .button__flat-high:active {
-            color: white;
-            box-shadow: 0 0.2rem #dfd9d9;
-            transform: translateY(0.2rem);
-          }
-
-          .button__flat-high:hover:not(:disabled) {
-            background: ${textColor || "lightcoral"};
-            color: white;
-            text-shadow: 0 0.1rem #bcb4b4;
-          }
-
-          .button__flat-high:disabled {
-            cursor: auto;
-            color: grey;
-          }
-
-          .button__flat-high-image {
-            width: 100%;
-            position: relative;
-            z-index: 10;
-          }
-
-          .button__flat-high-title {
-            padding: 1rem;
-            z-index: 20;
-          }
-        `}
-      </style>
       <button
         onClick={() =>
           handleClick({
@@ -538,14 +413,15 @@ const HighFullImage = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `button__flat-high`,
+          `button-flat-high`,
           !isLive || (href === "" && "pointer-events-none"),
           !imageUrl && "min-h-48",
         )}
+        style={buttonStyle}
       >
         {imageUrl && (
           <Image
-            className="button__flat-high-image rounded-t-lg"
+            className="button-flat-high-image rounded-t-lg"
             height={720}
             width={720}
             alt="card Image"
@@ -553,7 +429,7 @@ const HighFullImage = ({
             loading="lazy"
           />
         )}
-        <div className="button__flat-high-title">
+        <div className="button-flat-high-title">
           <p
             style={{
               fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
