@@ -182,6 +182,7 @@ const Basic = ({
 }   `}
       </style>
       <button
+        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -250,9 +251,8 @@ const RoundedImage = ({
         {`
           .button-rounded-image {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 24px 24px;
             border: 1px solid #FFFFFF;
-            border-radius: ${borderRadius};
             transition: all 0.2s ease-in;
             position: relative;
             overflow: hidden;
@@ -319,11 +319,16 @@ const RoundedImage = ({
             min-width: 80px;
             border-radius: 8px;
             overflow: hidden;
-            border: ${image ? "none" : `2px dashed ${textColor}`};
+            border: ${image ? `2px dashed ${textColor}` : "none"};
           }
         `}
       </style>
       <button
+        style={{
+          backgroundColor: bgColor,
+          borderRadius: borderRadius,
+          color: `${`text-color`}`,
+        }}
         onClick={() =>
           handleClick({
             setIsModalOpen,

@@ -39,7 +39,7 @@ const TransparentHero = ({ ...data }) => {
   }, [titleFont, subtitleFont]);
 
   return (
-    <div className="mt-12 flex w-full flex-col items-center gap-4">
+    <div className="mt-12 flex w-full flex-col items-center gap-4 bg-transparent">
       {primaryBgImage ? (
         <Image
           priority
@@ -47,7 +47,7 @@ const TransparentHero = ({ ...data }) => {
           height={400}
           src={primaryBgImage}
           alt={title}
-          className="h-36 w-36 rounded-full bg-white object-cover"
+          className="h-36 w-36 rounded-full object-cover"
         />
       ) : (
         <div className="flex h-32 w-32 items-center justify-center rounded-full border-2 border-dashed border-white">

@@ -79,14 +79,14 @@ const StandardHero = ({ ...data }) => {
 
       {/* Primary Image */}
       <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="relative h-32 w-32 overflow-hidden rounded-full border-4 border-white bg-white">
+        <div className="relative h-32 w-32 overflow-hidden rounded-full border-4 border-white">
           {primaryBgImage ? (
             <Image
               priority
               fill
               src={primaryBgImage}
               alt={title}
-              className="object-cover"
+              className="bg-transparent object-cover"
             />
           ) : (
             <div className="grid h-full w-full place-content-center bg-gray-200">

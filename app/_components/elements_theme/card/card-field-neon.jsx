@@ -116,72 +116,35 @@ const Basic = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const buttonStyle = {
+    "--glow-color": textColor || "rgb(217, 176, 255)",
+    "--glow-spread-color": "rgba(191, 123, 255, 0.781)",
+    "--enhanced-glow-color": "rgb(231, 206, 255)",
+    "--btn-color": bgColor || "rgb(100, 61, 136)",
+    border: ".25em solid var(--glow-color)",
+    padding: "1em 3em",
+    color: "var(--glow-color)",
+    fontSize: "15px",
+    fontWeight: "bold",
+    borderRadius: borderRadius || "1em",
+    outline: "none",
+    boxShadow:
+      "0 0 1em .25em var(--glow-color), 0 0 4em 1em var(--glow-spread-color), inset 0 0 .75em .25em var(--glow-color)",
+    textShadow: "0 0 .5em var(--glow-color)",
+    position: "relative",
+    transition: "all 0.3s",
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  };
+
   return (
     <>
-      <style>
-        {`
-.shiny-button {
-  --glow-color: ${textColor || "rgb(217, 176, 255)"};
-  --glow-spread-color: rgba(191, 123, 255, 0.781);
-  --enhanced-glow-color: rgb(231, 206, 255);
-  --btn-color: ${bgColor || "rgb(100, 61, 136)"};
-  border: .25em solid var(--glow-color);
-  padding: 1em 3em;
-  color: var(--glow-color);
-  font-size: 15px;
-  font-weight: bold;
-
-  border-radius: ${borderRadius || "1em"};
-  outline: none;
-  box-shadow: 0 0 1em .25em var(--glow-color),
-          0 0 4em 1em var(--glow-spread-color),
-          inset 0 0 .75em .25em var(--glow-color);
-  text-shadow: 0 0 .5em var(--glow-color);
-  position: relative;
-  transition: all 0.3s;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.shiny-button::after {
-  pointer-events: none;
-  content: "";
-  position: absolute;
-  top: 120%;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--glow-spread-color);
-  filter: blur(2em);
-  opacity: .7;
-  transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
-}
-
-.shiny-button:hover {
-  color: var(--btn-color);
-  background-color: var(--glow-color);
-  box-shadow: 0 0 1em .25em var(--glow-color),
-          0 0 4em 2em var(--glow-spread-color),
-          inset 0 0 .75em .25em var(--glow-color);
-}
-
-.shiny-button:active {
-  box-shadow: 0 0 0.6em .25em var(--glow-color),
-          0 0 2.5em 2em var(--glow-spread-color),
-          inset 0 0 .5em .25em var(--glow-color);
-}
-
-.shiny-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-`}
-      </style>
       <button
-        className="shiny-button"
+        className="shiny-button-basic"
+        style={buttonStyle}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -239,57 +202,36 @@ const RoundedImage = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const buttonStyle = {
+    "--glow-color": bgColor || "rgb(217, 176, 255)",
+    "--glow-spread-color": bgColor || "rgba(191, 123, 255, 0.781)",
+    "--enhanced-glow-color": bgColor || "rgb(231, 206, 255)",
+    "--btn-color": textColor || "rgb(100, 61, 136)",
+    border: ".25em solid var(--glow-color)",
+    padding: "1em",
+    color: textColor,
+    fontSize: "15px",
+    fontWeight: "bold",
+    borderRadius: borderRadius || "1em",
+    outline: "none",
+    boxShadow:
+      "0 0 1em .25em var(--glow-color), 0 0 4em 1em var(--glow-spread-color), inset 0 0 .75em .25em var(--glow-color)",
+    textShadow: "0 0 .5em var(--glow-color)",
+    position: "relative",
+    transition: "all 0.3s",
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    gap: "1em",
+  };
+
   return (
     <>
-      <style>
-        {`
-.shiny-button {
-  --glow-color: ${bgColor || "rgb(217, 176, 255)"};
-  --glow-spread-color:${bgColor || rgba(191, 123, 255, 0.781)};
-  --enhanced-glow-color:${bgColor || rgb(231, 206, 255)};
-  --btn-color: ${textColor || "rgb(100, 61, 136)"};
-  border: .25em solid var(--glow-color);
-  padding: 1em;
-  color: ${textColor};
-  font-size: 15px;
-  font-weight: bold;
-  
-  border-radius: ${borderRadius || "1em"};
-  outline: none;
-  box-shadow: 0 0 1em .25em var(--glow-color),
-          0 0 4em 1em var(--glow-spread-color),
-          inset 0 0 .75em .25em var(--glow-color);
-  text-shadow: 0 0 .5em var(--glow-color);
-  position: relative;
-  transition: all 0.3s;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1em;
-}
-
-
-.shiny-button:hover {
-  color: var(--btn-color);
-  background-color: var(--glow-color);
-  box-shadow: 0 0 1em .25em var(--glow-color),
-          0 0 4em 2em var(--glow-spread-color),
-          inset 0 0 .75em .25em var(--glow-color);
-}
-
-.shiny-button:active {
-  box-shadow: 0 0 0.6em .25em var(--glow-color),
-          0 0 2.5em 2em var(--glow-spread-color),
-          inset 0 0 .5em .25em var(--glow-color);
-}
-
-
-`}
-      </style>
       <button
-        className="shiny-button h-28"
+        className="shiny-button-rounded-image h-28"
+        style={buttonStyle}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -355,69 +297,35 @@ const WideFullImage = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
+  const buttonStyle = {
+    "--glow-color": bgColor || "rgb(217, 176, 255)",
+    "--glow-spread-color": bgColor || "rgba(191, 123, 255, 0.781)",
+    "--enhanced-glow-color": bgColor || "rgb(231, 206, 255)",
+    "--btn-color": textColor || "rgb(100, 61, 136)",
+    border: ".25em solid var(--glow-color)",
+    padding: "1em",
+    color: textColor,
+    fontSize: "15px",
+    fontWeight: "bold",
+    borderRadius: borderRadius || "1em",
+    outline: "none",
+    boxShadow:
+      "0 0 1em .25em var(--glow-color), 0 0 4em 1em var(--glow-spread-color), inset 0 0 .75em .25em var(--glow-color)",
+    textShadow: "0 0 .5em var(--glow-color)",
+    position: "relative",
+    transition: "all 0.3s",
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  };
+
   return (
     <>
-      <style>
-        {`
-.shiny-button {
-  --glow-color: ${bgColor || "rgb(217, 176, 255)"};
-  --glow-spread-color:${bgColor || rgba(191, 123, 255, 0.781)};
-  --enhanced-glow-color:${bgColor || rgb(231, 206, 255)};
-  --btn-color: ${textColor || "rgb(100, 61, 136)"};
-  border: .25em solid var(--glow-color);
-  padding: 1em;
-  color: ${textColor};
-  font-size: 15px;
-  font-weight: bold;
-  
-  border-radius: ${borderRadius || "1em"};
-  outline: none;
-  box-shadow: 0 0 1em .25em var(--glow-color),
-          0 0 4em 1em var(--glow-spread-color),
-          inset 0 0 .75em .25em var(--glow-color);
-  text-shadow: 0 0 .5em var(--glow-color);
-  position: relative;
-  transition: all 0.3s;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.shiny-button::after {
-  pointer-events: none;
-  content: "";
-  position: absolute;
-  top: 120%;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--glow-spread-color);
-  filter: blur(2em);
-  opacity: .7;
-  transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
-}
-
-.shiny-button:hover {
-  color: var(--btn-color);
-  background-color: var(--glow-color);
-  box-shadow: 0 0 1em .25em var(--glow-color),
-          0 0 4em 2em var(--glow-spread-color),
-          inset 0 0 .75em .25em var(--glow-color);
-}
-
-.shiny-button:active {
-  box-shadow: 0 0 0.6em .25em var(--glow-color),
-          0 0 2.5em 2em var(--glow-spread-color),
-          inset 0 0 .5em .25em var(--glow-color);
-}
-
-
-`}
-      </style>
       <button
-        className="shiny-button relative h-28 overflow-hidden"
+        className="shiny-button-wide-full-image relative h-28 overflow-hidden"
+        style={buttonStyle}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -485,57 +393,35 @@ const HighFullImage = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const imageUrl = image && getImageAddress(JSON.parse(image).key);
 
+  const buttonStyle = {
+    "--glow-color": textColor || "rgb(217, 176, 255)",
+    "--glow-spread-color": "rgba(191, 123, 255, 0.781)",
+    "--enhanced-glow-color": "rgb(231, 206, 255)",
+    "--btn-color": bgColor || "rgb(100, 61, 136)",
+    border: ".25em solid var(--glow-color)",
+    color: "var(--glow-color)",
+    fontSize: "15px",
+    fontWeight: "bold",
+    backgroundColor: "var(--btn-color)",
+    borderRadius: borderRadius || "1em",
+    outline: "none",
+    boxShadow:
+      "0 0 1em .25em var(--glow-color), 0 0 4em 1em var(--glow-spread-color), inset 0 0 .75em .25em var(--glow-color)",
+    textShadow: "0 0 .5em var(--glow-color)",
+    position: "relative",
+    transition: "all 0.3s",
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    justifyContent: "flex-end",
+  };
+
   return (
     <>
-      <style>
-        {`
-.shiny-button {
-  --glow-color: ${textColor || "rgb(217, 176, 255)"};
-  --glow-spread-color: rgba(191, 123, 255, 0.781);
-  --enhanced-glow-color: rgb(231, 206, 255);
-  --btn-color: ${bgColor || "rgb(100, 61, 136)"};
-  border: .25em solid var(--glow-color);
-  
-  color: var(--glow-color);
-  font-size: 15px;
-  font-weight: bold;
-  background-color: var(--btn-color);
-  border-radius: ${borderRadius || "1em"};
-  outline: none;
-  box-shadow: 0 0 1em .25em var(--glow-color),
-          0 0 4em 1em var(--glow-spread-color),
-          inset 0 0 .75em .25em var(--glow-color);
-  text-shadow: 0 0 .5em var(--glow-color);
-  position: relative;
-  transition: all 0.3s;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-}
-
-
-.shiny-button:hover {
-  color: var(--btn-color);
-  background-color: var(--glow-color);
-  box-shadow: 0 0 1em .25em var(--glow-color),
-          0 0 4em 2em var(--glow-spread-color),
-          inset 0 0 .75em .25em var(--glow-color);
-}
-
-.shiny-button:active {
-  box-shadow: 0 0 0.6em .25em var(--glow-color),
-          0 0 2.5em 2em var(--glow-spread-color),
-          inset 0 0 .5em .25em var(--glow-color);
-}
-
-
-`}
-      </style>
       <button
-        className="shiny-button"
+        className="shiny-button-high-full-image"
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -548,7 +434,7 @@ const HighFullImage = ({
           })
         }
         disabled={!isLive || href === ""}
-        style={{ height: imageUrl ? "auto" : "12rem" }}
+        style={{ height: imageUrl ? "auto" : "12rem", ...buttonStyle }}
       >
         {imageUrl && (
           <Image

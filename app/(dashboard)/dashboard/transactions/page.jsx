@@ -199,8 +199,8 @@ export default function TransactionsPage() {
                       {toPersianDate(transaction.requestDate)}
                     </TableCell>
                     <TableCell className="text-center">
-                      {transaction.successDate
-                        ? toPersianDate(transaction.successDate)
+                      {transaction.paidAt
+                        ? toPersianDate(transaction.paidAt)
                         : "-"}
                     </TableCell>
                     <TableCell className="text-center">

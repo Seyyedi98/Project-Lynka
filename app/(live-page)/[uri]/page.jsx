@@ -1,4 +1,4 @@
-import { getPageMetadata, increasePageView } from "@/actions/page/page";
+import { getPageMetadata } from "@/actions/page/page";
 import LivePageMenu from "@/app/_components/common/button/live-page-menu";
 import LoadingSpinner from "@/app/_components/common/shared/loadingSpinner";
 import LivePageBackground from "@/app/_components/live-page/live-page-background";
@@ -20,9 +20,6 @@ export async function generateMetadata({ params }) {
   const subscription = await getSubscriptionByUri(uri);
   if (!subscription) return;
   const { isPremium } = subscription;
-
-  // TODO: run in background
-  await increasePageView(uri);
 
   try {
     const metadata = await getPageMetadata(uri);

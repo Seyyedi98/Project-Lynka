@@ -4,7 +4,6 @@ import PurchaseForm from "@/app/_components/common/form/purchase-form";
 import { PLANS } from "@/data/prices";
 import Link from "next/link";
 import { startPurchase } from "@/actions/transactions/startPurchase";
-import { redirect } from "next/navigation";
 
 const getPrice = (plan, duration) => {
   const prices = {

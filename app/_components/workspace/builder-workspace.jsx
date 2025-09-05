@@ -64,6 +64,8 @@ const BuilderWorkspace = () => {
     shallowEqual,
   );
 
+  console.log(elements);
+
   const backgroundImageUrl =
     theme.backgroundImage && parseJson(theme.backgroundImage)?.key === "no_key"
       ? parseJson(theme.backgroundImage)?.url

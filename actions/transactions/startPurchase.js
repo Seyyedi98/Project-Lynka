@@ -113,12 +113,20 @@ export async function startPurchase(formData) {
       mobile,
       description,
     );
-    //
-    console.log(paymentInit);
 
     if (!paymentInit.success) {
       return { success: false, error: paymentInit.message };
     }
+
+    console.log(paymentInit.trackId.toString());
+    // Update the transaction with trackId and orderId
+    await prisma.transactions.update({
+      where: { id: transaction.id },
+      data: {
+        orderId: transaction.id.toString(),
+        trackId: paymentInit.trackId.toString(),
+      },
+    });
 
     return {
       success: true,

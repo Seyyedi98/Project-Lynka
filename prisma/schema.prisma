@@ -214,10 +214,14 @@ model Transactions {
   email            String?
   phoneNumber      String?
   requestDate      DateTime     @default(now())
-  processedAt      DateTime?
-  successDate      DateTime?
+  verifyDate       DateTime?
+  paidAt           DateTime?
   failureDate      DateTime?
   refundDate       DateTime?
+  cardNumber       String?
+  refNumber        String?
+  orderId          String?
+  trackId          String?
 
   @@index([userId])
 }

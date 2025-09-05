@@ -121,13 +121,8 @@ const Basic = ({
       <style>
         {`
           .glow-button {
-            padding: 10px 20px;
-            width:full;
-            border: none;
             color: #fff;
-            border-radius: ${borderRadius};
             transition: 0.5s;
-            background: ${bgColor};
             box-shadow: 0 0 25px ${bgColor};
           }
           .glow-button:hover {
@@ -140,6 +135,7 @@ const Basic = ({
         `}
       </style>
       <button
+        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -154,7 +150,7 @@ const Basic = ({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          `button glow-button flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 p-2 text-lg font-medium text-white shadow-lg`,
+          `button glow-button flex h-16 w-full cursor-pointer flex-col items-center justify-center gap-2 border-none p-2 px-[10px] py-[20px] text-lg font-medium text-white shadow-lg`,
           !isLive || (href === "" && "pointer-events-none"),
         )}
       >
@@ -207,18 +203,9 @@ const RoundedImage = ({
       <style>
         {`
           .glow-rounded-image {
-            padding: 10px 20px;
-            width: full;
-            border: none;
             color: #fff;
-            border-radius: ${borderRadius};
             transition: 0.5s;
-            background: ${bgColor};
             box-shadow: 0 0 25px ${bgColor};
-            display: flex;
-            align-items: center;
-            justify-content: start;
-            gap: 1rem;
           }
           .glow-rounded-image:hover {
             box-shadow:
@@ -230,7 +217,8 @@ const RoundedImage = ({
         `}
       </style>
       <button
-        className="glow-rounded-image w-full"
+        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
+        className="glow-rounded-image flex w-full items-center justify-start gap-1 border-none px-[20px] py-[10px]"
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -303,20 +291,9 @@ const WideFullImage = ({
       <style>
         {`
           .glow-wide-image {
-            padding: 10px 20px;
-            width: full;
-            border: none;
             color: #fff;
-            border-radius: ${borderRadius};
             transition: 0.5s;
-            background: ${bgColor};
             box-shadow: 0 0 25px ${bgColor};
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             height: 7rem;
           }
           .glow-wide-image:hover {
@@ -329,7 +306,8 @@ const WideFullImage = ({
         `}
       </style>
       <button
-        className="glow-wide-image w-full"
+        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
+        className="glow-wide-image relative flex w-full flex-col items-center justify-center overflow-hidden border-none px-[20px] py-[10px]"
         onClick={() =>
           handleClick({
             setIsModalOpen,
@@ -404,17 +382,9 @@ const HighFullImage = ({
       <style>
         {`
           .glow-high-image {
-            width: full;
-            border: none;
             color: #fff;
-            border-radius: ${borderRadius};
             transition: 0.5s;
-            background: ${bgColor};
             box-shadow: 0 0 25px ${bgColor};
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
             overflow: hidden;
             height: ${imageUrl ? "auto" : "12rem"};
           }
@@ -428,7 +398,8 @@ const HighFullImage = ({
         `}
       </style>
       <button
-        className="glow-high-image w-full"
+        style={{ backgroundColor: bgColor, borderRadius: borderRadius }}
+        className="glow-high-image flex w-full flex-col items-start justify-center overflow-hidden border-none"
         onClick={() =>
           handleClick({
             setIsModalOpen,

@@ -81,7 +81,7 @@ const NormalHero = ({ ...data }) => {
             height={300}
             src={primaryBgImage}
             alt={title}
-            className="z-20 h-36 w-36 rounded-full object-cover"
+            className="z-20 h-36 w-36 rounded-full bg-transparent object-cover"
           />
         ) : (
           <div className="grid h-32 w-32 place-content-center rounded-full border-2 border-dashed border-white">

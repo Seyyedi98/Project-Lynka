@@ -13,8 +13,6 @@ const Dashboard = async () => {
   const { subscriptionPlan, subscriptionDaysLeft } =
     await currentUserSubscription();
 
-  const totalViews = allPages.reduce((sum, item) => sum + item.views, 0);
-
   // const elementsAnalytics = await Promise.all(
   //   allPages.map(async (page) => {
   //     const elementsData = await getPageAnalytics(page.uri);
@@ -45,13 +43,13 @@ const Dashboard = async () => {
               <SheetIcon className="h-16 w-16" />
             </DashboardDataCard>
 
-            <DashboardDataCard
+            {/* <DashboardDataCard
               bgColor="#536dfe"
               text="تعداد بازدیدها"
               data={totalViews}
             >
               <ChartSpline className="h-16 w-16" />
-            </DashboardDataCard>
+            </DashboardDataCard> */}
           </div>
 
           <div className="flex h-full w-full gap-2">

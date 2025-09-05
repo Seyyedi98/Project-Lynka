@@ -47,9 +47,9 @@ const PagesList = ({ pages, onShowQr }) => {
             <TableHeader className="text-textLight bg-muted/50 text-sm font-semibold">
               <TableRow>
                 <TableHead className="min-w-[120px] text-start">نام</TableHead>
-                <TableHead className="min-w-[50px] text-center">
+                {/* <TableHead className="min-w-[50px] text-center">
                   بازدید
-                </TableHead>
+                </TableHead> */}
                 <TableHead className="min-w-[180px] text-end">عملیات</TableHead>
               </TableRow>
             </TableHeader>
@@ -64,9 +64,9 @@ const PagesList = ({ pages, onShowQr }) => {
                       {page.uri}
                     </Link>
                   </TableCell>
-                  <TableCell className="text-textLight text-center">
+                  {/* <TableCell className="text-textLight text-center">
                     {page.views}
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell>
                     <div className="flex justify-end gap-2">
                       {/* View */}

@@ -43,7 +43,7 @@ export const updateSubscriptionData = async ({ subscriptionPlan, days }) => {
   }
 
   const date = new Date(startingDate);
-  date.setDate(date.getDate() + days);
+  date.setDate(date.getDate() + Number(days));
 
   // updateSubscriptionData({ subscriptionPlan: "silver", days: 30 });
 

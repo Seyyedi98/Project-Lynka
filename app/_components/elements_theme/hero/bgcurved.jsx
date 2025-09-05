@@ -54,7 +54,7 @@ const BgCurvedHero = ({ ...data }) => {
           height={300}
           src={primaryBgImage}
           alt={title}
-          className="absolute right-1/2 top-28 z-20 h-32 w-32 translate-x-1/2 rounded-full object-cover lg:h-36 lg:w-36"
+          className="absolute right-1/2 top-28 z-20 h-32 w-32 translate-x-1/2 rounded-full bg-transparent object-cover lg:h-36 lg:w-36"
         />
       ) : (
         <div className="absolute right-1/2 top-28 z-20 grid h-32 w-32 translate-x-1/2 place-content-center rounded-full border-2 border-dashed border-white">
