@@ -98,7 +98,7 @@ const ElementAddContactFormFormField = ({
                     </div>
 
                     <Input
-                      placeholder="Field Label"
+                      placeholder="عنوان فیلد"
                       value={item.label}
                       onChange={(e) =>
                         handleFieldChange(index, "label", e.target.value)
@@ -106,7 +106,7 @@ const ElementAddContactFormFormField = ({
                     />
 
                     <Input
-                      placeholder="Placeholder Text"
+                      placeholder="متن نمونه"
                       value={item.placeholder}
                       onChange={(e) =>
                         handleFieldChange(index, "placeholder", e.target.value)

@@ -210,7 +210,10 @@ function PropertiesComponent({ elementInstance, isPremium }) {
                 />
 
                 {/* Address */}
-                <ElementhrefFormField form={form} message="لینک محصول" />
+                <ElementhrefFormField
+                  form={form}
+                  message="لینک محصول در شیکه اجتماعی یا سایت شما"
+                />
 
                 <Divider className="mt-4 opacity-50" />
 

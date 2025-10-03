@@ -1,11 +1,10 @@
 import { getUserPageData } from "@/actions/page/page";
 import CreatePageButton from "@/app/_components/common/button/PrimaryButton/new-page-btn";
-import BlogWidget from "@/app/_components/common/card/blog-widget";
 import DashboardDataCard from "@/app/_components/common/card/dashboard-data-card";
 import Carousel from "@/app/_components/common/carousel";
 import PagesList from "@/app/_components/section/dashboard-pages-list";
 import { currentUserSubscription } from "@/lib/auth/user-subscription";
-import { ApertureIcon, BadgeCheck, ChartSpline, SheetIcon } from "lucide-react";
+import { BadgeCheck, ChartSpline, SheetIcon, TrophyIcon } from "lucide-react";
 import Link from "next/link";
 
 const Dashboard = async () => {
@@ -43,13 +42,13 @@ const Dashboard = async () => {
               <SheetIcon className="h-16 w-16" />
             </DashboardDataCard>
 
-            {/* <DashboardDataCard
+            <DashboardDataCard
               bgColor="#536dfe"
               text="تعداد بازدیدها"
-              data={totalViews}
+              href="dashboard/analytics"
             >
               <ChartSpline className="h-16 w-16" />
-            </DashboardDataCard> */}
+            </DashboardDataCard>
           </div>
 
           <div className="flex h-full w-full gap-2">
@@ -68,10 +67,10 @@ const Dashboard = async () => {
 
             <DashboardDataCard
               bgColor="#fb8c00"
-              text="قرعه کشی های فعال"
-              data="۱۲"
+              text="قرعه کشی ها"
+              href="dashboard/lottery"
             >
-              <ApertureIcon className="h-20 w-20" />
+              <TrophyIcon className="h-20 w-20" />
             </DashboardDataCard>
           </div>
         </div>

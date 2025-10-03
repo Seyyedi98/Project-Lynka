@@ -72,7 +72,7 @@ const ElementScheduleFormField = ({ form, isPremium, scheduleData }) => {
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder="مثلاً ۸"
+                        placeholder="ساعت شروع"
                         type="number"
                         min="0"
                         max="24"
@@ -95,7 +95,7 @@ const ElementScheduleFormField = ({ form, isPremium, scheduleData }) => {
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder="مثلاً ۲۰"
+                        placeholder="ساعت پایان"
                         type="number"
                         min="0"
                         max="24"

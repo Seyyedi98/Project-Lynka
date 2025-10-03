@@ -96,7 +96,7 @@ const ElementCountdownFormField = ({
                 render={({ field }) => (
                   <FormItem className="w-full">
                     <Label className="mb-1 block text-sm font-medium">
-                      انتخاب تاریخ شروع نمایش
+                      انتخاب تاریخ
                     </Label>
                     <FormControl>
                       <DateInput
@@ -109,6 +109,8 @@ const ElementCountdownFormField = ({
                         className="w-full rounded-md border px-3 py-2 text-sm"
                       />
                     </FormControl>
+                    <p>تاریخ را در فرمت شمسی وارد کنید</p>
+                    <p>کیبورد خود را روی زبان انگلیسی قرار دهید</p>
                     <FormMessage />
                   </FormItem>
                 )}

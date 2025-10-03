@@ -99,7 +99,7 @@ export default function LandingPageNavbar() {
             {session.status !== "unauthenticated" ? (
               <Link
                 href="/dashboard"
-                className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all hover:bg-white/95 hover:shadow-md"
+                className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all hover:bg-white/95 hover:text-primary hover:shadow-md"
               >
                 <span>پنل کاربری</span>
                 <LogIn className="h-4 w-4" />
@@ -107,7 +107,7 @@ export default function LandingPageNavbar() {
             ) : (
               <Link
                 href="/auth/login"
-                className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all hover:bg-white/95 hover:shadow-md"
+                className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-medium text-primary shadow-sm transition-all hover:bg-white/95 hover:text-primary hover:shadow-md"
               >
                 <span>ورود</span>
                 <LogIn className="h-4 w-4" />

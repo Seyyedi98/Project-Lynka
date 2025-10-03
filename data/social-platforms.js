@@ -69,7 +69,7 @@ const socialPlatforms = [
     webPrefix: "https://instagram.com/",
   },
   {
-    name: "Twitter",
+    name: "X",
     icon: <FaTwitter />,
     background: "#1DA1F2",
     value: "twitter",

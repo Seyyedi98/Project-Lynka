@@ -5,9 +5,9 @@ import { cn } from "@/lib/utils";
 import {
   ChartSplineIcon,
   ClipboardPenIcon,
-  LibraryIcon,
   LucideHome,
   Settings,
+  TrophyIcon,
 } from "lucide-react";
 import { useState } from "react";
 import SidebarLink from "../../common/button/NavigationButton/sidebar-link";
@@ -68,11 +68,11 @@ const DashboardSidebar = () => {
 
         <SidebarLink
           isExpanded={isSidebarOpen}
-          title="راهنما"
-          path="/dashboard/docs"
+          title="قرعه کشی"
+          path="/dashboard/lottery"
           setIsSidebarOpen={setIsSidebarOpen}
         >
-          <LibraryIcon className="h-6 w-6" />
+          <TrophyIcon className="h-6 w-6" />
         </SidebarLink>
 
         <SidebarLink

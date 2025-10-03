@@ -20,6 +20,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogFooter,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -41,10 +43,11 @@ import {
   LinkIcon,
   Loader2,
   MailIcon,
-  MedalIcon,
   PhoneIcon,
   TrophyIcon,
   UsersIcon,
+  AlertTriangle,
+  Loader2Icon,
 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -65,6 +68,13 @@ const formItemAnimation = {
 };
 
 const ActiveLotteryCard = ({ lottery, loading, onEndLottery }) => {
+  const [confirmOpen, setConfirmOpen] = useState(false);
+
+  const handleConfirmEnd = () => {
+    setConfirmOpen(false);
+    onEndLottery(lottery.id);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -88,16 +98,43 @@ const ActiveLotteryCard = ({ lottery, loading, onEndLottery }) => {
             <div className="rounded-md bg-secondary px-3 py-2 text-white">
               فعال
             </div>
-            <Button
-              variant="destructive"
-              onClick={() => onEndLottery(lottery.id)}
-              disabled={loading}
-            >
-              {loading ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              ) : null}
-              {loading ? "در حال پایان..." : "پایان قرعه کشی"}
-            </Button>
+            <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
+              <DialogTrigger asChild>
+                <Button variant="destructive" disabled={loading}>
+                  پایان قرعه کشی
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle className="flex items-center gap-2">
+                    <AlertTriangle className="h-5 w-5 text-destructive" />
+                    تایید پایان قرعه کشی
+                  </DialogTitle>
+                  <DialogDescription>
+                    آیا از پایان دادن به قرعه کشی {lottery.name} مطمئن هستید؟
+                    این عمل غیرقابل بازگشت است
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter className="gap-2 sm:gap-0">
+                  <div className="flex items-center justify-center gap-2">
+                    <DialogClose asChild>
+                      <Button variant="outline">بازگشت </Button>
+                    </DialogClose>
+                    <Button
+                      variant="destructive"
+                      onClick={handleConfirmEnd}
+                      disabled={loading}
+                    >
+                      {loading ? (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      ) : (
+                        "تایید"
+                      )}
+                    </Button>
+                  </div>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>
@@ -149,7 +186,11 @@ const LotteryHistoryTable = ({ lotteries, onSelectLottery }) => {
                   </div>
                 </TableCell>
                 <TableCell>
-                  {lottery.isActive ? <div>فعال</div> : <div>پایان یافته</div>}
+                  {lottery.isActive ? (
+                    <Badge variant="success">فعال</Badge>
+                  ) : (
+                    <Badge variant="secondary">پایان یافته</Badge>
+                  )}
                 </TableCell>
                 <TableCell>
                   {new Date(lottery.createdAt).toLocaleDateString("fa-IR")}
@@ -257,7 +298,7 @@ export default function LotteryPage() {
     setSelectedLottery(lottery);
   };
 
-  if (!isPremium) {
+  if (!isPremium && !isPremiumLoading) {
     return (
       <div className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8">
         <div className="mb-8 sm:mx-4 sm:mr-20 xl:pr-6">
@@ -532,7 +573,7 @@ export default function LotteryPage() {
                       <h3 className="text-lg font-semibold">لیست برندگان</h3>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <TrophyIcon className="h-4 w-4" />
-                        <span>{selectedLottery.winners.length} برنده</span>
+                        <span>{selectedLottery.winnerCount} برنده</span>
                       </div>
                     </div>
 

@@ -35,9 +35,6 @@ const Register = () => {
 
         <h2 className="mb-4 mt-20 text-4xl text-white">عضویت</h2>
 
-        <p className="relative mt-8 flex items-center justify-center gap-10 text-lg font-thin text-primary">
-          عضویت
-        </p>
         {/* <div className="relative mt-8 flex cursor-pointer items-center justify-center gap-10 text-base font-thin text-text-light">
           <span
             className={cn(
