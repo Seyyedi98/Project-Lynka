@@ -59,9 +59,9 @@ const DashboardHeading = () => {
           loadingNotifications={loadingNotifications}
           unreadCount={unreadCount}
         />
-        <button className="rounded-full p-2 transition-colors hover:bg-white/10">
+        {/* <button className="rounded-full p-2 transition-colors hover:bg-white/10">
           <HelpCircle className="h-6 w-6" />
-        </button>
+        </button> */}
       </div>
 
       <DashboardHeadingDropdown user={user} />

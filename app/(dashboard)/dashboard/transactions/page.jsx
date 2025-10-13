@@ -132,7 +132,7 @@ export default function TransactionsPage() {
         transition={{ delay: 0.1 }}
         className="sm:mx-4 sm:mr-20 xl:pr-6"
       >
-        <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-sm">
+        <div className="rounded-lg border border-border bg-background p-3 shadow-sm">
           <Table dir="rtl">
             <TableHeader className="text-textLight text-sm font-semibold">
               <TableRow>
@@ -154,7 +154,7 @@ export default function TransactionsPage() {
             <TableBody>
               {loading ? (
                 Array.from({ length: 5 }).map((_, index) => (
-                  <TableRow key={index} className="hover:bg-gray-50">
+                  <TableRow key={index} className="hover:bg-background/70">
                     <TableCell className="text-center">
                       <div className="mx-auto h-6 w-6 animate-pulse rounded bg-gray-200"></div>
                     </TableCell>
@@ -189,7 +189,6 @@ export default function TransactionsPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    className="hover:bg-gray-50"
                   >
                     <TableCell className="text-center">{index + 1}</TableCell>
                     <TableCell className="text-center">

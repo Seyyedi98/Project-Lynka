@@ -13,6 +13,12 @@ export async function getPaginatedPosts(page = 1, perPage = 10) {
         orderBy: {
           createdAt: "desc",
         },
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          images: true,
+        },
       }),
       prisma.blog.count(),
     ]);

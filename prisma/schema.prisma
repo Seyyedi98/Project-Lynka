@@ -196,7 +196,7 @@ model blog {
   id          String   @id @default(cuid())
   createdAt   DateTime @default(now())
   title       String
-  description String?
+  description String?  @db.MediumText()
   view        Int
   images      String   @db.VarChar(500)
   postData    String   @db.VarChar(10000)
