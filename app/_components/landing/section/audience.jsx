@@ -10,29 +10,29 @@ const tabs = [
   {
     id: "services",
     number: "۰۱",
-    title: "خدمات خانگی و کسب‌وکار",
+    title: "خدمات",
     subtitle: "خدمات",
     gradient: "from-blue-500 to-cyan-400",
   },
   {
     id: "creators",
     number: "۰۲",
-    title: "افراد محبوب",
-    subtitle: "اینفلوئنسر",
+    title: "صفحه شخصی",
+    subtitle: "شخصی",
     gradient: "from-pink-500 to-rose-400",
   },
   {
     id: "stores",
     number: "۰۳",
-    title: "برندها",
-    subtitle: "فروشگاه‌ها",
+    title: "فروشگاه‌ها",
+    subtitle: "فروشگاه",
     gradient: "from-purple-500 to-violet-400",
   },
   {
     id: "everyone",
     number: "۰۴",
-    title: "فریلنسرها",
-    subtitle: "همه افراد",
+    title: "کسب‌وکارهای کوچک",
+    subtitle: "استارتاپ",
     gradient: "from-emerald-500 to-teal-400",
   },
 ];
@@ -40,45 +40,41 @@ const tabs = [
 const slides = [
   {
     id: "services",
-    categories: ["خدمات خانگی", "مراسم", "آموزش"],
-    title: "مشتری بیشتر، فروش بیشتر",
+    categories: ["خدمات", "انجمن‌ها", "جشنواره‌ها"],
+    title: "خدمات حرفه‌ای، ارتباط مستقیم",
     description:
-      "اجازه بده مشتری‌هات مستقیم پیام بدن، سوال بپرسن و پرداخت کنن.",
+      "ارائه خدمات، مدیریت رویداد ها و جشنواره‌ها با امکان ارتباط با مخاطب.",
     cta: "شروع کن",
     images: [
-      "https://arklight.storage.c2.liara.space/preview/triple-mockup-1.webp",
+      "https://arklight.storage.c2.liara.space/preview/trio-services.webp",
     ],
   },
   {
     id: "creators",
-    categories: ["بلاگر", "مربی", "ستاره"],
-    title: "پر رنگ‌تر شو، محبوب‌تر شو",
-    description: "مخاطبات رو به لینکای مهمت هدایت کن و بازدیدتو افزایش بده.",
+    categories: ["شخصی", "فردی", "محتوا"],
+    title: "صفحه شخصی، حضور منحصربه‌فرد",
+    description: "صفحه‌ای شخصی برای خودت بساز و با دنیا به اشتراک بذار.",
     cta: "رشد کن",
     images: [
-      "https://arklight.storage.c2.liara.space/preview/preview-photography.webp",
+      "https://arklight.storage.c2.liara.space/preview/trio-personal.webp",
     ],
   },
   {
     id: "stores",
-    categories: ["فروشگاه محلی", "تولیدکننده", "صنعتگر"],
-    title: "خرید رو ساده کن",
-    description:
-      "بدون نیاز به طراح، صفحه‌ت رو در کمتر از ۲۰ دقیقه ساخته و فروشت رو شروع کن!",
-    cta: "فروش شروع کن",
-    images: [
-      "https://arklight.storage.c2.liara.space/preview/preview-coffee.webp",
-    ],
+    categories: ["فروشگاه", "مغازه", "محلی"],
+    title: "فروشگاه آنلاین، کسب‌وکار آسان",
+    description: "محصولاتت رو به بقیه معرفی کن و کسب‌وکارت رو توسعه بده.",
+    cta: "همین حالا شروع کن",
+    images: ["https://arklight.storage.c2.liara.space/preview/trio-shop.webp"],
   },
   {
     id: "everyone",
-    categories: ["هنرمند", "علاقه‌مند"],
-    title: "هنر و تو، در مرکز توجه",
-    description: "دستاورد‌هاتو به اشتراک بذار و فالوور جدید جذب کن.",
+    categories: ["کسب‌وکار خرد", "استارتاپ", "شخصی"],
+    title: "کسب‌وکار کوچک، رشد بزرگ",
+    description:
+      "راه‌حلی مقرون‌به‌صرفه برای کسب‌وکارهای خرد و استارتاپ‌های کوچک.",
     cta: "نمایش بده",
-    images: [
-      "https://arklight.storage.c2.liara.space/preview/preview-vlog.webp",
-    ],
+    images: ["https://arklight.storage.c2.liara.space/preview/trio-other.webp"],
   },
 ];
 

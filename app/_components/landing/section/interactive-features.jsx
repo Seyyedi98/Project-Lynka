@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
+import Image from "next/image";
+import { useRef, useState, useEffect } from "react";
 
 const sections = [
   {
@@ -10,47 +11,81 @@ const sections = [
     content:
       "یه کارت دیجیتال جذاب بساز که کسب و کارت رو به بهترین شکل نشون بده.",
     imageSection: 0,
+    image: "https://arklight.storage.c2.liara.space/preview/rose.webp",
   },
   {
     id: "feature2",
     title: "اتصال به شبکه‌های اجتماعی",
     content: "تمام لینک‌هات رو یکجا بچین و راحت مخاطبات ارتباط برقرار کن.",
     imageSection: 1,
+    image: "https://arklight.storage.c2.liara.space/preview/socials.webp",
   },
   {
     id: "feature3",
-    title: "فروش مستقیم بدون واسطه",
-    content: "کاربرهات رو مستقیم به محصولاتت هدایت کن و درآمدت رو افزایش بده.",
+    title: "بلوک های متنوع",
+    content: "با بلوک های گوناگون صفحه ی خودرا هر طور که دوست داری بساز",
     imageSection: 2,
+    image:
+      "https://arklight.storage.c2.liara.space/preview/preview-grayart.webp",
   },
   {
     id: "feature4",
     title: "تحلیل رفتار کاربران",
     content: "رفتار بازدیدکننده‌هات رو بررسی کن.",
     imageSection: 3,
+    image: "https://arklight.storage.c2.liara.space/preview/analytics.webp",
   },
   {
     id: "feature5",
     title: "سفارشی‌سازی کامل",
     content: "رنگ، فونت، چیدمان و هر چیزی که بخوای رو به سبک خودت تنظیم کن.",
     imageSection: 4,
+    image: "https://arklight.storage.c2.liara.space/preview/edit.webp",
   },
 ];
 
 const InteractiveFeaturesSection = () => {
   const [activeAccordion, setActiveAccordion] = useState(0);
   const imageContainerRef = useRef(null);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   const handleAccordionClick = (index) => {
     setActiveAccordion(index);
     if (imageContainerRef.current) {
+      setIsScrolling(true);
       const sectionHeight = imageContainerRef.current.scrollHeight / 5;
       imageContainerRef.current.scrollTo({
         top: sectionHeight * index,
         behavior: "smooth",
       });
+
+      // Reset scrolling state after animation completes
+      setTimeout(() => {
+        setIsScrolling(false);
+      }, 500);
     }
   };
+
+  // Handle scroll events to update active accordion
+  useEffect(() => {
+    const container = imageContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      if (isScrolling) return; // Don't update during programmatic scroll
+
+      const scrollTop = container.scrollTop;
+      const sectionHeight = container.scrollHeight / 5;
+      const newActiveIndex = Math.floor(scrollTop / sectionHeight);
+
+      if (newActiveIndex !== activeAccordion) {
+        setActiveAccordion(newActiveIndex);
+      }
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [activeAccordion, isScrolling]);
 
   return (
     <section className="bg-[#0f172a] py-32">
@@ -148,7 +183,7 @@ const InteractiveFeaturesSection = () => {
               <div className="rounded-xl border-2 border-[#334155] bg-[#1e293b] p-1 shadow-sm">
                 <div
                   ref={imageContainerRef}
-                  className="h-[32rem] w-full overflow-hidden rounded-lg"
+                  className="scrollbar-hide h-[32rem] w-full overflow-y-scroll rounded-lg [scrollbar-width:none]"
                 >
                   <div className="h-[500%]">
                     {sections.map((section, index) => (
@@ -160,19 +195,22 @@ const InteractiveFeaturesSection = () => {
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           animate={{
-                            opacity: activeAccordion === index ? 1 : 0.7,
+                            opacity: activeAccordion === index ? 1 : 0.3,
                             y: 0,
+                            scale: activeAccordion === index ? 1 : 0.95,
                           }}
                           transition={{
                             duration: 0.4,
                             ease: "easeOut",
                           }}
-                          className="w-full p-6 text-center"
+                          className="relative h-full w-full"
                         >
-                          <h3 className="mb-3 text-xl font-bold text-white">
-                            {section.title}
-                          </h3>
-                          <p className="text-[#cbd5e1]">{section.content}</p>
+                          <Image
+                            fill
+                            alt={section.title}
+                            className="object-cover"
+                            src={section.image}
+                          />
                         </motion.div>
                       </div>
                     ))}

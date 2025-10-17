@@ -6,15 +6,28 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 export default function LandingPageNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled2, setIsScrolled2] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const session = useSession();
 
+  // For navbar blur
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // For text and icons color change
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled2(window.scrollY > 500);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -84,7 +97,7 @@ export default function LandingPageNavbar() {
                 href={item.href}
                 className={
                   (`transition-all duration-200 hover:scale-105`,
-                  isScrolled
+                  isScrolled2
                     ? "text-primary/90 hover:text-primary"
                     : "text-white/90 hover:text-white")
                 }
@@ -124,7 +137,12 @@ export default function LandingPageNavbar() {
             {isMenuOpen ? (
               <X className="h-6 w-6 text-white" />
             ) : (
-              <Menu className="h-6 w-6 text-white" />
+              <Menu
+                className={cn(
+                  `h-6 w-6 text-white`,
+                  isScrolled2 && "text-blue-400",
+                )}
+              />
             )}
           </button>
         </div>

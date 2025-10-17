@@ -23,9 +23,13 @@ export default auth((req) => {
     nextUrl.pathname.startsWith("/workspace") ||
     nextUrl.pathname.startsWith("/succeed");
 
+  // Allow blog routes (/blog and /blog/[id])
+  const isBlogRoute = nextUrl.pathname.startsWith("/blog");
+
   // Ensure (page)/[uri] only renders when no other specific routes match
   const isDynamicRoute =
-    /^\/[a-zA-Z0-9_-]+$/.test(nextUrl.pathname) && !isExcludedRoute; // Prevent matching for /dashboard & /workspace
+    (/^\/[a-zA-Z0-9_-]+$/.test(nextUrl.pathname) && !isExcludedRoute) ||
+    isBlogRoute; // Prevent matching for /dashboard & /workspace
 
   if (isDynamicRoute) {
     return null; // Allow (page)/[uri] when it's the only match

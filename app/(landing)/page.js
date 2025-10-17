@@ -33,7 +33,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-4 text-center">
           <div className="mx-auto max-w-4xl rounded-2xl border border-white/30 bg-white/20 p-12 backdrop-blur-lg">
             <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
-              آماده ساخت صفحه لینک خود هستید؟
+              آماده ساخت صفحه خود هستید؟
             </h2>
             <p className="mx-auto mb-8 max-w-2xl text-xl text-white/90">
               همین حالا ثبت نام کنید و در کمتر از ۲ دقیقه صفحه‌ی خود را بسازید
