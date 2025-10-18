@@ -4,16 +4,8 @@ import { cn } from "@/lib/utils";
 import { loadFont } from "@/utils/loadFont";
 import { useEffect, useState } from "react";
 
-const TextFieldWindows95 = (props) => {
-  const {
-    title,
-    isPremium,
-    textColor = "#000000",
-    font,
-    borderRadius = "0px",
-    lineHeight,
-    textAlign,
-  } = props;
+const PhoneFieldWindows95 = (props) => {
+  const { phone, isPremium, textColor = "#000000", font } = props;
   const [loadedFont, setLoadedFont] = useState(null);
 
   useEffect(() => {
@@ -27,6 +19,23 @@ const TextFieldWindows95 = (props) => {
     };
     fetchFont();
   }, [font]);
+
+  const handleClick = () => {
+    if (!phone || !isPremium) return;
+
+    // Check if the value is a phone number
+    const isPhoneNumber = /^[\d\s+\-()]+$/.test(phone);
+    // Check if the value is an email address
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(phone);
+
+    if (isPhoneNumber) {
+      // Remove any non-digit characters except + for phone numbers
+      const cleanPhone = phone.replace(/[^\d+]/g, "");
+      window.open(`tel:${cleanPhone}`, "_self");
+    } else if (isEmail) {
+      window.open(`mailto:${phone}`, "_self");
+    }
+  };
 
   const win95Colors = {
     lightBorder: "#FFFFFF",
@@ -45,7 +54,7 @@ const TextFieldWindows95 = (props) => {
           style={{
             backgroundColor: win95Colors.buttonFace,
             border: "2px solid",
-            borderColor: `${win95Colors.lightBorder} ${win95Colors.darkBorder}`,
+            borderColor: `${win95Colors.lightBorder} ${win95Colors.darkBorder} ${win95Colors.darkBorder} ${win95Colors.lightBorder}`,
             boxShadow: `1px 1px 0px 0px ${win95Colors.darkerBorder}`,
             color: win95Colors.buttonText,
             padding: "3px 12px",
@@ -56,33 +65,43 @@ const TextFieldWindows95 = (props) => {
         </div>
       )}
       <div
-        className={cn(`w-full text-wrap py-2`, !isPremium && "opacity-70")}
+        className={cn(
+          `w-full text-wrap py-2`,
+          !isPremium && "opacity-70",
+          isPremium && phone && "cursor-pointer",
+        )}
         style={{
           backgroundColor: win95Colors.windowBackground,
           padding: "8px",
         }}
+        onClick={handleClick}
+        role={isPremium && phone ? "button" : undefined}
+        tabIndex={isPremium && phone ? 0 : undefined}
       >
         <div
           style={{
             backgroundColor: win95Colors.buttonFace,
             border: "2px solid",
-            borderColor: `${win95Colors.lightBorder} ${win95Colors.darkBorder}`,
+            borderColor: `${win95Colors.darkBorder} ${win95Colors.lightBorder} ${win95Colors.lightBorder} ${win95Colors.darkBorder}`,
             boxShadow: `1px 1px 0px 0px ${win95Colors.darkerBorder}`,
             padding: "8px",
             color: textColor,
             fontFamily: loadedFont
               ? `var(${loadedFont})`
               : "MS Sans Serif, sans-serif",
-            textAlign: textAlign,
-            lineHeight: lineHeight,
             whiteSpace: "pre-wrap",
+            fontWeight: "bold",
           }}
+          className={cn(
+            "text-center font-bold",
+            isPremium && phone && "hover:underline",
+          )}
         >
-          {title || "برای ویرایش متن کلیک کنید"}
+          {phone || "برای ویرایش متن کلیک کنید"}
         </div>
       </div>
     </div>
   );
 };
 
-export default TextFieldWindows95;
+export default PhoneFieldWindows95;

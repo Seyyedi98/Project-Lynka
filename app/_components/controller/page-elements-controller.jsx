@@ -8,6 +8,7 @@ import { GalleryFieldFormElement } from "../elements/gallery/gallery-field";
 import { ImageFieldFormElement } from "../elements/image/image-field";
 import { LotteryFieldElement } from "../elements/lotteryField/lottery-field";
 import { MapFieldFormElement } from "../elements/map/map-field";
+import { PhoneFieldFormElement } from "../elements/phoneField/phone-field";
 import { PostTrackerFieldFormElement } from "../elements/postTracker/postTracker-field";
 import { ProductFieldFormElement } from "../elements/product/product-field";
 import { RssFieldFormElement } from "../elements/rss/rss-field";
@@ -23,6 +24,7 @@ export const PageElements = {
   DeviderField: DeviderFieldFormElement,
   CountdownField: CountdownFieldFormElement,
   TextField: TextFieldFormElement,
+  PhoneField: PhoneFieldFormElement,
   VideoField: VideoFieldFormElement,
   RssField: RssFieldFormElement,
   FaqField: FaqFieldFormElement,

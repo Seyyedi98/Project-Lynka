@@ -13,8 +13,6 @@ export const NewVerificationForm = () => {
   const [success, setSuccess] = useState();
   const searchParams = useSearchParams();
 
-  console.log(error, success);
-
   const token = searchParams.get("token");
 
   const onSubmit = useCallback(() => {
@@ -26,7 +24,7 @@ export const NewVerificationForm = () => {
       .catch(() => {
         setError("Something wenst wrong!");
       });
-  }, [token, data, success]); // removed: data, success from dependencies
+  }, [token]); // removed: data, success from dependencies
 
   useEffect(() => {
     onSubmit();
@@ -39,6 +37,7 @@ export const NewVerificationForm = () => {
           <p className="mb-2 text-center text-[15px] font-light text-text-light">
             تایید ایمیل
           </p>
+          {console.log(success, error)}
           {!success && !error && <BeatLoader />}
           <FormSuccess message={success} />
           {!success && <FormError message={error} />}

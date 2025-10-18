@@ -26,6 +26,10 @@ import GalleryFieldDefault from "../elements_theme/gallery/gallery-field-default
 import LotteryFieldDefault from "../elements_theme/lottery/lottery-field-default";
 import MapFieldDefault from "../elements_theme/map/map-field-default";
 import MapFieldWindows95 from "../elements_theme/map/map-field-windows95";
+import PhoneFieldDefault from "../elements_theme/phone/phone-field-default";
+import PhoneFieldLiquidGlass from "../elements_theme/phone/phone-field-liquidGlass";
+import PhoneFieldTransparent from "../elements_theme/phone/phone-field-transparent";
+import PhoneFieldWindows95 from "../elements_theme/phone/phone-field-windows95";
 import PostTrackerFieldDefault from "../elements_theme/postTracker/postTracker-field-default";
 import ProductFieldDefault from "../elements_theme/product/default/product-field-default";
 import RssFieldDefault from "../elements_theme/rss/rss-field-default";
@@ -108,6 +112,20 @@ export const ElementThemeController = {
       { isPremium: false },
     ],
     windows95: [TextFieldWindows95, { type: "color" }, { isPremium: false }],
+  },
+  PhoneField: {
+    default: [PhoneFieldDefault, { type: "color" }, { isPremium: false }],
+    transparent: [
+      PhoneFieldTransparent,
+      { type: "color" },
+      { isPremium: false },
+    ],
+    liquidGlass: [
+      PhoneFieldLiquidGlass,
+      { type: "color" },
+      { isPremium: false },
+    ],
+    windows95: [PhoneFieldWindows95, { type: "color" }, { isPremium: false }],
   },
   VideoField: {
     default: [VideoFieldDefault, { type: "color" }, { isPremium: true }],

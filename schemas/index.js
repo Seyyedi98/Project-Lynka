@@ -12,6 +12,11 @@ export const RegisterSchema = z.object({
     message: "",
   }),
   email: z.string().email({ message: "آدرس ایمیل نامعتبر است" }),
+  phoneNumber: z
+    .string()
+    .regex(/^09[0-9]{9}$/, { message: "فرمت شماره موبایل نامعتبر است" })
+    .min(11, { message: "شماره موبایل باید ۱۱ رقم باشد" })
+    .max(11, { message: "شماره موبایل باید ۱۱ رقم باشد" }),
   password: z
     .string()
     .min(6, { message: "رمز عبور باید بیش از ۶ کاراکتر باشد" }),

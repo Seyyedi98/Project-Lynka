@@ -16,22 +16,26 @@ export const register = async (values) => {
     return { error: "Invalid fields" };
   }
 
-  const { name, email, password } = validatedFields.data;
+  const { name, email, password, phoneNumber } = validatedFields.data;
 
   // Encrypt use password
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Check if user with this email already registered
   const existingUser = await getUserByEmail(email);
-  console.log(existingUser);
+
   if (existingUser)
-    return { error: "کاربری با این ایمیل قبلا ثبت نام کرده است" };
+    return {
+      error:
+        " کاربری با این ایمیل قبلا ثبت نام کرده است. در صورت فراموشی رمز، رمز عبور را بازنشانی کنید",
+    };
 
   // Create user
   await prisma.user.create({
     data: {
       name,
       email,
+      phoneNumber,
       password: hashedPassword,
     },
   });
@@ -40,5 +44,8 @@ export const register = async (values) => {
 
   await sendVerificationEmail(verificationToken.email, verificationToken.token);
 
-  return { success: "لینک تایید به ایمیل شما ارسال شد" };
+  return {
+    success:
+      "لینک تایید به ایمیل شما ارسال شد. در صورت عدم دریافت پوشه spam را بررسی کنید",
+  };
 };

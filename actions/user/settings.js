@@ -34,7 +34,10 @@ export const settings = async (values) => {
     const verficationToken = await generateVerificationToken(values.email);
     await sendVerificationEmail(verficationToken.email, verficationToken.token);
 
-    return { success: "لینک تایید به ایمیل شما ارسال شد" };
+    return {
+      success:
+        "لینک تایید به ایمیل شما ارسال شد. در صورت عدم دریافت پوشه spam را بررسی کنید",
+    };
   }
 
   if (values.password && values.newPassword && dbUser.password) {

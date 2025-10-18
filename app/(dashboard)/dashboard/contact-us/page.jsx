@@ -13,12 +13,11 @@ import { motion } from "framer-motion";
 import {
   Loader2,
   Mail,
-  MessageCircle,
   MessageSquare,
   Phone,
   Send,
   Share2,
-  User,
+  User
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -181,7 +180,7 @@ const ContactUs = () => {
                   ارتباط از طریق ایمیل
                 </p>
                 <p className="mt-2 text-lg font-semibold text-white">
-                  contact@lynka.ir
+                  info@lynka.ir
                 </p>
                 <p className="mt-1 text-xs text-indigo-200">
                   پاسخگویی در کمتر از ۲۴ ساعت
@@ -205,7 +204,7 @@ const ContactUs = () => {
               <div className="flex justify-center gap-6">
                 {/* Instagram */}
                 <a
-                  href="https://www.instagram.com/lynka.ir"
+                  href="https://www.instagram.com/bio_lynka"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -214,7 +213,7 @@ const ContactUs = () => {
 
                 {/* Telegram */}
                 <a
-                  href="https://t.me/lynka_support"
+                  href="https://t.me/bio_lynka"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -222,13 +221,13 @@ const ContactUs = () => {
                 </a>
 
                 {/* WhatsApp */}
-                <a
+                {/* <a
                   href="https://wa.me/989123456789"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <MessageCircle className="h-7 w-7 text-white transition-transform hover:scale-110" />
-                </a>
+                </a> */}
               </div>
             </div>
           </CardContent>

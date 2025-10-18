@@ -10,6 +10,9 @@ import LivePageAllowsToSection from "../_components/landing/section/interactive-
 import PricingSection from "../_components/landing/section/pricing";
 import Image from "next/image";
 import Link from "next/link";
+import TermsModal from "../_components/common/modal/terms-modal";
+import ContactModal from "../_components/common/modal/contact-modal";
+import FaqModal from "../_components/common/modal/faq-modal";
 
 export default function LandingPage() {
   return (
@@ -57,24 +60,23 @@ export default function LandingPage() {
               لینکا
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-              <a
-                href="#"
-                className="text-sm text-[hsl(var(--textLight))] transition hover:text-[hsl(var(--primary))]"
-              >
-                قوانین
-              </a>
-              <a
-                href="#"
-                className="text-sm text-[hsl(var(--textLight))] transition hover:text-[hsl(var(--primary))]"
-              >
-                تماس با ما
-              </a>
-              <a
-                href="#"
-                className="text-sm text-[hsl(var(--textLight))] transition hover:text-[hsl(var(--primary))]"
-              >
-                سوالات متداول
-              </a>
+              <p className="pt-2 text-sm text-[hsl(var(--textLight))] transition hover:text-[hsl(var(--primary))]">
+                <TermsModal
+                  trigger={<span className="cursor-pointer">قوانین</span>}
+                />
+              </p>
+              <p className="text-sm text-[hsl(var(--textLight))] transition hover:text-[hsl(var(--primary))]">
+                <ContactModal
+                  trigger={<span className="cursor-pointer">تماس با ما</span>}
+                />
+              </p>
+              <p className="text-sm text-[hsl(var(--textLight))] transition hover:text-[hsl(var(--primary))]">
+                <FaqModal
+                  trigger={
+                    <span className="cursor-pointer">سوالات متداول</span>
+                  }
+                />
+              </p>
             </div>
           </div>
           {/* <a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=605868&Code=3lF0KZtRnH1EnHWZ9ildmBWtPqvn6Vxf'><img referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=605868&Code=3lF0KZtRnH1EnHWZ9ildmBWtPqvn6Vxf' alt='' style='cursor:pointer' code='3lF0KZtRnH1EnHWZ9ildmBWtPqvn6Vxf'></a> */}
@@ -87,8 +89,8 @@ export default function LandingPage() {
             <Image
               src="https://trustseal.enamad.ir/logo.aspx?id=605868&Code=3lF0KZtRnH1EnHWZ9ildmBWtPqvn6Vxf"
               alt="e-namad"
-              width={120}
-              height={120}
+              width={60}
+              height={40}
               loading="lazy"
             />
           </Link>

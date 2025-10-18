@@ -1,3 +1,5 @@
+"use server";
+
 import prisma from "@/lib/client";
 
 export const getVerificatoinTokenByEmail = async (email) => {
@@ -20,6 +22,7 @@ export const getVerificatoinTokenByToken = async (token) => {
         token,
       },
     });
+
     return verificationToken;
   } catch {
     return null;

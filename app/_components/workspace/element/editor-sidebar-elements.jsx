@@ -27,6 +27,10 @@ const EditorSidebarElements = ({ isPremium }) => {
               pageElement={PageElements.TextField}
               isPremium={isPremium}
             />
+            <AddElementButton
+              pageElement={PageElements.PhoneField}
+              isPremium={isPremium}
+            />
           </div>
         </section>
 
