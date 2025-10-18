@@ -7,10 +7,10 @@ import { idGenerator } from "@/lib/id-generator";
 import { cn } from "@/lib/utils";
 import {
   ArrowLeft,
-  Gauge,
   Image as ImageIcon,
   Palette,
   Sparkles,
+  Crown,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
@@ -18,6 +18,7 @@ import { Pagination } from "../common/Pagination";
 import { Dialog, DialogContent, DialogTitle } from "../common/modal/diolog";
 import { PageHeroElement } from "../elements/hero/page-hero-element";
 import ThemePreviewRenderer from "../preview/Theme-preview-renderer";
+import { currentUserSubscription } from "@/lib/auth/user-subscription";
 
 const categories = [
   { title: "all", value: "همه", icon: <Sparkles className="h-4 w-4" /> },
@@ -38,14 +39,33 @@ const InitialThemeSelector = ({ uri }) => {
   const [selectedTheme, setSelectedTheme] = useState(null);
   const [loadingImages, setLoadingImages] = useState({});
   const itemsPerPage = 12;
+  const [loadingIsPremium, setLoadingIsPremium] = useState(true);
+  const [isPremium, setIsPremium] = useState(null); // Start as null to indicate not loaded
 
   useEffect(() => {
-    const initialLoadingStates = {};
-    themes.forEach((theme) => {
-      initialLoadingStates[theme.name] = true;
-    });
-    setLoadingImages(initialLoadingStates);
+    const checkPremiumUser = async () => {
+      try {
+        const { isPremium } = await currentUserSubscription();
+        setIsPremium(isPremium);
+      } catch (error) {
+        console.error("Error fetching subscription:", error);
+        setIsPremium(false); // Set to false on error to prevent infinite loading
+      } finally {
+        setLoadingIsPremium(false);
+      }
+    };
+    checkPremiumUser();
   }, []);
+
+  useEffect(() => {
+    if (!loadingIsPremium && isPremium !== null) {
+      const initialLoadingStates = {};
+      themes.forEach((theme) => {
+        initialLoadingStates[theme.name] = true;
+      });
+      setLoadingImages(initialLoadingStates);
+    }
+  }, [loadingIsPremium, isPremium]);
 
   const filteredThemes = () => {
     if (category === "all") return themes;
@@ -65,6 +85,11 @@ const InitialThemeSelector = ({ uri }) => {
   }, [category]);
 
   const onSelect = async (theme) => {
+    // Double check premium status before applying premium theme
+    if (theme.isPremium && !isPremium) {
+      return;
+    }
+
     const heroElement = PageHeroElement.construct(idGenerator());
 
     const StyledHeroElement = [
@@ -93,6 +118,10 @@ const InitialThemeSelector = ({ uri }) => {
   };
 
   const handleThemeClick = (theme) => {
+    // Prevent clicking on premium themes for non-premium users
+    if (theme.isPremium && !isPremium) {
+      return;
+    }
     setSelectedTheme(theme);
     setIsModalOpen(true);
   };
@@ -111,6 +140,32 @@ const InitialThemeSelector = ({ uri }) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  // Show loading state while checking premium status
+  if (loadingIsPremium || isPremium === null) {
+    return (
+      <div className="flex h-full w-full items-center justify-center">
+        <div className="text-center">
+          <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-primary"></div>
+          <p className="text-muted-foreground">در حال بارگذاری...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error if premium status failed to load
+  if (isPremium === null && !loadingIsPremium) {
+    return (
+      <div className="flex h-full w-full items-center justify-center">
+        <div className="text-center text-destructive">
+          <p className="text-lg font-medium">خطا در اتصال</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            لطفاً اتصال اینترنت خود را بررسی کرده و مجدداً تلاش کنید.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-full w-full flex-col lg:flex-row">
@@ -164,41 +219,78 @@ const InitialThemeSelector = ({ uri }) => {
       {/* Main Content */}
       <div className="flex-1 overflow-y-auto">
         <div className="grid grid-cols-1 place-items-center gap-6 p-6 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-          {currentThemes().map((theme) => (
-            <div
-              className={cn(
-                "group relative h-full w-full overflow-hidden rounded-lg transition-all",
-                "cursor-pointer hover:shadow-md",
-              )}
-              onClick={() => handleThemeClick(theme)}
-              key={theme.name}
-            >
-              <div className="relative aspect-[3/5] w-full sm:aspect-[3/5]">
-                {loadingImages[theme.name] && (
-                  <div className="absolute inset-0 animate-pulse bg-muted"></div>
+          {currentThemes().map((theme) => {
+            const isPremiumLocked = theme.isPremium && !isPremium;
+
+            return (
+              <div
+                className={cn(
+                  "group relative h-full w-full overflow-hidden rounded-lg transition-all",
+                  isPremiumLocked
+                    ? "cursor-not-allowed opacity-60"
+                    : "cursor-pointer hover:shadow-md",
                 )}
-                <ThemePreviewRenderer
-                  theme={theme}
-                  onLoad={() => handleImageLoad(theme.name)}
-                  style={{
-                    display: loadingImages[theme.name] ? "none" : "block",
-                  }}
-                />
-                {!loadingImages[theme.name] && (
-                  <>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80"></div>
-                    <div className="absolute bottom-3 left-3">
-                      {theme.isPremium && (
-                        <span className="mt-1 inline-block rounded-full bg-yellow-500/20 px-1.5 py-0.5 text-[10px] text-yellow-500">
-                          پرمیوم
-                        </span>
+                onClick={() => !isPremiumLocked && handleThemeClick(theme)}
+                key={theme.name}
+              >
+                <div className="relative aspect-[3/5] w-full sm:aspect-[3/5]">
+                  {loadingImages[theme.name] && (
+                    <div className="absolute inset-0 animate-pulse bg-muted"></div>
+                  )}
+                  <ThemePreviewRenderer
+                    theme={theme}
+                    onLoad={() => handleImageLoad(theme.name)}
+                    style={{
+                      display: loadingImages[theme.name] ? "none" : "block",
+                    }}
+                  />
+                  {!loadingImages[theme.name] && (
+                    <>
+                      <div
+                        className={cn(
+                          "absolute inset-0 bg-gradient-to-t from-black/70 to-transparent",
+                          isPremiumLocked ? "opacity-90" : "opacity-80",
+                        )}
+                      ></div>
+                      <div className="absolute bottom-3 left-3 flex flex-col gap-1">
+                        {theme.isPremium && (
+                          <span
+                            className={cn(
+                              "inline-block rounded-full px-1.5 py-0.5 text-[10px]",
+                              isPremiumLocked
+                                ? "bg-gray-500/20 text-gray-400"
+                                : "bg-yellow-500/20 text-yellow-500",
+                            )}
+                          >
+                            {isPremiumLocked ? (
+                              <span className="flex items-center gap-1">
+                                <Crown className="h-3 w-3" />
+                                قفل شده
+                              </span>
+                            ) : (
+                              "پرمیوم"
+                            )}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Premium Lock Overlay */}
+                      {isPremiumLocked && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                          <div className="text-center text-white">
+                            <Crown className="mx-auto mb-2 h-8 w-8 text-yellow-400" />
+                            <p className="px-2 text-xs font-medium">
+                              برای استفاده از این تم نیاز به اشتراک ویژه دارید
+                            </p>
+                          </div>
+                        </div>
                       )}
-                    </div>
-                  </>
-                )}
+                    </>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Theme Preview Dialog */}

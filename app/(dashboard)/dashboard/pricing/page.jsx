@@ -22,16 +22,16 @@ export default function Pricing() {
   const premiumPlan = PLANS.find((p) => p.id === "silver");
 
   const getPremiumPrice = () => {
-    const basePrice = 100000; // Monthly price
+    const monthlyPrice = 90000;
     switch (selectedDuration) {
       case 1:
-        return basePrice;
+        return monthlyPrice;
       case 3:
-        return basePrice * 3 * 0.9; // 10% discount for 3 months
+        return 240000; // 20% deiscount
       case 6:
-        return basePrice * 6 * 0.85; // 15% discount for 6 months
+        return 390000; // 30% deiscount
       default:
-        return basePrice * 3;
+        return monthlyPrice * 3;
     }
   };
 
@@ -39,13 +39,19 @@ export default function Pricing() {
     { name: "تعداد صفحات", free: "۱ صفحه", premium: "۳ صفحه" },
     {
       name: "دسترسی نامحدود به تم ها",
-      free: "۱ تم",
-      premium: "تم‌های نامحدود",
+      free: "تم های ساده",
+      premium: "تم‌های پیشرفته",
     },
     { name: "شخصی‌سازی  پیشرفته بلوک‌ها", free: "—", premium: "✓" },
     { name: "زمان‌بندی محتوا", free: "—", premium: "✓" },
+    { name: "رمزگزاری لینک ها", free: "—", premium: "✓" },
     { name: "ساخت فرم", free: "—", premium: "✓" },
-    { name: "گزارش‌ گیری", free: "—", premium: "✓" },
+    { name: "ایجاد قرعه کشی", free: "—", premium: "✓" },
+    {
+      name: "شخصی سازی لینک منتشر شده در شبکه های اجتماعی",
+      free: "—",
+      premium: "✓",
+    },
   ];
 
   return (

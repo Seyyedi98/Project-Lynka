@@ -57,13 +57,6 @@ const ThemePreviewRenderer = ({ theme }) => {
     [backgroundType, backgroundImageUrl],
   );
 
-  // Fake elements data
-  const socials = [
-    { platform: "telegram", userId: "x" },
-    { platform: "youtube", userId: "x" },
-    { platform: "github", userId: "x" },
-  ];
-
   return (
     <div
       className="relative h-full w-full overflow-hidden"

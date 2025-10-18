@@ -7,6 +7,8 @@ import { useCallback, useEffect, useState } from "react";
 import { newVerification } from "@/actions/auth/new-verification";
 import { FormError } from "../common/message/form-error";
 import { FormSuccess } from "../common/message/form-success";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export const NewVerificationForm = () => {
   const [error, setError] = useState();
@@ -37,11 +39,21 @@ export const NewVerificationForm = () => {
           <p className="mb-2 text-center text-[15px] font-light text-text-light">
             تایید ایمیل
           </p>
-          {console.log(success, error)}
           {!success && !error && <BeatLoader />}
           <FormSuccess message={success} />
           {!success && <FormError message={error} />}
         </div>
+        {success && (
+          <Link
+            style={{ textDecoration: "none" }}
+            href="/auth/login"
+            className="group relative mx-auto mt-8 flex w-fit items-center justify-center gap-1 text-sm text-primary transition-colors duration-200 hover:text-secondary"
+          >
+            <div className="absolute -bottom-1 right-0 mx-auto h-[1px] w-0 justify-center bg-secondary text-center transition-all group-hover:w-full" />
+            بازگشت به صفحه ورورد
+            <ArrowLeft className="mt-1 h-4 w-4" />
+          </Link>
+        )}
       </div>
     </main>
   );

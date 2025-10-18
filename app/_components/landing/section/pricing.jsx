@@ -15,7 +15,7 @@ const PricingSection = () => {
       case 1:
         return monthlyPrice;
       case 3:
-        return 220000; // 20% deiscount
+        return 240000; // 20% deiscount
       case 6:
         return 390000; // 30% deiscount
       default:

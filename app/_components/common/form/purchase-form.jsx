@@ -73,24 +73,26 @@ export default function PurchaseForm({
   };
 
   return (
-    <div className="mb-8 space-y-4">
+    <div className="mb-8 space-y-6">
       {/* خلاصه سفارش */}
-      <div className="rounded-lg bg-secondaryBg p-4">
-        <h2 className="mb-3 font-semibold">خلاصه سفارش</h2>
-        <div className="space-y-2">
-          <div className="flex justify-between">
-            <span>پلن:</span>
-            <span className="font-medium">
+      <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-blue-50 p-6 shadow-sm">
+        <h2 className="mb-4 text-lg font-semibold text-slate-800">
+          خلاصه سفارش
+        </h2>
+        <div className="space-y-3">
+          <div className="flex justify-between border-b border-slate-100 py-2">
+            <span className="text-slate-600">پلن:</span>
+            <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-slate-800">
               {plan === "silver" ? "ویژه" : plan}
             </span>
           </div>
-          <div className="flex justify-between">
-            <span>مدت زمان:</span>
-            <span className="font-medium">{duration} ماه</span>
+          <div className="flex justify-between border-b border-slate-100 py-2">
+            <span className="text-slate-600">مدت زمان:</span>
+            <span className="font-medium text-slate-800">{duration} ماه</span>
           </div>
-          <div className="flex justify-between border-t pt-2 font-bold">
-            <span>مبلغ کل:</span>
-            <span className="text-blue-600">
+          <div className="flex justify-between border-t border-slate-200 pt-3">
+            <span className="font-semibold text-slate-800">مبلغ کل:</span>
+            <span className="text-lg font-bold text-blue-600">
               {price.toLocaleString("fa-IR")} تومان
             </span>
           </div>
@@ -98,66 +100,108 @@ export default function PurchaseForm({
       </div>
 
       {/* فرم اطلاعات شخصی */}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <h2 className="text-lg font-semibold"> مشخصات</h2>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h2 className="mb-6 text-lg font-semibold text-slate-800">مشخصات</h2>
 
-        {errors.submit && (
-          <p className="text-sm text-red-500">{errors.submit}</p>
-        )}
-
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="firstName">نام</Label>
-            <Input
-              id="firstName"
-              name="firstName"
-              required
-              className={errors.firstName ? "border-red-500" : ""}
-            />
-            {errors.firstName && (
-              <p className="text-sm text-red-500">{errors.firstName}</p>
-            )}
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="lastName">نام خانوادگی</Label>
-            <Input
-              id="lastName"
-              name="lastName"
-              required
-              className={errors.lastName ? "border-red-500" : ""}
-            />
-            {errors.lastName && (
-              <p className="text-sm text-red-500">{errors.lastName}</p>
-            )}
-          </div>
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="mobile">شماره موبایل </Label>
-          <Input
-            id="mobile"
-            name="mobile"
-            type="tel"
-            dir="ltr"
-            required
-            className={errors.mobile ? "border-red-500" : ""}
-          />
-          {errors.mobile && (
-            <p className="text-sm text-red-500">{errors.mobile}</p>
+          {errors.submit && (
+            <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3">
+              <p className="text-sm text-red-600">{errors.submit}</p>
+            </div>
           )}
-        </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="email">ایمیل (اختیاری)</Label>
-          <Input id="email" name="email" type="email" />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label
+                htmlFor="firstName"
+                className="text-sm font-medium text-slate-700"
+              >
+                نام
+              </Label>
+              <Input
+                id="firstName"
+                name="firstName"
+                required
+                className={`border-slate-300 transition-colors focus:border-blue-500 focus:ring-blue-500 ${
+                  errors.firstName ? "border-red-500 bg-red-50" : ""
+                }`}
+              />
+              {errors.firstName && (
+                <p className="text-sm text-red-500">{errors.firstName}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label
+                htmlFor="lastName"
+                className="text-sm font-medium text-slate-700"
+              >
+                نام خانوادگی
+              </Label>
+              <Input
+                id="lastName"
+                name="lastName"
+                required
+                className={`border-slate-300 transition-colors focus:border-blue-500 focus:ring-blue-500 ${
+                  errors.lastName ? "border-red-500 bg-red-50" : ""
+                }`}
+              />
+              {errors.lastName && (
+                <p className="text-sm text-red-500">{errors.lastName}</p>
+              )}
+            </div>
+          </div>
+
+          <div className="mt-4 space-y-2">
+            <Label
+              htmlFor="mobile"
+              className="text-sm font-medium text-slate-700"
+            >
+              شماره موبایل
+            </Label>
+            <Input
+              id="mobile"
+              name="mobile"
+              type="tel"
+              dir="ltr"
+              required
+              className={`border-slate-300 text-left transition-colors focus:border-blue-500 focus:ring-blue-500 ${
+                errors.mobile ? "border-red-500 bg-red-50" : ""
+              }`}
+            />
+            {errors.mobile && (
+              <p className="text-sm text-red-500">{errors.mobile}</p>
+            )}
+          </div>
+
+          <div className="mt-4 space-y-2">
+            <Label
+              htmlFor="email"
+              className="text-sm font-medium text-slate-700"
+            >
+              ایمیل (اختیاری)
+            </Label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              className="border-slate-300 transition-colors focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
         </div>
 
         <Button
           type="submit"
-          className="w-full bg-green-600 hover:bg-green-700"
+          className="w-full rounded-lg bg-blue-600 py-3 font-medium text-white shadow-sm transition-colors hover:bg-blue-700 hover:shadow"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "در حال پردازش..." : "پرداخت و ادامه"}
+          {isSubmitting ? (
+            <div className="flex items-center justify-center gap-2">
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              <span>در حال پردازش...</span>
+            </div>
+          ) : (
+            "پرداخت و ادامه"
+          )}
         </Button>
       </form>
     </div>

@@ -64,7 +64,6 @@ const BuilderWorkspace = () => {
     shallowEqual,
   );
 
-
   const backgroundImageUrl =
     theme.backgroundImage && parseJson(theme.backgroundImage)?.key === "no_key"
       ? parseJson(theme.backgroundImage)?.url
@@ -189,6 +188,14 @@ const BuilderWorkspace = () => {
           <span className="my-1 flex items-center">
             <span className="ml-2">•</span>
             <span>تم‌های اختصاصی و مدرن برای هر سلیقه‌ای</span>
+          </span>
+          <span className="my-1 flex items-center">
+            <span className="ml-2">•</span>
+            <span>انتشار زمان‌بندی شده محتوا</span>
+          </span>
+          <span className="my-1 flex items-center">
+            <span className="ml-2">•</span>
+            <span>رمزگذاری روی لینک‌ها</span>
           </span>
           <span className="my-1 flex items-center">
             <span className="ml-2">•</span>

@@ -22,7 +22,7 @@ const CreateNewPage = ({ allPages }) => {
   const [isChecking, setIsChecking] = useState(false);
   const [isAvailable, setIsAvailable] = useState(false);
 
-  const isPremiumPlus = true;
+  // const isPremiumPlus = true;
 
   const canUserCreatePage = () => {
     if (allPages.length < 1) {
@@ -31,9 +31,9 @@ const CreateNewPage = ({ allPages }) => {
     if (allPages.length < 3 && isPremium) {
       return true;
     }
-    if (allPages.length < 100 && isPremiumPlus) {
-      return true;
-    }
+    // if (allPages.length < 100 && isPremiumPlus) {
+    //   return true;
+    // }
     return false;
   };
 
@@ -198,6 +198,7 @@ const CreateNewPage = ({ allPages }) => {
                 >
                   {isPending ? (
                     <span className="flex items-center gap-2">
+                      در حال ایجاد...
                       <svg
                         className="-ml-1 mr-2 h-4 w-4 animate-spin text-white"
                         xmlns="http://www.w3.org/2000/svg"
@@ -218,7 +219,6 @@ const CreateNewPage = ({ allPages }) => {
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                         ></path>
                       </svg>
-                      در حال ایجاد...
                     </span>
                   ) : (
                     <>
@@ -252,7 +252,7 @@ const CreateNewPage = ({ allPages }) => {
           </h2>
           <p className="mt-4 text-base leading-6 text-muted-foreground">
             {isPremium
-              ? "سطح کاربری ویژه به شما اجازه ساخت حداکثر ۳ صفحه را می‌دهد. برای افزودن صفحه‌ی جدید، باید یکی از صفحات موجود را حذف کنید. در حال بررسی امکان افزودن سطوح کاربری بالاتر هستیم"
+              ? "سطح کاربری ویژه به شما اجازه ساخت حداکثر ۳ صفحه را می‌دهد. برای افزودن صفحه‌ی جدید، باید یکی از صفحات موجود را حذف کنید."
               : "برای دسترسی به امکان ساخت صفحات بیشتر، می‌ توانید حساب خود را ارتقا دهید."}
           </p>
           {!isPremium && (

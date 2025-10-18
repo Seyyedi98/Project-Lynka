@@ -81,6 +81,14 @@ const AddElementButton = ({ pageElement, isPremium }) => {
           </span>
           <span className="my-1 flex items-center">
             <span className="ml-2">•</span>
+            <span>انتشار زمان‌بندی شده محتوا</span>
+          </span>
+          <span className="my-1 flex items-center">
+            <span className="ml-2">•</span>
+            <span>رمزگذاری روی لینک‌ها</span>
+          </span>
+          <span className="my-1 flex items-center">
+            <span className="ml-2">•</span>
             <span>ده‌ها ویژگی ویژه و امکانات انحصاری</span>
           </span>
           همین امروز به جمع کاربران پریمیوم بپیوندید!
