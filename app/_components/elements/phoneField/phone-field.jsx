@@ -31,7 +31,7 @@ export const PhoneFieldFormElement = {
 
   ElementAdderBtn: {
     icon: PhoneIcon,
-    label: "شماره تماس",
+    label: "راه های ارتباطی",
   },
 
   WorkspaceComponent: WorkspaceComponent,

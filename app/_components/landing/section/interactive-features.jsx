@@ -30,17 +30,35 @@ const sections = [
   },
   {
     id: "feature4",
-    title: "تحلیل رفتار کاربران",
-    content: "رفتار بازدیدکننده‌هات رو بررسی کن.",
+    title: "رمز گزاری و زمان بندی لینک ها",
+    content:
+      "لینک‌های مهمت رو با رمز عبور محافظت کن یا برای نمایش در تاریخ‌های خاص زمان‌بندی کن.",
     imageSection: 3,
-    image: "https://arklight.storage.c2.liara.space/preview/analytics.webp",
+    image: "https://arklight.storage.c2.liara.space/preview/password.webp",
   },
   {
     id: "feature5",
-    title: "سفارشی‌سازی کامل",
-    content: "رنگ، فونت، چیدمان و هر چیزی که بخوای رو به سبک خودت تنظیم کن.",
+    title: "شخصی‌سازی لینک و مدیریت سوشال مدیا",
+    content:
+      "لینک صفحه‌ات رو سفارشی کن و نحوه نمایش آن را در اینستاگرام، تلگرام و دیگر پلتفرم‌ها کنترل کن.",
     imageSection: 4,
-    image: "https://arklight.storage.c2.liara.space/preview/edit.webp",
+    image: "https://arklight.storage.c2.liara.space/preview/social-custom.webp",
+  },
+  {
+    id: "feature6",
+    title: "ایجاد قرعه‌کشی و رویدادهای تعاملی",
+    content:
+      "به راحتی قرعه‌کشی راه‌اندازی کن و با مشتریانت ارتباط جذاب و مؤثر برقرار کن.",
+    imageSection: 5,
+    image: "https://arklight.storage.c2.liara.space/preview/lottery.webp",
+  },
+  {
+    id: "feature7",
+    title: "ساخت فرم و جمع‌آوری اطلاعات",
+    content:
+      "فرم‌های حرفه‌ای بساز و اطلاعات مورد نیازت رو از مخاطبانت به سادگی جمع‌آوری کن.",
+    imageSection: 6,
+    image: "https://arklight.storage.c2.liara.space/preview/form.webp",
   },
 ];
 
@@ -53,13 +71,13 @@ const InteractiveFeaturesSection = () => {
     setActiveAccordion(index);
     if (imageContainerRef.current) {
       setIsScrolling(true);
-      const sectionHeight = imageContainerRef.current.scrollHeight / 5;
+      const sectionHeight =
+        imageContainerRef.current.scrollHeight / sections.length;
       imageContainerRef.current.scrollTo({
         top: sectionHeight * index,
         behavior: "smooth",
       });
 
-      // Reset scrolling state after animation completes
       setTimeout(() => {
         setIsScrolling(false);
       }, 500);
@@ -72,11 +90,14 @@ const InteractiveFeaturesSection = () => {
     if (!container) return;
 
     const handleScroll = () => {
-      if (isScrolling) return; // Don't update during programmatic scroll
+      if (isScrolling) return;
 
       const scrollTop = container.scrollTop;
-      const sectionHeight = container.scrollHeight / 5;
-      const newActiveIndex = Math.floor(scrollTop / sectionHeight);
+      const sectionHeight = container.scrollHeight / sections.length;
+      const newActiveIndex = Math.min(
+        Math.floor(scrollTop / sectionHeight),
+        sections.length - 1,
+      );
 
       if (newActiveIndex !== activeAccordion) {
         setActiveAccordion(newActiveIndex);
@@ -185,12 +206,12 @@ const InteractiveFeaturesSection = () => {
                   ref={imageContainerRef}
                   className="scrollbar-hide h-[32rem] w-full overflow-y-scroll rounded-lg [scrollbar-width:none]"
                 >
-                  <div className="h-[500%]">
+                  <div className="h-[700%]">
                     {sections.map((section, index) => (
                       <div
                         key={section.id}
-                        className="flex h-1/5 w-full items-center justify-center bg-gradient-to-br from-[#1e3a8a] to-[#0f766e]"
-                        style={{ height: "20%" }}
+                        className="h-1/7 flex w-full items-center justify-center bg-gradient-to-br from-[#1e3a8a] to-[#0f766e]"
+                        style={{ height: `${100 / sections.length}%` }}
                       >
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}

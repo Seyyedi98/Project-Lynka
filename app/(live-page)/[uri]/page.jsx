@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import fetchWithRetry from "@/utils/fetchWithRetry";
 import getImageAddress from "@/utils/get-image-address";
 import parseJson from "@/utils/parseJSON";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 // ✅ Dynamic Metadata Fetching with Error Handling
@@ -159,13 +160,13 @@ const LivePage = async ({ params }) => {
 
           <footer className="mt-8 w-[90%] max-w-[400px] bg-white py-3 text-center text-black">
             ساخته شده توسط{" "}
-            <a
-              href="www.lynka.ir"
+            <Link
+              href="/"
               alt="lynka"
               className="text-primary transition-all duration-500 hover:text-primary/60"
             >
               لینکا
-            </a>
+            </Link>
           </footer>
         </main>
       </LivePageBackground>
