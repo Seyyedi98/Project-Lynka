@@ -23,9 +23,10 @@ import { ArrowLeftIcon, Loader } from "lucide-react";
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { Input } from "rsuite";
 import { FormError } from "../common/message/form-error";
 import { FormSuccess } from "../common/message/form-success";
-import { Input } from "rsuite";
+import SendSms from "@/lib/opt-sms";
 
 export const MobileLoginForm = () => {
   const [showOtpInput, setShowOtpInput] = useState(false);
@@ -48,7 +49,7 @@ export const MobileLoginForm = () => {
     setError("");
     setSuccess("");
     startTransition(async () => {
-      otpLogin(values).then((data) => {
+      otpLogin(values).then(async (data) => {
         if (data?.error) {
           setError(data.error);
         }
@@ -118,7 +119,17 @@ export const MobileLoginForm = () => {
                     </InputOTP>
                   </FormControl>
                   <FormDescription>
-                    لطفا کد یکبار مصرف ارسال شده به موبایلتان را وارد کنید
+                    <div class="text-center">
+                      <span class="text-lg font-semibold">
+                        کد تایید را وارد کنید
+                      </span>
+                      <p class="mt-2 text-sm">
+                        کد یکبار مصرف برای شماره شما ارسال شد
+                      </p>
+                      <p class="mt-1 text-xs text-amber-500">
+                        (کیبورد خود را روی حالت انگلیسی قرار دهید)
+                      </p>
+                    </div>
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

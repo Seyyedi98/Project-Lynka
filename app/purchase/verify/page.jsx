@@ -1,6 +1,10 @@
 import React from "react";
 import { verifyPayment } from "@/actions/transactions/verifyPayment";
 import Link from "next/link";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { currentUser } from "@/lib/auth/get-user";
+import { getUserContactInfo } from "@/actions/user/userData";
+import SendSms from "@/lib/sms";
 
 export default async function PaymentVerify({ searchParams }) {
   const { orderId, trackId, message, refNumber, cardNumber } =
@@ -110,4 +114,4 @@ export default async function PaymentVerify({ searchParams }) {
   );
 }
 
-// http://localhost:3000/purchase/verify?success=1&status=2&trackId=4219898212&orderId=cmen02xxv0009lj2orwvjedf4
+// http://localhost:3000/purchase/verify?success=1&status=2&trackId=4336815369&orderId=cmhruuabv0001ljlcbouzto67

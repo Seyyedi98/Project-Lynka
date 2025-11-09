@@ -98,7 +98,7 @@ export default function LandingPageNavbar() {
                 className={
                   (`transition-all duration-200 hover:scale-105`,
                   isScrolled2
-                    ? "text-primary/90 hover:text-primary"
+                    ? "text-primary/90 hover:text-primary dark:text-white/70 dark:hover:text-white"
                     : "text-white/90 hover:text-white")
                 }
               >

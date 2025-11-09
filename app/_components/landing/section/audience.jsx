@@ -97,9 +97,9 @@ const LandingPageAudience = () => {
   const slide = slides.find((s) => s.id === activeTab);
 
   return (
-    <section className="bg-white pb-16 pt-16">
+    <section className="bg-white pb-16 pt-16 dark:bg-gray-900">
       <div className="container mx-auto px-4">
-        <div className="flex border-b border-gray-200">
+        <div className="flex border-b border-gray-200 dark:border-gray-700">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -107,13 +107,17 @@ const LandingPageAudience = () => {
                 setActiveTab(tab.id);
                 setAutoSlide(false);
               }}
-              className="relative flex-1 py-6 text-center transition-colors hover:bg-gray-50"
+              className="relative flex-1 py-6 text-center transition-colors hover:bg-gray-50 dark:hover:bg-gray-800"
             >
-              <div className="text-xs font-medium text-gray-500">
+              <div className="text-xs font-medium text-gray-500 dark:text-gray-400">
                 {tab.number}
               </div>
               <div
-                className={`text-lg font-semibold ${activeTab === tab.id ? "text-gray-900" : "text-gray-600"}`}
+                className={`text-lg font-semibold ${
+                  activeTab === tab.id
+                    ? "text-gray-900 dark:text-white"
+                    : "text-gray-600 dark:text-gray-300"
+                }`}
               >
                 {tab.subtitle}
               </div>
@@ -151,7 +155,7 @@ const LandingPageAudience = () => {
                       initial={{ scale: 0.8 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.1 + i * 0.1 }}
-                      className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700"
+                      className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300"
                     >
                       {c}
                     </motion.span>
@@ -162,7 +166,7 @@ const LandingPageAudience = () => {
                   initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
-                  className="mb-6 text-4xl font-bold text-gray-900"
+                  className="mb-6 text-4xl font-bold text-gray-900 dark:text-white"
                 >
                   {slide.title}
                 </motion.h2>
@@ -178,7 +182,7 @@ const LandingPageAudience = () => {
                   initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
-                  className="mb-10 text-lg leading-relaxed text-gray-600"
+                  className="mb-10 text-lg leading-relaxed text-gray-600 dark:text-gray-300"
                 >
                   {slide.description}
                 </motion.p>
@@ -216,7 +220,9 @@ const LandingPageAudience = () => {
                         damping: 10,
                         stiffness: 100,
                       }}
-                      className={`absolute ${idx === 0 ? "left-0 top-0 z-0" : "bottom-0 right-0 z-10"} h-full w-full`}
+                      className={`absolute ${
+                        idx === 0 ? "left-0 top-0 z-0" : "bottom-0 right-0 z-10"
+                      } h-full w-full`}
                     >
                       <div className="relative h-full w-full">
                         <Image

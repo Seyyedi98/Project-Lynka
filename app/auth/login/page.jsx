@@ -16,7 +16,7 @@ const Login = () => {
     <main className="flex w-full">
       <div className="flex w-full flex-col items-center overflow-y-scroll bg-card px-4 pt-10 [scrollbar-width:none] lg:max-w-[480px]">
         <span className="flex w-full items-center justify-between px-2 text-sm lg:px-8">
-          <Link
+          {/* <Link
             style={{ textDecoration: "none" }}
             href="/auth/register"
             className="group relative flex gap-1 text-sm text-primary transition-colors duration-200 hover:text-secondary"
@@ -24,7 +24,8 @@ const Login = () => {
             <div className="absolute -bottom-1 right-0 h-[1px] w-0 bg-secondary transition-all group-hover:w-full" />
             حساب کاربری ندارید؟
             <ArrowLeft className="mt-1 h-4 w-4" />
-          </Link>
+          </Link> */}
+          <div></div>
           <Image
             className="-translate-y-1.5"
             width={50}
@@ -36,7 +37,7 @@ const Login = () => {
 
         <h2 className="mb-4 mt-20 text-4xl text-white">ورود</h2>
 
-        {/* <div className="relative mt-8 flex cursor-pointer items-center justify-center gap-10 text-base font-thin text-text-light">
+        <div className="relative mt-8 flex cursor-pointer items-center justify-center gap-10 text-base font-thin text-text-light">
           <span
             className={cn(
               `absolute bottom-0 h-[4px] translate-y-3 bg-secondary transition-all duration-300`,
@@ -58,10 +59,10 @@ const Login = () => {
           >
             با شماره موبایل
           </p>
-        </div> */}
+        </div>
 
         <div className="mt-8 w-full max-w-md px-4">
-          {selectedTab === "email" && <CredentialsLoginForm />}
+          {/* {selectedTab === "email" && <CredentialsLoginForm />} */}
           {selectedTab === "mobile" && <MobileLoginForm />}
           <div className="mt-4">
             <Social />

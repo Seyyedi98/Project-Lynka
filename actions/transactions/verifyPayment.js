@@ -1,10 +1,14 @@
 "use server";
 
+import { currentUser } from "@/lib/auth/get-user";
 import prisma from "@/lib/client";
-import { revalidatePath } from "next/cache";
 import { updateSubscriptionData } from "../subscription";
+import { getUserContactInfo } from "../user/userData";
 
 export async function verifyPayment(orderId, trackId, refNumber, cardNumber) {
+  const user = await currentUser();
+  const { phoneNumber, email } = await getUserContactInfo(user.id);
+
   try {
     const transaction = await prisma.transactions.findFirst({
       where: {
@@ -17,11 +21,13 @@ export async function verifyPayment(orderId, trackId, refNumber, cardNumber) {
       return { success: false, error: "Transaction not found" };
     }
 
+    // اگر تراکنش قبلاً کامل شده باشد، چیزی آپدیت نکن
     if (transaction.status === "completed") {
       return {
         success: true,
         transaction,
         status: "completed",
+        message: "Transaction was already verified",
       };
     }
 
@@ -45,7 +51,6 @@ export async function verifyPayment(orderId, trackId, refNumber, cardNumber) {
 
     // Check if payment was successful according to Zibal API
     if (zibalData.result === 100 || zibalData.result === 201) {
-      // 100: verified successfully, 201: already verified
       transactionStatus = "completed";
       transactionUpdateData = {
         ...transactionUpdateData,
@@ -56,12 +61,29 @@ export async function verifyPayment(orderId, trackId, refNumber, cardNumber) {
         amount: zibalData.amount || transaction.amount,
       };
 
-      // Update user subscription
-      await updateSubscriptionData({
-        subscriptionPlan: transaction.subscriptionPlan,
-        days: transaction.duration,
-        userId: transaction.userId,
-      });
+      // Only update subscription and send SMS if transaction wasn't already completed
+      if (transaction.status !== "completed") {
+        // Update user subscription
+        await updateSubscriptionData({
+          subscriptionPlan: transaction.subscriptionPlan,
+          days: transaction.duration * 30, // convert month to days
+          userId: transaction.userId,
+        });
+
+        // Send SMS only for new successful payments
+        if (phoneNumber) {
+          await SendSms(
+            phoneNumber,
+            `فعالسازی اشتراک لینکا با موفقیت انجام شد
+کد رهگیری: ${trackId}
+پشتیبانی: info@lynka.ir`,
+          );
+        }
+
+        if (email) {
+          // TODO: Add email logic
+        }
+      }
     } else {
       // Payment failed or verification unsuccessful
       transactionUpdateData.status = transactionStatus;
@@ -71,8 +93,6 @@ export async function verifyPayment(orderId, trackId, refNumber, cardNumber) {
       );
     }
 
-    console.log(transactionUpdateData);
-
     // Update the transaction
     const updatedTransaction = await prisma.transactions.update({
       where: {
@@ -80,9 +100,6 @@ export async function verifyPayment(orderId, trackId, refNumber, cardNumber) {
       },
       data: transactionUpdateData,
     });
-
-    // Revalidate dashboard to show updated subscription status
-    // revalidatePath("/dashboard");
 
     return {
       success: transactionStatus === "completed",

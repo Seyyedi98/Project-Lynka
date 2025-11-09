@@ -4,12 +4,11 @@ import { signIn } from "@/auth";
 import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
 import { getOtpTokenByPhoneNumber } from "@/data/two-factor-token";
 import { getUserByPhoneNumber } from "@/data/user";
-import prisma from "@/lib/client";
-import { sendTwoFactorTokenEmail } from "@/lib/mail";
 import { generateOtpToken } from "@/lib/auth/tokens";
+import prisma from "@/lib/client";
+import SendSms from "@/lib/opt-sms";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { OtpLoginSchema } from "@/schemas";
-import bcrypt from "bcryptjs";
 import { AuthError } from "next-auth";
 
 // Login returns 'error', 'success', 'twoFactor'
@@ -41,14 +40,15 @@ export const otpLogin = async (values) => {
 
     // Send OTP
     const otpToken = await generateOtpToken(newUser.phoneNumber);
-    // await sendTwoFactorTokenEmail(otpToken.phoneNumber, otpToken.token);
-    await sendTwoFactorTokenEmail("seyyedi98@outlook.com", otpToken.token);
+
+    await SendSms(phoneNumber, otpToken.token);
     return {
       showOtpInput: true,
       success: "رمز یکبار مصرف به موبایل شما ارسال شد",
     }; // Change login page
   }
 
+  console.log("data sent");
   // Check 2FA
   if (existingUser.phoneNumber) {
     if (code) {
@@ -92,8 +92,7 @@ export const otpLogin = async (values) => {
       );
       if (!previousOtpToken) {
         const otpToken = await generateOtpToken(existingUser.phoneNumber);
-        // await sendTwoFactorTokenEmail(otpToken.phoneNumber, otpToken.token);
-        await sendTwoFactorTokenEmail("seyyedi98@outlook.com", otpToken.token);
+        await SendSms(phoneNumber, otpToken.token);
         return {
           showOtpInput: true, // Change login page
           success: "رمز عبور یکبار مصرف به موبایل شما ارسال شد",
@@ -107,11 +106,7 @@ export const otpLogin = async (values) => {
           };
         } else {
           const otpToken = await generateOtpToken(existingUser.phoneNumber);
-          // await sendTwoFactorTokenEmail(otpToken.phoneNumber, otpToken.token);
-          await sendTwoFactorTokenEmail(
-            "seyyedi98@outlook.com",
-            otpToken.token,
-          );
+          SendSms(phoneNumber, otpToken.token);
           return {
             showOtpInput: true, // Change login page
             success: "رمز عبور یکبار مصرف به موبایل شما ارسال شد",

@@ -10,3 +10,14 @@ export async function getUserDataByUri(uri) {
 
   return userData;
 }
+
+export async function getUserContactInfo(id) {
+  const data = await prisma.user.findUnique({
+    where: { id },
+    select: {
+      phoneNumber: true,
+      email: true,
+    },
+  });
+  return data;
+}
