@@ -80,27 +80,17 @@ export default function LandingPage() {
                 className="flex flex-col items-center justify-center gap-4 sm:flex-row"
               >
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => redirect("/auth/login")}
                   className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 px-8 py-4 text-lg font-bold text-white shadow-2xl transition-all hover:shadow-amber-500/25"
                 >
                   <span className="flex items-center gap-2">
                     شروع رایگان
-                    <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
+                    <ArrowLeft className="h-5 w-5 transition-transform duration-500 group-hover:-translate-x-1" />
                   </span>
 
                   {/* Shine effect */}
                   <div className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-all group-hover:translate-x-full" />
-                </motion.button>
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => redirect("/features")}
-                  className="rounded-2xl border border-white/30 bg-white/10 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20"
-                >
-                  مشاهده نمونه‌ها
                 </motion.button>
               </motion.div>
 

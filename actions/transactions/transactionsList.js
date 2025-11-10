@@ -88,6 +88,8 @@ export const searchTransactions = async (searchType, searchValue) => {
       where.id = searchValue;
     } else if (searchType === "userId") {
       where.userId = searchValue;
+    } else if (searchType === "trackId") {
+      where.trackId = searchValue;
     }
 
     return await prisma.transactions.findMany({

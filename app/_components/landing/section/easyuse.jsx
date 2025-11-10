@@ -116,7 +116,7 @@ const CreateSection = () => {
                     className="group flex items-start gap-4 rounded-2xl border border-slate-200/50 bg-white/50 p-4 backdrop-blur-sm transition-all hover:bg-white/80 dark:border-slate-700/50 dark:bg-slate-800/50 dark:hover:bg-slate-800/80"
                   >
                     <div
-                      className={`rounded-xl p-2.5 ${feature.bg} transition-all duration-300 group-hover:scale-110`}
+                      className={`rounded-xl p-2.5 ${feature.bg} transition-all duration-300`}
                     >
                       <div className={feature.color}>{feature.icon}</div>
                     </div>
@@ -141,13 +141,12 @@ const CreateSection = () => {
                 className="flex justify-center lg:justify-start"
               >
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 px-8 py-4 font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:shadow-amber-500/25"
                 >
                   <Link href="/auth/login" className="flex items-center gap-2">
                     <span>همه چیز آماده‌ست، شروع کن!</span>
-                    <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                    <ArrowLeft className="h-4 w-4 transition-transform duration-500 group-hover:-translate-x-1" />
                   </Link>
 
                   {/* Shine effect */}

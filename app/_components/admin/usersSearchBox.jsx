@@ -4,10 +4,11 @@ import React, { useState } from "react";
 
 const SearchBox = ({
   searchTypes = [
-    { value: "transactionId", label: "Transaction ID" },
+    { value: "trackId", label: "Track ID" },
+    { value: "id", label: "Transaction ID" }, // Changed from "transactionId" to "id"
     { value: "userId", label: "User ID" },
   ],
-  defaultSearchType = "transactionId",
+  defaultSearchType = "trackId",
   placeholder = "Search...",
   onSearch,
   onReset,
@@ -17,7 +18,9 @@ const SearchBox = ({
   const [searchValue, setSearchValue] = useState("");
 
   const handleSearch = () => {
-    onSearch(searchType, searchValue);
+    if (searchValue.trim()) {
+      onSearch(searchType, searchValue);
+    }
   };
 
   const handleReset = () => {

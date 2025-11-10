@@ -138,7 +138,7 @@ const PricingSection = () => {
           <motion.div
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring" }}
+            transition={{ type: "spring" }}
             className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary dark:bg-primary/20"
           >
             <Zap className="h-4 w-4" />
@@ -180,7 +180,7 @@ const PricingSection = () => {
                 {duration} ماهه
                 {duration > 1 && (
                   <span className="absolute -right-1 -top-1 rounded-full bg-green-500 px-1 text-[10px] text-white dark:bg-green-600">
-                    {duration === 3 ? "۲۰٪" : "۳۰٪"}
+                    {duration === 3 ? "۱۲٪" : "۳۰٪"}
                   </span>
                 )}
               </motion.button>
@@ -188,7 +188,7 @@ const PricingSection = () => {
           </div>
         </motion.div>
 
-        {/* Pricing Cards - Reordered for mobile */}
+        {/* Pricing Cards */}
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2 xl:gap-12">
           {getOrderedPlans().map((plan, index) => (
             <motion.div
@@ -205,7 +205,7 @@ const PricingSection = () => {
                   : ""
               } ${
                 hoveredPlan === index
-                  ? "-translate-y-2 scale-[1.02] shadow-xl"
+                  ? "-translate-y-2 shadow-xl"
                   : "hover:shadow-xl"
               }`}
               style={{
@@ -236,85 +236,90 @@ const PricingSection = () => {
                 </div>
               )}
 
-              {/* Header */}
-              <div className="mb-8 text-center">
-                <div className="mb-4 flex justify-center">
-                  <div
-                    className={`rounded-2xl p-4 ${plan.iconBg} ${plan.iconColor} shadow-lg`}
-                  >
-                    {plan.icon}
-                  </div>
-                </div>
-                <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-                  {plan.name}
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400">
-                  {plan.description}
-                </p>
-              </div>
-
-              {/* Price Display */}
-              <div className="mb-8">
-                <PriceDisplay plan={plan} duration={selectedDuration} />
-              </div>
-
-              {/* Features */}
-              <ul className="mb-8 space-y-4">
-                {plan.features.map((feature, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.4 + i * 0.05 }}
-                    viewport={{ once: true }}
-                    className="group flex items-start gap-3"
-                  >
-                    <div
-                      className={`mt-1 flex-shrink-0 rounded-full p-1 ${
-                        plan.popular
-                          ? "bg-amber-100 text-amber-600 transition-transform group-hover:scale-110 dark:bg-amber-900/30 dark:text-amber-400"
-                          : "bg-blue-100 text-blue-600 transition-transform group-hover:scale-110 dark:bg-blue-900/30 dark:text-blue-400"
-                      }`}
-                    >
-                      <Check className="h-3 w-3" />
+              <div className="flex h-full flex-col justify-between">
+                {/* Header */}
+                <div>
+                  <div className="mb-8 text-center">
+                    <div className="mb-4 flex justify-center">
+                      <div
+                        className={`rounded-2xl p-4 ${plan.iconBg} ${plan.iconColor} shadow-lg`}
+                      >
+                        {plan.icon}
+                      </div>
                     </div>
-                    <span
-                      className={`text-sm ${
-                        plan.popular
-                          ? "font-medium text-slate-800 dark:text-slate-200"
-                          : "text-slate-700 dark:text-slate-300"
-                      }`}
-                    >
-                      {feature}
-                    </span>
-                  </motion.li>
-                ))}
-              </ul>
-
-              {/* CTA Button */}
-              <Link href="/dashboard/pricing">
-                <motion.button
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`w-full rounded-2xl py-4 font-semibold shadow-lg transition-all ${
-                    plan.popular
-                      ? "shadow-amber-500/25 hover:shadow-amber-500/40"
-                      : "hover:shadow-xl"
-                  } ${plan.buttonStyle}`}
-                >
-                  <div className="flex items-center justify-center gap-2">
-                    {plan.cta}
-                    {plan.popular && <Sparkles className="h-4 w-4" />}
+                    <h3 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+                      {plan.name}
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-400">
+                      {plan.description}
+                    </p>
                   </div>
-                </motion.button>
-              </Link>
 
-              {/* Additional Info */}
-              {!plan.popular && (
-                <p className="mt-4 text-center text-xs text-slate-500 dark:text-slate-400">
-                  بدون نیاز به پرداخت هزینه • شروع فوری
-                </p>
-              )}
+                  {/* Price Display */}
+                  <div className="mb-8">
+                    <PriceDisplay plan={plan} duration={selectedDuration} />
+                  </div>
+
+                  {/* Features */}
+                  <ul className="mb-8 space-y-4">
+                    {plan.features.map((feature, i) => (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.4 + i * 0.05 }}
+                        viewport={{ once: true }}
+                        className="group flex items-start gap-3"
+                      >
+                        <div
+                          className={`mt-1 flex-shrink-0 rounded-full p-1 ${
+                            plan.popular
+                              ? "bg-amber-100 text-amber-600 transition-transform dark:bg-amber-900/30 dark:text-amber-400"
+                              : "bg-blue-100 text-blue-600 transition-transform dark:bg-blue-900/30 dark:text-blue-400"
+                          }`}
+                        >
+                          <Check className="h-3 w-3" />
+                        </div>
+                        <span
+                          className={`text-sm ${
+                            plan.popular
+                              ? "font-medium text-slate-800 dark:text-slate-200"
+                              : "text-slate-700 dark:text-slate-300"
+                          }`}
+                        >
+                          {feature}
+                        </span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  {/* CTA Button */}
+                  <Link href="/dashboard/pricing">
+                    <motion.button
+                      whileTap={{ scale: 0.98 }}
+                      className={`w-full rounded-2xl py-4 font-semibold shadow-lg transition-all ${
+                        plan.popular
+                          ? "shadow-amber-500/25 hover:shadow-amber-500/40"
+                          : "hover:shadow-xl"
+                      } ${plan.buttonStyle}`}
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        {plan.cta}
+                        {plan.popular && <Sparkles className="h-4 w-4" />}
+                      </div>
+                    </motion.button>
+                  </Link>
+
+                  {/* Additional Info */}
+                  {!plan.popular && (
+                    <p className="mt-4 text-center text-xs text-slate-500 dark:text-slate-400">
+                      بدون نیاز به پرداخت هزینه • شروع فوری
+                    </p>
+                  )}
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
