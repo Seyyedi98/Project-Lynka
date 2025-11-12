@@ -14,6 +14,13 @@ import {
   FiAward,
   FiTrendingUp,
 } from "react-icons/fi";
+import {
+  FileSymlink,
+  FormInput,
+  Link2,
+  Palette,
+  TrophyIcon,
+} from "lucide-react";
 
 const LandingPageFeatures = () => {
   const features = [
@@ -30,14 +37,14 @@ const LandingPageFeatures = () => {
       icon: <FiSmartphone className="h-6 w-6" />,
       title: "طراحی واکنش‌ گرا",
       description:
-        "با ظاهری جذاب و ریسپانسیو، محتوایت رو روی همه دستگاه‌ها به بهترین شکل نمایش بده!",
+        "با ظاهری جذاب و واکنش گرا، محتوایت رو روی همه دستگاه‌ها به بهترین شکل نمایش بده!",
       gradient: "from-purple-500 to-pink-500",
       bg: "bg-purple-50 dark:bg-purple-500/10",
       iconColor: "text-purple-600 dark:text-purple-400",
     },
     {
-      icon: <FiShield className="h-6 w-6" />,
-      title: "لینک‌های هوشمند",
+      icon: <Link2 className="h-6 w-6" />,
+      title: "لینک‌های متنوع",
       description:
         "از محصولات و خدمات گرفته تا شبکه‌های اجتماعی، همه لینک‌های مهمت رو در یکجا جمع کن!",
       gradient: "from-green-500 to-emerald-500",
@@ -45,8 +52,8 @@ const LandingPageFeatures = () => {
       iconColor: "text-green-600 dark:text-green-400",
     },
     {
-      icon: <FiPieChart className="h-6 w-6" />,
-      title: "صفحات چندگانه",
+      icon: <FileSymlink className="h-6 w-6" />,
+      title: "صفحات مختلف",
       description:
         "اگر یک صفحه کافی نیست، چندین صفحه بساز و به راحتی به هم وصلشون کن!",
       gradient: "from-orange-500 to-red-500",
@@ -63,7 +70,7 @@ const LandingPageFeatures = () => {
       iconColor: "text-red-600 dark:text-red-400",
     },
     {
-      icon: <FiGlobe className="h-6 w-6" />,
+      icon: <FormInput className="h-6 w-6" />,
       title: "فرم‌ساز حرفه‌ای",
       description:
         "فرم‌های ساده یا پیشرفته بساز و اطلاعات مورد نیازت رو از کاربران جمع‌آوری کن!",
@@ -73,7 +80,7 @@ const LandingPageFeatures = () => {
     },
     {
       icon: <FiUsers className="h-6 w-6" />,
-      title: "اتصال اجتماعی",
+      title: "شبکه های اجتماعی",
       description:
         "با لینک‌های هوشمند، کاربران رو مستقیماً به شبکه‌های اجتماعیت هدایت کن!",
       gradient: "from-cyan-500 to-blue-500",
@@ -81,8 +88,8 @@ const LandingPageFeatures = () => {
       iconColor: "text-cyan-600 dark:text-cyan-400",
     },
     {
-      icon: <FiSettings className="h-6 w-6" />,
-      title: "قرعه‌کشی تعاملی",
+      icon: <TrophyIcon className="h-6 w-6" />,
+      title: "قرعه‌کشی",
       description:
         "با برگزاری قرعه‌کشی‌های جذاب، مخاطبان بیشتری جذب و تعامل رو افزایش بده!",
       gradient: "from-amber-500 to-orange-500",
@@ -92,14 +99,13 @@ const LandingPageFeatures = () => {
     {
       icon: <FiTrendingUp className="h-6 w-6" />,
       title: "آنالیز پیشرفته",
-      description:
-        "آمار دقیق بازدیدها و کلیک‌ها رو بررسی کن و استراتژی‌ت رو بهینه سازی کن!",
+      description: "آمار دقیق بازدیدها و کلیک‌ها رو بررسی کن !",
       gradient: "from-emerald-500 to-green-500",
       bg: "bg-emerald-50 dark:bg-emerald-500/10",
       iconColor: "text-emerald-600 dark:text-emerald-400",
     },
     {
-      icon: <FiAward className="h-6 w-6" />,
+      icon: <Palette className="h-6 w-6" />,
       title: "قالب‌های آماده",
       description:
         "از بین ده‌ها قالب زیبا و حرفه‌ای انتخاب کن و در زمانت صرفه‌جویی کن!",
@@ -131,7 +137,7 @@ const LandingPageFeatures = () => {
   };
 
   return (
-    <section className="bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-24 dark:from-slate-950 dark:via-slate-900 dark:to-blue-950/20">
+    <section className="bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-8 dark:from-slate-950 dark:via-slate-900 dark:to-blue-950/20 md:py-24">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <motion.div

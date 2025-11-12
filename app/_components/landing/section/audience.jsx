@@ -97,7 +97,7 @@ const LandingPageAudience = () => {
   const slide = slides.find((s) => s.id === activeTab);
 
   return (
-    <section className="bg-white pb-16 pt-16 dark:bg-gray-900">
+    <section className="bg-white pb-4 pt-4 dark:bg-gray-900 md:pb-16 md:pt-16">
       <div className="container mx-auto px-4">
         <div className="flex border-b border-gray-200 dark:border-gray-700">
           {tabs.map((tab) => (

@@ -33,11 +33,14 @@ export const getSubscriptionDataByUri = async (uri) => {
 export const updateSubscriptionData = async ({ subscriptionPlan, days }) => {
   const session = await currentUser();
   if (!session) return;
-
   let startingDate;
 
   if (session.subscriptionPlan !== "bronze") {
-    startingDate = session.subscriptionExpire;
+    if (new Date() > new Date(session.subscriptionExpire)) {
+      startingDate = new Date();
+    } else {
+      startingDate = session.subscriptionExpire;
+    }
   } else {
     startingDate = new Date();
   }

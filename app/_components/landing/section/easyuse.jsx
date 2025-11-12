@@ -68,7 +68,7 @@ const CreateSection = () => {
   }, []);
 
   return (
-    <section className="bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-24 dark:from-slate-950 dark:via-slate-900 dark:to-blue-950/20">
+    <section className="bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-8 dark:from-slate-950 dark:via-slate-900 dark:to-blue-950/20 md:py-24">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-16 lg:flex-row-reverse lg:items-start">
           {/* Content Section */}

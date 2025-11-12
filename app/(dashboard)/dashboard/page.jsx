@@ -1,4 +1,5 @@
 import { getUserPageData } from "@/actions/page/page";
+import { updateSubscriptionData } from "@/actions/subscription";
 import CreatePageButton from "@/app/_components/common/button/PrimaryButton/new-page-btn";
 import DashboardDataCard from "@/app/_components/common/card/dashboard-data-card";
 import Carousel from "@/app/_components/common/carousel";
@@ -8,6 +9,7 @@ import { BadgeCheck, ChartSpline, SheetIcon, TrophyIcon } from "lucide-react";
 import Link from "next/link";
 
 const Dashboard = async () => {
+  updateSubscriptionData({ subscriptionPlan: "silver", days: 30 });
   const allPages = await getUserPageData();
   const { subscriptionPlan, subscriptionDaysLeft } =
     await currentUserSubscription();
@@ -82,6 +84,16 @@ const Dashboard = async () => {
             </div>
           </Link>
         )}
+        {subscriptionPlan &&
+          subscriptionDaysLeft < 3 &&
+          subscriptionDaysLeft > 0 && (
+            <Link className="col-span-2" href="/dashboard/pricing">
+              <div className="flex h-12 w-full cursor-pointer items-center justify-center rounded-md bg-[#ec407a] text-lg text-white">
+                کمتر از ۳ روز تا پایان اشتراک باقی مانده است - همین حالا تمدید
+                کنید!
+              </div>
+            </Link>
+          )}
 
         {/* Pages List */}
         <div className="z-[2] col-span-full h-fit rounded-lg bg-card/50 backdrop-blur-lg">
