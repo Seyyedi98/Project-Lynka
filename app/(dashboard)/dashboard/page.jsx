@@ -96,14 +96,14 @@ const Dashboard = async () => {
           )}
 
         {/* Pages List */}
-        <div className="z-[2] col-span-full h-fit rounded-lg bg-card/50 backdrop-blur-lg">
+        <div className="z-[2] col-span-full h-fit rounded-lg bg-card/50 backdrop-blur-lg dark:border dark:border-white/20 dark:bg-white/10 dark:backdrop-blur-xl">
           <PagesList pages={allPages} />
           <div className="relative flex justify-center py-3 transition-colors duration-200">
             <div className="absolute top-0 mx-auto h-[1px] w-[95%] bg-primary" />
             <CreatePageButton allPages={allPages}>
-              <div className="group relative mx-auto my-2 flex cursor-pointer gap-1 text-sm text-primary transition-colors duration-200 hover:text-secondary">
-                <div className="absolute -bottom-1 right-1/2 h-[1px] w-0 bg-secondary transition-all group-hover:w-1/2" />
-                <div className="absolute -bottom-1 left-1/2 h-[1px] w-0 bg-secondary transition-all group-hover:w-1/2" />
+              <div className="group relative mx-auto my-2 flex cursor-pointer gap-1 text-sm text-primary transition-colors duration-200 hover:text-secondary dark:text-amber-400 dark:hover:text-amber-300">
+                <div className="absolute -bottom-1 right-1/2 h-[1px] w-0 bg-secondary transition-all group-hover:w-1/2 dark:bg-amber-300" />
+                <div className="absolute -bottom-1 left-1/2 h-[1px] w-0 bg-secondary transition-all group-hover:w-1/2 dark:bg-amber-300" />
                 ایجاد صفحه جدید
               </div>
             </CreatePageButton>

@@ -25,7 +25,9 @@ import { IconMoneybag } from "@tabler/icons-react";
 
 const DashboardHeadingDropdown = () => {
   const user = useCurrentUser();
-  const { theme } = useTheme();
+  const { theme, resolvedTheme } = useTheme();
+  const currentTheme = resolvedTheme || theme;
+  const isDark = currentTheme === "dark";
 
   return (
     <div className="ml-2 flex items-center justify-center gap-4 text-sm">
@@ -41,7 +43,11 @@ const DashboardHeadingDropdown = () => {
                   <LoaderIcon className="h-4 w-4 animate-spin" />
                 )}
               </span>
-              <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
+              <div
+                className={`mr-2 flex h-8 w-8 items-center justify-center rounded-full ${
+                  isDark ? "bg-white/20" : "bg-white/20"
+                }`}
+              >
                 <UserCircleIcon className="h-5 w-5" />
               </div>
             </div>
@@ -49,14 +55,28 @@ const DashboardHeadingDropdown = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="end"
-          className="ml-2 min-w-[220px] rounded-xl bg-white/95 p-2 backdrop-blur-lg dark:bg-gray-800/95 dark:text-white"
+          className={`ml-2 min-w-[220px] rounded-xl border p-2 backdrop-blur-xl ${
+            isDark
+              ? "border-white/20 bg-slate-900/90 text-white"
+              : "bg-white/95 text-gray-800"
+          }`}
         >
-          <DropdownMenuLabel className="px-2 py-1.5 text-xs font-medium text-gray-500 dark:text-gray-400">
+          <DropdownMenuLabel
+            className={`px-2 py-1.5 text-xs font-medium ${
+              isDark ? "text-gray-400" : "text-gray-500"
+            }`}
+          >
             حساب کاربری
           </DropdownMenuLabel>
 
           <Link href="/dashboard/profile" className="flex items-center gap-2">
-            <DropdownMenuItem className="w-full cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
+            <DropdownMenuItem
+              className={`w-full cursor-pointer rounded-lg px-2 py-2 text-sm ${
+                isDark
+                  ? "hover:bg-white/10 focus:bg-white/10"
+                  : "hover:bg-gray-100 focus:bg-gray-100"
+              }`}
+            >
               <UserCircleIcon className="mr-2 mt-1 h-4 w-4" />
               <span>پروفایل</span>
             </DropdownMenuItem>
@@ -66,7 +86,13 @@ const DashboardHeadingDropdown = () => {
             href="/dashboard/transactions"
             className="flex items-center gap-2"
           >
-            <DropdownMenuItem className="w-full cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
+            <DropdownMenuItem
+              className={`w-full cursor-pointer rounded-lg px-2 py-2 text-sm ${
+                isDark
+                  ? "hover:bg-white/10 focus:bg-white/10"
+                  : "hover:bg-gray-100 focus:bg-gray-100"
+              }`}
+            >
               <IconMoneybag className="mr-2 mt-1 h-4 w-4" />
               <span>تراکنش ها</span>
             </DropdownMenuItem>
@@ -76,7 +102,13 @@ const DashboardHeadingDropdown = () => {
             href="/dashboard/notifications"
             className="flex items-center gap-2"
           >
-            <DropdownMenuItem className="w-full cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
+            <DropdownMenuItem
+              className={`w-full cursor-pointer rounded-lg px-2 py-2 text-sm ${
+                isDark
+                  ? "hover:bg-white/10 focus:bg-white/10"
+                  : "hover:bg-gray-100 focus:bg-gray-100"
+              }`}
+            >
               <MailIcon className="mr-2 mt-1 h-4 w-4" />
               <span>پیام ها</span>
             </DropdownMenuItem>
@@ -86,18 +118,30 @@ const DashboardHeadingDropdown = () => {
             href="/dashboard/contact-us"
             className="flex items-center gap-2"
           >
-            <DropdownMenuItem className="w-full cursor-pointer rounded-lg px-2 py-2 text-sm focus:bg-gray-100 dark:focus:bg-gray-700">
+            <DropdownMenuItem
+              className={`w-full cursor-pointer rounded-lg px-2 py-2 text-sm ${
+                isDark
+                  ? "hover:bg-white/10 focus:bg-white/10"
+                  : "hover:bg-gray-100 focus:bg-gray-100"
+              }`}
+            >
               <HeadsetIcon className="mr-2 mt-1 h-4 w-4" />
               <span>پشتیبانی</span>
             </DropdownMenuItem>
           </Link>
 
-          <DropdownMenuSeparator className="mx-2 my-1 bg-gray-200 dark:bg-gray-700" />
+          <DropdownMenuSeparator
+            className={`mx-2 my-1 ${isDark ? "bg-white/20" : "bg-gray-200"}`}
+          />
 
           <div className="px-2 py-1.5">
-            <div className="flex items-center justify-between rounded-lg px-2 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
+            <div
+              className={`flex items-center justify-between rounded-lg px-2 py-2 text-sm ${
+                isDark ? "hover:bg-white/10" : "hover:bg-gray-100"
+              }`}
+            >
               <div className="flex items-center">
-                {theme === "dark" ? (
+                {isDark ? (
                   <Moon className="mr-2 h-4 w-4" />
                 ) : (
                   <Sun className="mr-2 h-4 w-4" />
@@ -108,9 +152,17 @@ const DashboardHeadingDropdown = () => {
             </div>
           </div>
 
-          <DropdownMenuSeparator className="mx-2 my-1 bg-gray-200 dark:bg-gray-700" />
+          <DropdownMenuSeparator
+            className={`mx-2 my-1 ${isDark ? "bg-white/20" : "bg-gray-200"}`}
+          />
 
-          <DropdownMenuItem className="cursor-pointer rounded-lg px-2 py-2 text-sm text-red-600 focus:bg-red-50 dark:text-red-400 dark:focus:bg-red-900/30">
+          <DropdownMenuItem
+            className={`cursor-pointer rounded-lg px-2 py-2 text-sm ${
+              isDark
+                ? "text-red-400 hover:bg-red-500/20 focus:bg-red-500/20"
+                : "text-red-600 hover:bg-red-50 focus:bg-red-50"
+            }`}
+          >
             <LogoutButton asChild>
               <div className="flex items-center">
                 <LogOut className="mr-2 mt-1 h-4 w-4" />

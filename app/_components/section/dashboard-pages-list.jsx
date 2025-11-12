@@ -22,10 +22,14 @@ import { WorkspaceDynamicModal } from "../common/modal/workspace-dynamic-modal";
 import PageQrCodeGenerator from "./workspace/page-qrcode-generator";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
 
 const PagesList = ({ pages, onShowQr }) => {
   const [openQrModal, setOpenQrModal] = useState(false);
   const [currentPageUri, setCurrentPageUri] = useState("");
+  const { theme, resolvedTheme } = useTheme();
+  const currentTheme = resolvedTheme || theme;
+  const isDark = currentTheme === "dark";
 
   const handleShowQr = (uri) => {
     setCurrentPageUri(uri);
@@ -37,34 +41,82 @@ const PagesList = ({ pages, onShowQr }) => {
     <section className="h-full w-full overflow-auto p-4 sm:overflow-visible md:px-6">
       {/* Header */}
       <div className="mb-6 flex items-center gap-3">
-        <LayoutTemplate className="h-8 w-8 text-icon-light" />
-        <h2 className="text-lg font-bold text-text">صفحات ایجاد شده</h2>
+        <LayoutTemplate
+          className={`h-8 w-8 ${isDark ? "text-white/80" : "text-icon-light"}`}
+        />
+        <h2
+          className={`text-lg font-bold ${isDark ? "text-white" : "text-text"}`}
+        >
+          صفحات ایجاد شده
+        </h2>
       </div>
 
       {pages.length > 0 ? (
-        <div className="w-full overflow-x-auto rounded-xl bg-transparent shadow-sm">
+        <div
+          className={`w-full overflow-x-auto rounded-xl ${
+            isDark
+              ? "border border-white/20 bg-white/10 backdrop-blur-xl"
+              : "bg-transparent shadow-sm"
+          }`}
+        >
           <Table dir="rtl">
-            <TableHeader className="text-textLight bg-muted/50 text-sm font-semibold">
-              <TableRow>
-                <TableHead className="min-w-[120px] text-start">نام</TableHead>
-                {/* <TableHead className="min-w-[50px] text-center">
+            <TableHeader
+              className={`text-sm font-semibold ${
+                isDark ? "bg-white/10 text-white" : "text-textLight bg-muted/50"
+              }`}
+            >
+              <TableRow className={isDark ? "border-white/20" : ""}>
+                <TableHead
+                  className={`min-w-[120px] text-start ${
+                    isDark ? "text-white" : "text-textLight"
+                  }`}
+                >
+                  نام
+                </TableHead>
+                {/* <TableHead className={`min-w-[50px] text-center ${
+                  isDark ? "text-white" : "text-textLight"
+                }`}>
                   بازدید
                 </TableHead> */}
-                <TableHead className="min-w-[180px] text-end">عملیات</TableHead>
+                <TableHead
+                  className={`min-w-[180px] text-end ${
+                    isDark ? "text-white" : "text-textLight"
+                  }`}
+                >
+                  عملیات
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {pages.map((page) => (
                 <TableRow
                   key={page.uri}
-                  className="border-b border-border/40 hover:bg-accent/30"
+                  className={`group transition-colors ${
+                    isDark
+                      ? "border-white/20 hover:bg-white/10"
+                      : "border-b border-border/40 hover:bg-accent/30"
+                  }`}
                 >
-                  <TableCell className="text-start font-medium">
-                    <Link href={`/workspace/${page.uri}`} title="ویرایش">
+                  <TableCell
+                    className={`text-start font-medium ${
+                      isDark ? "text-white" : "text-text"
+                    }`}
+                  >
+                    <Link
+                      href={`/workspace/${page.uri}`}
+                      title="ویرایش"
+                      className={`hover:underline ${
+                        isDark
+                          ? "text-white hover:text-white/80"
+                          : "text-text hover:text-primary"
+                      }`}
+                    >
                       {page.uri}
                     </Link>
                   </TableCell>
-                  {/* <TableCell className="text-textLight text-center">
+                  {/* <TableCell className={`text-center ${
+                    isDark ? "text-white/80" : "text-textLight"
+                  }`}>
                     {page.views}
                   </TableCell> */}
                   <TableCell>
@@ -74,7 +126,11 @@ const PagesList = ({ pages, onShowQr }) => {
                         href={`/${page.uri}`}
                         target="_blank"
                         title="مشاهده"
-                        className="rounded-md p-2 text-icon-light transition hover:bg-muted hover:text-[hsl(var(--primary))]"
+                        className={`rounded-md p-2 transition ${
+                          isDark
+                            ? "text-white/80 hover:bg-white/10 hover:text-white"
+                            : "text-icon-light hover:bg-muted hover:text-[hsl(var(--primary))]"
+                        }`}
                       >
                         <Eye className="h-4 w-4" />
                       </Link>
@@ -83,7 +139,11 @@ const PagesList = ({ pages, onShowQr }) => {
                       <Link
                         href={`/workspace/${page.uri}`}
                         title="ویرایش"
-                        className="rounded-md p-2 text-icon-light transition hover:bg-muted hover:text-[hsl(var(--primary))]"
+                        className={`rounded-md p-2 transition ${
+                          isDark
+                            ? "text-white/80 hover:bg-white/10 hover:text-white"
+                            : "text-icon-light hover:bg-muted hover:text-[hsl(var(--primary))]"
+                        }`}
                       >
                         <Pencil className="h-4 w-4" />
                       </Link>
@@ -97,14 +157,26 @@ const PagesList = ({ pages, onShowQr }) => {
                           <button
                             onClick={() => handleShowQr(page.uri)}
                             title="کد QR"
-                            className="rounded-md p-2 text-icon-light transition hover:bg-muted hover:text-[hsl(var(--primary))]"
+                            className={`rounded-md p-2 transition ${
+                              isDark
+                                ? "text-white/80 hover:bg-white/10 hover:text-white"
+                                : "text-icon-light hover:bg-muted hover:text-[hsl(var(--primary))]"
+                            }`}
                           >
                             <QrCode className="h-4 w-4" />
                           </button>
                         </DialogTrigger>
-                        <DialogContent className="flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 overflow-y-scroll p-0">
+                        <DialogContent
+                          className={`flex h-screen max-h-svh w-screen max-w-full flex-grow flex-col gap-0 overflow-y-scroll p-0 ${
+                            isDark
+                              ? "border-white/20 bg-slate-900/90 backdrop-blur-xl"
+                              : "bg-white"
+                          }`}
+                        >
                           <DialogHeader>
-                            <DialogTitle></DialogTitle>
+                            <DialogTitle
+                              className={isDark ? "text-white" : ""}
+                            ></DialogTitle>
                           </DialogHeader>
                           <PageQrCodeGenerator target={page.uri} />
                         </DialogContent>
@@ -118,7 +190,11 @@ const PagesList = ({ pages, onShowQr }) => {
                         trigger={
                           <button
                             title="حذف"
-                            className="cursor-pointer rounded-md p-2 text-icon-light transition hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30"
+                            className={`cursor-pointer rounded-md p-2 transition ${
+                              isDark
+                                ? "text-white/80 hover:bg-red-500/20 hover:text-red-400"
+                                : "text-icon-light hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30"
+                            }`}
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>
@@ -143,7 +219,11 @@ const PagesList = ({ pages, onShowQr }) => {
           </Table>
         </div>
       ) : (
-        <p className="text-textLight mt-8 text-center">
+        <p
+          className={`mt-8 text-center ${
+            isDark ? "text-white/60" : "text-textLight"
+          }`}
+        >
           شما هنوز صفحه‌ای ایجاد نکرده‌اید.
         </p>
       )}

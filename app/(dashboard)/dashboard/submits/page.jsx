@@ -180,11 +180,11 @@ export default function SubmitsPanel() {
   if (!isPremium) {
     return (
       <div className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8">
-        <div className="mb-8 sm:mx-4 sm:mr-20 xl:pr-6">
+        <div className="mb-8 sm:mx-4 sm:mr-20">
           <motion.h1
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl font-bold text-white md:text-4xl"
+            className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl"
           >
             فرم های اطلاعاتی
           </motion.h1>
@@ -192,17 +192,19 @@ export default function SubmitsPanel() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="mt-4 text-white"
+            className="mt-4 text-gray-600 dark:text-white/80"
           >
             مدیریت و مشاهده تمام فرم‌های ارسال شده
           </motion.p>
         </div>
-        <div className="flex flex-col items-center justify-center py-16 text-center">
-          <div className="mb-4 rounded-full bg-muted/20 p-4">
-            <Crown className="h-8 w-8 text-muted-foreground" />
+        <div className="flex flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white py-16 text-center dark:border-white/20 dark:bg-white/10 dark:backdrop-blur-xl">
+          <div className="mb-4 rounded-full bg-gray-100 p-4 dark:bg-white/10">
+            <Crown className="h-8 w-8 text-gray-500 dark:text-amber-400" />
           </div>
-          <h3 className="mb-2 text-lg font-medium">نیاز به اشتراک پریمیوم</h3>
-          <p className="text-muted-foreground">
+          <h3 className="mb-2 text-lg font-medium text-gray-900 dark:text-white">
+            نیاز به اشتراک پریمیوم
+          </h3>
+          <p className="text-gray-600 dark:text-white/60">
             برای دسترسی به فرم‌های ارسال شده، لطفاً اشتراک پریمیوم تهیه کنید
           </p>
         </div>
@@ -214,11 +216,11 @@ export default function SubmitsPanel() {
   return (
     <div className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8">
       {/* Header */}
-      <div className="mb-8 sm:mx-4 sm:mr-20 xl:pr-6">
+      <div className="mb-8 sm:mx-4 sm:mr-20">
         <motion.h1
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-3xl font-bold text-white md:text-4xl"
+          className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl"
         >
           فرم های اطلاعاتی
         </motion.h1>
@@ -226,7 +228,7 @@ export default function SubmitsPanel() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
-          className="mt-4 text-white"
+          className="mt-4 text-gray-600 dark:text-white/80"
         >
           مدیریت و مشاهده تمام فرم‌های ارسال شده
         </motion.p>
@@ -248,9 +250,12 @@ export default function SubmitsPanel() {
 
       {/* Content */}
       {isInitialLoading ? (
-        <div className="space-y-4 sm:mx-4 sm:mr-20 xl:pr-6">
+        <div className="space-y-4 sm:mx-4 sm:mr-20">
           {[...Array(3)].map((_, i) => (
-            <Skeleton key={i} className="h-20 w-full rounded-xl" />
+            <Skeleton
+              key={i}
+              className="h-20 w-full rounded-xl dark:bg-white/10"
+            />
           ))}
         </div>
       ) : (
@@ -259,13 +264,13 @@ export default function SubmitsPanel() {
           {filteredForms.length > 0 && (
             <motion.div
               {...fade}
-              className="overflow-hidden rounded-xl border border-muted/30 bg-card/80 shadow-sm backdrop-blur-sm sm:mx-4 sm:mr-20 xl:pr-6"
+              className="overflow-hidden rounded-xl border border-gray-200 bg-white/80 shadow-sm backdrop-blur-sm dark:border-white/20 dark:bg-white/10 sm:mx-4 sm:mr-20"
             >
               <div className="overflow-x-auto">
                 <Table className="w-full text-sm">
-                  <TableHeader className="bg-muted/20">
-                    <TableRow>
-                      <TableHead className="min-w-[180px] text-right">
+                  <TableHeader className="bg-gray-50 dark:bg-white/10">
+                    <TableRow className="dark:border-white/20">
+                      <TableHead className="min-w-[180px] text-right text-gray-900 dark:text-white">
                         عنوان فرم
                       </TableHead>
                       {getFormFields()
@@ -273,12 +278,15 @@ export default function SubmitsPanel() {
                         .map((field) => {
                           if (field !== "formName")
                             return (
-                              <TableHead className="text-right" key={field}>
+                              <TableHead
+                                className="text-right text-gray-900 dark:text-white"
+                                key={field}
+                              >
                                 {field}
                               </TableHead>
                             );
                         })}
-                      <TableHead className="min-w-[150px] text-right">
+                      <TableHead className="min-w-[150px] text-right text-gray-900 dark:text-white">
                         تاریخ ثبت
                       </TableHead>
                     </TableRow>
@@ -292,16 +300,16 @@ export default function SubmitsPanel() {
                       <motion.tr
                         key={form.id}
                         variants={formItemAnimation}
-                        className="group cursor-pointer border-t border-muted/20 transition-colors hover:bg-muted/10"
+                        className="group cursor-pointer border-t border-gray-200 transition-colors hover:bg-gray-50 dark:border-white/20 dark:hover:bg-white/10"
                         onClick={() => setSelectedForm(form)}
                       >
-                        <TableCell className="font-medium">
+                        <TableCell className="font-medium text-gray-900 dark:text-white">
                           <div className="flex items-center gap-2">
                             {form.FormOccupiedTitle12 || "بدون عنوان"}
                             {form.FormOccupiedTitle12 && (
                               <Badge
                                 variant="outline"
-                                className="opacity-0 transition-opacity group-hover:opacity-100"
+                                className="border-gray-300 text-gray-600 opacity-0 transition-opacity group-hover:opacity-100 dark:border-white/20 dark:text-white/80"
                               >
                                 مشاهده
                               </Badge>
@@ -315,14 +323,14 @@ export default function SubmitsPanel() {
                               return (
                                 <TableCell
                                   key={field}
-                                  className="max-w-[200px] truncate"
+                                  className="max-w-[200px] truncate text-gray-700 dark:text-white/80"
                                 >
                                   {form[field] || `-`}
                                 </TableCell>
                               );
                           })}
                         <TableCell>
-                          <div className="text-muted-foreground">
+                          <div className="text-gray-600 dark:text-white/60">
                             {new Date(form.createdAt).toLocaleString("fa-IR")}
                           </div>
                         </TableCell>
@@ -338,15 +346,15 @@ export default function SubmitsPanel() {
           {!selectedPage && (
             <motion.div
               {...fade}
-              className="flex flex-col items-center justify-center py-16 text-center"
+              className="flex flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white py-16 text-center dark:border-white/20 dark:bg-white/10 dark:backdrop-blur-xl sm:mx-4 sm:mr-20"
             >
-              <div className="mb-4 rounded-full bg-muted/20 p-4">
-                <LinkIcon className="h-8 w-8 text-muted-foreground" />
+              <div className="mb-4 rounded-full bg-gray-100 p-4 dark:bg-white/10">
+                <LinkIcon className="h-8 w-8 text-gray-500 dark:text-amber-400" />
               </div>
-              <h3 className="mb-2 text-lg font-medium">
+              <h3 className="mb-2 text-lg font-medium text-gray-900 dark:text-white">
                 صفحه‌ای انتخاب نشده است
               </h3>
-              <p className="text-muted-foreground">
+              <p className="text-gray-600 dark:text-white/60">
                 لطفاً یک صفحه را از لیست انتخاب کنید تا فرم‌های آن نمایش داده
                 شوند
               </p>
@@ -356,17 +364,17 @@ export default function SubmitsPanel() {
           {selectedPage && filteredForms.length === 0 && !isLoading && (
             <motion.div
               {...fade}
-              className="flex flex-col items-center justify-center py-16 text-center"
+              className="flex flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white py-16 text-center dark:border-white/20 dark:bg-white/10 dark:backdrop-blur-xl sm:mx-4 sm:mr-20"
             >
-              <div className="mb-4 rounded-full bg-muted/20 p-4">
-                <FilterIcon className="h-8 w-8 text-muted-foreground" />
+              <div className="mb-4 rounded-full bg-gray-100 p-4 dark:bg-white/10">
+                <FilterIcon className="h-8 w-8 text-gray-500 dark:text-amber-400" />
               </div>
-              <h3 className="mb-2 text-lg font-medium">
+              <h3 className="mb-2 text-lg font-medium text-gray-900 dark:text-white">
                 {searchQuery || formTitleFilter
                   ? "نتیجه‌ای یافت نشد"
                   : "هیچ فرمی برای این صفحه ثبت نشده است"}
               </h3>
-              <p className="text-muted-foreground">
+              <p className="text-gray-600 dark:text-white/60">
                 {searchQuery
                   ? "عبارت جستجو شده با هیچ فرمی مطابقت ندارد"
                   : formTitleFilter
@@ -388,7 +396,7 @@ export default function SubmitsPanel() {
                 variant="outline"
                 onClick={loadSubmissions}
                 disabled={isLoading}
-                className="gap-2"
+                className="gap-2 border-gray-300 dark:border-white/20 dark:text-white dark:hover:bg-white/10"
               >
                 {isLoading ? (
                   <>
@@ -405,7 +413,7 @@ export default function SubmitsPanel() {
           {!hasMore && filteredForms.length > 0 && (
             <motion.p
               {...fade}
-              className="mt-6 text-center text-sm text-muted-foreground"
+              className="mt-6 text-center text-sm text-gray-600 dark:text-white/60"
             >
               تمام فرم‌ها بارگذاری شدند • {filteredForms.length} فرم
             </motion.p>
@@ -414,9 +422,9 @@ export default function SubmitsPanel() {
           {error && (
             <motion.div
               {...fade}
-              className="mt-6 rounded-lg border border-destructive/20 bg-destructive/10 p-4"
+              className="mt-6 rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-500/20 dark:bg-red-500/10 sm:mx-4 sm:mr-20"
             >
-              <div className="flex items-center gap-3 text-destructive">
+              <div className="flex items-center gap-3 text-red-700 dark:text-red-400">
                 <AlertCircle className="h-5 w-5" />
                 <div>
                   <p className="font-medium">{error}</p>
@@ -424,7 +432,7 @@ export default function SubmitsPanel() {
                     variant="link"
                     size="sm"
                     onClick={loadSubmissions}
-                    className="h-auto p-0 text-destructive"
+                    className="h-auto p-0 text-red-700 dark:text-red-400"
                   >
                     تلاش مجدد
                   </Button>
@@ -437,17 +445,20 @@ export default function SubmitsPanel() {
 
       {/* Form Detail Dialog */}
       <Dialog open={!!selectedForm} onOpenChange={() => setSelectedForm(null)}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl border-gray-200 bg-white dark:border-white/20 dark:bg-slate-900/90 dark:backdrop-blur-xl">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
+            <DialogTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
               <span>جزئیات فرم</span>
               {selectedForm?.FormOccupiedTitle12 && (
-                <Badge variant="secondary">
+                <Badge
+                  variant="secondary"
+                  className="dark:bg-white/10 dark:text-white"
+                >
                   {selectedForm.FormOccupiedTitle12}
                 </Badge>
               )}
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="dark:text-white/60">
               {new Date(selectedForm?.createdAt).toLocaleString("fa-IR")}
             </DialogDescription>
           </DialogHeader>
@@ -460,10 +471,10 @@ export default function SubmitsPanel() {
                     return null;
                   return (
                     <div key={key} className="space-y-1">
-                      <p className="text-sm font-medium text-muted-foreground">
+                      <p className="text-sm font-medium text-gray-600 dark:text-white/60">
                         {key}:
                       </p>
-                      <p className="rounded-md bg-muted/20 p-3 text-sm">
+                      <p className="rounded-md bg-gray-100 p-3 text-sm text-gray-900 dark:bg-white/10 dark:text-white/80">
                         {value || `بدون مقدار`}
                       </p>
                     </div>

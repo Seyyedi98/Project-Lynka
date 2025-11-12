@@ -76,7 +76,7 @@ const ProfilePage = () => {
         <motion.h1
           initial={fadeSlideUp.initial}
           animate={fadeSlideUp.animate}
-          className="text-3xl font-bold text-white md:text-4xl"
+          className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl"
         >
           تنظیمات پروفایل
         </motion.h1>
@@ -84,7 +84,7 @@ const ProfilePage = () => {
           initial={fadeSlideUp.initial}
           animate={fadeSlideUp.animate}
           transition={{ delay: 0.1 }}
-          className="mt-4 text-white"
+          className="mt-4 text-gray-600 dark:text-white/80"
         >
           تنظیمات حساب کاربری خود را مدیریت کنید
         </motion.p>
@@ -97,9 +97,12 @@ const ProfilePage = () => {
         transition={{ delay: 0.2 }}
         className="sm:mx-4 sm:mr-20 xl:pr-6"
       >
-        <Card className="border-0 bg-background/80 backdrop-blur-sm">
+        <Card className="border-0 bg-background/80 backdrop-blur-sm dark:border-white/20 dark:bg-white/10">
           <CardHeader className="w-full">
-            <motion.p {...fade} className="text-center text-2xl font-semibold">
+            <motion.p
+              {...fade}
+              className="text-center text-2xl font-semibold text-gray-900 dark:text-white"
+            >
               ⚙️ تنظیمات
             </motion.p>
           </CardHeader>
@@ -116,13 +119,13 @@ const ProfilePage = () => {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>نام</FormLabel>
+                          <FormLabel className="dark:text-white">نام</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
                               placeholder="نام"
                               disabled={isPending}
-                              className="bg-background/50"
+                              className="bg-background/50 dark:border-white/20 dark:bg-white/10 dark:text-white dark:placeholder:text-white/40"
                             />
                           </FormControl>
                           <FormMessage />
@@ -142,16 +145,18 @@ const ProfilePage = () => {
                           name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>ایمیل</FormLabel>
+                              <FormLabel className="dark:text-white">
+                                ایمیل
+                              </FormLabel>
                               <FormControl>
                                 <Input
                                   {...field}
                                   placeholder="ایمیل"
                                   disabled={true}
-                                  className="bg-background/50 text-muted-foreground"
+                                  className="bg-background/50 text-muted-foreground dark:border-white/20 dark:bg-white/10 dark:text-white/60 dark:placeholder:text-white/40"
                                 />
                               </FormControl>
-                              <FormDescription className="text-xs">
+                              <FormDescription className="text-xs dark:text-white/60">
                                 امکان تغییر ایمیل وجود ندارد
                               </FormDescription>
                               <FormMessage />
@@ -169,7 +174,7 @@ const ProfilePage = () => {
                           type: "spring",
                           stiffness: 300,
                         }}
-                        className="rounded-lg border border-primary/20 bg-primary/5 p-4"
+                        className="rounded-lg border border-primary/20 bg-primary/5 p-4 dark:border-amber-400/20 dark:bg-amber-400/10"
                       >
                         <div className="space-y-4">
                           <FormField
@@ -177,14 +182,16 @@ const ProfilePage = () => {
                             name="password"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>رمز عبور فعلی</FormLabel>
+                                <FormLabel className="dark:text-white">
+                                  رمز عبور فعلی
+                                </FormLabel>
                                 <FormControl>
                                   <Input
                                     {...field}
                                     type="password"
                                     placeholder="••••••"
                                     disabled={isPending}
-                                    className="bg-background/50"
+                                    className="bg-background/50 dark:border-white/20 dark:bg-white/10 dark:text-white dark:placeholder:text-white/40"
                                   />
                                 </FormControl>
                                 <FormMessage />
@@ -197,17 +204,19 @@ const ProfilePage = () => {
                             name="newPassword"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>رمز عبور جدید</FormLabel>
+                                <FormLabel className="dark:text-white">
+                                  رمز عبور جدید
+                                </FormLabel>
                                 <FormControl>
                                   <Input
                                     {...field}
                                     type="password"
                                     placeholder="••••••"
                                     disabled={isPending}
-                                    className="bg-background/50"
+                                    className="bg-background/50 dark:border-white/20 dark:bg-white/10 dark:text-white dark:placeholder:text-white/40"
                                   />
                                 </FormControl>
-                                <FormDescription className="text-xs">
+                                <FormDescription className="text-xs dark:text-white/60">
                                   رمز عبور باید حداقل ۶ کاراکتر داشته باشد
                                 </FormDescription>
                                 <FormMessage />
@@ -225,10 +234,12 @@ const ProfilePage = () => {
                           control={form.control}
                           name="isTwoFactorEnabled"
                           render={({ field }) => (
-                            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm dark:border-white/20 dark:bg-white/10">
                               <div className="space-y-0.5">
-                                <FormLabel>احراز هویت دو مرحله‌ای</FormLabel>
-                                <FormDescription>
+                                <FormLabel className="dark:text-white">
+                                  احراز هویت دو مرحله‌ای
+                                </FormLabel>
+                                <FormDescription className="dark:text-white/60">
                                   برای حساب کاربری خود احراز هویت دو مرحله‌ای را
                                   فعال کنید
                                 </FormDescription>
@@ -261,7 +272,7 @@ const ProfilePage = () => {
                   <Button
                     disabled={isPending}
                     type="submit"
-                    className="w-full sm:w-auto"
+                    className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 disabled:bg-gray-400 sm:w-auto"
                   >
                     {isPending ? (
                       <span className="flex items-center gap-2">

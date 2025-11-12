@@ -1,7 +1,7 @@
 "use client";
 import { getNotifications } from "@/actions/notifications";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { HelpCircle } from "lucide-react";
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import DashboardHeadingDropdown from "./dashboard-heading-dropdown";
 import DashboardHeadingNotificationBell from "./dashboard-heading-norification-bell";
@@ -10,7 +10,11 @@ const DashboardHeading = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [loadingNotifications, setLoadingNotifications] = useState(false);
+  const { theme, resolvedTheme } = useTheme();
   const user = useCurrentUser();
+
+  const currentTheme = resolvedTheme || theme;
+  const isDark = currentTheme === "dark";
 
   const unreadCount = notifications.filter((n) => !n.isRead).length;
 
@@ -50,7 +54,9 @@ const DashboardHeading = () => {
     <div
       className={`fixed right-0 top-0 z-40 flex h-16 w-full items-center justify-between px-2 text-white transition-all duration-150 sm:pr-4 ${
         isScrolled
-          ? "bg-gradient-to-r from-[hsl(207,90%,54%)] to-[hsl(172,100%,37%)] shadow-lg"
+          ? isDark
+            ? "border-b border-white/20 bg-slate-900/90 shadow-2xl backdrop-blur-xl"
+            : "bg-gradient-to-r from-[hsl(207,90%,54%)] to-[hsl(172,100%,37%)] shadow-lg"
           : "bg-transparent"
       }`}
     >

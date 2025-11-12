@@ -29,20 +29,20 @@ export default function NotificationDetail({
             <motion.div
               key={selectedNotification.id}
               {...desktopDetail}
-              className="flex-1 rounded-lg border border-muted bg-secondaryBg p-6"
+              className="flex-1 rounded-lg border border-gray-200 bg-white p-6 dark:border-white/20 dark:bg-white/10 dark:backdrop-blur-xl"
             >
               <div className="mb-6 flex items-start justify-between">
                 <div className="flex items-center gap-2">
                   {selectedNotification.isRead ? (
-                    <CheckCircle2 className="h-5 w-5 text-muted-foreground" />
+                    <CheckCircle2 className="h-5 w-5 text-gray-500 dark:text-white/60" />
                   ) : (
-                    <Circle className="h-5 w-5 fill-primary/10 text-primary" />
+                    <Circle className="h-5 w-5 fill-blue-100 text-blue-600 dark:fill-blue-500/20 dark:text-blue-400" />
                   )}
-                  <h2 className="text-xl font-bold text-foreground">
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                     {selectedNotification.title}
                   </h2>
                 </div>
-                <time className="text-sm text-muted-foreground">
+                <time className="text-sm text-gray-500 dark:text-white/60">
                   {new Date(selectedNotification.createdAt).toLocaleString(
                     "fa-IR",
                   )}
@@ -51,7 +51,7 @@ export default function NotificationDetail({
 
               <motion.div
                 {...contentFade}
-                className="prose prose-sm max-w-none text-foreground"
+                className="prose prose-sm max-w-none text-gray-700 dark:text-white/80"
               >
                 <p>{selectedNotification.body}</p>
               </motion.div>
@@ -62,7 +62,11 @@ export default function NotificationDetail({
                   transition={{ delay: 0.3 }}
                   className="mt-8"
                 >
-                  <Button variant="default" asChild>
+                  <Button
+                    variant="default"
+                    asChild
+                    className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600"
+                  >
                     <a
                       href={selectedNotification.actionUrl}
                       className="inline-flex items-center gap-2"
@@ -78,13 +82,13 @@ export default function NotificationDetail({
             <motion.div
               key="empty-state"
               {...fade}
-              className="flex flex-1 flex-col items-center justify-center rounded-lg border border-muted bg-secondaryBg p-8 text-center"
+              className="flex flex-1 flex-col items-center justify-center rounded-lg border border-gray-200 bg-white p-8 text-center dark:border-white/20 dark:bg-white/10 dark:backdrop-blur-xl"
             >
-              <Bell className="mb-4 h-12 w-12 text-muted-foreground" />
-              <h3 className="mb-1 text-lg font-medium text-foreground">
+              <Bell className="mb-4 h-12 w-12 text-gray-400 dark:text-white/40" />
+              <h3 className="mb-1 text-lg font-medium text-gray-900 dark:text-white">
                 هیچ پیامی انتخاب نشده
               </h3>
-              <p className="text-muted-foreground">
+              <p className="text-gray-500 dark:text-white/60">
                 برای مشاهده جزئیات، پیامی را از لیست انتخاب کنید
               </p>
             </motion.div>
@@ -97,14 +101,14 @@ export default function NotificationDetail({
         {isMobileDetailOpen && selectedNotification && (
           <motion.div
             {...mobileDetail}
-            className="fixed inset-0 z-50 overflow-y-auto bg-background p-4 pt-20 lg:hidden"
+            className="fixed inset-0 z-50 overflow-y-auto bg-white p-4 pt-20 dark:bg-slate-900 lg:hidden"
           >
             <div className="mb-4 flex items-center">
               <Button
                 onClick={onCloseMobileDetail}
                 variant="ghost"
                 size="sm"
-                className="text-primary hover:text-primary-hover"
+                className="text-gray-700 hover:text-gray-900 dark:text-white dark:hover:text-white/80"
               >
                 <ChevronRight className="h-5 w-5" />
                 بازگشت
@@ -113,20 +117,20 @@ export default function NotificationDetail({
 
             <motion.div
               {...contentFade}
-              className="rounded-xl border border-muted bg-card p-6 shadow-sm"
+              className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-white/20 dark:bg-white/10 dark:backdrop-blur-xl"
             >
               <div className="mb-2 flex items-center gap-2">
                 {selectedNotification.isRead ? (
-                  <CheckCircle2 className="h-5 w-5 text-muted-foreground" />
+                  <CheckCircle2 className="h-5 w-5 text-gray-500 dark:text-white/60" />
                 ) : (
-                  <Circle className="h-5 w-5 fill-primary/10 text-primary" />
+                  <Circle className="h-5 w-5 fill-blue-100 text-blue-600 dark:fill-blue-500/20 dark:text-blue-400" />
                 )}
-                <h2 className="text-xl font-bold text-foreground">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                   {selectedNotification.title}
                 </h2>
               </div>
 
-              <time className="mb-4 block text-sm text-muted-foreground">
+              <time className="mb-4 block text-sm text-gray-500 dark:text-white/60">
                 {new Date(selectedNotification.createdAt).toLocaleString(
                   "fa-IR",
                 )}
@@ -134,14 +138,18 @@ export default function NotificationDetail({
 
               <motion.div
                 {...staggeredFade}
-                className="prose prose-sm mb-6 max-w-none text-foreground"
+                className="prose prose-sm mb-6 max-w-none text-gray-700 dark:text-white/80"
               >
                 <p>{selectedNotification.body}</p>
               </motion.div>
 
               {selectedNotification.actionUrl && (
                 <motion.div {...staggeredFade} transition={{ delay: 0.3 }}>
-                  <Button variant="default" asChild className="w-full">
+                  <Button
+                    variant="default"
+                    asChild
+                    className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600"
+                  >
                     <a
                       href={selectedNotification.actionUrl}
                       target="_blank"

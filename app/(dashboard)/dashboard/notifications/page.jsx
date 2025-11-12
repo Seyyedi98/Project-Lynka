@@ -104,7 +104,7 @@ export default function NotificationsPage() {
   return (
     <div className="pt-72 sm:mr-16">
       <div className="mx-auto max-w-7xl px-2 sm:px-4">
-        <div className="flex flex-col gap-6 rounded-xl border border-muted bg-card p-6 shadow-sm lg:flex-row">
+        <div className="flex flex-col gap-6 rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-white/20 dark:bg-slate-900/80 lg:flex-row">
           <NotificationList
             notifications={notifications}
             unreadCount={notifications.filter((n) => !n.isRead).length}

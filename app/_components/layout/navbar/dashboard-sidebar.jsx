@@ -10,12 +10,17 @@ import {
   TrophyIcon,
 } from "lucide-react";
 import { useState } from "react";
+import { useTheme } from "next-themes";
 import SidebarLink from "../../common/button/NavigationButton/sidebar-link";
 import HumbergerMenuBtn from "../../common/button/PrimaryButton/humberger-menu";
 
 const DashboardSidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { theme, resolvedTheme } = useTheme();
   const ref = useOutsideClick(() => setIsSidebarOpen(false), true);
+
+  const currentTheme = resolvedTheme || theme;
+  const isDark = currentTheme === "dark";
 
   return (
     <nav ref={ref} className={cn(`relative z-50 h-full`)}>
@@ -33,9 +38,10 @@ const DashboardSidebar = () => {
 
       <div
         className={cn(
-          `fixed right-0 top-0 flex h-full flex-col items-center gap-2 bg-card pt-20 transition-all duration-200 sm:items-start sm:bg-card`,
+          `fixed right-0 top-0 flex h-full flex-col items-center gap-2 border-l pt-20 backdrop-blur-xl transition-all duration-200 sm:items-start`,
+          isDark ? "border-white/20 bg-slate-900/80" : "bg-card",
           isSidebarOpen
-            ? "w-full opacity-95 backdrop-blur-lg sm:w-16"
+            ? "w-full opacity-95 sm:w-16"
             : "w-1 opacity-0 sm:w-16 sm:opacity-95 xl:opacity-95",
         )}
       >

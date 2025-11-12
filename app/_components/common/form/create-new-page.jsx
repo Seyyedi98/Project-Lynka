@@ -118,13 +118,13 @@ const CreateNewPage = ({ allPages }) => {
       {canUserCreatePage() ? (
         <>
           <div className="text-center">
-            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary/10 to-secondary/10">
-              <Sparkles className="h-8 w-8 text-primary" />
+            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20">
+              <Sparkles className="h-8 w-8 text-primary dark:text-amber-400" />
             </div>
-            <h2 className="text-2xl font-bold text-foreground">
+            <h2 className="text-2xl font-bold text-foreground dark:text-white">
               ایجاد صفحه جدید
             </h2>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="mt-2 text-sm text-muted-foreground dark:text-white/70">
               آدرس اختصاصی خود را برای صفحه جدید انتخاب کنید
             </p>
           </div>
@@ -143,10 +143,10 @@ const CreateNewPage = ({ allPages }) => {
                             ? "bg-secondary"
                             : isChecking
                               ? "bg-yellow-500"
-                              : "bg-muted-foreground",
+                              : "bg-muted-foreground dark:bg-white/40",
                       )}
                     />
-                    <span className="ml-2 text-sm font-medium text-muted-foreground">
+                    <span className="ml-2 text-sm font-medium text-muted-foreground dark:text-white/60">
                       Lynka.ir/
                     </span>
                   </div>
@@ -164,7 +164,7 @@ const CreateNewPage = ({ allPages }) => {
                                 e.preventDefault();
                               }
                             }}
-                            className="h-12 rounded-xl border-2 bg-card pl-[87px] text-sm font-medium text-foreground transition-all duration-200 focus:border-primary focus:ring-0"
+                            className="h-12 rounded-xl border-2 bg-card pl-[87px] text-sm font-medium text-foreground transition-all duration-200 focus:border-primary focus:ring-0 dark:border-white/20 dark:bg-white/10 dark:text-white dark:placeholder:text-white/40 dark:focus:border-amber-400"
                           />
                         </FormControl>
                       </FormItem>
@@ -174,17 +174,17 @@ const CreateNewPage = ({ allPages }) => {
 
                 <div dir="rtl" className="flex h-6 items-center">
                   {isChecking && (
-                    <p className="flex items-center text-right text-xs text-yellow-500">
+                    <p className="flex items-center text-right text-xs text-yellow-500 dark:text-yellow-400">
                       <span className="animate-pulse">در حال بررسی...</span>
                     </p>
                   )}
                   {error && !isChecking && (
-                    <p className="flex w-full items-center text-right text-xs text-destructive">
+                    <p className="flex w-full items-center text-right text-xs text-destructive dark:text-red-400">
                       <span>🚫 {error}</span>
                     </p>
                   )}
                   {success && !isChecking && (
-                    <p className="flex w-full items-center text-xs text-secondary">
+                    <p className="flex w-full items-center text-xs text-secondary dark:text-green-400">
                       <span>✅ {success}</span>
                     </p>
                   )}
@@ -194,7 +194,7 @@ const CreateNewPage = ({ allPages }) => {
                   dir="rtl"
                   type="submit"
                   disabled={!isAvailable || isPending || isChecking}
-                  className="flex h-12 items-center justify-center gap-1 rounded-xl bg-gradient-to-r from-primary to-secondary text-sm font-medium text-primary-foreground shadow-lg transition-all duration-200 hover:from-primary-hover hover:to-secondary hover:shadow-primary/20 disabled:opacity-50 disabled:shadow-none"
+                  className="flex h-12 items-center justify-center gap-1 rounded-xl bg-gradient-to-r from-primary to-secondary text-sm font-medium text-primary-foreground shadow-lg transition-all duration-200 hover:from-primary-hover hover:to-secondary hover:shadow-primary/20 disabled:opacity-50 disabled:shadow-none dark:from-amber-500 dark:to-orange-500 dark:hover:from-amber-600 dark:hover:to-orange-600"
                 >
                   {isPending ? (
                     <span className="flex items-center gap-2">
@@ -231,7 +231,7 @@ const CreateNewPage = ({ allPages }) => {
             </form>
           </Form>
 
-          <div className="text-center text-xs text-muted-foreground">
+          <div className="text-center text-xs text-muted-foreground dark:text-white/60">
             <p className="flex items-center justify-center gap-1">
               <span>🔤</span> فقط از حروف انگلیسی، اعداد و خط تیره استفاده کنید
             </p>
@@ -242,15 +242,15 @@ const CreateNewPage = ({ allPages }) => {
         </>
       ) : (
         <div className="text-center">
-          <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary/10 to-secondary/10">
-            <Lock className="h-8 w-8 text-primary" />
+          <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20">
+            <Lock className="h-8 w-8 text-primary dark:text-amber-400" />
           </div>
-          <h2 className="mt-4 text-2xl font-bold text-foreground">
+          <h2 className="mt-4 text-2xl font-bold text-foreground dark:text-white">
             {isPremium
               ? "به سقف ساخت صفحات در اشتراک ویژه رسیده‌اید"
               : "با توجه به طرح رایگان شما، امکان ساخت بیش از یک صفحه وجود ندارد."}
           </h2>
-          <p className="mt-4 text-base leading-6 text-muted-foreground">
+          <p className="mt-4 text-base leading-6 text-muted-foreground dark:text-white/70">
             {isPremium
               ? "سطح کاربری ویژه به شما اجازه ساخت حداکثر ۳ صفحه را می‌دهد. برای افزودن صفحه‌ی جدید، باید یکی از صفحات موجود را حذف کنید."
               : "برای دسترسی به امکان ساخت صفحات بیشتر، می‌ توانید حساب خود را ارتقا دهید."}
@@ -258,7 +258,7 @@ const CreateNewPage = ({ allPages }) => {
           {!isPremium && (
             <Button
               onClick={() => redirect("/dashboard/pricing")}
-              className="mt-4 bg-gradient-to-r from-primary to-secondary"
+              className="mt-4 bg-gradient-to-r from-primary to-secondary dark:from-amber-500 dark:to-orange-500 dark:hover:from-amber-600 dark:hover:to-orange-600"
             >
               خرید اشتراک ویژه
             </Button>
