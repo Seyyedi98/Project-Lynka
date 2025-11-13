@@ -195,6 +195,7 @@ export async function UpdatePageContent(uri, jsonContent) {
     },
     data: {
       content: jsonContent,
+      showedPublishMessage: true,
     },
   });
 

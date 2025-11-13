@@ -72,6 +72,10 @@ const PageBuilder = ({ page }) => {
           metaImage: page.metaImage,
           favicon: page.favicon,
         },
+        messages: {
+          tutorialCompleted: page.tutorialCompleted,
+          showedPublishMessage: page.showedPublishMessage,
+        },
       };
 
       dispatch({ type: "page/setInitialState", payload: newState });
@@ -90,9 +94,9 @@ const PageBuilder = ({ page }) => {
       </div>
     );
 
-    return (
+  return (
     <DndContext sensors={sensors}>
-      <BuilderWorkspace  />
+      <BuilderWorkspace />
       <DragOverlyWrapper />
     </DndContext>
   );

@@ -17,7 +17,7 @@ const PageMetaSettings = () => {
   const tabs = [
     {
       id: "metaTitle",
-      label: "عنوان",
+      label: "مرورگر",
       icon: <Text className="h-4 w-4" />,
       component: (
         <MetaTitleForm
@@ -29,7 +29,7 @@ const PageMetaSettings = () => {
     },
     {
       id: "metaImage",
-      label: "تصویر",
+      label: "شبکه اجتماعی",
       icon: <ImageIcon className="h-4 w-4" />,
       component: (
         <MetaImageForm
@@ -56,7 +56,7 @@ const PageMetaSettings = () => {
             <Button
               key={tab.id}
               variant={activeTab === tab.id ? "default" : "ghost"}
-              className={`flex shrink-0 items-center gap-2 rounded-[--radius] ${
+              className={`flex shrink-0 items-center gap-0 rounded-[--radius] ${
                 activeTab === tab.id
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:bg-accent"

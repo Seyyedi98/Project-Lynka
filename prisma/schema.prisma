@@ -113,20 +113,22 @@ model OtpToken {
 }
 
 model Page {
-  uri             String   @unique
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  owner           String?
-  loadingIcon     String?
-  metaTitle       String?
-  metaDescription String?  @db.VarChar(300)
-  favicon         String?  @db.VarChar(300)
-  metaImage       String?  @db.VarChar(300)
-  content         String   @db.MediumText
-  views           Int      @default(0)
-  isPremium       Boolean  @default(false)
-  theme           String?  @db.Text
-  googleIndexed   Boolean  @default(false)
+  uri                  String   @unique
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  owner                String?
+  loadingIcon          String?
+  metaTitle            String?
+  metaDescription      String?  @db.VarChar(300)
+  favicon              String?  @db.VarChar(300)
+  metaImage            String?  @db.VarChar(300)
+  content              String   @db.MediumText
+  views                Int      @default(0)
+  isPremium            Boolean  @default(false)
+  theme                String?  @db.Text
+  googleIndexed        Boolean  @default(false)
+  tutorialCompleted    Boolean  @default(false)
+  showedPublishMessage Boolean  @default(false)
 
   User User? @relation(fields: [owner], references: [id], onDelete: Cascade)
 

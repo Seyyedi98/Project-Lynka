@@ -44,6 +44,7 @@ const BuilderWorkspace = () => {
   const isAnyMenuOpen = useSelector(selectIsAnyMenuOpen);
   const [isPremium, setIsPremium] = useState();
   const [isbuyPremiumModalOpen, setBuyPremiumModalOpen] = useState();
+  const [showIsPublishModal, setShowIsPublishModal] = useState(true);
 
   useEffect(() => {
     const checkPremiumUser = async () => {
@@ -54,11 +55,12 @@ const BuilderWorkspace = () => {
     checkPremiumUser();
   }, []);
 
-  const { hero, theme, elements } = useSelector(
+  const { hero, theme, elements, messages } = useSelector(
     (state) => ({
       hero: state.page.hero,
       theme: state.page.theme,
       elements: state.page.elements,
+      messages: state.page.messages,
       modalStates: state.modal.modalStates,
     }),
     shallowEqual,
@@ -237,7 +239,11 @@ const BuilderWorkspace = () => {
               </BackButtonWithConfirmation>
 
               {/* Page Save Button */}
-              <SavePageBtn>
+              <SavePageBtn
+                showIsPublishModal={showIsPublishModal}
+                setShowIsPublishModal={setShowIsPublishModal}
+                showPublishModal={!messages.showedPublishMessage}
+              >
                 <div className="flex h-10 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-20 px-4 text-sm">
                   <span className="text-white">ذخیره</span>
                 </div>
