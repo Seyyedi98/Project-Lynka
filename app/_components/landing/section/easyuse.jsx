@@ -37,8 +37,8 @@ const features = [
 ];
 
 const images = [
-  "https://arklight.storage.c2.liara.space/preview/preview-dnd.webp",
   "https://arklight.storage.c2.liara.space/preview/editor.webp",
+  "https://arklight.storage.c2.liara.space/preview/preview-dnd.webp",
   "https://arklight.storage.c2.liara.space/preview/themes.webp",
 ];
 

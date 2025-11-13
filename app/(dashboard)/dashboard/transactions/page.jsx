@@ -122,8 +122,12 @@ export default function TransactionsPage() {
         animate={{ opacity: 1, y: 0 }}
         className="mb-8 sm:mx-4 sm:mr-20 xl:pr-6"
       >
-        <h1 className="text-3xl font-bold text-white">تاریخچه تراکنش‌ها</h1>
-        <p className="mt-4 text-white">لیست تمام تراکنش‌های انجام شده</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          تاریخچه تراکنش‌ها
+        </h1>
+        <p className="mt-4 text-gray-600 dark:text-white/80">
+          لیست تمام تراکنش‌های انجام شده
+        </p>
       </motion.div>
 
       <motion.div
@@ -132,16 +136,16 @@ export default function TransactionsPage() {
         transition={{ delay: 0.1 }}
         className="sm:mx-4 sm:mr-20 xl:pr-6"
       >
-        <div className="rounded-lg border border-border bg-background p-3 shadow-sm">
+        <div className="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-white/20 dark:bg-white/10 dark:backdrop-blur-xl">
           <Table dir="rtl">
-            <TableHeader className="text-textLight text-sm font-semibold">
-              <TableRow>
+            <TableHeader className="text-sm font-semibold text-gray-900 dark:bg-white/10 dark:text-white">
+              <TableRow className="dark:border-white/20">
                 <TableHead className="min-w-[50px] text-center">ردیف</TableHead>
                 <TableHead className="min-w-[100px] text-center">
                   مبلغ
                 </TableHead>
                 <TableHead className="min-w-[100px] text-center">
-                  وضعیت
+                  شماره سفارش
                 </TableHead>
                 <TableHead className="min-w-[150px] text-center">
                   تاریخ درخواست
@@ -149,26 +153,32 @@ export default function TransactionsPage() {
                 <TableHead className="min-w-[150px] text-center">
                   تاریخ تکمیل
                 </TableHead>
+                <TableHead className="min-w-[150px] text-center">
+                  وضعیت
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {loading ? (
                 Array.from({ length: 5 }).map((_, index) => (
-                  <TableRow key={index} className="hover:bg-background/70">
+                  <TableRow
+                    key={index}
+                    className="hover:bg-gray-50 dark:border-white/20 dark:hover:bg-white/10"
+                  >
                     <TableCell className="text-center">
-                      <div className="mx-auto h-6 w-6 animate-pulse rounded bg-gray-200"></div>
+                      <div className="mx-auto h-6 w-6 animate-pulse rounded bg-gray-200 dark:bg-white/20"></div>
                     </TableCell>
                     <TableCell className="text-center">
-                      <div className="mx-auto h-6 w-20 animate-pulse rounded bg-gray-200"></div>
+                      <div className="mx-auto h-6 w-20 animate-pulse rounded bg-gray-200 dark:bg-white/20"></div>
                     </TableCell>
                     <TableCell className="text-center">
-                      <div className="mx-auto h-6 w-24 animate-pulse rounded bg-gray-200"></div>
+                      <div className="mx-auto h-6 w-24 animate-pulse rounded bg-gray-200 dark:bg-white/20"></div>
                     </TableCell>
                     <TableCell className="text-center">
-                      <div className="mx-auto h-6 w-32 animate-pulse rounded bg-gray-200"></div>
+                      <div className="mx-auto h-6 w-32 animate-pulse rounded bg-gray-200 dark:bg-white/20"></div>
                     </TableCell>
                     <TableCell className="text-center">
-                      <div className="mx-auto h-6 w-32 animate-pulse rounded bg-gray-200"></div>
+                      <div className="mx-auto h-6 w-32 animate-pulse rounded bg-gray-200 dark:bg-white/20"></div>
                     </TableCell>
                   </TableRow>
                 ))
@@ -177,8 +187,12 @@ export default function TransactionsPage() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
+                  className="dark:border-white/20"
                 >
-                  <TableCell colSpan={5} className="h-24 text-center">
+                  <TableCell
+                    colSpan={5}
+                    className="h-24 text-center text-gray-500 dark:text-white/60"
+                  >
                     تراکنشی یافت نشد
                   </TableCell>
                 </motion.tr>
@@ -189,15 +203,21 @@ export default function TransactionsPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
+                    className="hover:bg-gray-50 dark:border-white/20 dark:hover:bg-white/10"
                   >
-                    <TableCell className="text-center">{index + 1}</TableCell>
-                    <TableCell className="text-center">
+                    <TableCell className="text-center text-gray-900 dark:text-white">
+                      {index + 1}
+                    </TableCell>
+                    <TableCell className="text-center text-gray-900 dark:text-white">
                       {transaction.amount.toLocaleString("fa-IR")} تومان
                     </TableCell>
                     <TableCell className="text-center">
+                      {transaction.trackId}
+                    </TableCell>
+                    <TableCell className="text-center text-gray-700 dark:text-white/80">
                       {toPersianDate(transaction.requestDate)}
                     </TableCell>
-                    <TableCell className="text-center">
+                    <TableCell className="text-center text-gray-700 dark:text-white/80">
                       {transaction.paidAt
                         ? toPersianDate(transaction.paidAt)
                         : "-"}

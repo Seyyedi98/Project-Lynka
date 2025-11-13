@@ -9,7 +9,7 @@ import { BadgeCheck, ChartSpline, SheetIcon, TrophyIcon } from "lucide-react";
 import Link from "next/link";
 
 const Dashboard = async () => {
-  updateSubscriptionData({ subscriptionPlan: "silver", days: 30 });
+  // updateSubscriptionData({ subscriptionPlan: "silver", days: 30 });
   const allPages = await getUserPageData();
   const { subscriptionPlan, subscriptionDaysLeft } =
     await currentUserSubscription();
