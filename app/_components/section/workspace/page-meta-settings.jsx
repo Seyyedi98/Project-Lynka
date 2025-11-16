@@ -4,10 +4,11 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
-import { Text, Image as ImageIcon, Search } from "lucide-react";
+import { Text, Image as ImageIcon, Search, HelpCircle } from "lucide-react";
 import MetaTitleForm from "../../common/form/meta-title-form";
 import MetaImageForm from "../../common/form/meta-image-form";
 import GoogleIndexForm from "../../common/form/google-index-form";
+import HelpButton from "../../common/button/help";
 
 const PageMetaSettings = () => {
   const metadata = useSelector((store) => store.page.metadata);
@@ -69,6 +70,10 @@ const PageMetaSettings = () => {
           ))}
         </div>
       </div>
+
+      <HelpButton
+        href={`${process.env.NEXT_PUBLIC_APP_URL}/blog/cmi1yqrmm0001ljkklf1g1w1s`}
+      />
 
       {/* Active Tab Content */}
       <div className="w-full max-w-md">

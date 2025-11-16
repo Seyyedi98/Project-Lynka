@@ -62,7 +62,7 @@ const Login = () => {
         </div>
 
         <div className="mt-8 w-full max-w-md px-4">
-          {/* {selectedTab === "email" && <CredentialsLoginForm />} */}
+          {selectedTab === "email" && <CredentialsLoginForm />}
           {selectedTab === "mobile" && <MobileLoginForm />}
           <div className="mt-4">
             <Social />

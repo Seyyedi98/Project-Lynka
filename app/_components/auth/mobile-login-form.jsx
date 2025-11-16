@@ -119,14 +119,14 @@ export const MobileLoginForm = () => {
                     </InputOTP>
                   </FormControl>
                   <FormDescription>
-                    <div class="text-center">
-                      <span class="text-lg font-semibold">
+                    <div className="text-center">
+                      <span className="text-lg font-semibold">
                         کد تایید را وارد کنید
                       </span>
-                      <p class="mt-2 text-sm">
+                      <p className="mt-2 text-sm">
                         کد یکبار مصرف برای شماره شما ارسال شد
                       </p>
-                      <p class="mt-1 text-xs text-amber-500">
+                      <p className="mt-1 text-xs text-amber-500">
                         (کیبورد خود را روی حالت انگلیسی قرار دهید)
                       </p>
                     </div>

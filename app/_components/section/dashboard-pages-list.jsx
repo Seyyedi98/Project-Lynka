@@ -23,6 +23,7 @@ import PageQrCodeGenerator from "./workspace/page-qrcode-generator";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
+import HelpButton from "../common/button/help";
 
 const PagesList = ({ pages, onShowQr }) => {
   const [openQrModal, setOpenQrModal] = useState(false);
@@ -44,11 +45,17 @@ const PagesList = ({ pages, onShowQr }) => {
         <LayoutTemplate
           className={`h-8 w-8 ${isDark ? "text-white/80" : "text-icon-light"}`}
         />
-        <h2
-          className={`text-lg font-bold ${isDark ? "text-white" : "text-text"}`}
-        >
-          صفحات ایجاد شده
-        </h2>
+        <div className="flex w-full items-center justify-between">
+          <h2
+            className={`text-lg font-bold ${isDark ? "text-white" : "text-text"}`}
+          >
+            صفحات ایجاد شده
+          </h2>
+
+          <HelpButton
+            href={`${process.env.NEXT_PUBLIC_APP_URL}/blog/cmi1yp4xo0000ljkktc9ur5a0`}
+          />
+        </div>
       </div>
 
       {pages.length > 0 ? (
