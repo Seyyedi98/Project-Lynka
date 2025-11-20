@@ -9,29 +9,25 @@ import { useCallback, useEffect, useState } from "react";
 import ChevronButton from "./button/NavigationButton/chevron-button";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 const Carousel = ({ showArrows }) => {
+  const { theme, resolvedTheme } = useTheme();
+  const currentTheme = resolvedTheme || theme;
+  const isDark = currentTheme === "dark";
+
   const data = [
     {
-      image:
-        "https://arklight.storage.c2.liara.space/Road%20to%20Sa%20Calobra%2C%20Majorca%2C%20Spain.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=6b96162b-d379-44a7-ae3f-e3cd178bbf19%2F20250308%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250308T042310Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8a8167eeac40b0a5791b7bd6cdbe49903a48235df0510daff5e7e0294f8e9a1a",
-      title: "Road to Sa Calobra",
-      ctaText: "View",
-      ctaLink: "#",
+      image: "https://arklight.storage.c2.liara.space/files/bg_1.webp",
+      title: "ساخت اولین صفحه",
+      ctaText: "مشاهده",
+      ctaLink: `${process.env.NEXT_PUBLIC_WEBSITE_URL}blog/cmi1yp4xo0000ljkktc9ur5a0`,
     },
     {
-      image:
-        "https://arklight.storage.c2.liara.space/lake-7844270_1920.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=6b96162b-d379-44a7-ae3f-e3cd178bbf19%2F20250308%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250308T042318Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c7cdb308c8ada6dd673e5206f272e427bbaa5bebc130c65f07db2490e950f0a4",
-      title: "Lake",
-      ctaText: "View",
-      ctaLink: "#",
-    },
-    {
-      image:
-        "https://arklight.storage.c2.liara.space/manhattan-bridge-271357_1920.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=6b96162b-d379-44a7-ae3f-e3cd178bbf19%2F20250308%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250308T042324Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=af5bfb2f9288ac6722c6867748f04c0a983d6d41a2da039e39a4407ba8d7d9b7",
-      title: "Manhattan Bridge",
-      ctaText: "View",
-      ctaLink: "#",
+      image: "https://arklight.storage.c2.liara.space/files/bg_2.webp",
+      title: "شخصی سازی ظاهر لینک",
+      ctaText: "مشاهده",
+      ctaLink: `${process.env.NEXT_PUBLIC_WEBSITE_URL}blog/cmi1yqrmm0001ljkklf1g1w1s`,
     },
   ];
 
@@ -54,6 +50,13 @@ const Carousel = ({ showArrows }) => {
     };
   }, [handleNextSlide, currentSlide]);
 
+  // Custom button class for dark mode
+  const ctaButtonClass = `flex cursor-pointer items-center justify-center rounded-lg border-none text-white no-underline shadow-sm transition-colors duration-200 ${
+    isDark
+      ? "bg-white/20 backdrop-blur-xl hover:bg-white/30 active:bg-white/40"
+      : "bg-blue-500 hover:bg-blue-600 active:bg-blue-700"
+  } h-10 px-6 rounded-full`;
+
   return (
     <div className="relative flex h-60 w-full items-center justify-center bg-black xl:h-80">
       {/* Slider Controllers */}
@@ -69,33 +72,37 @@ const Carousel = ({ showArrows }) => {
         </div>
       )}
 
-      {/* <AnimatePresence> */}
       <AnimatePresence mode="wait">
         {/* Slider Content */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          key={`content-${currentSlide}`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="z-10 flex h-fit w-fit flex-col items-center justify-center"
         >
-          <h3 className="text-3xl text-white">{data[currentSlide].title}</h3>
-          <Button variant="primary_2" size="rounded" className="mt-1">
-            <Link
-              href={data[currentSlide].ctaLink}
-              className="hover:text-white"
-            >
-              {data[currentSlide].ctaText}
+          <h3 className="text-center text-xl text-white md:text-2xl">
+            {data[currentSlide].title}
+          </h3>
+
+          {/* Custom CTA Button */}
+          <div className="mt-4">
+            <Link href={data[currentSlide].ctaLink} className={ctaButtonClass}>
+              <span className={isDark ? "text-white/80" : "text-white"}>
+                {data[currentSlide].ctaText}
+              </span>
             </Link>
-          </Button>
+          </div>
         </motion.div>
 
+        {/* Background Image */}
         <motion.div
-          key={currentSlide}
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.5 }}
+          key={`image-${currentSlide}`}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
           className="absolute h-full w-full"
         >
           <div className="h-full w-full bg-black">
@@ -104,6 +111,7 @@ const Carousel = ({ showArrows }) => {
               className="object-cover brightness-[60%]"
               src={data[currentSlide].image}
               alt="carousel"
+              priority
             />
           </div>
         </motion.div>
@@ -112,14 +120,24 @@ const Carousel = ({ showArrows }) => {
       {/* Slider Dots */}
       <div className="absolute bottom-2 flex gap-2">
         {data.map((image, index) => (
-          <div
+          <motion.div
             key={index}
             className={cn(
-              `relative h-1 w-3 cursor-pointer overflow-hidden rounded-md bg-white/40 transition-all duration-200`,
-              currentSlide === index && "w-8 bg-white",
+              `relative h-1 cursor-pointer overflow-hidden rounded-md bg-white/40 transition-all duration-300`,
+              currentSlide === index ? "w-8 bg-white" : "w-3",
             )}
             onClick={() => setCurrentSlide(index)}
-          ></div>
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {currentSlide === index && (
+              <motion.div
+                className="absolute inset-0 rounded-md bg-white"
+                layoutId="activeDot"
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              />
+            )}
+          </motion.div>
         ))}
       </div>
     </div>

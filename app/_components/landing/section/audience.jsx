@@ -32,7 +32,7 @@ const tabs = [
     id: "everyone",
     number: "۰۴",
     title: "کسب‌وکارهای کوچک",
-    subtitle: "استارتاپ",
+    subtitle: "کسب و کارها",
     gradient: "from-emerald-500 to-teal-400",
   },
 ];
