@@ -216,82 +216,98 @@ const InitialThemeSelector = ({ uri }) => {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="grid grid-cols-1 place-items-center gap-6 p-6 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-          {currentThemes().map((theme) => {
-            const isPremiumLocked = theme.isPremium && !isPremium;
+      {/* Main Content Area with Fixed Pagination */}
+      <div className="flex flex-1 flex-col overflow-hidden">
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="grid grid-cols-1 place-items-center gap-6 p-6 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+            {currentThemes().map((theme) => {
+              const isPremiumLocked = theme.isPremium && !isPremium;
 
-            return (
-              <div
-                className={cn(
-                  "group relative h-full w-full overflow-hidden rounded-lg transition-all",
-                  isPremiumLocked
-                    ? "cursor-not-allowed opacity-60"
-                    : "cursor-pointer hover:shadow-md",
-                )}
-                onClick={() => !isPremiumLocked && handleThemeClick(theme)}
-                key={theme.name}
-              >
-                <div className="relative aspect-[3/5] w-full sm:aspect-[3/5]">
-                  {loadingImages[theme.name] && (
-                    <div className="absolute inset-0 animate-pulse bg-muted"></div>
+              return (
+                <div
+                  className={cn(
+                    "group relative h-full w-full overflow-hidden rounded-lg transition-all",
+                    isPremiumLocked
+                      ? "cursor-not-allowed opacity-60"
+                      : "cursor-pointer hover:shadow-md",
                   )}
-                  <ThemePreviewRenderer
-                    theme={theme}
-                    onLoad={() => handleImageLoad(theme.name)}
-                    style={{
-                      display: loadingImages[theme.name] ? "none" : "block",
-                    }}
-                  />
-                  {!loadingImages[theme.name] && (
-                    <>
-                      <div
-                        className={cn(
-                          "absolute inset-0 bg-gradient-to-t from-black/70 to-transparent",
-                          isPremiumLocked ? "opacity-90" : "opacity-80",
-                        )}
-                      ></div>
-                      <div className="absolute bottom-3 left-3 flex flex-col gap-1">
-                        {theme.isPremium && (
-                          <span
-                            className={cn(
-                              "inline-block rounded-full px-1.5 py-0.5 text-[10px]",
-                              isPremiumLocked
-                                ? "bg-gray-500/20 text-gray-400"
-                                : "bg-yellow-500/20 text-yellow-500",
-                            )}
-                          >
-                            {isPremiumLocked ? (
-                              <span className="flex items-center gap-1">
-                                <Crown className="h-3 w-3" />
-                                قفل شده
-                              </span>
-                            ) : (
-                              "پرمیوم"
-                            )}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Premium Lock Overlay */}
-                      {isPremiumLocked && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                          <div className="text-center text-white">
-                            <Crown className="mx-auto mb-2 h-8 w-8 text-yellow-400" />
-                            <p className="px-2 text-xs font-medium">
-                              برای استفاده از این تم نیاز به اشتراک ویژه دارید
-                            </p>
-                          </div>
+                  onClick={() => !isPremiumLocked && handleThemeClick(theme)}
+                  key={theme.name}
+                >
+                  <div className="relative aspect-[3/5] w-full sm:aspect-[3/5]">
+                    {loadingImages[theme.name] && (
+                      <div className="absolute inset-0 animate-pulse bg-muted"></div>
+                    )}
+                    <ThemePreviewRenderer
+                      theme={theme}
+                      onLoad={() => handleImageLoad(theme.name)}
+                      style={{
+                        display: loadingImages[theme.name] ? "none" : "block",
+                      }}
+                    />
+                    {!loadingImages[theme.name] && (
+                      <>
+                        <div
+                          className={cn(
+                            "absolute inset-0 bg-gradient-to-t from-black/70 to-transparent",
+                            isPremiumLocked ? "opacity-90" : "opacity-80",
+                          )}
+                        ></div>
+                        <div className="absolute bottom-3 left-3 flex flex-col gap-1">
+                          {theme.isPremium && (
+                            <span
+                              className={cn(
+                                "inline-block rounded-full px-1.5 py-0.5 text-[10px]",
+                                isPremiumLocked
+                                  ? "bg-gray-500/20 text-gray-400"
+                                  : "bg-yellow-500/20 text-yellow-500",
+                              )}
+                            >
+                              {isPremiumLocked ? (
+                                <span className="flex items-center gap-1">
+                                  <Crown className="h-3 w-3" />
+                                  قفل شده
+                                </span>
+                              ) : (
+                                "پرمیوم"
+                              )}
+                            </span>
+                          )}
                         </div>
-                      )}
-                    </>
-                  )}
+
+                        {/* Premium Lock Overlay */}
+                        {isPremiumLocked && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                            <div className="text-center text-white">
+                              <Crown className="mx-auto mb-2 h-8 w-8 text-yellow-400" />
+                              <p className="px-2 text-xs font-medium">
+                                برای استفاده از این تم نیاز به اشتراک ویژه دارید
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
+
+        {/* Fixed Pagination at Bottom */}
+        {totalPages > 1 && (
+          <div className="sticky bottom-0 z-10 border-t border-border bg-background/95 px-6 py-4 backdrop-blur-sm">
+            <div className="flex justify-center">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            </div>
+          </div>
+        )}
 
         {/* Theme Preview Dialog */}
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
@@ -346,17 +362,6 @@ const InitialThemeSelector = ({ uri }) => {
             </div>
           </DialogContent>
         </Dialog>
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="px-6 pb-8">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          </div>
-        )}
       </div>
     </div>
   );

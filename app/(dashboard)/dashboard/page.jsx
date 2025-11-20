@@ -28,6 +28,28 @@ const Dashboard = async () => {
       </h2>
 
       <main className="grid w-full flex-1 auto-rows-auto grid-cols-2 gap-4 px-2 pt-60 sm:mx-4 sm:mr-20 xl:pr-6">
+        {/* Show if user hasn't created any pages */}
+        {allPages.length === 0 && (
+          <div className="col-span-2 w-full text-center">
+            <div className="mb-4 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 p-4 dark:from-gray-800/50 dark:to-gray-900/50">
+              <h3 className="mb-3 text-xl font-bold text-foreground dark:text-white">
+                شما هنوز صفحه ای ایجاد نکرده اید!
+              </h3>
+
+              <p className="mb-4 text-sm text-muted-foreground dark:text-white/70">
+                برای شروع، اولین صفحه خود را ایجاد کنید
+              </p>
+
+              <CreatePageButton allPages={allPages}>
+                <div className="group relative mx-auto inline-flex cursor-pointer items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-secondary px-6 py-3 text-sm font-medium text-white shadow-lg transition-all duration-200 hover:from-primary-hover hover:to-secondary hover:shadow-primary/25 dark:from-amber-500 dark:to-orange-500 dark:hover:from-amber-600 dark:hover:to-orange-600">
+                  <span>ایجاد صفحه جدید</span>
+                  <div className="absolute inset-0 rounded-xl bg-white/0 transition-all group-hover:bg-white/10" />
+                </div>
+              </CreatePageButton>
+            </div>
+          </div>
+        )}
+
         {/* ImageSlider */}
         <div className="col-span-2 h-60 overflow-hidden rounded-lg md:col-span-1 xl:h-80">
           <Carousel showArrows={true} />

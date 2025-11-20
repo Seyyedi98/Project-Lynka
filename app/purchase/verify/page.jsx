@@ -95,7 +95,7 @@ export default async function PaymentVerify({ searchParams }) {
               href="/dashboard"
               className="rounded-md bg-blue-600 px-4 py-3 text-center text-white transition-colors hover:bg-blue-700"
             >
-              بازگشت به داشبورد
+              ادامه
             </Link>
 
             {(verificationResult?.status !== "completed" ||
