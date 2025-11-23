@@ -4,29 +4,17 @@ import PurchaseForm from "@/app/_components/common/form/purchase-form";
 import { PLANS } from "@/data/prices";
 import Link from "next/link";
 import { startPurchase } from "@/actions/transactions/startPurchase";
+import getSubscriptionPrice from "@/utils/getSubscriptionPrice";
 
 const getPrice = (plan, duration) => {
   const prices = {
     silver: PLANS.find((p) => p.id === "silver"),
   };
 
-  const getPremiumPrice = (basePrice) => {
-    switch (duration) {
-      case "1":
-        return basePrice;
-      case "3":
-        return basePrice * 3 * 0.9;
-      case "6":
-        return basePrice * 6 * 0.85;
-      default:
-        return basePrice * 999999999999;
-    }
-  };
-
   const months = parseInt(duration);
   if (isNaN(months)) throw new Error("مدت زمان معتبر نیست");
   if (!prices[plan]) throw new Error("پلن انتخاب شده معتبر نیست");
-  return getPremiumPrice(prices[plan].price);
+  return getSubscriptionPrice("silver", Number(duration));
 };
 
 export default async function Purchase({ searchParams }) {

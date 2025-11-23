@@ -1,27 +1,17 @@
 "use client";
 
+// For pricing in landing page
+
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Rocket, Check, Star, Crown, Zap, Sparkles } from "lucide-react";
 import Link from "next/link";
+import getSubscriptionPrice from "@/utils/getSubscriptionPrice";
+import getSubscriptionDiscount from "@/utils/getSubscriptionDiscount";
 
 const PricingSection = () => {
   const [selectedDuration, setSelectedDuration] = useState(3);
   const [hoveredPlan, setHoveredPlan] = useState(null);
-
-  const calculatePremiumPrice = (duration) => {
-    const monthlyPrice = 90000;
-    switch (duration) {
-      case 1:
-        return monthlyPrice;
-      case 3:
-        return 240000;
-      case 6:
-        return 390000;
-      default:
-        return monthlyPrice * 3;
-    }
-  };
 
   const pricingPlans = [
     {
@@ -48,7 +38,8 @@ const PricingSection = () => {
     },
     {
       name: "حرفه‌ای",
-      price: calculatePremiumPrice(selectedDuration).toLocaleString("fa-IR"),
+      price: getSubscriptionPrice("silver", selectedDuration),
+      discount: getSubscriptionDiscount("silver", selectedDuration),
       duration: "",
       description: "کامل‌ترین پکیج برای ساخت صفحه شخصی",
       features: [
@@ -96,7 +87,7 @@ const PricingSection = () => {
       <div className="text-center">
         <div className="mb-2 flex items-baseline justify-center gap-1">
           <span className="text-4xl font-bold text-slate-900 dark:text-white">
-            {plan.price}
+            {new Intl.NumberFormat("fa-IR").format(plan.price)}
           </span>
           <span className="text-lg text-slate-500 dark:text-slate-400">
             تومان
@@ -105,18 +96,20 @@ const PricingSection = () => {
         <div className="flex items-center justify-center gap-2">
           {duration > 1 && (
             <span className="rounded-full bg-green-100 px-2 py-1 text-sm text-green-700 dark:bg-green-900/30 dark:text-green-300">
-              {duration === 3 ? "۲۰%" : "۳۰%"} صرفه‌جویی
+              {new Intl.NumberFormat("fa-IR").format(plan.discount)}% صرفه جویی
             </span>
           )}
           <span className="text-sm text-slate-500 dark:text-slate-400">
-            {duration === 1 ? "هر ماه" : `برای ${duration} ماه`}
+            {duration === 1
+              ? "هر ماه"
+              : `برای ${new Intl.NumberFormat("fa-IR").format(duration)} ماه`}
           </span>
         </div>
       </div>
     );
   };
 
-  // Reorder plans for mobile - premium first
+  // Premium box first
   const getOrderedPlans = () => {
     const premiumPlan = pricingPlans.find((plan) => plan.popular);
     const freePlan = pricingPlans.find((plan) => !plan.popular);

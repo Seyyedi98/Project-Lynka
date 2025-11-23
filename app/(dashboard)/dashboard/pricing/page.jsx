@@ -10,30 +10,16 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { PLANS } from "@/data/prices";
+import getSubscriptionDiscount from "@/utils/getSubscriptionDiscount";
+import getSubscriptionPrice from "@/utils/getSubscriptionPrice";
 import { motion } from "framer-motion";
-import { Check, Crown, Gem, Rocket, Zap } from "lucide-react";
+import { Check, Gem, Rocket, Zap } from "lucide-react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { useState } from "react";
 
 export default function Pricing() {
   const [selectedDuration, setSelectedDuration] = useState(3); // Default to 3 months
-  const [isPurchasing, setIsPurchasing] = useState(false);
   const premiumPlan = PLANS.find((p) => p.id === "silver");
-
-  const getPremiumPrice = () => {
-    const monthlyPrice = 90000;
-    switch (selectedDuration) {
-      case 1:
-        return monthlyPrice;
-      case 3:
-        return 240000; // 20% deiscount
-      case 6:
-        return 390000; // 30% deiscount
-      default:
-        return monthlyPrice * 3;
-    }
-  };
 
   const features = [
     { name: "تعداد صفحات", free: "۱ صفحه", premium: "۳ صفحه" },
@@ -148,12 +134,17 @@ export default function Pricing() {
           {/* Price Display */}
           <div className="my-2 flex items-baseline gap-2">
             <span className="text-4xl font-bold text-gray-900 dark:text-white">
-              {getPremiumPrice().toLocaleString("fa-IR")}
+              {new Intl.NumberFormat("fa-IR").format(
+                getSubscriptionPrice("silver", selectedDuration),
+              )}
             </span>
             <span className="text-gray-500 dark:text-gray-400">تومان</span>
             {selectedDuration > 1 && (
               <span className="mr-auto rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700 dark:bg-green-900/30 dark:text-green-300">
-                {selectedDuration === 3 ? "۱۰%" : "۱۵%"} تخفیف
+                {new Intl.NumberFormat("fa-IR").format(
+                  getSubscriptionDiscount("silver", selectedDuration),
+                )}
+                ٪ ارزان تر
               </span>
             )}
           </div>
