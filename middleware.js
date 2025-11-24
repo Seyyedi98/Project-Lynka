@@ -26,6 +26,11 @@ export default auth((req) => {
   // Allow blog routes (/blog and /blog/[id])
   const isBlogRoute = nextUrl.pathname.startsWith("/blog");
 
+  // Exclude specific API routes from authentication
+  const isPublicApiRoute = nextUrl.pathname.startsWith(
+    "/api/subscriptionExpireAlert",
+  );
+
   // Ensure (page)/[uri] only renders when no other specific routes match
   const isDynamicRoute =
     (/^\/[a-zA-Z0-9_-]+$/.test(nextUrl.pathname) && !isExcludedRoute) ||
@@ -35,7 +40,7 @@ export default auth((req) => {
     return null; // Allow (page)/[uri] when it's the only match
   }
 
-  if (isApiAuthRoute) {
+  if (isApiAuthRoute || isPublicApiRoute) {
     return null;
   }
 

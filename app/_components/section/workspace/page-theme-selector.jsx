@@ -126,7 +126,7 @@ const PageThemeSelector = () => {
             تم صفحه را تغییر دهید
           </DialogTitle>
           <DialogDescription className="px-10 text-sm text-muted-foreground">
-            برای تنظیم استایل کلی صفحه، یکی از تم‌های زیر را انتخاب کنید.
+            برای تنظیم تم صفحه، یکی از تم‌های زیر را انتخاب کنید.
           </DialogDescription>
 
           <ThemesList

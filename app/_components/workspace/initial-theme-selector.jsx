@@ -236,6 +236,16 @@ const InitialThemeSelector = ({ uri }) => {
                   key={theme.name}
                 >
                   <div className="relative aspect-[3/5] w-full sm:aspect-[3/5]">
+                    {isPremiumLocked && (
+                      <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/60 p-4">
+                        <Crown className="mb-2 h-8 w-8 text-yellow-400" />
+                        <p className="text-center text-sm font-medium text-white">
+                          برای انتخاب این تم
+                          <br />
+                          نیاز به اشتراک ویژه دارید
+                        </p>
+                      </div>
+                    )}
                     {loadingImages[theme.name] && (
                       <div className="absolute inset-0 animate-pulse bg-muted"></div>
                     )}

@@ -86,7 +86,7 @@ export const Pagination = ({
         )}
         aria-label="صفحه قبلی"
       >
-        <ChevronLeft className="h-4 w-4" />
+        <ChevronRight className="h-4 w-4" />
       </button>
 
       {/* Page Numbers */}
@@ -130,7 +130,7 @@ export const Pagination = ({
         )}
         aria-label="صفحه بعدی"
       >
-        <ChevronRight className="h-4 w-4" />
+        <ChevronLeft className="h-4 w-4" />
       </button>
     </div>
   );
