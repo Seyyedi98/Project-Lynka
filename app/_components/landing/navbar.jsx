@@ -186,7 +186,7 @@ export default function LandingPageNavbar() {
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               className="mobile-menu-container fixed left-0 top-0 z-40 h-screen w-full bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 pt-24 backdrop-blur-xl"
             >
-              <div className="flex h-full flex-col items-center justify-between pb-20">
+              <div className="flex h-full flex-col items-center">
                 {/* Navigation Items */}
                 <div className="flex w-full flex-col items-center gap-4 px-6">
                   {navItems.map((item, index) => (
@@ -214,7 +214,7 @@ export default function LandingPageNavbar() {
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.4 }}
-                  className="w-full px-6"
+                  className="w-full px-6 pt-4"
                 >
                   {session.status !== "unauthenticated" ? (
                     <Link

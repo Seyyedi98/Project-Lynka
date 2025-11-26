@@ -243,17 +243,18 @@ const ElementScheduleFormField = ({
         render={({ field }) => (
           <FormItem className="flex flex-col gap-2 rounded-xl border px-4 py-3 shadow-sm dark:border-gray-700 dark:bg-gray-800">
             <div className="flex items-center justify-between">
-              <div className="flex flex-col gap-1">
-                <Label
-                  className="flex items-center gap-2 text-sm font-medium dark:text-white"
-                  htmlFor="schedule-toggle"
-                >
-                  <Clock className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-                  زمان‌بندی نمایش بلوک
-                </Label>
-                <p className="text-xs text-muted-foreground dark:text-gray-400">
-                  نمایش بلوک فقط در ساعات مشخص‌شده از روز فعال خواهد بود.
-                </p>
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
+                  <Clock className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div className="flex-1">
+                  <Label className="text-lg font-semibold text-gray-900 dark:text-white">
+                    زمان‌بندی نمایش بلوک
+                  </Label>
+                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    نمایش بلوک فقط در ساعات مشخص‌ شده از روز فعال خواهد بود.
+                  </p>
+                </div>
               </div>
               <FormControl>
                 <Toggle
