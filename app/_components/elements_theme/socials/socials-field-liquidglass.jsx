@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 import socialPlatforms from "@/data/social-platforms";
 import { motion } from "framer-motion";
 
-const SocialsFieldGlitch = (props) => {
-  const { socials, borderRadius, isLive } = props;
+const SocialsFieldLiquidGlass = (props) => {
+  const { socials, isLive, borderRadius } = props;
 
   const handleSocialClick = (platform, userId) => {
     if (!userId || !isLive) return;
@@ -24,79 +24,16 @@ const SocialsFieldGlitch = (props) => {
     }
   };
 
-  // Improved row splitting logic
-  const getSocialRows = () => {
-    if (!socials?.length) return [];
-
-    const maxPerRow = 5;
-    if (socials.length <= maxPerRow) {
-      return [socials];
-    }
-
-    // Split into roughly equal rows
-    const middleIndex = Math.ceil(socials.length / 2);
-    return [socials.slice(0, middleIndex), socials.slice(middleIndex)];
-  };
-
-  const socialRows = getSocialRows();
+  const hasMultipleLines = socials?.length > 5;
+  const firstRowSocials = hasMultipleLines
+    ? socials.slice(0, Math.ceil(socials.length / 2))
+    : socials;
+  const secondRowSocials = hasMultipleLines
+    ? socials.slice(Math.ceil(socials.length / 2))
+    : [];
 
   return (
     <div className="my-2 flex w-full justify-center">
-      <style>
-        {`
-        .social-glitch {
-          position: relative;
-          background: linear-gradient(45deg, #f0f0f0 0%, #ffffff 100%);
-          border: 2px solid #e0e0e0;
-          box-shadow: 0 4px 6px rgba(0,0,0,0.1), 
-                      0 0 0 2px #00e6f6,
-                      0 0 0 4px #ffffff;
-        }
-        
-        .social-glitch::after {
-          --slice-0: inset(50% 50% 50% 50%);
-          --slice-1: inset(80% -6px 0 0);
-          --slice-2: inset(50% -6px 30% 0);
-          --slice-3: inset(10% -6px 85% 0);
-          --slice-4: inset(40% -6px 43% 0);
-          --slice-5: inset(80% -6px 5% 0);
-          content: "";
-          display: block;
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(45deg, 
-            rgba(255,255,255,0.8) 0%, 
-            rgba(0,230,246,0.4) 50%, 
-            rgba(255,255,255,0.8) 100%);
-          clip-path: var(--slice-0);
-          opacity: 0;
-        }
-        
-        .social-glitch:hover::after {
-          animation: 0.8s glitch;
-          animation-timing-function: steps(2, end);
-          opacity: 0.8;
-        }
-        
-        @keyframes glitch {
-          0% { clip-path: var(--slice-1); transform: translate(-5px, -5px); }
-          10% { clip-path: var(--slice-3); transform: translate(5px, 5px); }
-          20% { clip-path: var(--slice-1); transform: translate(-5px, 5px); }
-          30% { clip-path: var(--slice-3); transform: translate(0px, 5px); }
-          40% { clip-path: var(--slice-2); transform: translate(-5px, 0px); }
-          50% { clip-path: var(--slice-3); transform: translate(5px, 0px); }
-          60% { clip-path: var(--slice-4); transform: translate(5px, 5px); }
-          70% { clip-path: var(--slice-2); transform: translate(-5px, 5px); }
-          80% { clip-path: var(--slice-5); transform: translate(5px, -5px); }
-          90% { clip-path: var(--slice-1); transform: translate(-5px, 0px); }
-          100% { clip-path: var(--slice-1); transform: translate(0); }
-        }
-        `}
-      </style>
-
       <div
         style={{
           borderRadius: borderRadius,
@@ -150,15 +87,54 @@ const SocialsFieldGlitch = (props) => {
         ) : (
           <motion.div
             layout
-            className="flex w-full flex-col items-center justify-center gap-4"
+            className="flex w-full flex-col items-center justify-center gap-2"
           >
-            {/* Render each row */}
-            {socialRows.map((rowSocials, rowIndex) => (
-              <div
-                key={rowIndex}
-                className="flex items-center justify-center gap-4"
-              >
-                {rowSocials.map((social, index) => {
+            {/* First Row */}
+            <div className="flex items-center justify-center gap-1">
+              {firstRowSocials.map((social, index) => {
+                const platform = socialPlatforms.find(
+                  (p) => p.value === social.platform,
+                );
+                if (!platform) return null;
+
+                return (
+                  <motion.button
+                    key={`${social.platform}-${index}`}
+                    whileHover={{
+                      scale: 1.2,
+                      y: -10,
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() =>
+                      handleSocialClick(social.platform, social.userId)
+                    }
+                    disabled={!social.userId}
+                    className={cn(
+                      "rounded-2xl p-2 transition-all duration-300 ease-out",
+                      "focus:outline-none",
+                      !social.userId && "opacity-40 grayscale",
+                    )}
+                    style={{
+                      color: platform.background,
+                    }}
+                  >
+                    <div
+                      className="rounded-full bg-white/90 p-3 shadow-sm"
+                      style={{
+                        backdropFilter: "blur(10px)",
+                      }}
+                    >
+                      <span className="text-2xl">{platform.icon}</span>
+                    </div>
+                  </motion.button>
+                );
+              })}
+            </div>
+
+            {/* Second Row (only if more than 5 socials) */}
+            {hasMultipleLines && (
+              <div className="flex items-center justify-center gap-1">
+                {secondRowSocials.map((social, index) => {
                   const platform = socialPlatforms.find(
                     (p) => p.value === social.platform,
                   );
@@ -166,29 +142,38 @@ const SocialsFieldGlitch = (props) => {
 
                   return (
                     <motion.button
-                      key={`${social.platform}-${rowIndex}-${index}`}
+                      key={`${social.platform}-${index + firstRowSocials.length}`}
                       whileHover={{
-                        scale: 1.15,
-                        y: -5,
+                        scale: 1.2,
+                        y: -10,
                       }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() =>
                         handleSocialClick(social.platform, social.userId)
                       }
+                      disabled={!social.userId}
                       className={cn(
-                        "social-glitch relative flex h-14 w-14 items-center justify-center rounded-lg p-2 transition-all duration-300",
-                        !social.userId && "pointer-events-none opacity-50",
+                        "rounded-2xl p-2 transition-all duration-300 ease-out",
+                        "focus:outline-none",
+                        !social.userId && "opacity-40 grayscale",
                       )}
                       style={{
                         color: platform.background,
                       }}
                     >
-                      <span className="text-2xl">{platform.icon}</span>
+                      <div
+                        className="rounded-full bg-white/90 p-3 shadow-sm"
+                        style={{
+                          backdropFilter: "blur(10px)",
+                        }}
+                      >
+                        <span className="text-2xl">{platform.icon}</span>
+                      </div>
                     </motion.button>
                   );
                 })}
               </div>
-            ))}
+            )}
           </motion.div>
         )}
 
@@ -240,4 +225,4 @@ const SocialsFieldGlitch = (props) => {
   );
 };
 
-export default SocialsFieldGlitch;
+export default SocialsFieldLiquidGlass;

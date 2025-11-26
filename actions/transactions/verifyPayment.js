@@ -4,6 +4,7 @@ import { currentUser } from "@/lib/auth/get-user";
 import prisma from "@/lib/client";
 import { updateSubscriptionData } from "../subscription";
 import { getUserContactInfo } from "../user/userData";
+import SendSms from "@/lib/sms";
 
 export async function verifyPayment(orderId, trackId, refNumber, cardNumber) {
   const user = await currentUser();

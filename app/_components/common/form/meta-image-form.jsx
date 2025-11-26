@@ -21,6 +21,7 @@ import toast from "react-hot-toast";
 import Image from "next/image";
 import getImageAddress from "@/utils/get-image-address";
 import dynamic from "next/dynamic";
+import { MdDangerous } from "react-icons/md";
 
 // Dynamic imports for better performance
 const MetaImageUploader = dynamic(
@@ -96,22 +97,36 @@ const MetaDescriptionForm = ({ uri, description, image }) => {
               داده خواهد شد
             </p>
 
-            <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-3">
-              <svg
-                className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-600"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <p className="text-sm text-amber-800">
-                برای نمایش مطلوب در شبکه‌های اجتماعی، حتماً یک تصویر جذاب نیز
-                اضافه کنید
-              </p>
+            <div className="space-y-3">
+              {/* Box 1 */}
+              <div className="flex items-start gap-3 rounded-xl border border-slate-300 bg-slate-50 p-4 shadow-sm">
+                <p className="text-sm leading-6 text-slate-900">
+                  برای نمایش لینک در شبکه‌های اجتماعی، حتماً یک تصویر جذاب نیز
+                  اضافه کنید. در غیر اینصورت لینک به درستی کار نخواهد کرد
+                </p>
+              </div>
+
+              {/* Box 2 */}
+              <div className="flex items-start gap-3 rounded-xl border border-slate-300 bg-slate-50 p-4 shadow-sm">
+                <p className="text-sm leading-6 text-slate-900">
+                  اگر لینک در تلگرام به‌درستی نمایش داده نشد، آدرس لینک‌های خود
+                  را به این بات ارسال کنید:
+                  <br />
+                  <a
+                    href="https://t.me/webpagebot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-blue-700 underline transition hover:text-blue-900"
+                    style={{
+                      direction: "ltr",
+                      display: "inline-block",
+                      marginTop: "4px",
+                    }}
+                  >
+                    @webpagebot
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </div>

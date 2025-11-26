@@ -8,6 +8,10 @@ import { currentUserSubscription } from "@/lib/auth/user-subscription";
 import { BadgeCheck, ChartSpline, SheetIcon, TrophyIcon } from "lucide-react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "پنل مدیریت",
+};
+
 const Dashboard = async () => {
   // updateSubscriptionData({ subscriptionPlan: "silver", days: 30 });
   const allPages = await getUserPageData();

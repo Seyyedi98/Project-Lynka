@@ -35,8 +35,9 @@ export async function generateMetadata({ params }) {
         : null;
 
     return {
-      title: metadata.metaTitle || "lynka",
-      description: isPremium ? metadata.metaDescription || "Welcome!" : "",
+      title: metadata.metaTitle || "صفحه من",
+      template: "s%",
+      description: isPremium ? metadata.metaDescription || "خوش اومدی!" : "",
       favicon: "null",
       // icons: [
       //   {
@@ -72,8 +73,8 @@ export async function generateMetadata({ params }) {
         },
       ],
       openGraph: {
-        title: isPremium ? metadata.metaTitle || "My Page" : "",
-        description: isPremium ? metadata.metaDescription || "Welcome!" : "",
+        title: isPremium ? metadata.metaTitle || "صفحه من" : "",
+        description: isPremium ? metadata.metaDescription || "خوش اومدی!" : "",
         siteName: metadata.metaTitle,
         url: "https://link.liara.run",
         images: [
@@ -146,9 +147,10 @@ const LivePage = async ({ params }) => {
         )}
 
         <main className="relative flex w-full flex-col items-center overflow-y-auto pb-2 [scrollbar-width:none]">
-          <div className="relative">
+          {/* Menu */}
+          {/* <div className="relative">
             <LivePageMenu uri={uri} />{" "}
-          </div>
+          </div> */}
 
           {/* Hero Section */}
           <LivePageHero hero={hero} />
@@ -158,7 +160,7 @@ const LivePage = async ({ params }) => {
             <LivePageElements uri={uri} content={content} />
           </section>
 
-          <footer className="mt-8 w-[90%] max-w-[400px] bg-white py-3 text-center text-black">
+          {/* <footer className="mt-8 w-[90%] max-w-[400px] bg-white py-3 text-center text-black">
             ساخته شده توسط{" "}
             <Link
               href="/"
@@ -167,7 +169,7 @@ const LivePage = async ({ params }) => {
             >
               لینکا
             </Link>
-          </footer>
+          </footer> */}
         </main>
       </LivePageBackground>
     </>

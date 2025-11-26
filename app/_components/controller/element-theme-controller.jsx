@@ -25,6 +25,7 @@ import FormFieldWindows95 from "../elements_theme/form/form-field-windows95";
 import GalleryFieldDefault from "../elements_theme/gallery/gallery-field-default";
 import LotteryFieldDefault from "../elements_theme/lottery/lottery-field-default";
 import MapFieldDefault from "../elements_theme/map/map-field-default";
+import MapFieldLiquidGlass from "../elements_theme/map/map-field-liquidglass";
 import MapFieldWindows95 from "../elements_theme/map/map-field-windows95";
 import PhoneFieldDefault from "../elements_theme/phone/phone-field-default";
 import PhoneFieldLiquidGlass from "../elements_theme/phone/phone-field-liquidGlass";
@@ -36,7 +37,7 @@ import RssFieldDefault from "../elements_theme/rss/rss-field-default";
 import SocialsFieldAero from "../elements_theme/socials/socials-field-aero";
 import SocialsFieldDefault from "../elements_theme/socials/socials-field-default";
 import SocialsFieldGlitch from "../elements_theme/socials/socials-field-glitch";
-import SocialsFieldMacOS from "../elements_theme/socials/socials-field-macos";
+import SocialsFieldLiquidGlass from "../elements_theme/socials/socials-field-liquidglass";
 import SocialsFieldOnlyIcon from "../elements_theme/socials/socials-field-onlyIcon";
 import SocialsFieldOnlyIconCustom from "../elements_theme/socials/socials-field-onlyIcon-custom";
 import SocialsFieldRounded from "../elements_theme/socials/socials-field-rounded";
@@ -63,7 +64,11 @@ export const ElementThemeController = {
     rounded: [SocialsFieldRounded, { type: "color" }, { isPremium: false }],
     windows: [SocialsFieldWindows, { type: "color" }, { isPremium: true }],
     windows95: [SocialsFieldWindows95, { type: "color" }, { isPremium: true }],
-    liquidGlass: [SocialsFieldMacOS, { type: "color" }, { isPremium: true }],
+    liquidGlass: [
+      SocialsFieldLiquidGlass,
+      { type: "color" },
+      { isPremium: true },
+    ],
     aero: [SocialsFieldAero, { type: "color" }, { isPremium: true }],
     glitch: [SocialsFieldGlitch, { type: "color" }, { isPremium: true }],
   },
@@ -140,6 +145,7 @@ export const ElementThemeController = {
   },
   MapField: {
     default: [MapFieldDefault, { type: "color" }, { isPremium: true }],
+    LiquidGlass: [MapFieldLiquidGlass, { type: "color" }, { isPremium: true }],
     windows95: [MapFieldWindows95, { type: "color" }, { isPremium: true }],
   },
   ImageField: {

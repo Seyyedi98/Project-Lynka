@@ -24,7 +24,7 @@ const ElementBorderRadiusFormField = ({ form, fieldName, label }) => {
       name={fieldName || "borderRadius"}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label || "گوشه های گرد"}</FormLabel>
+          <FormLabel>{label || "زاویه گوشه ها"}</FormLabel>
           <FormControl>
             <div className="flex flex-col gap-4">
               <RadioGroup

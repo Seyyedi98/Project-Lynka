@@ -7,8 +7,13 @@ import { geistMono, geistSans } from "./fonts/fonts";
 import "./globals.css";
 
 export const metadata = {
-  title: "لینکا",
-  description: "ساخت پیج شخصی",
+  // title: "The Wild Oasis",
+  title: {
+    template: "لینکا | %s",
+    default: "لینکا | ابزار ساخت صفحه شخصی",
+  },
+  description:
+    "ایجاد صفحه شخصی برای سازماندهی لینک‌ها و معرفی بهتر هویت آنلاین؛ مناسب کاربران عادی تا حرفه‌ای‌ها.",
   favicon: "/favicon.ico",
 };
 
