@@ -148,9 +148,9 @@ const LivePage = async ({ params }) => {
 
         <main className="relative flex w-full flex-col items-center overflow-y-auto pb-2 [scrollbar-width:none]">
           {/* Menu */}
-          {/* <div className="relative">
+          <div className="relative">
             <LivePageMenu uri={uri} />{" "}
-          </div> */}
+          </div>
 
           {/* Hero Section */}
           <LivePageHero hero={hero} />
@@ -160,7 +160,7 @@ const LivePage = async ({ params }) => {
             <LivePageElements uri={uri} content={content} />
           </section>
 
-          {/* <footer className="mt-8 w-[90%] max-w-[400px] bg-white py-3 text-center text-black">
+          <footer className="mt-8 w-[90%] max-w-[400px] bg-white py-3 text-center text-black">
             ساخته شده توسط{" "}
             <Link
               href="/"
@@ -169,7 +169,7 @@ const LivePage = async ({ params }) => {
             >
               لینکا
             </Link>
-          </footer> */}
+          </footer>
         </main>
       </LivePageBackground>
     </>

@@ -74,7 +74,7 @@ const BgCurvedHero = ({ ...data }) => {
               maskImage: `url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxNi44cmVtIiB2aWV3Qm94PSIwIDAgMTAwIDE2OCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxjbGlwUGF0aCBpZD0icm91bmRlZC11cC1jbGlwIj4KICAgICAgPHBvbHlnb24gcG9pbnRzPSIwLDAgMCwxMDAgMC44MTgsOTkuMzQyIDAuODE4LDk5LjM0MiAxMC41MDcsOTIuNCAyMC4zNTMsODcuMDE1IDMwLjMxNyw4My4xODkgNDAuMzU4LDgwLjkyIDUwLjQzNyw4MC4yMDkgNjAuNTE0LDgxLjA1NCA3MC41NDksODMuNDU2IDgwLjUwMSw4Ny40MTUgOTAuMzMxLDkyLjkyOSAxMDAsMTAwIDEwMCwwIDAsMCIgLz4KICAgIDwvY2xpcFBhdGg+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InJnYigxNSwgOTEsIDEwNikiIGNsaXAtcGF0aD0idXJsKCNyb3VuZGVkLXVwLWNsaXApIiAvPgo8L3N2Zz4=')`,
               filter: `brightness(${1 - imageBrightness / 100})`,
             }}
-            className="position-bottom top-0 z-10 mx-auto h-full w-full bg-white object-cover xl:max-w-[1000px]"
+            className="position-bottom top-0 z-10 mx-auto h-full w-full bg-white object-fill xl:max-w-[1000px]"
           />
         ) : (
           <div
