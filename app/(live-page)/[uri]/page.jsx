@@ -2,6 +2,7 @@ import { getPageMetadata } from "@/actions/page/page";
 import LivePageMenu from "@/app/_components/common/button/live-page-menu";
 import LoadingSpinner from "@/app/_components/common/shared/loadingSpinner";
 import LivePageBackground from "@/app/_components/live-page/live-page-background";
+import LivePageCta from "@/app/_components/live-page/live-page-cta";
 import LivePageElements from "@/app/_components/live-page/live-page-elements-render";
 import LivePageHero from "@/app/_components/live-page/live-page-hero-render";
 import { getSubscriptionByUri } from "@/lib/auth/user-subscription";
@@ -146,7 +147,7 @@ const LivePage = async ({ params }) => {
           </div>
         )}
 
-        <main className="relative flex w-full flex-col items-center overflow-y-auto pb-2 [scrollbar-width:none]">
+        <main className="relative flex w-full flex-col items-center overflow-y-auto pb-20 [scrollbar-width:none]">
           {/* Menu */}
           <div className="relative">
             <LivePageMenu uri={uri} />{" "}
@@ -160,16 +161,7 @@ const LivePage = async ({ params }) => {
             <LivePageElements uri={uri} content={content} />
           </section>
 
-          <footer className="mt-8 w-[90%] max-w-[400px] bg-white py-3 text-center text-black">
-            ساخته شده توسط{" "}
-            <Link
-              href="/"
-              alt="lynka"
-              className="text-primary transition-all duration-500 hover:text-primary/60"
-            >
-              لینکا
-            </Link>
-          </footer>
+          <LivePageCta />
         </main>
       </LivePageBackground>
     </>

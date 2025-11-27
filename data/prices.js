@@ -4,8 +4,8 @@ export const PLANS = [
   {
     id: "silver",
     name: "اشتراک ویژه",
-    price_1: "1000",
-    // price_1: "90000",
+    // price_1: "1000",
+    price_1: "90000",
     price_3: "199000",
     price_6: "299000",
     off_1: "0",
