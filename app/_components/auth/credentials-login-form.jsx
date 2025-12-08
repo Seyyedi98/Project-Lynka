@@ -72,7 +72,7 @@ export const CredentialsLoginForm = () => {
           {/* Main login page */}
           {!showTwoFactor && (
             <>
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name="email"
                 render={({ field }) => (
@@ -121,7 +121,7 @@ export const CredentialsLoginForm = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              />
+              /> */}
             </>
           )}
 
@@ -156,7 +156,7 @@ export const CredentialsLoginForm = () => {
         </div>
         <FormError message={error} />
         <FormSuccess message={success} />
-        <Button disabled={isPending} type="submit" className="h-12 w-full">
+        {/* <Button disabled={isPending} type="submit" className="h-12 w-full">
           {isPending ? (
             <Loader className="animate-spin" />
           ) : showTwoFactor ? (
@@ -164,7 +164,7 @@ export const CredentialsLoginForm = () => {
           ) : (
             "ورود"
           )}
-        </Button>
+        </Button> */}
       </form>
     </Form>
   );

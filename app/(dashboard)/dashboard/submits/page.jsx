@@ -2,6 +2,7 @@
 
 import { getSubmittedForms } from "@/actions/form/page-formfield";
 import { getUserPageData } from "@/actions/page/page";
+import CSVDownloadButton from "@/app/_components/section/dashboard/submits/csv-download-button";
 import SubmitsHeader from "@/app/_components/section/dashboard/submits/submits-header";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -247,7 +248,6 @@ export default function SubmitsPanel() {
         formTitleFilter={formTitleFilter}
         setFormTitleFilter={setFormTitleFilter}
       />
-
       {/* Content */}
       {isInitialLoading ? (
         <div className="space-y-4 sm:mx-4 sm:mr-20">
@@ -266,6 +266,9 @@ export default function SubmitsPanel() {
               {...fade}
               className="overflow-hidden rounded-xl border border-gray-200 bg-white/80 shadow-sm backdrop-blur-sm dark:border-white/20 dark:bg-white/10 sm:mx-4 sm:mr-20"
             >
+              <div className="p-2">
+                <CSVDownloadButton data={forms} />
+              </div>
               <div className="overflow-x-auto">
                 <Table className="w-full text-sm">
                   <TableHeader className="bg-gray-50 dark:bg-white/10">
@@ -442,7 +445,6 @@ export default function SubmitsPanel() {
           )}
         </>
       )}
-
       {/* Form Detail Dialog */}
       <Dialog open={!!selectedForm} onOpenChange={() => setSelectedForm(null)}>
         <DialogContent className="max-w-2xl border-gray-200 bg-white dark:border-white/20 dark:bg-slate-900/90 dark:backdrop-blur-xl">
@@ -474,7 +476,7 @@ export default function SubmitsPanel() {
                       <p className="text-sm font-medium text-gray-600 dark:text-white/60">
                         {key}:
                       </p>
-                      <p className="rounded-md bg-gray-100 p-3 text-sm text-gray-900 dark:bg-white/10 dark:text-white/80">
+                      <p className="max-h-28 overflow-y-auto rounded-md bg-gray-100 p-3 text-sm text-gray-900 dark:bg-white/10 dark:text-white/80">
                         {value || `بدون مقدار`}
                       </p>
                     </div>

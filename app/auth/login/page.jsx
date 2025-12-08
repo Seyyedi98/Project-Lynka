@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const Login = () => {
-  const [selectedTab, setSelectedTab] = useState("email");
+  const [selectedTab, setSelectedTab] = useState("mobile");
 
   return (
     <main className="flex w-full">
@@ -62,8 +62,8 @@ const Login = () => {
         </div>
 
         <div className="mt-8 w-full max-w-md px-4">
-          {selectedTab === "email" && <CredentialsLoginForm />}
           {selectedTab === "mobile" && <MobileLoginForm />}
+          {selectedTab === "email" && <CredentialsLoginForm />}
           <div className="mt-4">
             <Social />
           </div>
