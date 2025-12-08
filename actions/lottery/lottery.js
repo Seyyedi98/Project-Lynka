@@ -25,8 +25,8 @@ export async function getUserLotteries() {
 }
 
 export async function getLotteryData(lotteryId) {
-  const user = await currentUser();
-  if (!user) return { error: "شما به این بخش دسترسی ندارید" };
+  // const user = await currentUser();
+  // if (!user) return { error: "شما به این بخش دسترسی ندارید" };
 
   try {
     return await prisma.lottery.findUnique({

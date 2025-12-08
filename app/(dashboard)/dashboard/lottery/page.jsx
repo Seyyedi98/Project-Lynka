@@ -80,7 +80,7 @@ const ActiveLotteryCard = ({ lottery, loading, onEndLottery, isDark }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className={`mb-8 overflow-hidden rounded-2xl border p-6 ${
+      className={`mb-8 overflow-hidden rounded-2xl border p-6 sm:mr-20 ${
         isDark
           ? "border-white/20 bg-white/10 backdrop-blur-xl"
           : "border-gray-200 bg-white shadow-sm"
@@ -448,7 +448,7 @@ export default function LotteryPage() {
       className="relative mx-auto w-full max-w-7xl px-4 pb-8 pt-40 sm:px-6 lg:px-8"
     >
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-8 sm:mx-4 sm:mr-20">
         <motion.h1
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -577,7 +577,7 @@ export default function LotteryPage() {
           {[...Array(3)].map((_, i) => (
             <Skeleton
               key={i}
-              className={`h-20 w-full rounded-2xl ${isDark ? "bg-white/10" : "bg-gray-200"}`}
+              className={`h-20 w-full rounded-2xl sm:mr-20 ${isDark ? "bg-white/10" : "bg-gray-200"}`}
             />
           ))}
         </div>
@@ -589,7 +589,7 @@ export default function LotteryPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className={`flex flex-col items-center justify-center rounded-2xl border py-16 text-center ${
+          className={`flex flex-col items-center justify-center rounded-2xl border py-16 text-center sm:mr-20 ${
             isDark
               ? "border-white/20 bg-white/10 backdrop-blur-xl"
               : "border-gray-200 bg-white shadow-sm"
@@ -617,7 +617,7 @@ export default function LotteryPage() {
 
       {/* Lottery History Table */}
       {lotteries.length > 0 && (
-        <div className="mb-8">
+        <div className="mb-8 sm:mr-20">
           <LotteryHistoryTable
             lotteries={lotteries}
             onSelectLottery={handleSelectLottery}

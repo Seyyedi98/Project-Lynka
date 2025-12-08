@@ -5,13 +5,14 @@ import {
   submitLotteryParticipation,
 } from "@/actions/lottery/lottery";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { loadFont } from "@/utils/loadFont";
 import { AnimatePresence, motion } from "framer-motion";
 
-const LotteryFieldDefault = (props) => {
+const LotteryFieldTransparent = (props) => {
   const {
     bgColor,
     borderRadius,
@@ -189,7 +190,6 @@ const LotteryFieldDefault = (props) => {
           style={{ borderRadius: cardBorderRadius, borderColor: borderColor }}
           className="flex w-full flex-col border"
         >
-          {/* Button to show winners */}
           <p className="py-2">قرعه کشی به پایان رسیده است</p>
           <button
             style={{
@@ -198,7 +198,7 @@ const LotteryFieldDefault = (props) => {
               borderBottomLeftRadius: cardBorderRadius,
             }}
             onClick={() => setShowWinnersModal(true)}
-            className="mt-2 rounded-b-md px-4 py-2 text-white transition-opacity duration-300 hover:bg-blue-600 hover:opacity-85"
+            className="mt-2 rounded-b-md px-4 py-2 text-white transition-opacity duration-300 hover:opacity-85"
           >
             مشاهده برندگان
           </button>
@@ -264,9 +264,6 @@ const LotteryFieldDefault = (props) => {
                           <h4 className="font-semibold text-gray-800">
                             {winner.firstName} {winner.lastName}
                           </h4>
-                          {/* <p className="text-sm text-gray-600">
-                            {winner.contactInfo}
-                          </p> */}
                         </div>
                       </motion.div>
                     ))}
@@ -307,138 +304,162 @@ const LotteryFieldDefault = (props) => {
   }
 
   return (
-    <div
-      className="w-full rounded-lg p-6 shadow-md"
-      style={{ backgroundColor: bgColor, borderRadius: cardBorderRadius }}
-    >
-      <h3
-        style={{
-          fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-          color: textColor,
-        }}
-        className="mb-4 text-center text-xl font-bold"
+    <div className="relative w-full">
+      <div
+        className={cn(
+          `w-full text-wrap rounded-md py-2`,
+          !isPremium && "opacity-70",
+        )}
       >
-        {title}
-      </h3>
-
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div>
-          <label
-            style={{
-              color: textColor,
-              fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-            }}
-            className="mb-2 block"
-          >
-            نام
-          </label>
-          <input
-            {...register("firstName", { required: "نام الزامی است" })}
-            style={{
-              borderRadius: borderRadius,
-              borderColor: borderColor,
-              fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-            }}
-            className="w-full border bg-transparent p-2"
-          />
-          {errors.firstName && (
-            <p className="mt-1 text-sm text-red-500">
-              {errors.firstName.message}
-            </p>
-          )}
-        </div>
-
-        <div>
-          <label
-            style={{
-              color: textColor,
-              fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-            }}
-            className="mb-2 block"
-          >
-            نام خانوادگی
-          </label>
-          <input
-            style={{
-              borderRadius: borderRadius,
-              borderColor: borderColor,
-              fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-            }}
-            {...register("lastName", { required: "نام خانوادگی الزامی است" })}
-            className="w-full border bg-transparent p-2"
-          />
-          {errors.lastName && (
-            <p className="mt-1 text-sm text-red-500">
-              {errors.lastName.message}
-            </p>
-          )}
-        </div>
-
-        <div>
-          <label
-            style={{
-              color: textColor,
-
-              fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-            }}
-            className="mb-2 block"
-          >
-            ایمیل یا شماره تلفن
-          </label>
-          <input
-            style={{
-              borderRadius: borderRadius,
-              borderColor: borderColor,
-              fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
-            }}
-            {...register("contactInfo", {
-              required: "اطلاعات تماس الزامی است",
-              validate: (value) =>
-                /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value) ||
-                /^(\+98|0)?9\d{9}$/.test(value) ||
-                "لطفاً ایمیل یا شماره موبایل معتبر وارد کنید",
-            })}
-            className="w-full border bg-transparent p-2"
-          />
-          {errors.contactInfo && (
-            <p className="mt-1 text-sm text-red-500">
-              {errors.contactInfo.message}
-            </p>
-          )}
-        </div>
-
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          style={{ borderRadius: borderRadius }}
-          className="w-full disabled:opacity-50"
+        <div
+          style={{
+            color: textColor,
+            fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+          }}
+          className="mb-2 text-center text-lg"
         >
-          {isSubmitting ? (
-            <span className="flex items-center justify-center">
-              <svg className="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24">
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              در حال ارسال...
-            </span>
-          ) : (
-            "ارسال"
-          )}
-        </Button>
-      </form>
+          {title}
+        </div>
+        <div
+          style={{
+            borderRadius: cardBorderRadius,
+            color: textColor,
+            fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+          }}
+          className="h-full w-full"
+        >
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {/* First Name */}
+            <div className="mb-4">
+              <label
+                style={{
+                  color: textColor,
+                  fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+                }}
+                className="mb-2 mr-1 block text-sm font-medium"
+              >
+                نام
+              </label>
+              <input
+                {...register("firstName", { required: "نام الزامی است" })}
+                style={{
+                  borderRadius: borderRadius,
+                  borderColor: borderColor,
+                  fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+                }}
+                className="h-12 w-full rounded-md border-2 bg-transparent px-2"
+              />
+              {errors.firstName && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.firstName.message}
+                </p>
+              )}
+            </div>
+
+            {/* Last Name */}
+            <div className="mb-4">
+              <label
+                style={{
+                  color: textColor,
+                  fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+                }}
+                className="mb-2 mr-1 block text-sm font-medium"
+              >
+                نام خانوادگی
+              </label>
+              <input
+                {...register("lastName", {
+                  required: "نام خانوادگی الزامی است",
+                })}
+                style={{
+                  borderRadius: borderRadius,
+                  borderColor: borderColor,
+                  fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+                }}
+                className="h-12 w-full rounded-md border-2 bg-transparent px-2"
+              />
+              {errors.lastName && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.lastName.message}
+                </p>
+              )}
+            </div>
+
+            {/* Contact Info */}
+            <div className="mb-4">
+              <label
+                style={{
+                  color: textColor,
+                  fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+                }}
+                className="mb-2 mr-1 block text-sm font-medium"
+              >
+                شماره موبایل
+              </label>
+              <input
+                {...register("contactInfo", {
+                  required: "اطلاعات تماس الزامی است",
+                  validate: (value) =>
+                    /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value) ||
+                    /^(\+98|0)?9\d{9}$/.test(value) ||
+                    "لطفاً ایمیل یا شماره موبایل معتبر وارد کنید",
+                })}
+                style={{
+                  borderRadius: borderRadius,
+                  borderColor: borderColor,
+                  fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+                }}
+                className="h-12 w-full rounded-md border-2 bg-transparent px-2"
+              />
+              {errors.contactInfo && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.contactInfo.message}
+                </p>
+              )}
+            </div>
+
+            {/* Submit Button */}
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              style={{
+                borderRadius: borderRadius,
+                backgroundColor: bgColor,
+                fontFamily: loadedFont ? `var(${loadedFont})` : "inherit",
+              }}
+              className="mt-4 w-full border-none"
+            >
+              {isSubmitting ? (
+                <span className="flex items-center justify-center">
+                  <svg
+                    className="mr-2 h-4 w-4 animate-spin"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  در حال ارسال...
+                </span>
+              ) : (
+                "ارسال"
+              )}
+            </Button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default LotteryFieldDefault;
+export default LotteryFieldTransparent;

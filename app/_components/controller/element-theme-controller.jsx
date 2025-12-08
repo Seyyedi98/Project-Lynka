@@ -24,6 +24,7 @@ import FormFieldTransparent from "../elements_theme/form/form-field-transparent"
 import FormFieldWindows95 from "../elements_theme/form/form-field-windows95";
 import GalleryFieldDefault from "../elements_theme/gallery/gallery-field-default";
 import LotteryFieldDefault from "../elements_theme/lottery/lottery-field-default";
+import LotteryFieldTransparent from "../elements_theme/lottery/lottery-field-transparent";
 import MapFieldDefault from "../elements_theme/map/map-field-default";
 import MapFieldLiquidGlass from "../elements_theme/map/map-field-liquidglass";
 import MapFieldWindows95 from "../elements_theme/map/map-field-windows95";
@@ -167,5 +168,10 @@ export const ElementThemeController = {
   },
   LotteryField: {
     default: [LotteryFieldDefault, { type: "color" }, { isPremium: true }],
+    transparent: [
+      LotteryFieldTransparent,
+      { type: "color" },
+      { isPremium: true },
+    ],
   },
 };
