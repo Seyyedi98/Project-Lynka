@@ -174,7 +174,11 @@ export const getPageMetadata = async (uri) => {
   return metaData;
 };
 
-export async function UpdatePageContent(uri, jsonContent) {
+export async function UpdatePageContent(
+  uri,
+  jsonContent,
+  updateTutorialModals,
+) {
   const user = await currentUser();
   if (!user) {
     return { error: "You need to signed in to create Page" };
@@ -195,7 +199,10 @@ export async function UpdatePageContent(uri, jsonContent) {
     },
     data: {
       content: jsonContent,
-      showedPublishMessage: true,
+      ...(updateTutorialModals && {
+        showedPublishMessage: true,
+        tutorialCompleted: true,
+      }),
     },
   });
 

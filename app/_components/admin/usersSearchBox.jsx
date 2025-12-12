@@ -7,6 +7,8 @@ const SearchBox = ({
     { value: "trackId", label: "Track ID" },
     { value: "id", label: "Transaction ID" }, // Changed from "transactionId" to "id"
     { value: "userId", label: "User ID" },
+    { value: "email", label: "email" },
+    { value: "phone", label: "phoneNumber" },
   ],
   defaultSearchType = "trackId",
   placeholder = "Search...",

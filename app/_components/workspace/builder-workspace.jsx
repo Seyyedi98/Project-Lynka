@@ -9,13 +9,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import {
-  ArrowDown,
-  ChevronLeft,
-  ChevronRight,
-  Eye,
-  PlusIcon,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Eye, PlusIcon } from "lucide-react";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import BackButtonWithConfirmation from "../common/button/NavigationButton/back-button-confirmation";
@@ -26,9 +20,12 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "../common/modal/diolog";
+import PageTutorialModal from "../common/modal/tutorialModal";
 import { PageElements } from "../controller/page-elements-controller";
 import EditorSidebar from "../layout/navbar/editor-sidebar";
 import PreviewPageContainer from "../preview/preview-page-container";
@@ -39,22 +36,6 @@ const MemoizedWorkspaceElementWrapper = memo(WorkspaceElementWrapper);
 const MemoizedEditorSidebar = memo(EditorSidebar);
 
 const BuilderWorkspace = () => {
-  const dispatch = useDispatch();
-  const [activeDragItem, setActiveDragItem] = useState(null);
-  const isAnyMenuOpen = useSelector(selectIsAnyMenuOpen);
-  const [isPremium, setIsPremium] = useState();
-  const [isbuyPremiumModalOpen, setBuyPremiumModalOpen] = useState();
-  const [showIsPublishModal, setShowIsPublishModal] = useState(true);
-
-  useEffect(() => {
-    const checkPremiumUser = async () => {
-      const { isPremium } = await currentUserSubscription();
-      setIsPremium(isPremium);
-      setBuyPremiumModalOpen(!isPremium);
-    };
-    checkPremiumUser();
-  }, []);
-
   const { hero, theme, elements, messages } = useSelector(
     (state) => ({
       hero: state.page.hero,
@@ -65,6 +46,25 @@ const BuilderWorkspace = () => {
     }),
     shallowEqual,
   );
+
+  const dispatch = useDispatch();
+  const [activeDragItem, setActiveDragItem] = useState(null);
+  const isAnyMenuOpen = useSelector(selectIsAnyMenuOpen);
+  const [isPremium, setIsPremium] = useState();
+  const [isbuyPremiumModalOpen, setBuyPremiumModalOpen] = useState();
+  const [showIsPublishModal, setShowIsPublishModal] = useState(true);
+  const [showTutorialModal, setShowTutorialModal] = useState(
+    !messages.tutorialCompleted,
+  );
+
+  useEffect(() => {
+    const checkPremiumUser = async () => {
+      const { isPremium } = await currentUserSubscription();
+      setIsPremium(isPremium);
+      setBuyPremiumModalOpen(!isPremium);
+    };
+    checkPremiumUser();
+  }, []);
 
   const backgroundImageUrl =
     theme.backgroundImage && parseJson(theme.backgroundImage)?.key === "no_key"
@@ -248,6 +248,32 @@ const BuilderWorkspace = () => {
                   <span className="text-white">ذخیره</span>
                 </div>
               </SavePageBtn>
+
+              {/* Totorial Modal */}
+              <Dialog
+                open={showTutorialModal}
+                onOpenChange={setShowTutorialModal}
+              >
+                <DialogContent className="max-h-[90vh] overflow-y-auto p-4 pt-12 sm:max-h-[80vh]">
+                  <DialogHeader>
+                    <DialogTitle>راهنما</DialogTitle>
+                    <DialogDescription></DialogDescription>
+                  </DialogHeader>
+
+                  <div className="overflow-y-auto">
+                    <PageTutorialModal />
+                  </div>
+
+                  <DialogFooter className="mt-4">
+                    <button
+                      onClick={() => setShowTutorialModal(false)}
+                      className="w-full rounded-md bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 sm:w-auto"
+                    >
+                      بستن راهنما
+                    </button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
 
               {/* Page Preview Button */}
               <Dialog>

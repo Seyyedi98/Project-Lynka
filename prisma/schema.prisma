@@ -129,6 +129,7 @@ model Page {
   googleIndexed        Boolean  @default(false)
   tutorialCompleted    Boolean  @default(false)
   showedPublishMessage Boolean  @default(false)
+  showedGuidehMessage  Boolean  @default(false)
 
   User User? @relation(fields: [owner], references: [id], onDelete: Cascade)
 

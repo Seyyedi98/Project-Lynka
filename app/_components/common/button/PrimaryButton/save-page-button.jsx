@@ -56,7 +56,9 @@ const SavePageBtn = ({
         const JSONElement = JSON.stringify(fullContent);
         const JSONTheme = JSON.stringify(theme);
 
-        await UpdatePageContent(uri, JSONElement);
+        await UpdatePageContent(uri, JSONElement, {
+          updateTutorialModals: true,
+        });
         await UpdatePageTheme(uri, JSONTheme);
         toast.success("صفحه با موفقت ذخیره شد");
 

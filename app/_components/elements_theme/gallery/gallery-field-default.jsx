@@ -7,7 +7,6 @@ import Image from "next/image";
 import { useState, useMemo, useEffect } from "react";
 
 const GalleryFieldDefault = (props) => {
-  console.log(props);
   const { isPremium, images, borderRadius } = props;
   const [loadedImages, setLoadedImages] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);

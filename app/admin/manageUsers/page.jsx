@@ -16,6 +16,7 @@ const ManageUsers = () => {
     { value: "phoneNumber", label: "Phone Number" },
     { value: "email", label: "Email" },
     { value: "name", label: "Username" },
+    { value: "id", label: "id" },
   ];
 
   const handleSearch = async (searchType, searchTerm) => {
