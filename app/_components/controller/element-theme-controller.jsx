@@ -14,6 +14,7 @@ import CardFieldToon2 from "../elements_theme/card/card-field-toon2";
 import CardFieldTransparent from "../elements_theme/card/card-field-transparent";
 import CardFieldWindows from "../elements_theme/card/card-field-windows";
 import CarouselFieldDefault from "../elements_theme/carousel/carousel-field-default";
+import CarouselFieldSimple from "../elements_theme/carousel/carousel-field-simple";
 import CountdownFieldDefault from "../elements_theme/countdown/countdown-field-default";
 import DeviderFieldDefault from "../elements_theme/devider/devider-field-default";
 import FaqFieldDefault from "../elements_theme/faq/faq-field-default";
@@ -157,6 +158,7 @@ export const ElementThemeController = {
   },
   CarouselField: {
     default: [CarouselFieldDefault, { type: "color" }, { isPremium: true }],
+    simple: [CarouselFieldSimple, { type: "color" }, { isPremium: true }],
   },
   PostTrackerField: {
     default: [PostTrackerFieldDefault, { type: "color" }, { isPremium: true }],

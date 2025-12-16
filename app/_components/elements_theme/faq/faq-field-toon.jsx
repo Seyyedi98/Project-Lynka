@@ -2,9 +2,12 @@
 
 import { cn } from "@/lib/utils";
 import { loadFont } from "@/utils/loadFont";
-import { QuestionMarkCircledIcon } from "@radix-ui/react-icons";
+import {
+  QuestionMarkCircledIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
-import { Accordion } from "rsuite";
 
 const FaqFieldToon = (props) => {
   const {
@@ -15,12 +18,15 @@ const FaqFieldToon = (props) => {
     bgColor = "#fff0f0",
     borderRadius = "0.75em",
     font,
-    questions,
+    questions = [],
   } = props;
   const [textFont, setTextFont] = useState(null);
+  const [openIndex, setOpenIndex] = useState(null);
 
   useEffect(() => {
     const fetchFont = async () => {
+      if (!font) return;
+
       try {
         const textFontVariable = await loadFont(font);
         setTextFont(textFontVariable);
@@ -30,13 +36,39 @@ const FaqFieldToon = (props) => {
     };
 
     fetchFont();
-  }, [textFont, font]);
+  }, [font]);
+
+  const toggleAccordion = (index) => {
+    if (!isLive) return;
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const overlayStyle = {
+    position: "absolute",
+    content: "",
+    width: "100%",
+    height: "100%",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: "#f9c4d2",
+    borderRadius: "inherit",
+    transform: "translate3d(0, 0.5em, -1em)",
+    transition: "transform 150ms cubic-bezier(0, 0, 0.58, 1)",
+    zIndex: -1,
+  };
+
+  const titleOverlayStyle = {
+    ...overlayStyle,
+    transform: "translate3d(0, 0.75em, -1em)",
+  };
 
   return (
     <div className="relative w-full">
       {!isPremium && (
         <div
-          className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform p-2 text-center"
+          className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 transform p-2 text-center"
           style={{
             backgroundColor: "#fff0f0",
             border: "2px solid #b18597",
@@ -46,28 +78,17 @@ const FaqFieldToon = (props) => {
             padding: "1.25em 2em",
             position: "relative",
             transformStyle: "preserve-3d",
+            width: "90%",
+            maxWidth: "400px",
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              content: "",
-              width: "100%",
-              height: "100%",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: "#f9c4d2",
-              borderRadius: "inherit",
-              transform: "translate3d(0, 0.75em, -1em)",
-              zIndex: -1,
-            }}
-          />
+          <div style={overlayStyle} />
           برای استفاده از این بلوک، اشتراک ویژه خود را تمدید کنید
         </div>
       )}
+
       <div className={cn(`w-full text-wrap py-2`, !isPremium && "opacity-70")}>
+        {/* Title Section */}
         <div
           style={{
             fontFamily: textFont ? `var(${textFont})` : "inherit",
@@ -84,111 +105,83 @@ const FaqFieldToon = (props) => {
             marginBottom: "1em",
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              content: "",
-              width: "100%",
-              height: "100%",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: "#f9c4d2",
-              borderRadius: "inherit",
-              transform: "translate3d(0, 0.75em, -1em)",
-              transition:
-                "transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1)",
-              zIndex: -1,
-            }}
-          />
+          <div style={titleOverlayStyle} />
           {title}
         </div>
+
+        {/* FAQ Questions */}
         {questions.length > 0 ? (
-          <Accordion
+          <div
+            className="space-y-2"
             style={{
               fontFamily: textFont ? `var(${textFont})` : "inherit",
               color: textColor,
             }}
-            className={cn(``, !isLive && "pointer-events-none")}
           >
-            {questions.map((question, index) => {
-              return (
-                <Accordion.Panel
-                  key={question.question}
-                  header={
-                    <div
-                      style={{
-                        padding: "1em",
-                        backgroundColor: bgColor,
-                        border: "2px solid #b18597",
-                        borderRadius: borderRadius,
-                        marginBottom: "0.5em",
-                        position: "relative",
-                        transformStyle: "preserve-3d",
-                        fontWeight: "600",
-                      }}
-                    >
-                      <div
-                        style={{
-                          position: "absolute",
-                          content: "",
-                          width: "100%",
-                          height: "100%",
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          background: "#f9c4d2",
-                          borderRadius: "inherit",
-                          transform: "translate3d(0, 0.5em, -1em)",
-                          transition:
-                            "transform 150ms cubic-bezier(0, 0, 0.58, 1)",
-                          zIndex: -1,
-                        }}
-                      />
-                      {question.question}
-                    </div>
-                  }
-                  eventKey={index}
+            {questions.map((question, index) => (
+              <div key={index} className="w-full">
+                {/* Question Header */}
+                <button
+                  type="button"
+                  onClick={() => toggleAccordion(index)}
+                  className={cn("w-full text-left")}
                   style={{
-                    border: "none",
+                    padding: "1em",
+                    backgroundColor: bgColor,
+                    border: "2px solid #b18597",
+                    borderRadius: borderRadius,
+                    position: "relative",
+                    transformStyle: "preserve-3d",
+                    fontWeight: "600",
+                    marginBottom: openIndex === index ? "0" : "0.5em",
+                    borderBottomLeftRadius:
+                      openIndex === index ? "0" : borderRadius,
+                    borderBottomRightRadius:
+                      openIndex === index ? "0" : borderRadius,
+                    transition: "border-radius 200ms ease",
                   }}
                 >
+                  <div style={overlayStyle} />
+                  <div className="flex items-center justify-between">
+                    <span>{question.question}</span>
+                    {isLive && (
+                      <span className="ml-2">
+                        {openIndex === index ? (
+                          <ChevronUpIcon className="h-5 w-5" />
+                        ) : (
+                          <ChevronDownIcon className="h-5 w-5" />
+                        )}
+                      </span>
+                    )}
+                  </div>
+                </button>
+
+                {/* Answer Content */}
+                {openIndex === index && (
                   <div
                     style={{
                       padding: "1em",
                       backgroundColor: "#ffffff",
                       border: "2px solid #b18597",
+                      borderTop: "none",
                       borderRadius: borderRadius,
-                      margin: "0.5em 0",
+                      borderTopLeftRadius: "0",
+                      borderTopRightRadius: "0",
+                      marginBottom: "0.5em",
                       position: "relative",
                       transformStyle: "preserve-3d",
+                      animation: "slideDown 200ms ease-out",
                     }}
                   >
-                    <div
-                      style={{
-                        position: "absolute",
-                        content: "",
-                        width: "100%",
-                        height: "100%",
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        background: "#f9c4d2",
-                        borderRadius: "inherit",
-                        transform: "translate3d(0, 0.5em, -1em)",
-                        zIndex: -1,
-                      }}
-                    />
-                    {question.answer}
+                    <div style={overlayStyle} />
+                    <div>{question.answer}</div>
                   </div>
-                </Accordion.Panel>
-              );
-            })}
-          </Accordion>
+                )}
+              </div>
+            ))}
+          </div>
         ) : (
+          // Empty State
           <div
             style={{
               height: "160px",
@@ -203,22 +196,7 @@ const FaqFieldToon = (props) => {
               transformStyle: "preserve-3d",
             }}
           >
-            <div
-              style={{
-                position: "absolute",
-                content: "",
-                width: "100%",
-                height: "100%",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: "#f9c4d2",
-                borderRadius: "inherit",
-                transform: "translate3d(0, 0.5em, -1em)",
-                zIndex: -1,
-              }}
-            />
+            <div style={overlayStyle} />
             <div
               style={{
                 display: "flex",
@@ -236,6 +214,19 @@ const FaqFieldToon = (props) => {
           </div>
         )}
       </div>
+
+      <style jsx>{`
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 };

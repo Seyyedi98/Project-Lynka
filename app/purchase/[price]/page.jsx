@@ -85,7 +85,7 @@ export default async function Purchase({ searchParams }) {
               {/* Security Notice */}
               <div className="text-center">
                 <p className="text-xs text-muted-foreground">
-                  🔒 پرداخت شما توسط درگاه امن زرین‌پال انجام می‌شود
+                  🔒 پرداخت شما توسط درگاه امن زیبال انجام می‌شود
                 </p>
               </div>
             </CardContent>

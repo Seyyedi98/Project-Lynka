@@ -114,7 +114,7 @@ const Dashboard = async () => {
           subscriptionDaysLeft < 3 &&
           subscriptionDaysLeft > 0 && (
             <Link className="col-span-2" href="/dashboard/pricing">
-              <div className="flex h-12 w-full cursor-pointer items-center justify-center rounded-md bg-[#ec407a] text-lg text-white">
+              <div className="flex h-12 w-full cursor-pointer items-center justify-center rounded-md bg-[#ec407a] p-2 text-lg text-white">
                 کمتر از ۳ روز تا پایان اشتراک باقی مانده است - همین حالا تمدید
                 کنید!
               </div>

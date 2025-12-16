@@ -85,7 +85,7 @@ const ElementSocialsFormField = ({
 
                     {/* Enter Id */}
                     <Input
-                      placeholder="User ID or URL"
+                      placeholder="id یا آدرس پیج"
                       value={item.userId}
                       onChange={(e) => handleInputChange(index, e.target.value)}
                       className="flex-1"
